@@ -1,0 +1,244 @@
+* {
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+    /* 10px = 1.0rem */
+}
+
+header{
+    width: 100%;
+    height: 7rem;
+    position: sticky;
+    top: 0;
+    background-color: #ffffff;
+    z-index: 10;
+    align-items: center;
+}
+
+a{
+    cursor: pointer;
+}
+
+.header-set{
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    bottom: 0.rem;
+}
+
+.outer-margin-set{
+    height: 100%;
+    max-width: 1920px;
+    padding: 0 200px;
+    margin: 0 auto;
+}
+
+.inner-margin-set{
+    height: 100%;
+    padding: 0 200px;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    cursor: pointer;
+}
+
+.logo-image{
+    height: 4rem;
+}
+
+.login{
+    background-color: #3692FF;
+    border-radius: 0.8rem;
+    padding: 1.2rem 2.3rem;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.headline{
+    width: 100%;
+    height: 54rem;
+    background-color: #CFE5FF;
+}
+
+.headline .outer-margin-set{
+    width: 100%;
+    height: 100%;
+}
+
+.headline .inner-margin-set{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.headline .inner-margin-set > div{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.headline.head .inner-margin-set > div{
+    width: 100%;
+    height: 34rem;
+}
+
+.headline.tail .inner-margin-set > div{
+    width: 100%;
+    height: 39.7rem;
+}
+
+.headline .descripton{ 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 1;
+}
+
+.headline.head .descripton{
+    min-width: 35.7rem;
+}
+
+.headline.tail .descripton{
+    min-width: 29.5rem;
+}
+
+.headline .descripton h1{
+    color: #374151;
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+.headline .descripton a{
+    background-color: #3692FF;
+    border-radius: 4rem;
+    padding: 1.6rem 12.4rem;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.headline.head img{
+    width: 74.6rem;
+    height: 34rem;
+}
+
+.headline.tail img{
+    width: 74.6rem;
+    height: 39.7rem;
+}
+
+
+.sec .inner-margin-set{
+    width: 100%;
+    height: 72rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-box{
+    width: 98.8rem;
+    height: 44.4rem;
+    background-color: #FCFCFC;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+}
+
+.hot-item .descripton{
+    min-width: 27.4rem;
+}
+.buy .descripton{
+    min-width: 31.7rem;
+}
+.sell .descripton{
+    min-width: 33.5rem;
+}
+
+.section-box img{
+    width: 58.8rem;
+    height: 44.4rem;
+}
+
+.section-box h2{
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #3692FF;
+}
+
+.section-box h1{
+    font-size: 4rem;
+    font-weight: 700;
+    color: #374151;
+}
+
+.section-box h3{
+    font-size: 2.4rem;
+    font-weight: 500;
+    color: #374151;
+}
+
+.sec.buy{
+    text-align: right;
+}
+
+.interval{
+    width: 100%;
+    height: 100px;
+    background-color: #FCFCFC;
+}
+
+footer{
+    width: 100%;
+    height: 16rem;
+    background-color: #111827;
+    padding: 3.2rem 0;
+}
+
+.footer-line{
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.footer-line .company-name{
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #9CA3AF;
+}
+
+.footer-line .policy{
+    display: flex;
+    gap: 3rem;
+}
+
+.footer-line .policy a{
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #E5E7EB;
+    text-decoration: none;
+}
+
+.sns-logo{
+    display: flex;
+    gap: 1.2rem;
+}
+
+.sns-logo img{
+    width: 1.8rem;
+    height: 1.8rem;
+}
