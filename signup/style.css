@@ -11,6 +11,14 @@ html {
     --secondary-800: #1F2937;
 }
 
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 a,
 button,
 .clickable{
@@ -22,6 +30,7 @@ button,
     margin: auto;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
