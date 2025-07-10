@@ -94,7 +94,7 @@ button,
     border-radius: 4rem;
     background-color: var(--secondary-400);
 
-    color: var(--font-white-2);
+    color: var(--cool-gray-100);
     text-align: center;
 
     font-size: 2rem;
@@ -106,7 +106,7 @@ button,
 }
 
 .signup-form button:hover{
-    background-color: var(--main-blue);
+    background-color: var(--brand-blue);
 }
 
 .simple-login{
