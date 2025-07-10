@@ -22,7 +22,6 @@ button,
     margin: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
@@ -154,5 +153,5 @@ button,
 }
 
 .login-massage a{
-    color: var(--main-blue);
+    color: var(--brand-blue);
 }

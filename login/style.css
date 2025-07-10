@@ -9,7 +9,7 @@ html {
     --font-white-1: #E6F2FF;
     --cool-gray-100: #F3F4F6;
     --secondary-800: #1F2937;
-}
+}   
 
 a,
 button,
@@ -22,7 +22,6 @@ button,
     margin: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
