@@ -6,7 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="/css/login.css">
 </head>
-<body>  
+<body >  
     <main class="main"> 
         <nav class="nav"> 
             <a href="/">
@@ -18,20 +18,33 @@
         </nav>
 
         <section>
-            <form action="/login" method="post">
-                <div class="email_section">
+            <form action="/signup" method="post">
+                <div class="signup_section">
                     <label class="email">이메일</label>
                     <input type="email" id="username" name="username" required placeholder="이메일을 입력하세요">
                 </div>
-                <div class="password_section">
-                    <label for="password">비밀번호:</label>
+
+                <div class="signup_section">
+                    <label for="nickname">닉네임</label>
+                    <input type="text" id="nickname" name="nickname" required placeholder="닉네임을 입력하세요">
+                </div>
+
+                <div class="signup_section">
+                    <label for="password">비밀번호</label>
                     <div class="password_pad">
                         <input type="password" id="password" name="password" required placeholder="비밀번호를 입력하세요">
+                    </div>
+                </div>
+
+                <div class="signup_section">
+                    <label for="password_ck">비밀번호 확인</label>
+                    <div class="password_pad">
+                        <input type="password" id="password_ck" name="password_ck" required placeholder="비밀번호를 다시 한번 입력하세요">
                         <img class="password_icon"src="/img/btn_visibility_off_24px.svg">
                     </div>
                 </div>
                 <div class="login_section">
-                    <button type="submit" class="login_btn">로그인</button>
+                    <button type="submit" class="login_btn">회원가입</button>
                     <div class="login_other">
                         <h2>간편 로그인 하기</h2> 
                         <div>
@@ -42,10 +55,10 @@
                 </div>
                 <div class="signup_login_link">
                     <p>판다마켓 회원이 아니신가요?</p>
-                    <a href="/signup.html" class="signup_btn">회원가입</a>
+                    <a href="/login.html" class="signup_btn">회원가입</a>
                 </div>
             </form>
         </section>
-    </main>
+    </main> 
 </body>
 </html>
