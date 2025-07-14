@@ -29,7 +29,7 @@ body {
 }
 
 .header-wrap {
-    width: 100%;
+    width: calc(100% - 400px);
     height: inherit;
     display: flex;
     align-items: center;
@@ -139,6 +139,7 @@ body {
     align-items: center;
     width: auto;
     background-color: var(--color-bg);
+    cursor: pointer;
 }
 
 .hot-item__image img {
@@ -188,6 +189,7 @@ body {
 }
 
 .footer_wrap {
+    width: calc(100% - 400px);
     padding: 32px 0;
     display: flex;
     justify-content: space-between;
