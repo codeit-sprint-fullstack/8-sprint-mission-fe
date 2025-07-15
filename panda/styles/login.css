@@ -1,0 +1,145 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color15);
+  font-family: 'Pretendard', sans-serif;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 640px;
+  padding-top: 231px;
+  padding-bottom: 284px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-wrapper {
+  margin-bottom: 40px;
+}
+
+.logo-wrapper img {
+  width: auto;
+  height: 130px;
+  display: block;
+}
+
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.password-icon {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group:first-of-type label {
+  margin-bottom: 16px;
+}
+
+.form-group:first-of-type {
+  margin-bottom: 24px;
+}
+
+.form-group:last-of-type label {
+  margin-bottom: 16px;
+}
+
+.form-group:last-of-type {
+  margin-bottom: 24px;
+}
+
+.login-form input {
+  height: 52px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  border: none;
+  background: var(--color12);
+}
+
+.login-form input:focus {
+  outline: 2px solid var(--color4);
+}
+
+.login-button {
+  background-color: var(--color6);
+  border-radius: 40px;
+  font-size: 20px;
+  padding: 16px 124px;
+  color: var(--color14);
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.social-login {
+  margin-top: 24px;
+  padding: 16px 23px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: var(--color13);
+  border-radius: 8px;
+}
+
+.social-text {
+  font-size: 16px;
+  color: var(--color11);
+  font-weight: 500;
+  line-height: 26px;
+}
+
+.sns-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.signup-guide {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--color11);
+  font-weight: 500;
+}
+
+.signup-guide a {
+  color: var(--color4);
+  font-weight: 600;
+  text-decoration: underline;
+  font-size: 14px;
+}
