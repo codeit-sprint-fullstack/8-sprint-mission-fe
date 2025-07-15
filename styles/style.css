@@ -1,0 +1,202 @@
+html {
+  font-family: "Pretendard";
+  /* font-size: clamp(8px, 1vw, 10px); */
+  font-size: clamp(30%, 1vw, 62.5%);
+}
+
+* {
+  margin: 0;
+}
+
+/* 태그 선택자 */
+
+img {
+  text-decoration: none;
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+header img {
+  height: 5rem;
+  min-width: 15.3rem;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 clamp(10rem, 20vw, 40rem);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 7rem;
+  background-color: #ffffff;
+}
+
+main {
+  margin-top: 7rem;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  background-color: #111827;
+  height: 13rem;
+  padding: 3rem 10rem 0;
+  font-size: 1.6rem;
+}
+
+/* header */
+
+/* section */
+
+section img {
+  max-width: 100%;
+  /* gap 대신 여백 */
+}
+
+/* main */
+
+/* top */
+
+/* middle */
+
+.middle img {
+  min-width: 55%;
+  max-width: 100%;
+  max-height: 44rem;
+}
+
+.middle > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6.4rem;
+  background-color: #fcfcfc;
+  max-width: 100%;
+  width: 100rem;
+  margin: 13.8rem auto;
+}
+
+.middle > div:nth-child(2) {
+  flex-direction: row-reverse;
+}
+
+.img_desc {
+  flex: 1 1 30rem;
+  min-width: 30rem;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.left_align {
+  padding-right: 3.6rem;
+  margin-right: auto;
+}
+
+.right_align {
+  text-align: right;
+  padding-left: 3.6rem;
+  margin-left: auto;
+}
+
+/* footer */
+
+footer * {
+  color: #ffffff;
+}
+
+.footer_center {
+  display: flex;
+  /* 1.5rem * 2 = 3rem */
+  gap: 3rem;
+}
+
+/* top, bottom */
+
+.top,
+.bottom {
+  display: flex;
+  justify-content: center;
+  background-color: #cfe5ff;
+  /* min-height: 540px; (픽셀 값은 유지) */
+  min-height: 540px;
+  align-items: end;
+  flex-wrap: wrap;
+}
+
+.top > div,
+.bottom > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  gap: 3rem;
+  flex-shrink: 0;
+  padding-top: 10rem;
+}
+
+.top img,
+.bottom img {
+  padding-top: 8rem;
+}
+
+.bottom > div {
+  padding: 10rem 6.9rem 0;
+}
+
+/* btn */
+
+.btn_login {
+  font-size: 1.6rem;
+  font-weight: 600;
+  border-radius: 0.8rem;
+  padding: 1.2rem 2.3rem;
+  color: #ffffff;
+  background-color: #3692ff;
+  flex-shrink: 0;
+}
+
+.btn_large {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #3692ff;
+  padding: 1.6rem 12.4rem;
+  border-radius: 4rem;
+}
+
+/* top, middle, bottom */
+
+.home_title {
+  font-size: clamp(3.8rem, 1vw, 4rem);
+  font-weight: 700;
+  color: #374151;
+  /* align-self: center; */
+  line-height: 1.5;
+}
+/* middle */
+
+.home_summary {
+  font-size: clamp(1.6rem, 1vw, 1.8rem);
+  font-weight: 700;
+  color: #3692ff;
+}
+
+.home_desc {
+  font-size: clamp(2.2rem, 1vw, 2.4rem);
+  font-weight: 500;
+  color: #374151;
+}
