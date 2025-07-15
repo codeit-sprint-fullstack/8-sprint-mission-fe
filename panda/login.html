@@ -34,11 +34,11 @@
           <label for="password">비밀번호</label>
           <div class="password-wrapper">
             <input type="password" id="password" placeholder="비밀번호를 입력해주세요" />
-            <img src="./images/home/eye.svg" class="password-icon" alt="비밀번호 보기" />
+            <img src="./images/home/eye.svg" class="password-icon" id="togglePassword" alt="비밀번호 보기" />
           </div>
         </div>
 
-        <button type="submit" class="login-button">로그인</button>
+        <button type="submit" class="login-button" id="loginBtn" disabled>로그인</button>
       </form>
 
       <div class="social-login">
@@ -57,5 +57,35 @@
         <a href="./signup.html">회원가입</a>
       </div>
     </div>
+    <script>
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      const loginBtn = document.getElementById('loginBtn');
+      const togglePassword = document.getElementById('togglePassword');
+
+      function updateButtonState() {
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        const isFilled = email !== "" && password !== "";
+        loginBtn.disabled = !isFilled;
+
+        if (isFilled) {
+          loginBtn.style.backgroundColor = '#3692ff';
+          loginBtn.style.cursor = 'pointer';
+        } else {
+          loginBtn.style.backgroundColor = '#9ca3af';
+          loginBtn.style.cursor = 'default';
+        }
+      }
+
+      emailInput.addEventListener('input', updateButtonState);
+      passwordInput.addEventListener('input', updateButtonState);
+
+      togglePassword.addEventListener('click', () => {
+        const isPasswordVisible = passwordInput.type === 'text';
+        passwordInput.type = isPasswordVisible ? 'password' : 'text';
+      });
+    </script>
   </body>
 </html>

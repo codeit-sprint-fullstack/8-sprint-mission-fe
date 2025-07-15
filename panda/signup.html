@@ -39,7 +39,7 @@
           <label for="password">비밀번호</label>
           <div class="password-wrapper">
             <input type="password" id="password" placeholder="비밀번호를 입력해주세요" />
-            <img src="images/home/eye.svg" class="password-icon" alt="비밀번호 보기" />
+            <img src="images/home/eye.svg" class="password-icon" id="togglePassword" alt="비밀번호 보기" />
           </div>
         </div>
 
@@ -47,10 +47,10 @@
           <label for="passwordConfirm">비밀번호 확인</label>
           <div class="passwordConfirm-wrapper">
             <input type="password" id="passwordConfirm" placeholder="비밀번호를 다시 한 번 입력해주세요" />
-           <img src="./images/home/eye.svg" class="password-icon" alt="비밀번호 보기" />
+           <img src="./images/home/eye.svg" class="password-icon" id="togglePasswordConfirm" alt="비밀번호 보기" />
           </div>
         </div>
-        <button type="submit" class="signup-button">회원가입</button>
+        <button type="submit" class="signup-button" id="signupBtn" disabled>회원가입</button>
       </form>
 
       <div class="social-login">
@@ -70,5 +70,49 @@
         <a href="./login.html">로그인</a>
       </div>
     </div>
+    <script>
+      const emailInput = document.getElementById('email');
+      const nicknameInput = document.getElementById('nickname');
+      const passwordInput = document.getElementById('password');
+      const passwordConfirmInput = document.getElementById('passwordConfirm');
+      const signupBtn = document.getElementById('signupBtn');
+      const togglePassword = document.getElementById('togglePassword');
+      const togglePasswordConfirm = document.getElementById('togglePasswordConfirm');
+
+      function updateButtonState() {
+        const email = emailInput.value.trim();
+        const nickname = nicknameInput.value.trim();
+        const password = passwordInput.value.trim();
+        const passwordConfirm = passwordConfirmInput.value.trim();
+
+        const isFilled = email && nickname && password && passwordConfirm;
+        const isPasswordMatch = password === passwordConfirm;
+
+        if (isFilled && isPasswordMatch) {
+          signupBtn.disabled = false;
+          signupBtn.style.backgroundColor = '#3692ff';
+          signupBtn.style.cursor = 'pointer';
+        } else {
+          signupBtn.disabled = true;
+          signupBtn.style.backgroundColor = '#9ca3af';
+          signupBtn.style.cursor = 'default';
+        }
+      }
+
+      emailInput.addEventListener('input', updateButtonState);
+      nicknameInput.addEventListener('input', updateButtonState);
+      passwordInput.addEventListener('input', updateButtonState);
+      passwordConfirmInput.addEventListener('input', updateButtonState);
+
+      togglePassword.addEventListener('click', () => {
+        const isVisible = passwordInput.type === 'text';
+        passwordInput.type = isVisible ? 'password' : 'text';
+      });
+
+      togglePasswordConfirm.addEventListener('click', () => {
+        const isVisible = passwordConfirmInput.type === 'text';
+        passwordConfirmInput.type = isVisible ? 'password' : 'text';
+      });
+    </script>
   </body>
 </html>
