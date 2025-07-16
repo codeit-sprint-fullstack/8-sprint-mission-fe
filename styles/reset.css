@@ -5,6 +5,7 @@ html {
   font-size: 62.5%;
   /* 1rem = 10px (브라우저 기본 16px의 62.5%) */
   box-sizing: border-box;
+  font-family: "Pretendard";
 }
 
 * {
@@ -60,6 +61,10 @@ select,
 textarea {
   font-family: inherit;
   font-size: 100%; /* 부모 폰트 크기 상속 */
+}
+
+button {
+  cursor: pointer;
 }
 
 /* 7. 테이블 셀 간격 제거 */
