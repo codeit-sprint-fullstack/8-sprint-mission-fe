@@ -4,11 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>판다마켓</title>
+
     <link rel="stylesheet" as="style" crossorigin
         href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/static/pretendard.css">
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/style.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2PYKRF27CN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-2PYKRF27CN');
+    </script>
 </head>
 
 <body>
@@ -16,7 +28,7 @@
         <a href="/"><img src="img/logo-sm.svg" /></a>
         <a href="/login.html" class="btn_login">로그인</a>
     </header>
-    <main>
+    <main id="main">
         <section class="top">
             <div>
                 <div class="home_title">일상의 모든 물건을<br>거래해보세요</div>
