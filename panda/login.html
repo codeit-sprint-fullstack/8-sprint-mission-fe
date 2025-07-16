@@ -57,35 +57,6 @@
         <a href="./signup.html">회원가입</a>
       </div>
     </div>
-    <script>
-      const emailInput = document.getElementById('email');
-      const passwordInput = document.getElementById('password');
-      const loginBtn = document.getElementById('loginBtn');
-      const togglePassword = document.getElementById('togglePassword');
-
-      function updateButtonState() {
-        const email = emailInput.value.trim();
-        const password = passwordInput.value.trim();
-
-        const isFilled = email !== "" && password !== "";
-        loginBtn.disabled = !isFilled;
-
-        if (isFilled) {
-          loginBtn.style.backgroundColor = '#3692ff';
-          loginBtn.style.cursor = 'pointer';
-        } else {
-          loginBtn.style.backgroundColor = '#9ca3af';
-          loginBtn.style.cursor = 'default';
-        }
-      }
-
-      emailInput.addEventListener('input', updateButtonState);
-      passwordInput.addEventListener('input', updateButtonState);
-
-      togglePassword.addEventListener('click', () => {
-        const isPasswordVisible = passwordInput.type === 'text';
-        passwordInput.type = isPasswordVisible ? 'password' : 'text';
-      });
-    </script>
+    <script type="module" src="./scripts/main.js" defer></script>
   </body>
 </html>

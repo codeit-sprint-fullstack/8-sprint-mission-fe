@@ -140,3 +140,56 @@ body {
   text-decoration: underline;
   font-size: 15px;
 }
+
+@media (max-width: 1199px) {
+  .container {
+    width: calc(100% - 48px);
+    padding-top: 60px;
+    padding-bottom: 160px;
+  }
+
+  .signup-form input {
+    width: 100%;
+  }
+
+  .signup-button {
+    width: 100%;
+    padding: 16px 0;
+  }
+
+  .social-login {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 743px) {
+  .container {
+    width: calc(100% - 32px);
+    max-width: 400px;
+    padding-top: 40px;
+    padding-bottom: 120px;
+  }
+
+  .logo-wrapper img {
+    height: 100px;
+  }
+
+  .signup-form input {
+    width: 100%;
+  }
+
+  .signup-button {
+    width: 100%;
+    padding: 16px 0;
+  }
+
+  .social-login {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .sns-icons {
+    justify-content: flex-start;
+  }
+}
