@@ -33,9 +33,9 @@
 
 ## 스크린샷
 
-![image](C:\Users\clwns\Desktop\Sprint\8-sprint-mission-fe\Img\sprint1_header.png)
-![image](C:\Users\clwns\Desktop\Sprint\8-sprint-mission-fe\Img\sprint1_section.png)
-![image](C:\Users\clwns\Desktop\Sprint\8-sprint-mission-fe\Img\sprint1_footer.png)
+![image](Img/sprint1_header.png)
+![image](Img/sprint1_section.png)
+![image](Img/sprint1_footer.png)
 
 ## 멘토에게
 
