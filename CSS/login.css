@@ -1,0 +1,150 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+@font-face {
+  font-family: "ROKAFSansBold";
+  src: url("../fonts/ROKAFSansBold.otf") format("opentype"),
+    url("../fonts/ROKAFSansBold.ttf") format("TrueType");
+}
+
+html {
+  font-family: "Pretendard", sans-serif;
+  word-break: keep-all;
+  font-size: 18px;
+}
+
+.login {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-contents {
+  padding: 12.83rem 35.56rem;
+}
+
+.header-logo-container {
+  display: flex;
+  padding: 2.22rem;
+}
+
+.pandaMarketLogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5.75rem;
+  padding-right: 1.44rem;
+}
+
+.header-txt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  color: var(--Primary-100);
+  font-family: "ROKAF Sans";
+  font-size: 3.66rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.login-form {
+  margin: 0 auto;
+}
+
+.login-form-contents {
+  display: flex;
+  flex-direction: column;
+  gap: 1.34rem; /* 24px */
+}
+
+.form-email-title {
+  font-family: Pretendard;
+  font-weight: 700;
+}
+
+input {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  background-color: var(--cool-grey-100);
+  border: none;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid var(--Primary-100);
+}
+
+button {
+  color: #ffffff;
+  font-size: 1.11rem;
+  border-radius: 40px;
+  background-color: var(--Cool-Gray-400);
+  padding: 1rem 7.75rem;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--Primary-100);
+}
+
+.signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--secondary-gray900);
+  font-size: 0.78rem;
+  gap: 4px;
+}
+
+a {
+  color: var(--Primary-100);
+  font-size: 0.78rem;
+}
+
+a.header-link {
+  text-decoration: none;
+}
+.easy-login {
+  border-radius: 8px;
+  background: #e6f2ff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.44rem;
+}
+
+.easy-login-txt {
+  display: flex;
+}
+
+.easy-login-contents {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  text-align: right;
+}
+
+.easy-login-icons {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  width: 42px;
+  gap: 16px;
+}
+
+.password-input-container {
+  position: relative;
+  padding: 0;
+}
+
+.password-hide {
+  margin-top: 10px;
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  cursor: pointer;
+}
