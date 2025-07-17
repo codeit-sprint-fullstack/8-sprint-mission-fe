@@ -33,9 +33,8 @@
 
 ## 스크린샷
 
-![image](Img/sprint1_header.png)
-![image](Img/sprint1_section.png)
-![image](Img/sprint1_footer.png)
+![image](./Img/sprint1_landingpage.png)
+
 
 ## 멘토에게
 
