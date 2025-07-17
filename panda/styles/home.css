@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   background-repeat: no-repeat;
-  background-position: 80% bottom;
+  background-position: center bottom;
   background-size: 50%;
   padding-top: 7rem;
 }
@@ -66,13 +66,13 @@
 @media (min-width: 1200px) {
   .banner {
     background-size: 600px auto;
-    background-position: 80% bottom;
+    background-position: center bottom;
   }
 
   #hero,
   #bottomBanner {
     background-size: 600px auto;
-    background-position: center bottom;
+    background-position: calc(50% + 200px) bottom;
   }
 }
 
@@ -83,7 +83,7 @@
 
   .banner {
     background-size: 45%;
-    background-position: 85% bottom;
+    background-position: center bottom;
   }
 
   #hero, #bottomBanner {
