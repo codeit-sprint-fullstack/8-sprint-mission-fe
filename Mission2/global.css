@@ -69,4 +69,7 @@ body {
     justify-content: space-between;
     padding: 9px 200px;
   }
+  footer .wrapper {
+    padding: 0 200px;
+  }
 }/*# sourceMappingURL=global.css.map */

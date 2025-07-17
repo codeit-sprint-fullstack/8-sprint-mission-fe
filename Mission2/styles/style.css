@@ -28,7 +28,10 @@ header .loginButton {
 }
 .topBanner .wrapper {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  gap: 7px;
+  justify-content: center;
+  align-items: center;
 }
 .topBanner .wrapper .detail {
   display: flex;
