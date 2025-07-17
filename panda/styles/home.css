@@ -63,6 +63,19 @@
   margin-top: 24px;
 }
 
+@media (min-width: 1200px) {
+  .banner {
+    background-size: 600px auto;
+    background-position: 80% bottom;
+  }
+
+  #hero,
+  #bottomBanner {
+    background-size: 600px auto;
+    background-position: center bottom;
+  }
+}
+
 @media (max-width: 1199px) and (min-width: 744px) {
   header {
     padding: 0 24px;
@@ -130,16 +143,17 @@
 
   footer {
     flex-direction: column;
-    gap: 32px;
+    gap: clamp(32px, 5vw, 64px);
+    padding: 3.2rem 1.6rem 10.8rem 1.6rem;
   }
 
   #footerMenu {
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: clamp(16px, 4vw, 48px);
   }
 
   #socialMedia {
-    margin-top: 16px;
+    margin-top: clamp(16px, 4vw, 48px);
   }
 }

@@ -141,27 +141,6 @@ body {
   font-size: 15px;
 }
 
-@media (max-width: 1199px) {
-  .container {
-    width: calc(100% - 48px);
-    padding-top: 60px;
-    padding-bottom: 160px;
-  }
-
-  .signup-form input {
-    width: 100%;
-  }
-
-  .signup-button {
-    width: 100%;
-    padding: 16px 0;
-  }
-
-  .social-login {
-    padding: 16px;
-  }
-}
-
 @media (max-width: 743px) {
   .container {
     width: calc(100% - 32px);
