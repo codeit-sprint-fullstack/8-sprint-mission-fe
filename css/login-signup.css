@@ -5,9 +5,10 @@ body {
     background-color: var(--color-bg);
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; 이게 더 이쁨*/
     height: 100vh;
     margin: 0;
+    padding-top: 60px;
     color: var(--color-gray-800);
   }
 
