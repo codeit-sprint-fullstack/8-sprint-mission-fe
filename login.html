@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./css/login.css">
+        <link rel="stylesheet" href="./fonts/Pretendard/pretendard.css">
+        <link rel="stylesheet" href="./fonts/ROKAF-Sans/ROKAF-Sans.css">
+        <!-- eye close image for pwd -->
+        <link 
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+            integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+            />
+        <title>판다마켓</title>
+    </head>
+    <body>
+        <div class="login-form">
+            <div class="logo-title">
+                <div class="panda-logo">
+                    <a href="./index.html" class="link">
+                        <img src="./images/img_panda_face.svg" alt="판다마켓 로고" class="logo-image">
+                    </a>
+                </div>
+                <div class="form-title">
+                    <a href="./index.html" class="link">
+                        판다마켓
+                    </a>
+                </div>
+            </div>
+            <div class="login-inputs">
+                <div class="login-email">
+                    <label for="email">이메일</label>
+                    <div>
+                        <input type="email" id="email" name="email" placeholder="이메일을 입력해주세요" required>
+                    </div>
+                </div>
+                <div class="login-pwd">
+                    <label for="pwd">비밀번호</label>
+                    <div class="pwd-input-wrapper">
+                        <input type="password" id="pwd" name="pwd" placeholder="비밀번호를 입력해주세요" required>
+                        <div class="pwd-toggle">
+                            <i class="fa-regular fa-eye-slash"></i>
+                        </div>
+                    </div>
+                </div>
+                <form class="login-button">
+                    <input type="submit" id="login-btn" class="login-button" value="로그인">
+                </form>
+                <div class="login-social">
+                    <div class="login-social-text"> 간편 로그인하기 </div>
+                    <div class="login-social-buttons">
+                        <button class="social-button google">
+                            <a href="https://www.google.com/">
+                                <img src="./images/ic_google.svg" alt="Google 로고">
+                            </a>
+                        </button>
+                        <button class="social-button kakao">
+                            <a href="https://www.kakaocorp.com/page/">
+                                <img src="./images/ic_kakao.svg" alt="Kakao 로고">
+                            </a>
+                        </button>
+                    </div>
+                </div>
+                <div class="login-signup">
+                    판다마켓이 처음이신가요?
+                    <a href="./signup.html">
+                        회원가입
+                    </a>
+                </div>
+            </div>
+        </div>
+        <script src="./js/login.js"  defer></script>
+    </body>
+</html>
