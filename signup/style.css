@@ -4,11 +4,11 @@
 
 html {
     font-size: 62.5%;
-    --brand-blue: #3692FF;
-    --secondary-400: #9CA3AF;
-    --font-white-1: #E6F2FF;
-    --cool-gray-100: #F3F4F6;
-    --secondary-800: #1F2937;
+    --Brand-Blue: #3692FF;
+    --Secondary-400: #9CA3AF;
+    --Bg-Skyblue: #E6F2FF;
+    --Cool-Gray-100: #F3F4F6;
+    --Cool-Gray-800: #1F2937;
 }
 
 a,
@@ -38,7 +38,7 @@ button,
 }
 
 .signup-form label{
-    color: var(--secondary-800);
+    color: var(--Secondary-800);
     font-family: Pretendard;
     font-size: 1.8rem;
     font-style: normal;
@@ -55,17 +55,17 @@ button,
     gap: 1rem;
 
     border-radius: 1.2rem;
-    background-color: var(--cool-gray-100);
+    background-color: var(--Cool-Gray-100);
     margin: 1.6rem 0 2.4rem;
     border: none;
 }
 
 .signup-form input:focus{
-    outline: 0.1rem solid var(--brand-blue);
+    outline: 0.1rem solid var(--Brand-Blue);
 }
 
 .signup-form input::placeholder{
-    color: var(--main-gray);
+    color: var(--Cool-Gray-800);
 }
 
 .pw-input-box{
@@ -92,9 +92,9 @@ button,
 
     border: none;
     border-radius: 4rem;
-    background-color: var(--secondary-400);
+    background-color: var(--Secondary-400);
 
-    color: var(--cool-gray-100);
+    color: var(--Cool-Gray-100);
     text-align: center;
 
     font-size: 2rem;
@@ -106,7 +106,7 @@ button,
 }
 
 .signup-form button:hover{
-    background-color: var(--brand-blue);
+    background-color: var(--Brand-Blue);
 }
 
 .simple-login{
@@ -119,7 +119,7 @@ button,
     gap: 1rem;
 
     border-radius: 0.8rem;
-    background-color: var(--font-white-1);
+    background-color: var(--Bg-Skyblue);
 }
 
 .simple-login div{
@@ -153,5 +153,5 @@ button,
 }
 
 .login-massage a{
-    color: var(--brand-blue);
+    color: var(--Brand-Blue);
 }
