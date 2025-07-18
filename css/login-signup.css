@@ -1,0 +1,150 @@
+
+/* ############################## 공통 ############################## */
+body {
+    font-family: 'Pretendard';
+    background-color: var(--color-bg);
+    display: flex;
+    justify-content: center;
+    /* align-items: center; 이게 더 이쁨*/
+    height: 100vh;
+    margin: 0;
+    padding-top: 60px;
+    color: var(--color-gray-800);
+  }
+
+.login-container {
+  width: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+/* ############################## logo ############################## */
+.logo {
+  width: 396px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.logo img {
+  width: 103.5px;
+  height: 103.5px;
+}
+
+.logo h1 {
+  font-family: 'ROKAFSansBold';
+  font-size: 66.34px;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+/* ############################## form ############################## */
+.form-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-gray-800);
+}
+
+
+.form-box input {
+  width: 100%;
+  height: 56px;
+  padding: 16px 24px     ;
+  border: none;
+  border-radius: 8px;
+  background-color: #F5F6F7;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-gray-800);
+}
+
+.form-box input::placeholder {
+  color: #9CA3AF;
+}
+
+.form-box input:focus {
+  border: 1px solid var(--color-primary);
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper button {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ############################## form btn ############################## */
+.form-btn {
+  width: 640px;
+  height: 56px;
+  gap: 10px;
+  opacity: 1;
+  border-radius: 40px;
+  padding: 16px 124px;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 32px;
+  color: #fff;
+  background-color: var(--color-gray-400);
+  cursor: pointer;
+}
+
+/* ############################## social ############################## */
+.social-login {
+  margin-top: 8px;
+  padding: 12px;
+  background-color: var(--color-social-bg);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.social-login span {
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 8px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 16px;
+}
+
+.social-icons img {
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+}
+
+/* ############################## login-signup ############################## */
+.login-signup {
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 16px;
+}
+
+.login-signup a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
