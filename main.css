@@ -491,7 +491,7 @@ body {
     width: 100%;
     max-width: 600px;
     height: auto;
-    aspect-ratio: 746 / 340;
+    aspect-ratio: 940 / 340;
     background-image: url('mainimg/panda-1.svg');
     background-repeat: no-repeat;
     background-position: center;
@@ -565,7 +565,7 @@ body {
   .top-image {
     width: 100%;
     height: auto;
-    aspect-ratio: 940 / 340;
+    aspect-ratio: 746 / 340;
     background-image: url('mainimg/panda-1.svg');
     background-repeat: no-repeat;
     background-position: center;
