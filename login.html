@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-14YPHPLMJC"></script>
+  <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-14YPHPLMJC');
+  </script>
+  <meta charset="UTF-8">
+  <title>로그인</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body class="outline">
+  <!-- header -->
+  <div class="inline">
+    <header>
+      <a href="/"><img src="loginimg/logo.svg" alt="로그인 로고"></a>
+    </header>
+    <main>
+        <!-- 이메일 -->
+        <form class="form-wrap">
+        <div class="field">
+            <label for="email" class="text1">이메일</label>
+            <input type="email" id="email" name="email" placeholder="이메일을 입력하세요" required>
+        </div>
+        <!-- 비밀번호 -->
+        <div class="field">
+            <label for="password" class="text1">비밀번호</label>
+            <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
+            <img src="loginimg/eye.svg" alt="비밀번호 보기 아이콘">
+        </div>
+        <!-- 로그인 버튼 -->
+        <button class="text2" type="submit">로그인</button>
+        <!-- 간편 로그인 -->
+        <div class="simple-login-outline">
+        <div class="simple-login">
+            <p class="text3">간편 로그인</p>
+            <div class="img-outline">
+            <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
+                <img class="login-icon" src="loginimg/google.svg" alt="구글">
+            </a>
+            <a href="https://www.kakaocorp.com/page/" target="_blank" rel="noopener noreferrer">
+                <img class="login-icon" src="loginimg/kakao.svg" alt="카카오">
+            </a>
+            </div>
+        </div>
+        </div>
+
+        <p class="signup">판다마켓이 처음이신가요? <a href="/signup.html">회원가입</a></p>
+        </form>
+    </main>
+  </div>
+</body>
+</html>
