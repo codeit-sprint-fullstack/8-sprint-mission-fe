@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>판다마켓</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@4.0.1/reset.min.css"/>
+    <link rel="stylesheet" href="font/pretendard.css">
+    <link rel="stylesheet" href="../css/login_signup.css">
+</head>
+<body>
+    <header>
+        <a href="../" class="logo">
+            <img src="../images/판다 얼굴.svg" alt="logo_img">
+            <span>판다마켓</span>
+        </a>
+    </header>
+    <form>
+        <div class="input_Email">
+            <label for="userEmail">이메일</label>
+            <input class="input_txt" name="userEmail" type="text" placeholder="이메일을 입력해주세요">
+        </div>
+        <div class="input_Nickname">
+            <label for="userEmail">닉네임</label>
+            <input class="input_txt" name="userNickname" type="text" placeholder="닉네임을 입력해주세요">
+        </div>
+        <div class="input_Password">
+            <label for="userPassword">비밀번호</label>
+            <input class="input_txt" name="userPassword" type="password" placeholder="비밀번호를 입력해주세요">
+            <img src="../images/btn_visibility_off_24px.svg" alt="btn_visibility_off">
+        </div>
+        <div class="input_Password">
+            <label for="userPassword_check">비밀번호 확인</label>
+            <input class="input_txt" name="userPassword_check" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요">
+            <img src="../images/btn_visibility_off_24px.svg" alt="btn_visibility_off">
+        </div>
+        <button class="btn">회원가입</button>
+    </form>
+    <div class="sns_login">
+        <span>간편 로그인하기</span>
+        <div class="sns_ic_box">
+            <a class="google_login ic_SNSlogin" href="https://www.google.com/">
+                <img src="../images/google.svg" alt="google">
+            </a>
+            <a class="kakao_login ic_SNSlogin" href="https://www.kakaocorp.com/page/">
+                <img src="../images/kakao.svg" alt="kakao">
+            </a>
+        </div>
+    </div>
+    <div class="etc">
+        <span>이미 회원이신가요?</span>
+        <a class="page_move" href="../login/">로그인</a>
+    </div>
+</body>
+</html>
