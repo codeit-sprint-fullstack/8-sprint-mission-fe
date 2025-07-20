@@ -1,0 +1,232 @@
+@import "reset.css";
+
+html {
+    font-size: 62.5%;
+    width: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    margin-top: 7.0rem;
+    font-family: 'pretendard', sans-serif;
+}
+
+button {
+    border: none;
+    background-color: #3692FF;
+    color: white;
+}
+
+.footer .container .link-buttons *,
+button {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header {
+    background-color: white;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    max-width: 112.0rem;
+    margin: 0 auto;
+}
+
+.header .container {
+    align-items: center;
+    height: 7.0rem;
+    justify-content: space-between;
+}
+
+.header .logo {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 1;
+    gap: 0.8rem;
+    align-items: center;
+    cursor: pointer;
+}
+
+.header button {
+    border-radius: 0.8rem;
+    width: 12.8rem;
+    height: 4.8rem;
+}
+
+.img-icon {
+    width: 4.0rem;
+}
+
+.img-logo {
+    width: 10.1rem;
+    height: 2.5rem;
+}
+
+.top,
+.bottom {
+    background-color: #CFE5FF;
+}
+
+.top {
+    display: flex;
+    flex-direction: column-reverse;
+    padding-top: 20.0rem;
+}
+
+.top .container {
+    gap: 0.7rem;
+}
+
+.top img {
+    width: 74.6rem;
+    height: 34.0rem;
+}
+
+.top .container div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.top h1 {
+    margin: 0;
+    font-size: 4.0rem;
+    font-weight: 700;
+}
+
+.top button {
+    border-radius: 9999px;
+    font-size: 2.0rem;
+    font-weight: 600;
+    margin-top: 3.2rem;
+    margin-bottom: 6.0rem;
+    padding: 1.6rem 12.4rem;
+}
+
+.middle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.middle .section {
+    background-color: #fcfcfc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6.4rem;
+    margin: 13.8rem 0;
+    max-width: 98.8rem;
+}
+
+.middle .img-home {
+    width: 58.9rem;
+    height: 44.4rem;
+}
+
+.middle .section .label h1,
+.middle .section .label h2 {
+    font-weight: 700;
+}
+
+.middle .section .label h1 {
+    font-size: 1.8rem;
+    color: #3692FF;
+}
+
+.middle .section .label h2,
+.middle .section .label .p {
+    color: #374151;
+}
+
+.middle .section .label * {
+    margin: 0;
+}
+
+.middle .section .label h2 {
+    font-size: 4.0rem;
+    margin-top: 1.2rem;
+    margin-bottom: 2.4rem;
+}
+
+.middle .section .label p {
+    font-size: 2.2rem;
+    font-weight: 50.0rem;
+}
+
+.middle .section.reverse {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+.bottom .container {
+    display: flex;
+    padding-top: 14.3rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bottom .container h1 {
+    font-size: 4.0rem;
+    font-weight: 700;
+    margin: 0 0 6.0rem 0;
+}
+
+.bottom img {
+    width: 74.6rem;
+    height: 39.7rem;
+}
+
+.footer * {
+    color: white;
+}
+
+.footer {
+    padding-top: 3.2rem;
+    background-color: #111827;
+    height: 16.0rem;
+}
+
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer p {
+    color: #9CA3AF;
+    font-weight: 400;
+    font-size: 1.6rem;
+}
+
+.footer .container .info-buttons {
+    display: flex;
+    gap: 3.0rem;
+}
+
+.footer .container .info-buttons * {
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+.footer .container .link-buttons * {
+    width: 2.0rem;
+    height: 2.0rem;
+}
+
+.footer .container .link-buttons {
+    display: flex;
+    gap: 1.2rem;
+}
