@@ -1,0 +1,127 @@
+* {
+  box-sizing: border-box;
+  white-space: nowrap;
+  word-break: break-all;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 1920px;
+  margin: 231px auto;
+}
+
+.title {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+#panda-logo {
+  width: 103px;
+  height: 103px;
+}
+
+.login-title {
+  color: var(--brand-blue, #3692FF);
+  font-family: "ROKAF Sans";
+  font-size: 66.344px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+form {
+  word-break: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 640px;
+  min-width: 640px;
+  margin: 8px auto;
+}
+#username,
+#password {
+  padding: 16px 24px;
+  border: none;
+  width: 640px;
+  height: 56px;
+  border-radius: 12px;
+  background: var(--Cool-Gray-100, #F3F4F6);
+  margin-bottom: 24px;
+  color: var(--Secondary-400, #9CA3AF);
+  font-family: Pretendard;
+  font-size: 16px; 
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.button {
+  border: none;
+  border-radius: 40px;
+  background: var(--Secondary-400, #9CA3AF);
+  width: 640px;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  height: 56px;
+  color: #ffffff;
+}
+
+.button:hover {
+  background-color: #3692FF;
+}
+
+
+.login2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  height: 74px;
+  border-radius: 8px;
+  margin: 24px auto;
+  padding: 16px 23px;
+  background-color: #E6F2FF;
+  max-width: 640px;
+  min-width: 640px;
+}
+
+.signup {
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  margin: 8px auto;
+}
+
+.signupup {
+  color: var(--Primary-100, #3692FF);
+font-family: Pretendard;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+text-decoration-line: underline;
+text-decoration-style: solid;
+text-decoration-skip-ink: none;
+text-decoration-thickness: auto;
+text-underline-offset: auto;
+text-underline-position: from-font;
+}
+
+.icon {
+  display: flex;
+  gap: 16px;
+}
+
+
