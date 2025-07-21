@@ -9,7 +9,7 @@
 html {
   font-family: "Pretendard", sans-serif;
   word-break: keep-all;
-  font-size: 18px;
+  box-sizing: border-box;
 }
 
 .login {
@@ -20,32 +20,37 @@ html {
 }
 
 .login-contents {
-  padding: 12.83rem 35.56rem;
+  padding: 14.19rem 40rem; /* 60px 640px */
+}
+
+.login-contents-su {
+  padding: 3.75rem 40rem; /* 227px 640px */
 }
 
 .header-logo-container {
   display: flex;
-  padding: 2.22rem;
+  padding-bottom: 2.5rem; /* 40px */
 }
 
 .pandaMarketLogo {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 5.75rem;
-  padding-right: 1.44rem;
+  height: 6.49rem; /* 103.88px */
+  width: auto;
+  padding-right: 1.39rem; /* 22.24px */
 }
 
 .header-txt {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 5rem;
   color: var(--Primary-100);
   font-family: "ROKAF Sans";
-  font-size: 3.66rem;
+  font-size: 4.15rem; /* 66.344px */
   font-weight: 700;
   text-decoration: none;
+  padding-top: 0.69rem; /* 10.99px */
 }
 
 .login-form {
@@ -66,7 +71,7 @@ html {
 input {
   margin-top: 1rem;
   width: 100%;
-  padding: 1rem 1.5rem;
+  padding: 1rem 1.5rem; /* 16px 24px */
   border-radius: 12px;
   background-color: var(--cool-grey-100);
   border: none;
@@ -138,13 +143,12 @@ a.header-link {
 
 .password-input-container {
   position: relative;
-  padding: 0;
 }
 
 .password-hide {
-  margin-top: 10px;
+  margin-top: 0.63rem;
   position: absolute;
-  top: 1rem;
-  right: 1.5rem;
+  top: 1rem; /* 16px */
+  right: 1.5rem; /* 24px */
   cursor: pointer;
 }
