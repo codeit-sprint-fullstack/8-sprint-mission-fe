@@ -11,9 +11,10 @@ html {
   --input-bg-color: #F3F4F6;
   --button-color: #3692FF;
   --text-color: #1F2937;
-  --signup-button-text-color: #FFFFFF;
-  --signup-button-bg-color: #9CA3AF;
+  --button-text-color: #FFFFFF;
+  --button-bg-color: #9CA3AF;
   --social-login-bg-color: #E6F2FF;
+  --error-color: #F74747;
 }
 
 body {
@@ -24,6 +25,10 @@ body {
   align-items: center;
 }
 
+#login-page {
+  padding: 231px 640px 284px 640px;
+}
+
 /* Logo */
 .logo img {
   width: 396px;
@@ -31,7 +36,7 @@ body {
 }
 /* Logo */
 
-/* Signup Form */
+/* Signup-Login Form */
 label {
   font-size: 1.125rem; /* 18px */
   font-weight: 700;
@@ -57,10 +62,33 @@ input:focus {
 
 #password,
 #confirm-password {
-  background-image: url("img/eye-close.svg");
   background-repeat: no-repeat;
   background-position: right 16px center;
   background-size: 24px;
+}
+
+.error-msg {
+  display: none;
+  color: var(--error-color);
+  font-size: 0.94rem;  /* 15px */
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.input_box input.error {
+  border: 1px solid var(--error-color);
+}
+
+
+.toggle-password {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  
 }
 
 .input_box {
@@ -71,20 +99,22 @@ input:focus {
   margin-bottom: 24px;
 }
 
-.signup-button {
+.input-section button {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
   border-radius: 40px;
-  background-color: var(--signup-button-bg-color);
+  border: none;
+  background-color: var(--button-bg-color);
+  cursor: pointer;
   width: 640px;
   height: 56px;
   padding: 16px 124px;
   font-size: 1.25rem; /* 20px */
   font-weight: 600;
   line-height: 32px;
-  color: var(--signup-button-text-color);
+  color: var(--button-text-color);
   text-decoration: none;
   text-align: center;
 }
@@ -95,7 +125,7 @@ input:focus {
   align-items: flex-start;
   gap: 24px;
 }
-/* Signup Form */
+/* Signup-Login Form */
 
 /* Social Login */
 .social-login-options p {
@@ -136,15 +166,17 @@ input:focus {
 }
 /* Social Login */
 
-/* Login Link */
-.login-section p {
+/* Login-SignupLink */
+.login-section p,
+.signup-section p {
   font-size: 0.875rem; /* 14px */
   font-weight: 500;
   line-height: 24px;
   color: var(--text-color);
 }
 
-.login-section a {
+.login-section a,
+.signup-section a {
   font-size: 0.875rem; /* 14px */
   font-weight: 500;
   line-height: normal;
@@ -152,14 +184,15 @@ input:focus {
   text-decoration: underline;
 }
 
-.login-section {
+.login-section,
+.signup-section {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 4px;
   margin: 0;
 }
-/* Login Link*/
+/* Login-Signup Link*/
 
 form {
   display: flex;
