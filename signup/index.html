@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./css/login.css">
-        <link rel="stylesheet" href="./fonts/Pretendard/pretendard.css">
-        <link rel="stylesheet" href="./fonts/ROKAF-Sans/ROKAF-Sans.css">
+        <link rel="stylesheet" href="/signup/signup.css">
+        <link rel="stylesheet" href="/fonts/Pretendard/pretendard.css">
+        <link rel="stylesheet" href="/fonts/ROKAF-Sans/ROKAF-Sans.css"> 
         <!-- eye close image for pwd -->
         <link 
             rel="stylesheet"
@@ -17,27 +17,33 @@
         <title>판다마켓</title>
     </head>
     <body>
-        <div class="login-form">
+        <div class="signup-form">
             <div class="logo-title">
                 <div class="panda-logo">
-                    <a href="./index.html" class="link">
-                        <img src="./images/img_panda_face.svg" alt="판다마켓 로고" class="logo-image">
+                    <a href="/" class="link">
+                        <img src="/images/img_panda_face.svg" alt="판다마켓 로고" class="logo-image">
                     </a>
                 </div>
                 <div class="form-title">
-                    <a href="./index.html" class="link">
+                    <a href="/" class="link">
                         판다마켓
                     </a>
                 </div>
             </div>
-            <div class="login-inputs">
-                <div class="login-email">
+            <div class="signup-inputs">
+                <div class="signup-email">
                     <label for="email">이메일</label>
                     <div>
                         <input type="email" id="email" name="email" placeholder="이메일을 입력해주세요" required>
                     </div>
                 </div>
-                <div class="login-pwd">
+                <div class="signup-nickname">
+                    <label for="nickname">닉네임</label>
+                    <div>
+                        <input type="text" id="nickname" name="nickname" placeholder="닉네임을 입력해주세요" required>
+                    </div>
+                </div>
+                <div class="signup-pwd">
                     <label for="pwd">비밀번호</label>
                     <div class="pwd-input-wrapper">
                         <input type="password" id="pwd" name="pwd" placeholder="비밀번호를 입력해주세요" required>
@@ -46,32 +52,41 @@
                         </div>
                     </div>
                 </div>
-                <form class="login-button">
-                    <input type="submit" id="login-btn" class="login-button" value="로그인">
+                <div class="signup-pwd-chk">
+                    <label for="pwd-chk">비밀번호 확인</label>
+                    <div class="pwd-chk-input-wrapper">
+                        <input type="password" id="pwd-chk" name="pwd-chk" placeholder="비밀번호를 다시 한 번 입력해주세요" required>
+                        <div class="pwd-chk-toggle">
+                            <i class="fa-regular fa-eye-slash"></i>
+                        </div>
+                    </div>
+                </div>
+                <form class="signup-button">
+                    <input type="submit" id="signup-btn" class="signup-button" value="회원가입">
                 </form>
                 <div class="login-social">
                     <div class="login-social-text"> 간편 로그인하기 </div>
                     <div class="login-social-buttons">
                         <button class="social-button google">
                             <a href="https://www.google.com/">
-                                <img src="./images/ic_google.svg" alt="Google 로고">
+                                <img src="/images/ic_google.svg" alt="Google 로고">
                             </a>
                         </button>
                         <button class="social-button kakao">
                             <a href="https://www.kakaocorp.com/page/">
-                                <img src="./images/ic_kakao.svg" alt="Kakao 로고">
+                                <img src="/images/ic_kakao.svg" alt="Kakao 로고">
                             </a>
                         </button>
                     </div>
                 </div>
-                <div class="login-signup">
-                    판다마켓이 처음이신가요?
-                    <a href="./signup.html">
-                        회원가입
+                <div class="signup-login">
+                    이미 회원이신가요?
+                    <a href="/login/">
+                        로그인
                     </a>
                 </div>
             </div>
         </div>
-        <script src="./js/login.js"  defer></script>
+        <script src="/signup/signup.js" defer></script>
     </body>
 </html>
