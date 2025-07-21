@@ -102,5 +102,5 @@ loginBtn.addEventListener("click", () => {
   }
 
   // 로그인 성공
-  window.location.href = "/items";
+  location.href = "/items";
 });

@@ -1,4 +1,4 @@
-//Login Js
+//Signup 유효성 검사 기능
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const confirmPasswordInput = document.getElementById("confirm-password");
@@ -105,8 +105,41 @@ emailInput.addEventListener("input", updateButtonState);
 passwordInput.addEventListener("input", updateButtonState);
 confirmPasswordInput.addEventListener("input", updateButtonState);
 
+
+
+// 회원가입 가능 여부
+const USER_DATA = [
+  { email: 'codeit1@codeit.com', password: "codeit101!" },
+	{ email: 'codeit2@codeit.com', password: "codeit202!" },
+  { email: 'codeit3@codeit.com', password: "codeit303!" },
+	{ email: 'codeit4@codeit.com', password: "codeit404!" },
+	{ email: 'codeit5@codeit.com', password: "codeit505!" },
+	{ email: 'codeit6@codeit.com', password: "codeit606!" },
+]
+
 signupBtn.addEventListener("click", () => {
-  if (!signupBtn.disabled) {
-    window.location.href = "/login";
+  const email = emailInput.value.trim();
+  const username = document.getElementById("username").value.trim();
+  const password = passwordInput.value.trim();
+  const confirmPassword = confirmPasswordInput.value.trim();
+
+  // 유효성 재검사
+  const isEmailValid = validateEmail();
+  const isPasswordValid = validatePassword();
+  const isConfirmPasswordValid = validateConfirmPassword();
+
+  if (!isEmailValid || !isPasswordValid || !isConfirmPasswordValid) {
+    return;
+  }
+
+  // 이메일 중복 확인
+  const isEmailTaken = USER_DATA.some(user => user.email === email);
+
+  if (isEmailTaken) {
+    alert("사용 중인 이메일입니다.");
+  } else {
+    alert("회원가입이 완료되었습니다.");
+    // 나중에 여기에 실제 회원 DB 연동
+    location.href = "/login";
   }
 });
