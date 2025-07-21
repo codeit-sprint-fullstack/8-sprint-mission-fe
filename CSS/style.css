@@ -75,7 +75,7 @@ header {
   border-bottom: 1px solid var(--header-bottom-border-color);
   background-color: var(--header-bg-color);
   height: 70px;
-  padding: 9px 400px;
+  padding: 9px 200px;
 }
 /* Header */
 

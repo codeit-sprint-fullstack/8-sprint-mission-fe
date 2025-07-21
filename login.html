@@ -37,8 +37,10 @@
           </div>
           <div class="input_box">
             <label for="password">비밀번호</label>
-            <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요" minlength="8" required/>
-            <img src="img/eye-close.svg" alt="비밀번호 보기" class="toggle-password">
+            <div class="password-wrapper">
+              <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요" minlength="8" required/>
+              <img src="img/eye-close.svg" alt="비밀번호 보기" class="toggle-password">
+            </div>
             <span id="passwordError" class="error-msg">비밀번호를 입력해주세요.</span> <!-- 에러 메세지 -->
           </div>
           <button type="button" id="loginBtn">로그인</button>

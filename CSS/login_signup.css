@@ -79,16 +79,18 @@ input:focus {
   border: 1px solid var(--error-color);
 }
 
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
 
 .toggle-password {
+  position: absolute;
+  right: 24px;
+  top: 30%;
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width: 24px;
   height: 24px;
-  
 }
 
 .input_box {
@@ -150,19 +152,18 @@ input:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 594px;
+  width: 100%;
 }
 
 .social-login {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
+  justify-content: center;
+  align-items: center;
   border-radius: 8px;
   background-color: var(--social-login-bg-color);
   width: 640px;
   height: 74px;
-  padding: 16px 23px;
+  padding: 0px 23px;
 }
 /* Social Login */
 
