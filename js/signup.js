@@ -107,6 +107,6 @@ confirmPasswordInput.addEventListener("input", updateButtonState);
 
 signupBtn.addEventListener("click", () => {
   if (!signupBtn.disabled) {
-    window.location.href = "/items";
+    window.location.href = "/login";
   }
 });

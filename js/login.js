@@ -1,4 +1,4 @@
-//Login Js
+//Login 유효성 검사 기능
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const loginBtn = document.getElementById("loginBtn");
@@ -74,8 +74,33 @@ passwordInput.addEventListener("focusout", () => {
 emailInput.addEventListener("input", updateButtonState);
 passwordInput.addEventListener("input", updateButtonState);
 
+// 로그인 성공 여부 판단 및 페이지 이동 기능
+const USER_DATA = [
+  { email: 'codeit1@codeit.com', password: "codeit101!" },
+	{ email: 'codeit2@codeit.com', password: "codeit202!" },
+  { email: 'codeit3@codeit.com', password: "codeit303!" },
+	{ email: 'codeit4@codeit.com', password: "codeit404!" },
+	{ email: 'codeit5@codeit.com', password: "codeit505!" },
+	{ email: 'codeit6@codeit.com', password: "codeit606!" },
+]
+
 loginBtn.addEventListener("click", () => {
-  if (!loginBtn.disabled) {
-    window.location.href = "/items";
+  const inputEmail = emailInput.value.trim();
+  const inputPassword = passwordInput.value.trim();
+
+  //유효성 재검사
+  const isEmailValid = validateEmail();
+  const isPasswordValid = validatePassword();
+  if (!isEmailValid || !isPasswordValid) return;
+
+  const user = USER_DATA.find((u) => u.email === inputEmail);
+
+  // 로그인 실패
+  if (!user || user.password !== inputPassword) {
+    alert("비밀번호가 일치하지 않습니다.");
+    return;
   }
+
+  // 로그인 성공
+  window.location.href = "/items";
 });
