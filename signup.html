@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/login.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BVS3MW4KJX"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-BVS3MW4KJX');
+    </script>
+</head>
+<body >  
+    <main class="main"> 
+        <nav class="nav"> 
+            <a href="/">
+                <img src="img/panda_face.svg">
+                
+                <div class="title">
+                    <h1>판다마켓</h1>
+                </div>
+            </a>
+        </nav>
+
+        <section>
+            <form action="/signup" method="post">
+                <div class="signup_section">
+                    <label class="email">이메일</label>
+                    <input type="email" id="username" name="username" required placeholder="이메일을 입력하세요">
+                </div>
+
+                <div class="signup_section">
+                    <label for="nickname">닉네임</label>
+                    <input type="text" id="nickname" name="nickname" required placeholder="닉네임을 입력하세요">
+                </div>
+
+                <div class="signup_section">
+                    <label for="password">비밀번호</label>
+                    <div class="password_pad">
+                        <input type="password" id="password" name="password" required placeholder="비밀번호를 입력하세요">
+                    </div>
+                </div>
+
+                <div class="signup_section">
+                    <label for="password_ck">비밀번호 확인</label>
+                    <div class="password_pad">
+                        <input type="password" id="password_ck" name="password_ck" required placeholder="비밀번호를 다시 한번 입력하세요">
+                        <img class="password_icon"src="/img/btn_visibility_off_24px.svg">
+                    </div>
+                </div>
+                <div class="login_section">
+                    <button type="submit" class="login_btn">회원가입</button>
+                    <div class="login_other">
+                        <h2>간편 로그인 하기</h2> 
+                        <div>
+                            <a href="https://www.google.com/"><img src="/img/google.png"></a>
+                            <a href="https://www.kakaocorp.com/page/"><img src="/img/kakao.png"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="signup_login_link">
+                    <p>판다마켓 회원이신가요?</p>
+                    <a href="/login.html" class="signup_btn">로그인</a>
+                </div>
+            </form>
+        </section>
+    </main> 
+</body>
+</html>

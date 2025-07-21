@@ -1,0 +1,183 @@
+@import "reset.css";
+body {
+    margin: 0;
+    height: 100%;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    text-align: center;
+}
+html {
+  font-size: 100%;
+  min-height: 768px;
+  overflow-x: hidden;
+}
+input,
+.login_other {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+input{
+    display: flex;
+    width: 640px;
+    padding: 16px 24px;
+    align-items: center;
+    gap: 10px;
+    color: var(--Secondary-400, #9CA3AF);
+    background: var(--Cool-Gray-100, #F3F4F6);
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px; 
+    border-radius: 12px;
+    border: none;
+}
+input:focus{
+    outline: none;
+    border: 2px solid var(--brand-blue, #3692FF);
+}
+label{
+    color: var(--Secondary-800, #1F2937);
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 26px; 
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 20%;
+    padding-right: 20%;
+    width: 100%;
+    box-sizing: border-box;
+}
+.nav{
+    min-width: 370px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    padding-bottom: 40px;
+}
+
+.title{
+    color: var(--brand-blue, #3692FF);
+    font-family: "ROKAF Sans";
+    font-size: 66.344px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.email_section{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding-bottom: 24px;
+}
+
+.password_section{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding-bottom: 24px;
+}
+
+.password_pad{
+    position: relative;
+}
+
+.password_icon{
+    position: absolute;
+    right: 15px;
+    top:50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+}
+.login_section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding-bottom: 24px;
+}
+.login_btn{
+    padding-bottom: 24px;
+    width: 100%;
+    padding: 16px 124px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 40px;
+    background: var(--Secondary-400, #9CA3AF);
+    color: var(--Cool-Gray-100, #F3F4F6);
+    text-align: center;
+    border: none;
+
+    /* pretendard/xl-20px-semibold */
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 32px; /* 160% */
+}
+
+.login_other{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+    background: #E6F2FF;
+    width: 640px;
+    padding: 16px 23px;
+}
+
+.signup_login_link{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 8px;
+    color: var(--Secondary-800, #1F2937);
+
+    /* pretendard/md-14px-medium */
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 171.429% */
+}
+.signup_btn{
+    color: var(--Primary-100, #3692FF);
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+}
+.login_btn:hover{
+    background: var(--Primary-100, #3692FF);
+}
+
+.signup_section{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding-bottom: 24px;
+}
