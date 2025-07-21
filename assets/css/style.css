@@ -17,13 +17,13 @@
   max-width : 112rem;
   margin: 0 auto;
   padding: 24rem 0 10rem;
-  background-image: url("../img/hero-img.svg");
+  background-image: url("../img/main-page/hero-img.svg");
   background-position: right 0rem bottom;
   background-repeat: no-repeat;
 }
 
 .hero-section-2 .hero-text-container {
-  background-image: url("../img/hero-img-02.svg");
+  background-image: url("../img/main-page/hero-img-02.svg");
 }
 
 .hero-section h1 {
