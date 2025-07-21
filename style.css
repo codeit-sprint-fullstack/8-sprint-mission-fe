@@ -21,7 +21,7 @@ button {
     color: white;
 }
 
-.footer .container .link-buttons *,
+footer .container .link-buttons *,
 button {
     cursor: pointer;
 }
@@ -30,7 +30,7 @@ a {
     text-decoration: none;
 }
 
-.header {
+header {
     background-color: white;
     position: fixed;
     left: 0;
@@ -44,13 +44,13 @@ a {
     margin: 0 auto;
 }
 
-.header .container {
+header .container {
     align-items: center;
     height: 7.0rem;
     justify-content: space-between;
 }
 
-.header .logo {
+header .logo {
     display: flex;
     flex-grow: 1;
     flex-shrink: 1;
@@ -59,7 +59,7 @@ a {
     cursor: pointer;
 }
 
-.header button {
+header button {
     border-radius: 0.8rem;
     width: 12.8rem;
     height: 4.8rem;
@@ -163,7 +163,7 @@ a {
 
 .middle .section .label p {
     font-size: 2.2rem;
-    font-weight: 50.0rem;
+    font-weight: 500;
 }
 
 .middle .section.reverse {
@@ -189,44 +189,197 @@ a {
     height: 39.7rem;
 }
 
-.footer * {
+footer * {
     color: white;
 }
 
-.footer {
+footer {
     padding-top: 3.2rem;
     background-color: #111827;
     height: 16.0rem;
 }
 
-.footer .container {
+footer .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.footer p {
+footer p {
     color: #9CA3AF;
     font-weight: 400;
     font-size: 1.6rem;
 }
 
-.footer .container .info-buttons {
+footer .container .info-buttons {
     display: flex;
     gap: 3.0rem;
 }
 
-.footer .container .info-buttons * {
+footer .container .info-buttons * {
     font-size: 1.6rem;
     font-weight: 400;
 }
 
-.footer .container .link-buttons * {
+footer .container .link-buttons * {
     width: 2.0rem;
     height: 2.0rem;
 }
 
-.footer .container .link-buttons {
+footer .container .link-buttons {
     display: flex;
     gap: 1.2rem;
+}
+
+/*Tablet*/
+@media (min-width: 744px) and (max-width: 1200px) {
+    .container {
+        max-width: 100%;
+    }
+
+    header .logo {
+        margin-left: 20px;
+    }
+
+    header button {
+        margin-right: 20px;
+    }
+
+    .top {
+        padding-top: 8.4rem;
+    }
+
+    .top .container,
+    .bottom .container {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin: 0;
+    }
+
+    .top .container div {
+        width: 100%;
+        align-items: center;
+    }
+
+    .top button {
+        margin-top: 2.4rem;
+        margin-bottom: 21.1rem;
+    }
+
+    .middle .img-home {
+        width: 100%;
+        height: auto;
+    }
+
+    .middle .section,
+    .middle .section.section.reverse {
+        margin: 0;
+        padding: 2.4rem 2.4rem 5.2rem;
+        max-width: 100%;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .middle .section.reverse div {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .bottom .container h1 {
+        text-align: center;
+        margin-bottom: 21.7rem;
+    }
+
+    footer {
+        padding: 3.2rem 2.4rem;
+    }
+}
+
+/*Mobile*/
+@media (min-width: 0px) and (max-width: 744px) {
+    .container {
+        max-width: 100%;
+    }
+
+    header .logo {
+        margin-left: 1.6rem;
+    }
+
+    header .img-icon {
+        opacity: 0;
+        position: absolute;
+    }
+
+    header button {
+        margin-right: 1.6rem;
+    }
+
+    .top {
+        padding-top: 4.8rem;
+    }
+
+    .top .container,
+    .bottom .container {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin: 0;
+    }
+
+    .top .container div {
+        width: 100%;
+        padding: 0 6.8rem;
+        text-align: center;
+        align-items: center;
+    }
+
+    .top button {
+        margin-top: 1.8rem;
+        margin-bottom: 13.2rem;
+        padding: 1.2rem 7.1rem;
+    }
+
+    .middle .img-home,
+    .top img,
+    .bottom img {
+        width: 100%;
+        height: auto;
+    }
+
+    .middle .section,
+    .middle .section.section.reverse {
+        margin: 0;
+        padding: 2.0rem 1.6rem;
+        max-width: 100%;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .middle .section.reverse div {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .bottom .container h1 {
+        text-align: center;
+        margin-bottom: 21.7rem;
+    }
+
+    footer {
+        padding: 3.2rem 2.4rem;
+    }
+
+    footer .container {
+        position: relative;
+    }
+
+    footer .container p {
+        position: absolute;
+        bottom: -2.4rem;
+    }
 }

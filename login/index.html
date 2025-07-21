@@ -7,24 +7,27 @@
     <link rel="stylesheet" as="style" crossorigin
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/modal/modal.css">
     <title>판다마켓</title>
 </head>
 
 <body>
+    <div id="modal-container"></div>
+
     <div class="container">
-        <div class="form">
-            <div class="logo" div onclick="location.href = '/'">
-                <img class="img-icon" src="/images/icon.svg">
-                <img class="img-logo" src="/images/text_logo.svg">
+        <form>
+            <div class="logo" onclick="location.href = '/'">
+                <img class="img-icon" src="/images/ic_panadamarket.svg" alt="아이콘">
+                <img class="img-logo" src="/images/text_logo.svg" alt="로고">
             </div>
 
             <label for="email">이메일</label>
-            <input id="email" type="email" placeholder="이메일을 입력해주세요">
+            <input id="email" type="email" placeholder="이메일을 입력해주세요" autocomplete="email">
             <p class="email error"></p>
             <label for="password">비밀번호</label>
             <div class="input-password">
-                <input id="password" type="password" placeholder="비밀번호를 입력해주세요">
-                <img src="/images/visibility.svg">
+                <input id="password" type="password" placeholder="비밀번호를 입력해주세요" autocomplete="current-password">
+                <img src="/images/ic_visibility.svg" alt="비밀번호 표시">
             </div>
             <p class="password error"></p>
             <button id="login" disabled>로그인</button>
@@ -32,12 +35,12 @@
             <div class="simple-login">
                 <p>간편 로그인하기</p>
                 <div>
-                    <button class="google" onclick="location.href = 'https://www.google.com/'">
-                        <img src="/images/ic_google.svg">
-                    </button>
-                    <button class="kakao" onclick="location.href = 'https://www.kakaocorp.com/page/'">
-                        <img src="/images/ic_kakao.svg">
-                    </button>
+                    <a class="google" href="https://www.google.com" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/ic_google.svg" alt="Google">
+                    </a>
+                    <a class="kakao" href="https://www.kakao.com" target="_blank" rel="noopener noreferrer">
+                        <img src="/images/ic_kakao.svg" alt="Kakao">
+                    </a>
                 </div>
             </div>
 
@@ -49,6 +52,7 @@
         </div>
     </div>
     <script type="module" src="main.js"></script>
+    <script type="module" src="login.js"></script>
 </body>
 
 </html>
