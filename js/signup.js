@@ -139,7 +139,7 @@ signupBtn.addEventListener("click", () => {
     alert("사용 중인 이메일입니다.");
   } else {
     alert("회원가입이 완료되었습니다.");
-    // 나중에 여기에 실제 회원 DB 연동
+    // 나중에 여기에 실제 회원 DB 연동(백엔드)
     location.href = "/login";
   }
 });
