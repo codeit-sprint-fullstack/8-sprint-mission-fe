@@ -8,9 +8,6 @@
   <link rel="stylesheet" href="/css/global.css">
   <link rel="stylesheet" href="/css/login-signup.css">
   <link href="/font/ROKAF Slab Serif Medium.otf" rel="stylesheet">
-  <style>
-
-  </style>
 </head>
 <body>
   <div class="login-container">
@@ -18,10 +15,11 @@
       <img src="/img/logo/panda-icon-2.png" alt="판다마켓 로고">
       <h1>판다마켓</h1>
     </a>
-    <div class="form-box">
+    <form class="form-box">
       <div class="input-box">
         <label for="email">이메일</label>
         <input type="email" id="email" placeholder="이메일을 입력해 주세요">
+        <span></span>
       </div>
       <div class="input-box">
         <label for="password">비밀번호</label>
@@ -29,6 +27,7 @@
           <input type="password" id="password" placeholder="비밀번호를 입력해 주세요">
           <button type="button"><img src="/img/btn/btn_visibility_on.png" alt="비밀번호 보기"></button>
         </div>
+        <span></span>
       </div>
 
       <button class="form-btn">로그인</button>
@@ -49,7 +48,9 @@
         판다마켓이 처음이신가요?
         <a href="/signup">회원가입</a>
       </div>
-    </div>
+    </form>
   </div>
+  <script src="/js/logic/login/DOM.js"></script>
+  <script src="/js/logic/login/inputCheck.js"></script>
 </body>
 </html>
