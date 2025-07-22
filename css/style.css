@@ -25,7 +25,7 @@ body{
   box-sizing: border-box;
 }
 
-header{
+.header_home{
   display: flex;
   width: 100%;
   height: 70px;
@@ -227,13 +227,14 @@ section .wrap{
   flex-shrink: 1;
 }
 
-footer{
+.footer_home{
   width: 100%;
   display: flex;
   height: 160px;
   padding: 32px 200px;
   align-items: flex-start;
   background: var(--Secondary-900);
+  text-align: center;
 }
 .footer-wrap{
   width: 1520px;
