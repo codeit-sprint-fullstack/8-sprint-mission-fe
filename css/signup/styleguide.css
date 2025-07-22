@@ -1,0 +1,27 @@
+:root {
+  --brandblue: rgba(49, 130, 246, 1);
+  --cool-gray800: rgba(31, 41, 55, 1);
+  --secondary-400: rgba(156, 163, 175, 1);
+  --secondary-800: rgba(31, 41, 55, 1);
+  --cool-gray50: rgba(249, 250, 251, 1);
+  --cool-gray100: rgba(243, 244, 246, 1);
+  --cool-gray400: rgba(156, 163, 175, 1);
+  --pretendard-lg-16px-regular-font-family: "Pretendard", Helvetica;
+  --pretendard-lg-16px-regular-font-weight: 400;
+  --pretendard-lg-16px-regular-font-size: 16px;
+  --pretendard-lg-16px-regular-letter-spacing: 0px;
+  --pretendard-lg-16px-regular-line-height: 26px;
+  --pretendard-lg-16px-regular-font-style: normal;
+  --pretendard-lg-16px-medium-font-family: "Pretendard", Helvetica;
+  --pretendard-lg-16px-medium-font-weight: 500;
+  --pretendard-lg-16px-medium-font-size: 16px;
+  --pretendard-lg-16px-medium-letter-spacing: 0px;
+  --pretendard-lg-16px-medium-line-height: 26px;
+  --pretendard-lg-16px-medium-font-style: normal;
+  --pretendard-md-14px-medium-font-family: "Pretendard", Helvetica;
+  --pretendard-md-14px-medium-font-weight: 500;
+  --pretendard-md-14px-medium-font-size: 14px;
+  --pretendard-md-14px-medium-letter-spacing: 0px;
+  --pretendard-md-14px-medium-line-height: 24px;
+  --pretendard-md-14px-medium-font-style: normal;
+}
