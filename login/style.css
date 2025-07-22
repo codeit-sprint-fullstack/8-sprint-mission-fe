@@ -30,10 +30,16 @@
 .login_page form .email, .login_page form .password {
   display: flex;
   flex-direction: column;
-  gap: 16px;
   justify-content: center;
 }
-.login_page form .email input, .login_page form .password input {
+.login_page form .email label, .login_page form .password label {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 26px;
+}
+
+.userEmailInput, .userPasswordInput {
   display: flex;
   width: 640px;
   height: 56px;
@@ -43,16 +49,18 @@
   border-radius: 12px;
   background-color: #F3F4F6;
   border: none;
-}
-.login_page form .email input:focus, .login_page form .password input:focus {
-  border: 0.5px solid #3692FF;
   outline: none;
-}
-.login_page form .email label, .login_page form .password label {
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 26px;
+  color: #9CA3AF;
+  margin-top: 16px;
+}
+
+.userEmailInput:focus, .userPasswordInput:focus {
+  border: 1px solid #3692FF;
+  outline: none;
 }
 
 .submitBtn {

@@ -26,7 +26,6 @@ section form {
 section form div {
   display: flex;
   flex-direction: column;
-  gap: 16px;
   justify-content: space-between;
   width: 100%;
 }
@@ -51,6 +50,7 @@ section form input {
   font-weight: 400;
   line-height: 26px;
   color: #9CA3AF;
+  margin-top: 16px;
 }
 section form input:focus {
   outline: none;

@@ -30,29 +30,10 @@
     justify-content: center;
     align-items: center;
 
-
     .email, .password {
       display: flex;
       flex-direction: column;
-      gap: 16px;
       justify-content: center;
-
-      input {
-        display: flex;
-        width: 640px;
-        height: 56px;
-        padding: 16px 24px;
-        align-items: center;
-        gap: 10px;
-        border-radius: 12px;
-        background-color: #F3F4F6;
-        border: none;
-      }
-
-      input:focus {
-        border: 0.5px solid #3692FF;
-        outline: none;
-      }
 
       label {
         font-size: 18px;
@@ -62,6 +43,32 @@
       }
     }
   }
+}
+
+.userEmailInput, .userPasswordInput {
+    display: flex;
+    width: 640px;
+    height: 56px;
+    padding: 16px 24px;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    background-color: #F3F4F6;
+    border: none;
+    outline: none;
+
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    color: #9CA3AF;
+
+    margin-top: 16px;
+}
+
+.userEmailInput:focus, .userPasswordInput:focus {
+  border: 1px solid #3692FF;
+  outline: none;
 }
 
 .submitBtn {
