@@ -58,7 +58,6 @@ footer {
 
 .footer-container {
   width: 100%;
-  max-width: 152rem;
   padding: 3.2rem 20rem 10.8rem;
   margin: 0 auto;
   display: flex;
@@ -145,6 +144,38 @@ footer {
   color: var(--secondary-color-100);
 }
 
+.btn-small-48 {
+  display: inline-block;
+  height: 4.8rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.2;
+  padding: 1.2rem 4.6rem;
+  border-radius: 0.8rem;
+  background: var(--primary-color-100);
+  color: var(--secondary-color-100);
+  cursor: pointer;
+}
+
+.btn-small-48:hover {
+  background: var(--primary-color-200);
+}
+
+.btn-small-48:active {
+  background: var(--primary-color-300);
+}
+
+.btn-small-48:disabled {
+  background: var(--secondary-color-400);
+  color: var(--secondary-color-100);
+}
+
+.popup-btn {
+  position: absolute;
+  bottom: 2.8rem;
+  right: 2.8rem;
+}
+
 /* input 스타일 */
 
 .input-label {
@@ -180,7 +211,7 @@ footer {
   border: 0.1rem solid var(--error-color);
 }
 
-.input-common.error + p {
+.input-common.error ~ p {
   font-size: 1.5rem;
   margin: 0.8rem 1.4rem;
   color: var(--error-color);
@@ -193,8 +224,7 @@ footer {
 .input-password-toggle {
   position: absolute;
   right: 2.4rem;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 16px;
   cursor: pointer;
 }
 
@@ -249,14 +279,48 @@ footer {
   text-decoration: underline;
 }
 
-/* 반응형 스타일 */
-@media (max-width: 1920px) {
-  .nav {
-    max-width : none;
-    padding: 0.9rem 20rem;
-  }
+
+/* 팝업 스타일 */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  display: none;
 }
 
+.popup-overlay.active {
+  display: flex;
+}
+
+.popup-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 54rem;
+  height: 25rem;
+  border-radius: 1.2rem;
+  display : flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white-color);
+  z-index: 11;
+}
+
+.popup-content {
+  font-size: 1.6rem;
+  padding-bottom: 2.8rem;
+}
+
+/* 반응형 스타일 */
 @media (max-width: 1199px) {
   .nav {
     padding: 0.9rem 2.4rem;
@@ -292,6 +356,17 @@ footer {
   .copyright {
     order : 1;
     flex-basis: 100%;
+  }
+
+  .popup-container {
+    width: calc(100% - 4.8rem);
+  }
+
+  .popup-btn{
+    left: 50%;
+    transform: translateX(-50%);
+    bottom : 2.3rem;
+    min-width: 12rem;
   }
 
 }
