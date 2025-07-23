@@ -1,0 +1,238 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Pretendard, sans-serif, ROKAF Sans, Medium;
+  word-break: keep-all;
+}
+
+body {
+  position: relative;url(http://hmphum.tistory.com/category/%EA%B8%B0%ED%83%80%ED%94%84%EB%A1%9C%205%20-%20Guitar%20Pro%205/%ED%95%B4%EC%99%B8%20%ED%83%80%EB%B8%8C%EC%95%85%EB%B3%B4?page%3D7)
+  margin: 0;
+  background-color: #fcfcfc;
+}
+
+h1 {
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+}
+
+p {
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+}
+
+span {
+  color: var(--Primary-100, #3692FF);
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 26px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 1920px;
+  margin: 0 auto;
+  padding: 138px 344px;
+}
+
+header {
+  display: flex;
+  position: sticky;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 0 400px;
+  width: 100%;
+  
+  height: 70px;
+  gap: 1000px;
+}
+
+.header-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.panda-logo {
+  width: 40px;
+  height: 40.135px;
+}
+
+.section1 {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  background-color: #CFE5FF;
+  height: 540px;
+  width: 100%;
+}
+
+.button {
+  background-color: #3692FF;
+  border-radius: 40px;
+  text-align: center;
+  color: #ffffff;
+  padding: 12px 124px;
+  margin-top: 32px;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px;
+  white-space: nowrap;
+}
+
+.top-content {
+  position: absolute;
+  bottom: -4px;
+  display: flex;
+  justify-content: center;
+}
+
+.top-text {
+  font-family: pretendard;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+}
+
+.logo {
+  color: #3692FF;
+  font-size: 25.633px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.login {
+  color: var(--Cool-Gray-100, #F3F4F6);
+  text-decoration: none;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px; 
+  border: 8px;
+  padding: 12px 23px;
+  border-radius: 8px;
+  background-color: #3692FF;
+  display: flex;
+  min-width: 128px;
+  min-height: 48px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.content1 .content2 .content3 {
+  width: 558px;
+  height: 444px;
+  background-color: #fcfcfc;
+  width: 998px;
+  height: 444px;
+  padding: 138px;
+  
+}
+
+.content1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: left;
+  gap: 64px;
+  padding-bottom: 138px;
+}
+
+.content2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 64px;
+  padding: 138px;
+  text-align: right;
+}
+
+.content3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 64px;
+  padding: 138px;
+}
+
+
+.bottom-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  font-family: pretendard;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+}
+
+.bottom-image {
+  width: 746px;
+  height: 397px;
+}
+
+.section2 {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  background-color: #CFE5FF;
+  height: 540px;
+  width: 100%;
+}
+
+footer {
+  color: var(--Secondary-200, #E5E7EB);
+  font-family: Pretendard;  
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400; 
+  line-height: normal;
+  background-color: #111827;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 32px 200px;
+  
+}
+
+.toe {
+  display: flex;
+  gap: 30px;
+  color: var(--Secondary-200, #E5E7EB);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.SNS {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}
+
