@@ -1,0 +1,158 @@
+* {
+ box-sizing: border-box;
+}
+/* 수정 완료 */
+
+html {
+    font-size: 62.5%;
+    --Brand-Blue: #3692FF;
+    --Secondary-400: #9CA3AF;
+    --Bg-Skyblue: #E6F2FF;
+    --Cool-Gray-100: #F3F4F6;
+    --Cool-Gray-800: #1F2937;
+}   
+
+a,
+button,
+.clickable{
+    cursor: pointer;
+}
+
+.login-box {
+    width: 64rem;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-logo img{
+    width: 39.6rem;
+    height: 13.2rem;
+    margin: 4rem;
+}
+
+.login-box form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.login-form label{
+    color: #1F2937;
+    font-family: Pretendard;
+    font-size: 1.8rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 2.6rem
+}
+
+.login-form input{
+    display: flex;
+    width: 64rem;
+    height: 5.5rem;
+    padding: 1.6rem 2.4rem;
+    align-items: center;
+    gap: 1rem;
+
+    border-radius: 1.2rem;
+    background-color: var(--Cool-Gray-100);
+    margin: 1.6rem 0 2.4rem;
+    border: none;
+}
+
+.login-form input:focus{
+    outline: 0.1rem solid var(--Brand-Blue);
+}
+
+.login-form input::placeholder{
+    color: var(--Cool-Gray-800);
+}
+
+.pw-input-box{
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.pw-eye{
+    position: absolute;
+    inset: auto 2.4rem auto auto;
+    width: 2.4rem;
+    height: 2.4rem;
+}
+
+.login-form button{
+    display: flex;
+    width: 64rem;
+    height: 5.6rem;
+    padding: 1.6rem 12.4rem;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    border: none;
+    border-radius: 4rem;
+    background-color: var(--Secondary-400);
+
+    color: var(--Cool-Gray-100);
+    text-align: center;
+
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 3.2rem;
+
+    margin: 0 0 2.4rem;
+}
+
+.login-form button:hover{
+    background-color: var(--Brand-Blue);
+}
+
+.simple-login{
+    display: flex;
+    width: 64rem;
+    height: 7.4rem;
+    padding: 1.6rem 2.3rem;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    border-radius: 0.8rem;
+    background-color: var(--Bg-Skyblue);
+}
+
+.simple-login div{
+    display: flex;
+    gap: 1rem;
+}
+
+.simple-login h1{
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 2.6rem
+}
+
+.simple-login img{
+    width: 4.2rem;
+    height: 4.2rem;
+}
+
+.signup-massage{
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.signup-massage h3,
+.signup-massage a{
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 2.4rem;
+}
+
+.signup-massage a{
+    color: var(--Brand-Blue);
+}
