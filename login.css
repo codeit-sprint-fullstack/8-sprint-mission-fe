@@ -1,0 +1,157 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Pretendard', sans-serif;
+}
+
+body, html {
+  height: 100%;
+  background-color: #ffffff;
+}
+
+/* 컨테이너 전체 가운데 정렬 */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* 로그인 박스 스타일 */
+.login-box {
+  width: 100%;
+  max-width: 40rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 26px
+}
+
+#email , #password , #nickname{
+font-family: Pretendard;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 26px;
+padding: 16px 24px;
+}
+/* 로고 및 타이틀 */
+.logo {
+  width: 300px;
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: 28px;
+  color: #3396ff;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+/* 폼 영역 */
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+  display: block;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  background-color: #f6f7f9;
+  font-size: 14px;
+}
+
+/* 비밀번호 필드에 눈 아이콘 */
+.password-wrapper {
+  position: relative;
+}
+
+.toggle-visibility {
+    position: absolute;
+    right: -9px;
+    top: 25%;
+    color: #999;
+}
+
+.toggle-visibility img{
+    width: 50%;
+}
+
+/* 로그인 버튼 */
+.login-button {
+  width: 100%;
+  padding: 16px 124px;
+  background-color: #8b99a6;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* 소셜 로그인 영역 */
+.social-login {
+  width: 100%;
+  text-align: center;
+}
+
+.social-title {
+  font-size: 14px;
+  color: #333;
+}
+
+.social-box {
+  background-color: #e9f3ff;
+  border-radius: 10px;
+  padding: 23px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 24px auto;
+}
+
+.social-box img {
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  margin-left: 16px;
+}
+
+/* 회원가입 안내 */
+.signup-text {
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.signup-text a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
