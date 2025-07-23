@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>로그인</title>
+  <link rel="stylesheet" href="/Panda_Market/reset.css">
+  <link rel="stylesheet" href="login.css">
+  <base href="/">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css" />
+</head>
+<body>
+  <div class="center">
+    <header>
+      <a class="login_logo_total" href="Panda_Market/index.html">
+        <img class="logo_icon"
+          src="Panda_Market/images/login_panda.png"
+          alt="판다로고 아이콘">
+        <h1 class="login_logo">판다마켓</h1>
+      </a>
+    </header>
+    <main>
+      <form>
+        <div>
+          <div class="login_layout">
+            <label for="userEmail">이메일</label>
+            <input id=userEmail name="userEmail" type="email" placeholder="이메일을 입력해주세요">
+          </div>
+          <div class="login_layout">
+            <label for="password">비밀번호</label>
+            <div class="password_layout">
+              <input id=password name="password" type="password" placeholder="비밀번호를 입력해주세요">
+              <img class="password_vi" id="togglepassword"
+                src="Panda_Market/images/visibility_off.png"
+                alt="비밀번호 눈">
+            </div>
+          </div>
+        </div>
+        <div class="button_layout">
+        <button type="submit">로그인</button>
+        </div>
+      </form>
+      <div class="simple_total">
+        <div class="simple_layout">
+          <h3 class="simple_login">간편 로그인하기</h3>
+          <div class="simple_icon">
+            <a href="https://www.google.com/"><img class="simple_google"
+              src="Panda_Market/images/google_icon.png"
+              alt="구글 간편로그인"></a>
+            <a href="https://www.kakaocorp.com/page/"><img class="simple_kakao"
+              src="Panda_Market/images/kakao_icon.png"
+              alt="카카오톡 간편로그인"></a>
+          </div>
+        </div>
+      </div>
+      <div class="join_add">
+        <h4>판다마켓이 처음이신가요?</h4>
+        <a class="join" href="Panda_Market/signup/signup.html">회원가입</a>
+      </div>
+    </main>
+  </div>
+  <script src="Panda_Market/signup/signup.js"></script>
+</body>

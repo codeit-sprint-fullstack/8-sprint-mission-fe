@@ -1,0 +1,230 @@
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'ROKAFSansBold';
+    src: url('/Panda_Market/images/ROKAFSansBold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'ROKAFSansMedium';
+    src: url('/Panda_Market/images/ROKAFSansMedium.woff2') format('woff2');
+}
+
+body {
+	font-family: "ROKAFSansBold", "ROKAFSansMedium", "pretendard"; 
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;  
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.login_logo {
+  color: var(--brand-blue, #3692FF);
+  font-family: "ROKAFSansMedium";
+  font-size: 66.344px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  display: flex;
+  padding-left: 22.24px;
+  align-items: center;
+}
+
+.logo_icon {
+  width: 103.529px;
+  height: 103.88px;
+  flex-shrink: 0;
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+}
+
+.login_logo_total {
+  height: 132px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  justify-content: center;
+}
+
+
+label {
+  color: var(--Secondary-800, #1F2937);
+  font-family: "Pretendard";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 26px;
+  margin-bottom: 16px;
+  margin-top: 24px;
+}
+
+
+input {
+  display: flex;
+  width: 640px;
+  height: 56px;
+  padding: 16px 24px;
+  align-items: center;
+  gap: 10px;
+  border-radius: 12px;
+  background: var(--Cool-Gray-100, #F3F4F6);
+  border-style: none;
+}
+
+input::placeholder {
+  flex: 1 0 0;
+  color: var(--Secondary-400, #9CA3AF);
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  display: flex;
+}
+
+
+.login_layout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  position: relative;
+}
+
+
+.password_vi {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+}
+
+.password_layout {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+button {
+  color: var(--Cool-Gray-100, #F3F4F6);
+  text-align: center;
+  font-family: "Pretendard";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px;
+  border-style: none;
+  background-color: #9CA3AF;
+}
+
+.button_layout {
+  display: flex;
+  width: 640px;
+  height: 56px;
+  padding: 16px 124px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 40px;
+  background: var(--Secondary-400, #9CA3AF);
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+
+.simple_login {
+  color: var(--Secondary-800, #1F2937);
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+  display: flex;
+}
+
+.simple_icon {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+
+.simple_layout {
+  display: flex;
+  width: 594px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.simple_total {
+  display: flex;
+  width: 640px;
+  height: 74px;
+  padding: 16px 23px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 8px;
+  background: #E6F2FF;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+
+.join_add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  margin-top: 24px;
+}
+
+h4 {
+  color: var(--Secondary-800, #1F2937);
+  font-family: "Pretendard";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.join {
+  color: var(--Primary-100, #3692FF);
+  font-family: "Pretendard";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+}
+
+input:focus {
+  border: 1px solid #3692FF;
+  outline: none;
+}
