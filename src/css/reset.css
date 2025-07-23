@@ -1,0 +1,61 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Pretendard', 'ROKAF Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+
+img {
+  max-width: 100%;
+  display: block;
+  border: 0;
+}
+
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+header,
+nav,
+section,
+article,
+aside,
+footer,
+main {
+  display: block;
+}

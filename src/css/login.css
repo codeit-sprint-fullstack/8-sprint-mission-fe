@@ -1,0 +1,152 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Pretendard, 'ROKAF Sans', sans-serif;
+  background-color: var(--color9);
+  color: var(--color12);
+}
+
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 60px; 
+}
+
+
+.login-container {
+  width: 1920px;
+  margin: 100px auto;
+  padding: 231px 640px 284px 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+
+.login-logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.login-logo img {
+  width: 103.529px;
+  height: 103.88px;
+  flex-shrink: 0;
+}
+
+.login-logo h1 {
+  color: var(--color4);
+  font-family: "ROKAF Sans";
+  font-size: 66.344px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+
+.login-form {
+  width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+     
+}
+
+.login-form label {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color11);
+  margin-bottom: 4px;
+}
+
+.login-form input {
+  width: 640px;
+  height: 56px;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background-color: var(--color12);
+  outline: none;
+  transition: border 0.2s;
+}
+
+
+.login-form input:focus {
+  border: 1px solid var(--color4);
+}
+
+
+.login-submit {
+  margin-top: 16px;
+  background-color: var(--color6);
+  color: var(--color12);
+  font-weight: 700;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 40px;
+}
+
+.social-login {
+  width: 640px;
+  padding: 16px 24px;
+  background-color: var(--color13); 
+  color: var(--color11);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  margin: 32px 0;
+}
+
+.social-login-box p {
+  font-size: 16px;
+  color: var(--color11);
+  font-weight: 500;
+  margin: 0;
+  font-weight: 500;
+  line-height: 26px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.social-icons img {
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+}
+
+
+.signup-link {
+  gap: 24px;
+  font-size: 14px;
+  color: var(--color11);
+}
+
+.signup-link a {
+  color: var(--color4);
+  text-decoration: underline;
+  margin-left: 4px;
+}

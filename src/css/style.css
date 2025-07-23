@@ -1,0 +1,374 @@
+  :root{
+  --color1: #111827;
+  --color2: #1251aa;
+  --color3: #1967d6;
+  --color4: #3692ff;
+  --color5: #374151;
+  --color6: #9ca3af;
+  --color7: #dfdfdf;
+  --color8: #e5e7eb;
+  --color9: #ffffff;
+  --color10: #cfe5ff;
+  --color11: #1f2937;
+  --color12: #F3F4F6;
+  --color13: #e6f2ff;
+  --color14: #f3f4f6;
+  --color15: #f9f9f9;
+  --color16: #F9FAFB;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Pretendard;
+  line-height: 1.6;
+  background-color: var(--color9);
+  color: var(--color5);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 400px;
+}
+
+@media screen and (max-width: 1920px) {
+  .container {
+    padding: 0 200px;
+  }
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background-color: var(--color9);
+  border-bottom: 1px solid var(--color7);
+  z-index: 1;
+}
+
+.nav-inner {
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
+  height: 70px;
+  padding: 0 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.logo img {
+  width: 40px;
+  height: 40.135px;
+  flex-shrink: 0;
+}
+
+.logo span {
+  color: var(--color4);
+  font-family: "ROKAF Sans";
+  font-size: 25.633px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  line-height: 1;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.login-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 128px;
+  height: 48px;
+  padding: 12px 23px;
+  background-color: var(--color4);
+  border-radius: 8px;
+  color: var(--color12);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  gap: 10px;
+  text-align: center;
+  line-height: 26px;
+}
+
+.hero {
+  background-color: var(--color10);
+  width: 100%;
+  height: 540px;
+}
+
+.hero-inner {
+  max-width: 1920px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0 200px;
+  gap: 8px;
+}
+
+.hero-text h2 {
+  color: var(--color5);
+  font-family: Pretendard;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+  padding-bottom: 60px;
+  gap:32px;
+  align-items: flex-start;
+  margin-top: 240px;
+  margin-bottom: 0px;
+}
+
+
+.hero-img {
+  display: flex;
+  justify-content: center;
+  align-self: flex-end;
+  
+}
+
+.hero-img img {
+  width: 746px;
+  height: 340px;
+}
+
+.cta-btn {
+  display: inline-block;
+  background-color: var(--color4);
+  color: var(--color16);
+  padding: 16px 124px;
+  font-size: 20px;
+  border-radius: 40px;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.cta-btn:hover {
+  background-color: var(--color4);
+}
+
+
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: (--color9); 
+  border-radius: 16px;
+  padding: 0px auto;
+  margin-bottom: 276px;
+  gap: 64px;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+.card-section {
+  background-color: (--color9); 
+  padding: 138px 0;
+}
+
+.card img {
+  display: flex;
+  width: 588px;
+  height: 444px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.card-type2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--color9); 
+  border-radius: 16px;
+  padding: 0px auto;
+  margin-bottom: 276px;
+  gap: 64px;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card-type2 .card-text {
+  text-align: right;       
+  margin-left: auto;       
+  max-width: 988px;
+}
+
+.card-type2 .label {
+  color: var(--color4);
+  font-weight: 700;
+  margin-bottom: 12px;
+
+}
+
+.card-text {
+  color: var(--color5);
+  font-family: Pretendard;
+  text-align: left;
+  gap: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  font-size: 40px;
+  
+}
+
+.card .desc {
+  font-size: 24px;       
+  line-height: 32px;     
+  color: var(--color5);          
+  font-weight: 500;      
+}
+
+.card .label {
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 26px;
+  color: var(--color4);
+  
+}
+
+.card h3 {
+  color: var(--color5);
+  font-family: Pretendard;
+  font-size: 24x;
+  font-weight: 700;
+  line-height: 140%;
+  letter-spacing: 0.8px;
+  margin-bottom: 24px;
+}
+
+
+.card-type {
+  flex-direction: row-reverse;
+}
+
+.review-section {
+  background-color: var(--color10);
+  height:540px;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.review-inner {
+  max-width: 1920px;
+  height: 0 auto;
+  margin: 0 auto;
+  padding: 0 200px;
+  display: inline-flex;
+  justify-content: center;
+  gap: 69px;
+}
+
+.review-text p {
+  font-family: Pretendard;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 140%;
+  color: var(--color5);
+  margin-top: 172.5px;
+  gap: 69px;
+  text-align: left;
+}
+
+.review-img {
+  display: flex;
+  justify-content: center;
+  align-self: flex-end;
+   
+}
+
+.review-img img {
+  width: 746px;
+  height: 397px;
+  margin-bottom: -157px; 
+  justify-content: center;
+  align-items: center;
+  object-fit:contain;
+}
+
+.footer {
+  display: flex;
+  background-color: var(--color1);
+  padding: 32px 200px;
+  border-top: 1px solid var(--color7);
+  flex-direction: column;
+  align-items: flex-start;
+  flex-shrink: 0;
+  width: 100%;
+  height: 160px;
+  gap: 10px;
+  
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+}
+
+.footer-left {
+  font-size: 16px;
+  color: var(--color6);
+}
+
+.footer-center  {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  font-size: 16px;
+  color: var(--color8);
+}
+
+
+.footer-right  {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.footer-right img {
+  width: 20px;
+  height: 20px;
+  padding: 0.853px 1px 1.147px 1px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
