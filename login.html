@@ -36,6 +36,7 @@
                 autocomplete="email"
                 placeholder="이메일을 입력해주세요"
               />
+              <div id="email-error" class="error-message"></div>
             </div>
             <div class="form-pswd">
               <label class="form-input-itle"> 비밀번호 </label>
@@ -45,17 +46,19 @@
                   type="password"
                   placeholder="비밀번호를 입력해주세요"
                 />
+                <div id="password-error" class="error-message"></div>
                 <div class="password-hide">
                   <img
                     class="password-hide-icon"
                     src="./images/pswd.svg"
                     alt="Password hide"
                   />
+                  <div id="password-error" class="password-message"></div>
                 </div>
               </div>
             </div>
 
-            <button type="submit">로그인</button>
+            <button id="summitBtn" type="submit">로그인</button>
 
             <div class="easy-login">
               <p class="easy-login-txt">간편 로그인하기</p>
@@ -93,5 +96,6 @@
         </form>
       </div>
     </div>
+    <script src="./js/login.js"></script>
   </body>
 </html>

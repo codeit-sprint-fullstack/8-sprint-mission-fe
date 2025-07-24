@@ -152,3 +152,8 @@ a.header-link {
   right: 1.5rem; /* 24px */
   cursor: pointer;
 }
+
+.error-message {
+  padding: 0.56rem 0 0 1rem; /* 9px 0 0 16px */
+  color: var(--error-red, #f74747);
+}
