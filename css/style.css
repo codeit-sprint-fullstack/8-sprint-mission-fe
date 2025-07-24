@@ -293,12 +293,16 @@ section .wrap{
   }
   .main-title{
     width: 100%;
+    display: flex;
+    text-align: center;
   }
+  .main-title p:last-child{margin-left: 10px;}
   .items-button{
     width: 357px;
   }
   section{
-    padding: 0;
+    padding: 0 24px;
+    background: #FCFCFC;
   }
   .banner{
     flex-direction: column;
@@ -342,5 +346,22 @@ section .wrap{
   }
   .footer-wrap{
     margin-top: 32px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 744px) {
+  .header_home{
+    padding: 10px 16px;
+  }
+  .main-txt{width: 100%;}
+  .main-title{flex-direction: column;}
+  .main-title p:last-child{margin-left: 0;}
+  .footer-wrap{
+    position: relative;
+  }
+  .codeit{
+    position: absolute;
+    top: 48px;
   }
 }
