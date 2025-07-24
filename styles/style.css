@@ -1,45 +1,19 @@
+/* main css */
+
 html {
-  font-family: "Pretendard";
-  /* font-size: clamp(8px, 1vw, 10px); */
+  /* reset 덮어쓰기용 */
   font-size: clamp(30%, 1vw, 62.5%);
 }
 
-* {
-  margin: 0;
-}
-
-/* 태그 선택자 */
-
-img {
-  text-decoration: none;
-  display: inline-block;
-  vertical-align: middle;
-  max-width: 100%;
-}
-
-.header_logo {
-  height: 5rem;
-  min-width: 15.3rem;
-}
-
-a {
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
-  vertical-align: middle;
-}
-
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 clamp(10rem, 20vw, 40rem);
+  /* padding: 0 clamp(10rem, 20vw, 40rem); */
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   height: 7rem;
   background-color: #ffffff;
+  padding: 0 20rem;
 }
 
 .main {
@@ -47,27 +21,36 @@ a {
 }
 
 .footer {
+  /* display: flex;
+  justify-content: space-between;
+  gap: 2rem; */
+  background-color: #111827;
+  height: 16rem;
+  /* padding: 3rem 10rem 0; */
+  font-size: 1.6rem;
+  padding: 0 20rem;
+}
+
+.wrapper {
+  max-width: 152rem;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  gap: 2rem;
-  background-color: #111827;
-  height: 13rem;
-  padding: 3rem 10rem 0;
-  font-size: 1.6rem;
+  align-items: center;
+  height: inherit;
+}
+
+.footer .wrapper {
+  padding-top: 3.2rem;
+  align-items: start;
 }
 
 /* header */
 
-/* section */
-
-section img {
-  max-width: 100%;
-  /* gap 대신 여백 */
+.header_logo {
+  height: 5rem;
+  min-width: 15.3rem;
 }
-
-/* main */
-
-/* top */
 
 /* middle */
 
@@ -120,8 +103,12 @@ section img {
 
 .footer_center {
   display: flex;
-  /* 1.5rem * 2 = 3rem */
   gap: 3rem;
+}
+
+.footer_right {
+  display: flex;
+  gap: 1.2rem;
 }
 
 /* top, bottom */
@@ -132,20 +119,28 @@ section img {
   justify-content: center;
   background-color: #cfe5ff;
   /* min-height: 540px; (픽셀 값은 유지) */
-  min-height: 540px;
+  /* min-height: 540px; */
   align-items: end;
   flex-wrap: wrap;
+  padding: 0 20rem;
 }
 
-.top > div,
-.bottom > div {
+.top > .wrapper,
+.bottom > .wrapper {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-self: center;
   gap: 3rem;
+  flex-wrap: wrap;
   flex-shrink: 0;
+  max-width: 100%;
   padding-top: 10rem;
+}
+
+.top > .wrapper > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
 }
 
 .top img,
@@ -153,9 +148,9 @@ section img {
   padding-top: 8rem;
 }
 
-.bottom > div {
+/* .bottom > div {
   padding: 10rem 6.9rem 0;
-}
+} */
 
 /* btn */
 

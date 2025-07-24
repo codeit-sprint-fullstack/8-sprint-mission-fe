@@ -3,7 +3,6 @@
 /* 1. 기본 설정: rem 기준 및 박스 모델 */
 html {
   font-size: 62.5%;
-  /* 1rem = 10px (브라우저 기본 16px의 62.5%) */
   box-sizing: border-box;
   font-family: "Pretendard";
 }
@@ -44,6 +43,9 @@ ol {
 /* 4. 링크 밑줄 제거 및 색상 상속 */
 a {
   text-decoration: none;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
   color: inherit;
 }
 
@@ -51,7 +53,9 @@ a {
 img {
   max-width: 100%;
   height: auto;
-  display: block;
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
 }
 
 /* 6. 폼 요소 폰트 상속 */
