@@ -86,7 +86,7 @@ body{
 }
 
 
-main{
+.main_home{
   width: 100%;
   height: 610px;
   background: #CFE5FF;
@@ -101,6 +101,7 @@ main{
   width: 356px;
 }
 .main-title{
+  width: 306px;
   color: var(--Secondary-700);
   font-family: Pretendard;
   font-size: 40px; /* 2.0833vw*/
@@ -165,7 +166,7 @@ section .wrap{
 }
 .badget{
   margin-bottom: 12px;
-
+  display: block;
   color: var(--Primary-100);
   /* pretendard/2lg-18px-bold */
   font-family: Pretendard;
@@ -268,4 +269,78 @@ section .wrap{
 .sns{
   width: 20px;
   height: 20px;
+}
+
+
+/* Tablet */
+@media (max-width: 1200px) {
+  .header_home{
+    padding: 10px 24px;
+  }
+
+  .main_home{
+    padding: 0;
+    height: 841px;
+    margin-bottom: 24px;
+  }
+  .main_home .wrap{
+    flex-direction: column;
+  }
+  .main-txt{
+    width: 522px;
+    margin-bottom: 130px;
+    align-items: center;
+  }
+  .main-title{
+    width: 100%;
+  }
+  .items-button{
+    width: 357px;
+  }
+  section{
+    padding: 0;
+  }
+  .banner{
+    flex-direction: column;
+    width: 698px;
+  }
+  .banner img{
+    max-width: 100%;
+  }
+  .txtbox{
+    width: 100%;
+    margin-top: 24px;
+    margin-bottom: 52px;
+  }
+  .title{
+    font-size: 32px;
+    line-height: 42px; /* 131.25% */
+    letter-spacing: 0;
+    display: flex;
+  }
+  .title p:last-child{margin-left: 10px;}
+  .content{
+    font-size: 18px;
+    line-height: 26px; /* 144.444% */
+  }
+  .search .title{ justify-content: flex-end; }
+
+  .bottom{
+    padding: 0;
+    margin-top: 0;
+    height: 907px;
+  }
+  .bottom .wrap{
+    flex-direction: column;
+  }
+  .bottom h1{
+    text-align: center;
+    margin-bottom: 217px;
+  }
+  .footer_home{
+    padding: 0 24px;
+  }
+  .footer-wrap{
+    margin-top: 32px;
+  }
 }
