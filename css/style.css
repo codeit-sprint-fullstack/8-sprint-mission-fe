@@ -20,10 +20,6 @@ body{
   width: 100%;
   background: #FCFCFC;
 }
-*{
-  text-decoration: none;
-  box-sizing: border-box;
-}
 
 .header_home{
   display: flex;
@@ -107,7 +103,7 @@ main{
 .main-title{
   color: var(--Secondary-700);
   font-family: Pretendard;
-  font-size: 2.0833vw; /* 40px */
+  font-size: 40px; /* 2.0833vw*/
   font-style: normal;
   font-weight: 700;
   line-height: 140%; /* 56px */
@@ -127,14 +123,14 @@ main{
   text-align: center;
   /* pretendard/xl-20px-semibold */
   font-family: Pretendard;
-  font-size: 1.0417vw; /* 20px */
+  font-size: 20px; /* 1.0417vw*/
   font-style: normal;
   font-weight: 600;
   line-height: 32px; /* 160% */
 }
 main img{ 
   flex-shrink: 1;
-  max-width: 38.8542vw;
+  max-width: 746px; /* 38.8542vw */
   width: 100%;
   height: auto;
 }
@@ -162,7 +158,7 @@ section .wrap{
   cursor: pointer;
 }
 .banner img{
-  max-width: 30.6250vw; /* 588px */
+  max-width: 588px; /* 30.6250vw*/
   width: 100%;
   height: auto;
   flex-shrink: 1;
@@ -173,7 +169,7 @@ section .wrap{
   color: var(--Primary-100);
   /* pretendard/2lg-18px-bold */
   font-family: Pretendard;
-  font-size: 0.9375vw; /* 18px */
+  font-size: 18px; /* 0.9375vw*/
   font-style: normal;
   font-weight: 700;
   line-height: 26px; /* 144.444% */
@@ -183,7 +179,7 @@ section .wrap{
 
   color: var(--Secondary-700);
   font-family: Pretendard;
-  font-size: 2.0833vw; /* 40px */
+  font-size: 40px; /* 2.0833vw */
   font-style: normal;
   font-weight: 700;
   line-height: 140%; /* 56px */
@@ -193,7 +189,7 @@ section .wrap{
   color: var(--Secondary-700);
   /* pretendard/2xl-24px-medium */
   font-family: Pretendard;
-  font-size: 1.25vw; /* 24px */
+  font-size: 24px;  /* 1.25vw;*/
   font-style: normal;
   font-weight: 500;
   line-height: 32px; /* 133.333% */
@@ -215,13 +211,13 @@ section .wrap{
 .bottom h1{
   color: var(--Secondary-700);
   font-family: Pretendard;
-  font-size: 2.0833vw; /* 40px */
+  font-size: 40px; /* 2.0833vw */
   font-style: normal;
   font-weight: 700;
   line-height: 140%; /* 56px */
 }
 .bottom img{
-  max-width: 38.8542vw; /* 746px */
+  max-width: 746px; /* 38.8542vw*/
   width: 100%;
   height: auto;
   flex-shrink: 1;

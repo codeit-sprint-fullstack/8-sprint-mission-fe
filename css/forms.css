@@ -46,7 +46,7 @@ header{
 .logo span{
     color: var(--brand-blue);
     font-family: "ROKAF Sans";
-    font-size: 3.4554vw; /* 66.344px */
+    font-size: 66.344px; /* 3.4554vw */
     font-style: normal;
     font-weight: 800;
     line-height: normal;
