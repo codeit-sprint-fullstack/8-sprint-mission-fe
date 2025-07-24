@@ -19,7 +19,8 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 231px;
+    margin: 0;
+    margin-top: 60px;
 }
 *{
   text-decoration: none;
@@ -27,7 +28,7 @@ body{
 }
 
 
-header{
+.header_forms{
     width: 640px;
     height: 132px;
     display: flex;
@@ -180,4 +181,35 @@ label{
     text-decoration-thickness: auto;
     text-underline-offset: auto;
     text-underline-position: from-font;
+}
+
+
+/* Mobile */
+@media (max-width: 744px) {
+    body > *{
+        max-width: 400px;
+    }
+    .header_forms{
+        height: 51.9px;
+    }
+    .logo{
+      gap: 11.12px;
+    }
+    .logo img{
+        width: 51.765px;
+        height: 51.94px;
+    }
+    .logo span{
+        font-size: 33.172px;
+        font-weight: 700;
+    }
+    form{
+      margin-top: 24px;
+    }
+    .sns_login{
+        max-width: 400px;
+    }
+    .etc span{
+      font-size: 15px;
+    }
 }
