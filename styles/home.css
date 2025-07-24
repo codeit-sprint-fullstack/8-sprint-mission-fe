@@ -5,32 +5,6 @@ html {
   font-size: clamp(30%, 1vw, 62.5%);
 }
 
-.header {
-  /* padding: 0 clamp(10rem, 20vw, 40rem); */
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 7rem;
-  background-color: #ffffff;
-  padding: 0 20rem;
-}
-
-.main {
-  margin-top: 7rem;
-}
-
-.footer {
-  /* display: flex;
-  justify-content: space-between;
-  gap: 2rem; */
-  background-color: #111827;
-  height: 16rem;
-  /* padding: 3rem 10rem 0; */
-  font-size: 1.6rem;
-  padding: 0 20rem;
-}
-
 .wrapper {
   max-width: 152rem;
   margin: 0 auto;
@@ -118,8 +92,6 @@ html {
   display: flex;
   justify-content: center;
   background-color: #cfe5ff;
-  /* min-height: 540px; (픽셀 값은 유지) */
-  /* min-height: 540px; */
   align-items: end;
   flex-wrap: wrap;
   padding: 0 20rem;
