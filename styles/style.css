@@ -17,7 +17,7 @@ img {
   max-width: 100%;
 }
 
-header img {
+.header_logo {
   height: 5rem;
   min-width: 15.3rem;
 }
@@ -29,7 +29,7 @@ a {
   vertical-align: middle;
 }
 
-header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -42,11 +42,11 @@ header {
   background-color: #ffffff;
 }
 
-main#main {
+.main {
   margin-top: 7rem;
 }
 
-footer {
+.footer {
   display: flex;
   justify-content: space-between;
   gap: 2rem;
@@ -114,7 +114,7 @@ section img {
 
 /* footer */
 
-footer * {
+.footer * {
   color: #ffffff;
 }
 
