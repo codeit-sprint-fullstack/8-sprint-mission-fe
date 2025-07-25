@@ -253,6 +253,10 @@ label {
   label {
     font-size: 1rem;
   }
+
+  .overlay-content {
+    padding: 0 24px;
+  }
 }
 
 @media (max-width: 375px) {
