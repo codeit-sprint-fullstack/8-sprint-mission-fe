@@ -17,17 +17,17 @@
   <main class="container">
     <a href="/"><img src="../img/common/logo/logo-lg.svg" alt="판다마켓 홈" /></a>
     <form method="post">
-      <fieldset>
+      <fieldset class="emailField">
         <label for="email">이메일</label>
-        <div class="input-wrapper">
+        <div class="input-wrapper email-wrapper">
           <input id="email" type="email" autocomplete="email" placeholder="이메일을 입력해 주세요" required />
         </div>
       </fieldset>
-      <fieldset>
-        <label for="input-pwd">비밀번호</label>
-        <div class="input-wrapper">
-          <input id="input-pwd" type="password" placeholder="비밀번호를 입력해 주세요" />
-          <button id="toggle-pwd" class="btn-toggle"></button>
+      <fieldset class="pwdField">
+        <label for="pwd">비밀번호</label>
+        <div class="input-wrapper pwd-wrapper">
+          <input id="pwd" type="password" placeholder="비밀번호를 입력해 주세요" />
+          <button class="btn-toggle"></button>
         </div>
       </fieldset>
       <button type="submit" id="submit">로그인</button>
@@ -43,6 +43,7 @@
       판다마켓이 처음이신가요? <a href="/signup">회원가입</a>
     </div>
   </main>
+  <script src="/js/validation.js"></script>
 </body>
 
 </html>
