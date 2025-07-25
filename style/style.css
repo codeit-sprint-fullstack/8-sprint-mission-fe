@@ -161,7 +161,6 @@ footer {
   align-items: flex-start;
   justify-content: space-between;
   gap: 0.6rem;
-
   background: var(--Secondary-900, #111827);
 }
 
@@ -197,3 +196,5 @@ footer > div {
   font-weight: 400;
   line-height: normal;
 }
+
+
