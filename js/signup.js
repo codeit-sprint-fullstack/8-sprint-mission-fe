@@ -1,5 +1,5 @@
 //Signup 유효성 검사 기능
-// import utils from './js/utils.js';
+import { USER_DATA } from "./utils";
 
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
@@ -110,15 +110,6 @@ confirmPasswordInput.addEventListener("input", updateButtonState);
 
 
 // 회원가입 가능 여부 판단 및 페이지 이동
-const USER_DATA = [
-  { email: 'codeit1@codeit.com', password: "codeit101!" },
-	{ email: 'codeit2@codeit.com', password: "codeit202!" },
-  { email: 'codeit3@codeit.com', password: "codeit303!" },
-	{ email: 'codeit4@codeit.com', password: "codeit404!" },
-	{ email: 'codeit5@codeit.com', password: "codeit505!" },
-	{ email: 'codeit6@codeit.com', password: "codeit606!" },
-]
-
 signupBtn.addEventListener("click", () => {
   const email = emailInput.value.trim();
   const username = document.getElementById("username").value.trim();

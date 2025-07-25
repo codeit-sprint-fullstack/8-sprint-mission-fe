@@ -1,5 +1,5 @@
 // Login 유효성 검사 기능
-// import loginsignupUtils from './utils.js';
+import { USER_DATA } from "./utils";
 
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
@@ -77,15 +77,6 @@ emailInput.addEventListener("input", updateButtonState);
 passwordInput.addEventListener("input", updateButtonState);
 
 // 로그인 성공 여부 판단 및 페이지 이동 기능
-const USER_DATA = [
-  { email: 'codeit1@codeit.com', password: "codeit101!" },
-	{ email: 'codeit2@codeit.com', password: "codeit202!" },
-  { email: 'codeit3@codeit.com', password: "codeit303!" },
-	{ email: 'codeit4@codeit.com', password: "codeit404!" },
-	{ email: 'codeit5@codeit.com', password: "codeit505!" },
-	{ email: 'codeit6@codeit.com', password: "codeit606!" },
-]
-
 loginBtn.addEventListener("click", () => {
   const inputEmail = emailInput.value.trim();
   const inputPassword = passwordInput.value.trim();
@@ -132,6 +123,7 @@ function showAlertModal() {
 
   modal.style.display = "flex";
 
+  // 비밀번호를 여러번 잘못 입력해도 오류 모달 메세지 출력
   if (!modalEvent) {
     modalBtn.addEventListener("click", () => {
       modal.style.display = "none";
