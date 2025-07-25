@@ -1,0 +1,25 @@
+$error_color: #F74747;
+
+.error-none {
+  display: none;
+}
+
+.error-message {
+  display: block;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: $error_color;
+
+  padding-left: 16px;
+  padding-top: 8px;
+}
+
+.errorBox {
+  border: 1px solid $error_color;
+}
+
+.enableBtn {
+  background-color: #3692FF;
+}

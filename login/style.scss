@@ -1,11 +1,4 @@
-* {
-  box-sizing: border-box;
-  font-family: "Pretendard", sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-.login_page {
+section {
   padding: 231px 640px 284px 640px;
   width: 100%;
   display: flex;
@@ -30,29 +23,10 @@
     justify-content: center;
     align-items: center;
 
-
     .email, .password {
       display: flex;
       flex-direction: column;
-      gap: 16px;
       justify-content: center;
-
-      input {
-        display: flex;
-        width: 640px;
-        height: 56px;
-        padding: 16px 24px;
-        align-items: center;
-        gap: 10px;
-        border-radius: 12px;
-        background-color: #F3F4F6;
-        border: none;
-      }
-
-      input:focus {
-        border: 0.5px solid #3692FF;
-        outline: none;
-      }
 
       label {
         font-size: 18px;
@@ -62,6 +36,32 @@
       }
     }
   }
+}
+
+.userEmailInput, .userPasswordInput {
+    display: flex;
+    width: 640px;
+    height: 56px;
+    padding: 16px 24px;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    background-color: #F3F4F6;
+    border: none;
+    outline: none;
+
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    color: #9CA3AF;
+
+    margin-top: 16px;
+}
+
+.userEmailInput:focus, .userPasswordInput:focus {
+  border: 1px solid #3692FF;
+  outline: none;
 }
 
 .submitBtn {
@@ -128,3 +128,68 @@
     text-underline-offset: auto;
   }
 }
+
+@media (max-width: 743px) {
+  section {
+    padding: 24px 16px;
+    width: 100%;
+    max-width: 400px;
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .logo-loginForm {
+      gap: 24px;
+      align-items: center;
+
+      a {
+        width: 198px;
+        height: 66px;
+      }
+    }
+
+    .email, .password {
+      display: flex;
+      flex-grow: 1;
+      width: 100%;
+    }
+
+    .loginForm {
+      display: flex;
+      width: 100%;
+    }
+
+    form {
+      gap: 16px;
+      width: 100%;
+      flex-grow: 1;
+
+      label, input {
+        width: 100%;
+      }
+    }
+  }
+
+  .userEmailInput, .userPasswordInput {
+    width: 100%;
+    height: auto;
+    margin-top: 8px;
+  }
+
+  .submitBtn {
+    width: 100%;
+    height: auto;
+  }
+
+  .socialLogin {
+    width: 100%;
+
+    .title {
+      line-height: 24px;
+    }
+  }
+}
+

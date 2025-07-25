@@ -1,39 +1,38 @@
-* {
-  box-sizing: border-box;
-  font-family: "Pretendard", sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-.login_page {
+section {
   padding: 231px 640px 284px 640px;
   width: 100%;
   display: flex;
   justify-content: center;
 }
-.login_page .logo-loginForm {
+section .logo-loginForm {
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
-.login_page .logo-loginForm .logo {
+section .logo-loginForm .logo {
   display: flex;
   justify-content: center;
 }
-.login_page form {
+section form {
   display: flex;
   flex-direction: column;
   gap: 24px;
   justify-content: center;
   align-items: center;
 }
-.login_page form .email, .login_page form .password {
+section form .email, section form .password {
   display: flex;
   flex-direction: column;
-  gap: 16px;
   justify-content: center;
 }
-.login_page form .email input, .login_page form .password input {
+section form .email label, section form .password label {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 26px;
+}
+
+.userEmailInput, .userPasswordInput {
   display: flex;
   width: 640px;
   height: 56px;
@@ -43,16 +42,18 @@
   border-radius: 12px;
   background-color: #F3F4F6;
   border: none;
-}
-.login_page form .email input:focus, .login_page form .password input:focus {
-  border: 0.5px solid #3692FF;
   outline: none;
-}
-.login_page form .email label, .login_page form .password label {
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 26px;
+  color: #9CA3AF;
+  margin-top: 16px;
+}
+
+.userEmailInput:focus, .userPasswordInput:focus {
+  border: 1px solid #3692FF;
+  outline: none;
 }
 
 .submitBtn {
@@ -114,4 +115,57 @@
           text-decoration-skip-ink: none;
   text-decoration-thickness: auto;
   text-underline-offset: auto;
+}
+
+@media (max-width: 743px) {
+  section {
+    padding: 24px 16px;
+    width: 100%;
+    max-width: 400px;
+  }
+  section .wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  section .logo-loginForm {
+    gap: 24px;
+    align-items: center;
+  }
+  section .logo-loginForm a {
+    width: 198px;
+    height: 66px;
+  }
+  section .email, section .password {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+  }
+  section .loginForm {
+    display: flex;
+    width: 100%;
+  }
+  section form {
+    gap: 16px;
+    width: 100%;
+    flex-grow: 1;
+  }
+  section form label, section form input {
+    width: 100%;
+  }
+  .userEmailInput, .userPasswordInput {
+    width: 100%;
+    height: auto;
+    margin-top: 8px;
+  }
+  .submitBtn {
+    width: 100%;
+    height: auto;
+  }
+  .socialLogin {
+    width: 100%;
+  }
+  .socialLogin .title {
+    line-height: 24px;
+  }
 }/*# sourceMappingURL=style.css.map */
