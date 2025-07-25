@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -20,8 +20,6 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-
-
     <div class="login-box">
         <div class="main-logo">
             <a class="clickable" href="/">
@@ -36,7 +34,7 @@
                 <div class="input-box">
                     <input id="email-input" name="username" type="email" placeholder="이메일을 입력해주세요">
                 </div>
-                <h1 class="valid-check-text">잘못된 이메일 형식</h1>
+                <h1 class="valid-check-text"></h1>
             </div>
             
             <div class="pw-form">
@@ -47,11 +45,12 @@
                         <img  src="/images/login/pw_eye.svg">
                     </a>
                 </div>
-                <h1 class="valid-check-text">잘못된 비밀번호 형식</h1>
+                <h1 class="valid-check-text"></h1>
             </div>
 
-            <button>로그인</button>
+            <button type="submit">로그인</button>
         </form>
+
         <div class="simple-login">
             <h1>간편 로그인 하기</h1>
             <div>
@@ -69,6 +68,6 @@
         </div>
     </div>
 
-    <script src="index.js"></script>
+    <script src="/commonModule/loginSignup.js"></script>
 </body>
 </html>

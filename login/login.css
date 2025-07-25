@@ -13,7 +13,6 @@ html {
 }   
 
 a,
-button,
 .clickable{
     cursor: pointer;
 }
@@ -39,7 +38,7 @@ button,
 }
 
 .login-form label{
-    color: #1F2937;
+    color: var(--Secondary-800);
     font-family: Pretendard;
     font-size: 1.8rem;
     font-style: normal;
@@ -57,7 +56,7 @@ button,
 
     border-radius: 1.2rem;
     background-color: var(--Cool-Gray-100);
-    margin: 1.6rem 0 2.4rem;
+    margin: 1.6rem 0 0;
     border: none;
 }
 
@@ -65,34 +64,42 @@ button,
     outline: 0.1rem solid var(--Brand-Blue);
 }
 
+.login-form input.error{
+    outline: 0.1rem solid var(--Error-Red);
+}
+
 .login-form input::placeholder{
     color: var(--Cool-Gray-800);
 }
 
 .input-box{
-    display: flex;
     position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
     align-items: center;
+}
+
+.email-form,
+.pw-form{
+    margin: 0 0 2.4rem;
 }
 
 .valid-check-text{
     color: var(--Error-Red);
     font-family: Pretendard;
-    font-size: 15px;
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-}
-
-.email-form .valid-check-text{
-
+    margin-left: 1.6rem;
 }
 
 .pw-eye{
     position: absolute;
-    inset: auto 2.4rem auto auto;
     width: 2.4rem;
     height: 2.4rem;
+    inset: 2.4rem 2.4rem auto auto;
 }
 
 .login-form button{
@@ -119,7 +126,7 @@ button,
     margin: 0 0 2.4rem;
 }
 
-.login-form button:hover{
+.login-form .clickable{
     background-color: var(--Brand-Blue);
 }
 
