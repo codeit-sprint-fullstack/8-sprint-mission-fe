@@ -1,4 +1,6 @@
 //Signup 유효성 검사 기능
+// import utils from './js/utils.js';
+
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const confirmPasswordInput = document.getElementById("confirm-password");
@@ -107,7 +109,7 @@ confirmPasswordInput.addEventListener("input", updateButtonState);
 
 
 
-// 회원가입 가능 여부
+// 회원가입 가능 여부 판단 및 페이지 이동
 const USER_DATA = [
   { email: 'codeit1@codeit.com', password: "codeit101!" },
 	{ email: 'codeit2@codeit.com', password: "codeit202!" },
@@ -138,8 +140,23 @@ signupBtn.addEventListener("click", () => {
   if (isEmailTaken) {
     alert("사용 중인 이메일입니다.");
   } else {
-    alert("회원가입이 완료되었습니다.");
     // 나중에 여기에 실제 회원 DB 연동(백엔드)
     location.href = "/login";
   }
+});
+
+// 비밀번호 보기/숨기기 토글 기능
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleIcons = document.querySelectorAll(".toggle-password");
+
+  toggleIcons.forEach((icon) => {
+    icon.addEventListener("click", function () {
+      const input = this.previousElementSibling;
+      const isHidden = input.type === "password";
+
+      input.type = isHidden ? "text" : "password";
+      this.src = isHidden ? "img/eye_open.svg" : "img/eye_close.svg";
+      this.alt = isHidden ? "비밀번호 숨기기" : "비밀번호 보기";
+    });
+  });
 });

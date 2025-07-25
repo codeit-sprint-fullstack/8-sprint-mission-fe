@@ -284,3 +284,22 @@ main {
   padding: 32px 200px;
   background-color: var(--footer-bg-color);
 }
+
+/* PC */
+@media (min-width: 1200px) {
+  
+}
+
+/* Tablet 744~1199px */
+@media (min-width: 744px) {
+  header {
+    padding: 9px 24px;
+  }
+}
+
+/* Mobile 375~743px */
+@media (max-width: 743px) {
+  header {
+    padding: 9px 16px;
+  }
+}

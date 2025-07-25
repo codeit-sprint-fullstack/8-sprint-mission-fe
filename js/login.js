@@ -1,4 +1,6 @@
-//Login 유효성 검사 기능
+// Login 유효성 검사 기능
+// import loginsignupUtils from './utils.js';
+
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const loginBtn = document.getElementById("loginBtn");
@@ -103,4 +105,20 @@ loginBtn.addEventListener("click", () => {
 
   // 로그인 성공
   location.href = "/items";
+});
+
+// 비밀번호 보기/숨기기 토글 기능
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleIcons = document.querySelectorAll(".toggle-password");
+
+  toggleIcons.forEach((icon) => {
+    icon.addEventListener("click", function () {
+      const input = this.previousElementSibling;  //this = eye_icon
+      const isHidden = input.type === "password";
+
+      input.type = isHidden ? "text" : "password";
+      this.src = isHidden ? "img/eye_open.svg" : "img/eye_close.svg";  //this = img
+      this.alt = isHidden ? "비밀번호 숨기기" : "비밀번호 보기";  //this = img
+    });
+  });
 });

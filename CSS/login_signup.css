@@ -5,6 +5,7 @@
 html {
   font-family: Pretendard, sans-serif;
   font-style: normal;
+  white-space: nowrap
 }
 
 :root {
@@ -210,4 +211,28 @@ article {
   align-items: center;
   gap: 40px;
   flex-shrink: 0;
+}
+
+/* PC */
+@media (min-width: 1200px) {
+  
+}
+
+/* Tablet 744~1199px */
+@media (min-width: 744px) {
+  
+}
+
+/* Mobile 375~743px */
+@media (max-width: 743px) {
+  body {
+    padding: 0px 16px;
+  }
+  article {
+    max-width: 400px;
+  }
+  .logo,
+  form {
+    width: 100%;
+  }
 }
