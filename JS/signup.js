@@ -7,116 +7,110 @@ const USER_DATA = [
   { email: "codeit6@codeit.com", password: "codeit606!" },
 ];
 
-// email and password select
+// input 요소들 선택
 const emailInput = document.querySelector(".login-email input");
+const nicknameInput = document.querySelector(".form-nickname input");
 const passwordInput = document.querySelector(".form-pswd input");
+const passwordConfirmInput = document.querySelectorAll(".form-pswd input")[1];
 
-// emnail and password error msg select
+// 에러 메시지 div들 선택
 const emailErrorDiv = document.querySelector("#email-error");
 const passwordErrorDiv = document.querySelector("#password-error");
+const passwordConfirmErrorDiv = document.querySelector(
+  "#password-confirm-error"
+);
 
-// login button select
-// [type='submit'] = type 속성이 'submit'인 button 요소
-const loginButton = document.querySelector("button[type='submit']");
+// 회원가입 버튼 선택
+const signupButton = document.querySelector("#signupBtn");
 
 // 이메일 유효성 검사 함수
 function validateEmail() {
   if (emailInput.value === "") {
-    // empty input
     emailErrorDiv.textContent = "이메일을 입력해주세요.";
     emailInput.style.border = "1px solid var(--error-red, #f74747)";
-    loginButton.disabled = true; // btn 비활성화
+    signupButton.disabled = true;
     return false;
   } else if (
-    emailInput.value.indexOf("@") === -1 || //
-    emailInput.value.indexOf(".") === -1 //
+    emailInput.value.indexOf("@") === -1 ||
+    emailInput.value.indexOf(".") === -1
   ) {
     emailErrorDiv.textContent = "잘못된 이메일 형식입니다.";
     emailInput.style.border = "1px solid var(--error-red, #f74747)";
-    loginButton.disabled = true; // btn 비활성화
+    signupButton.disabled = true;
     return false;
   } else {
-    // 이메일이 정상으로 적혔을때
     emailErrorDiv.textContent = "";
     emailInput.style.border = "";
-    checkFormValid(); // 조건에 충족하면 btn 활성화.. 맞나?
+    checkFormValid();
     return true;
   }
-  checkFormValid();
 }
 
-emailInput.addEventListener("blur", validateEmail);
-
-// pswd 유효성 검사 함수
+// 비밀번호 유효성 검사 함수
 function validatePassword() {
   if (passwordInput.value === "") {
     passwordErrorDiv.textContent = "비밀번호를 입력해주세요.";
     passwordInput.style.border = "1px solid var(--error-red, #f74747)";
-    loginButton.disabled = true; // btn 비활성화
+    signupButton.disabled = true;
     return false;
   } else if (passwordInput.value.length < 8) {
     passwordErrorDiv.textContent = "비밀번호를 8자 이상 입력해주세요.";
     passwordInput.style.border = "1px solid var(--error-red, #f74747)";
-    loginButton.disabled = true; // btn 비활성화
+    signupButton.disabled = true;
     return false;
   } else {
     passwordErrorDiv.textContent = "";
     passwordInput.style.border = "";
-    checkFormValid(); // 조건에 충족하면 btn 활성화??
+    checkFormValid();
     return true;
   }
 }
 
+emailInput.addEventListener("blur", validateEmail);
 passwordInput.addEventListener("blur", validatePassword);
-
-function validateInputs() {
-  const emailValid = validateEmail();
-  const passwordValid = validatePassword();
-
-  if (emailValid && passwordValid) {
-    loginButton.disabled = false;
-  } else {
-    loginButton.disabled = true;
-  }
-}
-
-emailInput.addEventListener("input", validateInputs);
-passwordInput.addEventListener("input", validateInputs);
 
 function checkFormValid() {
   const emailValid =
     emailInput.value !== "" &&
     emailInput.value.indexOf("@") !== -1 &&
     emailInput.value.indexOf(".") !== -1;
+  const nicknameValid = nicknameInput.value !== "";
   const passwordValid =
     passwordInput.value !== "" && passwordInput.value.length >= 8;
+  const passwordConfirmValid =
+    passwordConfirmInput.value !== "" &&
+    passwordInput.value === passwordConfirmInput.value;
 
-  if (emailValid && passwordValid) {
-    loginButton.disabled = false;
+  if (emailValid && nicknameValid && passwordValid && passwordConfirmValid) {
+    signupButton.disabled = false;
   } else {
-    loginButton.disabled = true;
+    signupButton.disabled = true;
   }
 }
 
-// 이벤트 추가
-loginButton.addEventListener("click", handleLogin);
+// 실시간 체크 이벤트
+emailInput.addEventListener("input", checkFormValid);
+nicknameInput.addEventListener("input", checkFormValid);
+passwordInput.addEventListener("input", checkFormValid);
+passwordConfirmInput.addEventListener("input", checkFormValid);
 
-//로그인 함수
-function handleLogin(event) {
+// 회원가입 함수
+function handleSignup(event) {
   if (event) event.preventDefault();
 
   const inputEmail = emailInput.value;
-  const inputPassword = passwordInput.value;
+
   for (let i = 0; i < USER_DATA.length; i++) {
     if (USER_DATA[i].email === inputEmail) {
-      if (USER_DATA[i].password === inputPassword) {
-        window.location.href = "/items"; // 성공시 items로 이동
-        return;
-      } else {
-        alert("비밀번호가 일치하지 않습니다."); // 비밀번호 틀림
-        return;
-      }
+      alert("사용 중인 이메일입니다");
+      window.location.href = "./login.html";
+      return;
     }
   }
-  alert("가입되지 않은 이메일입니다"); // 이메일 없음
+
+  // 회원가입 성공
+  window.location.href = "./index.html";
 }
+
+// 이벤트 추가
+signupButton.addEventListener("click", handleSignup);

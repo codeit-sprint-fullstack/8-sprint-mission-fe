@@ -92,7 +92,13 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+/* 활성화된 버튼 기본 색상 */
+button:not(:disabled) {
+  background-color: var(--Cool-Gray-400);
+}
+
+/* 활성화된 버튼 호버 색상 */
+button:not(:disabled):hover {
   background-color: var(--Primary-100);
 }
 
