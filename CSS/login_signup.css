@@ -20,7 +20,8 @@ html {
 
 body {
   display: flex;
-  width: 1920px;
+  max-width: 1920px;
+  min-width: 375px;
   padding: 60px 640px 178px 640px;
   justify-content: center;
   align-items: center;
@@ -212,6 +213,54 @@ article {
   gap: 40px;
   flex-shrink: 0;
 }
+
+/* alert modal */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  width: 540px;
+  height: 250px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.70);
+  background-color: var(--button-text-color);
+  border-radius: 8px;
+}
+
+.modal-box {
+  position: relative;
+  width: 540px;
+  height: 250px;
+}
+
+.modal p {
+  margin: 108px 174px 123px;
+  font-size: 1rem;  /* 16px */
+  font-weight: 500;
+  color: var(--text-color);
+  
+}
+
+.modal button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-right: 28px;
+  margin-bottom: 28px;
+  background-color: var(--button-color);
+  color: var(--button-text-color);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+
 
 /* PC */
 @media (min-width: 1200px) {

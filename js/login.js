@@ -99,7 +99,7 @@ loginBtn.addEventListener("click", () => {
 
   // 로그인 실패
   if (!user || user.password !== inputPassword) {
-    alert("비밀번호가 일치하지 않습니다.");
+    showAlertModal();
     return;
   }
 
@@ -122,3 +122,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// 오류 모달
+let modalEvent = false;
+
+function showAlertModal() {
+  const modal = document.getElementById("alertModal");
+  const modalBtn = document.getElementById("modalConfirmBtn");
+
+  modal.style.display = "flex";
+
+  if (!modalEvent) {
+    modalBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+    modalEvent = true;
+  }
+}

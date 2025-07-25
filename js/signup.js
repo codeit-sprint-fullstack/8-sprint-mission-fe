@@ -138,7 +138,7 @@ signupBtn.addEventListener("click", () => {
   const isEmailTaken = USER_DATA.some(user => user.email === email);
 
   if (isEmailTaken) {
-    alert("사용 중인 이메일입니다.");
+    showAlertModal()
   } else {
     // 나중에 여기에 실제 회원 DB 연동(백엔드)
     location.href = "/login";
@@ -160,3 +160,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// 오류 모달
+let modalEvent = false;
+
+function showAlertModal() {
+  const modal = document.getElementById("alertModal");
+  const modalBtn = document.getElementById("modalConfirmBtn");
+
+  modal.style.display = "flex";
+
+  if (!modalEvent) {
+    modalBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+    modalEvent = true;
+  }
+}
