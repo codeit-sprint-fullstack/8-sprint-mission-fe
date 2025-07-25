@@ -56,14 +56,26 @@ input {
   height: 5.6rem;
   padding: 1.6rem 2.4rem;
   align-items: center;
-  border: none;
   border-radius: 1.2rem;
   background: var(--Cool-Gray-100);
   border: 0.2rem solid transparent;
 }
 
-.input-wrapper:focus-within {
+/* 에러(.inputErr) 없고 포커스 있을 때 */
+.input-wrapper:not(.inputErr):focus-within {
   border-color: var(--Primary-100);
+}
+
+.input-wrapper.inputErr {
+  border-color: var(--error-red, #f74747);
+}
+
+.inputErrText {
+  color: var(--error-red, #f74747);
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding-left: 1.6rem;
+  margin-top: -1rem;
 }
 
 button#submit {
@@ -76,7 +88,7 @@ button#submit {
 
   border: none;
   border-radius: 4rem;
-  background: var(--Secondary-400);
+  background: var(--brand-blue, #3692ff);
 
   color: var(--Cool-Gray-100);
 
@@ -84,6 +96,11 @@ button#submit {
   font-size: 2rem;
   font-weight: 600;
   line-height: 3.2rem;
+}
+
+button#submit:disabled {
+  color: #fff;
+  background: var(--Cool-Gray-400, #9ca3af);
 }
 
 .btn-toggle {
