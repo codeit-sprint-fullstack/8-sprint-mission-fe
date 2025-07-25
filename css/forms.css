@@ -1,16 +1,8 @@
+@import url(./palette.css);
 /* font */
 @font-face {
   font-family: "ROKAF Sans";
   src: url("../font/ Sans\ Medium.ttf");
-}
-
-/* color */
-:root {
-  --brand-blue: #3692FF;
-  --Primary-100: #3692FF;
-  --Cool-Gray-100: #F3F4F6;
-  --Secondary-800: #1F2937;
-  --Secondary-400: #9CA3AF;
 }
 
 body {
@@ -97,6 +89,7 @@ label {
   border-radius: 12px;
   background: var(--Cool-Gray-100);
   display: block;
+  border: 1px solid #000;
 }
 
 .input_txt:focus {
@@ -107,6 +100,11 @@ label {
   position: absolute;
   top: 59px;
   right: 24px;
+}
+
+/* input focus out */
+.focusoutE{
+
 }
 
 .btn {
