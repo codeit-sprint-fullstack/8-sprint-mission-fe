@@ -118,3 +118,23 @@ const pwdChecker = (inputValue, updateUI = true) => {
 };
 
 pwdInput.addEventListener("focusout", (e) => pwdChecker(e.target.value));
+
+// button
+// if input 빈값 or 값 만족X
+// 로그인 버튼 비활성화(disabled) / 있으면 활성화
+
+const btnSubmit = document.getElementById("submit");
+
+const btnChecker = () => {
+  const emailCheck = emailChecker(emailInput.value, false);
+  const pwdCheck = pwdChecker(pwdInput.value, false);
+
+  if (emailCheck && pwdCheck) {
+    btnSubmit.disabled = false;
+  } else {
+    btnSubmit.disabled = true;
+  }
+};
+
+emailInput.addEventListener("input", btnChecker);
+pwdInput.addEventListener("input", btnChecker);
