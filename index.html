@@ -12,44 +12,48 @@
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/assets/images/panda-face.svg">
+  <meta property="og:url" content="/" />
+  <meta property="og:title" content="판다마켓" />
+  <meta property="og:description" content="일상에서 모든 물건을 거래해보세요." />
+  <meta property="og:image" content="/assets/images/panda-1.svg" />
+  <meta property="og:url" content="/" />
   <title>판다 마켓</title>
-  <link rel="stylesheet" href="main.css" />
-  <link rel="stylesheet" href="reset.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/reset.css" />
 </head>
 <body>
 
   <header class="header">
-    <div class="header-outline">
-      <div class="header-inner">
+    <div class="header-wrapper">
+      <div class="header-content">
         <div class="logo">
-          <a href="/"><img src="mainimg/logo.svg" alt="판다 마켓 로고" /></a>
+          <a href="/"><img src="/assets/images/logo.svg" alt="판다 마켓 로고" /></a>
         </div>
-      <button class="login-btn" onclick="location.href='/login.html'">로그인</button>
+        <a href="/login.html" class="login-btn">로그인</a>
       </div>
     </div>
   </header>
 
   <div class="top">
-  <div class="top-inner container">
-    <div class="top-text-btn">
-      <div class="top-title">
-        일상의 모든 물건을<br>거래해 보세요
+    <div class="container hero-content">
+      <div class="hero-text-group">
+        <div class="hero-title">
+          일상의 모든 물건을<br>거래해 보세요
+        </div>
+        <a href="/items.html" class="hero-cta">
+          구경하러 가기
+        </a>
       </div>
-      <button class="top-btn" onclick="location.href='/items.html'">
-        구경하러 가기
-      </button>
+      <div class="hero-image"></div>
     </div>
-    <div class="top-image"></div>
   </div>
-</div>
-
-
 
   <main>
-    <!-- section-1 -->
-    <section class="section-1">
-      <div class="section-1-inline">
-        <img class="bestitem" src="mainimg/bestitem.svg" alt="Best Item"/>
+    <!-- section-best-item -->
+    <section class="section-best-item">
+      <div class="container section-best-item-content">
+        <img class="best-item-image" src="/assets/images/bestitem.svg" alt="Best Item"/>
         <div>
           <div class="hot-item-text">Hot item</div>
           <div class="item-title">인기 상품을<br>확인해 보세요</div>
@@ -58,22 +62,22 @@
       </div>
     </section>
 
-    <!-- section-2 -->
-    <section class="section-2">
-      <div class="section-2-inline">
+    <!-- section-search -->
+    <section class="section-search">
+      <div class="container section-search-content">
         <div>
           <div class="search-text">Search</div>
           <div class="title-text">구매를 원하는<br>상품을 검색하세요</div>
           <div class="subtitle-text">구매하고 싶은 물품을 검색해서<br>쉽게 찾아보세요</div>
         </div>
-        <img class="search" src="mainimg/search.svg" alt="search"/> 
+        <img class="search-image" src="/assets/images/search.svg" alt="search"/> 
       </div>
     </section>
 
-    <!-- section-3 -->
-    <section class="section-3">
-      <div class="section-3-inline">
-        <img src="mainimg/register.svg" alt="register"/>
+    <!-- section-register -->
+    <section class="section-register">
+      <div class="container section-register-content">
+        <img src="/assets/images/register.svg" alt="register"/>
         <div>
           <div class="register-text">Register</div>
           <div class="register-title">판매를 원하는<br>상품을 등록하세요</div>
@@ -82,42 +86,42 @@
       </div>
     </section>
 
-    <!-- section-4 -->
-    <section class="section-4">
-  <div class="section-4-inner container">
-    <div class="section-4-text">
-      믿을 수 있는<br>판다 마켓 중고 거래
-    </div>
-    <div class="section-4-image"></div>
-  </div>
-</section>
+    <!-- section-bottom-cta -->
+    <section class="section-bottom-cta">
+      <div class="container section-bottom-cta-content">
+        <div class="section-bottom-cta-text">
+          믿을 수 있는<br>판다 마켓 중고 거래
+        </div>
+        <div class="section-bottom-cta-image"></div>
+      </div>
+    </section>
 
     <!-- footer -->
     <footer>
-  <div class="footer-outline">
-    <div class="footer-bottom">
-      <p class="footer-text1">©codeit - 2024</p>
-      <div class="footer-textgroup">
-        <a href="/privacy" class="footer-text2">Privacy Policy</a>
-        <a href="/faq" class="footer-text3">FAQ</a>
+      <div class="footer-wrapper">
+        <div class="footer-content">
+          <p class="footer-copy">©codeit - 2024</p>
+          <div class="footer-links">
+            <a href="/privacy" class="footer-link-privacy">Privacy Policy</a>
+            <a href="/faq" class="footer-link-terms">FAQ</a>
+          </div>
+          <div class="footer-sns-icons">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+              <img src="/assets/images/facebook.svg" alt="페이스북" />
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+              <img src="/assets/images/twitter.svg" alt="트위터" />
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+              <img src="/assets/images/youtube.svg" alt="유튜브" />
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <img src="/assets/images/instagram.svg" alt="인스타그램" />
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="footer-sns">
-        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-          <img src="mainimg/facebook.svg" alt="페이스북">
-        </a>
-        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-          <img src="mainimg/twitter.svg" alt="트위터">
-        </a>
-        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
-          <img src="mainimg/youtube.svg" alt="유튜브">
-        </a>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-          <img src="mainimg/instagram.svg" alt="인스타그램">
-        </a>
-      </div>
-    </div>
-  </div>
-</footer>
+    </footer>
 
   </main>
 </body>
