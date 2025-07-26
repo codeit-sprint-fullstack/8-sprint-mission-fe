@@ -327,12 +327,10 @@ label{
     .modal_content {
         width: 90%;
         max-width: 480px;
-        height: auto;
     }
 }
 /* 모바일 */
 @media screen and (max-width:743px) and (min-width:375px) {
-
     .main{
         padding-left: 16px;
         padding-right: 16px;
@@ -378,8 +376,8 @@ label{
         min-width: 370px;
         min-width: 350px;
     }
-    .modal_content {
-        width: 90%;
-        height: auto;
+    #modal_btn_section {
+        justify-content: center;
+        margin-top: 12px;
     }
 }
