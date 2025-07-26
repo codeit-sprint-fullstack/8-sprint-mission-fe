@@ -4,43 +4,52 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>로그인 - 판다마켓</title>
-    <link rel="stylesheet" href="../css/reset.css" />
-    <link rel="stylesheet" href="../css/common.css" />
-    <link rel="stylesheet" href="../css/login.css" />
+    <link rel="stylesheet" href="../assets/css/reset.css" />
+    <link rel="stylesheet" href="../assets/css/common.css" />
+    <link rel="stylesheet" href="../assets/css/login.css" />
 
     <!-- 오픈그래프 프로토콜 적용 -->
-    <meta property="og:title" content="판다마켓">
-    <meta property="og:description" content="판다마켓에서 당신의 상품을 거래하세요. 안전하고 신뢰할 수 있는 중고거래 플랫폼입니다.">
-    <meta property="og:image" content="">
-    <meta property="og:url" content="/">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="ko_KR">
+    <meta property="og:title" content="판다마켓" />
+    <meta
+      property="og:description"
+      content="판다마켓에서 당신의 상품을 거래하세요. 안전하고 신뢰할 수 있는 중고거래 플랫폼입니다."
+    />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ko_KR" />
   </head>
   <body>
     <main class="login-container">
       <div class="login-wrapper">
         <div class="logo-container">
           <a href="/">
-            <img src="../img/logo-lg.svg" alt="판다마켓 로고" class="logo">
+            <img src="../assets/img/header/logo-lg.svg" alt="판다마켓 로고" class="logo" />
           </a>
         </div>
 
         <!-- 로그인 폼 -->
-        <form class="login-form">
-
+        <form class="auth-form" id="login-form" data-form-type="login">
           <!-- 이메일 -->
           <div class="input-group">
             <label for="email" class="input-label">이메일</label>
-            <input type="email" id="email" class="input-common" placeholder="이메일을 입력해주세요">
+            <input type="email" id="email" name="email" class="input-common" placeholder="이메일을 입력해주세요" />
           </div>
 
           <!-- 비밀번호 -->
           <div class="input-group">
             <label for="password" class="input-label">비밀번호</label>
             <div class="input-password-group">
-              <input type="password" id="password" autocomplete="off" class="input-common input-password" placeholder="비밀번호를 입력해주세요">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                autocomplete="off"
+                class="input-common input-password"
+                placeholder="비밀번호를 입력해주세요"
+              />
               <button type="button" class="input-password-toggle">
-                <img src="../img/visible-icon.svg" alt="비밀번호 보기">
+                <img src="../assets/img/auth/hidden-icon.svg" alt="비밀번호 보기" />
               </button>
             </div>
           </div>
@@ -54,10 +63,10 @@
           <p>간편 로그인 하기</p>
           <div class="social-buttons">
             <a href="https://www.google.com" target="_blank" class="google-login">
-              <img src="../img/google-icon.svg" alt="구글 로그인">
+              <img src="../assets/img/auth/google-icon.svg" alt="구글 로그인" />
             </a>
             <a href="https://www.kakaocorp.com/page/" target="_blank" class="kakao-login">
-              <img src="../img/kakao-icon.svg" alt="카카오 로그인">
+              <img src="../assets/img/auth/kakao-icon.svg" alt="카카오 로그인" />
             </a>
           </div>
         </div>
@@ -68,5 +77,15 @@
         </div>
       </div>
     </main>
+
+    <!-- 팝업 -->
+    <div class="popup-overlay" id="popup">
+      <div class="popup-container">
+        <div class="popup-content"></div>
+        <button class="popup-btn btn-small-48">확인</button>
+      </div>
+    </div>
+
+    <script src="../assets/js/auth/auth.js" type="module"></script>
   </body>
 </html>

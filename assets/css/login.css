@@ -2,9 +2,9 @@
 .login-container {
   display: flex;
   justify-content: center;
-  align-items: center;
   height: 100dvh;
   background-color: var(--background-color);
+  padding-top: 6rem;
 }
 
 .login-wrapper {
@@ -17,7 +17,7 @@
   margin-bottom: 4rem;
 }
 
-.login-form {
+.auth-form {
   margin-bottom: 2.4rem;
 }
 
@@ -27,4 +27,25 @@
 
 .btn-large {
   width: 100%;
+}
+
+@media (max-width: 1199px) {
+  .login-container {
+    padding-top: 4.8rem;
+  }
+}
+
+@media (max-width: 743px) {
+  .login-container {
+    padding-top: 2.4rem;
+  }
+
+  .login-wrapper{
+    max-width: calc(40rem + 3.2rem);
+    padding: 0 1.6rem;
+  }
+
+  .logo-container img{
+    width: 19.8rem;
+  }
 }
