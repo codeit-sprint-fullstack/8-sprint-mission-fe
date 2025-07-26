@@ -1,24 +1,40 @@
 @import "reset.css";
 body {
+    height:100%;
     margin: 0;
-    height: 100%;
-    padding-top: 10%;
-    padding-bottom: 10%;
     text-align: center;
 }
 html {
-  font-size: 100%;
-  min-height: 768px;
-  overflow-x: hidden;
+    font-size: 16px;
+    width: 100%;
+    height:100%;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+}
+.main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 24px;
+    box-sizing: border-box;
+    justify-content: center;
 }
 input,
-.login_other {
-  max-width: 100%;
-  box-sizing: border-box;
+.login_other,
+.login_btn {
+    width: 100%;
+    max-width: 640px;
+    min-width: 640px;
+    box-sizing: border-box;
 }
 input{
     display: flex;
-    width: 640px;
+    width: 100%;
+    min-width: 640px;
     padding: 16px 24px;
     align-items: center;
     gap: 10px;
@@ -31,6 +47,10 @@ input{
     line-height: 26px; 
     border-radius: 12px;
     border: none;
+}
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+     display: none;
 }
 input:focus{
     outline: none;
@@ -56,7 +76,6 @@ label{
     box-sizing: border-box;
 }
 .nav{
-    min-width: 370px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -64,8 +83,12 @@ label{
     gap: 20px;
     padding-bottom: 40px;
 }
-
-.title{
+.nav img{
+    height: 4.5rem;
+    width: 4.5rem;
+}
+.title h1{
+    font-size: 4.2rem;
     color: var(--brand-blue, #3692FF);
     font-family: "ROKAF Sans";
     font-size: 66.344px;
@@ -93,8 +116,7 @@ label{
 .password_pad{
     position: relative;
 }
-
-.password_icon{
+.password_icon_ck, .password_icon{
     position: absolute;
     right: 15px;
     top:50%;
@@ -121,13 +143,11 @@ label{
     color: var(--Cool-Gray-100, #F3F4F6);
     text-align: center;
     border: none;
-
-    /* pretendard/xl-20px-semibold */
     font-family: Pretendard;
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
-    line-height: 32px; /* 160% */
+    line-height: 32px; 
 }
 
 .login_other{
@@ -149,12 +169,11 @@ label{
     gap: 8px;
     color: var(--Secondary-800, #1F2937);
 
-    /* pretendard/md-14px-medium */
     font-family: Pretendard;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
-    line-height: 24px; /* 171.429% */
+    line-height: 24px; 
 }
 .signup_btn{
     color: var(--Primary-100, #3692FF);
@@ -180,4 +199,187 @@ label{
     align-items: flex-start;
     gap: 16px;
     padding-bottom: 24px;
+}
+
+#email_error, #password_error, #password_ck_error{
+    color: var(--error-red, #F74747);
+    font-family: Pretendard;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+#error_modal {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    z-index: 1000; 
+}
+#error_modal.hidden {
+    display: none;
+}
+
+.modal_content {
+    width: 540px;
+    height: 250px;
+    background: white;
+    padding: 24px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+    display: flex;
+    flex-direction: column;   
+    justify-content: space-between;
+}
+.modal_message {
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    line-height: 24px;
+    flex-grow: 1; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#modal_close_btn {
+    border-radius: 8px;
+    background: var(--brand-blue, #3692FF);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    width: 120px;
+    height: 48px;
+    padding: 12px 23px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+#modal_btn_section {
+    display: flex;
+    justify-content: flex-end; 
+    margin-top: 12px;
+}
+/* 태블릿 */
+@media screen and (max-width:1199px) and (min-width:744px)  {
+    html{
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
+    .main{
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+    .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px; 
+         margin-bottom: 24px;
+    }
+    .nav img {
+        width: 4.0rem;
+        height: 4.0rem;
+    }
+    .title h1{
+        font-size: 3.8rem;
+    }
+    input{
+        max-width: 100%;
+        min-width: 640px;
+        padding-left: 24px;
+        padding-right: 24px;
+        border-radius: 12px;
+        padding: 16px 24px;
+        color: var(--Cool-Gray-400, #9CA3AF);
+
+        font-family: Pretendard;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+    }
+    .login_other{
+        max-width: 100%;
+        min-width: 640px;
+        padding-left: 24px;
+        padding-right: 24px;
+        border-radius: 12px;
+    }
+    .login_btn {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .modal_content {
+        width: 90%;
+        max-width: 480px;
+        height: auto;
+    }
+}
+/* 모바일 */
+@media screen and (max-width:743px) and (min-width:375px) {
+
+    .main{
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    .nav{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px; 
+        margin-bottom: 16px;
+    }
+    .nav img{
+        width: 3.4rem;
+        height: 3.4rem;
+    }
+    .title h1 {
+        font-size: 3.2rem; 
+    }
+    input{
+        width: 100%;
+        min-width: 370px;
+        padding-left: 24px;
+        padding-right: 24px;
+        border-radius: 12px;
+        padding: 16px 24px;
+        color: var(--Cool-Gray-400, #9CA3AF);
+
+        font-family: Pretendard;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+    }
+    .login_other{
+        width: 100%;
+        min-width: 370px;
+        padding-left: 24px;
+        padding-right: 24px;
+        border-radius: 12px;
+    }
+    .login_btn {
+        width: 100%;
+        min-width: 370px;
+        min-width: 350px;
+    }
+    .modal_content {
+        width: 90%;
+        height: auto;
+    }
 }
