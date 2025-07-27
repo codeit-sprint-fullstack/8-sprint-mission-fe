@@ -207,3 +207,9 @@ a,
 .login-massage a{
     color: var(--Brand-Blue);
 }
+
+/* 원래 브라우저 기능으로 비밀번호 눈을 지원하는 걸 끔 */
+input[type='password']::-ms-reveal,
+input[type='password']::-ms-clear{
+    display: none;
+}
