@@ -195,3 +195,81 @@ header.nav {
   font-size: 2.22rem; /*40px*/
   line-height: 140%; /* 56px */
 }
+
+/* 반응형 웹 구현 Responsive Web */
+/* Tablet: 744px - 1199px */
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .nav-container {
+    padding-right: 1.5rem; /* 24px */
+    padding-left: 1.5rem; /* 24px */
+    padding-top: 0.6rem; /* 10px */
+    padding-bottom: 0.6rem; /* 10px */
+  }
+
+  .global-nav-bar {
+    padding-right: 1.5rem; /* 24px */
+    padding-left: 1.5rem; /* 24px */
+  }
+
+  .hot-items,
+  .search,
+  .register {
+    margin-right: 1.5rem; /* 24px */
+    margin-left: 1.5rem; /* 24px */
+    width: auto;
+    max-width: 988px;
+  }
+
+  .footer-ad {
+    padding-right: 1.5rem; /* 24px */
+    padding-left: 1.5rem; /* 24px */
+  }
+
+  .footerLinks {
+    padding-right: 1.5rem; /* 24px */
+    padding-left: 1.5rem; /* 24px */
+  }
+}
+
+/* Mobile: 375px - 743px */
+@media (min-width: 375px) and (max-width: 743px) {
+  .nav-container {
+    padding-right: 1rem; /* 16px */
+    padding-left: 1rem; /* 16px */
+    padding-top: 0.6rem; /* 10px */
+    padding-bottom: 0.6rem; /* 10px */
+  }
+
+  .global-nav-bar {
+    padding-right: 1rem; /* 16px */
+    padding-left: 1rem; /* 16px */
+    flex-direction: column;
+  }
+
+  .hot-items,
+  .search,
+  .register {
+    margin-right: 1rem; /* 16px */
+    margin-left: 1rem; /* 16px */
+    flex-direction: column;
+    max-width: 743px;
+  }
+
+  .footer-ad {
+    padding-right: 1rem; /* 16px */
+    padding-left: 1rem; /* 16px */
+    flex-direction: column;
+  }
+  .PandaMarket-ad {
+    width: calc(100% - 2rem); /* 좌우 32px 여백 제외 */
+    height: auto;
+  }
+
+  .footerLinks {
+    padding-right: 1rem; /* 16px */
+    padding-left: 1rem; /* 16px */
+    flex-direction: column;
+    text-align: center;
+  }
+}
