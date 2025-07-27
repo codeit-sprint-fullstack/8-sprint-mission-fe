@@ -258,8 +258,11 @@ a,
 }
 
 .login-massage{
+    width: auto;
     display: flex;
+    justify-content: center;
     align-items: center;
+    text-align: center;
     gap: 0.4rem;
 }
 
