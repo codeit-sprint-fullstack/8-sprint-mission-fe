@@ -72,14 +72,14 @@ export function validatePassword(e) { // 비밀번호 유효성 검사
 	validateForm(); //버튼활성화 확인
 }
 
-export function validateNickname(e) {
+export function validateNickname(e) { // 닉네임 유효성 검사
   if(e.target.value){
 		e.target.classList.add('focusout');
 		isNicknameValid = true;
 	}
 }
 
-export function validatePasswordChecker(e) {
+export function validatePasswordChecker(e) { // 비밀번호 확인 유효성 검사
   const target = e.target;
   const err_tag = document.querySelector('#pwd_check_msg'); // 오류메세지 태그
   const invalidErr = '비밀번호가 일치하지 않습니다.';

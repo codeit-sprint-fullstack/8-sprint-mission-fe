@@ -17,7 +17,7 @@
       <span>판다마켓</span>
     </a>
   </header>
-  <form class="forms">
+  <form class="forms" id="signup_form">
     <div class="input_tag">
       <label for="userEmail">이메일</label>
       <input class="input_txt" id="inputEmail" name="userEmail" type="text" placeholder="이메일을 입력해주세요">
@@ -39,7 +39,7 @@
       <img class="btn_visibility" src="../images/btn_visibility_off_24px.svg" alt="btn_visibility_off">
       <p class="error_msg" id="pwd_check_msg"></p>
     </div>
-    <button type="button" class="btn" onclick="location.href='../login'">회원가입</button>
+    <button type="submit" class="btn">회원가입</button>
   </form>
   <div class="sns_login">
     <span>간편 로그인하기</span>
@@ -56,7 +56,12 @@
     <span>이미 회원이신가요?</span>
     <a class="page_move" href="../login/">로그인</a>
   </div>
-
+  <div class="modal_bg">
+    <div class="modal">
+      <p class="modal_conent"></p>
+      <button class="modal_btn" type="button">확인</button>
+    </div>  
+  </div>
   <script src="../js/forms.js" type="module"></script>
 </body>
 
