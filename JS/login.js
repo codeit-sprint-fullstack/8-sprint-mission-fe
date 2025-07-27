@@ -32,12 +32,12 @@ function handleLogin(event) {
         window.location.href = "/items";
         return;
       } else {
-        alert("비밀번호가 일치하지 않습니다.");
+        showErrorModal("비밀번호가 일치하지 않습니다.");
         return;
       }
     }
   }
-  alert("가입되지 않은 이메일입니다");
+  showErrorModal("가입되지 않은 이메일입니다");
 }
 
 // 이벤트 리스너들 (함수 정의 후에 등록)
@@ -63,4 +63,24 @@ if (passwordToggleIcon) {
   passwordToggleIcon.addEventListener("click", function () {
     togglePasswordVisibility(passwordInput, passwordToggleIcon);
   });
+}
+
+// 모달 관련 함수들
+function showErrorModal(message) {
+  const modal = document.getElementById("errorModal");
+  const modalMessage = document.getElementById("modalMessage");
+
+  modalMessage.textContent = message;
+  modal.style.display = "flex";
+}
+
+function hideErrorModal() {
+  const modal = document.getElementById("errorModal");
+  modal.style.display = "none";
+}
+
+// 모달 닫기 버튼 이벤트
+const modalCloseBtn = document.getElementById("modalCloseBtn");
+if (modalCloseBtn) {
+  modalCloseBtn.addEventListener("click", hideErrorModal);
 }

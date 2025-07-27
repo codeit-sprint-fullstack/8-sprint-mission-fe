@@ -43,8 +43,8 @@ function handleSignup(event) {
 
   for (let i = 0; i < USER_DATA.length; i++) {
     if (USER_DATA[i].email === inputEmail) {
-      alert("사용 중인 이메일입니다");
-      window.location.href = "./login.html";
+      showErrorModal("사용 중인 이메일입니다");
+      // 모달을 띄우고 나서는 페이지 이동하지 말고 return
       return;
     }
   }
@@ -95,4 +95,24 @@ if (passwordConfirmToggleIcon) {
   passwordConfirmToggleIcon.addEventListener("click", function () {
     togglePasswordVisibility(passwordConfirmInput, passwordConfirmToggleIcon);
   });
+}
+
+// 모달 관련 함수들
+function showErrorModal(message) {
+  const modal = document.getElementById("errorModal");
+  const modalMessage = document.getElementById("modalMessage");
+
+  modalMessage.textContent = message;
+  modal.style.display = "flex";
+}
+
+function hideErrorModal() {
+  const modal = document.getElementById("errorModal");
+  modal.style.display = "none";
+}
+
+// 모달 닫기 버튼 이벤트
+const modalCloseBtn = document.getElementById("modalCloseBtn");
+if (modalCloseBtn) {
+  modalCloseBtn.addEventListener("click", hideErrorModal);
 }

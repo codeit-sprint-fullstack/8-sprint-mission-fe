@@ -163,3 +163,68 @@ a.header-link {
   padding: 0.56rem 0 0 1rem; /* 9px 0 0 16px */
   color: var(--error-red, #f74747);
 }
+
+/* 모달 스타일링 */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+  background-color: #ffffff;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  width: 540px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content p {
+  font-size: 1rem;
+  color: var(--Cool-Gray-800, #1f2937);
+  line-height: 1.5;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100%;
+  padding-right: 1.75rem;
+}
+
+#modalCloseBtn {
+  background-color: var(--brand-blue, #3692ff);
+  color: white;
+  border-radius: 8px;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  width: 120px;
+  height: 48px;
+  display: block;
+  align-self: flex-end;
+  margin-right: 1.75rem;
+  margin-bottom: 1.75rem;
+}
+
+#modalCloseBtn:hover {
+  background-color: #2563eb;
+}
