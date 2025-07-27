@@ -1,95 +1,17 @@
-const USER_DATA = [
-  { email: "codeit1@codeit.com", password: "codeit101!" },
-  { email: "codeit2@codeit.com", password: "codeit202!" },
-  { email: "codeit3@codeit.com", password: "codeit303!" },
-  { email: "codeit4@codeit.com", password: "codeit404!" },
-  { email: "codeit5@codeit.com", password: "codeit505!" },
-  { email: "codeit6@codeit.com", password: "codeit606!" },
-];
-
 // email and password select
 const emailInput = document.querySelector(".login-email input");
 const passwordInput = document.querySelector(".form-pswd input");
 
-// emnail and password error msg select
+// email and password error msg select
 const emailErrorDiv = document.querySelector("#email-error");
 const passwordErrorDiv = document.querySelector("#password-error");
 
 // login button select
-// [type='submit'] = type 속성이 'submit'인 button 요소
 const loginButton = document.querySelector("button[type='submit']");
 
-// 이메일 유효성 검사 함수
-function validateEmail() {
-  if (emailInput.value === "") {
-    // empty input
-    emailErrorDiv.textContent = "이메일을 입력해주세요.";
-    emailInput.style.border = "1px solid var(--error-red, #f74747)";
-    loginButton.disabled = true; // btn 비활성화
-    return false;
-  } else if (
-    emailInput.value.indexOf("@") === -1 || //
-    emailInput.value.indexOf(".") === -1 //
-  ) {
-    emailErrorDiv.textContent = "잘못된 이메일 형식입니다.";
-    emailInput.style.border = "1px solid var(--error-red, #f74747)";
-    loginButton.disabled = true; // btn 비활성화
-    return false;
-  } else {
-    // 이메일이 정상으로 적혔을때
-    emailErrorDiv.textContent = "";
-    emailInput.style.border = "";
-    checkFormValid(); // 조건에 충족하면 btn 활성화.. 맞나?
-    return true;
-  }
-  checkFormValid();
-}
-
-emailInput.addEventListener("blur", validateEmail);
-
-// pswd 유효성 검사 함수
-function validatePassword() {
-  if (passwordInput.value === "") {
-    passwordErrorDiv.textContent = "비밀번호를 입력해주세요.";
-    passwordInput.style.border = "1px solid var(--error-red, #f74747)";
-    loginButton.disabled = true; // btn 비활성화
-    return false;
-  } else if (passwordInput.value.length < 8) {
-    passwordErrorDiv.textContent = "비밀번호를 8자 이상 입력해주세요.";
-    passwordInput.style.border = "1px solid var(--error-red, #f74747)";
-    loginButton.disabled = true; // btn 비활성화
-    return false;
-  } else {
-    passwordErrorDiv.textContent = "";
-    passwordInput.style.border = "";
-    checkFormValid(); // 조건에 충족하면 btn 활성화??
-    return true;
-  }
-}
-
-passwordInput.addEventListener("blur", validatePassword);
-
-function validateInputs() {
-  const emailValid = validateEmail();
-  const passwordValid = validatePassword();
-
-  if (emailValid && passwordValid) {
-    loginButton.disabled = false;
-  } else {
-    loginButton.disabled = true;
-  }
-}
-
-emailInput.addEventListener("input", validateInputs);
-passwordInput.addEventListener("input", validateInputs);
-
 function checkFormValid() {
-  const emailValid =
-    emailInput.value !== "" &&
-    emailInput.value.indexOf("@") !== -1 &&
-    emailInput.value.indexOf(".") !== -1;
-  const passwordValid =
-    passwordInput.value !== "" && passwordInput.value.length >= 8;
+  const emailValid = validateEmailFormat(emailInput.value);
+  const passwordValid = validatePasswordFormat(passwordInput.value);
 
   if (emailValid && passwordValid) {
     loginButton.disabled = false;
@@ -98,10 +20,7 @@ function checkFormValid() {
   }
 }
 
-// 이벤트 추가
-loginButton.addEventListener("click", handleLogin);
-
-//로그인 함수
+// 로그인 함수 (먼저 정의)
 function handleLogin(event) {
   if (event) event.preventDefault();
 
@@ -110,13 +29,38 @@ function handleLogin(event) {
   for (let i = 0; i < USER_DATA.length; i++) {
     if (USER_DATA[i].email === inputEmail) {
       if (USER_DATA[i].password === inputPassword) {
-        window.location.href = "/items"; // 성공시 items로 이동
+        window.location.href = "/items";
         return;
       } else {
-        alert("비밀번호가 일치하지 않습니다."); // 비밀번호 틀림
+        alert("비밀번호가 일치하지 않습니다.");
         return;
       }
     }
   }
-  alert("가입되지 않은 이메일입니다"); // 이메일 없음
+  alert("가입되지 않은 이메일입니다");
+}
+
+// 이벤트 리스너들 (함수 정의 후에 등록)
+loginButton.addEventListener("click", handleLogin);
+
+emailInput.addEventListener("blur", function () {
+  validateEmailWithError(emailInput, emailErrorDiv);
+  checkFormValid();
+});
+
+passwordInput.addEventListener("blur", function () {
+  validatePasswordWithError(passwordInput, passwordErrorDiv);
+  checkFormValid();
+});
+
+emailInput.addEventListener("input", checkFormValid);
+passwordInput.addEventListener("input", checkFormValid);
+
+// 비밀번호 토글 기능
+const passwordToggleIcon = document.querySelector(".password-hide-icon");
+
+if (passwordToggleIcon) {
+  passwordToggleIcon.addEventListener("click", function () {
+    togglePasswordVisibility(passwordInput, passwordToggleIcon);
+  });
 }
