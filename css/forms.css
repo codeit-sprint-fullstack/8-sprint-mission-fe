@@ -93,8 +93,17 @@ label {
 
 .btn_visibility {
   position: absolute;
+  width: 24px;
+  height: 24px;
   top: 59px;
   right: 24px;
+  cursor: pointer;
+}
+.visibility_off{
+  display: none;
+}
+.visibility_on{
+  display: none;
 }
 
 /* input focus out */

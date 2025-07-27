@@ -1,8 +1,6 @@
 import { USER_DATA } from "./USERDATA.js";
 import { email, password, modal_bg, modal_content} from "./forms.js";
 
-
-
 export function login_submit(){
   const isValidUser = USER_DATA.some((el) => {
     return el.email === email.value && el.password === password.value;
