@@ -13,6 +13,10 @@ html{
     --Cool-Gray-800: #1F2937;
 }
 
+body{
+    margin: 0;
+}
+
 header{
     width: 100%;
     height: 7rem;

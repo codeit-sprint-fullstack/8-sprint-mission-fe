@@ -13,13 +13,79 @@ html {
 }   
 
 body{
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0;
 }
 
 a,
 .clickable{
+    cursor: pointer;
+}
+
+.popup{
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+
+.popup .bg{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.70);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.popup .box{
+    width: 90%;
+    max-width: 52rem;
+    height: 25rem;
+    margin: 0 1.6rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    margin: auto;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.popup h1{
+    color: var(--Cool-Gray-800);
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.popup button{
+    position: absolute;
+    right: 2.8rem;
+    bottom: 2.8rem;
+
+    padding: 12px 23px;
+    border-radius: 8px;
+    background: var(--brand-blue, #3692FF);
+    border: none;
+    
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    color: #ffffff;
+
     cursor: pointer;
 }
 
