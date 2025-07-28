@@ -1,77 +1,101 @@
-export async function getProductList(params) {
-  const url = new URL('https://panda-market-api-crud.vercel.app/docs/#/Product');
-  url.searchParams.append('page');
-  url.searchParams.append('pageSize');
-  url.searchParams.append('keyword');
-  // Object.keys(params).forEach((key) =>
-  //   url.searchParams.append(key, params[key])
-  // );
-
-  if(!res.ok) {
-    throw new Error('데이터 불러오기 실패');
+export async function getProductList(params = {}) {
+  try {
+    const url = new URL('https://panda-market-api-crud.vercel.app/docs/#/Product');
+    url.searchParams.append('page');
+    url.searchParams.append('pageSize');
+    url.searchParams.append('keyword');
+    // Object.keys(params).forEach((key) =>
+    //   url.searchParams.append(key, params[key])
+    // );
+    const res = await fetch(url);
+    if(!res.ok) {
+      throw new Error('getProductList 실패');
+    }
+    
+    const data = await res.json();
+    
+    return data;
+  } catch(error) {
+    throw error;
   }
-
-  const res = await fetch(url);
-  const data = await res.json();
-  
-  return data;
 }
 
-export async function getProduct() {
-  const res = await fetch('https://panda-market-api-crud.vercel.app/docs/#/Product');
-  
-  if(!res.ok) {
-    throw new Error('데이터 불러오기 실패');
-  }
+export async function getProduct(id) {
+  try {
+    const res = await fetch(`https://panda-market-api-crud.vercel.app/docs/#/Product${id}`);
+    
+    if(!res.ok) {
+      throw new Error('getProduct 실패');
+    }
 
-  const data = await res.json();
-  return data;
+    const data = await res.json();
+    return data;
+  } catch(error) {
+    throw error;
+  }
+  
 }
 
 export async function createProduct() {
-  const surveyData = {
-    name,
-    description,
-    price,
-    tags,
-    image,
-  }
-  
-  const res = await fetch('https://panda-market-api-crud.vercel.app/docs/#/Product', {
-    method: 'POST',
-    body: JSON.stringify(surveyData),
-  });
-  
-  if(!res.ok) {
-    throw new Error('데이터 불러오기 실패');
-  }
+  try {
+    const productData = {
+      name: '이름',
+      description: '설명',
+      price: 10,
+      tags: ['test'],
+      image: ['image url'],
+    }
+    
+    const res = await fetch('https://panda-market-api-crud.vercel.app/docs/#/Product', {
+      method: 'POST',
+      body: JSON.stringify(productData),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    });
+    
+    if(!res.ok) {
+      throw new Error('createProduct 실패');
+    }
 
-  const data = res.json();
-  return data;
+    const data = res.json();
+    return data;
+  } catch(error) {
+    throw error;
+  }
 }
 
-export async function patchProduct() {
-  const res = await fetch('https://panda-market-api-crud.vercel.app/docs/#/Product', {
-    method: 'PATCH'
-  });
-  
-  if(!res.ok) {
-    throw new Error('데이터 불러오기 실패');
-  }
+export async function patchProduct(id) {
+  try {
+    const res = await fetch(`https://panda-market-api-crud.vercel.app/docs/#/Product${id}`, {
+      method: 'PATCH',
+    });
+        
+    if(!res.ok) {
+      throw new Error('patchProduct 실패');
+    }
 
-  const data = res.json();
-  return data;
+    const data = res.json();
+    return data;
+  } catch(error) {
+    throw error;
+  }
+    
 }
 
-export async function deleteProduct() {
-  const res = await fetch('https://panda-market-api-crud.vercel.app/docs/#/Product', {
-    method: 'DELETE'
-  });
-  
-  if(!res.ok) {
-    throw new Error('데이터 불러오기 실패');
+export async function deleteProduct(id) {
+  try {
+    const res = await fetch(`https://panda-market-api-crud.vercel.app/docs/#/Product${id}`, {
+      method: 'DELETE'
+    });
+    
+    if(!res.ok) {
+      throw new Error('deleteProduct 실패');
+    }
+
+    const data = res.json();
+    return data;
+  } catch(error) {
+    throw error;
   }
-  
-  const data = res.json();
-  return data;
 }

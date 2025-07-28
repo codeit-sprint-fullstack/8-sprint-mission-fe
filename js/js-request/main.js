@@ -2,53 +2,20 @@ import { getArticleList, getArticle, createArticle, patchArticle, deleteArticle 
 import { getProductList, getProduct, createProduct, patchProduct, deleteProduct } from './ProductService.js';
 
 // Article function
-const dataAL = await getArticleList();
-console.log(dataAL);
-
-const dataA = await getArticle();
-console.log(dataA);
-
-const dataCA = await createArticle();
-console.log(dataCA);
-
-const dataPA = await patchArticle();
-console.log(dataPA);
-
-const dataDA = await deleteArticle();
-console.log(dataDA);
+getArticleList().then((data) => console.log(data))
+                  .catch((error) => alert('ArticleList Error'));
+getArticle().then((data) => console.log(data))
+              .catch((error) => alert('Article Error'));
+createArticle().then((data) => console.log(data))
+                .catch((error) => alert('CreateArticle Error'));
+patchArticle().then((data) => console.log(data))
+                .catch((error) => alert('PatchArticle Error'));
+deleteArticle().then((data) => console.log(data))
+                .catch((error) => alert('DeleteArticle Error'));
 
 // Product function
-try {
-  const data = await getProductList();
-  console.log(data);
-} catch(e) {
-  console.log('오류 발생');
-}
-
-try {
-  const data = await getProduct();
-  console.log(data);
-} catch(e) {
-  console.log('오류 발생');
-}
-
-try {
-  const data = await createProduct();
-  console.log(data);
-} catch(e) {
-  console.log('오류 발생');
-}
-
-try {
-  const data = await patchProduct();
-  console.log(data);
-} catch(e) {
-  console.log('오류 발생');
-}
-
-try {
-  const data = await deleteProduct();
-  console.log(data);
-} catch(e) {
-  console.log('오류 발생');
-}
+getProductList();
+getProduct();
+createProduct();
+patchProduct();
+deleteProduct();
