@@ -114,10 +114,9 @@ h1 {
   padding: 1.6rem 12.4rem;
 }
 
-
 .banner {
   background-color: #cfe5ff;
-  height: 540px;
+  height: 54rem;
   display: flex;
   align-items: center;
   background-repeat: no-repeat;
@@ -125,31 +124,39 @@ h1 {
   background-size: 55%;
 }
 
+@media screen and (min-width: 1920px) {
+  .banner {
+    width: 100vw;     
+    margin-left: calc((100% - 100vw) / 2);
+    margin-right: calc((100% - 100vw) / 2);
+  }
+}
+
 #hero {
-  background-image: url("../images/img_home_banner.svg");
+  background-image: url("/images/img_home_banner.svg");
 }
 
 #features {
-  padding-bottom: 138px;
+  padding-bottom: 13.8rem;
 }
 
 #bottomBanner {
-  background-image: url("../images/img_home_close.svg");
+  background-image: url("/images/img_home_close.svg");
 }
 
 #loginLinkButton {
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 600;
-  border-radius: 8px;
-  padding: 11.5px 23px;
+  border-radius: 0.8rem;
+  padding: 1.15rem 2.3rem;
 }
 
 .banner .pill-button {
-  margin-top: 32px;
+  margin-top: 3.2rem;
 }
 
 .feature {
-  padding: 138px 0;
+  padding: 13.8rem 0;
   display: flex;
   align-items: center;
   gap: 5%;
@@ -165,16 +172,16 @@ h1 {
 
 .feature-tag {
   color: #3692ff;
-  font-size: 18px;
-  line-height: 25px;
+  font-size: 1.8rem;
+  line-height: 2.5rem;
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 1.2rem;
 }
 
 .feature-description {
-  font-size: 24px;
+  font-size: 2.4rem;
   font-weight: 500;
   line-height: 120%;
   letter-spacing: 0.08em;
-  margin-top: 24px;
+  margin-top: 2.4rem;
 }
