@@ -4,7 +4,6 @@ section {
   display: flex;
   justify-content: center;
 
-
   .logo-loginForm {
     display: flex;
     flex-direction: column;
@@ -23,7 +22,8 @@ section {
     justify-content: center;
     align-items: center;
 
-    .email, .password {
+    .email,
+    .password {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -38,29 +38,31 @@ section {
   }
 }
 
-.userEmailInput, .userPasswordInput {
-    display: flex;
-    width: 640px;
-    height: 56px;
-    padding: 16px 24px;
-    align-items: center;
-    gap: 10px;
-    border-radius: 12px;
-    background-color: #F3F4F6;
-    border: none;
-    outline: none;
+.userEmailInput,
+.userPasswordInput {
+  display: flex;
+  width: 640px;
+  height: 56px;
+  padding: 16px 24px;
+  align-items: center;
+  gap: 10px;
+  border-radius: 12px;
+  background-color: #f3f4f6;
+  border: none;
+  outline: none;
 
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 26px;
-    color: #9CA3AF;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  color: #9ca3af;
 
-    margin-top: 16px;
+  margin-top: 16px;
 }
 
-.userEmailInput:focus, .userPasswordInput:focus {
-  border: 1px solid #3692FF;
+.userEmailInput:focus,
+.userPasswordInput:focus {
+  border: 1px solid #3692ff;
   outline: none;
 }
 
@@ -72,7 +74,7 @@ section {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  background-color: #9CA3AF;
+  background-color: #9ca3af;
   border-radius: 40px;
   border: none;
 
@@ -80,7 +82,7 @@ section {
   font-style: normal;
   font-weight: 600;
   line-height: 32px;
-  color: #F3F4F6;
+  color: #f3f4f6;
 }
 
 .socialLogin {
@@ -89,7 +91,7 @@ section {
   align-items: center;
   justify-content: space-between;
 
-  background-color: #E6F2FF;
+  background-color: #e6f2ff;
   border-radius: 8px;
 
   padding: 16px 23px;
@@ -116,7 +118,7 @@ section {
     line-height: 24px;
   }
   a {
-    color: #3692FF;
+    color: #3692ff;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -129,7 +131,7 @@ section {
   }
 }
 
-@media (max-width: 743px) {
+@media (max-width: 744px) {
   section {
     padding: 24px 16px;
     width: 100%;
@@ -151,7 +153,8 @@ section {
       }
     }
 
-    .email, .password {
+    .email,
+    .password {
       display: flex;
       flex-grow: 1;
       width: 100%;
@@ -167,13 +170,15 @@ section {
       width: 100%;
       flex-grow: 1;
 
-      label, input {
+      label,
+      input {
         width: 100%;
       }
     }
   }
 
-  .userEmailInput, .userPasswordInput {
+  .userEmailInput,
+  .userPasswordInput {
     width: 100%;
     height: auto;
     margin-top: 8px;
@@ -192,4 +197,3 @@ section {
     }
   }
 }
-

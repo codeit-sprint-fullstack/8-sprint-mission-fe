@@ -1,46 +1,46 @@
-import { USER_DATA, userEmail, userPassword } from "../validate/validate.js";
+import { userEmail, userPassword } from "../validate/validate.js";
+import { USER_DATA } from "../validate/USER_DATA.js";
 
-const submitBtn = document.querySelector('.submitBtn');
+const submitBtn = document.querySelector(".submitBtn");
 
 // 버튼 활성화 여부 검사
-submitBtn.addEventListener('click', (event) => {
-  event.preventDefault();
-
+submitBtn.addEventListener("click", (event) => {
   // 로그인 데이터 DB 비교
-  const foundEmail = USER_DATA.find((el) => el.email === userEmail.value);
-  const foundPassword = USER_DATA.find((el) => el.password === userPassword.value);
+  const foundUser = USER_DATA.find(
+    (user) =>
+      user.email === userEmail.value && user.password === userPassword.value
+  );
 
   if (verifyForm()) {
-    if (foundEmail === undefined || foundPassword === undefined) {
-      alert('비밀번호가 일치하지 않습니다.');
+    if (foundUser) {
+      console.log("Login Success!");
     } else {
-      window.location.href = '../items/items.html'
+      event.preventDefault();
+      alert("비밀번호가 일치하지 않습니다.");
     }
-  } else {
-    console.log('Failed');
   }
 });
-
 
 // 로그인 버튼 활성화
 
 const verifyForm = () => {
-  const checkEmail = userEmail !== '' && !userEmail.classList.contains('errorBox');
-  const checkPassword = userPassword !== '' && !userPassword.classList.contains('errorBox');
+  const checkEmail =
+    userEmail !== "" && !userEmail.classList.contains("errorBox");
+  const checkPassword =
+    userPassword !== "" && !userPassword.classList.contains("errorBox");
 
-  return checkEmail && checkPassword
-}
-
+  return checkEmail && checkPassword;
+};
 
 // Form 변화 실시간 감지
 function updateButtonState() {
   if (verifyForm()) {
     submitBtn.disabled = false;
-    submitBtn.classList.add('enableBtn');
+    submitBtn.classList.add("enableBtn");
   } else {
     submitBtn.disabled = true;
-    submitBtn.classList.remove('enableBtn');
+    submitBtn.classList.remove("enableBtn");
   }
 }
 
-userPassword.addEventListener('focusout', updateButtonState);
+userPassword.addEventListener("focusout", updateButtonState);

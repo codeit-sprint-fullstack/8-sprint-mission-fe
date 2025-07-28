@@ -1,4 +1,4 @@
-$brandBlue: #3692FF;
+$brandBlue: #3692ff;
 
 main {
   width: 100%;
@@ -10,7 +10,7 @@ header {
   width: 100%;
   height: 70px;
   padding: 9px 11.5vw;
-  
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,7 +29,7 @@ header {
     padding: 12px 23px;
     background-color: $brandBlue;
     border-radius: 8px;
-    color: #F3F4F6;
+    color: #f3f4f6;
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -37,7 +37,7 @@ header {
 }
 
 .topBanner {
-  background: #CFE5FF;
+  background: #cfe5ff;
   padding: 200px 12vw 0 12vw;
   width: 100%;
 
@@ -66,13 +66,13 @@ header {
       }
 
       a {
-        width: 100%;
+        width: 357px;
         padding: 16px 124px;
         background-color: $brandBlue;
         border-radius: 40px;
         margin-bottom: 60px;
 
-        color: #F9FAFB;
+        color: #f9fafb;
         font-size: 20px;
         font-style: normal;
         font-weight: 600;
@@ -85,7 +85,9 @@ header {
   }
 }
 
-.section1, .section2, .section3 {
+.section1,
+.section2,
+.section3 {
   width: 100%;
   padding: 138px 10vw;
 
@@ -136,7 +138,7 @@ header {
 }
 
 .bottomBanner {
-  background: #CFE5FF;
+  background: #cfe5ff;
   padding: 143px 12vw 0 12vw;
   width: 100%;
 
@@ -180,7 +182,7 @@ footer {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    color: #E5E7EB;
+    color: #e5e7eb;
   }
 
   .social {
@@ -198,14 +200,14 @@ footer {
   .topBanner {
     width: 100%;
     padding: 84px 116px 0 116px;
-    
+
     .wrapper {
       display: flex;
       flex-direction: column;
       justify-content: center;
       gap: 211px;
 
-      .detail {        
+      .detail {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -223,7 +225,8 @@ footer {
     }
   }
 
-  .section1, .section3 {
+  .section1,
+  .section3 {
     padding: 24px;
     padding-bottom: 26px;
 
@@ -265,7 +268,7 @@ footer {
   }
 
   .bottomBanner {
-    background-color: #CFE5FF;
+    background-color: #cfe5ff;
     padding-top: 201px;
     width: 100%;
 
@@ -310,7 +313,7 @@ footer {
         a {
           padding: 12px 71px;
           width: 100%;
-          
+
           display: inline-block;
           width: auto;
           align-self: center;
@@ -331,7 +334,9 @@ footer {
     }
   }
 
-  .section1, .section2, .section3 {
+  .section1,
+  .section2,
+  .section3 {
     width: 100%;
     padding: 52px 16px 0 16px;
     margin-bottom: 40px;

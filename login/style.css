@@ -20,19 +20,22 @@ section form {
   justify-content: center;
   align-items: center;
 }
-section form .email, section form .password {
+section form .email,
+section form .password {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-section form .email label, section form .password label {
+section form .email label,
+section form .password label {
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
   line-height: 26px;
 }
 
-.userEmailInput, .userPasswordInput {
+.userEmailInput,
+.userPasswordInput {
   display: flex;
   width: 640px;
   height: 56px;
@@ -40,19 +43,20 @@ section form .email label, section form .password label {
   align-items: center;
   gap: 10px;
   border-radius: 12px;
-  background-color: #F3F4F6;
+  background-color: #f3f4f6;
   border: none;
   outline: none;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 26px;
-  color: #9CA3AF;
+  color: #9ca3af;
   margin-top: 16px;
 }
 
-.userEmailInput:focus, .userPasswordInput:focus {
-  border: 1px solid #3692FF;
+.userEmailInput:focus,
+.userPasswordInput:focus {
+  border: 1px solid #3692ff;
   outline: none;
 }
 
@@ -64,14 +68,14 @@ section form .email label, section form .password label {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  background-color: #9CA3AF;
+  background-color: #9ca3af;
   border-radius: 40px;
   border: none;
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
   line-height: 32px;
-  color: #F3F4F6;
+  color: #f3f4f6;
 }
 
 .socialLogin {
@@ -79,7 +83,7 @@ section form .email label, section form .password label {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: #E6F2FF;
+  background-color: #e6f2ff;
   border-radius: 8px;
   padding: 16px 23px;
   margin: 24px 0;
@@ -104,7 +108,7 @@ section form .email label, section form .password label {
   line-height: 24px;
 }
 .signup a {
-  color: #3692FF;
+  color: #3692ff;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -117,7 +121,7 @@ section form .email label, section form .password label {
   text-underline-offset: auto;
 }
 
-@media (max-width: 743px) {
+@media (max-width: 744px) {
   section {
     padding: 24px 16px;
     width: 100%;
@@ -136,7 +140,8 @@ section form .email label, section form .password label {
     width: 198px;
     height: 66px;
   }
-  section .email, section .password {
+  section .email,
+  section .password {
     display: flex;
     flex-grow: 1;
     width: 100%;
@@ -150,10 +155,12 @@ section form .email label, section form .password label {
     width: 100%;
     flex-grow: 1;
   }
-  section form label, section form input {
+  section form label,
+  section form input {
     width: 100%;
   }
-  .userEmailInput, .userPasswordInput {
+  .userEmailInput,
+  .userPasswordInput {
     width: 100%;
     height: auto;
     margin-top: 8px;
