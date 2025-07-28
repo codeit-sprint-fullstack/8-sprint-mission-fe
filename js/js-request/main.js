@@ -3,15 +3,15 @@ import { getProductList, getProduct, createProduct, patchProduct, deleteProduct 
 
 // Article function
 getArticleList().then((data) => console.log(data))
-                  .catch((error) => alert('ArticleList Error'));
+                  .catch((error) => console.error('ArticleList Error'));
 getArticle().then((data) => console.log(data))
-              .catch((error) => alert('Article Error'));
+              .catch((error) => console.error('Article Error'));
 createArticle().then((data) => console.log(data))
-                .catch((error) => alert('CreateArticle Error'));
+                .catch((error) => console.error('CreateArticle Error'));
 patchArticle().then((data) => console.log(data))
-                .catch((error) => alert('PatchArticle Error'));
+                .catch((error) => console.error('PatchArticle Error'));
 deleteArticle().then((data) => console.log(data))
-                .catch((error) => alert('DeleteArticle Error'));
+                .catch((error) => console.error('DeleteArticle Error'));
 
 // Product function
 (async () => {
@@ -19,7 +19,7 @@ deleteArticle().then((data) => console.log(data))
     const product = await getProductList();
     console.log(product);
   } catch(error) {
-    alert('ProductList 실패')
+    alert('ProductList 실패');
   }
 
   try {
@@ -40,7 +40,7 @@ deleteArticle().then((data) => console.log(data))
     const product = await patchProduct();
     console.log(product);
   } catch(error) {
-    alert('patchProduct 실패')
+    alert('patchProduct 실패');
   }
 
   try {

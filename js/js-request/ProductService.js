@@ -1,6 +1,6 @@
 export async function getProductList(params = {}) {
   try {
-    const url = new URL('https://panda-market-api-crud.vercel.app/docs/#/Product');
+    const url = new URL('https://panda-market-api-crud.vercel.app/products');
     url.searchParams.append('page');
     url.searchParams.append('pageSize');
     url.searchParams.append('keyword');
@@ -22,7 +22,7 @@ export async function getProductList(params = {}) {
 
 export async function getProduct(id) {
   try {
-    const res = await fetch(`https://panda-market-api-crud.vercel.app/docs/#/Product${id}`);
+    const res = await fetch(`https://panda-market-api-crud.vercel.app/products/${id}`);
     
     if(!res.ok) {
       throw new Error('getProduct 실패');
@@ -46,7 +46,7 @@ export async function createProduct() {
       image: ['image url'],
     }
     
-    const res = await fetch('https://panda-market-api-crud.vercel.app/docs/#/Product', {
+    const res = await fetch('https://panda-market-api-crud.vercel.app/products', {
       method: 'POST',
       body: JSON.stringify(productData),
       headers: {
@@ -67,7 +67,7 @@ export async function createProduct() {
 
 export async function patchProduct(id) {
   try {
-    const res = await fetch(`https://panda-market-api-crud.vercel.app/docs/#/Product${id}`, {
+    const res = await fetch(`https://panda-market-api-crud.vercel.app/products/${id}`, {
       method: 'PATCH',
     });
         
@@ -85,7 +85,7 @@ export async function patchProduct(id) {
 
 export async function deleteProduct(id) {
   try {
-    const res = await fetch(`https://panda-market-api-crud.vercel.app/docs/#/Product${id}`, {
+    const res = await fetch(`https://panda-market-api-crud.vercel.app/products/${id}`, {
       method: 'DELETE'
     });
     
