@@ -19,34 +19,34 @@ deleteArticle().then((data) => console.log(data))
     const product = await getProductList();
     console.log(product);
   } catch(error) {
-    alert('ProductList 실패');
+    console.error('ProductList 실패');
   }
 
   try {
     const product = await getProduct();
     console.log(product);
   } catch(error) {
-    alert('Product 실패');
+    console.error('Product 실패');
   }
 
   try {
     const product = await createProduct();
     console.log(product);
   } catch(error) {
-    alert('createProduct 실패');
+    console.error('createProduct 실패');
   }
 
   try {
     const product = await patchProduct();
     console.log(product);
   } catch(error) {
-    alert('patchProduct 실패');
+    console.error('patchProduct 실패');
   }
 
   try {
     const product = await deleteProduct();
     console.log(product);
   } catch(error) {
-    alert('deleteProduct');
+    console.error('deleteProduct');
   }
 })
