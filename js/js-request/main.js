@@ -2,11 +2,22 @@ import { getArticleList, getArticle, createArticle, patchArticle, deleteArticle 
 import { getProductList, getProduct, createProduct, patchProduct, deleteProduct } from './ProductService.js';
 
 // Article function
-const resArticle = await fetch('https://panda-market-api-crud.vercel.app/docs/#/Article');
+const dataAL = await getArticleList();
+console.log(dataAL);
 
+const dataA = await getArticle();
+console.log(dataA);
+
+const dataCA = await createArticle();
+console.log(dataCA);
+
+const dataPA = await patchArticle();
+console.log(dataPA);
+
+const dataDA = await deleteArticle();
+console.log(dataDA);
 
 // Product function
-
 try {
   const data = await getProductList();
   console.log(data);
