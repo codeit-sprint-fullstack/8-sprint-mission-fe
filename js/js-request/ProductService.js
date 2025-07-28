@@ -22,7 +22,7 @@ export async function getProduct() {
 
 export async function createProduct() {
   const surveyData = {
-    name, 
+    name,
     description,
     price,
     tags,
@@ -53,5 +53,5 @@ export async function deleteProduct() {
   });
   
   const data = res.json();
-  returndata;
+  return data;
 }
