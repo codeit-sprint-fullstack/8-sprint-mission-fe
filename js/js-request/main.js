@@ -14,8 +14,39 @@ deleteArticle().then((data) => console.log(data))
                 .catch((error) => alert('DeleteArticle Error'));
 
 // Product function
-getProductList();
-getProduct();
-createProduct();
-patchProduct();
-deleteProduct();
+(async () => {
+  try {
+    const product = await getProductList();
+    console.log(product);
+  } catch(error) {
+    alert('ProductList 실패')
+  }
+
+  try {
+    const product = await getProduct();
+    console.log(product);
+  } catch(error) {
+    alert('Product 실패');
+  }
+
+  try {
+    const product = await createProduct();
+    console.log(product);
+  } catch(error) {
+    alert('createProduct 실패');
+  }
+
+  try {
+    const product = await patchProduct();
+    console.log(product);
+  } catch(error) {
+    alert('patchProduct 실패')
+  }
+
+  try {
+    const product = await deleteProduct();
+    console.log(product);
+  } catch(error) {
+    alert('deleteProduct');
+  }
+})
