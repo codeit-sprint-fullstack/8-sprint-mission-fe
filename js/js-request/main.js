@@ -6,7 +6,6 @@ const resArticle = await fetch('https://panda-market-api-crud.vercel.app/docs/#/
 
 
 // Product function
-const resProduct = await fetch('https://panda-market-api-crud.vercel.app/docs/#/Product');
 
 try {
   const data = await getProductList();

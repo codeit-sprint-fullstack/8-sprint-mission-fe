@@ -6,7 +6,11 @@ export async function getProductList(params) {
   // Object.keys(params).forEach((key) =>
   //   url.searchParams.append(key, params[key])
   // );
-  
+
+  if(!res.ok) {
+    throw new Error('데이터 불러오기 실패');
+  }
+
   const res = await fetch(url);
   const data = await res.json();
   
@@ -16,6 +20,10 @@ export async function getProductList(params) {
 export async function getProduct() {
   const res = await fetch('https://panda-market-api-crud.vercel.app/docs/#/Product');
   
+  if(!res.ok) {
+    throw new Error('데이터 불러오기 실패');
+  }
+
   const data = await res.json();
   return data;
 }
@@ -34,6 +42,10 @@ export async function createProduct() {
     body: JSON.stringify(surveyData),
   });
   
+  if(!res.ok) {
+    throw new Error('데이터 불러오기 실패');
+  }
+
   const data = res.json();
   return data;
 }
@@ -43,6 +55,10 @@ export async function patchProduct() {
     method: 'PATCH'
   });
   
+  if(!res.ok) {
+    throw new Error('데이터 불러오기 실패');
+  }
+
   const data = res.json();
   return data;
 }
@@ -51,6 +67,10 @@ export async function deleteProduct() {
   const res = await fetch('https://panda-market-api-crud.vercel.app/docs/#/Product', {
     method: 'DELETE'
   });
+  
+  if(!res.ok) {
+    throw new Error('데이터 불러오기 실패');
+  }
   
   const data = res.json();
   return data;
