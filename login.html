@@ -6,6 +6,7 @@
     <title>로그인</title>
     <link rel="icon"href="Img/favicon.png" >
     <link href="style/login_signup.css" rel="stylesheet">
+    
 </head>
 <body>
 
@@ -13,7 +14,7 @@
         <div class="login_main">
             <div class="logo">
             <a href="/">
-            <img src="Img/login_판다 얼굴.png" alt="판다 얼굴">
+            <img src="Img/login_pand_face.png" alt="판다 얼굴">
             <p>판다마켓</p>
             </a>
             </div>
@@ -21,11 +22,12 @@
             <form id="login_form" class="login_form" action="" method="POST">
                 <label for="email">이메일</label>
                 <input type="email" id="email" name="email" placeholder="이메일을 입력해주세요">
-                <p id="emailMsg" style="color: red;"></p>
+                <p id="email_msg" style="color: red;"></p>
+
                 <label for="password">비밀번호</label>
                 <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요">
-                <p id="passwordMsg" style="color: red;"></p>
-            <button type="submit" id="submit" name="submit" disabled="disabled">로그인</button>
+                <p id="password_msg" style="color: red;"></p>
+            <button type="submit" id="submit" name="submit" disabled=true>로그인</button>
             </form>
 
             <div class="quick_login">
@@ -47,7 +49,8 @@
 
     </main>
 
-    <script src="login.js"></script>
+    <script type="module" src="scripts/utils.js"></script>
+    <script type="module" src="scripts/login.js"></script>
 
 </body>
 </html>
