@@ -93,3 +93,94 @@ document.addEventListener('DOMContentLoaded', () => {
     passwordConfirmInput.addEventListener('input', () => validatePasswordMatch(passwordInput, passwordConfirmInput));
   }
 });
+
+
+import {
+  getArticleList,
+  getArticle,
+  createArticle,
+  patchArticle,
+  deleteArticle,
+} from './ArticleService.js'
+
+import {
+  getProductList,
+  getProduct,
+  createProduct,
+  patchProduct,
+  deleteProduct,
+} from './ProductService.js';
+
+
+getArticleList(1, 10, 'test')
+  .then(async data => {
+    console.log('getArticleList 결과:', data);
+
+    const firstArticle = data?.list?.[0];
+
+    if (firstArticle) {
+      const id = firstArticle.id;
+
+      const article = await patchArticle(id, {
+        title: '수정된 제목',
+        content: '수정된 내용',
+        image: 'https://example.com/updated.jpg'
+      });
+      console.log('patchArticle 결과:', article);
+    } else {
+      console.warn('Article 데이터가 없습니다. createArticle 먼저 실행하세요.');
+    }
+  })
+  .catch(error => console.error(error));
+
+createArticle({
+  title: '테스트 제목',
+  content: '테스트 내용',
+  image: 'https://example.com/image.jpg'
+})
+  .then(data => console.log('createArticle 결과:', data))
+  .catch(error => console.error(error));
+
+async function runProductAPIs() {
+  try {
+    const list = await getProductList(1, 10, 'test');
+    console.log('getProductList 결과:', list);
+
+    const firstProduct = list?.list?.[0];
+
+    if (firstProduct) {
+      const id = firstProduct.id;
+
+      const single = await getProduct(id);
+      console.log('getProduct 결과:', single);
+
+      const patched = await patchProduct(id, {
+        name: '수정 상품명',
+        description: '수정 설명',
+        price: 9000,
+        tags: ['수정태그'],
+        images: ['https://example.com/updated-product.jpg']
+      });
+      console.log('patchProduct 결과:', patched);
+
+      const deleted = await deleteProduct(id);
+      console.log('deleteProduct 결과:', deleted);
+    } else {
+      console.warn('Product 데이터가 없습니다. createProduct 먼저 실행하세요.');
+    }
+
+    const created = await createProduct({
+      name: '상품명',
+      description: '상품 설명',
+      price: 10000,
+      tags: ['태그1', '태그2'],
+      images: ['https://example.com/product.jpg']
+    });
+    console.log('createProduct 결과:', created);
+
+  } catch (error) {
+    console.error('Product API 에러:', error);
+  }
+}
+
+runProductAPIs();
