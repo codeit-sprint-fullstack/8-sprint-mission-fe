@@ -1,11 +1,20 @@
 @import "reset.css";
+* {
+  margin: 0;
+}
+
 html{
-    font-size: 100%;
+    width: 100%;
     min-width: 1024px;
     min-height: 768px;
+    box-sizing: border-box;
+    
 }
 body{
     margin: 0;
+    width: 100%;
+    min-width: 1024px;
+    min-height: 768px;
 }
 a{
     cursor: pointer;
@@ -13,8 +22,8 @@ a{
 }
 .main{
     width: 100%;
-    height: 100%;
     position: relative;
+    box-sizing: border-box;
 }
 .gnb{
     z-index: 1;
@@ -90,6 +99,7 @@ a{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
 }
 .section_01_content{
     display: flex;
@@ -130,6 +140,11 @@ a{
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
+}
+.section_01_img img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 .section_01_text{
     width: 320PX;
@@ -296,4 +311,221 @@ a{
 }
 .footer_imgs{
    width: 90px;
+}
+#username{
+    border: 1px solid;
+    border-color: var(--Secondary-300, #D1D5DB);
+}
+.moblie{
+    display: flex;
+    flex-direction: row;
+    width: 55%;
+    justify-content: space-between;
+}
+/* 태블릿 변경사항  */
+@media  screen and (max-width: 1199px) and (min-width: 744px) {
+    body{
+       width: 100%; 
+    }
+    section img{
+        width: 100%;
+    }
+
+    .mian{
+        width: 100vh;
+    }
+    .header_section{
+        padding: 0 24px;
+    }
+    .footer_nav{
+        padding: 31px 24px;
+    }
+    .section_01_main
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        text-align: center;
+    } 
+    .section_02_section, .section_04_section
+    {   
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+        text-align: center;
+        text-align: left;
+    }
+    .section_02_img, .sectionm_03_img, .section_04_img{
+        width: 100%;
+    }
+    .section_03_section{
+        flex-direction: column-reverse;
+        align-items: flex-end
+    }
+    .section_01_text, .content {
+        white-space: nowrap;
+        width: 100%; 
+    }
+    .section_05_section {
+        flex-direction: column;
+        text-align: center;
+    }           
+    .section_05_img {
+        width: 100%;
+        height: auto;
+        padding: 0 24px;
+    }
+
+
+    .section_01_content{
+        align-items: center;
+    }
+    .section_02, .section_03, .section_04 {
+        padding: 60px 24px;
+    }
+    
+    .section_05_content {
+        width: 100%;
+        padding: 0 24px;
+    }
+
+    input, .login_other {
+        width: 100%;
+    }
+}
+/* 모바일 */
+@media screen and (max-width: 743px) and (min-width: 375px) {
+    html, body, .main {
+        width: 100%;
+    }
+    section img{
+        width: 100%;
+    }
+    .header_section {
+        padding: 0 16px;
+    }
+
+    
+
+    .section_01_main {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        text-align: center;
+    }
+
+    .section_01_text{
+        white-space: none;
+    }
+    .section_01_content{
+        align-items: center;
+    }
+    .content {
+        width: 100%;
+        white-space: nowrap;
+    }
+
+    .section_02, .section_03, .section_04 {
+        padding: 40px 16px;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .section_02_img, .sectionm_03_img, .section_04_img{
+        width: 100%;
+    }
+    .section_02_section, .section_04_section {
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+        text-align: left;
+        gap: 24px;
+        width: 100%;
+    }
+
+    .section_03_section {
+        flex-direction: column-reverse;
+        align-items: flex-end;
+        gap: 24px;
+        width: 100%;
+    }
+
+    .section_03_content {
+        align-items: flex-end;
+        text-align: right;
+    }
+
+    .section_02_img, .section_03_img, .section_04_img {
+        width: 100%;
+    }
+
+    .section_05_section {
+        flex-direction: column;
+        padding: 40px 16px;
+        gap: 24px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .section_05_img {
+        width: 100%;
+        height: auto;
+    }
+
+    .section_05_content {
+        width: 100%;
+    }
+    .section_05_img {
+        width: 100%;
+        height: auto;
+        padding: 0 24px;
+    }
+    .footer_nav {
+        flex-direction: column-reverse;
+        align-items: normal;
+        gap: 16px;
+    }
+
+    .footer_section {
+        flex-direction: row;
+        align-items: stretch;
+        gap: 160px;
+    }
+    .moblie{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 90%;
+    }
+    .footer_imgs{
+        display: flex;
+        flex-direction: row;
+        gap:5px;
+    }
+    .footer_codeit{
+        margin-bottom: 50px;
+    }
+
+    footer img{
+        width: 20px;
+        height: 20px;
+    }
+    input, .login_other {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .login_section {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .login_btn {
+        width: 100%;
+    }
+    
 }

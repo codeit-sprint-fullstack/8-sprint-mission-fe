@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="./css/login.css">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BVS3MW4KJX"></script>
     <script>
@@ -15,23 +15,23 @@
     gtag('config', 'G-BVS3MW4KJX');
     </script>
 </head>
-<body >  
+<body>  
     <main class="main"> 
-        <nav class="nav"> 
-            <a href="/">
-                <img src="img/panda_face.svg">
-                
-                <div class="title">
-                    <h1>판다마켓</h1>
-                </div>
-            </a>
-        </nav>
-
+        <a href="/"></a>
+            <nav class="nav"> 
+                    <img src="img/panda_face.svg">
+                    
+                    <div class="title">
+                        <h1>판다마켓</h1>
+                    </div>
+            </nav>
+        </a>
         <section>
-            <form action="/signup" method="post">
+            <form method="post" id="signup_form">
                 <div class="signup_section">
                     <label class="email">이메일</label>
-                    <input type="email" id="username" name="username" required placeholder="이메일을 입력하세요">
+                    <input type="text" id="username" name="username" required placeholder="이메일을 입력하세요">
+                    <span id="email_error"></span>
                 </div>
 
                 <div class="signup_section">
@@ -43,32 +43,47 @@
                     <label for="password">비밀번호</label>
                     <div class="password_pad">
                         <input type="password" id="password" name="password" required placeholder="비밀번호를 입력하세요">
+                        <img class="password_icon"src="img/btn_visibility_off_24px.svg">
                     </div>
+                    <span id="password_error"></span>
                 </div>
 
                 <div class="signup_section">
                     <label for="password_ck">비밀번호 확인</label>
                     <div class="password_pad">
                         <input type="password" id="password_ck" name="password_ck" required placeholder="비밀번호를 다시 한번 입력하세요">
-                        <img class="password_icon"src="/img/btn_visibility_off_24px.svg">
+                        <img class="password_icon_ck"src="img/btn_visibility_off_24px.svg">
                     </div>
+                    <span id="password_ck_error"></span>
                 </div>
                 <div class="login_section">
                     <button type="submit" class="login_btn">회원가입</button>
                     <div class="login_other">
                         <h2>간편 로그인 하기</h2> 
                         <div>
-                            <a href="https://www.google.com/"><img src="/img/google.png"></a>
-                            <a href="https://www.kakaocorp.com/page/"><img src="/img/kakao.png"></a>
+                            <a href="https://www.google.com/"><img src="img/google.png"></a>
+                            <a href="https://www.kakaocorp.com/page/"><img src="img/kakao.png"></a>
                         </div>
                     </div>
                 </div>
                 <div class="signup_login_link">
                     <p>판다마켓 회원이신가요?</p>
-                    <a href="/login.html" class="signup_btn">로그인</a>
+                    <a href="./login.html" class="signup_btn">로그인</a>
                 </div>
             </form>
         </section>
-    </main> 
+    </main>     
+    <!-- 위치가 여기있이유 원래 signup_login_link 아래 배치했는데 css가 적용되지 않아 이동 -->
+    <div id="error_modal" class="hidden">
+                    <div class="modal_content">
+                        <!-- 해당 div는 디자인을 위한 더미 -->
+                        <div></div>
+                        <p id="modal_message">오류 메시지입니다.</p>
+                        <div id="modal_btn_section">
+                            <button id="modal_close_btn">확인</button>
+                        </div>
+                    </div>
+                </div>
+    <script type="module" src="js/signup.js"></script>
 </body>
 </html>
