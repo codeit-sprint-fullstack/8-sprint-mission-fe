@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>회원가입</title>
-  <link rel="stylesheet" href="signup.css">
+  <link rel="stylesheet" href="CSS\login_signup.css">
   <link rel="icon" href="img/판다 얼굴.svg">
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -23,7 +23,7 @@
 
   <article>
     <!-- Logo -->
-    <a href="index.html" class="logo">
+    <a href="/" class="logo">
       <img src="img/logo_lg.svg" alt="판다 얼굴">
     </a>
 
@@ -33,6 +33,7 @@
           <div class="input_box">
             <label for="email">이메일</label>
             <input type="email" id="email" name="email" placeholder="이메일을 입력해주세요" required>
+            <span id="emailError" class="error-msg">이메일을 입력해주세요.</span> <!-- 에러 메세지 -->
           </div>
           <div class="input_box">
             <label for="username">닉네임</label>
@@ -40,13 +41,21 @@
           </div>
           <div class="input_box">
             <label for="password">비밀번호</label>
-            <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요" required>
+            <div class="password-wrapper">
+              <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요" required>
+              <img src="img/eye_close.svg" alt="비밀번호 보기" class="toggle-password">
+            </div>
+            <span id="passwordError" class="error-msg">비밀번호를 입력해주세요.</span> <!-- 에러 메세지 -->
           </div>
           <div class="input_box">
             <label for="confirm-password">비밀번호 확인</label>
-            <input type="password" id="confirm-password" name="confirm-password" placeholder="비밀번호를 다시 한 번 입력해주세요" required>
+            <div class="password-wrapper">
+              <input type="password" id="confirm-password" name="confirm-password" placeholder="비밀번호를 다시 한 번 입력해주세요" required>
+              <img src="img/eye_close.svg" alt="비밀번호 보기" class="toggle-password">
+            </div>
+            <span id="confirmPasswordError" class="error-msg">비밀번호를 입력해주세요.</span> <!-- 에러 메세지 -->
           </div>
-          <a href="" class="signup-button">회원가입</a>
+          <button type="button" id="signupBtn">회원가입</button>
         </div>
 
         <!-- Social Login -->
@@ -67,9 +76,19 @@
         <!-- Login Link -->
         <div class="login-section">
           <p>이미 회원이신가요?</p>
-          <a href="login.html" class="login-button">로그인</a>
+          <a href="login.html">로그인</a>
         </div>
     </form>
   </article>
+
+  <!-- alert modal -->
+  <div id="alertModal" class="modal" style="display: none;">
+    <div class="modal-box">
+      <p id="modalMessage">사용 중인 이메일입니다.</p>
+      <button id="modalConfirmBtn">확인</button>
+    </div>
+  </div>
+
+  <script src="js\signup.js"></script>
 </body>
 </html>

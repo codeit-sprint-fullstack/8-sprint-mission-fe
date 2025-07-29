@@ -5,23 +5,30 @@
 html {
   font-family: Pretendard, sans-serif;
   font-style: normal;
+  white-space: nowrap
 }
 
 :root {
   --input-bg-color: #F3F4F6;
   --button-color: #3692FF;
   --text-color: #1F2937;
-  --signup-button-text-color: #FFFFFF;
-  --signup-button-bg-color: #9CA3AF;
+  --button-text-color: #FFFFFF;
+  --button-bg-color: #9CA3AF;
   --social-login-bg-color: #E6F2FF;
+  --error-color: #F74747;
 }
 
 body {
   display: flex;
-  width: 1920px;
+  max-width: 1920px;
+  min-width: 375px;
   padding: 60px 640px 178px 640px;
   justify-content: center;
   align-items: center;
+}
+
+#login-page {
+  padding: 231px 640px 284px 640px;
 }
 
 /* Logo */
@@ -31,7 +38,7 @@ body {
 }
 /* Logo */
 
-/* Signup Form */
+/* Signup-Login Form */
 label {
   font-size: 1.125rem; /* 18px */
   font-weight: 700;
@@ -57,10 +64,35 @@ input:focus {
 
 #password,
 #confirm-password {
-  background-image: url("img/eye-close.svg");
   background-repeat: no-repeat;
   background-position: right 16px center;
   background-size: 24px;
+}
+
+.error-msg {
+  display: none;
+  color: var(--error-color);
+  font-size: 0.94rem;  /* 15px */
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.input_box input.error {
+  border: 1px solid var(--error-color);
+}
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 24px;
+  top: 30%;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
 }
 
 .input_box {
@@ -71,20 +103,22 @@ input:focus {
   margin-bottom: 24px;
 }
 
-.signup-button {
+.input-section button {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
   border-radius: 40px;
-  background-color: var(--signup-button-bg-color);
+  border: none;
+  background-color: var(--button-bg-color);
+  cursor: pointer;
   width: 640px;
   height: 56px;
   padding: 16px 124px;
   font-size: 1.25rem; /* 20px */
   font-weight: 600;
   line-height: 32px;
-  color: var(--signup-button-text-color);
+  color: var(--button-text-color);
   text-decoration: none;
   text-align: center;
 }
@@ -95,7 +129,7 @@ input:focus {
   align-items: flex-start;
   gap: 24px;
 }
-/* Signup Form */
+/* Signup-Login Form */
 
 /* Social Login */
 .social-login-options p {
@@ -120,31 +154,32 @@ input:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 594px;
+  width: 100%;
 }
 
 .social-login {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
+  justify-content: center;
+  align-items: center;
   border-radius: 8px;
   background-color: var(--social-login-bg-color);
   width: 640px;
   height: 74px;
-  padding: 16px 23px;
+  padding: 0px 23px;
 }
 /* Social Login */
 
-/* Login Link */
-.login-section p {
+/* Login-SignupLink */
+.login-section p,
+.signup-section p {
   font-size: 0.875rem; /* 14px */
   font-weight: 500;
   line-height: 24px;
   color: var(--text-color);
 }
 
-.login-section a {
+.login-section a,
+.signup-section a {
   font-size: 0.875rem; /* 14px */
   font-weight: 500;
   line-height: normal;
@@ -152,14 +187,15 @@ input:focus {
   text-decoration: underline;
 }
 
-.login-section {
+.login-section,
+.signup-section {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 4px;
   margin: 0;
 }
-/* Login Link*/
+/* Login-Signup Link*/
 
 form {
   display: flex;
@@ -176,4 +212,77 @@ article {
   align-items: center;
   gap: 40px;
   flex-shrink: 0;
+}
+
+/* alert modal */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  width: 540px;
+  height: 250px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.70);
+  background-color: var(--button-text-color);
+  border-radius: 8px;
+}
+
+.modal-box {
+  position: relative;
+  width: 540px;
+  height: 250px;
+}
+
+.modal p {
+  margin: 108px 174px 123px;
+  font-size: 1rem;  /* 16px */
+  font-weight: 500;
+  color: var(--text-color);
+  
+}
+
+.modal button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-right: 28px;
+  margin-bottom: 28px;
+  background-color: var(--button-color);
+  color: var(--button-text-color);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+
+
+/* PC */
+@media (min-width: 1200px) {
+  
+}
+
+/* Tablet 744~1199px */
+@media (min-width: 744px) {
+  
+}
+
+/* Mobile 375~743px */
+@media (max-width: 743px) {
+  body {
+    padding: 0px 16px;
+  }
+  article {
+    max-width: 400px;
+  }
+  .logo,
+  form {
+    width: 100%;
+  }
 }

@@ -1,0 +1,11 @@
+[core]
+	autocrlf = true
+[user]
+	name = BOOK-CA0OVO5EDH\\360
+	email = osobi621@gmail.com
+[difftool "sourcetree"]
+	cmd = "'' "
+[mergetool "sourcetree"]
+	cmd = "'' "
+	trustExitCode = false
+	keepBackup = false
