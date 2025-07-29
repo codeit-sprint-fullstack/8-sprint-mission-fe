@@ -190,6 +190,7 @@ a.header-link {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .modal-content p {
@@ -202,14 +203,6 @@ a.header-link {
   align-items: center;
 }
 
-.modal-btn {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  width: 100%;
-  padding-right: 1.75rem;
-}
-
 #modalCloseBtn {
   background-color: var(--brand-blue, #3692ff);
   color: white;
@@ -219,6 +212,9 @@ a.header-link {
   font-size: 1rem;
   width: 120px;
   height: 48px;
+  position: absolute;  /* absolute positioning! */
+  bottom: 0;
+  right: 0;
   display: block;
   align-self: flex-end;
   margin-right: 1.75rem;
@@ -232,13 +228,13 @@ a.header-link {
 /* 반응형 웹 구현 Responsive Web */
 /* Tablet: 744px - 1199px */
 
-/* @media (min-width: 744px) and (max-width: 1199px) {
+@media (min-width: 744px) and (max-width: 1199px) {
   .login-contents,
   .login-contents-su {
     padding-right: 1.5rem; /* 24px */
     padding-left: 1.5rem; /* 24px */
   }
-} */
+}
 
 /* Mobile: 375px - 743px */
 @media (min-width: 375px) and (max-width: 743px) {
@@ -294,6 +290,7 @@ a.header-link {
 
 /* 모달 반응형 */
 @media (min-width: 375px) and (max-width: 743px) {
+
   .modal-content {
     width: calc(100% - 1rem);
     width: 327px;
@@ -301,6 +298,7 @@ a.header-link {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
   }
 
   #modalCloseBtn {
@@ -310,4 +308,7 @@ a.header-link {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    bottom: 0;
+    right: 0;
     }

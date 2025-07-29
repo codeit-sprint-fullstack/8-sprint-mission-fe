@@ -10,7 +10,8 @@ const USER_DATA = [
 
 // 공통 유효성 검사 함수들
 function validateEmailFormat(email) {
-  return email !== "" && email.indexOf("@") !== -1 && email.indexOf(".") !== -1;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
 }
 
 function validatePasswordFormat(password) {

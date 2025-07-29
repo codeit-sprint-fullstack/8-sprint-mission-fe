@@ -29,7 +29,7 @@ function handleLogin(event) {
   for (let i = 0; i < USER_DATA.length; i++) {
     if (USER_DATA[i].email === inputEmail) {
       if (USER_DATA[i].password === inputPassword) {
-        window.location.href = "/items";
+        window.location.href = "./items.html";
         return;
       } else {
         showErrorModal("비밀번호가 일치하지 않습니다.");
