@@ -1,5 +1,67 @@
-import { getArticleList, getArticle, createArticle, patchArticle, deleteArticle } from "./ArticleService.js";
-import { getProductList, getProduct, createProduct, patchProduct, deleteProduct } from "./ProductService.js";
+import {
+  getArticleList,
+  getArticle,
+  createArticle,
+  patchArticle,
+  deleteArticle,
+} from "./ArticleService.js";
 
-const result = await getArticleList(1, 10, 'keyword');
-console.log(result);
+import {
+  getProductList,
+  getProduct,
+  createProduct,
+  patchProduct,
+  deleteProduct,
+} from "./ProductService.js";
+
+// Function Article
+const getArticleListTest = async () => {
+  const article = await getArticleList();
+  console.log(article);
+};
+
+const getArticleTest = async () => {
+  const article = await getArticle();
+  console.log(article);
+};
+
+const createArticleTest = async () => {
+  const article = await createArticle();
+  console.log(article);
+};
+
+const patchArticle = async () => {
+  const article = await patchArticle();
+  console.log(article);
+};
+
+const deleteArticle = async () => {
+  const article = await deleteArticle();
+  console.log(article);
+};
+
+// Function Product
+const getProductListTest = async () => {
+  const product = await getProductList();
+  console.log(product);
+};
+
+const getProductTest = async () => {
+  const product = await getProduct();
+  console.log(product);
+};
+
+const createProductTest = async () => {
+  const product = await createProduct();
+  console.log(product);
+};
+
+const patchProduct = async () => {
+  const product = await patchProduct();
+  console.log(product);
+};
+
+const deleteProduct = async () => {
+  const product = await deleteProduct();
+  console.log(product);
+};
