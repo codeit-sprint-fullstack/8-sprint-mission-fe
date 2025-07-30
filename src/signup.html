@@ -4,8 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <title>회원가입 - 판다마켓</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/reset.css" />
-  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/style.css" />    
 
   <link rel="stylesheet" href="css/signup.css" /> 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-V17CTV189Z"></script>
@@ -17,15 +18,20 @@
   </script>
 </head>
 <body>
-<main class="login-container">
-  <div class="login-logo">
-    <a href="/">
+<main class="signup-container">
+  <div id="error-modal" class="modal hidden">
+  <div class="modal-content">
+    <p class="modal-message">오류 메시지</p>
+    <button id="close-modal">확인</button>
+  </div>
+</div>
+  <a href="index.html" class="signup-logo">
       <img src="img/logo-panda.png" alt="판다마켓 로고" />
-    </a>
     <h1>판다마켓</h1>
   </div>
+  </a>
 
-  <form class="login-form">
+  <form class="signup-form">
     <label for="email">이메일</label>
     <input type="email" id="email" placeholder="이메일을 입력해주세요" />
 
@@ -33,12 +39,18 @@
     <input type="text" id="nickname" placeholder="닉네임을 입력해주세요" />
 
     <label for="password">비밀번호</label>
-    <input type="password" id="password" placeholder="비밀번호를 입력해주세요" />
+    <div class="password-wrapper">
+      <input type="password" id="password" placeholder="비밀번호를 입력해주세요" />
+      <img src="img/eye.off.png" class="toggle-password" alt="비밀번호 보기">
+    </div>
 
     <label for="confirm-password">비밀번호 확인</label>
-    <input type="password" id="confirm-password" placeholder="비밀번호를 다시 입력해주세요" />
+    <div class="password-wrapper">
+      <input type="password" id="confirm-password" placeholder="비밀번호를 다시 입력해주세요" />
+      <img src="img/eye.off.png" class="toggle-password" alt="비밀번호 보기">
+    </div>
 
-    <button type="submit" class="login-submit">회원가입</button>
+    <button type="submit" class="signup-submit">회원가입</button>
   </form>
 
   <div class="social-login-box">
@@ -57,5 +69,6 @@
     이미 회원이신가요? <a href="login.html">로그인</a>
   </p>
 </main>
-</body>
+<script src="./js/signup.js"></script>
+</body> 
 </html>

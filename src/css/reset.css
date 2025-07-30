@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
   font-family: 'Pretendard', 'ROKAF Sans', sans-serif;
   font-size: 16px;
   line-height: 1.6;

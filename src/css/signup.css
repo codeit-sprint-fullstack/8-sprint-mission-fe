@@ -16,7 +16,7 @@ a {
   cursor: pointer;
 }
 
-.login-container {
+.signup-container {
   width: 100%;
   max-width: 640px;
   margin: 0 auto;
@@ -26,40 +26,38 @@ a {
   align-items: center;
 }
 
-.login-logo {
+.signup-logo {
   display: flex;
   align-items: center;
   gap: 16px;
   margin-bottom: 40px;
 }
 
-.login-logo img {
+.signup-logo img {
   width: 100px;
   height: auto;
 }
 
-.login-logo h1 {
+.signup-logo h1 {
   color: var(--color4);
   font-size: 66px;
   font-weight: 700;
 }
 
-.login-form {
+.signup-form {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 24px;
   color: var(--color11);
-  
 }
 
-.login-form label {
+.signup-form label {
   font-size: 18px;
   font-weight: 700;
-  
 }
 
-.login-form input {
+.signup-form input {
   padding: 16px;
   border: 1px solid var(--color12);
   border-radius: 8px;
@@ -67,16 +65,14 @@ a {
   font-size: 16px;
   outline: none;
   transition: border 0.3s ease;
-  
 }
 
-.login-form input:focus {
-  border: 1px solid var(--color12);
+.signup-form input:focus {
+  border: 1px solid var(--color4);
   background-color: white;
-  
 }
 
-.login-submit {
+.signup-submit {
   margin-top: 24px;
   background-color: var(--color6);
   color: var(--color9);
@@ -89,25 +85,44 @@ a {
   cursor: pointer;
 }
 
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
 
 .social-login-box {
-  width: 640px;
-  display: flex;
+  width: 100%;
+  max-width: 640px;
   padding: 16px 24px;
-  border-radius: 8px;
-  margin: 32px 0;
-  justify-content: space-between;
-  align-items: center;
   background-color: var(--color13);
+  color: var(--color11);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 32px 0;
   gap: 24px;
 }
 
-
 .social-login-box p {
-  font-size: 14px;
-  color: var(--color11);
+  font-size: 16px;
   font-weight: 500;
   margin: 0;
+  line-height: 26px;
 }
 
 .social-icons {
@@ -121,16 +136,136 @@ a {
   cursor: pointer;
 }
 
-
 .signup-link {
-  margin-top: 32px;
-  font-size: 14px;
-  color: #6B7280;
+  font-size: 15px;
+  color: var(--color11);
   text-align: center;
+  margin-top: 32px;
+  font-weight: 500;
+  line-height: normal;
 }
 
 .signup-link a {
   color: var(--color4);
-  margin-left: 4px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: normal;
   text-decoration: underline;
+  margin-left: 4px;
+}
+
+@media (max-width: 767px) {
+  .signup-container {
+    padding: 40px 16px;
+  }
+
+  .signup-form,
+  .signup-form input,
+  .password-wrapper,
+  .signup-submit,
+  .social-login-box {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+}
+
+.error-message {
+  color: var(--error-red);
+  font-family: Pretendard;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: 4px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  font-family: Pretendard, sans-serif;
+  background-color: white;
+  width: 540px;
+  height: 250px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  color: var(--color11);
+  position: relative;
+}
+
+.modal-message {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+  margin: 0 auto;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  margin-top: 24px;
+}
+
+.modal-content button {
+  width: 120px;
+  height: 48px;
+  background-color: var(--color4);
+  color: white;
+  border: none;
+  padding: 12px 23px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  align-self: flex-end;
+  transition: background-color 0.2s ease;
+}
+
+.modal-content button:hover {
+  background-color: var(--color4-dark);
+}
+
+
+.modal.hidden {
+  display: none;
+}
+
+/* PC */
+@media (min-width: 1200px) {
+  .login-container {
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+}
+
+/* Tablet */
+@media (min-width: 744px) and (max-width: 1199px) {
+  .login-container {
+    padding: 0 32px;
+  }
+}
+
+/* Mobile */
+@media (min-width: 375px) and (max-width: 743px) {
+  .login-container {
+    padding: 0 16px;
+  }
 }

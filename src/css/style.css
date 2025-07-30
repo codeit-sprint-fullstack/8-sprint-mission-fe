@@ -15,6 +15,7 @@
   --color14: #f3f4f6;
   --color15: #f9f9f9;
   --color16: #F9FAFB;
+  --error-red: #F74747;
 }
 
 * {
@@ -23,30 +24,13 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: Pretendard;
-  line-height: 1.6;
-  background-color: var(--color9);
-  color: var(--color5);
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-}
 
 .container {
-  max-width: 1920px;
+  max-width: 1199px;
   margin: 0 auto;
   padding: 0 400px;
 }
 
-@media screen and (max-width: 1920px) {
-  .container {
-    padding: 0 200px;
-  }
-}
 
 .nav {
   position: fixed;
@@ -193,7 +177,7 @@ a {
 }
 
 .card-section {
-  background-color: (--color9); 
+  background-color: var(--color9); 
   padding: 138px 0;
 }
 
@@ -265,7 +249,7 @@ a {
 .card h3 {
   color: var(--color5);
   font-family: Pretendard;
-  font-size: 24x;
+  font-size: 24px;
   font-weight: 700;
   line-height: 140%;
   letter-spacing: 0.8px;
@@ -286,8 +270,8 @@ a {
 
 .review-inner {
   max-width: 1920px;
-  height: 0 auto;
-  margin: 0 auto;
+  height: auto;
+  margin: auto;
   padding: 0 200px;
   display: inline-flex;
   justify-content: center;
@@ -372,3 +356,75 @@ a {
   cursor: pointer;
 }
 
+@media (max-width: 1199px) {
+  .container,
+  .nav-inner,
+  .hero-inner,
+  .review-inner,
+  .footer {
+    padding: 0 40px;
+  }
+
+  .card,
+  .card-type2 {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .card img,
+  .card-type2 img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* 모바일: 375px ~ 743px */
+@media (max-width: 743px) {
+  .container,
+  .nav-inner,
+  .hero-inner,
+  .review-inner,
+  .footer {
+    padding: 0 16px;
+  }
+
+  .logo img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .hero-img img,
+  .review-img img,
+  .card img {
+    width: calc(100vw - 32px);
+    height: auto;
+  }
+
+  .hero-text h2,
+  .card-text,
+  .review-text p {
+    font-size: 24px;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .cta-btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    width: 100%;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    height: auto;
+    padding: 32px 16px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}

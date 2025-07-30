@@ -4,8 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <title>로그인 - 판다마켓</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/reset.css" />
   <link rel="stylesheet" href="./css/style.css" />
+
   <link rel="stylesheet" href="css/login.css" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-V17CTV189Z"></script>
   <script>
@@ -17,29 +19,39 @@
 </head>
 <body>
 <main class="login-container">
-  <div class="login-logo">
+<div id="error-modal" class="modal hidden">
+  <div class="modal-content">
+    <p class="modal-message">오류 메시지</p>
+    <button id="close-modal">확인</button>
+  </div>
+</div>
+  <a href="index.html" class="login-logo">
     <img src="img/logo-panda.png" alt="판다마켓 로고" />
     <h1>판다마켓</h1>
-  </div>
-
+  </a>
+  
+ 
   <form class="login-form">
+    
     <label for="email">이메일</label>
     <input type="email" id="email" placeholder="이메일을 입력해주세요" />
 
     <label for="password">비밀번호</label>
+    <div class="password-wrapper">
     <input type="password" id="password" placeholder="비밀번호를 입력해주세요" />
-
+    <img src="img/eye.off.png" class="toggle-password" alt="비밀번호 보기">
+    </div>
     <button type="submit" class="login-submit">로그인</button>
   </form>
 
-  <div class="social-login">
-    <p calss="social-login-box p">간편 로그인하기</p>
+  <div class="social-login-box">
+    <p>간편 로그인하기</p>
     <div class="social-icons">
       <a href="https://www.google.com/" target="_blank">
-      <img src="img/google.png" alt="Google" />
+        <img src="img/google.png" alt="Google 로그인" />
       </a>
       <a href="https://www.kakaocorp.com/page/" target="_blank">
-      <img src="img/kakao.png" alt="Kakao" />
+        <img src="img/kakao.png" alt="Kakao 로그인" />
       </a>
     </div>
   </div>
@@ -48,3 +60,6 @@
     판다마켓이 처음이신가요? <a href="signup.html">회원가입</a>
   </p>
 </main>
+<script src="./js/login.js"></script>
+</body>
+</html>
