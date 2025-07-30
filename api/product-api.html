@@ -1,0 +1,119 @@
+<!-- AI로 작성됨 -->
+ 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>🧪 Product API 테스트</title>
+</head>
+<body>
+  <h1>🧪 Product API 테스트</h1>
+
+  <button onclick="testGetList()">📦 상품 목록</button>
+  <button onclick="testCreate()">➕ 상품 생성</button>
+  <button onclick="testGetOne()">🔍 상품 가져오기</button>
+  <button onclick="testPatch()">✏️ 상품 수정</button>
+  <button onclick="testDelete()">🗑️ 상품 삭제</button>
+
+  <p><strong>마지막 생성된 상품 ID:</strong> <span id="last-id">없음</span></p>
+  <pre id="output"></pre>
+
+  <script type="module">
+    import {
+      getProductList,
+      getProduct,
+      createProduct,
+      patchProduct,
+      deleteProduct
+    } from './ProductService.js';
+
+    const output = document.getElementById('output');
+    const lastIdDisplay = document.getElementById('last-id');
+    let lastCreatedId = null;
+
+    function log(result) {
+      output.textContent = JSON.stringify(result, null, 2);
+    }
+
+    function error(err) {
+      output.textContent = '❌ 오류: ' + err.message;
+    }
+
+    function updateLastId(id) {
+      lastCreatedId = id;
+      lastIdDisplay.textContent = id ?? '없음';
+    }
+
+    window.testGetList = async function () {
+      try {
+        const res = await getProductList({ page: 1, pageSize: 5 });
+        log(res);
+      } catch (err) {
+        error(err);
+      }
+    };
+
+    window.testCreate = async function () {
+      try {
+        const res = await createProduct({
+          name: '테스트 상품',
+          description: '이것은 테스트용 상품입니다.',
+          price: 19900,
+          tags: ['테스트', '상품'],
+          images: ['https://dummyimage.com/600x400/000/fff'],
+        });
+        updateLastId(res.id);
+        log(res);
+      } catch (err) {
+        error(err);
+      }
+    };
+
+    window.testGetOne = async function () {
+      if (!lastCreatedId) {
+        output.textContent = '❗ 먼저 상품을 생성하세요.';
+        return;
+      }
+      try {
+        const res = await getProduct(lastCreatedId);
+        log(res);
+      } catch (err) {
+        error(err);
+      }
+    };
+
+    window.testPatch = async function () {
+      if (!lastCreatedId) {
+        output.textContent = '❗ 먼저 상품을 생성하세요.';
+        return;
+      }
+      try {
+        const res = await patchProduct(lastCreatedId, {
+          name: '수정된 상품',
+          description: '수정된 설명입니다.',
+          price: 29900,
+          tags: ['수정됨'],
+          images: ['https://dummyimage.com/600x400/ff0000/ffffff'],
+        });
+        log(res);
+      } catch (err) {
+        error(err);
+      }
+    };
+
+    window.testDelete = async function () {
+      if (!lastCreatedId) {
+        output.textContent = '❗ 먼저 상품을 생성하세요.';
+        return;
+      }
+      try {
+        const res = await deleteProduct(lastCreatedId);
+        updateLastId(null);
+        log(res);
+      } catch (err) {
+        error(err);
+      }
+    };
+  </script>
+</body>
+</html>
