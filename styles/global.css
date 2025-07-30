@@ -1,0 +1,176 @@
+/* [심화 요구사항]
+  <프로젝트에서 자주 사용되는 색상을 CSS 변수로 등록하는 방법>
+
+  - CSS custom properties, CSS variables, cascading variables 등으로 불려요.
+  - CSS 변수를 사용하면 테마 색상을 중앙에서 관리할 수 있어 사이트 전반에 걸쳐 일관된 스타일을 유지하고, 필요한 경우 쉽게 색상을 변경할 수 있어요.
+  - 전역적으로 사용할 수 있도록 root CSS selector(`:root` pseudo-class)에서 선언하는 것이 일반적이에요.
+  - 변수명을 등록할 때는 hyphen 두 개(`--`) 뒤에 원하는 이름을 붙여주면 되는데, 이때 색상명이나 색상을 잘 설명하는 별칭을 부여하면 돼요. 
+    (예: 메인 컬러인 하늘색 색상은 `--blue` 또는 `--main-color` 등으로 등록할 수 있겠죠. 
+    포인트 컬러가 다양하거나 등록할 블루 계열 색상이 많아 이런 포괄적인 이름으로 구분이 어려운 경우에는 `--main-button-color` 같이 해당 색상의 사용 용도로 표현하기도 해요.)
+  - 등록된 색상을 적용할 때는 hex code 대신 `var(변수명)`를 넣어주면 됩니다.
+
+  - 참고 문서: https://developer.mozilla.org/ko/docs/Web/CSS/Using_CSS_custom_properties
+*/
+html {
+  font-size: 62.5%;
+}
+
+:root {
+  /* Gray scale */
+  --gray-900: #1b1d1f;
+  --gray-800: #26282b;
+  --gray-600: #454c53;
+  --gray-500: #72787f;
+  --gray-400: #9ea4a8;
+  --gray-200: #e5e7eb;
+  --gray-100: #e8ebed;
+  --gray-50: #f7f7f8;
+
+  /* Primary color */
+  --blue: #3692ff;
+
+  /* Layout dimensions */
+  --header-height: 7rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* form 요소 스타일 리셋: 브라우저 간 스타일 차이를 최소화하기 위해 기본 스타일을 제거하고 부모 요소로부터 속성을 상속 받도록 했어요. */
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+img {
+  vertical-align: bottom;
+}
+
+body {
+  color: #374151;
+  word-break: keep-all;
+  font-family: "Pretendard", sans-serif;
+}
+
+/* 
+  <header를 웹 페이지 상단에 고정>
+  - header에 position: fixed를 적용해 스크롤 시에도 동일한 위치에 고정되어 있는 요소로 만들어 주세요. 
+  - 고정된 요소는 부모 요소에서 독립되어 지정된 위치에 배치되기 때문에 top/left 속성을 함께 명시해 주어야 해요.
+  - header가 나머지 페이지 콘텐츠와 겹쳐 보이지 않도록 main에 header의 높이만큼 margin-top을 부여해 주어 콘텐츠 시작점을 조정해 주세요.
+*/
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20rem;
+  background-color: #ffffff;
+  border-bottom: 0.1rem solid #dfdfdf;
+}
+
+.with-header {
+  margin-top: var(--header-height);
+}
+
+footer {
+  background-color: #111827;
+  color: #9ca3af;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3.2rem 20rem 10.8rem 20rem;
+  font-size: 1.6rem;
+}
+
+#footerMenu {
+  display: flex;
+  gap: 3rem;
+  color: var(--gray-200);
+}
+
+#socialMedia {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.wrapper {
+  max-width: 120rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 5.6rem;
+  letter-spacing: 0.02em;
+}
+
+.button {
+  background-color: var(--blue);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button:hover {
+  background-color: #1967d6;
+}
+
+.button:focus {
+  background-color: #1251aa;
+}
+
+.button:disabled {
+  background-color: #9ca3af;
+  cursor: default;
+  pointer-events: none;
+}
+
+.pill-button {
+  font-size: 2rem;
+  font-weight: 700;
+  border-radius: 99.9rem;
+  padding: 1.6rem 12.4rem;
+}
+
+/* 
+  Utility Classes:
+  - 유틸리티 클래스는 자주 사용하는 스타일 속성을 작은 단위로 분리하여 정의한 CSS이며, 스타일의 재사용성이 가장 큰 장점이에요.
+  - 유틸리티 클래스 또는 기존에 정의된 클래스를 적절하게 결합하여 활용하면 별도의 id나 class를 정의하지 않고도 스타일 변화를 적용할 수 있어 작업 속도를 높이고, 코드의 간결성을 유지할 수 있어요.
+  - 예시: 판다마켓 로그인/회원가입 form 제출 버튼처럼 기존에 스타일링되어 있는 요소와 유사하되 너비만 컨테이너의 100%로 확장한 형태가 필요한 경우가 있습니다. 
+    이때 기존의 `pill-button` 클래스 속성에 width: 100%가 추가된 새로운 클래스를 생성하기 보다는 `pill-button`과 `full-width` 유틸리티 클래스를 결합하여 사용함으로써 간단하게 원하는 스타일을 구현할 수 있어요.
+*/
+.full-width {
+  width: 100%;
+}

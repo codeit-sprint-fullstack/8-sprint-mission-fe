@@ -1,0 +1,128 @@
+/* 
+  Authentication 관련 스타일링
+  - 로그인과 회원가입 페이지에 공통된 요소가 많기 때문에 authentication(본인인증)이라는 컨셉으로 묶어 하나의 스타일시트에서 관리해 주었어요.
+*/
+
+.auth-container {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.logo-home-button-wrapper {
+  display: block;
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+
+.input-item {
+  margin-bottom: 24px;
+}
+
+.input-item label {
+  /* <label>은 inline 요소이기 때문에 margin-bottom을 적용하려면 block 요소로 바꿔줘야 해요. */
+  display: block;
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.input-item input {
+  padding: 16px 24px;
+  background-color: #f3f4f6;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: 24px;
+  width: 100%;
+}
+
+.input-item input::placeholder {
+  color: #9ca3af;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.input-item input:focus {
+  outline-color: var(--blue);
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-toggle-button {
+  position: absolute;
+  right: 24px;
+}
+
+.social-login-container {
+  background-color: #e6f2ff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 23px;
+  margin: 24px 0;
+}
+
+.social-login-container h3 {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.social-login-buttons-container {
+  display: flex;
+  gap: 16px;
+}
+
+.auth-switch {
+  font-weight: 500;
+  font-size: 15px;
+  text-align: center;
+}
+
+.auth-switch a {
+  color: #3182f6;
+  text-decoration: underline;
+  /* 밑줄과 텍스트 사이 간격을 조정하고 싶다면 text-underline-offset을 사용하면 돼요. */
+  text-underline-offset: 2px;
+}
+
+.input-item input.error{
+  border: 2px solid #dc2626;
+}
+
+.input-item input.error:focus{
+  border: 2px solid #dc2626;
+}
+
+.error-message {
+  color: #dc2626;
+  font-size: 14px;
+  margin-top: 8px;
+  margin-left: 4px;
+  display: none; /* 기본적으로 숨김 */
+}
+
+.error-message.show {
+  display: block; /* 에러가 발생할 경우 표시 */
+}
+
+/* Mobile (375px ~ 743px) */
+@media (min-width: 375px) and (max-width: 743px){
+  #auth-container {
+    margin: 16px auto;
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+/* Tablet (744px ~ 1199px) & PC (1200px ~) */
+/* @media (min-width: 744px) {
+    // 요구사항에 따라, 구현할 내용이 없는 것 같습니다.
+    // 혹시 있다면 코드리뷰로 남겨주시면 감사하겠습니다.
+} */

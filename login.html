@@ -1,92 +1,157 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="./css/login/globals.css" />
-    <link rel="stylesheet" href="./css/login/styleguide.css" />
-    <link rel="stylesheet" href="./css/login/style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- 심화 요구사항) 로그인 페이지의 메타 태그 설정 (제목, 설명, 주소, 이미지) -->
+    <meta property="og:title" content="판다마켓 - 로그인" />
+    <meta property="og:description" content="일상에서 모든 물건을 거래해보세요" />
+    <meta property="og:image" content="https://gentle-hummingbird-9868af.netlify.app/images/home/bottom-banner-image.png" />
+    <meta property="og:url" content="https://gentle-hummingbird-9868af.netlify.app/login.html" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:type" content="Shopping" />
+    <meta property="og:logo" content="https://gentle-hummingbird-9868af.netlify.app/images/logo/logo.svg" />
+
+    <title>판다마켓 - 로그인</title>
+    <link rel="icon" href="images/logo/favicon.ico" />
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/auth.css" />
   </head>
+
   <body>
-    <div class="screen" data-model-id="8532:21236">
-      <div class="div">
-        <div class="frame">
-          <div class="logo">
-            <div class="view">
-              <a href="index.html">
-              <div class="group">
-                <div class="group-wrapper">
-                  <div class="div-wrapper">
-                    <div class="overlap-group-wrapper">
-                      <div class="overlap-group">
-                        <img class="img" src="img/group-1.png" />
-                        <img class="ellipse" src="img/ellipse-2.svg" />
-                        <img class="group-2" src="img/group-4.png" />
-                        <img class="group-3" src="img/group-5.png" />
-                        <img class="group-4" src="img/group-6.png" />
-                        <img class="vector" src="img/vector-11.svg" />
-                        <img class="subtract" src="img/subtract.svg" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-              </div>
-            </div>
-            <div class="text-wrapper">판다마켓</div>
+    <main class="auth-container">
+      <div class="logo-home-button-wrapper">
+        <a href="/"
+          ><img src="images/logo/logo.svg" alt="판다마켓 홈" width="396"
+        /></a>
+      </div>
+
+      <!-- 
+        <form 태그>
+        - 사용자에게 정보를 입력 받을 때는 HTML의 <form> 태그를 사용하는 것이 좋아요. 
+        - method 속성으로 form 데이터의 전송 방식을 선택해줄 수 있어요.
+          1. `get`: 속성값을 별도로 명시해주지 않으면 기본 설정인 get이 사용됩니다. 입력 데이터가 URL에 포함되어 전송되므로, 주로 검색어와 같이 공개적으로 노출되어도 문제가 없는 데이터를 전송할 때 사용합니다.
+          2. `post`: 보안이 중요한 개인정보 입력 양식에서는 반드시 post를 사용해야 해요. 사진 업로드 처럼 데이터 크기가 큰 경우에도 post를 사용합니다.
+        - 동일 페이지 내에 form이 여러 개 있을 경우 구별을 위해 선택적으로 name 속성을 추가해 주기도 합니다.
+      -->
+
+      <!-- 
+        <input & label의 연결>
+        - 입력 필드의 명칭을 표시할 때는 div나 일반 텍스트 요소보다는 <label> 태그를 사용하는 것이 좋습니다.
+        - <label>의 for 속성과 <input>의 id 속성에 같은 값을 넣어주면 하나의 짝으로 인식돼요.
+        - 시각장애인들이 사용하는 스크린 리더와 같은 보조 기술은 <label>을 통해 <input> 필드의 목적을 사용자에게 알려주기 때문에 웹 접근성(accessibility) 측면에서도 중요합니다.
+        - <label> 내부에 <input>을 nest 하는 암묵적(implicit) 연결 방식을 사용한다면 for와 id 속성 없이도 자동으로 레이블과 입력 필드가 연결됩니다. 
+          하지만 일부 스크린 리더에서는 이런 구조를 정확하게 인식하지 못하는 것으로 알려져 있어, 아직까지는 다양한 사용자와 환경을 고려해 항상 for와 id 속성을 명시하는 것을 권장합니다.
+
+        <input 속성: name>
+        - name 속성은 폼이 서버로 전송될 때, 서버가 각 입력 필드의 데이터를 식별하는 데 사용하는 식별자입니다.
+        - <input>에 name 속성이 없으면 서버에 해당 필드의 입력값이 전송되지 않으니 잊지 않고 name 속성을 지정해 주세요.
+        - name 속성은 라디오 버튼과 같이 여러 선택지 중 하나만 선택할 수 있는 입력 필드에서 중요한 역할을 하기도 해요.
+          동일한 name 값을 가진 <input> 태그들은 하나의 그룹으로 묶이며, 그 중 사용자가 선택한 옵션의 값만이 서버로 전송됩니다.
+          (예: 성별 선택)
+              <input type="radio" id="male" name="gender" value="male">
+              <label for="male">남</label>
+              <input type="radio" id="female" name="gender" value="female">
+              <label for="female">여</label>
+
+        <input 속성: type>
+        - <input>의 type 속성을 적절히 활용하면 HTML이 제공하는 다양한 입력 필드 기능을 상황에 맞게 사용할 수 있어요. 
+        - 예: <input> type을 `email`로 설정하면 사용자가 입력한 값이 이메일 형식에 맞는지 기본적인 유효성 검증을 하기에 용이합니다. 이 기능은 추후에 더 다뤄볼게요.
+        - 예: <input> type을 `password`로 설정하면 입력 내용이 마스킹 처리 돼요.
+
+        <input 속성: placeholder>
+        - 입력 창에 입력값이 없을 때 표시할 내용입니다. 안내사항 또는 예상 입력 형식 힌트를 제공하는 용도로 활용됩니다.
+      -->
+
+      <form method="post">
+        <div class="input-item">
+          <label for="email">이메일</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="이메일을 입력해 주세요"
+          />
+          <div class="error-message" id="email-error"></div>
+        </div>
+        <div class="input-item">
+          <label for="password">비밀번호</label>
+          <div class="input-wrapper">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="비밀번호를 입력해 주세요"
+            />
+            <!-- 
+              <button> type 속성의 중요성
+              - <form> 내에 있는 <button>은 type 속성을 명시하지 않으면 기본적으로 type="submit"으로 적용됩니다. 
+              - 비밀번호 토글 버튼을 클릭했을 때 페이지가 새로고침되는 현상이 있었다면 아마 이 이슈였을 거예요.
+              - 원치 않을 때 폼이 제출되는 것을 막기 위해, 제출 버튼이 아니라면 type="button"을 꼭 추가해 주세요!
+            -->
+            <!-- 
+              - aria-label은 웹 요소의 목적이나 내용을 스크린 리더와 같은 보조 기술 사용자에게 명확하게 설명하기 위해 사용되는 접근성 속성이에요.
+              - 웹 접근성을 고려해 아이콘으로만 된 버튼 또는 링크처럼 텍스트 정보가 없는 요소에는 aria-label을 추가해 주는 것을 추천해요.
+            -->
+            <!-- [심화 요구사항] 비밀번호, 비밀번호 확인 input 요소 오른쪽에 비밀번호를 확인할 수 있는 눈 모양 아이콘을 추가합니다. -->
+            <button
+              type="button"
+              class="password-toggle-button"
+              aria-label="비밀번호 보기"
+            >
+              <img
+                src="images/icons/eye-invisible.svg"
+                alt="비밀번호 숨김 상태 아이콘"
+                id="password_button"
+              />
+            </button>
+            
           </div>
-          <div class="frame-2">
-            <div class="frame-3">
-              <div class="frame-3">
-                <div class="frame-4">
-                  <div class="text-wrapper-2">이메일</div>
-                  <div class="email-wrapper">
-                    <div class="text-wrapper-3">
-                      <input class="email" placeholder="panda@codeit.com" type="email"/>
-                    </div>
-                  </div>
-                </div>
-                <div class="frame-4">
-                  <div class="group-5"><div class="text-wrapper-4">비밀번호</div></div>
-                  <div class="password-wrapper">
-                    <div class="frame-5">
-                      <input class="password" placeholder="비밀번호를 입력해주세요" type="password" />
-                      <img class="btn-visibility-on" src="img/btn-visibility-on-24px.svg" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="btn-large"><div class="text-wrapper-6">로그인</div></div>
-            </div>
-            <div class="frame-6">
-              <div class="frame-7">
-                <div class="text-wrapper-7">간편 로그인하기</div>
-                  <div class="frame-8">
-                    <div class="component">
-                      <div class="overlap-group-2">
-                        <a href="https://www.google.com">
-                          <div class="icon-google">
-                            <div class="google-bg">
-                              <img class="component" src="img/component-2.png"/>
-                            </div>
-                          </div>
-                          <div class="google"></div>
-                        </a>
-                      </div>
-                    </div>
-                    <a href="https://www.kakao.com">
-                      <img class="component" src="img/component-3.png" />
-                    </a>
-                  </div>
-              </div>
-            </div>
-            <div class="frame-9">
-              <div class="text-wrapper-8">판다마켓이 처음이신가요?</div>
-              <div class="text-wrapper-9"><a href="./signup.html" style="color: #3182F6">회원가입</a></div>
-            </div>
-          </div>
+          <div class="error-message" id="password-error"></div>
+        </div>
+
+        <button type="submit" class="button pill-button full-width" id="login-button">
+          로그인
+        </button>
+      </form>
+
+      <div class="social-login-container">
+        <h3>간편 로그인하기</h3>
+        <div class="social-login-buttons-container">
+          <a
+            href="https://www.google.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="구글 로그인"
+            ><img
+              src="images/social/google-logo.png"
+              alt="구글 로그인"
+              width="42"
+          /></a>
+          <a
+            href="https://www.kakaocorp.com/page/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="카카오톡 로그인"
+            ><img
+              src="images/social/kakao-logo.png"
+              alt="카카오톡 로그인"
+              width="42"
+          /></a>
         </div>
       </div>
-    </div>
+
+      <div class="auth-switch">
+        판다마켓이 처음이신가요? <a href="signup.html">회원가입</a>
+      </div>
+    </main>
+    <script src="scripts/common.js"></script>
   </body>
 </html>
