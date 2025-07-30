@@ -4,12 +4,12 @@
 
 @font-face {
     font-family: 'ROKAFSansBold';
-    src: url('/Panda_Market/images/ROKAFSansBold.woff2') format('woff2');
+    src: url('../font/ROKAFSansBold.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'ROKAFSansMedium';
-    src: url('/Panda_Market/images/ROKAFSansMedium.woff2') format('woff2');
+    src: url('../font/ROKAFSansMedium.woff2') format('woff2');
 }
 
 body {
@@ -463,3 +463,4 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
+
