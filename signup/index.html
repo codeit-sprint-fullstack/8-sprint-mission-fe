@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="signup.css">
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -14,12 +14,21 @@
     })(window,document,'script','dataLayer','GTM-TRRLGNXD');</script>
     <!-- End Google Tag Manager -->
 </head>
-<body>
+
+<body class="pc">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TRRLGNXD"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-
+    
+    <div class="popup">
+        <div class="bg">
+            <div class="box">
+                <h1>error message</h1>
+                <button class=".clickable">확인</button>
+            </div>
+        </div>
+    </div>
     <div class="signup-box">
         <div class="main-logo">
             <a class="clickable" href="/">
@@ -27,33 +36,46 @@
             </a>
         </div>
         <form class="signup-form">
-            <label for="id-input">이메일</label>
-            <input id="id-input" name="username" type="email" placeholder="이메일을 입력해주세요">
-            <label for="nickname-input">닉네임</label>
-            <input id="nickname-input" name="username" placeholder="닉네임을 입력해주세요">
-            <label for="pw-input">비밀번호</label>
-            <div class="pw-input-box">
-                <input id="pw-input" name="password" type="password" placeholder="비밀번호를 입력해주세요">
-                <a class="pw-eye" >
-                    <img src="/images/login/pw_eye.svg">
-                </a>
+
+            <div class="email-form">
+                <label for="email-input">이메일</label>
+                <div class="input-box">
+                    <input id="email-input" name="username" type="email" placeholder="이메일을 입력해주세요">
+                </div>
+                <h1 class="valid-check-text"></h1>
             </div>
-            <label for="repw-input">비밀번호 확인</label>
-            <div class="pw-input-box">
-                <input id="repw-input" name="password" type="password" placeholder="비밀번호를 다시 한 번 입력해주세요">
-                <a class="pw-eye" >
-                    <img src="/images/login/pw_eye.svg">
-                </a>
+            
+            <div class="pw-form">
+                <label for="pw-input">비밀번호</label>
+                <div class="input-box">
+                    <input id="pw-input" name="password" type="password" placeholder="비밀번호를 입력해주세요">
+                    <a class="pw-eye">
+                        <img  src="/images/login/pw_eye.svg">
+                    </a>
+                </div>
+                <h1 class="valid-check-text"></h1>
             </div>
-            <button>회원가입</button>
+
+            <div class="repw-form">
+                <label for="repw-input">비밀번호 확인</label>
+                <div class="input-box">
+                    <input id="repw-input" name="password" type="password" placeholder="비밀번호를 입력해주세요">
+                    <a class="pw-eye">
+                        <img  src="/images/login/pw_eye.svg">
+                    </a>
+                </div>
+                <h1 class="valid-check-text"></h1>
+            </div>
+
+            <button type="submit">회원가입</button>
         </form>
         <div class="simple-login">
             <h1>간편 로그인 하기</h1>
             <div>
-                <a class="clickable" href="https://www.google.com/">
+                <a class="clickable" href="https://www.google.com/" target="_blank">
                     <img src="/images/login/google.svg">
                 </a>
-                <a class="clickable" href="https://www.kakaocorp.com/page/">
+                <a class="clickable" href="https://www.kakaocorp.com/page/" target="_blank">
                     <img src="/images/login/kakaotalk.svg">
                 </a>
             </div>
@@ -63,5 +85,7 @@
             <a href="/login">로그인</a>
         </div>
     </div>
+    <script src="/commonModule/loginSignup.js"></script>
+    <script src="/commonModule/platformScreenSet.js"></script>
 </body>
 </html>

@@ -5,6 +5,7 @@
 html{
     font-size: 62.5%;
     /* 10px = 1.0rem */
+
     --Brand-Blue: #3692FF;
     --Secondary-400: #9CA3AF;
     --Bg-Skyblue: #E6F2FF;
@@ -12,6 +13,9 @@ html{
     --Cool-Gray-800: #1F2937;
 }
 
+body{
+    margin: 0;
+}
 header{
     width: 100%;
     height: 7rem;
@@ -34,16 +38,39 @@ a{
     bottom: 0;
 }
 
-.outer-margin-set{
+.outer-margin{
     height: 100%;
     max-width: 1920px;
-    padding: 0 200px;
     margin: 0 auto;
+    overflow: hidden;
 }
 
-.inner-margin-set{
-    height: 100%;
-    padding: 0 200px;
+.inner-margin{
+    height: 100%; 
+}
+
+.pc .outer-margin{
+    padding: 0 20rem;
+}
+
+.pc .inner-margin{
+    padding: 0 20rem;
+}
+
+.tablet .outer-margin{
+    padding: 0 2.4rem;
+}
+
+.tablet .inner-margin{
+    padding: 0 0;
+}
+
+.mobile .outer-margin{
+    padding: 0 1.6rem;
+}
+
+.mobile .inner-margin{
+    padding: 0 0;
 }
 
 .logo{
@@ -67,7 +94,8 @@ a{
     align-items: center;
     gap: 1rem;
 
-    border-radius: 8px;
+
+    border-radius: 0.8rem;
     background: var(--Brand-Blue);
 
 
@@ -83,59 +111,77 @@ a{
 
 .headline{
     width: 100%;
-    height: 54rem;
+    height: auto;
     background-color: #CFE5FF;
 }
 
-.headline .outer-margin-set{
+.headline .outer-margin{
     width: 100%;
-    height: 100%;
+    height: auto
 }
 
-.headline .inner-margin-set{
-    height: 100%;
+.headline .inner-margin{
+    width: 100%;
+    height: auto;
     display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.headline .inner-margin > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.pc .headline .inner-margin > div{
+    flex-direction: row;
     justify-content: center;
-    align-items: flex-end;
+    margin: 20rem 0 0;
 }
 
-.headline .inner-margin-set > div{
-    height: 100%;
+.tablet .headline .inner-margin > div{
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10rem;
+    margin: 8.4rem 0 0;
+}
+
+.mobile .headline .inner-margin > div{
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5rem;
+    margin: 10rem 0 0;
+}
+
+.headline .descripton{ 
+    width: 60%;
+    font-size:  1rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.headline.head .inner-margin-set > div{
-    width: 100%;
-    height: 34rem;
-}
-
-.headline.tail .inner-margin-set > div{
-    width: 100%;
-    height: 39.7rem;
-}
-
-.headline .descripton{ 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.pc .headline .descripton{
+    min-width: 36rem;
     align-items: flex-start;
-    z-index: 1;
 }
 
-.headline.head .descripton{
-    min-width: 35.7rem;
-}
-
-.headline.tail .descripton{
-    min-width: 29.5rem;
+.tablet .headline .descripton{
+    width: 100%;
 }
 
 .headline .descripton h1{
     color: #374151;
-    font-size: 4rem;
+    font-size: 4em;
     font-weight: 700;
+}
+
+.tablet .headline.head br{
+    display: none;
 }
 
 .headline .descripton a{
@@ -159,18 +205,17 @@ a{
     line-height: 3.2rem;
 }
 
-.headline.head img{
+.mobile .headline a{
+    padding: 1.2rem 7.1rem;
+    font-size: 1.8rem;
+}
+
+.headline img{
     width: 74.6rem;
     height: 34rem;
 }
 
-.headline.tail img{
-    width: 74.6rem;
-    height: 39.7rem;
-}
-
-
-.sec .inner-margin-set{
+.pc .sec .inner-margin{
     width: 100%;
     height: 72rem;
     display: flex;
@@ -178,29 +223,80 @@ a{
     align-items: center;
 }
 
-.section-box{
-    width: 98.8rem;
-    height: 44.4rem;
-    background-color: #FCFCFC;
+.tablet .sec .inner-margin{
+    width: 100%;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5rem;
+    padding: 2rem 0;
 }
 
-.hot-item .descripton{
-    min-width: 27.4rem;
+.moblie .sec .inner-margin{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
 }
-.buy .descripton{
-    min-width: 31.7rem;
+
+/* 본문 세션 */
+
+.section-box{
+    background-color: #FCFCFC;
 }
-.sell .descripton{
-    min-width: 33.5rem;
+
+.pc .section-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6.4rem;
+    width: 98.8rem;
+    height: 44.4rem;
+}
+
+.tablet .section-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.4rem;
+    width: 100%;
+    /* aspect-ratio: 988 / 444; */
+}
+
+.mobile .section-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.4rem;
+    width: 100%;
+    /* aspect-ratio: 988 / 444; */
+}
+
+/* 판매 세션만 크기 줄면 배열 순서를 뒤집는다. */
+.pc .sec.buy .section-box{
+    flex-direction: row-reverse;
+}
+
+.sec.buy .section-box{
+    flex-direction: column;
 }
 
 .section-box img{
-    width: 58.8rem;
-    height: 44.4rem;
+    width: 100%;
+}
+
+.pc .section-box img{
+    width: auto;
+    height: 100%;
+}
+
+.section-box .descripton{
+    width: 100%;
+    min-width: 30rem;
 }
 
 .section-box h2{

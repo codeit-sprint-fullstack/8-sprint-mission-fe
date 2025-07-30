@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>판다마켓</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="판다마켓">
+    <meta property="og:description" content="일상에서 모든 물건을 거래해보세요">
+    <meta property="og:image" content="/images/logo.svg">
+    <meta property="og:url" content="https://sprint3.netlify.app/">
+  
     <link rel="stylesheet" href="reset.css">
 
     <!-- Google Tag Manager -->
@@ -14,15 +20,15 @@
     })(window,document,'script','dataLayer','GTM-TRRLGNXD');</script>
     <!-- End Google Tag Manager -->
 </head>
-<body>
+<body class = 'pc'>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TRRLGNXD"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     
     <header>
-        <div class="outer-margin-set">
-        <div class="header-set inner-margin-set">
+        <div class="outer-margin">
+        <div class="header-set inner-margin">
             <a class="logo" href="/">
                 <img class="logo-image" src="./images/landing/logo.svg">
             </a>
@@ -34,12 +40,12 @@
     </header>
     <main>
         <section class="headline head">
-            <div class="outer-margin-set">
-            <div class="inner-margin-set">
+            <div class="outer-margin">
+            <div class="inner-margin">
                 <div>
                     <div class="descripton">
                         <h1>
-                            일상의 모든 물건을<br>
+                            일상의 모든 물건을<br> 
                             거래해 보세요
                         </h1>
                         <a class="items" href="/items">구경하러 가기</a>
@@ -50,8 +56,8 @@
             </div>
         </section>
         <section class="sec hot-item">
-            <div class="outer-margin-set">
-            <div class="inner-margin-set">
+            <div class="outer-margin">
+            <div class="inner-margin">
                 <div class="section-box">
                     <img src="./images/landing/goods.svg">
                     <div class="descripton">
@@ -69,9 +75,10 @@
             </div>
         </section>
         <section class="sec buy">
-            <div class="outer-margin-set">
-            <div class="inner-margin-set">
+            <div class="outer-margin">
+            <div class="inner-margin">
                 <div class="section-box">
+                    <img src="./images/landing/buy_item.svg">
                     <div class="descripton">
                         <h2>Search</h2>
                         <h1>
@@ -83,13 +90,12 @@
                             쉽게 찾아보세요
                         </h3>
                     </div>
-                    <img src="./images/landing/buy_item.svg">
                 </div>
             </div>
         </section>
         <section class="sec sell">
-            <div class="outer-margin-set">
-            <div class="inner-margin-set">
+            <div class="outer-margin">
+            <div class="inner-margin">
                 <div class="section-box">
                     <img src="./images/landing/sell_item.svg">
                     <div class="descripton">
@@ -111,8 +117,8 @@
 
         </div>
         <section class="headline tail">
-            <div class="outer-margin-set">
-            <div class="inner-margin-set">
+            <div class="outer-margin">
+            <div class="inner-margin">
                 <div>
                     <div class="descripton">
                         <h1>
@@ -127,7 +133,7 @@
         </section>
     </main>
     <footer>
-        <div class="outer-margin-set">
+        <div class="outer-margin">
             <div class="footer-line">
                 <h1 class="company-name">
                     ©codeit - 2024
@@ -137,21 +143,22 @@
                     <a href="/faq">FAQ</a>
                 </div>
                 <div class="sns-logo">
-                    <a href="https://www.facebook.com/">
+                    <a href="https://www.facebook.com/" target="_blank">
                         <img src="./images/landing/facebook.svg">
                     </a>
-                    <a href="https://www.twitter.com/">
+                    <a href="https://www.twitter.com/" target="_blank">
                         <img src="./images/landing/twitter.svg">
                     </a>
-                    <a href="https://www.youtube.com/">
+                    <a href="https://www.youtube.com/" target="_blank">
                         <img src="./images/landing/youtube.svg">
                     </a>
-                    <a href="https://www.instagram.com/">
+                    <a href="https://www.instagram.com/" target="_blank">
                         <img src="./images/landing/instagram.svg">
                     </a>
                 </div>
             </div>
         </div>
     </footer>
+    <script src="/commonModule/platformScreenSet.js"></script>
 </body>
 </html>
