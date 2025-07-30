@@ -80,7 +80,7 @@ input[type="text"] {
   border-radius: 10px;
   border: 1px solid #e0e0e0;
   background-color: #f6f7f9;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 /* 비밀번호 필드에 눈 아이콘 */
@@ -148,10 +148,78 @@ input[type="text"] {
   font-style: normal;
   font-weight: 500;
   line-height: 24px;
+  margin-top: 12px;
 }
 
 .signup-text a {
   color: #007bff;
   text-decoration: none;
   font-weight: 500;
+}
+
+input.error {
+  border: 1px solid red;
+}
+
+.error-message {
+  color: red;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.login-button {
+  background-color: #8b99a6; /* 비활성시 */
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.login-button.enabled {
+  background-color: #3396ff; /* 활성시 파란색 */
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+
+/* 어두운 배경 */
+.modal-backdrop {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* 중앙 모달 창 */
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 24px 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 280px;
+}
+
+.modal-content p {
+  margin-bottom: 16px;
+}
+
+.modal-close {
+  background-color: #3396ff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
 }

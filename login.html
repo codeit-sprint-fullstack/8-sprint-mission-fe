@@ -5,28 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>판다마켓</title>
   <link rel="stylesheet" href="login.css" />
-  <link rel="icon" href="img/logoimg.png">
+  <link rel="icon" href="img/logoimg.png" />
+  <style>
+    input.error {
+      border: 1px solid red;
+    }
+    .error-message {
+      color: red;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+    .login-button {
+      background-color: #8b99a6;
+      color: white;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      cursor: not-allowed;
+      transition: background-color 0.3s;
+    }
+    .login-button.enabled {
+      background-color: #3396ff;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <div class="login-box">
       <a href="sprint1.html"><img src="img/logo.png" alt="로고" class="logo" /></a>
 
-      <form class="login-form">
+      <form id="login-form" class="login-form">
         <div class="form-group">
           <label for="email">이메일</label>
           <input type="email" id="email" placeholder="이메일을 입력해주세요" required />
+          <p id="email-error" class="error-message"></p>
         </div>
 
         <div class="form-group">
           <label for="password">비밀번호</label>
           <div class="password-wrapper">
             <input type="password" id="password" placeholder="비밀번호를 입력해주세요" required />
-            <span class="toggle-visibility"><img src="img/blind.png"></span>
+            <span class="toggle-visibility"><img src="img/blind.png" alt="toggle" /></span>
           </div>
+          <p id="password-error" class="error-message"></p>
         </div>
 
-        <button type="submit" class="login-button">로그인</button>
+        <button type="submit" class="login-button" disabled>로그인</button>
       </form>
 
       <div class="social-login">
@@ -44,5 +69,7 @@
       </p>
     </div>
   </div>
+
+  <script src="login.js"></script>
 </body>
 </html>
