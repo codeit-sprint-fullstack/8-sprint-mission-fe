@@ -9,6 +9,23 @@ import {
   clearErrorMessage
 } from './common.js';
 
+import {
+  getArticleList,
+  getArticle,
+  createArticle,
+  patchArticle,
+  deleteArticle,
+} from './ArticleService.js'
+
+import {
+  getProductList,
+  getProduct,
+  createProduct,
+  patchProduct,
+  deleteProduct,
+} from './ProductService.js';
+
+
 document.addEventListener('DOMContentLoaded', () => {
   const USER_DATA = [
     { email: 'codeit1@codeit.com', password: "codeit101!" },
@@ -95,25 +112,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-import {
-  getArticleList,
-  getArticle,
-  createArticle,
-  patchArticle,
-  deleteArticle,
-} from './ArticleService.js'
 
-import {
-  getProductList,
-  getProduct,
-  createProduct,
-  patchProduct,
-  deleteProduct,
-} from './ProductService.js';
-
-
-getArticleList(1, 10, 'test')
-  .then(async data => {
+async function runArticleAPIs() {
+  try {
+    const data = await getArticleList(1, 10, 'test');
     console.log('getArticleList 결과:', data);
 
     const firstArticle = data?.list?.[0];
@@ -130,16 +132,18 @@ getArticleList(1, 10, 'test')
     } else {
       console.warn('Article 데이터가 없습니다. createArticle 먼저 실행하세요.');
     }
-  })
-  .catch(error => console.error(error));
 
-createArticle({
-  title: '테스트 제목',
-  content: '테스트 내용',
-  image: 'https://example.com/image.jpg'
-})
-  .then(data => console.log('createArticle 결과:', data))
-  .catch(error => console.error(error));
+    const created = await createArticle({
+      title: '테스트 제목',
+      content: '테스트 내용',
+      image: 'https://example.com/image.jpg'
+    });
+    console.log('createArticle 결과:', created);
+
+  } catch (error) {
+    console.error('Article API 에러:', error);
+  }
+}
 
 async function runProductAPIs() {
   try {
@@ -183,4 +187,5 @@ async function runProductAPIs() {
   }
 }
 
+runArticleAPIs();
 runProductAPIs();
