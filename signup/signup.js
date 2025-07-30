@@ -20,7 +20,8 @@ const inputs = [
         errorlabel: document.querySelector('p.password.error'),
 
         minLength: 8,
-        errorText: ['비밀번호를 입력해주세요.', '비밀번호를 8자 이상 입력해주세요.']
+        repeat: document.querySelector('#repeat-password'),
+        errorText: ['비밀번호를 입력해주세요.', '비밀번호를 8자 이상 입력해주세요.', '비밀번호가 일치하지 않습니다.']
     },
     {
         ele: document.querySelector('#repeat-password'),
