@@ -3,7 +3,6 @@
 /* 1. 기본 설정: rem 기준 및 박스 모델 */
 html {
   font-size: 62.5%;
-  /* 1rem = 10px (브라우저 기본 16px의 62.5%) */
   box-sizing: border-box;
   font-family: "Pretendard";
 }
@@ -44,6 +43,9 @@ ol {
 /* 4. 링크 밑줄 제거 및 색상 상속 */
 a {
   text-decoration: none;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
   color: inherit;
 }
 
@@ -51,7 +53,9 @@ a {
 img {
   max-width: 100%;
   height: auto;
-  display: block;
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
 }
 
 /* 6. 폼 요소 폰트 상속 */
@@ -60,10 +64,19 @@ input,
 select,
 textarea {
   font-family: inherit;
-  font-size: 100%; /* 부모 폰트 크기 상속 */
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 button {
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
   cursor: pointer;
 }
 
@@ -74,8 +87,9 @@ table {
 
 /* 8. 기본적인 폰트 크기 설정 (rem 사용) */
 body {
-  font-size: 1.6rem; /* 기본 폰트 크기 16px */
+  font-size: 1.6rem;
   line-height: 1.5;
+  word-break: keep-all;
 }
 
 /* 9. 선택적: heading 폰트 크기 및 여백 (rem 사용 예시) */
@@ -83,8 +97,147 @@ h1 {
   font-size: 3.2rem;
   margin-bottom: 1.6rem;
 }
+
 h2 {
   font-size: 2.8rem;
   margin-bottom: 1.4rem;
 }
-/* ... 기타 요소들도 필요에 따라 rem으로 설정 */
+/* global.css */
+
+/* 1. CSS 변수 (컬러 팔레트) */
+:root {
+  /* Primary */
+  --Primary-100: #3692ff;
+  --Primary-200: #1967d6;
+  --Primary-300: #1251aa;
+
+  /* Secondary */
+  --Secondary-100: #f9fafb;
+  --Secondary-200: #f3f4f6;
+  --Secondary-300: #e5e7eb;
+  --Secondary-400: #9ca3af;
+  --Secondary-500: #6b7280;
+  --Secondary-600: #4b5563;
+  --Secondary-700: #374151;
+  --Secondary-800: #1f2937;
+  --Secondary-900: #111827;
+
+  /* Error */
+  --Error-400: #f74747;
+
+  /* Gray */
+  --Cool-Gray-100: #f3f4f6;
+}
+
+/* 2. 레이아웃 */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 7rem;
+  background-color: #ffffff;
+  padding: 0 20rem;
+}
+
+.main {
+  margin-top: 7rem;
+}
+
+.footer {
+  background-color: #111827;
+  height: 16rem;
+  font-size: 1.6rem;
+  padding: 0 20rem;
+}
+
+/* 3. Flex 유틸리티 */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* 4. Margin 유틸리티 */
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 5. 버튼 스타일 */
+.btn {
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #3692ff;
+  border-radius: 0.8rem;
+}
+
+.btn-large {
+  font-size: 2rem;
+  padding: 1.6rem 12.4rem;
+  border-radius: 4rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+  border-radius: 40px;
+  background: var(--Primary-100, #3692ff);
+}
+
+.btn-large:hover {
+  background: var(--Primary-200, #1967d6);
+}
+
+.btn-large:active {
+  background: var(--Primary-300, #1251aa);
+}
+
+.btn-large:disabled {
+  background: var(--Secondary-400, #9ca3af);
+}
+
+.btn-small {
+  font-size: 1.6rem;
+  padding: 1.2rem 2.3rem;
+}
+
+/* 6. 입력 필드 */
+.input-base {
+  height: 5.6rem;
+  padding: 1.6rem 2.4rem;
+  border-radius: 1.2rem;
+  background: var(--Cool-Gray-100);
+  border: 0.2rem solid transparent;
+}
+
+.input-focus:focus-within {
+  border-color: var(--Primary-100);
+}
+
+/* 7. 레이아웃 너비 유틸리티 */
+.container {
+  max-width: 152rem;
+  margin: 0 auto;
+}
+
+.full-width {
+  width: 100%;
+  max-width: 100%;
+}
