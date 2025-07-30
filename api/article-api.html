@@ -1,0 +1,115 @@
+<!-- AI로 작성됨 -->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>API 테스트</title>
+</head>
+<body>
+  <h1>🧪 Article API 테스트</h1>
+
+  <button onclick="testGetList()">📄 게시글 목록</button>
+  <button onclick="testCreate()">📝 게시글 작성</button>
+  <button onclick="testGetOne()">🔍 게시글 가져오기</button>
+  <button onclick="testPatch()">✏️ 게시글 수정</button>
+  <button onclick="testDelete()">❌ 게시글 삭제</button>
+
+  <p><strong>마지막 생성된 ID:</strong> <span id="last-id">없음</span></p>
+  <pre id="output"></pre>
+
+  <script type="module">
+    import {
+      getArticleList,
+      getArticle,
+      createArticle,
+      patchArticle,
+      deleteArticle
+    } from './ArticleService.js';
+
+    const output = document.getElementById('output');
+    const lastIdDisplay = document.getElementById('last-id');
+    let lastCreatedId = null;
+
+    function log(result) {
+      output.textContent = JSON.stringify(result, null, 2);
+    }
+
+    function error(err) {
+      output.textContent = '❌ 오류: ' + err.message;
+    }
+
+    function updateLastId(id) {
+      lastCreatedId = id;
+      lastIdDisplay.textContent = id ?? '없음';
+    }
+
+    window.testGetList = async function () {
+      try {
+        const res = await getArticleList({ page: 1, pageSize: 5 });
+        log(res);
+      } catch (err) {
+        error(err);
+      }
+    };
+
+    window.testCreate = async function () {
+      try {
+        const res = await createArticle({
+          title: '테스트 제목',
+          content: '테스트 내용입니다.',
+          image: 'https://dummyimage.com/600x400/000/fff',
+        });
+        updateLastId(res.id);
+        log(res);
+      } catch (err) {
+        error(err);
+      }
+    };
+
+    window.testGetOne = async function () {
+      if (!lastCreatedId) {
+        output.textContent = '❗ 먼저 게시글을 생성하세요.';
+        return;
+      }
+      try {
+        const res = await getArticle(lastCreatedId);
+        log(res);
+      } catch (err) {
+        error(err);
+      }
+    };
+
+    window.testPatch = async function () {
+      if (!lastCreatedId) {
+        output.textContent = '❗ 먼저 게시글을 생성하세요.';
+        return;
+      }
+      try {
+        const res = await patchArticle(lastCreatedId, {
+          title: '수정된 제목',
+          content: '수정된 내용입니다.',
+          image: 'https://dummyimage.com/600x400/ff0000/ffffff',
+        });
+        log(res);
+      } catch (err) {
+        error(err);
+      }
+    };
+
+    window.testDelete = async function () {
+      if (!lastCreatedId) {
+        output.textContent = '❗ 먼저 게시글을 생성하세요.';
+        return;
+      }
+      try {
+        const res = await deleteArticle(lastCreatedId);
+        updateLastId(null);
+        log(res);
+      } catch (err) {
+        error(err);
+      }
+    };
+  </script>
+</body>
+</html>
