@@ -30,9 +30,10 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
+    padding: 50.0rem 0;
 }
 
-.form {
+form {
     display: flex;
     flex-direction: column;
     width: 64.0rem;
@@ -70,7 +71,7 @@ input {
 }
 
 input:focus {
-    outline: 0.1rem solid var(--brandBlue);
+    outline: 0.1rem solid var(--inputFocusIn);
 }
 
 .input-password {
@@ -130,7 +131,7 @@ button:disabled {
     font-size: 1.6rem;
 }
 
-.simple-login button {
+.simple-login a {
     height: 4.2rem;
     width: 4.2rem;
     border-radius: 9999px;
@@ -168,4 +169,23 @@ button:disabled {
 
 .error-input {
     outline: 0.1rem solid var(--errorRed);
+}
+
+@media (min-width: 0px) and (max-width: 744px) {
+    .img-icon {
+        width: 5.2rem;
+    }
+
+    .img-logo {
+        width: 13.3rem;
+    }
+
+    .logo {
+        margin-bottom: 1.6rem;
+    }
+    form {
+        max-width: 40.0rem;
+        width: 100%;
+        padding: 0 1.6rem;
+    }
 }
