@@ -1,4 +1,4 @@
-import { requestThen, baseURL } from './request.js';
+import { requestThen, baseURL } from './main.js';
 
 export async function getArticleList({ page, pageSize, keyword } = {}) {
   const url = new URL('articles', baseURL);

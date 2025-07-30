@@ -1,4 +1,4 @@
-import { requestAwait, baseURL } from './request.js';
+import { requestAwait, baseURL } from './main.js';
 
 export async function getProductList({ page, pageSize, keyword } = {}) {
   const url = new URL('products', baseURL);
