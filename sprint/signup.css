@@ -43,11 +43,10 @@ form {
   min-width: 640px;
   margin: 8px auto;
 }
-
 #useremail,
 #userid,
 #password,
-#password-retry  {
+#password-retry {
   padding: 16px 24px;
   border: none;
   width: 640px;
@@ -61,6 +60,16 @@ form {
   font-style: normal;
   font-weight: 400;
   line-height: 26px;
+}
+
+input.error {
+  border: 1px solid red;
+}
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: -16px;
+  margin-bottom: 16px;
 }
 
 .button {
