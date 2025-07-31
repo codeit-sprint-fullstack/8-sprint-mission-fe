@@ -30,9 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     redirectUrl = url;
   }
 
-  /**
-   * 모달을 닫는 함수입니다.
-   */
+
   function closeModal() {
     errorModal.style.display = "none";
     if (redirectUrl) {
@@ -40,10 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 확인 버튼에 클릭 이벤트 리스너를 추가합니다.
   confirmButton.addEventListener("click", closeModal);
 
-  // showModal 함수를 전역 스코프에 노출합니다.
   window.showModal = showModal;
   console.log(USER_DATA);
 });
