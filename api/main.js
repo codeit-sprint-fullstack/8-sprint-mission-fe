@@ -30,12 +30,12 @@ const createArticleTest = async () => {
   console.log(article);
 };
 
-const patchArticle = async () => {
+const patchArticleTest = async () => {
   const article = await patchArticle();
   console.log(article);
 };
 
-const deleteArticle = async () => {
+const deleteArticleTest = async () => {
   const article = await deleteArticle();
   console.log(article);
 };
@@ -56,12 +56,12 @@ const createProductTest = async () => {
   console.log(product);
 };
 
-const patchProduct = async () => {
+const patchProductTest = async () => {
   const product = await patchProduct();
   console.log(product);
 };
 
-const deleteProduct = async () => {
+const deleteProductTest = async () => {
   const product = await deleteProduct();
   console.log(product);
 };
