@@ -101,7 +101,7 @@
   .hero-text-container {
     padding: 8.4rem 0rem 50rem;
     text-align: center;
-    background-size: 100%;
+    background-position: center bottom 0rem;
   }
 
   .hero-section-2 .hero-text-container {
@@ -165,6 +165,7 @@
 
   .hero-text-container {
     padding: 4.8rem 0rem 33.6rem;
+    background-size: calc(100% - 6.4rem);
   }
 
   .hero-section-2 .hero-text-container {
