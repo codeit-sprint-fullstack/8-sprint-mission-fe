@@ -1,10 +1,9 @@
-import { togglePasswordVisibility, closeClickOverlay } from "./ui.js";
-import { handleSubmitEvent } from "./handler.js";
-import { validateBlurEvent } from "./validation.js";
+import { togglePasswordVisibility } from "./ui.js";
+import { initEventHandlers } from "./handler.js";
+import { initPopupEvents } from "./popup.js";
 
-document.addEventListener("DOMContentLoaded", () => { // dom이 로드되면 실행
+document.addEventListener("DOMContentLoaded", () => {
   togglePasswordVisibility();
-  handleSubmitEvent();
-  validateBlurEvent();
-  closeClickOverlay();
+  initEventHandlers();
+  initPopupEvents();
 });
