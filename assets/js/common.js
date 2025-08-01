@@ -47,7 +47,7 @@ function validateEmail(input) {
     showError(input, "이메일을 입력해주세요.");
     return false;
   }
-  if (!/^\S+@\S+\.\S+$/.test(val)) {
+  if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(val)) {
     showError(input, "올바른 이메일 형식이 아닙니다.");
     return false;
   }
