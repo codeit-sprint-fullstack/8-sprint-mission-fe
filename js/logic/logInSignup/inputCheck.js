@@ -1,22 +1,17 @@
-import { form, emailInput, passwordInput, passwordComfirmInput, passwordToggle, nameInput, btnForm } from './DOM.js';
-
-let emailDone = false;
-let passwordDone = false;
-let nameDone = false; 
-let passwordComfirmDone = false;
+import { form, emailInput, passwordInput, passwordComfirmInput, nameInput, btnForm } from './DOM.js';
 
 ////////////////////// 이메일 /// ///////////////////
-function checkEmail() { 
+function validateEmail () { 
   const email = emailInput.value;
   if (email === '') {
     setError(emailInput, '이메일을 입력해주세요.');
-    emailDone = false;
+    return false;
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     setError(emailInput, '잘못된 이메일 형식입니다');
-    emailDone = false;
+    return false;
   } else {
     clearError(emailInput);
-    emailDone = true;
+    return true;
   }
 }
 
@@ -24,10 +19,10 @@ function checkEmail() {
 function checkName() { 
   if (nameInput && nameInput.value.trim() === '') {
     setError(nameInput, '닉네임을 입력해주세요.');
-    nameDone = false;
+    return false;
   } else {
     if (nameInput) clearError(nameInput);
-    nameDone = true;
+    return true;
   }
 }
 
@@ -36,15 +31,14 @@ function checkPassword() {
   const password = passwordInput.value;
   if (password === '') {
     setError(passwordInput, '비밀번호를 입력해주세요.');
-    passwordDone = false;
+    return false;
   } else if (password.length < 8) {
     setError(passwordInput, '비밀번호를 8자 이상 입력해주세요.');
-    passwordDone = false;
+    return false;
   } else {
     clearError(passwordInput);
-    passwordDone = true;
+    return true;
   }
-  if (passwordComfirmInput) checkPasswordComfirm();
 }
 
 ////////////////////// 비밀번호 확인 //////////////////////
@@ -53,43 +47,43 @@ function checkPasswordComfirm() {
   const passwordComfirm = passwordComfirmInput.value;
   if (passwordComfirm === '') {
     setError(passwordComfirmInput, '비밀번호를 다시 입력해주세요.');
-    passwordComfirmDone = false;
+    return false;
   } else if (password !== passwordComfirm) {
     setError(passwordComfirmInput, '비밀번호가 일치하지 않습니다.');
-    passwordComfirmDone = false;
+    return false;
   } else {
     clearError(passwordComfirmInput);
-    passwordComfirmDone = true;
+    return true;
   }
 }
 
 ////////////////////// 유효성 검사 //////////////////////
+function updateButtonState() {
+  let valid = validateEmail() && checkPassword();
+  if (nameInput && passwordComfirmInput) {
+    valid = valid && checkName() && checkPasswordComfirm();
+  }
+  if (valid) {
+    btnForm.classList.add('active');
+  } else {
+    btnForm.classList.remove('active');
+  }
+}
+
 function validateInput(int) {
   int.addEventListener('focusout', ()=>{
 
     if (int === emailInput){ 
-      checkEmail()
+      validateEmail ()
     } else if (int === passwordInput){ 
       checkPassword();
+      if (passwordComfirmInput) checkPasswordComfirm();
     } else if (int === nameInput) { 
       checkName();
     } else if (int === passwordComfirmInput) { 
       checkPasswordComfirm();
     }
-
-    if (nameInput && passwordComfirmInput) {
-      if (emailDone && passwordDone && nameDone && passwordComfirmDone) {
-        btnForm.classList.add('active');
-      } else {
-        btnForm.classList.remove('active');
-      }
-    } else {
-      if (emailDone && passwordDone) {
-        btnForm.classList.add('active');
-      } else {
-        btnForm.classList.remove('active');
-      }
-    }
+    updateButtonState();
 
   });
 }

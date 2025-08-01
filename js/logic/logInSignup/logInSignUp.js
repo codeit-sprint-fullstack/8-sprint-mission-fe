@@ -1,5 +1,6 @@
 import { form, emailInput, passwordInput, btnForm, overlay, alertSpan } from './DOM.js';
-import { USER_DATA } from '../../data/users.js';
+import { login } from './login.js';
+import { signup } from './signup.js';
 
 ////////////////////// 알림메시지 ON //////////////////////
 function showAlert(message) {
@@ -25,18 +26,19 @@ form.addEventListener('submit', function (e) {
 
   const email = emailInput.value.trim();
   const password = passwordInput.value;
-  const user = USER_DATA.find(u => u.email === email);
   const mode = btnForm.dataset.mode;
 
   if (mode === 'signup') {
-    if (user) {
-      showAlert('사용 중인 이메일입니다.');
+    const result = signup(email);
+    if (!result.success) {
+      showAlert(result.message);
       return;
     }
     window.location.href = '/login';
   } else if (mode === 'login') {
-    if (!user || user.password !== password) {
-      showAlert('비밀번호가 일치하지 않습니다.');
+    const result = login(email, password);
+    if (!result.success) {
+      showAlert(result.message);
       return;
     }
     window.location.href = '/items';
