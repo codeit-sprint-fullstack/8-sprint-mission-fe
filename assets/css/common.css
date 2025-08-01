@@ -105,7 +105,6 @@ input:focus {
   cursor: pointer;
 }
 
-
 /* 주요 액션 버튼 (로그인, 회원가입 공통) */
 .btn-primary {
   display: flex;
@@ -184,13 +183,13 @@ input:focus {
 
 .input-wrapper {
   position: relative;
-  height: 3.5rem; /* ✅ input 높이랑 맞춤! */
+  height: 3.5rem; 
 }
 
 .input-wrapper input {
-  height: 100%; /* ✅ wrapper 높이 100% 채우기 */
+  height: 100%; 
   width: 100%;
-  padding-right: 3rem; /* ✅ eye 아이콘 공간 확보 */
+  padding-right: 3rem; 
   box-sizing: border-box;
 }
 
@@ -206,8 +205,6 @@ input:focus {
   padding: 0;
   cursor: pointer;
 }
-
-
 
 /* 에러 메시지 */
 .error-message {
@@ -291,11 +288,47 @@ input:focus {
     max-width: 400px;
   }
 
-  /* header img 사이즈 조정 (적당히 축소) */
+
   header img {
     width: 100%;
     height: auto;
-    max-width: 24.75rem; /* 최대 크기는 유지 */
+    max-width: 24.75rem; 
+  }
+
+  /* Alert 스타일 */
+  .custom-alert-box {
+    width: 20.4375rem;     /* 327px */
+    height: 13.75rem;      /* 220px */
+    flex-shrink: 0;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+
+    /* flex 중앙 정렬 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
+    align-items: center;      
+    gap: 1rem;
+  }
+
+  .custom-alert-message {
+    font-size: 1rem;
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-grow: 1;
+    width: 100%;
+  }
+
+  .custom-alert-button {
+    width: 6.25rem;        /* 100px */
+    height: 2.5rem;        /* 40px */
+    flex-shrink: 0;
+    align-self: center;
+    font-size: 0.95rem;
   }
 }
 
@@ -328,45 +361,3 @@ input:focus {
     font-size: 1rem;
   }
 }
-
-/* 모바일: 375px 이상 ~ 743px 이하 */
-@media (min-width: 375px) and (max-width: 743px) {
-  .custom-alert-box {
-    width: 20.4375rem;     /* 327px */
-    height: 13.75rem;      /* 220px */
-    flex-shrink: 0;
-    padding: 1.5rem;
-    border-radius: 0.75rem;
-
-    /* flex 중앙 정렬 */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;  /* 세로 중앙 정렬 */
-    align-items: center;      /* 가로 중앙 정렬 */
-    gap: 1rem;
-  }
-
-  .custom-alert-message {
-    font-size: 1rem;
-    text-align: center;
-
-    /* flex로 중앙 정렬 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    /* 높이 채워서 중앙 위치 보장 */
-    flex-grow: 1;
-    width: 100%;
-  }
-
-  .custom-alert-button {
-    width: 6.25rem;        /* 100px */
-    height: 2.5rem;        /* 40px */
-    flex-shrink: 0;
-    align-self: center;
-    font-size: 0.95rem;
-  }
-}
-
-
