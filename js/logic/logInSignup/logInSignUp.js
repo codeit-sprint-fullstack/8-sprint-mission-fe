@@ -1,4 +1,10 @@
-import { form, emailInput, passwordInput, btnForm, overlay, alertSpan } from './DOM.js';
+const form = document.querySelector('.form-box');
+const emailInput = form.querySelector('#email');
+const passwordInput = form.querySelector('#password');
+const btnForm = form.querySelector('.form-btn');
+const overlay = document.querySelector('.overlay');
+const alertSpan = overlay.querySelector('.alert-box span');
+
 import { login } from './login.js';
 import { signup } from './signup.js';
 

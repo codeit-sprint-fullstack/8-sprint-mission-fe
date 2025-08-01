@@ -1,4 +1,9 @@
-import { form, emailInput, passwordInput, passwordComfirmInput, nameInput, btnForm } from './DOM.js';
+const form = document.querySelector('.form-box');
+const emailInput = form.querySelector('#email');
+const nameInput = form.querySelector('#name');
+const passwordInput = form.querySelector('#password');
+const passwordComfirmInput = form.querySelector('#password-comfirm');
+const btnForm = form.querySelector('.form-btn');
 
 ////////////////////// 이메일 /// ///////////////////
 function validateEmail () { 
