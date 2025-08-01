@@ -220,7 +220,7 @@ body {
 }
 
 /* ############################## media-query ############################## */
- @media (max-width: 1200px) {  /* 1200px 이하 */
+ @media (max-width: 1199px) {  /* 1200px 이하 */
   .header-wrap {
     width: 100vw;
     padding: 0 24px;
@@ -296,7 +296,7 @@ body {
   }
 }
 
-@media (max-width: 744px) { /* 744px 이하 */
+@media (max-width: 743px) { /* 744px 이하 */
   .header-wrap {
     padding: 0 16px;
   }
@@ -312,6 +312,10 @@ body {
 
   .banner-text h1 {
     font-size: 2rem;
+  }
+
+  .hot-item {
+    padding: 32px 32px 56px 32px;
   }
 
   .hot-item__text {

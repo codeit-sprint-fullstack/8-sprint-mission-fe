@@ -157,15 +157,15 @@ label {
   cursor: pointer;
 }
 
-/* ############################## login-signup link ############################## */
-.login-signup {
+/* ############################## loginSignup link ############################## */
+.loginSignup {
   font-size: 0.875rem;
   font-weight: 500;
   text-align: center;
   margin-top: 16px;
 }
 
-.login-signup a {
+.loginSignup a {
   color: var(--color-primary);
   text-decoration: underline;
 }
@@ -227,11 +227,11 @@ label {
 }
 
 /* ############################## media-query ############################## */
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   
 }
 
-@media (max-width: 744px) {
+@media (max-width: 743px) {
   .login-container {
     max-width: 400px;
     padding: 0px 16px;
