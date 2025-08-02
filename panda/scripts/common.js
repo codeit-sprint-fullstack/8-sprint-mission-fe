@@ -12,22 +12,39 @@ export function setupPasswordToggle(inputId, iconId) {
 }
 
 export function setupFormValidation(inputs, button) {
-  function checkInputsFilled() {
-    const allFilled = inputs.every(input => input.value.trim() !== '');
-    button.disabled = !allFilled;
+  function checkInputsValid() {
+    let isValid = true;
 
-    if (allFilled) {
-      button.style.backgroundColor = '#3692ff';
-    } else {
-      button.style.backgroundColor = '#9ca3af';
+    for (const input of inputs) {
+      const value = input.value.trim();
+      const type = input.getAttribute('type');
+      const name = input.getAttribute('name') || input.id;
+
+      if (value === '') {
+        isValid = false;
+
+        continue;
+      }
+
+      if (type === 'email' || name === 'email') {
+        isValid = validateEmail(input) && isValid;
+      } else if (name === 'password') {
+        isValid = validatePassword(input) && isValid;
+      } else if (name === 'passwordConfirm' || input.id === 'passwordConfirm') {
+        const pwInput = document.getElementById('password');
+        isValid = validatePasswordMatch(pwInput, input) && isValid;
+      } 
     }
+
+    button.disabled = !isValid;
+    button.style.backgroundColor = isValid ? '#3692ff' : '#9ca3af';
   }
 
   inputs.forEach(input => {
-    input.addEventListener('input', checkInputsFilled);
+    input.addEventListener('input', checkInputsValid);
   });
 
-  checkInputsFilled();
+  checkInputsValid();
 }
 
 export function showErrorModal(message) {
