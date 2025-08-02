@@ -1,8 +1,5 @@
 # 🐼 판다마켓 프로젝트
 
-스프린트 미션 1&2
-HTML과 CSS를 사용해 판다마켓의 렌딩 페이지와 로그인&회원가입 페이지 제작
+스프린트 미션 4
+'https://panda-market-api-crud.vercel.app/docs/#/Article' API와 'https://panda-market-api-crud.vercel.app/docs/#/Product' API로 함수 구현
 
-스프린트 미션 3
-JavaScript를 활용해 로그인&회원가입 페이지에 여러 기능 추가
-반응형 웹 페이지로 설정
