@@ -14,54 +14,44 @@ import {
   deleteProduct,
 } from "./ProductService.js";
 
-// Function Article
-const getArticleListTest = async () => {
-  const article = await getArticleList();
-  console.log(article);
-};
+// Article API 테스트
+getArticleList(1, 5, "test")
+  .then((result) => {
+    console.log("게시글 목록 조회:", result);
+    return getArticle(1);
+  })
+  .then((result) => {
+    console.log("게시글 상세 조회:", result);
+    return createArticle("테스트 제목", "테스트 내용", "test.jpg");
+  })
+  .then((result) => {
+    console.log("게시글 생성:", result);
+  })
+  .catch((error) => {
+    console.log("Article API 에러:", error);
+  });
 
-const getArticleTest = async () => {
-  const article = await getArticle();
-  console.log(article);
-};
+// Product API 테스트
+getProductList(1, 5, "")
+  .then((result) => {
+    console.log("상품 목록 조회:", result);
+    return getProduct(1);
+  })
+  .then((result) => {
+    console.log("상품 상세 조회:", result);
+    return createProduct(
+      "테스트 상품",
+      "테스트 설명",
+      10000,
+      ["태그"],
+      ["image.jpg"]
+    );
+  })
+  .then((result) => {
+    console.log("상품 생성:", result);
+  })
+  .catch((error) => {
+    console.log("Product API 에러:", error);
+  });
 
-const createArticleTest = async () => {
-  const article = await createArticle();
-  console.log(article);
-};
-
-const patchArticleTest = async () => {
-  const article = await patchArticle();
-  console.log(article);
-};
-
-const deleteArticleTest = async () => {
-  const article = await deleteArticle();
-  console.log(article);
-};
-
-// Function Product
-const getProductListTest = async () => {
-  const product = await getProductList();
-  console.log(product);
-};
-
-const getProductTest = async () => {
-  const product = await getProduct();
-  console.log(product);
-};
-
-const createProductTest = async () => {
-  const product = await createProduct();
-  console.log(product);
-};
-
-const patchProductTest = async () => {
-  const product = await patchProduct();
-  console.log(product);
-};
-
-const deleteProductTest = async () => {
-  const product = await deleteProduct();
-  console.log(product);
-};
+console.log("=== 테스트 완료 ===");

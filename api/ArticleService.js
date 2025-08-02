@@ -1,25 +1,23 @@
-import axios from 'axios';
+import axios from "axios";
 
-const networkErrorMessage = '네트워크에 접근할 수 없습니다.';
+const networkErrorMessage = "네트워크에 접근할 수 없습니다.";
 
 const article = axios.create({
-  baseURL: 'https://panda-market-api-crud.vercel.app/', 
-  timeout: 3000
+  baseURL: "https://panda-market-api-crud.vercel.app/",
+  timeout: 3000,
 });
 
-export async function getArticleList( page, pageSize, keyword ) {
+export async function getArticleList(page, pageSize, keyword) {
   try {
-    const res = await article.get('/articles', {
-      params: {
-        page, 
-        pageSize, 
-        keyword
-      }
+    const response = await article.get("/articles", {
+      page,
+      pageSize,
+      keyword,
     });
-    console.log('성공!');
-    return res.data;
-  } catch(e) {
-    console.log('실패');
+    console.log("성공!");
+    return response.data;
+  } catch (e) {
+    console.log("실패");
     if (e.response) {
       return e.response.status;
     } else {
@@ -30,9 +28,9 @@ export async function getArticleList( page, pageSize, keyword ) {
 
 export async function getArticle(id) {
   try {
-    const res = await article.get(`/articles/${id}`);
-    return res.data;
-  } catch(e) {
+    const response = await article.get(`/articles/${id}`);
+    return response.data;
+  } catch (e) {
     if (e.response) {
       return e.response.status;
     } else {
@@ -41,17 +39,15 @@ export async function getArticle(id) {
   }
 }
 
-export async function createArticle( title, content, image ) {
+export async function createArticle(title, content, image) {
   try {
-    const res = await article.post('/articles', {
-      params: {
-        title, 
-        content, 
-        image
-      }
+    const response = await article.post("/articles", {
+      title,
+      content,
+      image,
     });
-    return res.data;
-  } catch(e) {
+    return response.data;
+  } catch (e) {
     if (e.response) {
       return e.response.status;
     } else {
@@ -62,9 +58,9 @@ export async function createArticle( title, content, image ) {
 
 export async function patchArticle(id) {
   try {
-    const res = await article.patch(`/articles/${id}`);
-    return res.data;
-  } catch(e) {
+    const response = await article.patch(`/articles/${id}`);
+    return response.data;
+  } catch (e) {
     if (e.response) {
       return e.response.status;
     } else {
@@ -75,9 +71,9 @@ export async function patchArticle(id) {
 
 export async function deleteArticle(id) {
   try {
-    const res = await article.delete(`/articles/${id}`);
-    return res.data;
-  } catch(e) {
+    const response = await article.delete(`/articles/${id}`);
+    return response.data;
+  } catch (e) {
     if (e.response) {
       return e.response.status;
     } else {
