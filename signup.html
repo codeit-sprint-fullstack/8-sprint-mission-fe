@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입</title>
+  <link rel="stylesheet" href="CSS\login_signup.css">
+  <link rel="icon" href="img/판다 얼굴.svg">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WP56SG7G');</script>
+  <!-- End Google Tag Manager -->
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WP56SG7G"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <article>
+    <!-- Logo -->
+    <a href="/" class="logo">
+      <img src="img/logo_lg.svg" alt="판다 얼굴">
+    </a>
+
+    <!-- Signup Form -->
+    <form>
+        <div class="input-section">
+          <div class="input_box">
+            <label for="email">이메일</label>
+            <input type="email" id="email" name="email" placeholder="이메일을 입력해주세요" required>
+            <span id="emailError" class="error-msg">이메일을 입력해주세요.</span> <!-- 에러 메세지 -->
+          </div>
+          <div class="input_box">
+            <label for="username">닉네임</label>
+            <input type="text" id="username" name="username" placeholder="닉네임을 입력해주세요" required>
+          </div>
+          <div class="input_box">
+            <label for="password">비밀번호</label>
+            <div class="password-wrapper">
+              <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요" required>
+              <img src="img/eye_close.svg" alt="비밀번호 보기" class="toggle-password">
+            </div>
+            <span id="passwordError" class="error-msg">비밀번호를 입력해주세요.</span> <!-- 에러 메세지 -->
+          </div>
+          <div class="input_box">
+            <label for="confirm-password">비밀번호 확인</label>
+            <div class="password-wrapper">
+              <input type="password" id="confirm-password" name="confirm-password" placeholder="비밀번호를 다시 한 번 입력해주세요" required>
+              <img src="img/eye_close.svg" alt="비밀번호 보기" class="toggle-password">
+            </div>
+            <span id="confirmPasswordError" class="error-msg">비밀번호를 입력해주세요.</span> <!-- 에러 메세지 -->
+          </div>
+          <button type="button" id="signupBtn">회원가입</button>
+        </div>
+
+        <!-- Social Login -->
+        <div class="social-login">
+          <div class="social-login-options">
+            <p>간편 로그인하기</p>
+            <div class="social-icons">
+              <a href="https://www.google.com/" target="_blank">
+                <img src="img/ic_Google.svg" alt="Google 로그인">
+              </a>
+              <a href="https://www.kakao.com/page/" target="_blank">
+                <img src="img/ic_Kakao.svg" alt="Kakao 로그인">
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Login Link -->
+        <div class="login-section">
+          <p>이미 회원이신가요?</p>
+          <a href="login.html">로그인</a>
+        </div>
+    </form>
+  </article>
+
+  <!-- alert modal -->
+  <div id="alertModal" class="modal" style="display: none;">
+    <div class="modal-box">
+      <p id="modalMessage">사용 중인 이메일입니다.</p>
+      <button id="modalConfirmBtn">확인</button>
+    </div>
+  </div>
+
+  <script src="js\signup.js"></script>
+</body>
+</html>
