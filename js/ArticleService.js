@@ -1,8 +1,9 @@
 // Article
 
-const url = new URL(`https://panda-market-api-crud.vercel.app/products`);
+export async function getArticleList({ page, pageSize, keyword }) {
+  const url = new URL(`https://panda-market-api-crud.vercel.app/articles`);
+  const params = { page, pageSize, keyword };
 
-export async function getArticleList(params = {}) {
   Object.keys(params).forEach((key) =>
     url.searchParams.append(key, params[key])
   );
