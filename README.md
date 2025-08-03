@@ -13,10 +13,13 @@
 - 📂 font : 웹에서 사용하는 폰트 파일
 - 📂 login : login index.html 파일을 포함한 login 기능 
 - 📂 signup : signup index.html 파일을 포함한 signup 기능
+- 📂 js : JavaScript 파일
 
 ### 스프린트 미션 
 - 2025-07-06 스프린트 미션 1 : 메인 화면 구현 
 - 2025-07-20 스프린트 미션 2 : 로그인, 회원가입 화면 구현
+- 2025-07-27 스프린트 미션 3 : 로그인, 회원가입 기능 구현
+- 2025-08-03 스프린트 미션 4 : API 기능 구형
 ---
 
 본 프로젝트는 [코드잇](https://www.codeit.kr)의 소유이며, 교육 목적으로만 사용됩니다. © 2024 Codeit. All rights reserved.
