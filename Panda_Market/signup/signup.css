@@ -299,21 +299,6 @@ button.active {
 }
 
 
-.button_layout button {
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
-  border-radius: 40px !important;
-  background-color: #9CA3AF;  /* 기본 비활성 색 */
-}
-
-.button_layout button.active {
-  background-color: #3692FF !important;  /* 활성 시 파란색 */
-  cursor: pointer !important;
-  opacity: 1 !important;
-}
-
-
 #customModal {
   position: fixed;              /* 화면 전체 기준 */
   top: 50%;
@@ -411,5 +396,25 @@ button.active {
 #customModal #closeModal {
   opacity: 1; 
   cursor: pointer !important;
+}
+
+
+.button_layout button {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 40px !important;
+  background-color: #9CA3AF;  /* 기본 비활성 색 */
+}
+
+.button_layout button.active {
+  background-color: #3692FF !important;  /* 활성 시 파란색 */
+  cursor: pointer !important;
+  opacity: 1 !important;
+}
+
+.button_layout button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 

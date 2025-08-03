@@ -1,6 +1,6 @@
-// login.js
+
 document.addEventListener("DOMContentLoaded", () => {
-  // 1) 기존 사용자 하드코딩 (로그인용)
+  // 기존 사용자 하드코딩 (로그인용)
   const USER_DATA = [
     { email: 'codeit1@codeit.com', password: "codeit101!" },
     { email: 'codeit2@codeit.com', password: "codeit202!" },
@@ -10,10 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
     { email: 'codeit6@codeit.com', password: "codeit606!" },
   ];
 
-  // 2) 비밀번호 보기 토글
+  // 비밀번호 보기 토글
   CommonAuth.togglePasswordVisibility('#password', '#togglepassword');
 
-  // 3) 유효성 검사 규칙
+  // 유효성 검사 규칙
   const isEmail = val => {
     if (!val) { isEmail.message = "이메일을 입력해주세요."; return false; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
@@ -29,11 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   };
 
-  // 4) 필드별 유효성 연결
+  // 필드별 유효성 연결
   CommonAuth.setupValidation('#userEmail',    '#email-error',    isEmail);
   CommonAuth.setupValidation('#password',     '#password-error', isPwd);
 
-  // 5) 로그인 버튼 활성화 관리
+  // 로그인 버튼 활성화 관리
   const updateBtn = CommonAuth.setupSubmitButton(
     '.button_layout button',
     () =>
@@ -46,10 +46,10 @@ document.addEventListener("DOMContentLoaded", () => {
     )
   );
 
-  // 6) 모달 함수
+  // 모달 함수
   const showModal = CommonAuth.setupModal('#customModal', '#closeModal');
 
-  // 7) 로그인 처리
+  // 로그인 처리
   document.querySelector('.button_layout button')
     .addEventListener('click', e => {
       e.preventDefault();
