@@ -33,7 +33,22 @@ export async function getArticle(id) {
   return data;
 }
 
-export async function createArticle() {}
+export async function createArticle(createArticleBody) {
+  const res = await fetch(`https://panda-market-api-crud.vercel.app/articles`, {
+    method: "POST",
+    body: JSON.stringify(createArticleBody),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error("데이터를 불러오는데 실패했습니다.");
+  }
+
+  const data = await res.json();
+  return data;
+}
 
 export async function patchArticle() {}
 
