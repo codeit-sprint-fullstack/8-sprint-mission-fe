@@ -22,8 +22,6 @@ const inputs = [
 const isInputValids = new Array(inputs.length).fill(false);
 
 inputs.forEach((inputObj, index) => {
-    inputObj = inputs[index];
-
     inputObj.ele.addEventListener('focusout', () => {
         isInputValids[index] = validCheck(inputObj);
 

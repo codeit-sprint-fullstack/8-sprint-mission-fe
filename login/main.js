@@ -61,6 +61,12 @@ export function validCheck(object) {
 
     if (object.repeat !== undefined) {
         if (object.ele.value != object.repeat.value) {
+            if (object.repeat.value === '') {
+                object.ele.classList.remove('error-input');
+                object.errorlabel.textContent = '';
+                return false;
+            }
+            
             object.ele.classList.add('error-input');
             object.errorlabel.textContent = object.errorText[check];
             return false;
