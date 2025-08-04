@@ -1,4 +1,11 @@
 // Product
+
+function checkResponseOk(res) {
+  if (!res.ok) {
+    throw new Error("데이터를 불러오는데 실패했습니다.");
+  }
+}
+
 export async function getProductList(params) {
   const url = new URL(`https://panda-market-api-crud.vercel.app/products`);
 
@@ -8,9 +15,7 @@ export async function getProductList(params) {
 
   const res = await fetch(url);
 
-  if (!res.ok) {
-    throw new Error("데이터를 불러오는데 실패했습니다.");
-  }
+  checkResponseOk(res);
 
   const data = await res.json();
   return data;
@@ -21,62 +26,54 @@ export async function getProduct(id) {
     `https://panda-market-api-crud.vercel.app/products/${id}`
   );
 
-  if (!res.ok) {
-    throw new Error("데이터를 불러오는데 실패했습니다.");
-  }
+  checkResponseOk(res);
 
   const data = await res.json();
   return data;
 }
 
-export async function createProduct(createProductBody) {
+export async function createProduct(productData) {
   const res = await fetch(`https://panda-market-api-crud.vercel.app/products`, {
     method: "POST",
-    body: JSON.stringify(createProductBody),
+    body: JSON.stringify(productData),
     headers: {
       "Content-Type": "application/json",
     },
   });
 
-  if (!res.ok) {
-    throw new Error("데이터를 불러오는데 실패했습니다.");
-  }
+  checkResponseOk(res);
 
   const data = await res.json();
   return data;
 }
 
-export async function patchProduct(patchId, patchProductBody) {
+export async function patchProduct(id, productData) {
   const res = await fetch(
-    `https://panda-market-api-crud.vercel.app/products/${patchId}`,
+    `https://panda-market-api-crud.vercel.app/products/${id}`,
     {
       method: "PATCH",
-      body: JSON.stringify(patchProductBody),
+      body: JSON.stringify(productData),
       headers: {
         "Content-Type": "application/json",
       },
     }
   );
 
-  if (!res.ok) {
-    throw new Error("데이터를 불러오는데 실패했습니다.");
-  }
+  checkResponseOk(res);
 
   const data = await res.json();
   return data;
 }
 
-export async function deleteProduct(deleteId) {
+export async function deleteProduct(id) {
   const res = await fetch(
-    `https://panda-market-api-crud.vercel.app/products/${deleteId}`,
+    `https://panda-market-api-crud.vercel.app/products/${id}`,
     {
       method: "DELETE",
     }
   );
 
-  if (!res.ok) {
-    throw new Error("데이터를 불러오는데 실패했습니다.");
-  }
+  checkResponseOk(res);
 
   const data = await res.json();
   return data;

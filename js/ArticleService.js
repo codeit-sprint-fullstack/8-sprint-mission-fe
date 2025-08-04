@@ -1,5 +1,11 @@
 // Article
 
+function checkResponseOk(res) {
+  if (!res.ok) {
+    throw new Error("데이터를 불러오는데 실패했습니다.");
+  }
+}
+
 export async function getArticleList({ page, pageSize, keyword }) {
   const url = new URL(`https://panda-market-api-crud.vercel.app/articles`);
   const params = { page, pageSize, keyword };
@@ -10,77 +16,67 @@ export async function getArticleList({ page, pageSize, keyword }) {
 
   const res = await fetch(url);
 
-  if (!res.ok) {
-    throw new Error("데이터를 불러오는데 실패했습니다.");
-  }
+  checkResponseOk(res);
 
   const data = await res.json();
   return data;
 }
 
-export async function getArticle(getId) {
+export async function getArticle(id) {
   const url = new URL(
-    `https://panda-market-api-crud.vercel.app/articles/${getId}`
+    `https://panda-market-api-crud.vercel.app/articles/${id}`
   );
 
   const res = await fetch(url);
 
-  if (!res.ok) {
-    throw new Error("데이터를 불러오는데 실패했습니다.");
-  }
+  checkResponseOk(res);
 
   const data = await res.json();
   return data;
 }
 
-export async function createArticle(createArticleBody) {
+export async function createArticle(articleData) {
   const res = await fetch(`https://panda-market-api-crud.vercel.app/articles`, {
     method: "POST",
-    body: JSON.stringify(createArticleBody),
+    body: JSON.stringify(articleData),
     headers: {
       "Content-Type": "application/json",
     },
   });
 
-  if (!res.ok) {
-    throw new Error("데이터를 불러오는데 실패했습니다.");
-  }
+  checkResponseOk(res);
 
   const data = await res.json();
   return data;
 }
 
-export async function patchArticle(patchId, patchArticleBody) {
+export async function patchArticle(id, articleData) {
   const res = await fetch(
-    `https://panda-market-api-crud.vercel.app/articles/${patchId}`,
+    `https://panda-market-api-crud.vercel.app/articles/${id}`,
     {
       method: "PATCH",
-      body: JSON.stringify(patchArticleBody),
+      body: JSON.stringify(articleData),
       headers: {
         "Content-Type": "application/json",
       },
     }
   );
 
-  if (!res.ok) {
-    throw new Error("데이터를 불러오는데 실패했습니다.");
-  }
+  checkResponseOk(res);
 
   const data = await res.json();
   return data;
 }
 
-export async function deleteArticle(deleteId) {
+export async function deleteArticle(id) {
   const res = await fetch(
-    `https://panda-market-api-crud.vercel.app/articles/${deleteId}`,
+    `https://panda-market-api-crud.vercel.app/articles/${id}`,
     {
       method: "DELETE",
     }
   );
 
-  if (!res.ok) {
-    throw new Error("데이터를 불러오는데 실패했습니다.");
-  }
+  checkResponseOk(res);
 
   const data = await res.json();
   return data;

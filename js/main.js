@@ -18,17 +18,17 @@ import {
 const articlePage = 1;
 const articlePageSize = 10;
 const articleKeyword = "recent";
-const getArticleListData = getArticleList({
+const articleList = getArticleList({
   articlePage,
   articlePageSize,
   articleKeyword,
 })
-  .then((data) => console.log(data))
+  .then((data) => console.log("articleList: ", data))
   .catch((err) => console.log(err));
 
 const getArticleId = 1;
-const getArticleData = getArticle(getArticleId)
-  .then((data) => console.log(data))
+const articleData = getArticle(getArticleId)
+  .then((data) => console.log("articleData: ", data))
   .catch((err) => console.log(err));
 
 const createArticleBody = {
@@ -36,8 +36,8 @@ const createArticleBody = {
   content: "content",
   image: "image",
 };
-const createArticleData = createArticle(createArticleBody)
-  .then((data) => console.log(data))
+const createdArticle = createArticle(createArticleBody)
+  .then((data) => console.log("created: ", data))
   .catch((err) => console.log(err));
 
 const patchArticleId = 1;
@@ -46,78 +46,78 @@ const patchArticleBody = {
   content: "content",
   image: "image",
 };
-const patchArticleData = patchArticle(patchArticleId, patchArticleBody)
-  .then((data) => console.log(data))
+const updatedArticle = patchArticle(patchArticleId, patchArticleBody)
+  .then((data) => console.log("updated: ", data))
   .catch((err) => console.log(err));
 
 const deleteArticleId = 1;
-const deleteArticleData = deleteArticle(deleteArticleId)
-  .then((data) => console.log(data))
+const deletedArticle = deleteArticle(deleteArticleId)
+  .then((data) => console.log("deleted: ", data))
   .catch((err) => console.log(err));
 
 // Product
 
 try {
-  const productPage = 1;
-  const productPageSize = 10;
-  const productKeyword = "recent";
+  const page = 1;
+  const pageSize = 10;
+  const keyword = "recent";
 
-  const getProductListData = await getProductList({
-    productPage,
-    productPageSize,
-    productKeyword,
+  const productList = await getProductList({
+    page,
+    pageSize,
+    keyword,
   });
 
-  console.log(getProductListData);
+  console.log("productList: ", productList);
 } catch (err) {
   console.log(err);
 }
 
 try {
-  const getProductId = 1;
-  const getProductData = await getProduct(getProductId);
+  const id = 1;
+  const product = await getProduct(id);
 
-  console.log(getProductData);
+  console.log("product: ", product);
 } catch (err) {
   console.log(err);
 }
 
 try {
-  const createProductBody = {
+  const productData = {
     name: "name",
     description: "description",
     price: "price",
     tags: "tags",
     images: "images",
   };
-  const createProductData = await createProduct(createProductBody);
+  const created = await createProduct(productData);
 
-  console.log(createProductData);
+  console.log("created: ", created);
 } catch (err) {
   console.log(err);
 }
 
 try {
-  const patchProductId = 1;
-  const patchProductBody = {
+  const id = 1;
+  const productData = {
     name: "name",
     description: "description",
     price: "price",
     tags: "tags",
     images: "images",
   };
-  const patchProductData = await patchProduct(patchProductId, patchProductBody);
+  const updated = await patchProduct(id, productData);
 
-  console.log(patchProductData);
+  console.log("updated: ", updated);
 } catch (err) {
   console.log(err);
 }
 
 try {
-  const deleteProductId = 1;
-  const deleteProductData = await deleteProduct(deleteProductId);
+  const id = 1;
+  const deleted = await deleteProduct(id);
 
-  console.log(deleteProductData);
+  console.log("deleted: ", deleted);
 } catch (err) {
   console.log(err);
 }
