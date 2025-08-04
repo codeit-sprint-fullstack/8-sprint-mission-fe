@@ -20,8 +20,8 @@ const getArticleListData = getArticleList({ page, pageSize, keyword })
   .then((data) => console.log(data))
   .catch((err) => console.log(err));
 
-const id = 1;
-const getArticleData = getArticle(id)
+const getId = 1;
+const getArticleData = getArticle(getId)
   .then((data) => console.log(data))
   .catch((err) => console.log(err));
 
@@ -31,5 +31,15 @@ const createArticleBody = {
   image: "image",
 };
 const createArticleData = createArticle(createArticleBody)
+  .then((data) => console.log(data))
+  .catch((err) => console.log(err));
+
+const patchId = 1;
+const patchArticleBody = {
+  title: "title",
+  content: "content",
+  image: "image",
+};
+const patchArticleData = patchArticle(patchId, patchArticleBody)
   .then((data) => console.log(data))
   .catch((err) => console.log(err));

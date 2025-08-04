@@ -18,9 +18,9 @@ export async function getArticleList({ page, pageSize, keyword }) {
   return data;
 }
 
-export async function getArticle(id) {
+export async function getArticle(getId) {
   const url = new URL(
-    `https://panda-market-api-crud.vercel.app/articles/${id}`
+    `https://panda-market-api-crud.vercel.app/articles/${getId}`
   );
 
   const res = await fetch(url);
@@ -50,6 +50,24 @@ export async function createArticle(createArticleBody) {
   return data;
 }
 
-export async function patchArticle() {}
+export async function patchArticle(patchId, patchArticleBody) {
+  const res = await fetch(
+    `https://panda-market-api-crud.vercel.app/articles/${patchId}`,
+    {
+      method: "PATCH",
+      body: JSON.stringify(patchArticleBody),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  if (!res.ok) {
+    throw new Error("데이터를 불러오는데 실패했습니다.");
+  }
+
+  const data = await res.json();
+  return data;
+}
 
 export async function deleteArticle() {}
