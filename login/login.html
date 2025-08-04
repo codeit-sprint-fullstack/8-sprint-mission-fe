@@ -1,58 +1,87 @@
 <!DOCTYPE html>
 <html lang="kr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>판다마켓-로그인</title>
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="../global.css">
-  <link rel="stylesheet" href="../validate/validate.css">
-</head>
-<body>
-  <section class="login_page">
-    <div class="wrapper">
-      <div class="logo-loginForm">
-        <a class="logo" href="/">
-          <img src="../img/pandaLogo_Face_Text.svg" alt="pandaMarketLogo">
-        </a>
-        <div class="loginForm">
-          <form>
-            <div class="email">
-              <label for="Email">이메일</label>
-              <input id="userEmail" class="userEmailInput" type="email" id="email" name="userEmail" required placeholder="이메일을 입력해주세요">
-              <div class="error-none"></div>
-            </div>
-            <div class="password">
-              <label for="password">비밀번호</label>
-              <input id="userPassword" class="userPasswordInput" type="password" id="password" name="userPassword" required placeholder="비밀번호를 입력해주세요">
-              <div class="error-none"></div>
-            </div>
-            <button class="submitBtn" type="submit">로그인</button>
-          </form>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>판다마켓-로그인</title>
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../global.css" />
+    <link rel="stylesheet" href="../validate/validate.css" />
+  </head>
+  <body>
+    <section class="login_page">
+      <div class="wrapper">
+        <div class="logo-loginForm">
+          <a class="logo" href="/">
+            <img src="../img/pandaLogo_Face_Text.svg" alt="pandaMarketLogo" />
+          </a>
+          <div class="loginForm">
+            <form action="../items/items.html">
+              <div class="email">
+                <label for="Email">이메일</label>
+                <input
+                  id="userEmail"
+                  class="userEmailInput"
+                  type="email"
+                  id="email"
+                  name="userEmail"
+                  required
+                  placeholder="이메일을 입력해주세요"
+                />
+                <div class="error-none"></div>
+              </div>
+              <div class="password">
+                <label for="password">비밀번호</label>
+                <input
+                  id="userPassword"
+                  class="userPasswordInput"
+                  type="password"
+                  id="password"
+                  name="userPassword"
+                  required
+                  placeholder="비밀번호를 입력해주세요"
+                />
+                <div class="error-none"></div>
+              </div>
+              <button class="submitBtn" type="submit">로그인</button>
+            </form>
+          </div>
         </div>
-      </div>
-      <div class="easyLogin">
-        <div class="login_wrapper">
-          <div class="socialLogin">
-            <div class="title">간편 로그인하기</div>
-            <div class="socialButton">
-              <a href="https://www.google.com">          
-                <img class="googleLogin" alt="googleLogo" src="../img/login_googleLogo.svg">
-              </a>
-              <a href="https://www.kakaocorp.com/page/">
-              <img class="kakaoLogin" alt="kakaoLogo" src="../img/login_kakaoLogo.svg">
-              </a>
+        <div class="easyLogin">
+          <div class="login_wrapper">
+            <div class="socialLogin">
+              <div class="title">간편 로그인하기</div>
+              <div class="socialButton">
+                <a href="https://www.google.com">
+                  <img
+                    class="googleLogin"
+                    alt="googleLogo"
+                    src="../img/login_googleLogo.svg"
+                  />
+                </a>
+                <a href="https://www.kakaocorp.com/page/">
+                  <img
+                    class="kakaoLogin"
+                    alt="kakaoLogo"
+                    src="../img/login_kakaoLogo.svg"
+                  />
+                </a>
+              </div>
+            </div>
+            <div class="signup">
+              <div>핀다마켓이 처음이신가요?</div>
+              <a href="../signup/signup.html">회원가입</a>
             </div>
           </div>
-          <div class="signup">
-            <div>핀다마켓이 처음이신가요?</div>
-            <a href="../signup/signup.html">회원가입</a>
-          </div>
         </div>
       </div>
-    </div>
-  </section>
-  <script type="module" src="login.js"></script>
-</body>
+    </section>
+    <script type="module" src="login.js"></script>
+  </body>
 </html>
