@@ -13,10 +13,16 @@ import {
   deleteProduct,
 } from "./ProductService";
 
-const page = 1;
-const pageSize = 10;
-const keyword = "recent";
-const getArticleListData = getArticleList({ page, pageSize, keyword })
+// Article
+
+const articlePage = 1;
+const articlePageSize = 10;
+const articleKeyword = "recent";
+const getArticleListData = getArticleList({
+  articlePage,
+  articlePageSize,
+  articleKeyword,
+})
   .then((data) => console.log(data))
   .catch((err) => console.log(err));
 
@@ -46,5 +52,51 @@ const patchArticleData = patchArticle(patchArticleId, patchArticleBody)
 
 const deleteArticleId = 1;
 const deleteArticleData = deleteArticle(deleteArticleId)
+  .then((data) => console.log(data))
+  .catch((err) => console.log(err));
+
+// Product
+
+const productPage = 1;
+const productPageSize = 10;
+const productKeyword = "recent";
+const getProductListData = getArticleList({
+  productPage,
+  productPageSize,
+  productKeyword,
+})
+  .then((data) => console.log(data))
+  .catch((err) => console.log(err));
+
+const getProductId = 1;
+const getProductData = getProduct(getProductId)
+  .then((data) => console.log(data))
+  .catch((err) => console.log(err));
+
+const createProductBody = {
+  name: "name",
+  description: "description",
+  price: "price",
+  tags: "tags",
+  images: "images",
+};
+const createProductData = createProduct(createProductBody)
+  .then((data) => console.log(data))
+  .catch((err) => console.log(err));
+
+const patchProductId = 1;
+const patchProductBody = {
+  name: "name",
+  description: "description",
+  price: "price",
+  tags: "tags",
+  images: "images",
+};
+const patchProductData = patchProduct(patchProductId, patchProductBody)
+  .then((data) => console.log(data))
+  .catch((err) => console.log(err));
+
+const deleteProductId = 1;
+const deleteProductData = deleteProduct(deleteProductId)
   .then((data) => console.log(data))
   .catch((err) => console.log(err));
