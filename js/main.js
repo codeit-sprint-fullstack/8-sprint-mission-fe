@@ -4,14 +4,14 @@ import {
   createArticle,
   patchArticle,
   deleteArticle,
-} from "./ArticleService";
+} from "./ArticleService.js";
 import {
   getProductList,
   getProduct,
   createProduct,
   patchProduct,
   deleteProduct,
-} from "./ProductService";
+} from "./ProductService.js";
 
 // Article
 
@@ -19,41 +19,45 @@ const articlePage = 1;
 const articlePageSize = 10;
 const articleKeyword = "recent";
 const articleList = getArticleList({
-  articlePage,
-  articlePageSize,
-  articleKeyword,
+  page: articlePage,
+  pageSize: articlePageSize,
+  keyword: articleKeyword,
 })
-  .then((data) => console.log("articleList: ", data))
-  .catch((err) => console.log(err));
-
-const getArticleId = 1;
-const articleData = getArticle(getArticleId)
-  .then((data) => console.log("articleData: ", data))
-  .catch((err) => console.log(err));
+  .then((data) => console.log("getArticleList: ", data))
+  .catch((err) => console.log("getArticleList: ", err));
 
 const createArticleBody = {
   title: "title",
   content: "content",
-  image: "image",
+  image: "https://example.com/...",
 };
 const createdArticle = createArticle(createArticleBody)
-  .then((data) => console.log("created: ", data))
-  .catch((err) => console.log(err));
+  .then((data) => console.log("createArticle: ", data))
+  .catch((err) => console.log("createArticle: ", err));
 
-const patchArticleId = 1;
+const getArticleId = 3100;
+const articleData = getArticle(getArticleId)
+  .then((data) => console.log("getArticle: ", data))
+  .catch((err) => console.log("getArticle: ", err));
+
+const patchArticleId = 3101;
 const patchArticleBody = {
-  title: "title",
-  content: "content",
-  image: "image",
+  title: "updated title",
+  content: "updated content",
+  image: "https://example.com/...",
 };
 const updatedArticle = patchArticle(patchArticleId, patchArticleBody)
-  .then((data) => console.log("updated: ", data))
-  .catch((err) => console.log(err));
+  .then((data) => console.log("patchArticle: ", data))
+  .catch((err) => console.log("patchArticle: ", err));
 
-const deleteArticleId = 1;
-const deletedArticle = deleteArticle(deleteArticleId)
-  .then((data) => console.log("deleted: ", data))
-  .catch((err) => console.log(err));
+let deleteArticleId = 3102;
+if (deleteArticleId) {
+  const deletedArticle = deleteArticle(deleteArticleId)
+    .then((data) => console.log("deleteArticle: ", data))
+    .catch((err) => console.log("deleteArticle: ", err));
+} else {
+  console.log("deleteId 없음");
+}
 
 // Product
 
@@ -68,56 +72,58 @@ try {
     keyword,
   });
 
-  console.log("productList: ", productList);
+  console.log("getProductList: ", productList);
 } catch (err) {
-  console.log(err);
-}
-
-try {
-  const id = 1;
-  const product = await getProduct(id);
-
-  console.log("product: ", product);
-} catch (err) {
-  console.log(err);
+  console.log("getProductList: ", err);
 }
 
 try {
   const productData = {
-    name: "name",
-    description: "description",
-    price: "price",
-    tags: "tags",
-    images: "images",
+    name: "상품 이름",
+    description: "string",
+    price: 0,
+    tags: ["전자제품"],
+    images: ["https://example.com/..."],
   };
   const created = await createProduct(productData);
 
-  console.log("created: ", created);
+  console.log("createProduct: ", created);
 } catch (err) {
-  console.log(err);
+  console.log("createProduct: ", err);
 }
 
 try {
-  const id = 1;
+  const getProductId = 1570;
+  const product = await getProduct(getProductId);
+
+  console.log("getProduct: ", product);
+} catch (err) {
+  console.log("getProduct: ", err);
+}
+
+try {
+  const patchProductId = 1571;
   const productData = {
-    name: "name",
-    description: "description",
-    price: "price",
-    tags: "tags",
-    images: "images",
+    name: "수정한 상품 이름",
+    description: "updated string",
+    price: 9999,
+    tags: ["전자제품"],
+    images: ["https://example.com/..."],
   };
-  const updated = await patchProduct(id, productData);
+  const updated = await patchProduct(patchProductId, productData);
 
-  console.log("updated: ", updated);
+  console.log("patchProduct: ", updated);
 } catch (err) {
-  console.log(err);
+  console.log("patchProduct: ", err);
 }
 
 try {
-  const id = 1;
-  const deleted = await deleteProduct(id);
+  let deleteProductId = 1572;
+  if (deleteArticleId) {
+    const deleted = await deleteProduct(deleteProductId);
 
-  console.log("deleted: ", deleted);
+    console.log("deleteProduct: ", deleted);
+  } else console.log("deleteProductId 없음");
 } catch (err) {
-  console.log(err);
+  console.log("deleteProduct: ", err);
 }

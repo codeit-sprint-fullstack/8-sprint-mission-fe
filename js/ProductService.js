@@ -2,7 +2,8 @@
 
 function checkResponseOk(res) {
   if (!res.ok) {
-    throw new Error("데이터를 불러오는데 실패했습니다.");
+    console.error("Response status:", res.status, res.statusText);
+    throw new Error("Response Error");
   }
 }
 
