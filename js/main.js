@@ -17,11 +17,11 @@ import {
 
 const articlePage = 1;
 const articlePageSize = 10;
-const articleKeyword = "recent";
+const articleOrderBy = "recent";
 const articleList = getArticleList({
   page: articlePage,
   pageSize: articlePageSize,
-  keyword: articleKeyword,
+  orderBy: articleOrderBy,
 })
   .then((data) => console.log("getArticleList: ", data))
   .catch((err) => console.log("getArticleList: ", err));
@@ -50,7 +50,7 @@ const updatedArticle = patchArticle(patchArticleId, patchArticleBody)
   .then((data) => console.log("patchArticle: ", data))
   .catch((err) => console.log("patchArticle: ", err));
 
-let deleteArticleId = 3102;
+let deleteArticleId = 3103;
 if (deleteArticleId) {
   const deletedArticle = deleteArticle(deleteArticleId)
     .then((data) => console.log("deleteArticle: ", data))
@@ -64,12 +64,12 @@ if (deleteArticleId) {
 try {
   const page = 1;
   const pageSize = 10;
-  const keyword = "recent";
+  const orderBy = "recent";
 
   const productList = await getProductList({
     page,
     pageSize,
-    keyword,
+    orderBy,
   });
 
   console.log("getProductList: ", productList);
@@ -118,7 +118,7 @@ try {
 }
 
 try {
-  let deleteProductId = 1572;
+  let deleteProductId = 1614;
   if (deleteArticleId) {
     const deleted = await deleteProduct(deleteProductId);
 

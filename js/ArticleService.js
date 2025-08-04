@@ -7,9 +7,9 @@ function checkResponseOk(res) {
   }
 }
 
-export async function getArticleList({ page, pageSize, keyword }) {
+export async function getArticleList({ page, pageSize, orderBy }) {
   const url = new URL(`https://panda-market-api-crud.vercel.app/articles`);
-  const params = { page, pageSize, keyword };
+  const params = { page, pageSize, orderBy };
 
   Object.keys(params).forEach((key) =>
     url.searchParams.append(key, params[key])
