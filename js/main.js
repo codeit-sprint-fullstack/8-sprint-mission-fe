@@ -57,46 +57,67 @@ const deleteArticleData = deleteArticle(deleteArticleId)
 
 // Product
 
-const productPage = 1;
-const productPageSize = 10;
-const productKeyword = "recent";
-const getProductListData = getArticleList({
-  productPage,
-  productPageSize,
-  productKeyword,
-})
-  .then((data) => console.log(data))
-  .catch((err) => console.log(err));
+try {
+  const productPage = 1;
+  const productPageSize = 10;
+  const productKeyword = "recent";
 
-const getProductId = 1;
-const getProductData = getProduct(getProductId)
-  .then((data) => console.log(data))
-  .catch((err) => console.log(err));
+  const getProductListData = await getProductList({
+    productPage,
+    productPageSize,
+    productKeyword,
+  });
 
-const createProductBody = {
-  name: "name",
-  description: "description",
-  price: "price",
-  tags: "tags",
-  images: "images",
-};
-const createProductData = createProduct(createProductBody)
-  .then((data) => console.log(data))
-  .catch((err) => console.log(err));
+  console.log(getProductListData);
+} catch (err) {
+  console.log(err);
+}
 
-const patchProductId = 1;
-const patchProductBody = {
-  name: "name",
-  description: "description",
-  price: "price",
-  tags: "tags",
-  images: "images",
-};
-const patchProductData = patchProduct(patchProductId, patchProductBody)
-  .then((data) => console.log(data))
-  .catch((err) => console.log(err));
+try {
+  const getProductId = 1;
+  const getProductData = await getProduct(getProductId);
 
-const deleteProductId = 1;
-const deleteProductData = deleteProduct(deleteProductId)
-  .then((data) => console.log(data))
-  .catch((err) => console.log(err));
+  console.log(getProductData);
+} catch (err) {
+  console.log(err);
+}
+
+try {
+  const createProductBody = {
+    name: "name",
+    description: "description",
+    price: "price",
+    tags: "tags",
+    images: "images",
+  };
+  const createProductData = await createProduct(createProductBody);
+
+  console.log(createProductData);
+} catch (err) {
+  console.log(err);
+}
+
+try {
+  const patchProductId = 1;
+  const patchProductBody = {
+    name: "name",
+    description: "description",
+    price: "price",
+    tags: "tags",
+    images: "images",
+  };
+  const patchProductData = await patchProduct(patchProductId, patchProductBody);
+
+  console.log(patchProductData);
+} catch (err) {
+  console.log(err);
+}
+
+try {
+  const deleteProductId = 1;
+  const deleteProductData = await deleteProduct(deleteProductId);
+
+  console.log(deleteProductData);
+} catch (err) {
+  console.log(err);
+}
