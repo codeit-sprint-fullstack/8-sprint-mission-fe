@@ -70,4 +70,18 @@ export async function patchArticle(patchId, patchArticleBody) {
   return data;
 }
 
-export async function deleteArticle() {}
+export async function deleteArticle(deleteId) {
+  const res = await fetch(
+    `https://panda-market-api-crud.vercel.app/articles/${deleteId}`,
+    {
+      method: "DELETE",
+    }
+  );
+
+  if (!res.ok) {
+    throw new Error("데이터를 불러오는데 실패했습니다.");
+  }
+
+  const data = await res.json();
+  return data;
+}
