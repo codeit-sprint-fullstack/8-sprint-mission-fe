@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
   <head>
     <meta charset="utf-8">
     <title>로그인화면</title>
@@ -8,16 +8,16 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"
       rel="stylesheet">
-    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="./css/signup/style.css">
   </head>
   <body>
     <div class="title">
-      <img id="panda-logo" src="panda_face.svg">
+      <img id="panda-logo" src="./img/panda_face.svg">
       <h1 class="login-title">판다마켓</h1>
     </div>
-      <form>
+      <form action="/signup" method="POST">
         <label for="useremail">이메일</label>
-        <input id="useremail" name="useremail" placeholder="이메일을 입력해주세요">
+        <input id="useremail" name="useremail" type="email" placeholder="이메일을 입력해주세요">
         
         <label for="userid" >닉네임</label>
         <input id="userid" name="userid" placeholder="닉네임을 입력해주세요">
@@ -34,10 +34,10 @@
         <span>간편로그인하기</span>
         <div class="icon">
           <a href="https://www.google.com/">
-            <img class="google"  src="Component 2.svg">
+            <img class="google"  src="./img/Component 2.svg">
           </a>
           <a href="https://www.kakaocorp.com/page/">
-            <img class="kakao" src="Component 3.svg">
+            <img class="kakao" src="./img/Component 3.svg">
           </a>
         </div>
       </div>
