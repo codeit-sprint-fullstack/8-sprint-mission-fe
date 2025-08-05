@@ -1,28 +1,28 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css');
 
 :root {
   --primary-color-100: #3692ff;
-  --primary-color-200: #1967D6;
-  --primary-color-300: #1251AA;
-  
-  --error-color: #F74747;
+  --primary-color-200: #1967d6;
+  --primary-color-300: #1251aa;
 
-  --secondary-color-50: #F9FAFB;
-  --secondary-color-100: #F3F4F6;
-  --secondary-color-200: #E5E7EB;
-  --secondary-color-400: #9CA3AF;
-  --secondary-color-500: #6B7280;
-  --secondary-color-600: #4B5563;
+  --error-color: #f74747;
+
+  --secondary-color-50: #f9fafb;
+  --secondary-color-100: #f3f4f6;
+  --secondary-color-200: #e5e7eb;
+  --secondary-color-400: #9ca3af;
+  --secondary-color-500: #6b7280;
+  --secondary-color-600: #4b5563;
   --secondary-color-700: #374151;
-  --secondary-color-800: #1F2937;
+  --secondary-color-800: #1f2937;
   --secondary-color-900: #111827;
 
-  --background-color: #FCFCFC;
+  --background-color: #fcfcfc;
   --white-color: #fff;
 }
 
 body {
-  font-family: "Pretendard", sans-serif;
+  font-family: 'Pretendard', sans-serif;
 }
 
 /* header 스타일 */
@@ -32,7 +32,7 @@ body {
   left: 0;
   right: 0;
   background-color: var(--background-color);
-  border-bottom: 1px solid #DFDFDF;
+  border-bottom: 1px solid #dfdfdf;
   z-index: 1000;
 }
 
@@ -45,6 +45,25 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  ul {
+    display: flex;
+
+    li {
+      a {
+        display: inline-block;
+        padding: 2.1rem 1.5rem;
+        font-size: 1.8rem;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
 }
 
 .logo {
@@ -88,7 +107,7 @@ footer {
 
 .social-links a {
   cursor: pointer;
-} 
+}
 
 /* 버튼 스타일 */
 .btn-large {
@@ -118,7 +137,7 @@ footer {
   cursor: not-allowed;
 }
 
-.btn-small-40{
+.btn-small-40 {
   display: inline-block;
   height: 4.2rem;
   font-size: 1.6rem;
@@ -231,13 +250,13 @@ footer {
 /* 간편로그인 스타일 */
 
 .social-login {
-  display : flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1.6rem;
   padding: 1.6rem 2.3rem;
   border-radius: 0.8rem;
-  background-color: #E6F2FF;
+  background-color: #e6f2ff;
 }
 
 .social-login p {
@@ -253,7 +272,6 @@ footer {
   gap: 1.6rem;
 }
 
-
 /* auth 컴포넌트 */
 .signup-link {
   font-size: 1.4rem;
@@ -262,7 +280,7 @@ footer {
   color: var(--secondary-color-800);
 }
 
-.signup-link p{
+.signup-link p {
   display: flex;
   justify-content: center;
   gap: 0.4rem;
@@ -278,7 +296,6 @@ footer {
 .signup-link a:hover {
   text-decoration: underline;
 }
-
 
 /* 팝업 스타일 */
 .popup-overlay {
@@ -308,7 +325,7 @@ footer {
   max-width: 54rem;
   height: 25rem;
   border-radius: 1.2rem;
-  display : flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--white-color);
@@ -329,7 +346,6 @@ footer {
   .footer-container {
     padding: 3.2rem 2.4rem 8rem;
   }
-
 }
 
 @media (max-width: 743px) {
@@ -338,7 +354,7 @@ footer {
   }
 
   .btn-large {
-    width : 24rem;
+    width: 24rem;
     height: 4.8rem;
     font-size: 1.8rem;
     padding: 1.2rem 0;
@@ -346,15 +362,14 @@ footer {
     margin: 0 auto;
   }
 
-
   .footer-container {
-    flex-wrap : wrap;
+    flex-wrap: wrap;
     gap: 2.4rem;
     padding: 3.2rem 1.6rem 6.5rem;
   }
 
   .copyright {
-    order : 1;
+    order: 1;
     flex-basis: 100%;
   }
 
@@ -362,11 +377,10 @@ footer {
     width: calc(100% - 4.8rem);
   }
 
-  .popup-btn{
+  .popup-btn {
     left: 50%;
     transform: translateX(-50%);
-    bottom : 2.3rem;
+    bottom: 2.3rem;
     min-width: 12rem;
   }
-
 }
