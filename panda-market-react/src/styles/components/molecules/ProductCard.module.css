@@ -1,0 +1,30 @@
+.productCard {
+  color: var(--secondary-color-800);
+
+  a {
+    display: block;
+
+    img {
+      width: 100%;
+      max-width: 282px;
+      border-radius: 1.6rem;
+    }
+  }
+
+  .productCardContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-top: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  p {
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+}
