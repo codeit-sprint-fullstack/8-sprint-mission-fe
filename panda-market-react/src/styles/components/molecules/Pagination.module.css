@@ -1,0 +1,35 @@
+.pagination {
+  ul {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-top: 4.3rem;
+  }
+
+  li {
+    a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      font-size: 1.4rem;
+      border: 1px solid var(--secondary-color-200);
+
+      &.active {
+        background-color: var(--primary-color-100);
+        color: var(--white-color);
+        border: 1px solid var(--primary-color-100);
+      }
+
+      img {
+        vertical-align: -2px;
+      }
+    }
+    &.invisible a {
+      opacity: 0.2;
+      pointer-events: none;
+    }
+  }
+}
