@@ -1,10 +1,10 @@
-import Header from "./Header/Header";
-import ProductList from "./ProductList/ProductList";
+import Header from "@components/Header/Header";
+import ProductList from "@components/ProductList/ProductList";
 import '@styles/style.scss'
-import ProductListController from "./ProductList/ProductListController/ProductListController";
+import ProductListController from "@components/ProductList/ProductListController/ProductListController";
 import { useMemo, useState } from "react";
 import PageButton from "@components/PageButton/PageButton";
-import Footer from "./Footer/Footer";
+import Footer from "@components/Footer/Footer";
 
 function App() {
     const bestQueryMemo = useMemo(() => ({ pageSize: 4, orderBy: 'favorite' }), []);
