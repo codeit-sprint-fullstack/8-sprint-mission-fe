@@ -1,0 +1,24 @@
+@import './reset.css';
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+@import url('https://cdn.jsdelivr.net/npm/@noonnu/rokaf-sans-medium/index.min.css');
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    margin-top: 6.8rem;
+}
+
+body,
+button {
+    font-family: 'Pretendard', sans-serif;
+}
+
+main {
+    padding: 2.6rem 36.0rem 14.0rem;
+}
+
+a {
+  text-decoration: none;
+}

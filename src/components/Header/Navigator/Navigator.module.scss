@@ -1,0 +1,17 @@
+@use '@styles/variables' as *;
+
+.navigator {
+    display: flex;
+    align-items: center;
+    border-bottom: 0.1rem #dfdfdf;
+    border-color: #dfdfdf;
+    margin: 0 auto 0 2.0rem;
+    
+    a {
+        padding: 2.1rem 1.5rem;
+        color: $color-secondary-600;
+        font-size: 1.8rem;
+        font-weight: 700;
+        cursor: pointer;
+    }
+}

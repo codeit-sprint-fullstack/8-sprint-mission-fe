@@ -1,0 +1,15 @@
+@use '@styles/variables' as *;
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.86rem;
+    cursor: pointer;
+
+    p {
+        color: $color-primary-100;
+        font-family: 'ROKAFSansMedium';
+        font-size: 2.56rem;
+        font-weight: 700;
+    }
+}

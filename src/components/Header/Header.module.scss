@@ -1,0 +1,21 @@
+@use '@styles/variables' as *;
+@use '@styles/mixin' as *;
+
+.header {
+    inset: 0;
+    height: 6.8rem;
+    z-index: $z-index-header;
+    background-color: white;
+    position: fixed;
+    padding: 0 20.0rem;
+
+    .container {
+        display: flex;
+        align-items: center;
+    }
+
+    .loginBtn {
+        @include base-button;
+        padding: 1.2rem 2.3rem;
+    }
+}

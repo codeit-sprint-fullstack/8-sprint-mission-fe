@@ -1,0 +1,40 @@
+@use '@styles/mixin' as *;
+
+.productListController {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.6rem;
+
+    h2 {
+        font-size: 2.0rem;
+        font-weight: 700;
+    }
+
+    button {
+        @include base-button;
+        padding: 1.2rem 2.3rem;
+    }
+
+    div {
+        display: flex;
+        gap: 1.2rem;
+    }
+
+    .searchInput {
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        input {
+            @include base-input;
+            padding: 1.4rem 1.6rem 1.4rem 4.4rem;
+            width: 32.5rem;
+        }
+
+        img {
+            position: absolute;
+            left: 1.6rem;
+        }
+    }
+}
