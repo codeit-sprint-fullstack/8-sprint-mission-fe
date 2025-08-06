@@ -7,13 +7,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e76c9ca-a248-4092-b138-5d986510aa91" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="0e76c9ca-a248-4092-b138-5d986510aa91" name="Changes" comment="chore: React development configuration complete.&#10;&#10;- React를 사용해 진행합니다.">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/main/best-products.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/main/sale-products.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/test.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eslint.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vite.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/pull-request-template.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/auto-label-assign.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/8-sprint-mission-fe.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/board.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/board.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/faq.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/faq.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/privacy.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/privacy.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/items.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/items.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="JSX File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -24,7 +54,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -36,21 +66,41 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JavaScript 디버그.index.html.executor": "Run",
+    "JavaScript 디버그.items.html.executor": "Run",
+    "JavaScript 디버그.localhost:5173.executor": "Run",
     "JavaScript 디버그.login.html.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Node.js.ArticleService.js.executor": "Run",
     "Node.js.main.js.executor": "Run",
+    "Node.js.main.jsx.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "deletionFromPopupRequiresConfirmation": "false",
     "git-widget-placeholder": "react",
     "javascript.nodejs.core.library.configured.version": "22.17.1",
     "javascript.nodejs.core.library.typings.version": "22.17.0",
+    "last_opened_file_path": "C:/Users/pando/Codeit/8-sprint-mission-fe/components",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\pando\Codeit\8-sprint-mission-fe\components" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\pando\Codeit\8-sprint-mission-fe\components" />
+      <recent name="C:\Users\pando\Codeit\8-sprint-mission-fe\src" />
+      <recent name="C:\Users\pando\Codeit\8-sprint-mission-fe" />
+      <recent name="C:\Users\pando\Codeit\8-sprint-mission-fe\public" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -73,7 +123,10 @@
       <workItem from="1753867650084" duration="180000" />
       <workItem from="1753867872389" duration="1752000" />
       <workItem from="1753884584867" duration="1134000" />
-      <workItem from="1754393927860" duration="391000" />
+      <workItem from="1754393927860" duration="787000" />
+      <workItem from="1754394741172" duration="3833000" />
+      <workItem from="1754398695315" duration="13719000" />
+      <workItem from="1754453843236" duration="5084000" />
     </task>
     <task id="LOCAL-00001" summary="feat: Implementation API functions for Article and Product services">
       <option name="closed" value="true" />
@@ -91,7 +144,55 @@
       <option name="project" value="LOCAL" />
       <updated>1753885068804</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="chore: Moving files from &quot;basic&quot; branch&#10;&#10;본 커밋은 파일 이동을 위한 커밋입니다. basic 브랜치에 있던 파일을 옮겨온 것이니, 무시하셔도 됩니다.">
+      <option name="closed" value="true" />
+      <created>1754394710199</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1754394710199</updated>
+    </task>
+    <task id="LOCAL-00004" summary="chore: comment out Google Analytics script in index.html">
+      <option name="closed" value="true" />
+      <created>1754396758510</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1754396758510</updated>
+    </task>
+    <task id="LOCAL-00005" summary="refactor: Apply Sprint4 feedback from comments.&#10;&#10;- ArticleService.js / ProductS">
+      <option name="closed" value="true" />
+      <created>1754443621180</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1754443621180</updated>
+    </task>
+    <task id="LOCAL-00006" summary="refactor: Apply Sprint4 feedback from comments.&#10;&#10;- ArticleService.js / ProductService.js&#10;  - 상단 export 문제 해결&#10;  - async/await와 프로미스 체이닝 ( .then ) 혼용 문제 해결&#10;  - BaseURL의 상수화&#10;  - 메서드의 클래스화&#10;  - 함수의 인자값 (fetch의 options)의 변수 선언 및 함수 인자화&#10;- main.js&#10;  - try ~ catch 절 적용">
+      <option name="closed" value="true" />
+      <created>1754443878300</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1754443878300</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat: Implement &lt;header&gt; and &lt;footer&gt; in items.html.">
+      <option name="closed" value="true" />
+      <created>1754447708799</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1754447708799</updated>
+    </task>
+    <task id="LOCAL-00008" summary="chore: file names change to meet url path requirement.&#10;&#10;-  중고마켓 페이지 url path는 별도로 설정하지 않고, '/'에 보이도록 합니다.">
+      <option name="closed" value="true" />
+      <created>1754448696018</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1754448696018</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -108,7 +209,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/basic" />
+                        <option value="react" />
                       </list>
                     </value>
                   </entry>
@@ -125,6 +226,13 @@
     <MESSAGE value="feat: Implement API functions for Article and Product services and its test code" />
     <MESSAGE value="docs: update fe readme" />
     <MESSAGE value="Changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes" />
+    <MESSAGE value="chore: Moving files from &quot;basic&quot; branch&#10;&#10;본 커밋은 파일 이동을 위한 커밋입니다. basic 브랜치에 있던 파일을 옮겨온 것이니, 무시하셔도 됩니다." />
+    <MESSAGE value="chore: comment out Google Analytics script in index.html" />
+    <MESSAGE value="refactor: Apply Sprint4 feedback from comments.&#10;&#10;- ArticleService.js / ProductS" />
+    <MESSAGE value="refactor: Apply Sprint4 feedback from comments.&#10;&#10;- ArticleService.js / ProductService.js&#10;  - 상단 export 문제 해결&#10;  - async/await와 프로미스 체이닝 ( .then ) 혼용 문제 해결&#10;  - BaseURL의 상수화&#10;  - 메서드의 클래스화&#10;  - 함수의 인자값 (fetch의 options)의 변수 선언 및 함수 인자화&#10;- main.js&#10;  - try ~ catch 절 적용" />
+    <MESSAGE value="feat: Implement &lt;header&gt; and &lt;footer&gt; in items.html." />
+    <MESSAGE value="chore: file names change to meet url path requirement.&#10;&#10;-  중고마켓 페이지 url path는 별도로 설정하지 않고, '/'에 보이도록 합니다." />
+    <MESSAGE value="chore: React development configuration complete.&#10;&#10;- React를 사용해 진행합니다." />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: React development configuration complete.&#10;&#10;- React를 사용해 진행합니다." />
   </component>
 </project>
