@@ -1,19 +1,21 @@
+<!-- 
+    <VS Code에서 HTML 기본구조 자동생성하기>
+
+    - `!` 입력 후 tab 키를 누르면 HTML 기본 양식이 입력됩니다.
+
+    - 이때, <html lang="en"> 부분을 매번 lang="ko"로 바꾸는 것이 번거로우니 양식을 바꿔봅시다.
+      command/ctrl + 쉼표 를 눌러 VS Code 설정창을 열고 emmet을 검색해 주세요. 
+      스크롤을 내려 Emmet: Variables 섹션에 Add Item을 누르고 lang Item의 Value를 ko로 바꿔 입력해 주세요. 
+      마지막으로 Add Item 버튼을 눌러 저장하면 끝!
+-->
+
 <!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- 심화 요구사항) 랜딩 페이지의 메타 태그 설정 (제목, 설명, 주소, 이미지) -->
-    <meta property="og:title" content="판다마켓" />
-    <meta property="og:description" content="일상에서 모든 물건을 거래해보세요" />
-    <meta property="og:image" content="https://gentle-hummingbird-9868af.netlify.app/images/home/bottom-banner-image.png" />
-    <meta property="og:url" content="https://gentle-hummingbird-9868af.netlify.app/" />
-    <meta property="og:locale" content="ko_KR" />
-    <meta property="og:type" content="Shopping" />
-    <meta property="og:logo" content="https://gentle-hummingbird-9868af.netlify.app/images/logo/logo.svg" />
-
-    <title>판다마켓</title>
+    <!-- 기본 양식 생성 후, 제목을 수정하고 해당 페이지에 적용할 파비콘 및 스타일시트를 추가해 주세요. -->
+    <title>판다마켓 - 상품 리스트</title>
     <link rel="icon" href="images/logo/favicon.ico" />
     <link
       rel="stylesheet"
@@ -21,106 +23,29 @@
       crossorigin
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
     />
-    <link rel="stylesheet" href="styles/global.css" />
+
     <link rel="stylesheet" href="styles/home.css" />
-
-    <!-- [심화 요구사항] Google Analytics  -->
-    <!-- Google Analytics 계정을 생성해 ) 본인의 Tracking ID(예: G-XXXXXXXXXX)로 변경이 필요합니다. -->
-<!--    <script-->
-<!--      async-->
-<!--      src="https://www.googletagmanager.com/gtag/js?id=G-본인의_Tracking_ID"-->
-<!--    ></script>-->
-<!--    <script>-->
-<!--      window.dataLayer = window.dataLayer || [];-->
-<!--      function gtag() {-->
-<!--        dataLayer.push(arguments);-->
-<!--      }-->
-<!--      gtag("js", new Date());-->
-
-<!--      gtag("config", "G-XXXXXXXXXX"); // 본인의 Tracking ID로 변경-->
-<!--    </script>-->
+      <link rel="stylesheet" href="styles/items.css" />
+      <link rel="stylesheet" href="styles/global.css" />
   </head>
 
   <body>
-    <header>
-      <a href="/"
-        ><img src="images/logo/logo.svg" alt="판다마켓 홈" width="153" class="logo"
-      /></a>
+    <header id="itemsHeader">
+      <a href="/">
+          <img src="images/logo/logo.svg" alt="판다마켓 홈" width="153" class="logo"/>
+      </a>
+        <div id="headerMenu">
+            <a href="board.html" class="headerAnchorText">자유게시판</a>
+            <a href="index.html" class="headerAnchorText">중고마켓</a>
+        </div>
       <a href="login.html" id="loginLinkButton" class="button">로그인</a>
     </header>
 
     <main class="with-header">
-      <section id="hero" class="banner">
-        <div class="wrapper">
-          <h1>
-            일상의 모든 물건을<br />
-            거래해 보세요
-          </h1>
-          <a href="items.html" class="button pill-button">구경하러 가기</a>
-        </div>
-      </section>
-
-      <section id="features" class="wrapper">
-        <div class="feature">
-          <img
-            src="images/home/feature1-image.png"
-            alt="인기 상품"
-            width="50%"
-            class="image"
-          />
-          <div class="feature-content">
-            <h2 class="feature-tag">Hot item</h2>
-            <h1>인기 상품을<br />확인해 보세요</h1>
-            <p class="feature-description">
-              가장 HOT한 중고거래 물품을<br />판다마켓에서 확인해 보세요
-            </p>
-          </div>
-        </div>
-        <div class="feature">
-          <div class="feature-content">
-            <h2 class="feature-tag">Search</h2>
-            <h1>구매를 원하는<br />상품을 검색하세요</h1>
-            <p class="feature-description">
-              구매하고 싶은 물품은 검색해서
-              <br />쉽게 찾아보세요
-            </p>
-          </div>
-          <img
-            src="images/home/feature2-image.png"
-            alt="검색 기능"
-            width="50%"
-            class="image"
-          />
-        </div>
-        <div class="feature">
-          <img
-            src="images/home/feature3-image.png"
-            alt="판매 상품 등록"
-            width="50%"
-            class="image"
-          />
-          <div class="feature-content">
-            <h2 class="feature-tag">Register</h2>
-            <h1>판매를 원하는<br />상품을 등록하세요</h1>
-            <p class="feature-description">
-              어떤 물건이든 판매하고 싶은 상품을
-              <br />쉽게 등록하세요
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="bottomBanner" class="banner">
-        <div class="wrapper">
-          <h1>
-            믿을 수 있는
-            <br />
-            판다마켓 중고거래
-          </h1>
-        </div>
-      </section>
+        <section class="temp">
+            <h1>임시 상품 리스트 페이지</h1>
+        </section>
     </main>
-
     <footer>
       <div>©codeit - 2025</div>
       <div id="footerMenu">
