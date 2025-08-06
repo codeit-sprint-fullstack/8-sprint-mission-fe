@@ -39,8 +39,7 @@ body {
 /* nav 스타일 */
 .nav {
   width: 100%;
-  max-width: 116rem;
-  padding: 0.9rem 1.6rem;
+  padding: 0rem 20rem;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -340,7 +339,7 @@ footer {
 /* 반응형 스타일 */
 @media (max-width: 1199px) {
   .nav {
-    padding: 0.9rem 2.4rem;
+    padding: 0rem 2.4rem;
   }
 
   .footer-container {

@@ -1,0 +1,26 @@
+.main {
+  width: 100%;
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 9.4rem 0 14rem;
+
+  section:nth-child(2) {
+    margin-top: 4rem;
+  }
+
+  .bestProductList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.4rem;
+  }
+
+  .productList {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4rem 2.4rem;
+  }
+
+  h1 {
+    margin-bottom: 2.4rem;
+  }
+}
