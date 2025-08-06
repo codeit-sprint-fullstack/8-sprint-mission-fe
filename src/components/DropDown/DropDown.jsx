@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import style from './DropDown.module.scss';
-import ic_arrow_down from './ic_arrow_down.svg';
+import ic_arrow_down from '@images/ic_arrow_down.svg';
 
 function DropDown({ options = [{ label: 'none', value: 'none' }], onChange }) {
     const [isOpen, setIsOpen] = useState(false);
