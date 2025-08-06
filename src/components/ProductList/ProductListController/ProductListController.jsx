@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import DropDown from '@components/DropDown/DropDown';
 import style from './ProductListController.module.scss';
-import ic_search from './ic_search.svg';
+import ic_search from '@images/ic_search.svg';
 
 function ProductListController({ title = '', option: controls = {}, setQuery = null }) {
     const [keyword, setKeyword] = useState('');

@@ -1,4 +1,4 @@
-import ic_pandamarket from './images/ic_pandamarket.svg';
+import ic_pandamarket from '@images/ic_pandamarket.svg';
 import style from './Logo.module.scss';
 
 function Logo() {

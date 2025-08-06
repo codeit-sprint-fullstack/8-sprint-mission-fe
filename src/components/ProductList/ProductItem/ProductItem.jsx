@@ -1,4 +1,4 @@
-import ic_heart from './ic_heart.svg';
+import ic_heart from '@images/ic_heart.svg';
 import styles from './ProductItem.module.scss';
 
 function ProductItem({ images = [], name = '', price = 0, favoriteCount = 0 }) {

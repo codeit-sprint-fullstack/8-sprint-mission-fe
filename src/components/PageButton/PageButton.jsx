@@ -1,5 +1,5 @@
 import style from './PageButton.module.scss';
-import ic_arrow_left from './ic_arrow_left.svg';
+import ic_arrow_left from '@images/ic_arrow_left.svg';
 
 function PageButton({ nowPage = 1, buttonLength = 5, pageSize = 10, totalCount = 50, onChange = null }) {
     const startPage = Math.floor((nowPage - 1) / buttonLength) * buttonLength + 1;
