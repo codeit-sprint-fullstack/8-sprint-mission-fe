@@ -1,0 +1,25 @@
+#itemsHeader {
+    padding: 0 200px;
+}
+
+#itemsHeader img {
+    margin: 0 100px 0 0;
+}
+
+#headerMenu {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    margin-right: auto;
+}
+
+.headerAnchorText {
+    color: #4B5563;
+    font-size: 18px;
+    font-family: Pretendard;
+    font-weight: 700;
+    line-height: 26px;
+    word-wrap: break-word
+}
+
+
