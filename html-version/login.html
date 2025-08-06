@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/login.css" />
+    <title>판다마켓 회원가입</title>
+  </head>
+  <body>
+    <div class="login">
+      <div class="login-contents">
+        <header>
+          <a class="header-link" href="/">
+            <div class="hearder-logo">
+              <div class="header-logo-container">
+                <img
+                  class="pandaMarketLogo"
+                  src="./images/pandalogo-sm.svg"
+                  alt="Panda Market"
+                />
+                <p class="header-txt" style="text-decoration: none">판다마켓</p>
+              </div>
+            </div>
+          </a>
+        </header>
+
+        <form class="login-form">
+          <div class="login-form-contents">
+            <div class="login-email">
+              <label class="form-input-title"> 이메일 </label>
+              <input
+                name="login-email"
+                type="email"
+                autocomplete="email"
+                placeholder="이메일을 입력해주세요"
+              />
+              <div id="email-error" class="error-message"></div>
+            </div>
+            <div class="form-pswd">
+              <label class="form-input-title"> 비밀번호 </label>
+              <div class="password-input-container">
+                <input
+                  name="password"
+                  type="password"
+                  placeholder="비밀번호를 입력해주세요"
+                />
+                <div id="password-error" class="error-message"></div>
+                <div class="password-hide">
+                  <img
+                    class="password-hide-icon"
+                    src="./images/pswd.svg"
+                    alt="Password hide"
+                  />
+                  <div id="password-error" class="password-message"></div>
+                </div>
+              </div>
+            </div>
+
+            <button id="summitBtn" type="submit" disabled>로그인</button>
+
+            <div class="easy-login">
+              <p class="easy-login-txt">간편 로그인하기</p>
+              <div class="easy-login-icons">
+                <a
+                  class="easy-login-contents"
+                  href="https://google.com"
+                  alt="Google"
+                >
+                  <img
+                    class="easy-login-icon"
+                    src="./images/google.svg"
+                    alt="Google"
+                  />
+                </a>
+                <a
+                  class="easy-login-contents"
+                  href="https://kakao.com"
+                  alt="Kakao"
+                >
+                  <img
+                    class="easy-login-icon"
+                    src="./images/kakao.svg"
+                    alt="Kakao"
+                  />
+                </a>
+              </div>
+            </div>
+
+            <div class="signup">
+              판다마켓이 처음이신가요?
+              <a href="./signup.html">회원가입</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="errorModal" class="modal-overlay">
+      <div class="modal-content">
+        <p id="modalMessage"></p>
+          <button id="modalCloseBtn">확인</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/common.js"></script>
+    <script src="./js/login.js"></script>
+  </body>
+</html>
