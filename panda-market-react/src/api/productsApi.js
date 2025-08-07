@@ -16,12 +16,13 @@ export const getBestProducts = async () => {
   }
 };
 
-export const getProducts = async (page, pageSize) => {
+export const getProducts = async (page, pageSize, keyword = '') => {
   try {
     const response = await instance.get('/products', {
       params: {
         page,
         pageSize,
+        keyword,
       },
     });
     console.log(response);

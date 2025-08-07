@@ -16,9 +16,9 @@ export function ProductCard({
         <div className={styles.productCardContent}>
           <h2>{name}</h2>
           <p>{price.toLocaleString()}원</p>
-          <LikeButton favoriteCount={favoriteCount} />
         </div>
       </Link>
+      <LikeButton favoriteCount={favoriteCount} />
     </div>
   );
 }
