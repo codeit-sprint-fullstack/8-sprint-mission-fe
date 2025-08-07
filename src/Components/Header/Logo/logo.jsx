@@ -3,7 +3,7 @@ import './Logo.module.css';
 
 function Logo() {
   return (
-    <a href="/" className="logo">
+    <a href="/" className={logo}>
       <img src={logo_img} alt="Logo" />
     </a>
   );

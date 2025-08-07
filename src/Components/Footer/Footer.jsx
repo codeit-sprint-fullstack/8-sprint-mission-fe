@@ -6,16 +6,16 @@ import style from './Footer.module.css';
 
 function Footer() {
   return (
-  <footer className={style.Footer}>
-    <div className={style.container}>
+  <footer className={footer}>
+    <div className={container}>
       <p>@codeit - 2024</p>
 
-      <div className={style.FooterLinks}>
+      <div className={FooterLinks}>
         <a href="/privacy">Privacy Policy</a>
         <a href="/faq">FAQ</a>
       </div>
 
-      <div className={style.SocialLinks}>
+      <div className={SocialLinks}>
         <a href="https://www.facebook.com/" target="_blank">
           <img src={facebook} alt="Facebook" />
         </a>
