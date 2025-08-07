@@ -19,8 +19,34 @@
     grid-template-columns: repeat(5, 1fr);
     gap: 4rem 2.4rem;
   }
+}
+
+.productListTitleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 2.4rem;
 
   h1 {
-    margin-bottom: 2.4rem;
+    flex-grow: 1;
+  }
+}
+
+.noProduct {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--secondary-color-400);
+  margin-top: 4rem;
+}
+
+@media (max-width: 1199px) {
+  .main {
+    width: calc(100% - 4.8rem);
+  }
+}
+
+@media (max-width: 743px) {
+  .main {
+    width: calc(100% - 3.2rem);
   }
 }
