@@ -23,3 +23,19 @@
     cursor: pointer;
   }
 }
+
+@media (max-width: 1199px) {
+  .searchInputWrapper {
+    max-width: 24.2rem;
+
+    input {
+      padding: 0 0.4rem;
+    }
+  }
+}
+
+@media (max-width: 743px) {
+  .searchInputWrapper {
+    max-width: 28.8rem;
+  }
+}

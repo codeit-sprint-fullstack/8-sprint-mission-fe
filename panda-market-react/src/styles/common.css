@@ -350,6 +350,15 @@ footer {
 @media (max-width: 743px) {
   .nav {
     padding: 0.9rem 1.6rem;
+
+    ul {
+      li {
+        a {
+          font-size: 1.6rem;
+          padding: 1.6rem 0.4rem;
+        }
+      }
+    }
   }
 
   .btn-large {

@@ -7,8 +7,27 @@ import { Pagination } from '../components/molecules/Pagination';
 import { SearchInput } from '../components/molecules/SearchInput';
 import { Link } from 'react-router-dom';
 import { Dropdown } from '../components/molecules/Dropdown';
+import { useWindowWidth } from '../lib/hooks/useWindowWidth';
 
-const pageSize = 10; // 한 페이지에 보여줄 데이터 갯수
+let bestProductPageSize; // 베스트 상품 페이지에 보여줄 데이터 갯수
+let pageSize; // 한 페이지에 보여줄 데이터 갯수
+
+const getProductSize = (windowWidth) => {
+  switch (true) {
+    case windowWidth <= 743:
+      bestProductPageSize = 1;
+      pageSize = 4;
+      break;
+    case windowWidth <= 1199:
+      bestProductPageSize = 2;
+      pageSize = 6;
+      break;
+    default:
+      bestProductPageSize = 4;
+      pageSize = 10;
+      break;
+  }
+};
 
 export function ProductListPage() {
   const [bestProductsList, setBestProductsList] = useState([]); // 베스트 상품 리스트
@@ -16,6 +35,10 @@ export function ProductListPage() {
   const [pageCount, setPageCount] = useState(0); // 전체 페이징 넘버 수
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 번호
   const [searchValue, setSearchValue] = useState(''); // 검색 값
+  const windowWidth = useWindowWidth(500);
+
+  console.log(windowWidth);
+  getProductSize(windowWidth);
 
   useEffect(() => {
     /**
@@ -23,7 +46,7 @@ export function ProductListPage() {
      */
     const getBestProductsList = async () => {
       try {
-        const response = await getBestProducts();
+        const response = await getBestProducts(bestProductPageSize);
         const sortedList = response.list.sort((a, b) => b.favoriteCount - a.favoriteCount);
         setBestProductsList(sortedList);
       } catch (error) {
@@ -31,7 +54,7 @@ export function ProductListPage() {
       }
     };
     getBestProductsList();
-  }, []);
+  }, [windowWidth]);
 
   useEffect(() => {
     /**
@@ -47,7 +70,7 @@ export function ProductListPage() {
       }
     };
     getProductsList();
-  }, [currentPage]);
+  }, [currentPage, windowWidth]);
 
   /**
    * 페이지 번호 변경 시 호출할 함수
@@ -72,17 +95,18 @@ export function ProductListPage() {
    */
   const handleSearchEvent = async (e) => {
     const isEnterKey = e.key === 'Enter';
+    const isClick = e.type === 'click';
     const isEmptyValue = searchValue === '';
 
     try {
-      if (isEnterKey) {
+      if (isEnterKey || isClick) {
         const response = await getProducts(1, pageSize, searchValue);
         setProductsList(response.list);
         setPageCount(response.totalCount);
         return;
       }
 
-      if (isEnterKey && isEmptyValue) {
+      if (isEmptyValue) {
         const response = await getProducts(currentPage, pageSize);
         setProductsList(response.list);
         setPageCount(response.totalCount);
@@ -94,7 +118,7 @@ export function ProductListPage() {
   };
 
   /**
-   * 정렬 이벤트 핸들러
+   * 최신순, 좋아요순 정렬 이벤트 핸들러
    * @param {"recent" | "favorite"} value 정렬 기준
    */
   const handleSortEvent = async (value) => {
@@ -102,6 +126,7 @@ export function ProductListPage() {
       const response = await getProducts(1, pageSize, searchValue, value);
       setProductsList(response.list);
       setPageCount(response.totalCount);
+      setCurrentPage(1);
     } catch (error) {
       console.error(error);
     }
@@ -132,6 +157,7 @@ export function ProductListPage() {
             <ProductListTitle title="판매 중인 상품" />
 
             <SearchInput
+              className={styles.searchInputComponent}
               name="search"
               placeholder="검색할 상품을 입력해주세요"
               value={searchValue}
@@ -139,11 +165,12 @@ export function ProductListPage() {
               onClick={handleSearchEvent}
               onKeyDown={handleSearchEvent}
             />
-            <Link to="#" className="btn-small-40">
-              상품 등록하기
-            </Link>
-
-            <Dropdown onClick={handleSortEvent} />
+            <div className={styles.productListRegisterButton}>
+              <Link to="#" className="btn-small-40">
+                상품 등록하기
+              </Link>
+            </div>
+            <Dropdown onClick={handleSortEvent} className={styles.productListSortButton} />
           </div>
           <div className={styles.productList}>
             {productsList.length > 0 ? (

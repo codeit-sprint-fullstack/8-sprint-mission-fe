@@ -32,3 +32,13 @@
     margin-top: 0.4rem;
   }
 }
+
+@media (max-width: 1199px) {
+  .productCard {
+    a {
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+}

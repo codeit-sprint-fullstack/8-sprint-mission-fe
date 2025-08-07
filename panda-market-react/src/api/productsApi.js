@@ -1,11 +1,11 @@
 import { instance } from './client.js';
 
-export const getBestProducts = async () => {
+export const getBestProducts = async (pageSize = 4) => {
   try {
     const response = await instance.get(`/products`, {
       params: {
         page: 1,
-        pageSize: 4,
+        pageSize,
         orderBy: 'favorite',
       },
     });
@@ -26,7 +26,6 @@ export const getProducts = async (page, pageSize, keyword = '', orderBy = 'recen
         orderBy,
       },
     });
-    console.log(response);
     return response.data;
   } catch (error) {
     console.error(error);

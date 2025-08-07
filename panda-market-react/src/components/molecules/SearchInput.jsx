@@ -5,11 +5,12 @@ export function SearchInput({
   value,
   placeholder = '',
   onChange,
+  className,
   onClick = () => {},
   onKeyDown = () => {},
 }) {
   return (
-    <div className={styles.searchInputWrapper}>
+    <div className={`${styles.searchInputWrapper} ${className}`}>
       <button className={styles.searchButton} onClick={onClick}>
         <img src="/product-list/search-icon.svg" alt="검색" />
       </button>

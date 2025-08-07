@@ -59,3 +59,21 @@
     }
   }
 }
+
+@media (max-width: 743px) {
+  .dropdownListWrapper {
+    right: 0;
+    left: auto;
+  }
+
+  .dropdownButton {
+    width: 4.2rem;
+    height: 4.2rem;
+    text-align: center;
+    padding: 0;
+
+    &:before {
+      display: none;
+    }
+  }
+}
