@@ -1,4 +1,4 @@
-header {
+.header {
   position: sticky;
   top: 0;
   display: flex;
@@ -13,12 +13,12 @@ header {
   height: 70px;
   padding: 9px 200px;
 
-  nav {
+  .Nav {
     justify-content: space-between;
     align-self: stretch;
   }
 
-  a {
+  .loginBtn {
     background-color: var(--button-color);
     border-radius: 8px;
     width: 128px;
@@ -29,7 +29,7 @@ header {
     color: var(--login-button-text-color);
   }
 
-  a:hover {
+  .loginBtn:hover {
   text-decoration: underline;
 }
 }
