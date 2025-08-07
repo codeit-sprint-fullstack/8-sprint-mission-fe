@@ -1,0 +1,15 @@
+:root {
+  --header-bg-color: #FFFFFF;
+  --header-bottom-border-color: #DFDFDF;
+  --button-color: #3692FF;
+  --login-button-text-color: #F3F4F6;
+  --button-text-color: #F9FAFB;
+  --text-color: #374151;
+  --headline-bg-color: #CFE5FF;
+  --section-bg-color: #FCFCFC;
+  --footer-bg-color: #111827;
+  --footer-text-color: #9CA3AF;
+  --footer-link-color: #E5E7EB;
+
+  --Secondary-600: #4B5563;
+}
