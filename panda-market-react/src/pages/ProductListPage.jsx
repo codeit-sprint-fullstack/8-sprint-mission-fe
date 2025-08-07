@@ -68,19 +68,21 @@ export function ProductListPage() {
 
   /**
    * 검색 버튼 클릭 시 호출할 함수
+   * @param {React.KeyboardEvent<HTMLInputElement>} e 이벤트 객체
    */
   const handleSearchEvent = async (e) => {
+    const isEnterKey = e.key === 'Enter';
+    const isEmptyValue = searchValue === '';
+
     try {
-      if (e.key === 'Enter') {
+      if (isEnterKey) {
         const response = await getProducts(1, pageSize, searchValue);
         setProductsList(response.list);
         setPageCount(response.totalCount);
-        console.log(response);
-        console.log(searchValue);
         return;
       }
 
-      if (searchValue === '') {
+      if (isEnterKey && isEmptyValue) {
         const response = await getProducts(currentPage, pageSize);
         setProductsList(response.list);
         setPageCount(response.totalCount);
@@ -91,8 +93,18 @@ export function ProductListPage() {
     }
   };
 
-  const handleSortEvent = (value) => {
-    console.log(value);
+  /**
+   * 정렬 이벤트 핸들러
+   * @param {"recent" | "favorite"} value 정렬 기준
+   */
+  const handleSortEvent = async (value) => {
+    try {
+      const response = await getProducts(1, pageSize, searchValue, value);
+      setProductsList(response.list);
+      setPageCount(response.totalCount);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
