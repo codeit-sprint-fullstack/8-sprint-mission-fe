@@ -1,0 +1,14 @@
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+button {
+  cursor: pointer;
+}

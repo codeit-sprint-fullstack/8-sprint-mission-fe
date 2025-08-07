@@ -1,0 +1,18 @@
+.best-product-section {
+  margin-top: 26px;
+  padding: 0 360px;
+  margin-bottom: 40px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.best-product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 282px);
+  gap: 24px;
+  justify-items: center;
+}
