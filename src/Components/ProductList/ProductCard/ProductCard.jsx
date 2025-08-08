@@ -21,3 +21,5 @@ function ProductCard({ images= [], name= '', price= 0, favoriteCount= 0 }) {
     </li>
   );
 }
+
+export default ProductCard;

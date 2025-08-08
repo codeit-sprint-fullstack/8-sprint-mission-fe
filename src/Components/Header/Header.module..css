@@ -7,7 +7,7 @@
   align-items: center;
   flex-shrink: 0;
   gap: 10px;
-  z-index: 1000;
+  z-index: 100;
   border-bottom: 1px solid var(--header-bottom-border-color);
   background-color: var(--header-bg-color);
   height: 70px;
