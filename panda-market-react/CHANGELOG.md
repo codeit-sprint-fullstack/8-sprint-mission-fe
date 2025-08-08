@@ -11,6 +11,7 @@
    > ProductListpage.js 안의 코드가 많아짐에 따라 데이터 불러오는 함수를 커스텀 훅으로 분리
    > 로딩 및 api 통신 중 에러 발생 시 화면에 메시지 추가
    > Pagination.jsx 에서 Link 태그를 button 태그로 변경, 쿼리스트링을 사용할 이유를 찾지 못했고 페이지 이동이 아니라고 생각하여 button 태그로 판매중인 상품의 currentPage 상태만 변경.
+   > useWindowWidth.js 커스텀 훅 삭제, useDeviceType 커스텀 훅을 만들어 화면 너비에 따른 디바이스 값만 반환, 화면 조정에 따른 불필요한 렌더 제거
 
 ## 2025.08.07. 스프린트 5 진행
 

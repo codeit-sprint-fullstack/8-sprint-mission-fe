@@ -6,15 +6,15 @@ import { Pagination } from '../components/molecules/Pagination';
 import { SearchInput } from '../components/molecules/SearchInput';
 import { Link } from 'react-router-dom';
 import { Dropdown } from '../components/molecules/Dropdown';
-import { useWindowWidth } from '../lib/hooks/useWindowWidth';
 import { useBestProducts } from '../lib/hooks/useBestProducts';
 import { useProducts } from '../lib/hooks/useProducts';
+import { useDeviceType } from '../lib/hooks/useDeviceType';
 
-// 반응형 처리를 위한 조건문 설정 (리스트에 나올 제품 갯수를 조정하기 위함)
-const getResponsiveProductListSize = (windowWidth) => {
-  if (windowWidth <= 743) return { bestProductPageSize: 1, pageSize: 4 };
-  if (windowWidth <= 1199) return { bestProductPageSize: 2, pageSize: 6 };
-  return { bestProductPageSize: 4, pageSize: 10 };
+// 화면 가로 사이즈 대비 모바일, 태블릿, 데스크탑 체크 시 보여줄 상품 갯수
+const pageSizes = {
+  mobile: { bestProductPageSize: 1, pageSize: 4 },
+  tablet: { bestProductPageSize: 2, pageSize: 6 },
+  desktop: { bestProductPageSize: 4, pageSize: 10 },
 };
 
 export function ProductListPage() {
@@ -22,23 +22,24 @@ export function ProductListPage() {
   const [searchValue, setSearchValue] = useState(''); // 인풋에 입력할 때 입력 받을 상태 값
   const [keyword, setKeyword] = useState(''); // 검색 버튼 또는 엔터키 눌렀을 때 실제 검색 값
   const [orderBy, setOrderBy] = useState('recent'); // 정렬 기준
-  const windowWidth = useWindowWidth(500); // 화면 가로 사이즈 체크를 위한 커스텀 훅
-  // const [isLoading, setIsLoading] = useState(false); // 로딩 상태 관리
+  const deviceType = useDeviceType(); // 화면 가로 사이즈 대비 모바일, 태블릿, 데스크탑 체크
 
-  const { bestProductPageSize, pageSize } = getResponsiveProductListSize(windowWidth);
-  console.log(bestProductPageSize, pageSize);
+  const { bestProductPageSize, pageSize } = pageSizes[deviceType];
 
-  const { bestProductsList, bestProductsLoading, bestProductsError } = useBestProducts(
-    bestProductPageSize,
-    windowWidth
-  );
+  /**
+   * 베스트 상품 리스트 조회
+   */
+  const { bestProductsList, bestProductsLoading, bestProductsError } =
+    useBestProducts(bestProductPageSize);
 
+  /**
+   * 판매 중인 상품 리스트 조회
+   */
   const { productsList, pageCount, productsLoading, productsError } = useProducts(
     currentPage,
     pageSize,
     keyword,
-    orderBy,
-    windowWidth
+    orderBy
   );
 
   /**

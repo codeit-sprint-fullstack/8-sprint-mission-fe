@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getProducts } from '../../api/productsApi';
 
-export function useProducts(currentPage, pageSize, keyword, orderBy, windowWidth) {
+export function useProducts(currentPage, pageSize, keyword, orderBy) {
   const [productsList, setProductsList] = useState([]); // 상품 리스트
   const [pageCount, setPageCount] = useState(0); // 전체 페이징 넘버 수
   const [isLoading, setIsLoading] = useState(false); // 로딩 상태 관리
@@ -27,7 +27,7 @@ export function useProducts(currentPage, pageSize, keyword, orderBy, windowWidth
       }
     };
     getProductsList();
-  }, [currentPage, keyword, orderBy, windowWidth, pageSize]);
+  }, [currentPage, keyword, orderBy, pageSize]);
 
   return { productsList, pageCount, productsLoading: isLoading, productsError: error };
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getBestProducts } from '../../api/productsApi';
 
-export function useBestProducts(bestProductPageSize, windowWidth) {
+export function useBestProducts(bestProductPageSize) {
   const [bestProductsList, setBestProductsList] = useState([]); // 베스트 상품 리스트
   const [isLoading, setIsLoading] = useState(false); // 로딩 상태 관리
   const [error, setError] = useState(null);
@@ -25,7 +25,7 @@ export function useBestProducts(bestProductPageSize, windowWidth) {
       }
     };
     getBestProductsList();
-  }, [windowWidth, bestProductPageSize]);
+  }, [bestProductPageSize]);
 
   return { bestProductsList, bestProductsLoading: isLoading, bestProductsError: error };
 }

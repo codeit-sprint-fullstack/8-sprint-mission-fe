@@ -1,12 +1,12 @@
 import { useRef, useState } from 'react';
 import styles from '../../styles/components/molecules/Dropdown.module.css';
-import { useWindowWidth } from '../../lib/hooks/useWindowWidth';
+import { useDeviceType } from '../../lib/hooks/useDeviceType';
 import { useOutsideClick } from '../../lib/hooks/useOutsideClick';
 
 export function Dropdown({ onClick, className }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState('최신순');
-  const windowWidth = useWindowWidth();
+  const deviceType = useDeviceType();
 
   // 드롭다운 버튼 클릭 시 옵션 토글 함수
   const handleClick = () => {
@@ -30,7 +30,7 @@ export function Dropdown({ onClick, className }) {
         className={`${styles.dropdownButton} ${isOpen ? styles.dropdownButtonActive : ''}`}
         onClick={handleClick}
       >
-        {windowWidth > 743 ? (
+        {deviceType !== 'mobile' ? (
           selectedOption
         ) : (
           <img src="/product-list/dropdown-icon.svg" alt="드롭다운" />
