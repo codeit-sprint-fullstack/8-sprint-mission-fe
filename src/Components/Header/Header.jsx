@@ -4,13 +4,13 @@ import './Header.module.css';
 
 function Header() {
   return (
-    <header className={header}>
-      <nav className={nav}>
+    <header className="header">
+      <nav className="nav">
         <div>
           <Logo />
           <Nav />
         </div>
-        <a href="/login" className={loginBtn}>로그인</a>
+        <a href="/login" className="loginBtn">로그인</a>
       </nav>
     </header>
   );

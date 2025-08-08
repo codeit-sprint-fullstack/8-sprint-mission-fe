@@ -1,5 +1,8 @@
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
+import BestProductList from './ProductList/BestProductList/BestProductList';
+import ProductListController from './ProductList/ProductListController/ProductListController';
+import ProductList from './ProductList/ProductList';
 
 function App() {
   return (
@@ -8,11 +11,12 @@ function App() {
 
       <main>
         <section>
-          베스트상품
+          <BestProductList />
         </section>
         
         <section>
-          판매 중인 상품
+          <ProductListController />
+          <ProductList />
         </section>
       </main>
 
@@ -20,3 +24,5 @@ function App() {
     </>
   );
 }
+
+export default App;

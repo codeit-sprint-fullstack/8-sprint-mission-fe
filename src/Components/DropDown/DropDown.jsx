@@ -15,13 +15,13 @@ function DropDown({ options = [], onChange }) {
   };
 
   return (
-    <section className={dropDown}>
-      <div className={dropDownContainer} onClick={() => setIsOpen(!isOpen)}>
+    <section className="dropDown">
+      <div className="dropDownContainer" onClick={() => setIsOpen(!isOpen)}>
         <p>{selected.label}</p>
         <img src={ic_arrow} alt="DropDownArrow" />
 
         {isOpen && (
-          <ul className={options}>
+          <ul className="options">
               {options.map((opt) => (
                   <li key={opt.value} onClick={() => handleSelect(opt)}>{opt.label}</li>
               ))}

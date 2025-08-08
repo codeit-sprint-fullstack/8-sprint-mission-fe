@@ -1,11 +1,12 @@
 import ProductCard from '../ProductCard/ProductCard';
 import './BestProductList.css';
 
-function BestProductList() {
+function BestProductList({ products }) {
   return (
-    <section className="best-product-list">
+    <section className="bestProduct">
       <h2>베스트 상품</h2>
-      <div className="product-cards">
+
+      <div className="bestProductCards">
         {products.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}

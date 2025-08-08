@@ -17,12 +17,12 @@ function ProductListController() {
   // };
 
   return (
-    <section className={productListController}>
+    <section className="productListController">
       <h2>판매 중인 상품</h2>
 
-      <div className={controlBox}>
+      <div className="controlBox">
         {controls.search &&
-          <div className={searchInput}>
+          <div className="searchInput">
             <img src={ic_search} alt="검색 아이콘" onClick={handleSearch} />
             <input 
               placeholder="검색할 상품을 입력해주세요"
