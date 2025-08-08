@@ -1,0 +1,63 @@
+@font-face {
+  font-family: "ROKAF";
+  src: url("/font/ROKAF/ROKAFSansBold.woff2") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ROKAF";
+  src: url("/font/ROKAF/ROKAFSansMedium.woff2") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("/font/pretendard/Pretendard-Bold.subset.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+footer {
+  margin: 0 auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.footerLinks {
+  background-color: #111827;
+  color: #e5e7eb;
+  font-size: 1rem;
+  height: 6rem; /* 96px */
+  padding: 2rem 12.5rem; /* 32px 200px */
+}
+
+.footerLinksContainer {
+  /* max-width: 1520px; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footerLinkRight {
+  display: flex;
+  align-items: right;
+}
+
+.footerLinksCenter {
+  display: flex;
+  gap: 1.86rem; /* 30px*/
+}
+
+.footerLinksLeft {
+  display: flex;
+  gap: 0.75rem; /* 12px*/
+}
+
+a{
+  color: var(--Secondary-200, #E5E7EB);
+}

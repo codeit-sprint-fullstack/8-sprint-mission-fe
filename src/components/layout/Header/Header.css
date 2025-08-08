@@ -1,0 +1,71 @@
+
+@font-face {
+  font-family: "ROKAF";
+  src: url("/public/font/ROKAF/ROKAFSansBold.woff2") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ROKAF";
+  src: url("/public/font/ROKAF/ROKAFSansMedium.wodff2") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+.nav {
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.56rem 25rem; /* 9px 400px */
+  max-width: 1920px;
+}
+
+.header-logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  min-width: 9.56rem; /* 153px */
+}
+
+.pandaMarketLogo {
+  width: 2.5rem; /* 40px */
+  height: auto;
+  padding-right: 0.54rem;  /* 8.594px */
+}
+
+.header-txt {
+  font-family: "ROKAF", "Pretendard", sans-serif;
+  font-size: 1.6rem;
+  font-weight: bold; /* Bold 사용 */
+  color: var(--primary-100);
+  margin: 0;
+}
+
+.login-btn {
+  min-width: 8rem; /* 128px */
+  height: 3rem; /* 48px */
+  background-color: var(--primary-100);
+  color: #ffffff;
+  border-radius: 0.5rem; /* 8px */
+  border-bottom: 1px solid #dfdfdf;
+  font-weight: 600;
+  font-size: 1rem; /* 16px */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

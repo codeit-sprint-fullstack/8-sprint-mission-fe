@@ -1,0 +1,103 @@
+
+@font-face {
+  font-family: "ROKAF";
+  src: url("/font/ROKAF/ROKAFSansBold.woff2") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ROKAF";
+  src: url("/font/ROKAF/ROKAFSansMedium.woff2") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("/font/pretendard/Pretendard-Bold.subset.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+.nav {
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.navLeftSession {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.56rem 12.5rem; /* 9px 200px */
+  max-width: 1920px;
+}
+
+.header-logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  min-width: 9.56rem; /* 153px */
+}
+
+.pandaMarketLogo {
+  width: 2.5rem; /* 40px */
+  height: auto;
+  padding-right: 0.54rem;  /* 8.594px */
+}
+
+.header-txt {
+  font-family: "ROKAF", "Pretendard", sans-serif;
+  font-size: 1.6rem;
+  font-weight: bold; /* Bold 사용 */
+  color: var(--primary-100);
+  margin: 0;
+}
+
+.navMenu {
+  color: #3692FF;
+  display: absolute;
+  align-self: flex-start;
+  text-decoration: none;
+}
+
+.navMenuCommunity, .navMenuPreOwned {
+  display: inline-flex;
+  gap: 0; /* 간격 추가 */
+  padding: 1.13rem 0.94rem; /* 21px 15px */
+  text-decoration: none;
+  color: var(--Secondary-600, #4B5563);
+  font-family: "Pretendard";
+  font-size: 1.13rem; /* 18px */
+  font-style: normal;
+  font-weight: 700;
+}
+
+.login-btn {
+  min-width: 8rem; /* 128px */
+  height: 2.62rem; /* 42px */
+  background-color: var(--primary-100);
+  color: #ffffff;
+  border-radius: 0.5rem; /* 8px */
+  border-bottom: 1px solid #dfdfdf;
+  font-weight: 600;
+  font-size: 1rem; /* 16px */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

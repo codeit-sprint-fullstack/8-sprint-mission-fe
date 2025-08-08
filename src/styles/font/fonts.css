@@ -1,0 +1,73 @@
+/* 폰트 */
+
+/* ROKAF Font - Bold */
+@font-face {
+  font-family: "ROKAF";
+  src: url("/font/ROKAF/ROKAFSansBold.otf") 
+  format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* ROKAF Font - Medium */
+@font-face {
+  font-family: "ROKAF";
+  src: url("/font/ROKAF/ROKAFSansMedium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* 프리텐다드 */
+/* src/styles/font/fonts.css */
+
+/* ROKAF Font - Bold */
+@font-face {
+  font-family: "ROKAF";
+  src: url("/font/ROKAF/ROKAFSansBold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* ROKAF Font - Medium */
+@font-face {
+  font-family: "ROKAF";
+  src: url("/font/ROKAF/ROKAFSansMedium.woff2") format("woff2");
+  font-weight: 550;
+  font-style: normal;
+}
+
+/* Pretendard Fonts */
+@font-face {
+  font-family: "Pretendard";
+  src: url("/font/pretendard/Pretendard-Light.subset.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("/font/pretendard/Pretendard-Regular.subset.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("/font/pretendard/Pretendard-Medium.subset.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("/font/pretendard/Pretendard-SemiBold.subset.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("/font/pretendard/Pretendard-Bold.subset.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
