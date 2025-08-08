@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
-import productService from "../scripts/apis/ProductService.js";
-import BestProductCard from "./bestProductCard.jsx";
+import productService from "../../../scripts/apis/ProductService.js";
+import BestProductCard from "./productCard/bestProductCard.jsx";
+import "../../../styles/items.css"
 
 function ShowBestProductData({page, productNumber, orderBy}) {
     const [productData, setProductData] = useState([]);
@@ -28,7 +29,7 @@ function ShowBestProductData({page, productNumber, orderBy}) {
 
     return(
         <>
-            <h2>판매 중인 상품</h2>
+            <h2 className={"product-category"}>판매 중인 상품</h2>
             <ul style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(5, 1fr)',

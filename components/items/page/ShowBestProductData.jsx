@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
-import productService from "../scripts/apis/ProductService.js";
-import BestProductCard from "./bestProductCard.jsx";
+import productService from "../../../scripts/apis/ProductService.js";
+import BestProductCard from "./productCard/bestProductCard.jsx";
+import "../../../styles/items.css"
 
 function ShowBestProductData({productNumber = 4}) {
     const [productData, setProductData] = useState([]);
@@ -28,7 +29,7 @@ function ShowBestProductData({productNumber = 4}) {
 
     return(
         <>
-            <h2>베스트 상품</h2>
+            <h2 className={"product-category"}>베스트 상품</h2>
             <ul style={{display: 'flex', listStyle: 'none', gap: '16px', padding: 0}}>
                 {productData.map((item) => (
                     <li key={item.id}>

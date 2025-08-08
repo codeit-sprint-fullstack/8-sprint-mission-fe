@@ -7,28 +7,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e76c9ca-a248-4092-b138-5d986510aa91" name="Changes" comment="chore: React development configuration complete.&#10;&#10;- React를 사용해 진행합니다.">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/main/best-products.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/main/sale-products.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/test.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eslint.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vite.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/pull-request-template.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/auto-label-assign.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/8-sprint-mission-fe.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+    <list default="true" id="0e76c9ca-a248-4092-b138-5d986510aa91" name="Changes" comment="chore: Divide best and sale productcard.css and jsx files.">
+      <change afterPath="$PROJECT_DIR$/components/items/page/productCard/saleProductCard.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/board.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/faq.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/faq.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ShowBestProductData.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/items/page/ShowBestProductData.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ShowSaleProductData.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/items/page/ShowSaleProductData.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/bestProductCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/items/page/productCard/bestProductCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/main/best-products.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/items/render/best-products.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/main/sale-products.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/items/render/sale-products.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/saleProductCard.jsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/privacy.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/privacy.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/components/saleProductCard.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/components/saleProductCard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/global.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/styles/items.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/items.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,8 +31,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="JSX File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
+        <option value="JSX File" />
       </list>
     </option>
   </component>
@@ -64,41 +56,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "JavaScript 디버그.index.html.executor": "Run",
-    "JavaScript 디버그.items.html.executor": "Run",
-    "JavaScript 디버그.localhost:5173.executor": "Run",
-    "JavaScript 디버그.login.html.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Node.js.ArticleService.js.executor": "Run",
-    "Node.js.main.js.executor": "Run",
-    "Node.js.main.jsx.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "react",
-    "javascript.nodejs.core.library.configured.version": "22.17.1",
-    "javascript.nodejs.core.library.typings.version": "22.17.0",
-    "last_opened_file_path": "C:/Users/pando/Codeit/8-sprint-mission-fe/components",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JavaScript 디버그.index.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 디버그.items.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 디버그.localhost:5173.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 디버그.login.html.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Node.js.ArticleService.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.main.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.main.jsx.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.test.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;react&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;22.17.1&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;22.17.0&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/pando/Codeit/8-sprint-mission-fe/components&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.CommitDialog&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2025.1.4.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\pando\Codeit\8-sprint-mission-fe\components" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\pando\Codeit\8-sprint-mission-fe\components\items\page" />
+      <recent name="C:\Users\pando\Codeit\8-sprint-mission-fe\components\items\page\productCard" />
+      <recent name="C:\Users\pando\Codeit\8-sprint-mission-fe\components\items" />
+      <recent name="C:\Users\pando\Codeit\8-sprint-mission-fe\images\icons" />
       <recent name="C:\Users\pando\Codeit\8-sprint-mission-fe\components" />
-      <recent name="C:\Users\pando\Codeit\8-sprint-mission-fe\src" />
-      <recent name="C:\Users\pando\Codeit\8-sprint-mission-fe" />
-      <recent name="C:\Users\pando\Codeit\8-sprint-mission-fe\public" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -126,7 +123,10 @@
       <workItem from="1754393927860" duration="787000" />
       <workItem from="1754394741172" duration="3833000" />
       <workItem from="1754398695315" duration="13719000" />
-      <workItem from="1754453843236" duration="5084000" />
+      <workItem from="1754453843236" duration="8101000" />
+      <workItem from="1754463848602" duration="3492000" />
+      <workItem from="1754467389473" duration="7747000" />
+      <workItem from="1754626030894" duration="2237000" />
     </task>
     <task id="LOCAL-00001" summary="feat: Implementation API functions for Article and Product services">
       <option name="closed" value="true" />
@@ -192,7 +192,39 @@
       <option name="project" value="LOCAL" />
       <updated>1754448696018</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="chore: React development configuration complete.&#10;&#10;- React를 사용해 진행합니다.">
+      <option name="closed" value="true" />
+      <created>1754460905059</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1754460905060</updated>
+    </task>
+    <task id="LOCAL-00010" summary="chore: Implement of ProductCard component.">
+      <option name="closed" value="true" />
+      <created>1754473750454</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1754473750454</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat: Implementation for showing best products in index.html&#10;&#10;- 베스트 상품 데이터는 https://panda-market-api.vercel.app/docs/ 에 명세된 GET 메소드 &quot;/products&quot;의 정렬 기준 favorite을 사용해주세요.">
+      <option name="closed" value="true" />
+      <created>1754625983336</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1754625983336</updated>
+    </task>
+    <task id="LOCAL-00012" summary="chore: Divide best and sale productcard.css and jsx files.">
+      <option name="closed" value="true" />
+      <created>1754627108875</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1754627108875</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,6 +265,9 @@
     <MESSAGE value="feat: Implement &lt;header&gt; and &lt;footer&gt; in items.html." />
     <MESSAGE value="chore: file names change to meet url path requirement.&#10;&#10;-  중고마켓 페이지 url path는 별도로 설정하지 않고, '/'에 보이도록 합니다." />
     <MESSAGE value="chore: React development configuration complete.&#10;&#10;- React를 사용해 진행합니다." />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: React development configuration complete.&#10;&#10;- React를 사용해 진행합니다." />
+    <MESSAGE value="chore: Implement of ProductCard component." />
+    <MESSAGE value="feat: Implementation for showing best products in index.html&#10;&#10;- 베스트 상품 데이터는 https://panda-market-api.vercel.app/docs/ 에 명세된 GET 메소드 &quot;/products&quot;의 정렬 기준 favorite을 사용해주세요." />
+    <MESSAGE value="chore: Divide best and sale productcard.css and jsx files." />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: Divide best and sale productcard.css and jsx files." />
   </component>
 </project>
