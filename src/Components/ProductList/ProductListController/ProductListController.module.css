@@ -1,0 +1,50 @@
+
+
+.productListController {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--Secondary-900);
+  }
+
+  .controlBox {
+    display: flex;
+
+    .searchInput {
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      input {
+        width: 325px;
+        height: 42px;
+        padding: 9px 20px 9px 16px;
+        border-radius: 12px;
+        background-color: var(--Secondary-100);
+      }
+
+      img {
+        position: absolute;
+        top: 50%;
+        left: 16px;
+        cursor: pointer;
+      }
+    }
+
+    button {
+      background-color: var(--button-color);
+      border-radius: 8px;
+      width: 128px;
+      height: 48px;
+      padding: 12px 23px;
+      text-decoration: none;
+      font-size: 1rem; /* 16px */
+      color: var(--Cool-Gray-100);
+    }
+  }
+}

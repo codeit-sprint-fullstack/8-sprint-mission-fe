@@ -1,4 +1,4 @@
-import heart from './ic_heart.svg';
+import ic_heart from './ic_heart.svg';
 import './ProductCard.module.css';
 
 function ProductCard({ images= [], name= '', price= 0, favoriteCount= 0 }) {
@@ -14,7 +14,7 @@ function ProductCard({ images= [], name= '', price= 0, favoriteCount= 0 }) {
         <p>{price.toLocaleString()}원</p>
 
         <div className={favorite}>
-          <a><img src={heart} alt="찜하기 아이콘" /></a>
+          <a><img src={ic_heart} alt="찜하기 아이콘" /></a>
           <p>{favoriteCount}</p>
         </div>
       </div>

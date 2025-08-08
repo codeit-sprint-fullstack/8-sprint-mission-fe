@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import arrow from './ic_DownArrow.svg';
+import ic_arrow from './ic_DownArrow.svg';
 import './DropDown.module.css';
 
 function DropDown({ options = [], onChange }) {
@@ -15,21 +15,21 @@ function DropDown({ options = [], onChange }) {
   };
 
   return (
-    <div className={dropDown}>
+    <section className={dropDown}>
       <div className={dropDownContainer} onClick={() => setIsOpen(!isOpen)}>
         <p>{selected.label}</p>
-        <img src={arrow} alt="DropDownArrow" />
+        <img src={ic_arrow} alt="DropDownArrow" />
 
         {isOpen && (
           <ul className={options}>
-              {options.map((option) => (  //오류나면 option -> opt
-                  <li key={option.value} onClick={() => handleSelect(option)}>{option.label}</li>
+              {options.map((opt) => (
+                  <li key={opt.value} onClick={() => handleSelect(opt)}>{opt.label}</li>
               ))}
           </ul>
         )}
 
       </div>
-    </div>
+    </section>
   );
 }
 
