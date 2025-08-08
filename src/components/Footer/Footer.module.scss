@@ -3,6 +3,7 @@
 .footer {
     background-color: $color-secondary-900;
     height: 16.0rem;
+
     .container {
         display: flex;
         justify-content: space-between;
@@ -28,6 +29,28 @@
         .icons {
             display: flex;
             gap: 1.2rem;
+        }
+    }
+}
+
+@media (min-width: 744px) and (max-width: 1200px) {
+    .footer {
+        .container {
+            padding: 3.2rem 2.4rem 0 2.4rem;
+        }
+    }
+}
+
+@media (min-width: 0px) and (max-width: 744px) {
+    .footer {
+        .container {
+            padding: 3.2rem 1.6rem 0 1.6rem;
+            position: relative;
+
+            p {
+                position: absolute;
+                bottom: -4.8rem;
+            }
         }
     }
 }

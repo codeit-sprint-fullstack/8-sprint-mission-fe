@@ -29,12 +29,37 @@
         input {
             @include base-input;
             padding: 1.4rem 1.6rem 1.4rem 4.4rem;
-            width: 32.5rem;
         }
 
         img {
             position: absolute;
             left: 1.6rem;
+        }
+    }
+}
+
+@media (min-width: 744px) and (max-width: 1200px) {}
+
+@media (min-width: 0px) and (max-width: 744px) {
+    .productListController {
+        flex-direction: column;
+        align-items: baseline;
+        gap: 1.3rem;
+        position: relative;
+        
+        h2 {
+            height: 4.2rem;
+            line-height: 4.2rem;
+        }
+
+        button {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        div {
+            width: 100%;
+            justify-content: space-between;
         }
     }
 }

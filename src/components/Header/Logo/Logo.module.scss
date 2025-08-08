@@ -13,3 +13,20 @@
         font-weight: 700;
     }
 }
+
+@media (min-width: 744px) and (max-width: 1200px) {
+    .logo {
+        margin-left: 20px;
+    }
+}
+
+@media (min-width: 0px) and (max-width: 744px) {
+    .logo {
+        margin-left: 20px;
+
+        img {
+            position: absolute;
+            opacity: 0;
+        }
+    }
+}
