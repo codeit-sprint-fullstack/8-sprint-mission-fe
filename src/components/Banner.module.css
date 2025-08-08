@@ -1,0 +1,92 @@
+/* ############################## banner ############################## */
+.banner-section {
+  background-color: var(--color-banner-bg);
+  height: 540px;
+  padding: 0 80px;
+  gap: 80px;
+}
+
+.banner-wrap {
+  min-width: 1120px;
+  height: inherit;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.banner-text {
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+}
+
+.banner-text h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  line-height: 1.4;
+}
+
+.banner-text a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 12.5rem;
+  height: 3.25rem;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+.banner-image img {
+  max-height: 100%;
+  width: auto;
+  display: block;
+}
+
+/* ############################## media-query ############################## */
+@media (max-width: 1199px) {
+  /* 1200px 이하 */
+  section {
+    width: 100vw;
+  }
+
+  .banner-section {
+    height: auto;
+  }
+
+  .banner-wrap {
+    flex-direction: column;
+    align-items: center;
+    min-width: 100%;
+  }
+
+  .banner-wrap img {
+    width: 100%;
+    height: auto;
+  }
+
+  .banner-text {
+    text-align: center;
+    align-items: center;
+    padding: 84px 0 211px;
+  }
+}
+
+@media (max-width: 743px) {
+  /* 744px 이하 */
+  .banner-text {
+    gap: 0;
+    padding: 48px 0 132px;
+  }
+
+  .banner-text h1 {
+    font-size: 2rem;
+  }
+}

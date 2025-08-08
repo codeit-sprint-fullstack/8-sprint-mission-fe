@@ -1,0 +1,95 @@
+/* ############################## 공통 ############################## */
+*,
+a {
+  word-break: keep-all;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+}
+.header-wrap,
+.banner-wrap,
+.hot-item-wrap,
+.footer_wrap {
+  margin: 0 auto;
+  max-width: 1120px;
+}
+
+#root {
+  width: 100%;
+  padding-top: var(--header-height);
+}
+
+/* ############################## header ############################## */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: var(--header-height);
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-gray-100);
+}
+
+.header-wrap {
+  width: calc(100% - 400px);
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+}
+
+.logo-text {
+  font-family: var(--font-logo);
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.login-btn {
+  display: flex;
+  width: 8rem;
+  height: 3rem;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.625rem;
+  cursor: pointer;
+}
+
+/* ############################## media-query ############################## */
+@media (max-width: 1199px) {
+  /* 1200px 이하 */
+  .header-wrap {
+    width: 100vw;
+    padding: 0 24px;
+  }
+
+  @media (max-width: 743px) {
+    /* 744px 이하 */
+    .header-wrap {
+      padding: 0 16px;
+    }
+    .logo {
+      gap: 8px;
+    }
+    .logo img {
+      display: none;
+    }
+  }
+}
