@@ -135,6 +135,17 @@ h1 {
   letter-spacing: 0.02em;
 }
 
+h2 {
+    color: #111827;
+    font-family: "Pretendard-Bold", Helvetica;
+    font-size: 20px;
+    font-weight: 700;
+
+
+
+    white-space: nowrap;
+}
+
 .button {
   background-color: var(--blue);
   color: #ffffff;

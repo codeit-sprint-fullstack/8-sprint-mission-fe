@@ -2,15 +2,15 @@ import React, {useEffect, useState} from "react";
 import productService from "../scripts/apis/ProductService.js";
 import BestProductCard from "./bestProductCard.jsx";
 
-function ShowBestProductData({productNumber = 4}) {
+function ShowBestProductData({page, productNumber, orderBy}) {
     const [productData, setProductData] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
             const options = {
-                page: 1,
+                page: page,
                 pageSize: productNumber,
-                orderBy: "favorite",
+                orderBy: orderBy,
             };
 
             try {
@@ -28,8 +28,14 @@ function ShowBestProductData({productNumber = 4}) {
 
     return(
         <>
-            <h2>베스트 상품</h2>
-            <ul style={{display: 'flex', listStyle: 'none', gap: '16px', padding: 0}}>
+            <h2>판매 중인 상품</h2>
+            <ul style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(5, 1fr)',
+                gap: '16px',
+                listStyle: 'none',
+                padding: 0
+            }}>
                 {productData.map((item) => (
                     <li key={item.id}>
                         <BestProductCard item={item}/>

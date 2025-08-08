@@ -1,6 +1,6 @@
-import "/styles/components/ProductCard.css";
+import "/styles/components/bestProductCard.css";
 
-function ProductCard({item}) {
+function BestProductCard({item}) {
     const { images, description, name, price, favoriteCount } = item;
 
     return (
@@ -19,4 +19,4 @@ function ProductCard({item}) {
     );
 }
 
-export default ProductCard;
+export default BestProductCard;
