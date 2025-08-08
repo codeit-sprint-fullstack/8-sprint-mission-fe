@@ -1,0 +1,27 @@
+@use '@styles/variables' as *;
+
+@mixin base-button {
+  font-size: 1.6rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.8rem;
+  color: $color-secondary-100;
+  background-color: $color-primary-100;
+  cursor: pointer;
+}
+
+@mixin base-input {
+  font-size: 1.6rem;
+  font-weight: 400;
+  border: none;
+  background-color: $color-secondary-100;
+  border-radius: 1.2rem;
+
+  &::placeholder {
+    color: $color-secondary-400
+  }
+
+  &:focus {
+    outline: 0.1rem solid $color-primary-100;
+  }
+}

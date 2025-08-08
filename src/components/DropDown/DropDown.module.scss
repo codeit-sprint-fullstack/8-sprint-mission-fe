@@ -1,0 +1,66 @@
+@use '@styles/variables' as *;
+
+$dropdown-height: 4.8rem;
+$dropdown-font-size: 1.6rem;
+
+.dropDown {
+  width: 20rem; 
+
+  .dropDownBox {
+    width: 100%;
+    height: $dropdown-height;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    border: 0.1rem solid $color-secondary-200;
+    border-radius: 1.2rem;
+    padding: 0 2.0rem;
+    cursor: pointer;
+
+    p {
+      font-size: $dropdown-font-size;
+      font-weight: 400;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    img {
+      width: 2.4rem;
+      height: 2.4rem;
+      flex-shrink: 0;
+    }
+  }
+
+  .options {
+    position: absolute;
+    top: calc(100% + 0.8rem);
+    left: 0;
+    width: 100%;
+    border: 0.1rem solid $color-secondary-200;
+    border-radius: 1.2rem;
+    overflow: hidden;
+    background-color: white;
+    z-index: $z-inedx-dropdown;
+
+    li {
+      height: $dropdown-height;
+      font-size: $dropdown-font-size;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 2.0rem;
+      border-top: 0.1rem solid $color-secondary-200;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $color-secondary-100;
+      }
+    }
+
+    li:first-child {
+      border-top: none;
+    }
+  }
+}

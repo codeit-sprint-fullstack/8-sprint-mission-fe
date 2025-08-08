@@ -1,0 +1,46 @@
+@use '@styles/variables' as *;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+
+    .imgWrapper {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        margin-bottom: 1.0rem;
+
+        img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 1.65rem;
+        }
+    }
+
+    h2 {
+        color: $color-secondary-800;
+        font-size: 1.4rem;
+        font-weight: 500;
+    }
+
+    p {
+        color: $color-secondary-800;
+        font-size: 1.6rem;
+        font-weight: 700;
+    }
+
+    .favorite {
+        display: flex;
+        gap: 0.4rem;
+        align-items: center;
+        p {
+            color: $color-secondary-600;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+    }
+}
