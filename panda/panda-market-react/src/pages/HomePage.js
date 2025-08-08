@@ -5,55 +5,88 @@ import BestProductList from '../components/BestProductList';
 import ProductList from '../components/ProductList';
 import Pagination from '../components/Pagination';
 import { getProductList } from '../services/productService';
+import useResponsive from '../hooks/useResponsive';
 import '../styles/home.css';
 import searchIcon from '../assets/search-icon.svg';
 
 
+const LIST_PAGE_SIZE = {
+  desktop: 20,
+  tablet: 12,
+  mobile: 10,
+};
+
+const BEST_PAGE_SIZE = {
+  desktop: 8,
+  tablet: 4,
+  mobile: 2,
+};
+
+
 function HomePage() {
+  const breakpoint = useResponsive();
   const [products, setProducts] = useState([]);
   const [bestProducts, setBestProducts] = useState([]);
   const [sort, setSort] = useState('recent');
   const [keyword, setKeyword] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const pageSize = 20;
+
+  const listPageSize = LIST_PAGE_SIZE[breakpoint];
+  const bestPageSize = BEST_PAGE_SIZE[breakpoint];
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    setCurrentPage(1);
+  }, [breakpoint]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [sort, keyword]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    (async () => {
       try {
         const data = await getProductList({
           page: currentPage,
-          pageSize: 10,
+          pageSize: listPageSize,
           sort,
           keyword,
         });
-        setProducts(data.products || []);
-        setTotalPages(data.totalPages || 1);
+        if (!cancelled) {
+          setProducts(data.products || []);
+          setTotalPages(data.totalPages || 1);
+        }
       } catch (err) {
         console.error('[상품 목록 불러오기 실패]', err);
       }
-    };
+    })();
 
-    fetchProducts();
-  }, [currentPage, pageSize, sort, keyword]);
+    return () => { cancelled = true; };
+  }, [currentPage, listPageSize, sort, keyword]);
 
   useEffect(() => {
-    const fetchBestProducts = async () => {
-      try {
+    let cancelled = false;
+
+    (async () => {
+      try{
         const data = await getProductList({
           page: 1,
-          pageSize: 4,
+          pageSize: bestPageSize,
           sort: 'favorite',
           keyword: '',
         });
-        setBestProducts(data.products || []);
+        if (!cancelled) {
+          setBestProducts(data.products || []);
+        }
       } catch (err) {
         console.error('[베스트 상품 불러오기 실패]', err);
       }
-    };
+    })();
 
-    fetchBestProducts();
-  }, []);
+    return () => { cancelled = true; };
+  }, [bestPageSize]);
 
   return (
     <>
@@ -95,7 +128,7 @@ function HomePage() {
 
         <Pagination
           currentPage={currentPage}
-          totalPages={5}
+          totalPages={totalPages}
           onPageChange={(page) => setCurrentPage(page)}
         />
       </main>
