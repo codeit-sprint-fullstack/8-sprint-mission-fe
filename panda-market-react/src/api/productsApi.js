@@ -16,7 +16,7 @@ export const getBestProducts = async (pageSize = 4) => {
   }
 };
 
-export const getProducts = async (page, pageSize, keyword = '', orderBy = 'recent') => {
+export const getProducts = async (page = 1, pageSize = 10, keyword = '', orderBy = 'recent') => {
   try {
     const response = await instance.get('/products', {
       params: {

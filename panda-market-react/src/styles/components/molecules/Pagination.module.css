@@ -7,7 +7,7 @@
   }
 
   li {
-    a {
+    button {
       display: inline-block;
       width: 40px;
       height: 40px;
@@ -16,6 +16,7 @@
       line-height: 40px;
       font-size: 1.4rem;
       border: 1px solid var(--secondary-color-200);
+      cursor: pointer;
 
       &.active {
         background-color: var(--primary-color-100);
@@ -27,7 +28,7 @@
         vertical-align: -2px;
       }
     }
-    &.invisible a {
+    &.invisible button {
       opacity: 0.2;
       pointer-events: none;
     }

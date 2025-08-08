@@ -1,76 +1,45 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ProductCard } from '../components/molecules/ProductCard';
 import styles from '../styles/pages/ProductListPage.module.css';
-import { getBestProducts, getProducts } from '../api/productsApi';
 import { ProductListTitle } from '../components/atoms/ProductListTitle';
 import { Pagination } from '../components/molecules/Pagination';
 import { SearchInput } from '../components/molecules/SearchInput';
 import { Link } from 'react-router-dom';
 import { Dropdown } from '../components/molecules/Dropdown';
 import { useWindowWidth } from '../lib/hooks/useWindowWidth';
+import { useBestProducts } from '../lib/hooks/useBestProducts';
+import { useProducts } from '../lib/hooks/useProducts';
 
-let bestProductPageSize; // 베스트 상품 페이지에 보여줄 데이터 갯수
-let pageSize; // 한 페이지에 보여줄 데이터 갯수
-
-const getProductSize = (windowWidth) => {
-  switch (true) {
-    case windowWidth <= 743:
-      bestProductPageSize = 1;
-      pageSize = 4;
-      break;
-    case windowWidth <= 1199:
-      bestProductPageSize = 2;
-      pageSize = 6;
-      break;
-    default:
-      bestProductPageSize = 4;
-      pageSize = 10;
-      break;
-  }
+// 반응형 처리를 위한 조건문 설정 (리스트에 나올 제품 갯수를 조정하기 위함)
+const getResponsiveProductListSize = (windowWidth) => {
+  if (windowWidth <= 743) return { bestProductPageSize: 1, pageSize: 4 };
+  if (windowWidth <= 1199) return { bestProductPageSize: 2, pageSize: 6 };
+  return { bestProductPageSize: 4, pageSize: 10 };
 };
 
 export function ProductListPage() {
-  const [bestProductsList, setBestProductsList] = useState([]); // 베스트 상품 리스트
-  const [productsList, setProductsList] = useState([]); // 상품 리스트
-  const [pageCount, setPageCount] = useState(0); // 전체 페이징 넘버 수
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 번호
-  const [searchValue, setSearchValue] = useState(''); // 검색 값
-  const windowWidth = useWindowWidth(500);
+  const [searchValue, setSearchValue] = useState(''); // 인풋에 입력할 때 입력 받을 상태 값
+  const [keyword, setKeyword] = useState(''); // 검색 버튼 또는 엔터키 눌렀을 때 실제 검색 값
+  const [orderBy, setOrderBy] = useState('recent'); // 정렬 기준
+  const windowWidth = useWindowWidth(500); // 화면 가로 사이즈 체크를 위한 커스텀 훅
+  // const [isLoading, setIsLoading] = useState(false); // 로딩 상태 관리
 
-  console.log(windowWidth);
-  getProductSize(windowWidth);
+  const { bestProductPageSize, pageSize } = getResponsiveProductListSize(windowWidth);
+  console.log(bestProductPageSize, pageSize);
 
-  useEffect(() => {
-    /**
-     * 베스트 상품 리스트 조회
-     */
-    const getBestProductsList = async () => {
-      try {
-        const response = await getBestProducts(bestProductPageSize);
-        const sortedList = response.list.sort((a, b) => b.favoriteCount - a.favoriteCount);
-        setBestProductsList(sortedList);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getBestProductsList();
-  }, [windowWidth]);
+  const { bestProductsList, bestProductsLoading, bestProductsError } = useBestProducts(
+    bestProductPageSize,
+    windowWidth
+  );
 
-  useEffect(() => {
-    /**
-     * 상품 리스트 조회
-     */
-    const getProductsList = async () => {
-      try {
-        const response = await getProducts(currentPage, pageSize);
-        setProductsList(response.list);
-        setPageCount(response.totalCount);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getProductsList();
-  }, [currentPage, windowWidth]);
+  const { productsList, pageCount, productsLoading, productsError } = useProducts(
+    currentPage,
+    pageSize,
+    keyword,
+    orderBy,
+    windowWidth
+  );
 
   /**
    * 페이지 번호 변경 시 호출할 함수
@@ -90,30 +59,16 @@ export function ProductListPage() {
   };
 
   /**
-   * 검색 버튼 클릭 시 호출할 함수
-   * @param {React.KeyboardEvent<HTMLInputElement>} e 이벤트 객체
+   * 검색 버튼 클릭 및 엔터 키 눌렀을 때 호출할 함수
+   * @param {React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>} e 이벤트 객체
    */
   const handleSearchEvent = async (e) => {
     const isEnterKey = e.key === 'Enter';
     const isClick = e.type === 'click';
-    const isEmptyValue = searchValue === '';
 
-    try {
-      if (isEnterKey || isClick) {
-        const response = await getProducts(1, pageSize, searchValue);
-        setProductsList(response.list);
-        setPageCount(response.totalCount);
-        return;
-      }
-
-      if (isEmptyValue) {
-        const response = await getProducts(currentPage, pageSize);
-        setProductsList(response.list);
-        setPageCount(response.totalCount);
-        return;
-      }
-    } catch (error) {
-      console.error(error);
+    if (isEnterKey || isClick) {
+      setKeyword(searchValue);
+      setCurrentPage(1);
     }
   };
 
@@ -122,40 +77,45 @@ export function ProductListPage() {
    * @param {"recent" | "favorite"} value 정렬 기준
    */
   const handleSortEvent = async (value) => {
-    try {
-      const response = await getProducts(1, pageSize, searchValue, value);
-      setProductsList(response.list);
-      setPageCount(response.totalCount);
-      setCurrentPage(1);
-    } catch (error) {
-      console.error(error);
-    }
+    setOrderBy(value);
+    setCurrentPage(1);
   };
 
   return (
     <>
       <main className={styles.main}>
+        {/* 베스트 상품 리스트 */}
         <section className={styles.productListSection}>
           <ProductListTitle title="베스트 상품" />
           <div className={styles.bestProductList}>
-            {bestProductsList.map((product) => {
-              return (
-                <ProductCard
-                  key={product.id}
-                  id={product.id}
-                  name={product.name}
-                  price={product.price}
-                  image={product.images[0]}
-                  favoriteCount={product.favoriteCount}
-                />
-              );
-            })}
+            {bestProductsLoading || bestProductsError ? (
+              <div className={styles.loading}>
+                {bestProductsLoading
+                  ? '제품을 불러오는 중입니다.'
+                  : '제품을 불러오는 중에 오류가 발생했습니다.'}
+              </div>
+            ) : (
+              bestProductsList.map((product) => {
+                return (
+                  <ProductCard
+                    key={product.id}
+                    id={product.id}
+                    name={product.name}
+                    price={product.price}
+                    image={product.images[0]}
+                    favoriteCount={product.favoriteCount}
+                  />
+                );
+              })
+            )}
           </div>
         </section>
+
+        {/* 판매 중인 상품 정렬 및 검색 */}
         <section>
           <div className={styles.productListTitleWrapper}>
             <ProductListTitle title="판매 중인 상품" />
-
+            {/* 검색 인풋 */}
             <SearchInput
               className={styles.searchInputComponent}
               name="search"
@@ -165,15 +125,25 @@ export function ProductListPage() {
               onClick={handleSearchEvent}
               onKeyDown={handleSearchEvent}
             />
+            {/* 상품 등록 버튼 */}
             <div className={styles.productListRegisterButton}>
               <Link to="#" className="btn-small-40">
                 상품 등록하기
               </Link>
             </div>
+            {/* 정렬 드롭다운 */}
             <Dropdown onClick={handleSortEvent} className={styles.productListSortButton} />
           </div>
+
+          {/* 판매 중인 상품 리스트 */}
           <div className={styles.productList}>
-            {productsList.length > 0 ? (
+            {productsLoading || productsError ? (
+              <div className={styles.loading}>
+                {productsLoading
+                  ? '제품을 불러오는 중입니다.'
+                  : '제품을 불러오는 중에 오류가 발생했습니다.'}
+              </div>
+            ) : productsList.length > 0 ? (
               productsList.map((product) => {
                 return (
                   <ProductCard

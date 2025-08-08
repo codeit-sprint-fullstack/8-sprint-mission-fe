@@ -1,6 +1,5 @@
 import { Fragment, useEffect, useState } from 'react';
 import styles from '../../styles/components/molecules/Pagination.module.css';
-import { Link } from 'react-router-dom';
 
 export function Pagination({
   totalItems,
@@ -23,35 +22,28 @@ export function Pagination({
     <div className={styles.pagination}>
       <ul>
         <li className={`${styles.move} ${noPrev && styles.invisible}`}>
-          <Link
-            to={`?page=${Math.max(1, start - 1)}`}
-            onClick={() => onPageChange(Math.max(1, start - 1))}
-          >
+          <button onClick={() => onPageChange(Math.max(1, start - 1))}>
             <img src="/product-list/prev-icon.svg" alt="이전" />
-          </Link>
+          </button>
         </li>
-        {[...Array(pageCount)].map((a, i) => (
+        {[...Array(pageCount)].map((_, i) => (
           <Fragment key={i}>
             {start + i <= totalPages && (
               <li key={i}>
-                <Link
+                <button
                   className={`${styles.page} ${currentPage === start + i && styles.active}`}
-                  to={`?page=${start + i}`}
                   onClick={() => onPageChange(start + i)}
                 >
                   {start + i}
-                </Link>
+                </button>
               </li>
             )}
           </Fragment>
         ))}
         <li className={`${styles.move} ${noNext && styles.invisible}`}>
-          <Link
-            to={`?page=${Math.min(totalPages, start + pageCount)}`}
-            onClick={() => onPageChange(Math.min(totalPages, start + pageCount))}
-          >
+          <button onClick={() => onPageChange(Math.min(totalPages, start + pageCount))}>
             <img src="/product-list/next-icon.svg" alt="다음" />
-          </Link>
+          </button>
         </li>
       </ul>
     </div>
