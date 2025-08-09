@@ -1,0 +1,90 @@
+@import url(./common.css);
+
+.header-home {
+  display: flex;
+  width: 100%;
+  height: 70px;
+  justify-content: center;
+  align-items: center;
+  padding: 9px 200px;
+  position: fixed;
+  top: 0;
+  background: white;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.wrap {
+  max-width: 1120px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 1;
+}
+
+.header-left {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header-left span{
+  color: var(--Secondary-600);
+  text-align: center;
+
+  /* pretendard/2lg-18px-bold */
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 26px; /* 144.444% */
+}
+
+.logo {
+  display: flex;
+  width: 153px;
+  height: 51px;
+  padding: 5.017px 0px 5.848px 0px;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 8.592px;
+}
+
+.logo img {
+  width: 40px;
+  height: 40.135px;
+  flex-shrink: 0;
+}
+
+.logo span {
+  color: var(--brand-blue);
+  font-family: "ROKAF Sans";
+  font-size: 25.633px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+
+.login-button{
+  background: var(--Primary-100);
+  border-radius: 8px;
+  border: 0;
+
+  display: flex;
+  height: 42px;
+  width: 88px;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--Cool-Gray-100);
+  /* pretendard/lg-16px-semibold */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px; /* 162.5% */
+
+  cursor: pointer;
+}

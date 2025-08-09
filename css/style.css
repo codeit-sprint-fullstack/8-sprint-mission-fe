@@ -5,14 +5,14 @@
   src: url("../font/ROKAF\ Sans\ Medium.ttf");
 }
 
-body {
+body { 
   width: 100%;
   background: #FCFCFC;
 }
 
 .header_home {
   display: flex;
-  width: 100%;
+  width: 100%;  
   height: 70px;
   justify-content: center;
   align-items: center;
