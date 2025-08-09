@@ -7,7 +7,7 @@ const Header = () => {
     <header className={styles.header}>
       <div className={styles['header-wrap']}>
         <Link className={styles.logo} to="/">
-          <img src="../images/logo/panda-icon.png" alt="판다마켓 로고" />
+          <img src="/images/logo/panda-icon.png" alt="판다마켓 로고" />
           <span className={styles['logo-text']}>판다마켓</span>
         </Link>
         <nav className={styles.nav}>
