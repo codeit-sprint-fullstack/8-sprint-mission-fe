@@ -1,10 +1,10 @@
-.product-image{
+.best-product-image{
     height: 282px;
     width: 282px;
     border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    object-fit: cover; /* 이미지를 컨테이너에 맞게 조정 */
+    object-position: center; /* 이미지 중앙 정렬 */
+    display: block; /* flex 대신 block 사용 */
     gap: 16px;
 }
 

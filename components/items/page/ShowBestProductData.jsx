@@ -16,8 +16,7 @@ function ShowBestProductData({productNumber = 4}) {
 
             try {
                 const response = await productService.getProductList(options);
-                console.log('API Response:', response); // 디버깅용
-                setProductData(response.list || response || []);
+                setProductData(response.list || []);
             } catch (error) {
                 console.error('Error fetching data:', error);
                 setProductData([]);
@@ -30,7 +29,8 @@ function ShowBestProductData({productNumber = 4}) {
     return(
         <>
             <h2 className={"product-category"}>베스트 상품</h2>
-            <ul style={{display: 'flex', listStyle: 'none', gap: '16px', padding: 0}}>
+            {/*TODO: "판매 중인 상품"과 동일한 너비를 가지도록 스타일 변경*/}
+            <ul className="product-grid-container best-product-grid">
                 {productData.map((item) => (
                     <li key={item.id}>
                         <BestProductCard item={item}/>

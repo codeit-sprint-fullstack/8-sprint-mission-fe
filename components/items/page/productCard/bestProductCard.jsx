@@ -5,7 +5,7 @@ function BestProductCard({item}) {
 
     return (
         <div className="product-card">
-            <img src={images[0]} alt={description} className="product-image"/>
+            <img src={images[0]} alt={description} className="best-product-image"/>
             <div className="padding-space"></div>
             <div className="product-details">
                 <p className="product-name">{name}</p>

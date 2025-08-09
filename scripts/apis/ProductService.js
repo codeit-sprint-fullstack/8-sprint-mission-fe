@@ -11,6 +11,7 @@ class ProductService {
         if (product_list_data.page) queryParams.push(`page=${product_list_data.page}`);
         if (product_list_data.pageSize) queryParams.push(`pageSize=${product_list_data.pageSize}`);
         if (product_list_data.orderBy) queryParams.push(`orderBy=${product_list_data.orderBy}`);
+        if (product_list_data.keyword) queryParams.push(`keyword=${encodeURIComponent(product_list_data.keyword)}`);
 
         const queryString = queryParams.join('&');
         const fullUrl = queryString ? `${baseURL}?${queryString}` : baseURL;
