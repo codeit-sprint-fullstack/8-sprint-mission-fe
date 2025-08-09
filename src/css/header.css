@@ -1,7 +1,7 @@
 header {
   width: 100%;
-  height: 4.375rem;
-  padding: 0 12.5rem;
+  height: 4.375rem; /* 70px */
+  padding: 0 200px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -11,46 +11,85 @@ header {
   left: 0;
   right: 0;
   box-sizing: border-box;
+  z-index: 1000;
 }
 
-.logo img {
+/* 좌측: 로고 + 메뉴 */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* 로고와 메뉴 간격 */
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+.brand img {
   height: 2.5rem;
   flex-shrink: 0;
 }
 
+.nav-menu {
+  display: flex;
+  gap: 1.5rem; /* 메뉴 간격 */
+}
+
+.nav-menu a {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #374151;
+  text-decoration: none;
+}
+
+.nav-menu a:hover {
+  color: #111827;
+}
+
+/* 우측: 로그인 버튼 */
 .loginButton {
   display: flex;
-  color: var(--Cool-Gray-100, #f3f4f6);
-  background: var(--Primary-100, #3692ff);
-
-  padding: 0.625rem 1rem;
+  color: #f3f4f6;
+  background: #3692ff;
+  padding: 0.625rem 1.4375rem;
   font-size: 0.875rem;
   font-weight: bold;
   text-decoration: none;
   border-radius: 8px;
-
   height: 42px;
-  padding: 12px 23px;
   justify-content: center;
   align-items: center;
   gap: 10px;
 }
 
+.loginButton:hover {
+  filter: brightness(0.97);
+}
+
+.loginButton:active {
+  transform: translateY(1px);
+}
+
 /* Tablet */
 @media (max-width: 1199px) and (min-width: 744px) {
-  .header {
+  header {
     padding: 0 1.5rem;
   }
 }
 
 /* Mobile */
 @media (max-width: 743px) {
-  .header {
+  header {
     padding: 0 1rem;
   }
 
-  .logo img {
+  .brand img {
     height: 2rem;
+  }
+
+  .nav-menu {
+    gap: 1rem;
   }
 
   .loginButton {

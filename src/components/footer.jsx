@@ -8,12 +8,12 @@ function Footer() {
     <footer>
       <div className="copyright">@codeit - 2024</div>
 
-      <div className="footer_menu">
+      <div className="footerMenu">
         <a href="privacy.html">Privacy Policy</a>
         <a href="faq.html">FAQ</a>
       </div>
 
-      <div className="footer_sns">
+      <div className="footerSns">
         <a href="https://www.facebook.com/" target="_blank">
           <img src={facebook} alt="페이스북" width="20" />
         </a>

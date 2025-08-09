@@ -1,17 +1,19 @@
-import Header from "./components/header";
-import Footer from "./components/footer";
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/Header.jsx";
+import Footer from "./components/Footer.jsx";
+import MarketPage from "./pages/MarketPage.jsx";
 import "./css/app.css";
-import CardItemList from "./components/cardItemList";
-function App() {
+
+export default function App() {
   return (
     <>
-      <div className="app-container">
-        <Header />
-        <CardItemList />
-        <Footer />
-      </div>
+      <Header />
+      <main className="app-main">
+        <Routes>
+          <Route path="/" element={<MarketPage />} />
+        </Routes>
+      </main>
+      <Footer />
     </>
   );
 }
-
-export default App;

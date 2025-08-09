@@ -6,9 +6,10 @@ footer {
   align-items: center;
   padding: 3.2rem 20rem 10.8rem 20rem;
   font-size: 1rem;
+  box-sizing: border-box;
 }
 
-.footer_menu {
+.footerMenu {
   display: flex;
 
   padding: 32px 200px;
@@ -22,7 +23,7 @@ footer {
   background: var(--Secondary-900, #111827);
 }
 
-.footer_sns {
+.footerSns {
   display: flex;
   gap: 12px;
 }
@@ -41,7 +42,7 @@ footer {
     padding: 2rem 1rem;
   }
 
-  .footer_menu {
+  .footerMenu {
     flex-wrap: wrap;
     gap: 1rem;
   }
