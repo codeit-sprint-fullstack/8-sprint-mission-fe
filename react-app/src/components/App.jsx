@@ -4,19 +4,14 @@ import BestProducts from "./products/BestProducts";
 import { getProductList } from "../api";
 import { useEffect, useState } from "react";
 import ProductsList from "./products/ProductsList";
+import Footer from "./Footer";
 
 function App() {
-  const [order, setOrder] = useState("recent");
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
-  const [keyword, setKeyword] = useState("");
+  const PAGESIZE = 10;
   const [items, setItems] = useState([]);
+  const [totalCount, setTotalCount] = useState(0);
   const [bestItems, setBestItems] = useState([]);
-
-  const sortedItems = items.sort((a, b) => b[order] - a[order]);
-
-  const handleNewestClick = () => setOrder("recent");
-  const handleBestClick = () => setOrder("favorite");
+  //const sortedItems = items.sort((a, b) => b[order] - a[order]);
 
   // BestProducts 요청
   const handleBestLoad = async () => {
@@ -24,7 +19,6 @@ function App() {
       const result = await getProductList({
         page: 1,
         pageSize: 4,
-        keyword,
         orderBy: "favorite",
       });
       setBestItems(result.list || []);
@@ -34,12 +28,12 @@ function App() {
   };
 
   // ProductsList 요청
-  const handleItemsLoad = async () => {
+  const handleItemsLoad = async (page, keyword, order) => {
     let result;
     try {
       result = await getProductList({
         page: page,
-        pageSize: pageSize,
+        pageSize: PAGESIZE,
         keyword: keyword,
         orderBy: order,
       });
@@ -47,9 +41,9 @@ function App() {
       console.error(error.message);
       return;
     }
-
-    console.log("제품 목록:", result);
+    console.log(result);
     setItems(result.list || []);
+    setTotalCount(result.totalCount);
   };
 
   // BestProducts 최초 로딩
@@ -57,16 +51,12 @@ function App() {
     handleBestLoad();
   }, []);
 
-  // ProductsList는 order 바뀌거나 페이지 바뀔 때마다 요청
-  useEffect(() => {
-    handleItemsLoad();
-  }, [order, page]);
-
   return (
     <div>
       <Header />
       <BestProducts items={bestItems} />
-      <ProductsList items={items} />
+      <ProductsList items={items} totalCount={totalCount} handleItemsLoad={handleItemsLoad} />
+      <Footer />
     </div>
   );
 }
