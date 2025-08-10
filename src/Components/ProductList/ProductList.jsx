@@ -3,7 +3,7 @@ import ProductCard from "./ProductCard/ProductCard";
 import { getProductList } from '../../API/ProductService';
 import './ProductList.module.css';
 
-function ProductList({ query, onLoad }) {   // 한 줄에 4개씩 보여주도록 하는 기능 구현해야 함.
+function ProductList({ query, onLoad }) {   // 한 줄에 n개씩 보여주도록 하는 기능 js만으로는 못하나?
   const [products, setProducts] = useState([]);
 
   useEffect(() => {

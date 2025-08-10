@@ -1,0 +1,24 @@
+
+.productList {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 한 줄에 5개 */
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 0;
+  margin-bottom: 40px;
+}
+
+/*반응형*/
+/* 태블릿(1199px 이하) → 3개씩 */
+@media (max-width: 1199px) {
+  .productList {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 모바일(743px 이하) → 2개씩 */
+@media (max-width: 743px) {
+  .productList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

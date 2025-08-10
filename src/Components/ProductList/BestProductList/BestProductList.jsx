@@ -6,7 +6,7 @@ function BestProductList({ products }) {
     <section className="bestProduct">
       <h2>베스트 상품</h2>
 
-      <div className="bestProductCards">
+      <div className="bestProductList">
         {products.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}
