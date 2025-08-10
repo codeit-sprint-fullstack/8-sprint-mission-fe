@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ic_arrow from './ic_DownArrow.svg';
-import './DropDown.module.css';
+import style from './DropDown.module.css';
 
 function DropDown({ options = [], onChange }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,13 +15,13 @@ function DropDown({ options = [], onChange }) {
   };
 
   return (
-    <section className="dropDown">
-      <div className="dropDownContainer" onClick={() => setIsOpen(!isOpen)}>
+    <section className={style.dropDown}>
+      <div className={style.dropDownContainer} onClick={() => setIsOpen(!isOpen)}>
         <p>{selected.label}</p>
         <img src={ic_arrow} alt="DropDownArrow" />
 
         {isOpen && (
-          <ul className="options">
+          <ul className={style.options}>
               {options.map((opt) => (
                   <li key={opt.value} onClick={() => handleSelect(opt)}>{opt.label}</li>
               ))}

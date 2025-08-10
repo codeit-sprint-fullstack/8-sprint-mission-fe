@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard/ProductCard";
 import { getProductList } from '../../API/ProductService';
-import './ProductList.module.css';
+import style from './ProductList.module.css';
 
 function ProductList({ query, onLoad }) {   // 한 줄에 n개씩 보여주도록 하는 기능 js만으로는 못하나?
   const [products, setProducts] = useState([]);
@@ -14,7 +14,7 @@ function ProductList({ query, onLoad }) {   // 한 줄에 n개씩 보여주도�
   }, [query]);
 
   return (
-    <ul className="productList">
+    <ul className={style.productList}>
       {products.map((product) => (
         <ProductCard key={product.id} {...product} />
       ))}

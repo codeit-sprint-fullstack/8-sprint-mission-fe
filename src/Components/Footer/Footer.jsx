@@ -2,20 +2,20 @@ import facebook from './images/ic_facebook.svg';
 import twitter from './images/ic_twitter.svg';
 import youtube from './images/ic_youtube.svg';
 import instagram from './images/ic_instagram.svg';
-import './Footer.module.css';
+import style from './Footer.module.css';
 
 function Footer() {
   return (
-  <footer className="footer">
-    <div className="container">
+  <footer className={style.footer}>
+    <div className={style.container}>
       <p>@codeit - 2024</p>
 
-      <div className="FooterLinks">
+      <div className={style.FooterLinks}>
         <a href="/privacy">Privacy Policy</a>
         <a href="/faq">FAQ</a>
       </div>
 
-      <div className="SocialLinks">
+      <div className={style.SocialLinks}>
         <a href="https://www.facebook.com/" target="_blank">
           <img src={facebook} alt="Facebook" />
         </a>

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import DropDown from '../../DropDown/DropDown';
 import ic_search from './ic_search.svg';
-import './ProductListController.module.css';
+import style from './ProductListController.module.css';
 
 function ProductListController({ option: controls = {}, setQuery = null }) {
   const [searchWord, setSearchWord] = useState('');
 
-  const handleSearch = (e) => {
+  const handleSearch = (e) => {  // 검색 결과가 없을 때 코드 작성해보기
     if (e.key === 'Enter' || e.type === 'click') {
         setQuery?.(prev => ({ ...prev, searchWord, page: 1 }));
     }
@@ -17,12 +17,12 @@ function ProductListController({ option: controls = {}, setQuery = null }) {
   // };
 
   return (
-    <section className="productListController">
+    <section className={style.productListController}>
       <h2>판매 중인 상품</h2>
 
-      <div className="controlBox">
+      <div className={style.controlBox}>
         {controls.search &&
-          <div className="searchInput">
+          <div className={style.searchInput}>
             <img src={ic_search} alt="검색 아이콘" onClick={handleSearch} />
             <input 
               placeholder="검색할 상품을 입력해주세요"

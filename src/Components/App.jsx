@@ -3,7 +3,7 @@ import Footer from './Footer/Footer';
 import BestProductList from './ProductList/BestProductList/BestProductList';
 import ProductListController from './ProductList/ProductListController/ProductListController';
 import ProductList from './ProductList/ProductList';
-import '../style/style.css';
+import style from '../style/style.css';
 
 function App() {
   return (

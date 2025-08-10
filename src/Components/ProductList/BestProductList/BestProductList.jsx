@@ -1,12 +1,12 @@
 import ProductCard from '../ProductCard/ProductCard';
-import './BestProductList.css';
+import style from './BestProductList.css';
 
 function BestProductList({ products }) {
   return (
-    <section className="bestProduct">
+    <section className={style.bestProduct}>
       <h2>베스트 상품</h2>
 
-      <div className="bestProductList">
+      <div className={style.bestProductList}>
         {products.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}
