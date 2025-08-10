@@ -1,4 +1,4 @@
-@import '../../style/color_variables.css';
+@import '../../../style/color_variables.css';
 
 .container {
   display: flex;
@@ -44,6 +44,8 @@
         width: 16px;
         height: 16px;
         cursor: pointer;
+        border: none;
+        outline: none;
       }
   
       p {

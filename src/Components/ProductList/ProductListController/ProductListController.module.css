@@ -1,4 +1,4 @@
-@import '../../style/color_variables.css';
+@import '../../../style/color_variables.css';
 
 .productListController {
   display: flex;
@@ -14,8 +14,9 @@
 
   .controlBox {
     display: flex;
+    gap: 12px;
 
-    .searchInput {
+    .searchInputBox {
       position: relative;
       display: flex;
       align-items: center;
@@ -23,22 +24,29 @@
       input {
         width: 325px;
         height: 42px;
-        padding: 9px 20px 9px 16px;
+        padding: 9px 20px 9px 45px;
         border-radius: 12px;
+        border: none;
+        outline: none;
         background-color: var(--Secondary-100);
       }
 
       img {
         position: absolute;
-        top: 50%;
         left: 16px;
         cursor: pointer;
+        width: 24px;
+        height: 24px;
       }
     }
 
     button {
+      justify-content: center;
+      align-items: center;
       background-color: var(--button-color);
       border-radius: 8px;
+      border: none;
+      outline: none;
       width: 128px;
       height: 48px;
       padding: 12px 23px;

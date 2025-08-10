@@ -22,7 +22,7 @@ function ProductListController({ option: controls = {}, setQuery = null }) {
 
       <div className={style.controlBox}>
         {controls.search &&
-          <div className={style.searchInput}>
+          <div className={style.searchInputBox}>
             <img src={ic_search} alt="검색 아이콘" onClick={handleSearch} />
             <input 
               placeholder="검색할 상품을 입력해주세요"

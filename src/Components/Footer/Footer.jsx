@@ -1,6 +1,6 @@
 import facebook from './images/ic_facebook.svg';
 import twitter from './images/ic_twitter.svg';
-import youtube from './images/ic_youtube.svg';
+import youtube from './images/ic_YouTube.svg';
 import instagram from './images/ic_instagram.svg';
 import style from './Footer.module.css';
 
@@ -16,16 +16,16 @@ function Footer() {
       </div>
 
       <div className={style.SocialLinks}>
-        <a href="https://www.facebook.com/" target="_blank">
+        <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
           <img src={facebook} alt="Facebook" />
         </a>
-        <a href="https://x.com/" target="_blank">
+        <a href="https://x.com/" target="_blank" rel="noreferrer">
           <img src={twitter} alt="Twitter" />
         </a>
-        <a href="https://www.youtube.com/" target="_blank">
+        <a href="https://www.youtube.com/" target="_blank" rel="noreferrer">
           <img src={youtube} alt="YouTube" />
         </a>
-        <a href="https://www.instagram.com/" target="_blank">
+        <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
           <img src={instagram} alt="Instagram" />
         </a>
       </div>
