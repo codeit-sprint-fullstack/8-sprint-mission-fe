@@ -1,27 +1,12 @@
-# 🐼 판다마켓 프로젝트
+# React + Vite
 
-## 소개
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-안녕하세요! 판다마켓 프로젝트에 오신 것을 환영합니다! 🥳  
-판다마켓은 따뜻한 중고거래를 위한 커뮤니티 플랫폼이에요. 여러분은 이곳에서 상품을 등록하고, 다른 사용자들과 소통하며, 자유롭게 이야기를 나눌 수 있어요.
+Currently, two official plugins are available:
 
-[판다마켓](https://spfs0807-panda-market.netlify.app) 들어가기
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-![PandaMarket](https://github.com/user-attachments/assets/3784b99f-73c9-4349-a9a9-92b2a7563574)  
-_위 이미지는 판다마켓의 대표 이미지입니다._ 📸
+## Expanding the ESLint configuration
 
-## 주요 기능 ✨
-
-1. **상품 등록**: 내가 가진 물건을 올리고, 사진과 설명을 추가해 직접 판매할 수 있어요!
-2. **문의 댓글**: 상품에 대한 궁금한 점이나 의견을 자유롭게 남길 수 있답니다. 📝
-3. **자유게시판**: 다양한 주제로 친구들과 이야기를 나누고, 정보를 공유할 수 있는 공간이에요! 🗣️
-
-## 세부 페이지 ✨
-
-1. 홈 페이지
-2. 로그인 페이지
-3. 회원가입 페이지
-
----
-
-본 프로젝트는 [코드잇](https://www.codeit.kr)의 소유이며, 교육 목적으로만 사용됩니다. © 2024 Codeit. All rights reserved.
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
