@@ -1,0 +1,77 @@
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.section-title { 
+    font-size: 20px;
+    font-weight: 700;
+    margin: 24px 0 12px;
+}
+
+.grid {
+    display: grid;
+    gap: 16px;
+}
+
+.card {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+}   
+
+.card .thumb { 
+    aspect-ratio: 1/1; 
+    object-fit: cover; 
+    width: 100%; 
+    display: block;
+}
+
+.card .meta { 
+    padding: 10px; font-size: 14px;
+}
+
+.controlbar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 12px 0 16px;
+}
+
+.controlbar input[type="search"] { 
+    padding: 8px 10px; 
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+}
+
+.controlbar select, .controlbar button {
+  padding: 8px 12px; 
+  border: 1px solid #ddd; 
+  border-radius: 8px; 
+  background: #f7f7f7;
+}
+
+.pagination {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin: 20px 0 40px; 
+}
+
+.pagination button {
+  min-width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+}
+
+.pagination button[aria-current="page"] {
+    background: #5b86ff;
+    color:#fff;
+    border-color:#5b86ff;
+}
