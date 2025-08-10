@@ -1,0 +1,275 @@
+:root {
+  --container-width: 1100px;
+  --accent: #3692FF;
+  --bg: #FCFCFC;
+  --muted: #6b7280;
+  --radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  margin: 0;
+  background: var(--bg);
+}
+
+header {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 200px;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid #DFDFDF;
+  background: #FFF;
+  z-index: 10;
+}
+
+.header .headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header .logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header .brand {
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.header .loginBtn {
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  border: 0;
+  padding: 8px 12px;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 20px auto 32px;
+  padding: 0 16px;
+}
+
+.bestTitle {
+  color: #1F2937;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  margin: 10px 0 12px;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  margin: 12px 0 18px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.controls .spacer {
+  flex: 1;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f3f4f6;
+  border-radius: 12px;
+  padding: 8px 14px;
+  min-width: 280px;
+}
+
+.search input {
+  outline: none;
+  border: 0;
+  background: transparent;
+  width: 100%;
+}
+
+.primaryBtn {
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+select {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+select option {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.bestGrid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--bg);
+}
+
+.productGrid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(5, 1fr);
+  background: var(--bg);
+}
+
+.productCard {
+  border-radius: var(--radius);
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.productCard .thumb {
+  width: 100%;
+  padding-top: 75%;
+  position: relative;
+}
+
+.productCard .thumb img {
+  position: absolute;
+  width: 90%;
+  height: 100%;
+  border-radius: 15px;
+  top: 0;
+  left: 0;
+}
+
+.productCard .meta {
+  padding: 12px;
+  display: grid;
+  gap: 6px;
+  background: var(--bg);
+}
+
+.productCard .title {
+  font-size: 13px;
+  color: #374151;
+}
+
+.productCard .price {
+  color: #1F2937;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 26px;
+}
+
+.productCard .likes {
+  color: #4B5563;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pagination {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 18px;
+}
+
+.pagination button {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+}
+
+.pagination .active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.footer {
+  padding: 32px 200px;
+  background: #111827;
+  color: #E5E7EB;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.footerLeft {
+  color: #9CA3AF;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.footerCenter {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+.footerRight {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.footerRight img {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 1023px) {
+  .bestGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .productGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .bestGrid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
