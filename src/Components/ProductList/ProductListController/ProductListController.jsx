@@ -3,7 +3,7 @@ import DropDown from '../../DropDown/DropDown';
 import ic_search from './ic_search.svg';
 import './ProductListController.module.css';
 
-function ProductListController() {
+function ProductListController({ option: controls = {}, setQuery = null }) {
   const [searchWord, setSearchWord] = useState('');
 
   const handleSearch = (e) => {
@@ -34,7 +34,8 @@ function ProductListController() {
           </div>
         }
 
-        {controls.upload && <button onClick={handleUpload}>상품 등록하기</button>}
+        {controls.upload && <button>상품 등록하기</button>}
+        {/* onClick={handleUpload} */}
 
         {controls.orderBy &&
           <DropDown
