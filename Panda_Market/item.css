@@ -402,8 +402,8 @@ a {
 
 .logo_layout {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
 .best_item_list .grid { /* grid-template-columns: repeat(4, 1fr); */ }

@@ -1,0 +1,56 @@
+@media screen and (max-width: 1199px) {
+  .frame {
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+
+  .logo {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .login {
+    margin-right: 20px;
+  }
+
+
+  .mini_ment {
+    font-size: 40px;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .button_layout {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .button_ment {
+    font-size: 20px;
+  }
+
+  .first_layout {
+    align-items: center;
+    margin-right: 0;
+  }
+  
+  .main_panda {
+    margin-left: 0;
+    margin-top: 250px;
+    bottom: 0;
+  }
+
+  .header_background {
+    width: 100%;
+    height: auto;
+  }
+
+  .mini_header {
+    width: 100%;
+    height: auto;
+  }
+
+  .section_total {
+    display: grid;
+  }
+}
