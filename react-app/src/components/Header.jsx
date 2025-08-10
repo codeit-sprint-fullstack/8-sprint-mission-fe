@@ -1,5 +1,5 @@
 import pandaLogo from '../assets/icon/ic_panda.svg';
-import '../css/Header.css';
+import './css/Header.css';
 
 function Logo(){
   return (
@@ -28,13 +28,13 @@ function LoginButton() { //임시 컴포넌트
 
 function Header(){
   return (
-    <header className='header-home'>
-      <div className='wrap'>
+    <header className='main-header'>
+      <div className='header-wrap'>
         <div className='header-left'>
           <Logo />
           <FreeBoard />
           <Marketplace />
-        </div>
+        </div>  
         <LoginButton />
       </div>
     </header>
