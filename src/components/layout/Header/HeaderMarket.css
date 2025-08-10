@@ -22,21 +22,17 @@
 
 .nav {
   margin: 0 auto;
-  position: absolute;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
+  height: 4.25rem; /* 68px */
   background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-}
-
-.navLeftSession {
-  display: flex;
-  align-items: center;
-  gap: 24px;
+  border-bottom: 1px solid #DFDFDF;
 }
 
 .nav-container {
@@ -46,6 +42,13 @@
   width: 100%;
   padding: 0.56rem 12.5rem; /* 9px 200px */
   max-width: 1920px;
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 24px; /* 로고와 네비게이션 사이 간격 */
+  min-width: 55.8rem; /* 893px */
 }
 
 .header-logo-link {
@@ -70,34 +73,17 @@
 }
 
 .navMenu {
-  color: #3692FF;
-  display: absolute;
-  align-self: flex-start;
-  text-decoration: none;
+  display: flex;
+  gap: 24px; /* 링크들 사이 간격 */
+  align-items: center; /* 세로 정렬 */
+  margin-left: 0; /* 기존 margin-left 제거 */
 }
 
-.navMenuCommunity, .navMenuPreOwned {
-  display: inline-flex;
-  gap: 0; /* 간격 추가 */
-  padding: 1.13rem 0.94rem; /* 21px 15px */
+.navMenuCommunity, 
+.navMenuPreOwned {
   text-decoration: none;
   color: var(--Secondary-600, #4B5563);
-  font-family: "Pretendard";
+  font-weight: 500;
   font-size: 1.13rem; /* 18px */
-  font-style: normal;
-  font-weight: 700;
-}
-
-.login-btn {
-  min-width: 8rem; /* 128px */
-  height: 2.62rem; /* 42px */
-  background-color: var(--primary-100);
-  color: #ffffff;
-  border-radius: 0.5rem; /* 8px */
-  border-bottom: 1px solid #dfdfdf;
-  font-weight: 600;
-  font-size: 1rem; /* 16px */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: inline-flex;
 }

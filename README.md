@@ -1,12 +1,31 @@
-# React + Vite
+# 판다마켓 프로젝트
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+https://panda-market-proj.netlify.app
 
-Currently, two official plugins are available:
+1 & 2. Mission 1 & 2 (HTML, CSS)
+Mission completion date : 07.17.2025
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Main page
+- Login Page
+- Signup Page
 
-## Expanding the ESLint configuration
+3. Mission 3 (HTMl, CSS, JS)
+   Mission Completion date : 07.27.2025
+   - Common js
+   - login, signup js
+   - Responsive Web
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+4. Mission 4 (API)
+   Mission Completion date : 08.01.2025
+  - Article CRUD with .then/.catch pattern
+  - Product CRUD with async/await pattern
+  - Complete API testing in main.js
+  - HTTP error handling with axios
+
+5. Mission 5  (HTML to React)
+   Mission Completion date : 
+  - Implement responsive design
+  - API integration with pagination
+  - Apply Atomic Design structure
+  - Complete search/sort functionality
+  - Dynamic pageSize based on screen size

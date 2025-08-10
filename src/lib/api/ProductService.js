@@ -1,9 +1,9 @@
 import axios from "axios"; // HTTP 요청용 라이브러리
 
 // 상품 목록 가져오기, async/await 방식으로 비동기 처리
-export async function getProductList(page = 1, pageSize = 10, keyword = "") {
-  const apiUrl = "https://panda-market-api-crud.vercel.app/products";
-
+export async function getProductList(page = 1, pageSize = 10, keyword = "", orderBy = "recent") {  // ← orderBy 파라미터 추가
+  const apiUrl = "https://panda-market-api.vercel.app/products";
+  
   try {
     // await로 응답을 기다림, GET 요청으로 상품 목록 조회
     const response = await axios.get(apiUrl, {
@@ -11,9 +11,10 @@ export async function getProductList(page = 1, pageSize = 10, keyword = "") {
         page: page,
         pageSize: pageSize,
         keyword: keyword,
+        orderBy: orderBy,  // ← 이 줄 추가!
       },
     });
-
+    
     console.log("상품 리스트:", response.data);
     return response.data;
   } catch (error) {

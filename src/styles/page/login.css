@@ -112,7 +112,6 @@ button:not(:disabled):hover {
 }
 
 a {
-  color: var(--Primary-100);
   font-size: 0.78rem;
 }
 

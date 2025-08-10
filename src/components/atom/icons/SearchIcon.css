@@ -1,0 +1,9 @@
+/* src/components/atom/SearchIcon/SearchIcon.css */
+.searchIconWrapper {
+  display: flex;
+  justify-content: left;
+}
+
+.searchIconWrapper svg {
+  display: inline-block;
+}

@@ -1,0 +1,120 @@
+/* src/components/molecule/Dropdown.css */
+
+/* 드롭다운 컨테이너 */
+.dropdownContainer {
+  position: relative;
+  display: inline-block;
+  min-width: 120px;
+}
+
+/* 드롭다운 버튼 */
+.dropdownButton {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 중앙 정렬 */
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  background: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.dropdownButton:hover {
+  border-color: #D1D5DB;
+}
+
+.dropdownButton:focus {
+  outline: none;
+  border-color: #3B82F6;
+}
+
+.dropdownButton.open {
+  border-color: #E5E7EB;
+  border-radius: 12px; /* 열려있을 때도 둥근 모서리 유지 */
+}
+
+/* 드롭다운 텍스트 - 중앙 정렬 */
+.dropdownText {
+  color: var(--Secondary-800, #1F2937);
+  font-weight: 500;
+  text-align: center;
+  flex: 1;
+}
+
+/* 화살표 아이콘 - 절대 위치로 오른쪽에 고정 */
+.dropdownArrowIcon {
+  position: absolute;
+  right: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.dropdownArrowIcon.rotated {
+  transform: rotate(180deg);
+}
+
+/* 드롭다운 메뉴 - 어두운 배경 */
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  left: 0;
+  right: 0;
+  background: #374151; /* 어두운 회색 배경 */
+  border: 1px solid #4B5563;
+  border-radius: 12px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+/* 드롭다운 옵션 */
+.dropdownOption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 1rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background-color: #FFF;;
+  transition: background-color 0.15s ease;
+  border-bottom: 1px solid #4B5563;
+  position: relative;
+  color: var(--Secondary-800, #1F2937);
+}
+
+.dropdownOption:last-child {
+  border-bottom: none;
+  border: 1px solid var(--Cool-Gray-200, #E5E7EB);
+  background-color: #FFF;;
+  color: var(--Secondary-800, #1F2937);
+  text-align: center;
+}
+
+.dropdownOption:hover {
+  border: 1px solid var(--Cool-Gray-200, #E5E7EB);
+  background-color: #FFF;
+  color: var(--Secondary-800, #1F2937);
+  text-align: center;
+}
+
+.dropdownOption.selected {
+  border: 1px solid var(--Cool-Gray-200, #E5E7EB);
+  background-color: #FFF;;
+  color: var(--Secondary-800, #1F2937);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* 체크마크 - 왼쪽에 위치 */
+.checkmark {
+  text-align: center;
+  color: var(--Secondary-800, #1F2937);
+  font-weight: bold;
+  font-size: 1rem;
+}
+

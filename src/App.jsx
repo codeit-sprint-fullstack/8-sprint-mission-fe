@@ -1,17 +1,18 @@
+
 import React from "react";
-import "./styles/global/reset.css";
 import "./styles/global/global.css";
-import "../public/font/fonts.css";
-import "./App.css";
-// Header import
-import HeaderMarket from "./components/layout/Header/HeaderMarket.jsx";
-// Footer import
+import "./styles/font/fonts.css";
+import HeaderMarket from "./components/layout/Header/HeaderMarket";
 import Footer from "./components/layout/Footer/Footer";
+import Products from "./pages/Products/Products";  // Products
 
 function App() {
   return (
     <div className="App">
       <HeaderMarket />
+      <main>
+        <Products />
+      </main>
       <Footer />
     </div>
   );

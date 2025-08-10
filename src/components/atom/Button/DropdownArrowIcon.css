@@ -1,0 +1,14 @@
+/* src/components/atom/Icons/DropdownArrowIcon.css */
+.dropdownArrowIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdownArrowIcon img {
+  display: block;
+}
+
+.dropdownArrowIcon.rotated {
+  transform: rotate(180deg);
+}

@@ -15,7 +15,7 @@
 
 .nav {
   margin: 0 auto;
-  position: absolute;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
@@ -24,6 +24,7 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  border-bottom: 1px solid #DFDFDF;
 }
 
 .nav-container {
