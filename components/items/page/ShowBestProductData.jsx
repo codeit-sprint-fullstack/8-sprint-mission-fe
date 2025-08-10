@@ -4,10 +4,10 @@ import BestProductCard from "./productCard/bestProductCard.jsx";
 import "../../../styles/items.css"
 
 function ShowBestProductData({productNumber = 4}) {
-    const [productData, setProductData] = useState([]);
+    const [productData, setProductData] = useState([]); // 상품 데이터
 
     useEffect(() => {
-        async function fetchData() {
+        async function fetchData() { // 상품 데이터 불러오기
             const options = {
                 page: 1,
                 pageSize: productNumber,
@@ -29,7 +29,7 @@ function ShowBestProductData({productNumber = 4}) {
     return(
         <>
             <h2 className={"product-category"}>베스트 상품</h2>
-            {/*TODO: "판매 중인 상품"과 동일한 너비를 가지도록 스타일 변경*/}
+            {/* TODO: 기기의 크기에 따라 "중고 마켓의 카드 컴포넌트 반응형" 구현 */}
             <ul className="product-grid-container best-product-grid">
                 {productData.map((item) => (
                     <li key={item.id}>
