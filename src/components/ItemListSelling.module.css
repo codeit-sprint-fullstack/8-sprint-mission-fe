@@ -1,0 +1,233 @@
+.sectionContainer {
+  position: relative;
+  margin: 40px auto;
+  max-width: 1200px;
+}
+
+.sectionTitle {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 32px;
+}
+
+.sectionHeader {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.productList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 22px;
+}
+
+/* 컨트롤 */
+.controls {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.searchInput {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 4px;
+  font-size: 1rem;
+  padding: 9px 16px;
+  border-radius: 12px;
+  background-color: var(--color-secondary-100);
+}
+
+.registerButton {
+  padding: 12px 23px;
+  border-radius: 8px;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+
+.sortSelect {
+  height: 42px;
+  padding: 0 20px;
+  border-radius: 12px;
+  border: 1px solid var(--color-gray-100);
+  background: url("/public/images/icon/ic_arrow_down.svg") no-repeat right 12px
+    center/16px 16px;
+  appearance: none;
+  -webkit-appearance: none; /* 사파리/크롬 */
+  -moz-appearance: none; /* 파이어폭스 */
+}
+
+.sortSelect:focus {
+  outline: none;
+  border-radius: 12px;
+}
+
+.sortSelect option {
+  height: 42px;
+  padding: 10px 0;
+}
+
+/* 판매중인 상품 카드 (더 작게) */
+.sellingProductCard {
+  flex: 1 1 calc(20% - 18px);
+  max-width: calc(20% - 18px);
+  min-width: 180px;
+}
+
+.sellingProductCard .imageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  aspect-ratio: 1;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.productInfo {
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
+}
+
+.productName {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.productPrice {
+  font-size: 15px;
+  font-weight: bold;
+  color: #333;
+}
+
+.productFavoriteCount {
+  font-size: 12px;
+  color: var(--color-gray-600);
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  img {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+  }
+}
+
+/* 페이지네이션 스타일 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.pageBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--color-gray-100);
+  background-color: white;
+  color: var(--color-gray-600);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pageBtn:hover:not(:disabled) {
+  border-color: #2f80ed;
+  color: #2f80ed;
+}
+
+.pageBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.active {
+  background-color: #2f80ed;
+  color: white;
+  border-color: #2f80ed;
+}
+
+/* ############################## media-query ############################## */
+@media (max-width: 1199px) {
+  .sectionContainer {
+    padding: 0 24px;
+  }
+
+  .productList {
+    gap: 16px;
+  }
+
+  .searchInput {
+    max-width: 206px;
+    text-overflow: ellipsis;
+    input {
+      width: 80%;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .sellingProductCard {
+    flex: 1 1 calc(33.33% - 16px);
+    max-width: calc(33.33% - 16px);
+    min-width: 0;
+  }
+
+  @media (max-width: 743px) {
+    .sectionContainer {
+      padding: 0 16px;
+    }
+
+    .sectionHeader {
+      gap: 8px;
+      position: relative;
+      .registerButton {
+        position: absolute;
+        top: 0;
+        right: 7%;
+      }
+    }
+
+    .sectionTitle {
+      line-height: 42px;
+    }
+
+    .searchInput {
+      max-width: 100%;
+    }
+
+    .controls {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .sortSelect {
+      background: url("/public/images/icon/ic_sort.svg") no-repeat right 12px
+        center/16px 16px;
+      width: 42px;
+      height: 42px;
+    }
+
+    .productList {
+      gap: 8px;
+    }
+
+    .sellingProductCard {
+      flex: 1 1 calc(50% - 8px);
+      max-width: calc(50% - 8px);
+    }
+  }
+}

@@ -1,0 +1,76 @@
+/* ############################## footer ############################## */
+.footer {
+  height: 10rem;
+  background-color: var(--color-footer-bg);
+  color: var(--color-gray-400);
+  font-family: var(--font-main);
+  font-size: 1rem;
+}
+
+.footer_wrap {
+  width: calc(100% - 400px);
+  margin: 0 auto;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__center a {
+  color: var(--color-gray-400);
+  margin: 0 0.75rem;
+  text-decoration: none;
+}
+
+.footer__right {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer__right a {
+  margin-left: 0.75rem;
+}
+
+.footer__right img {
+  width: 20px;
+  height: 20px;
+}
+
+/* ############################## media-query ############################## */
+@media (max-width: 1199px) {
+  /* 1200px 이하 */
+  .footer_wrap {
+    width: 100%;
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 743px) {
+  /* 744px 이하 */
+  .footer_wrap {
+    flex-flow: row wrap;
+    gap: 25px;
+  }
+
+  .footer__left {
+    order: 3;
+  }
+
+  .footer__center {
+    order: 1;
+  }
+
+  .footer__right {
+    order: 2;
+  }
+
+  .footer__center a {
+    margin: 0;
+  }
+
+  .footer__center a:first-child {
+    margin-right: 1.875rem;
+  }
+}

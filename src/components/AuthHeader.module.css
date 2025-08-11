@@ -1,0 +1,20 @@
+/* ############################## logo ############################## */
+.logo {
+  width: 396px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.logo img {
+  width: 103.5px;
+  height: 103.5px;
+}
+
+.logo h1 {
+  font-family: "ROKAFSansBold";
+  font-size: 4.15rem;
+  color: var(--color-primary);
+  font-weight: bold;
+}

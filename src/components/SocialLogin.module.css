@@ -1,0 +1,27 @@
+/* ############################## social ############################## */
+.social-login {
+  margin-top: 8px;
+  padding: 12px;
+  background-color: var(--color-social-bg);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.social-login span {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-left: 8px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 16px;
+}
+
+.social-icons img {
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+}

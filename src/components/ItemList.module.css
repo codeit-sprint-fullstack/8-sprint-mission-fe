@@ -1,0 +1,94 @@
+.sectionContainer {
+  margin: 40px auto;
+  max-width: 1200px;
+}
+
+.sectionTitle {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.productList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* 베스트 상품 카드 (기존 크기 유지) */
+.productCard {
+  flex: 1 1 calc(25% - 20px);
+  max-width: calc(25% - 20px);
+  min-width: 220px;
+}
+
+.productCard .imageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  aspect-ratio: 1;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.productInfo {
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
+}
+
+.productName {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.productPrice {
+  font-size: 15px;
+  font-weight: bold;
+  color: #333;
+}
+
+.productFavoriteCount {
+  font-size: 12px;
+  color: var(--color-gray-600);
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  img {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+  }
+}
+
+/* ############################## media-query ############################## */
+
+@media (max-width: 1199px) {
+  .sectionContainer {
+    padding: 0 24px;
+  }
+
+  .productList {
+    gap: 10px;
+  }
+
+  .productCard {
+    flex: 1 1 calc(50% - 24px);
+    max-width: calc(50% - 24px);
+    min-width: 220px;
+  }
+
+  @media (max-width: 743px) {
+    .sectionContainer {
+      padding: 0 16px;
+    }
+    .productCard {
+      flex: 1 1 100%;
+      max-width: 100%;
+      min-width: 220px;
+    }
+  }
+}
