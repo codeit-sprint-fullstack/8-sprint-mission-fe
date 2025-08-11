@@ -1,0 +1,359 @@
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'ROKAFSansBold';
+    src: url('../font/ROKAFSansBold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'ROKAFSansMedium';
+    src: url('../font/ROKAFSansMedium.woff2') format('woff2');
+}
+
+body {
+	font-family: "ROKAFSansBold", "ROKAFSansMedium", "pretendard"; 
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;  
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.login_logo {
+  color: var(--brand-blue, #3692FF);
+  font-family: "ROKAFSansMedium";
+  font-size: 66.344px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  display: flex;
+  padding-left: 22.24px;
+  align-items: center;
+}
+
+.logo_icon {
+  width: 103.529px;
+  height: 103.88px;
+  flex-shrink: 0;
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+}
+
+.login_logo_total {
+  height: 132px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  justify-content: center;
+}
+
+
+label {
+  color: var(--Secondary-800, #1F2937);
+  font-family: "Pretendard";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 26px;
+  margin-bottom: 16px;
+  margin-top: 24px;
+}
+
+
+input {
+  display: flex;
+  width: 640px;
+  height: 56px;
+  padding: 16px 24px;
+  align-items: center;
+  gap: 10px;
+  border-radius: 12px;
+  background: var(--Cool-Gray-100, #F3F4F6);
+  border-style: none;
+}
+
+input::placeholder {
+  flex: 1 0 0;
+  color: var(--Secondary-400, #9CA3AF);
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  display: flex;
+}
+
+
+.login_layout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  position: relative;
+}
+
+
+.password_vi {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+}
+
+.password_layout {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+button {
+  width: 640px;
+  height: 56px;
+  border-radius: 40px;
+  background-color: #9CA3AF; /* 기본 회색 */
+  color: white;
+  font-family: "Pretendard";
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 32px;
+  border-style: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.button_layout {
+  background: none; /* ← 배경 제거 */
+  padding: 0;
+}
+
+
+.simple_login {
+  color: var(--Secondary-800, #1F2937);
+  font-family: "Pretendard";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+  display: flex;
+}
+
+.simple_icon {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+
+.simple_layout {
+  display: flex;
+  width: 594px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.simple_total {
+  display: flex;
+  width: 640px;
+  height: 74px;
+  padding: 16px 23px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 8px;
+  background: #E6F2FF;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+
+.join_add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  margin-top: 24px;
+}
+
+h4 {
+  color: var(--Secondary-800, #1F2937);
+  font-family: "Pretendard";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.join {
+  color: var(--Primary-100, #3692FF);
+  font-family: "Pretendard";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+}
+
+input:focus {
+  border: 1px solid #3692FF;
+  outline: none;
+}
+
+
+.error-message {
+  color: var(--error-red, #F74747);
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.invalid {
+  border: 1px solid var(--error-red, #F74747);
+  font-family: "Pretendard";
+}
+
+.hidden {
+  display: none;
+}
+
+
+button {
+  background-color: #9CA3AF; /* 기본 비활성 회색 */
+}
+
+button.active {
+  background-color: #3692FF !important;
+  cursor: pointer;
+  opacity: 1;
+}
+
+
+
+#customModal {
+  position: fixed;              /* 화면 전체 기준 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7); /* 반투명 검정 배경 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#modalMessage {
+  color: var(--Cool-Gray-800, #1F2937);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.modal-content {
+  height: 250px;
+  width: 540px;
+  flex-shrink: 0;
+  background: white;
+  padding: 24px 32px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start
+}
+
+/* 메시지 */
+#modalMessage {
+  font-family: Pretendard;
+  font-size: 16px;
+  color: #1F2937;
+  font-weight: 500;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 84px;
+  text-align: center;
+}
+
+/* 버튼 감싸는 div */
+.modal_tab {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-top: 16px;
+  flex: 0;
+}
+
+/* 확인 버튼 */
+#closeModal {
+  width: 120px;
+  height: 48px;
+  flex-shrink: 0;
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 24px;
+  background: #3692FF;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0;
+}
+
+#closeModal:hover {
+  background-color: #2674cc;
+}
+
+/* 숨김 처리용 */
+#customModal.hidden {
+  display: none;
+}
+
+
+#customModal #closeModal {
+  opacity: 1; 
+  cursor: pointer !important;
+}
+
+
