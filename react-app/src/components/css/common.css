@@ -1,35 +1,36 @@
 /* font */
 @font-face {
   font-family: "ROKAF Sans";
-  src: url("../assets/font/ROKAF-Sans-Medium.ttf") format('truetype');
-  font-weight: normal; 
+  src: url("../assets/font/ROKAF-Sans-Medium.ttf") format("truetype");
+  font-weight: normal;
   font-style: normal;
 }
 
 /* color palette */
 :root {
-  --brand-blue: #3692FF;
-  --Primary-100: #3692FF;
-  --Cool-Gray-50: #F9FAFB;
-  --Cool-Gray-100: #F3F4F6;
-  --Cool-Gray-800: #1F2937;
-  --Secondary-50: #F9FAFB;
+  --brand-blue: #3692ff;
+  --Primary-100: #3692ff;
+  --Cool-Gray-50: #f9fafb;
+  --Cool-Gray-100: #f3f4f6;
+  --Cool-Gray-200: #e5e7eb;
+  --Cool-Gray-800: #1f2937;
+  --Secondary-50: #f9fafb;
   --Secondary-100: #f3f4f6;
-  --Secondary-200: #E5E7EB;
-  --Secondary-400: #9CA3AF;
-  --Secondary-600: #4B5563;
+  --Secondary-200: #e5e7eb;
+  --Secondary-400: #9ca3af;
+  --Secondary-600: #4b5563;
   --Secondary-700: #374151;
-  --Secondary-800: #1F2937;
+  --Secondary-800: #1f2937;
   --Secondary-900: #111827;
-  --error-red: #F74747;
+  --error-red: #f74747;
 }
 
-section{
+section {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.section-wrap{
+.section-wrap {
   width: 1200px;
 }

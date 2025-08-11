@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import "./ProductsList.css";
 import ic_search from "../../assets/icon/ic_search.svg";
 import arrow from "../../assets/icon/arrow_right.svg";
+import Dropdown from "../ui-components/dropdown";
 
 
 
@@ -56,8 +57,7 @@ function ProductsList({ items, totalCount, handleItemsLoad }) {
               />
             </div>
             <button className="product-register">상품 등록하기</button>
-            <button onClick={handleNewestClick}>최신순</button>
-            <button onClick={handleBestClick}>좋아요순</button>
+            <Dropdown order={order} onNewestClick={handleNewestClick}  onBestClick={handleBestClick}/>
           </div>
         </div>
         <ul className="productsList-container">
