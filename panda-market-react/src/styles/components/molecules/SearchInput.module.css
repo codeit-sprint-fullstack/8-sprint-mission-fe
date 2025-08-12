@@ -1,0 +1,41 @@
+.searchInputWrapper {
+  width: 100%;
+  max-width: 35.2rem;
+  padding: 0.9rem 1.2rem;
+
+  background-color: var(--secondary-color-100);
+  border-radius: 1.2rem;
+
+  &:placeholder {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--secondary-color-400);
+  }
+
+  input {
+    width: calc(100% - 2.4rem);
+    height: 100%;
+    padding: 0 1.2rem;
+    font-size: 1.6rem;
+  }
+
+  .searchButton {
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 1199px) {
+  .searchInputWrapper {
+    max-width: 24.2rem;
+
+    input {
+      padding: 0 0.4rem;
+    }
+  }
+}
+
+@media (max-width: 743px) {
+  .searchInputWrapper {
+    max-width: 28.8rem;
+  }
+}
