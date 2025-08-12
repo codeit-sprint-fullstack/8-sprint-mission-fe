@@ -13,6 +13,7 @@
   --Cool-Gray-50: #f9fafb;
   --Cool-Gray-100: #f3f4f6;
   --Cool-Gray-200: #e5e7eb;
+  --Cool-Gray-500: #6b7280;
   --Cool-Gray-800: #1f2937;
   --Secondary-50: #f9fafb;
   --Secondary-100: #f3f4f6;
@@ -33,4 +34,7 @@ section {
 }
 .section-wrap {
   width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

@@ -2,8 +2,8 @@ import ProductsItem from "./ProductsItem";
 import { useEffect, useState } from "react";
 import "./ProductsList.css";
 import ic_search from "../../assets/icon/ic_search.svg";
-import arrow from "../../assets/icon/arrow_right.svg";
 import Dropdown from "../ui-components/dropdown";
+import Pagination from "../ui-components/Pagination";
 
 
 
@@ -13,10 +13,9 @@ function ProductsList({ items, totalCount, handleItemsLoad }) {
   const [inputValue, setInputValue] = useState("");
   const [order, setOrder] = useState("recent");
 
-  const totalPages = Math.ceil(totalCount / 10);
-
   const handleNewestClick = () => setOrder("recent");
   const handleBestClick = () => setOrder("favorite");
+  const handlePageClick = (currentPage) => setPage(currentPage);
 
   // input change 핸들러
   const handleInputChange = (e) => {
@@ -71,6 +70,7 @@ function ProductsList({ items, totalCount, handleItemsLoad }) {
           })}
         </ul>
         {/* 페이지네이션 */}
+        <Pagination totalItems={totalCount} currentPage={page} onChange={handlePageClick}/>
       </div>
     </section>
   );

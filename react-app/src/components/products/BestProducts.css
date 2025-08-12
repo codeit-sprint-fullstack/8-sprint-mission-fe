@@ -3,6 +3,7 @@
 }
 
 .bestProducts h1 {
+  width: 100%;
   color: var(--Secondary-900);
   /* pretendard/xl-20px-bold */
   font-family: Pretendard;
