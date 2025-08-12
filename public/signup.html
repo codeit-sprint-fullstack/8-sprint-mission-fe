@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- 심화 요구사항) 회원가입 페이지의 메타 태그 설정 (제목, 설명, 주소, 이미지) -->
+    <meta property="og:title" content="판다마켓 - 회원가입" />
+    <meta property="og:description" content="일상에서 모든 물건을 거래해보세요" />
+    <meta property="og:image" content="https://gentle-hummingbird-9868af.netlify.app/images/home/bottom-banner-image.png" />
+    <meta property="og:url" content="https://gentle-hummingbird-9868af.netlify.app/signup.html" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:type" content="Shopping" />
+    <meta property="og:logo" content="https://gentle-hummingbird-9868af.netlify.app/images/logo/logo.svg" />
+
+    <title>판다마켓 - 회원가입</title>
+    <link rel="icon" href="images/logo/favicon.ico" />
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/auth.css" />
+  </head>
+
+  <body>
+    <main class="auth-container">
+      <div class="logo-home-button-wrapper">
+        <a href="/"
+          ><img src="images/logo/logo.svg" alt="판다마켓 홈" width="396"
+        /></a>
+      </div>
+
+      <form method="post">
+        <div class="input-item">
+          <label for="email">이메일</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="이메일을 입력해 주세요"
+          />
+          <div class="error-message" id="email-error"></div>
+        </div>
+        <div class="input-item">
+          <label for="nickname">닉네임</label>
+          <input
+            id="nickname"
+            name="nickname"
+            type="text"
+            placeholder="닉네임을 입력해 주세요"
+          />
+          <div class="error-message" id="nickname-error"></div>
+        </div>
+        <div class="input-item">
+          <label for="password">비밀번호</label>
+          <div class="input-wrapper">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="비밀번호를 입력해 주세요"
+            />
+            <!-- [심화 요구사항] 비밀번호, 비밀번호 확인 input 요소 오른쪽에 비밀번호를 확인할 수 있는 눈 모양 아이콘을 추가합니다. -->
+            <button
+              type="button"
+              class="password-toggle-button"
+              aria-label="비밀번호 보기"
+            >
+              <img
+                src="images/icons/eye-invisible.svg"
+                alt="비밀번호 숨김 상태 아이콘"
+                id="password_button_1"
+              />
+            </button>
+          </div>
+          <div class="error-message" id="password-error"></div>
+        </div>
+        <div class="input-item">
+          <label for="passwordConfirmation">비밀번호 확인</label>
+          <div class="input-wrapper">
+            <input
+              id="passwordConfirmation"
+              name="passwordConfirmation"
+              type="password"
+              placeholder="비밀번호를 다시 한 번 입력해 주세요"
+            />
+            <button
+              type="button"
+              class="password-toggle-button"
+              aria-label="비밀번호 보기"
+            >
+              <img
+                src="images/icons/eye-invisible.svg"
+                alt="비밀번호 숨김 상태 아이콘"
+                id="password_button_2"
+              />
+            </button>
+          </div>
+          <div class="error-message" id="password-check-error"></div>
+        </div>
+
+        <button type="submit" class="button pill-button full-width" id="signup-button">
+          회원가입
+        </button>
+      </form>
+
+      <div class="social-login-container">
+        <h3>간편 로그인하기</h3>
+        <div class="social-login-buttons-container">
+          <a
+            href="https://www.google.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="구글 로그인"
+            ><img
+              src="images/social/google-logo.png"
+              alt="구글 로그인"
+              width="42"
+          /></a>
+          <a
+            href="https://www.kakaocorp.com/page/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="카카오톡 로그인"
+            ><img
+              src="images/social/kakao-logo.png"
+              alt="카카오톡 로그인"
+              width="42"
+          /></a>
+        </div>
+      </div>
+
+      <div class="auth-switch">
+        이미 회원이신가요? <a href="login.html">로그인</a>
+      </div>
+    </main>
+    <script src="scripts/common.js"></script>
+  </body>
+</html>

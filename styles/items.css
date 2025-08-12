@@ -1,0 +1,243 @@
+/* 상품 페이지 헤더 스타일 */
+#itemsHeader {
+    padding: 0 200px;
+}
+
+#itemsHeader img {
+    margin: 0 100px 0 0;
+}
+
+#headerMenu {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    margin-right: auto;
+}
+
+.headerAnchorText {
+    color: #4B5563;
+    font-size: 18px;
+    font-family: Pretendard, sans-serif;
+    font-weight: 700;
+    line-height: 26px;
+    word-wrap: break-word
+}
+
+.product-window {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+}
+
+/* 상품 소개 컨테이너 스타일 */
+#best-products-container,
+#sale-products-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin: 0 360px;
+}
+
+.sale-product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.right-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* 상품 검색창 관련 스타일 */
+.product-search-container {
+    position: relative;
+    display: inline-block;
+}
+
+.product-search-input {
+    border-radius: 12px;
+    width: 325px;
+    height: 42px;
+    padding: 0 16px 0 44px;
+    background: #F3F4F6;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    line-height: 42px;
+}
+
+.product-search-input::placeholder {
+    color: #9CA3AF;
+}
+
+.search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+}
+
+/* 상품 카테고리 관련 스타일 */
+.product-category {
+    color: #111827;
+    font-family: Pretendard, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px;
+}
+
+.product-grid-container {
+    display: grid;
+    list-style: none;
+    padding: 0;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+.product-grid-container li {
+    box-sizing: border-box;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.best-product-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.sale-product-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+/* 상품 등록하기 버튼 관련 스타일 */
+.product-register-btn {
+    height: 42px;
+    padding: 12px 23px;
+    background: #3692FF;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.product-register-btn-text {
+    color: #F3F4F6;
+    font-size: 16px;
+    font-family: Pretendard, sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    line-height: 26px;
+    word-wrap: break-word;
+}
+
+.product-register-btn:hover {
+    background: #2563EB;
+}
+
+/* 상품의 정렬 순서 선택자 관련 스타일 */
+.product-order-select-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.product-order-select {
+    display: flex;
+    width: 130px;
+    height: 42px;
+    padding: 8px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    border: 1px solid #E5E7EB;
+    background: #FFF;
+
+    /* Selector의 폰트 스타일 적용 */
+    color: #1F2937;
+    font-family: Pretendard, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+}
+
+.product-order-select-arrow {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    width: 24px;
+    height: 24px;
+}
+
+/* 상품 페이지네이션 관련 스타일 */
+.product-pagination-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    margin: 60px auto 80px auto;
+    width: 100%;
+}
+
+
+.product-pagination-prepage {
+    width: 40px;
+    height: 40px;
+}
+
+.product-pagination-btn {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    padding: 12.5px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12.5px;
+    border-radius: 40px;
+    border: 1px solid #E5E7EB;
+    background: #FFF;
+}
+
+.product-pagination-btn-text {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    color: #6B7280;
+    font-size: 16px;
+    font-family: Pretendard, sans-serif;
+    font-weight: 600;
+    line-height: 26px;
+    word-wrap: break-word;
+}
+
+.product-pagination-btn:focus {
+    border-radius: 40px;
+    background: #2F80ED;
+}
+
+.product-pagination-nextpage {
+    width: 40px;
+    height: 40px;
+    rotate: 180deg;
+}

@@ -1,0 +1,109 @@
+.banner {
+  background-color: #cfe5ff;
+  height: 540px;
+  display: flex;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: 80% bottom;
+  background-size: 55%;
+}
+
+#hero {
+  background-image: url("../images/home/hero-image.png");
+}
+
+#features {
+  padding-bottom: 138px;
+}
+
+#bottomBanner {
+  background-image: url("../images/home/bottom-banner-image.png");
+}
+
+#loginLinkButton {
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 11.5px 23px;
+}
+
+
+.banner .pill-button {
+  margin-top: 32px;
+}
+
+.feature {
+  padding: 138px 0;
+  display: flex;
+  align-items: center;
+  gap: 5%;
+}
+
+.feature:nth-child(2) {
+  text-align: right;
+}
+
+.feature-content {
+  flex: 1;
+}
+
+.feature-tag {
+  color: var(--blue);
+  font-size: 18px;
+  line-height: 25px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.feature-description {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 120%;
+  letter-spacing: 0.08em;
+  margin-top: 24px;
+}
+
+/* Mobile (375px ~ 743px) */
+@media (min-width: 375px) and (max-width: 743px){
+  .wrapper {
+    width: 100%;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px; /* Mobile 기본값 */
+  }
+
+  .image {
+    margin: 32px;
+    width: 100%;
+    height: 100%;
+
+  }
+
+  footer {
+    display: flexbox;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+/* Tablet (744px ~ 1199px) */
+@media (min-width: 744px) {
+  header {
+    padding: 24px;
+  };
+
+  .image{
+    width: 50%;
+  }
+}
+
+/* PC (1200px ~) */
+@media (min-width: 1200px) {
+  .image{
+    width: 50%;
+  }
+}

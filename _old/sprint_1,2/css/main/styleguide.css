@@ -1,0 +1,36 @@
+:root {
+  --secondary-700: rgba(55, 65, 81, 1);
+  --secondary-50: rgba(249, 250, 251, 1);
+  --cool-gray100: rgba(243, 244, 246, 1);
+  --secondary-400: rgba(156, 163, 175, 1);
+  --secondary-200: rgba(229, 231, 235, 1);
+  --primary-100: rgba(54, 146, 255, 1);
+  --primaryprimarybrand: rgba(54, 146, 255, 1);
+  --secondary-100: rgba(243, 244, 246, 1);
+  --secondary-900: rgba(17, 24, 39, 1);
+  --brandblue: rgba(54, 146, 255, 1);
+  --pretendard-xl-20px-semibold-font-family: "Pretendard", Helvetica;
+  --pretendard-xl-20px-semibold-font-weight: 600;
+  --pretendard-xl-20px-semibold-font-size: 20px;
+  --pretendard-xl-20px-semibold-letter-spacing: 0px;
+  --pretendard-xl-20px-semibold-line-height: 32px;
+  --pretendard-xl-20px-semibold-font-style: normal;
+  --pretendard-lg-16px-semibold-font-family: "Pretendard", Helvetica;
+  --pretendard-lg-16px-semibold-font-weight: 600;
+  --pretendard-lg-16px-semibold-font-size: 16px;
+  --pretendard-lg-16px-semibold-letter-spacing: 0px;
+  --pretendard-lg-16px-semibold-line-height: 26px;
+  --pretendard-lg-16px-semibold-font-style: normal;
+  --pretendard-2lg-18px-bold-font-family: "Pretendard", Helvetica;
+  --pretendard-2lg-18px-bold-font-weight: 700;
+  --pretendard-2lg-18px-bold-font-size: 18px;
+  --pretendard-2lg-18px-bold-letter-spacing: 0px;
+  --pretendard-2lg-18px-bold-line-height: 26px;
+  --pretendard-2lg-18px-bold-font-style: normal;
+  --pretendard-2xl-24px-medium-font-family: "Pretendard", Helvetica;
+  --pretendard-2xl-24px-medium-font-weight: 500;
+  --pretendard-2xl-24px-medium-font-size: 24px;
+  --pretendard-2xl-24px-medium-letter-spacing: 0px;
+  --pretendard-2xl-24px-medium-line-height: 32px;
+  --pretendard-2xl-24px-medium-font-style: normal;
+}

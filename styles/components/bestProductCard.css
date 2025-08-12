@@ -1,0 +1,61 @@
+.best-product-image{
+    height: 282px;
+    width: 282px;
+    border-radius: 20px;
+    object-fit: cover; /* 이미지를 컨테이너에 맞게 조정 */
+    object-position: center; /* 이미지 중앙 정렬 */
+    display: block; /* flex 대신 block 사용 */
+    gap: 16px;
+}
+
+.padding-space {
+    height: 16px;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    align-self: stretch;
+}
+
+.product-name {
+    color:  #1F2937;
+    font-family: Pretendard, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.product-price {
+    color:  #1F2937;
+    font-family: Pretendard, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 26px; /* 162.5% */
+}
+
+.product-likes{
+    display: flex;
+    width: 282px;
+    align-items: center;
+    gap: 4px;
+
+}
+
+.product-likes-image{
+    width: 16px;
+    height: 16px;
+}
+
+.product-likes-text {
+    color: #4B5563;
+    font-family: Pretendard, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px; /* 150% */
+}
