@@ -1,11 +1,11 @@
-import "/styles/components/saleProductCard.css";
+import "/_old/sprint_5/styles/components/bestProductCard.css";
 
-function SaleProductCard({item}) {
+function BestProductCard({item}) {
     const { images, description, name, price, favoriteCount } = item;
 
     return (
         <div className="product-card">
-            <img src={images[0]} alt={description} className="sale-product-image"/>
+            <img src={images[0]} alt={description} className="best-product-image"/>
             <div className="padding-space"></div>
             <div className="product-details">
                 <p className="product-name">{name}</p>
@@ -19,4 +19,4 @@ function SaleProductCard({item}) {
     );
 }
 
-export default SaleProductCard;
+export default BestProductCard;

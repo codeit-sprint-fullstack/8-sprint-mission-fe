@@ -36,9 +36,11 @@
 지금은 혼자 사용하는 레포지토리라 상관없지만, 팀프로젝트 진행시에는 꼭 .idea 폴더가 포함되지 않도록 처리해주는게 좋습니다 :)
 
 ### 개선사항 #2
+
 ```html
-  <script type="module" src="/components/items/render/best-products.jsx"></script>
-  <script type="module" src="/components/items/render/sale-products.jsx"></script>
+
+<script type="module" src="/_old/sprint_5/components/items/render/best-products.jsx"></script>
+<script type="module" src="/_old/sprint_5/components/items/render/sale-products.jsx"></script>
 ```
 
 HTML 파일에서 직접 JSX 파일을 로드하는 방식은 일반적인 React 프로젝트 구조와 다릅니다. 이 방식은 다음과 같은 단점이 있습니다.
@@ -85,46 +87,48 @@ products API는 응답에 totalCount를 포함하므로, 이 값을 활용하면
 fetchData 함수 내에서 응답받은 totalCount를 사용하여 setTotalPage를 호출하는 방식으로 리팩토링하는 것을 권장합니다.
 
 ### 개선사항 #5
+
 ```html
-            <div className={'product-pagination-grid'}>
-                <img
-                    src="images/icons/ic_arrow_left.svg"
-                    className="product-pagination-prepage"
-                    onClick={() => {
-                        // 이전 페이지가 1보다 작으면, 페이지 이동을 하지 않도록 설정
-                        const newPage = pageData - 1 > 1 ? pageData - 1 : 1;
-                        setPageData(newPage);
-                    }}
-                    alt="이전 페이지"
-                />
-                {/* TODO: 페이지네이션 아이콘 클릭 시 페이지 이동 기능 구현 */}
-                {/* TODO: 반응형에 따른 페이지 네이션 기능을 구현 */}
-                <div className={"product-pagination-btn"}>
-                    <div className={"product-pagination-btn-text"}>{pageData}</div>
-                </div>
-                <div className={"product-pagination-btn"}>
-                    <div className={"product-pagination-btn-text"}>{(pageData+1)}</div>
-                </div>
-                <div className={"product-pagination-btn"}>
-                    <div className={"product-pagination-btn-text"}>{(pageData+2)}</div>
-                </div>
-                <div className={"product-pagination-btn"}>
-                    <div className={"product-pagination-btn-text"}>{(pageData+3)}</div>
-                </div>
-                <div className={"product-pagination-btn"}>
-                    <div className={"product-pagination-btn-text"}>{(pageData+4)}</div>
-                </div>
-                <img
-                    src="images/icons/ic_arrow_left.svg"
-                    className="product-pagination-nextpage"
-                    onClick={() => {
-                        // 다음 패이지가 totalPage보다 크면, 페이지 이동을 하지 않도록 설정
-                        const newPage = pageData + 1 >= totalPage ? totalPage : pageData + 1;
-                        setPageData(newPage);
-                    }}
-                    alt="다음 페이지"
-                />
-            </div>
+
+<div className={'product-pagination-grid'}>
+    <img
+            src="images/icons/ic_arrow_left.svg"
+            className="product-pagination-prepage"
+            onClick={() => {
+    // 이전 페이지가 1보다 작으면, 페이지 이동을 하지 않도록 설정
+    const newPage = pageData - 1 > 1 ? pageData - 1 : 1;
+    setPageData(newPage);
+    }}
+    alt="이전 페이지"
+    />
+    {/* TODO: 페이지네이션 아이콘 클릭 시 페이지 이동 기능 구현 */}
+    {/* TODO: 반응형에 따른 페이지 네이션 기능을 구현 */}
+    <div className={"product-pagination-btn"}>
+        <div className={"product-pagination-btn-text"}>{pageData}</div>
+    </div>
+    <div className={"product-pagination-btn"}>
+        <div className={"product-pagination-btn-text"}>{(pageData+1)}</div>
+    </div>
+    <div className={"product-pagination-btn"}>
+        <div className={"product-pagination-btn-text"}>{(pageData+2)}</div>
+    </div>
+    <div className={"product-pagination-btn"}>
+        <div className={"product-pagination-btn-text"}>{(pageData+3)}</div>
+    </div>
+    <div className={"product-pagination-btn"}>
+        <div className={"product-pagination-btn-text"}>{(pageData+4)}</div>
+    </div>
+    <img
+            src="images/icons/ic_arrow_left.svg"
+            className="product-pagination-nextpage"
+            onClick={() => {
+    // 다음 패이지가 totalPage보다 크면, 페이지 이동을 하지 않도록 설정
+    const newPage = pageData + 1 >= totalPage ? totalPage : pageData + 1;
+    setPageData(newPage);
+    }}
+    alt="다음 페이지"
+    />
+</div>
 ```
 
 페이지네이션 UI 로직이 컴포넌트 내에 직접 작성되어 있습니다.
