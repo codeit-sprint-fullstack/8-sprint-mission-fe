@@ -1,0 +1,17 @@
+/* src/components/atom/Icons/LikeIcon.css */
+.likeIcon {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #9CA3AF;
+  font-size: 0.875rem;
+}
+
+.heartIcon {
+  color: inherit;
+}
+
+.likeCount {
+  color: inherit;
+  font-weight: 500;
+}

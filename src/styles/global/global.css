@@ -1,0 +1,19 @@
+:root {
+  --primary-100: #3692ff;
+  --brand-200: #1967d6;
+  --brand-300: #1251aa;
+  --secondary-gray900: #111827;
+  --secondary-gray800: #1f2937;
+  --secondary-gray700: #374151;
+  --secondary-gray600: #4b5563;
+  --secondary-gray500: #6b7280;
+  --Cool-Gray-400: #9ca3af;
+  --secondary-gray200: #e5e7eb;
+  --Cool-Gray-100: #f3f4f6;
+  --secondary-gray50: #f9fafb;
+  --primary-background: #fcfcfc;
+  --secondary-background: #cfe5ff;
+  --footer-background: ##111827;
+  --errror-color: #f74747;
+  --cool-grey-100: #f3f4f6;
+}
