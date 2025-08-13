@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>판다마켓</title>
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/forms.css">
+  <link rel="stylesheet" as="style" crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+</head>
+
+<body data-page="login">
+  <header class="header_forms">
+    <a href="../" class="logo">
+      <img src="../images/icon/ic_panda.svg" alt="logo_img">
+      <span>판다마켓</span>
+    </a>
+  </header>
+  <form class="forms" id="login_form">
+    <div class="input_tag">
+      <label for="userEmail">이메일</label>
+      <input class="input_txt" id="inputEmail" name="userEmail" type="text" placeholder="이메일을 입력해주세요">
+      <p class="error_msg" id="email_msg"></p>
+    </div>
+    <div class="input_tag">
+      <label for="userPassword">비밀번호</label>
+      <input class="input_txt" id="inputPassword" name="userPassword" type="password" placeholder="비밀번호를 입력해주세요">
+      <div class="btn_visibility password_visibility">
+        <img class="visibility_off password_off" src="../images/btn_visibility_off_24px.svg" alt="btn_visibility_off">
+        <img class="visibility_on password_off" src="../images/btn_visibility_on_24px.svg" alt="btn_visibility_on">
+      </div> 
+      <p class="error_msg" id="pwd_msg"></p>
+    </div>
+    <button type="submit" class="btn">로그인</button>
+  </form>
+  <div class="sns_login">
+    <span>간편 로그인하기</span>
+    <div class="sns_ic_box">
+      <a class="google_login ic_SNSlogin" href="https://www.google.com/">
+        <img src="../images/icon/ic_google.svg" alt="google">
+      </a>
+      <a class="kakao_login ic_SNSlogin" href="https://www.kakaocorp.com/page/">
+        <img src="../images/icon/ic_kakao.svg" alt="kakao">
+      </a>
+    </div>
+  </div>
+  <div class="etc">
+    <span>판다마켓이 처음이신가요?</span>
+    <a class="page_move" href="../signup/">회원가입</a>
+  </div>
+
+  <div class="modal_bg">
+    <div class="modal">
+      <p class="modal_conent"></p>
+      <button class="modal_btn" type="button">확인</button>
+    </div>  
+  </div>
+  <script src="../js/forms.js" type="module"></script>
+</body>
+
+</html>
