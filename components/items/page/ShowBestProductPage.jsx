@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import productService from "../../../scripts/apis/ProductService.js";
-import BestProductCard from "./productCard/bestProductCard.jsx";
+import BestProductCard from "./subset/productCard/bestProductCard.jsx";
 import "../../../styles/items.css"
 
-function ShowBestProductData({productNumber = 4}) {
+function ShowBestProductPage({productNumber = 4}) {
     const [productData, setProductData] = useState([]); // 상품 데이터
 
     useEffect(() => {
@@ -41,4 +41,4 @@ function ShowBestProductData({productNumber = 4}) {
     );
 }
 
-export default ShowBestProductData;
+export default ShowBestProductPage;
