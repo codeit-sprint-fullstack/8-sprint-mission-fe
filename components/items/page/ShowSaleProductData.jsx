@@ -7,7 +7,7 @@ function ShowSaleProductData({pageSize, productNumber, orderBy}) {
     const [productData, setProductData] = useState([]); // 상품 데이터
     const [orderData, setOrderData] = useState(orderBy || "recent"); // 상품의 정렬 기준
     const [pageData, setPageData] = useState(pageSize || 1); // 현재 페이지
-    const [totalPage, setTotalPage] = useState(9999999); // 전체 페이지 수
+    const [totalPage, setTotalPage] = useState(Infinity); // 전체 페이지 수
     const [keywordData, setKeywordData] = useState(""); // 실제 검색을 위한 상태값
     const [tempKeywordData, setTempKeywordData] = useState(""); // 입력창을 위한 상태값
 
@@ -22,31 +22,20 @@ function ShowSaleProductData({pageSize, productNumber, orderBy}) {
 
             try {
                 const response = await productService.getProductList(options);
+
+                // 상품 데이터 불러오기
                 setProductData(response.list || []);
+
+                // 전체 페이지 수 계산
+                const totalPageCount = Math.ceil(response.totalCount / productNumber);
+                setTotalPage(totalPageCount);
             } catch (error) {
                 console.error('Error fetching data:', error);
                 setProductData([]);
             }
         }
 
-        async function getTotalPageCount(productNumber) { // 전체 페이지 수 계산
-            try {
-                // 전체 페이지만 불러오므로, 작동이 되는 URL을 하드코딩하여 사용
-                const response = await fetch("https://panda-market-api.vercel.app/products?page=1&pageSize=1&orderBy=recent");
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.json();
-                const totalCount = data.totalCount || 0;
-                const totalPageCount = Math.ceil(totalCount / productNumber);
-                setTotalPage(totalPageCount);
-            } catch (error) {
-                throw new Error(error);
-            }
-        }
-
         fetchData();
-        getTotalPageCount(productNumber);
     }, [productNumber, orderData, pageData, keywordData]);
 
     return(
