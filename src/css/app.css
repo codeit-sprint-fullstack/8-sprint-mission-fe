@@ -1,0 +1,5 @@
+.app-main {
+  min-height: 100dvh;
+  padding-top: var(--header-height, 64px);
+  padding-bottom: var(--footer-height, 80px);
+}
