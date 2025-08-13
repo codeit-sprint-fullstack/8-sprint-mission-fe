@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react";
 import productService from "../../../scripts/apis/ProductService.js";
 import "../../../styles/items.css"
-import SaleProductCard from "./productCard/saleProductCard.jsx";
+import SaleProductCard from "./subset/productCard/saleProductCard.jsx";
+import PaginationBtn from "./subset/Pagination/PaginationBtn.jsx";
 
-function ShowSaleProductData({pageSize, productNumber, orderBy}) {
+function ShowSaleProductPage({pageSize, productNumber, orderBy}) {
     const [productData, setProductData] = useState([]); // 상품 데이터
     const [orderData, setOrderData] = useState(orderBy || "recent"); // 상품의 정렬 기준
     const [pageData, setPageData] = useState(pageSize || 1); // 현재 페이지
@@ -102,23 +103,11 @@ function ShowSaleProductData({pageSize, productNumber, orderBy}) {
                     }}
                     alt="이전 페이지"
                 />
-                {/* TODO: 페이지네이션 아이콘 클릭 시 페이지 이동 기능 구현 */}
-                {/* TODO: 반응형에 따른 페이지 네이션 기능을 구현 */}
-                <div className={"product-pagination-btn"}>
-                    <div className={"product-pagination-btn-text"}>{pageData}</div>
-                </div>
-                <div className={"product-pagination-btn"}>
-                    <div className={"product-pagination-btn-text"}>{(pageData+1)}</div>
-                </div>
-                <div className={"product-pagination-btn"}>
-                    <div className={"product-pagination-btn-text"}>{(pageData+2)}</div>
-                </div>
-                <div className={"product-pagination-btn"}>
-                    <div className={"product-pagination-btn-text"}>{(pageData+3)}</div>
-                </div>
-                <div className={"product-pagination-btn"}>
-                    <div className={"product-pagination-btn-text"}>{(pageData+4)}</div>
-                </div>
+                <PaginationBtn showPage={pageData} />
+                <PaginationBtn showPage={pageData+1} />
+                <PaginationBtn showPage={pageData+2} />
+                <PaginationBtn showPage={pageData+3} />
+                <PaginationBtn showPage={pageData+4} />
                 <img
                     src="images/icons/ic_arrow_left.svg"
                     className="product-pagination-nextpage"
@@ -134,4 +123,4 @@ function ShowSaleProductData({pageSize, productNumber, orderBy}) {
     );
 }
 
-export default ShowSaleProductData;
+export default ShowSaleProductPage;
