@@ -21,8 +21,13 @@
   --white-color: #fff;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Pretendard', sans-serif;
+  padding-top: 7rem;
 }
 
 /* header 스타일 */
