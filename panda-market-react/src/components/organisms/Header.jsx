@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
 export function Header() {
   const { pathname } = useLocation();
@@ -17,10 +17,10 @@ export function Header() {
           {!isMainPage && (
             <ul>
               <li>
-                <Link to="#">자유게시판</Link>
+                <NavLink to="/free-board">자유게시판</NavLink>
               </li>
               <li>
-                <Link to="#">중고마켓</Link>
+                <NavLink to="/items">중고마켓</NavLink>
               </li>
             </ul>
           )}
