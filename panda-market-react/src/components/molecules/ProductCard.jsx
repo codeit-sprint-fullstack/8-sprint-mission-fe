@@ -11,7 +11,7 @@ export function ProductCard({ id, name, price, image = imgReplaceUrl, favoriteCo
 
   return (
     <div className={styles.productCard}>
-      <Link to={`/products/${id}`}>
+      <Link to={`/items/${id}`}>
         <img src={image} alt={name} onError={handleImageError} />
         <div className={styles.productCardContent}>
           <h2>{name}</h2>

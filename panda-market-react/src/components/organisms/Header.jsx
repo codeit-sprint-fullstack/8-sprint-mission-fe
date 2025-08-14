@@ -1,6 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export function Header() {
+  const { pathname } = useLocation();
+  const isMainPage = pathname === '/';
+
   return (
     <header className="header">
       <nav className="nav">
@@ -11,14 +14,16 @@ export function Header() {
               <img src="/header/logo.svg" alt="판다마켓 로고" />
             </picture>
           </Link>
-          <ul>
-            <li>
-              <Link to="#">자유게시판</Link>
-            </li>
-            <li>
-              <Link to="#">중고마켓</Link>
-            </li>
-          </ul>
+          {!isMainPage && (
+            <ul>
+              <li>
+                <Link to="#">자유게시판</Link>
+              </li>
+              <li>
+                <Link to="#">중고마켓</Link>
+              </li>
+            </ul>
+          )}
         </div>
 
         <Link to="/login" className="btn-small-40">
