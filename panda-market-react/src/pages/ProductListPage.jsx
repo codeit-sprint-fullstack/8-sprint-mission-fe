@@ -128,7 +128,7 @@ export function ProductListPage() {
             />
             {/* 상품 등록 버튼 */}
             <div className={styles.productListRegisterButton}>
-              <Link to="#" className="btn-small-40">
+              <Link to="/registration" className="btn-small-40">
                 상품 등록하기
               </Link>
             </div>

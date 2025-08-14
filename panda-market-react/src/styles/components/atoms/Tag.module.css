@@ -1,0 +1,19 @@
+.tagWrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.5rem 1.6rem;
+  border-radius: 2.6rem;
+  background-color: var(--secondary-color-100);
+  align-self: flex-start;
+}
+
+.tagLabel {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--secondary-color-800);
+}
+
+.closeButton {
+  cursor: pointer;
+}

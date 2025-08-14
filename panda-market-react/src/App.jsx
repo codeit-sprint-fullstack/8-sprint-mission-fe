@@ -4,6 +4,7 @@ import { Layout } from './components/organisms/Layout';
 import { ProductDetailPage } from './pages/ProductDetailPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { MainPage } from './pages/MainPage';
+import { RegistrationPage } from './pages/RegistrationPage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/items" element={<ProductListPage />} />
           <Route path="/items/:id" element={<ProductDetailPage />} />
+          <Route path="/registration" element={<RegistrationPage />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
