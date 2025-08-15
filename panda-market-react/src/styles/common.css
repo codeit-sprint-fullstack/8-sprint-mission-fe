@@ -358,6 +358,10 @@ footer {
 }
 
 @media (max-width: 743px) {
+  body {
+    padding-top: 6rem;
+  }
+
   .nav {
     padding: 0.9rem 1.6rem;
     height: 6rem;
