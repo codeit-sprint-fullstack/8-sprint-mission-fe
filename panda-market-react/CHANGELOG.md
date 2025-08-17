@@ -2,6 +2,10 @@
 
 - 배포주소 : https://panda-market-kr.netlify.app/
 
+## 2025.08.17. 스프린트 6 진행
+
+1. useResgistrationFormValidation.js 에서 검증 함수들을 utils의 validator.js로 로직 분리
+
 ## 2025.08.15. 스프린트 6 진행
 
 1. 상품 등록 폼 유효성 검사 진행

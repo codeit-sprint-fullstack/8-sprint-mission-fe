@@ -1,4 +1,10 @@
 import { useEffect, useState } from 'react';
+import {
+  validateProductName,
+  validateProductDescription,
+  validatePrice,
+  validateTag,
+} from '../utils/validator';
 
 export function useRegistrationFormValidation({ formData, tag }) {
   const [isDisabled, setIsDisabled] = useState(false); // 등록 버튼 비활성화 여부
@@ -21,67 +27,31 @@ export function useRegistrationFormValidation({ formData, tag }) {
     },
   });
 
+  // 유효성 검사 로직을 별도의 useEffect로 분리
   useEffect(() => {
     /**
-     * 등록 버튼 비활성화 여부 체크
+     * 각 인풋 유효성 체크
      */
+    setIsValid((prev) => ({
+      ...prev,
+      productName: validateProductName(formData.productName),
+      productDescription: validateProductDescription(formData.productDescription),
+      productPrice: validatePrice(formData.productPrice),
+      tag: validateTag(tag, formData),
+    }));
+  }, [formData, tag]);
+
+  // 버튼 비활성화 상태 관리를 위한 별도의 useEffect
+  useEffect(() => {
     const isFormValid =
       formData.productName !== '' && // 상품명 입력 여부
       formData.productDescription !== '' && // 상품 설명 입력 여부
       formData.productPrice !== '' && // 판매가격 입력 여부
       formData.tags.length > 0; // 태그 입력 여부
 
-    setIsDisabled(!isFormValid);
-
-    /**
-     * 각 인풋 유효성 체크
-     */
-    // 상품명 유효성 검사
-    const validateProductName = (name) => {
-      const isInvalid = name.length > 10 && name !== '';
-      return {
-        isValid: isInvalid,
-        errorType: isInvalid ? 'length' : '',
-      };
-    };
-
-    // 상품 설명 유효성 검사
-    const validateProductDescription = (desc) => {
-      const isTooShort = desc !== '' && desc.length < 10;
-      const isTooLong = desc.length > 100;
-      return {
-        isValid: isTooShort || isTooLong,
-        errorType: isTooShort ? 'minLength' : isTooLong ? 'maxLength' : '',
-      };
-    };
-
-    // 가격 유효성 검사
-    const validatePrice = (price) => {
-      const isInvalid = !price.match(/^\d+$/) && price !== '';
-      return {
-        isValid: isInvalid,
-        errorType: isInvalid ? 'price' : '',
-      };
-    };
-
-    // 태그 유효성 검사
-    const validateTag = (tag) => {
-      const isInvalid = tag.length > 5;
-      const isExist = formData.tags.includes(tag);
-      return {
-        isValid: isInvalid || isExist,
-        errorType: isInvalid ? 'tag' : isExist ? 'tagExist' : '',
-      };
-    };
-
-    setIsValid((prev) => ({
-      ...prev,
-      productName: validateProductName(formData.productName),
-      productDescription: validateProductDescription(formData.productDescription),
-      productPrice: validatePrice(formData.productPrice),
-      tag: validateTag(tag),
-    }));
-  }, [formData, tag]);
+    const hasError = Object.values(isValid).some((v) => v.isValid); // 유효성 검사에 실패한 항목이 하나라도 있으면 true를 반환
+    setIsDisabled(!(isFormValid && !hasError));
+  }, [formData, isValid]); // isValid 변경시에도 버튼 상태 업데이트
 
   return { isValid, isDisabled };
 }
