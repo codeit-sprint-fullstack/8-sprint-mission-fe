@@ -12,20 +12,12 @@ main{
   background-size: 130%;
 }
 
-#hero {
-  background-image: url("../images/home/hero-image.png");
-}
-
 .banner h1 {
   font-weight: 700;
   font-size: 32px;
   line-height: 44.8px;
   padding-top: 48px;
   padding-bottom: 18px;
-}
-
-#bottomBanner {
-  background-image: url("../images/home/bottom-banner-image.png");
 }
 
 #loginLink {
@@ -93,10 +85,6 @@ main{
     padding-bottom: 24px;
   }
 
-  #hero h1 br {
-    display: none;
-  }
-
   #features {
     padding-top: 24px;
     padding-bottom: 16px;
@@ -134,10 +122,6 @@ main{
   .banner h1 {
     padding-top: 0;
     padding-bottom: 32px;
-  }
-
-  #hero h1 br {
-    display: inline;
   }
 
   #features {

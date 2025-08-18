@@ -1,23 +1,17 @@
-import { useState, useEffect, useCallback } from 'react';
-import useAsync from './hooks/useAsync.jsx';
+import { useState, useEffect, useContext } from 'react';
+import useAsync from '../components/hooks/useAsync.jsx';
+import LocaleContext from '../contexts/LocaleContext.js';
 
-import HomeHeader from "./HomeHeader.jsx";
-import HomeFooter from "./HomeFooter.jsx";
-import ProductHeadline from './ProductHeadline.jsx';
-import ProductList from './ProductList.jsx';
-import PageButton from './pageButton.jsx';
-
-
-import '../styles/global.css';
-import '../styles/home.css';
-import '../styles/items.css'
+import HomeHeader from "../components/HomeHeader.jsx";
+import HomeFooter from "../components/HomeFooter.jsx";
+import ProductHeadline from '../components/Items/ProductHeadline.jsx';
+import ProductList from '../components/Items/ProductList.jsx';
+import PageButton from '../components/Items/PageButton.jsx';
 
 import productApi from '../api/ProductService.js';
 
 
-function ItemsMarket() {
-
-    const [deviceType, setDeviceType] = useState(getDeviceType(window.innerWidth));
+function Items() {
 
     const [bestProducts, setBestProducts] = useState([]);
     const [commonProducts, setCommonProducts] = useState([]);
@@ -29,23 +23,7 @@ function ItemsMarket() {
     const [search, setSearch] = useState('');
     
 
-    // 창 크기에 따라 deviceType 계산
-    function getDeviceType(width) {
-        if (width >= 1200) return 'desktop';
-        if (width >= 744) return 'tablet';
-        return 'mobile';
-    }
-
-    // 창 크기 변경 감지
-    useEffect(() => {
-        const handleResize = () => {
-        const newType = getDeviceType(window.innerWidth);
-        setDeviceType((prev) => (prev !== newType ? newType : prev));
-        };
-
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    const deviceType = useContext(LocaleContext);
 
     //화면 크기에 따라 다시 상품 목록을 받아옵니다.
     //목록 배열 스타일은 이번에는 CSS에서 관리하는 걸로 했습니다.
@@ -92,7 +70,7 @@ function ItemsMarket() {
     return (
         <>
             <HomeHeader deviceType={deviceType}/>
-            <main className="with-header">
+            <main className="with-header itemsMain">
                 <div>
                     <section id='best-products'>
                         <div className='section-headline'>
@@ -120,4 +98,4 @@ function ItemsMarket() {
     );
 }
 
-export default ItemsMarket;
+export default Items;

@@ -1,15 +1,15 @@
 /* Mobile styles - 기본 스타일 */
-main{
+.itemsMain{
     padding: 0;
 }
 
-main > div {
-    /* main하고 마진 상쇄가 자꾸 생겨서 일부러 위쪽 마진은 div의 padding으로 했습니다... */
-    /* 차후 수정 필요    */
+.itemsMain > div {
+    /*네비게이션 때문에 일부러 위쪽 마진이 main에 들어가 있음*/
+    /*안쪽 컨텐츠는 일단 패딩으로 해결*/
     padding: 17px 16px 0;
 }
 
-main section{
+.itemsMain section{
     width: 100%;
     max-width: 1200px;
     display: flex;
@@ -51,9 +51,7 @@ main section{
 .section-headline p{
     color: var(--Secondary-900, #111827);
     /* pretendard/xl-20px-bold */
-    font-family: Pretendard;
     font-size: 20px;
-    font-style: normal;
     font-weight: 700;
     line-height: 32px; /* 160% */
     flex-shrink: 0;
@@ -98,9 +96,7 @@ main section{
     /* 글자 속성 */
     color: var(--Secondary-400, #9CA3AF);
     /* pretendard/lg-16px-regular */
-    font-family: Pretendard;
     font-size: 16px;
-    font-style: normal;
     font-weight: 400;
     line-height: 26px; /* 162.5% */
 }
@@ -119,9 +115,7 @@ main section{
     /* 글자 스타일 */
     color: var(--Cool-Gray-100, #F3F4F6);
     /* pretendard/lg-16px-semibold */
-    font-family: Pretendard;
     font-size: 16px;
-    font-style: normal;
     font-weight: 600;
     line-height: 26px; /* 162.5% */
 }
@@ -143,9 +137,7 @@ main section{
     /* 글자 스타일 */
     color: var(--Secondary-800, #1F2937);
     /* pretendard/lg-16px-regular */
-    font-family: Pretendard;
     font-size: 16px;
-    font-style: normal;
     font-weight: 400;
     line-height: 22px; /* 162.5% */
 }
@@ -203,9 +195,7 @@ main section{
 .product .name{
     color: var(--Secondary-800, #1F2937);
     /* pretendard/md-14px-medium */
-    font-family: Pretendard;
     font-size: 14px;
-    font-style: normal;
     font-weight: 500;
     line-height: 24px; /* 171.429% */
 }
@@ -213,9 +203,7 @@ main section{
 .product .price{
     color: var(--Secondary-800, #1F2937);
     /* pretendard/lg-16px-bold */
-    font-family: Pretendard;
     font-size: 16px;
-    font-style: normal;
     font-weight: 700;
     line-height: 26px; /* 162.5% */
 }
@@ -225,9 +213,7 @@ main section{
 
     color: var(--Secondary-600, #4B5563);
     /* pretendard/xs-12px-medium */
-    font-family: Pretendard;
     font-size: 12px;
-    font-style: normal;
     font-weight: 500;
     line-height: 18px; /* 150% */
 }
@@ -261,9 +247,7 @@ main section{
     /* 글자 속성 */
     color: var(--Cool-Gray-500, #6B7280);
     /* pretendard/lg-16px-semibold */
-    font-family: Pretendard;
     font-size: 16px;
-    font-style: normal;
     font-weight: 600;
     line-height: 26px; /* 162.5% */
 }
@@ -359,7 +343,7 @@ main section{
 /* Tablet styles */
 @media (min-width: 744px) {
 
-    main > div {
+    .itemsMain > div {
         padding: 24px 24px 0;
     }
 
@@ -391,7 +375,7 @@ main section{
 
 /* Desktop styles */
 @media (min-width: 1200px) {
-    main > div {
+    .itemsMain > div {
         padding: 24px 0 0;
     }
 
