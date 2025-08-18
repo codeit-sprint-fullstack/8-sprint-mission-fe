@@ -1,0 +1,22 @@
+GET http://localhost:3000/hello
+###
+GET http://localhost:3000/subscriptions
+###
+GET http://localhost:3000/subscriptions/1
+###
+POST http://localhost:3000/subscriptions
+Content-Type: application/json
+
+{
+    "name": "새로운 메모",
+    "memo": "내일 일찍 일어나기"
+}
+###
+PATCH http://localhost:3000/subscriptions/1
+Content-Type: application/json
+
+{
+    "isComplete": true
+}
+###
+DELETE  http://localhost:3000/subscriptions/1

@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import useAsync from './hooks/useAsync.jsx';
 
-import HomeHeader from "./HomeHeader";
-import HomeFooter from "./HomeFooter";
+import HomeHeader from "./HomeHeader.jsx";
+import HomeFooter from "./HomeFooter.jsx";
 import ProductHeadline from './ProductHeadline.jsx';
-import ProductList from './ProductList';
+import ProductList from './ProductList.jsx';
 import PageButton from './pageButton.jsx';
 
 
