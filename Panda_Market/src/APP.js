@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductSection from './components/ProductSection.jsx';
+import ProductSection from './src/components/ProductSection.jsx';
 
 export default function App() {
   return (

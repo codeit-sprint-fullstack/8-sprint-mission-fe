@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { getProductList } from '../../ProductService.js';
+import { getProductList } from '../services/ProductService.js';
 import ProductCard from './ProductCard.jsx';
 
 export default function ProductSection({

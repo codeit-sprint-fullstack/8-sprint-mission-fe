@@ -5,7 +5,7 @@ import {
   createArticle,
   patchArticle,
   deleteArticle
-} from './ArticleService.js';
+} from './services/ArticleService.js';
 
 import {
   getProductList,
@@ -13,7 +13,7 @@ import {
   createProduct,
   patchProduct,
   deleteProduct
-} from './ProductService.js';
+} from './services/ProductService.js';
 
 async function runProductExamples() {
   try {
