@@ -1,0 +1,15 @@
+:root {
+  --blue: #3692ff;
+  --buttonTextColor: #f3f4f6;
+  --favoriteTextColor: #4b5563;
+  --menuInputColor: #f3f4f6;
+  --headerBottomBorder: hsl(0, 0%, 87%);
+  --menuBorderColor: #e5e7eb;
+  --pageButtonBorder: #e5e7eb;
+  --pageButtonText: #6b7280;
+  --footerBackgroundColor: #111827;
+  --textColorDark: #9ca3af;
+  --textColorLight: #e5e7eb;
+  --buttonActiveColor: #2f80ed;
+  --pageActiveText: #f9fafb;
+}
