@@ -3,20 +3,27 @@ import ProductCard from '../ProductCard/ProductCard';
 import { getProductList } from '../../../API/ProductService';
 import style from './BestProductList.module.css';
 
-function BestProductList({ query ={}, onLoad }) {
+function BestProductList({
+  page = 1,
+  pageSize = 10,
+  orderBy = "favorite",
+  keyword = "",
+  onLoad
+}) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const bestQuery = { ...query, orderBy: "favorite" };
+    const bestQuery = { page, pageSize, orderBy: "favorite", keyword };
 
-    getProductList(bestQuery).then((data) => {
+    getProductList(bestQuery)
+    .then((data) => {
       setProducts(data.list);
-      onLoad(data);
+      if (onLoad) onLoad(data);
     })
     .catch((error) => {
       console.error("베스트 상품 목록을 불러오는 중 오류 발생:", error);
     })
-  }, [query, onLoad]);
+  }, [page, pageSize, orderBy, keyword, onLoad]);
 
   return (
     <section className={style.bestProduct}>

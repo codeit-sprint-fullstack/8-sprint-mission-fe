@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Header from './Components/Header/Header';
-import BestProductList from './Components/ProductList/BestProductList/BestProductList';
-import ProductListController from './Components/ProductList/ProductListController/ProductListController';
-import ProductList from './Components/ProductList/ProductList';
-import PageButton from './Components/PageButton/PageButton';
-import Footer from './Components/Footer/Footer';
+import Header from './Header/Header';
+import BestProductList from './ProductList/BestProductList/BestProductList';
+import ProductListController from './ProductList/ProductListController/ProductListController';
+import ProductList from './ProductList/ProductList';
+import PageButton from './PageButton/PageButton';
+import Footer from './Footer/Footer';
 import '../style/style.css';
 
 function Home() {
@@ -22,7 +22,14 @@ function Home() {
 
       <main>
         <section>
-          <BestProductList />
+          <BestProductList
+            page={productListQuery.page}
+            pageSize={productListQuery.pageSize}
+            orderBy={productListQuery.orderBy}
+            keyword={productListQuery.keyword}
+            onLoad={(data) => setTotalCount(data?.totalCount ?? 50)}
+
+          />
         </section>
         
         <section>
