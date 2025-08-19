@@ -1,6 +1,6 @@
 import { useState } from "react";
 import DropDown from '../../DropDown/DropDown';
-import ic_search from './ic_search.svg';
+import ic_search from '../../../images/ic_search.svg';
 import style from './ProductListController.module.css';
 
 function ProductListController({ option: controls = {}, setQuery = null }) {

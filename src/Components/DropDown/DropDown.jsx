@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ic_arrow from './ic_DownArrow.svg';
+import ic_arrow from '../../images/ic_DownArrow.svg';
 import style from './DropDown.module.css';
 
 function DropDown({ options = [], onChange }) {

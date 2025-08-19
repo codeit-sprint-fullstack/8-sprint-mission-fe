@@ -1,4 +1,4 @@
-import ic_heart from './ic_heart.svg';
+import ic_heart from '../../../images/ic_heart.svg';
 import style from './ProductCard.module.css';
 
 function ProductCard({ images= [], name= '', price= 0, favoriteCount= 0 }) {

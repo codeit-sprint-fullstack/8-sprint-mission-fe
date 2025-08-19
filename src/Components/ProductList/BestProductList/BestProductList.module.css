@@ -23,14 +23,14 @@
 
 /* 태블릿(1199px 이하) → 2개씩 */
 @media (max-width: 1199px) {
-  .productList {
+  .bestProductList {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 /* 모바일(743px 이하) → 1개씩 */
 @media (max-width: 743px) {
-  .productList {
+  .bestProductList {
     grid-template-columns: repeat(1, 1fr);
   }
 }

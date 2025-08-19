@@ -1,13 +1,13 @@
 import { useState } from "react";
-import Header from './Header/Header';
-import BestProductList from './ProductList/BestProductList/BestProductList';
-import ProductListController from './ProductList/ProductListController/ProductListController';
-import ProductList from './ProductList/ProductList';
-import PageButton from './PageButton/PageButton';
-import Footer from './Footer/Footer';
+import Header from './Components/Header/Header';
+import BestProductList from './Components/ProductList/BestProductList/BestProductList';
+import ProductListController from './Components/ProductList/ProductListController/ProductListController';
+import ProductList from './Components/ProductList/ProductList';
+import PageButton from './Components/PageButton/PageButton';
+import Footer from './Components/Footer/Footer';
 import '../style/style.css';
 
-function App() {
+function Home() {
   const [productListQuery, setProductListQuery] = useState({
     page: 1,
     pageSize: 10,
@@ -48,4 +48,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

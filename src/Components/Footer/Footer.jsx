@@ -1,7 +1,7 @@
-import facebook from './images/ic_facebook.svg';
-import twitter from './images/ic_twitter.svg';
-import youtube from './images/ic_YouTube.svg';
-import instagram from './images/ic_instagram.svg';
+import facebook from '../../images/ic_facebook.svg';
+import twitter from '../../images/ic_twitter.svg';
+import youtube from '../../images/ic_YouTube.svg';
+import instagram from '../../images/ic_instagram.svg';
 import style from './Footer.module.css';
 
 function Footer() {
