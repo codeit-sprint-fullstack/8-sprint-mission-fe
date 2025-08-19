@@ -8,7 +8,7 @@ function BestProductList({
   pageSize = 10,
   orderBy = "favorite",
   keyword = "",
-  onLoad
+  onLoad,
 }) {
   const [products, setProducts] = useState([]);
 

@@ -5,7 +5,7 @@ export async function requestAwait(url, options = {}, errorMsg = "API 요청 실
     const res = await fetch(url, options);
 
     if (!res.ok) {
-      throw new Error(`${errorMsg}`);
+      throw new Error(`${errorMsg} (status: ${res.status})`);
     }
 
     return await res.json();

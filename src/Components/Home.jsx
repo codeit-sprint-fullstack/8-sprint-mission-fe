@@ -16,6 +16,21 @@ function Home() {
   });
   const [totalCount, setTotalCount] = useState(50);
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleLoad = (data) => {
+    setLoading(false);
+    setError(null);
+    try {
+      setTotalCount(data.totalCount);
+      return data;
+    } catch (error) {
+      setError(error);
+      return null;
+    }
+  };
+
   return (
     <>
       <Header />
@@ -27,7 +42,7 @@ function Home() {
             pageSize={productListQuery.pageSize}
             orderBy={productListQuery.orderBy}
             keyword={productListQuery.keyword}
-            onLoad={(data) => setTotalCount(data?.totalCount ?? 50)}
+            
 
           />
         </section>
@@ -37,17 +52,26 @@ function Home() {
             option={{ search: true, upload: true, orderBy: true }}
             setQuery={setProductListQuery}
           />
-          <ProductList
-            query={productListQuery}
-            itemsPerRow={5}
-            onLoad={(data) => setTotalCount(data.totalCount)}
-          />
+
+          {loading && <p>상품 목록 로딩중...</p>}
+          {error && <p style={{ color: 'red' }}>Error: {error.message}</p>}
+          {!loading && !error && (
+            <ProductList
+              query={productListQuery}
+              itemsPerRow={5}
+              onLoad={handleLoad}
+            />
+          )}
+        </section>
+
+        <section>
           <PageButton 
             nowPage={productListQuery.page}
             totalCount={totalCount}
             onChange={(newPage) => setProductListQuery(prev => ({ ...prev, page: newPage }))} 
           />
         </section>
+        
       </main>
 
       <Footer />

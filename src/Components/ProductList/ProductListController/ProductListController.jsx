@@ -4,11 +4,11 @@ import ic_search from '../../../images/ic_search.svg';
 import style from './ProductListController.module.css';
 
 function ProductListController({ option: controls = {}, setQuery = null }) {
-  const [searchWord, setSearchWord] = useState('');
+  const [keyword, setSearchWord] = useState('');
 
   const handleSearch = (e) => {  // 검색 결과가 없을 때 코드 작성해보기
     if (e.key === 'Enter' || e.type === 'click') {
-        setQuery?.(prev => ({ ...prev, searchWord, page: 1 }));
+        setQuery?.(prev => ({ ...prev, keyword, page: 1 }));
     }
   };
 
@@ -27,7 +27,7 @@ function ProductListController({ option: controls = {}, setQuery = null }) {
             <input 
               placeholder="검색할 상품을 입력해주세요"
               type="text"
-              value={searchWord}
+              value={keyword}
               onChange={(e) => setSearchWord(e.target.value)}
               onKeyDown={handleSearch}
             />
@@ -43,9 +43,9 @@ function ProductListController({ option: controls = {}, setQuery = null }) {
               { label: '최신순', value: 'recent' },
               { label: '좋아요순', value: 'favorite' },
             ]}
-            onChange={(opt) => setQuery?.(prev => ({
+            onChange={(value) => setQuery?.(prev => ({
               ...prev,
-              orderBy: opt.value,
+              orderBy: value,
               page: 1,
             }))}
           />

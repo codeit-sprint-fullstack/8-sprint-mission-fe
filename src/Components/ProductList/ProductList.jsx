@@ -3,7 +3,7 @@ import ProductCard from "./ProductCard/ProductCard";
 import { getProductList } from '../../API/ProductService';
 import style from './ProductList.module.css';
 
-function ProductList({ query, onLoad }) {   // 한 줄에 n개씩 보여주도록 하는 기능 js만으로는 못 하나?
+function ProductList({ query, onLoad }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -26,5 +26,3 @@ function ProductList({ query, onLoad }) {   // 한 줄에 n개씩 보여주도�
 }
 
 export default ProductList;
-
-// 에러 핸들링을 여기서 하는 거였나..? 요구 사항에 있나?
