@@ -150,7 +150,7 @@ body {
 .hero-image {
   width: 46.625rem;
   height: 21.25rem;
-  background-image: url('/assets/images/panda-1.svg');
+  background-image: url('/public/assets/panda-1.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -378,7 +378,7 @@ body {
 .section-bottom-cta-image {
   width: 46.625rem;
   height: 24.8125rem;
-  background-image: url('/assets/images/panda-2.svg');
+  background-image: url('/public/assets/panda-2.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;

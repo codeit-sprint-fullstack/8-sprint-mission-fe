@@ -9,7 +9,7 @@ export default function SectionSearch() {
             구매하고 싶은 물품을 검색해서<br/>쉽게 찾아보세요
           </div>
         </div>
-        <img className="search-image" src="/assets/images/search.svg" alt="search"/> 
+        <img className="search-image" src="/public/assets/search.svg" alt="search"/> 
       </div>
     </section>
   );

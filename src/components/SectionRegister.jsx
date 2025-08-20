@@ -2,7 +2,7 @@ export default function SectionRegister() {
   return (
     <section className="section-register">
       <div className="container section-register-content">
-        <img src="/assets/images/register.svg" alt="register"/>
+        <img src="/public/assets/register.svg" alt="register"/>
         <div>
           <div className="register-text">Register</div>
           <div className="register-title">판매를 원하는<br/>상품을 등록하세요</div>
