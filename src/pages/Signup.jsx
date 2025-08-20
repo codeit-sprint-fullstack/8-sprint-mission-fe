@@ -4,6 +4,7 @@ import { USER_DATA } from "/src/data/USER_DATA";
 import "/src/assets/css/reset.css";
 import "/src/assets/css/common.css";
 
+// 커스텀 알럿 컴포넌트
 function CustomAlert({ message, onClose }) {
   if (!message) return null;
   return (
@@ -24,6 +25,7 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -86,6 +88,7 @@ export default function Signup() {
                   setEmail(e.target.value);
                   setEmailError(validateEmail(e.target.value));
                 }}
+                className={emailError ? "input-error" : ""}
                 placeholder="이메일을 입력하세요"
                 required
               />
@@ -117,6 +120,7 @@ export default function Signup() {
                     setPassword(e.target.value);
                     setPasswordError(validatePassword(e.target.value));
                   }}
+                  className={passwordError ? "input-error" : ""}
                   placeholder="비밀번호를 입력하세요"
                   required
                 />
@@ -137,34 +141,53 @@ export default function Signup() {
               <label htmlFor="confirm-password" className="form-label">비밀번호 확인</label>
               <div className="input-wrapper">
                 <input
-                  type={showPassword ? "text" : "password"}
+                  type={showConfirmPassword ? "text" : "password"}
                   id="confirm-password"
                   value={confirmPassword}
                   onChange={e => {
                     setConfirmPassword(e.target.value);
                     setConfirmError(validateConfirm(password, e.target.value));
                   }}
+                  className={confirmError ? "input-error" : ""}
                   placeholder="비밀번호를 다시 입력하세요"
                   required
                 />
                 <button
                   type="button"
                   className="toggle-password"
-                  onClick={() => setShowPassword(!showPassword)}
-                  aria-label={showPassword ? "비밀번호 숨기기" : "비밀번호 보기"}
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  aria-label={showConfirmPassword ? "비밀번호 숨기기" : "비밀번호 보기"}
                 >
-                  <img src={showPassword ? "/assets/eye(open).svg" : "/assets/eye(close).svg"} alt="eye" />
+                  <img src={showConfirmPassword ? "/assets/eye(open).svg" : "/assets/eye(close).svg"} alt="eye" />
                 </button>
               </div>
               {confirmError && <div className="error-message">{confirmError}</div>}
             </div>
 
             <button className="btn-primary" type="submit">회원가입</button>
+
+            {/* 간편 로그인 */}
+            <div className="simple-login-outline">
+              <div className="simple-login">
+                <p className="simple-login-text">간편 로그인</p>
+                <div className="img-outline">
+                  <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
+                    <img className="login-icon" src="/assets/google.svg" alt="구글" />
+                  </a>
+                  <a href="https://www.kakaocorp.com/page/" target="_blank" rel="noopener noreferrer">
+                    <img className="login-icon" src="/assets/kakao.svg" alt="카카오" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* 하단 안내 */}
             <p className="form-footer-text">
               이미 회원이신가요? <a href="/login">로그인</a>
             </p>
           </form>
         </main>
+
         <CustomAlert message={alertMsg} onClose={() => setAlertMsg("")} />
       </div>
     </div>

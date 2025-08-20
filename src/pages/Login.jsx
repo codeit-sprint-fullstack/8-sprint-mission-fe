@@ -4,6 +4,7 @@ import { USER_DATA } from "/src/data/USER_DATA";
 import "/src/assets/css/reset.css";
 import "/src/assets/css/common.css";
 
+// Custom Alert 컴포넌트
 function CustomAlert({ message, onClose }) {
   if (!message) return null;
   return (
@@ -27,14 +28,18 @@ export default function Login() {
   const [passwordError, setPasswordError] = useState("");
   const [alertMsg, setAlertMsg] = useState("");
 
+  // 이메일 검증
   const validateEmail = (val) => {
     if (!val) return "이메일을 입력해주세요.";
-    if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(val)) return "올바른 이메일 형식이 아닙니다.";
+    if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(val))
+      return "올바른 이메일 형식이 아닙니다.";
     return "";
   };
 
+  // 비밀번호 검증
   const validatePassword = (val) => {
     if (!val) return "비밀번호를 입력해주세요.";
+    if (val.length < 8) return "비밀번호는 최소 8자 이상이어야 합니다.";
     return "";
   };
 
@@ -113,6 +118,22 @@ export default function Login() {
             </div>
 
             <button className="btn-primary" type="submit">로그인</button>
+
+            {/* 간편 로그인 */}
+            <div className="simple-login-outline">
+              <div className="simple-login">
+                <p className="simple-login-text">간편 로그인</p>
+                <div className="img-outline">
+                  <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
+                    <img className="login-icon" src="/assets/google.svg" alt="구글" />
+                  </a>
+                  <a href="https://www.kakaocorp.com/page/" target="_blank" rel="noopener noreferrer">
+                    <img className="login-icon" src="/assets/kakao.svg" alt="카카오" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
             <p className="form-footer-text">
               판다마켓이 처음이신가요? <a href="/signup">회원가입</a>
             </p>
