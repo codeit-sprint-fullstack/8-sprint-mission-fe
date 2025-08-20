@@ -1,0 +1,169 @@
+html {
+    font-size: 62.5%;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+main {
+    padding-top: 7rem;
+    flex: 1;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+button {
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+}
+img {
+    vertical-align: bottom;
+}
+body {
+    color: #374151;
+    word-break: keep-all;
+    font-family: 'Pretendard', sans-serif;
+    background: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20rem;
+    background-color: #ffffff;
+    border-bottom: 0.1rem solid #dfdfdf;
+    z-index: 1000;
+}
+.site-footer {
+    background: #111827;
+    color: #9ca3af;
+    width: 100%;
+}
+.site-footer .footer-inner {
+    max-width: 120rem;
+    margin: 0 auto;
+    padding: 2.4rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    font-size: 1.6rem;
+}
+.footerMenu {
+    display: flex;
+    gap: 3rem;
+    color: #e5e7eb;
+}
+.socialMedia {
+    display: flex;
+    gap: 1.2rem;
+}
+.wrapper {
+    max-width: 120rem;
+    margin: 0 auto;
+    width: 100%;
+}
+h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 5.6rem;
+    letter-spacing: 0.02em;
+}
+.button {
+    background-color: #3692ff;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.button:hover {
+    background-color: #1967d6;
+}
+.button:focus {
+    background-color: #1251aa;
+}
+.button:disabled {
+    background-color: #9ca3af;
+    cursor: default;
+    pointer-events: none;
+}
+.pill-button {
+    font-size: 2rem;
+    font-weight: 700;
+    border-radius: 99.9rem;
+    padding: 1.6rem 12.4rem;
+}
+.banner {
+    background-color: #cfe5ff;
+    height: 54rem;
+    display: flex;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-position: 80% bottom;
+    background-size: 55%;
+}
+@media screen and (min-width: 1920px) {
+    .banner {
+        width: 100vw;
+        margin-left: calc((100% - 100vw) / 2);
+        margin-right: calc((100% - 100vw) / 2);
+    }
+}
+#hero {
+    background-image: url('/images/img_home_banner.svg');
+}
+#features {
+    padding-bottom: 13.8rem;
+}
+#bottomBanner {
+    background-image: url('/images/img_home_close.svg');
+}
+#loginLinkButton {
+    font-size: 1.6rem;
+    font-weight: 600;
+    border-radius: 0.8rem;
+    padding: 1.15rem 2.3rem;
+}
+.banner .pill-button {
+    margin-top: 3.2rem;
+}
+.feature {
+    padding: 13.8rem 0;
+    display: flex;
+    align-items: center;
+    gap: 5%;
+}
+.feature:nth-child(2) {
+    text-align: right;
+}
+.feature-content {
+    flex: 1;
+}
+.feature-tag {
+    color: #3692ff;
+    font-size: 1.8rem;
+    line-height: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+}
+.feature-description {
+    font-size: 2.4rem;
+    font-weight: 500;
+    line-height: 120%;
+    letter-spacing: 0.08em;
+    margin-top: 2.4rem;
+}
