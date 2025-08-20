@@ -17,7 +17,7 @@
   background: #fff;
   cursor: pointer;
 
-  color: var(--Secondary-800 );
+  color: var(--Secondary-800);
   /* pretendard/lg-16px-regular */
   font-family: Pretendard;
   font-size: 16px;
@@ -50,10 +50,31 @@
   line-height: 26px; /* 162.5% */
   cursor: pointer;
 }
-.menu-drop li .menu-newest{
+.menu-drop li .menu-newest {
   border-radius: 12px 12px 0 0;
 }
-.menu-drop li .menu-best{
+.menu-drop li .menu-best {
   border-radius: 0 0 12px 12px;
   border-top: 0px;
+}
+
+/* Mobile */
+@media (max-width: 744px) {
+  .dropdown {
+    width: 42px;
+    height: 42px;
+  }
+  .menu-drop {
+    width: 130px;
+    right: 0;
+  }
+
+  .menu-btn {
+    font-size: 0;
+    background: url("../../assets/icon/ic_group.svg") no-repeat center center /
+      50%;
+  }
+  .menu-btn img {
+    display: none;
+  }
 }

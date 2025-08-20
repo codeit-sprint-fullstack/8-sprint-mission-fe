@@ -38,3 +38,10 @@ section {
   flex-direction: column;
   align-items: center;
 }
+
+/* Tablet */
+@media (max-width: 1199px) {
+  .section-wrap {
+    width: 100%;
+  }
+}

@@ -23,3 +23,33 @@
 .bestProducts-container li {
   width: 282px;
 }
+
+/* Tablet */
+@media (max-width: 1199px) {
+  .bestProducts {
+    padding: 0 24px;
+  }
+  .bestProducts-container {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .bestProducts-container li {
+    width: 48%;
+  }
+  .bestProducts-container li:nth-last-child(2) {
+    display: none;
+  }
+  .bestProducts-container li:last-child {
+    display: none;
+  }
+}
+
+/* Mobile */
+@media (max-width: 744px) {
+  .bestProducts-container li {
+    width: 100%;
+  }
+  .bestProducts-container li:nth-last-child(3) {
+    display: none;
+  }
+}
