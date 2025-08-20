@@ -1,0 +1,32 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  background-color: #f3f4f6;
+  border: none;
+  border-radius: 16px;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #333;
+  gap: 8px;
+}
+
+.tagRemoveBtn {
+  background-color: #d1d5db;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.tagRemoveBtn:hover {
+  background-color: #9ca3af;
+  color: #fff;
+}

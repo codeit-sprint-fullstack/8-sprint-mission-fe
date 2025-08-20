@@ -5,6 +5,7 @@ import { getProductList } from '../api/ProductService';
 import styles from './ItemListSelling.module.css';
 import ProductCard from './ProductCard';
 import useResponsivePageSize from '../utils/useResponsivePageSize';
+import { Link } from 'react-router-dom';
 
 const SellingItemList = () => {
   const [sellingItems, setSellingItems] = useState([]);
@@ -49,9 +50,9 @@ const SellingItemList = () => {
               onChange={e => { setSearch(e.target.value); setPage(1); }}
             />
           </div>
-          <div className={styles.registerButton}>
+          <Link to="/registration" className={styles.registerButton}>
             상품 등록하기
-          </div>
+          </Link>
           <select className={styles.sortSelect} value={sort} onChange={e => setSort(e.target.value)}>
             <option value="recent">최신순</option>
             <option value="favorite">좋아요순</option>
