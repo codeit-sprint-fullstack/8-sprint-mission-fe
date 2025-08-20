@@ -1,0 +1,42 @@
+GET http://localhost:3000/products
+
+###
+
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+  "name": "테스트 상품4", 
+  "description": "테스트 상품 입니다.", 
+  "price": 49900, 
+  "tags": "TestProduct"
+}
+
+###
+
+GET http://localhost:3000/products/68a2e34bf8a7ee58ea1ab2b9
+
+###
+
+PATCH http://localhost:3000/products/68a2e318f8a7ee58ea1ab2b5
+Content-Type: application/json
+
+{
+  "name": "테스트 상품1"
+}
+
+###
+
+DELETE http://localhost:3000/products/68a2e8dd115d46ff77a1e1fb
+
+###
+
+GET http://localhost:3000/products?page=1&limit=10
+
+###
+
+GET http://localhost:3000/products?page=2&limit=10
+
+###
+
+GET http://localhost:3000/products?search=아이폰

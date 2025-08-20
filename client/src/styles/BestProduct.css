@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.bestProduct {
+  width: 100%;
+  padding: 0 230px;
+  padding-top: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.bestProduct .title {
+  font-family: "Pretendard";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px;
+  color: #111827;
+}
+.bestProduct .productCardList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 24px;
+}/*# sourceMappingURL=BestProduct.css.map */

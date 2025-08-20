@@ -1,0 +1,18 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LandingPage from "../pages/LandingPage.jsx";
+import LayoutItems from "../layout/LayoutItems.jsx";
+import LayoutCreateProduct from "../layout/LayoutCreateProduct.jsx";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="items" element={<LayoutItems />} />
+        <Route path="registration" element={<LayoutCreateProduct />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
