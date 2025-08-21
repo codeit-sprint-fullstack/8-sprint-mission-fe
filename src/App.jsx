@@ -1,4 +1,3 @@
-// App.jsx
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 // 공통 레이아웃
