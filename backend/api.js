@@ -71,7 +71,6 @@ router.patch('/products/:id', asyncHandler(async (req, res) => {
         return res.status(404).send({ message: 'ID에 해당하는 상품을 찾을 수 없습니다.' });
     }
 
-
     // 상품의 데이터를 수정
     Object.keys(updateData).forEach((key) => {
         updatedProduct[key] = updateData[key];
@@ -136,6 +135,10 @@ router.get('/products', asyncHandler(async (req, res) => {
     //쿼리 파라미터를 이용하여, Pagination 기능 구현
     if (offsetData) {
         printProducts = printProducts.slice(0, offsetData);
+    }
+
+    if (printProducts.length === 0) { // 필터링된 결과가 없는 경우, 에러 메시지 반환
+        return res.status(404).send({ message: '검색 결과가 없습니다.' });
     }
 
     // 필터링된 결과 반환
