@@ -90,7 +90,7 @@ header div{
    이렇게 해도 Figma와 똑같은 형태가 되고 자연스러워서 이대로 뒀습니다.*/
 }
 
-header a{
+header p{
   color: var(--Secondary-600, #4B5563);
   text-align: center;
   /* pretendard/2lg-18px-bold */

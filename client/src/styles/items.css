@@ -343,8 +343,8 @@
 /* Tablet styles */
 @media (min-width: 744px) {
 
-    .itemsMain > div {
-        padding: 24px 24px 0;
+    .itemsMain{
+        padding: 24px 0 0;
     }
 
     #common-products .section-headline{
@@ -375,7 +375,7 @@
 
 /* Desktop styles */
 @media (min-width: 1200px) {
-    .itemsMain > div {
+    .itemsMain{
         padding: 24px 0 0;
     }
 

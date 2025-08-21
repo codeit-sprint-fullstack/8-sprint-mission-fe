@@ -39,10 +39,10 @@ const postRqBody = {
   name: "상품 이름"
 }
 
-async function createProduct() {
+async function createProduct(RqBody) {
     const result = await fetch(url, {
             method: 'POST',
-            body: JSON.stringify(postRqBody),
+            body: JSON.stringify(RqBody),
             headers: { 'Content-Type' : 'application/json' }
         })
         .then(async (res) => {

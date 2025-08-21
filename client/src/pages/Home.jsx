@@ -7,16 +7,17 @@ import Banner from '../components/Home/Banner.jsx';
 
 import topBannerImg from "../../images/home/hero-image.png";
 import bottomBannerImg from "../../images/home/bottom-banner-image.png";
+import Features from '../components/Home/Feature.jsx';
 
 
 
-function NotFound() {
+function Home() {
 
     const deviceType = useContext(LocaleContext);
-
+    
     return (
         <>
-            <HomeHeader deviceType={deviceType}/>
+            <HomeHeader />
             <main className="with-header">
                 <Banner 
                     bgImg={topBannerImg}
@@ -28,21 +29,7 @@ function NotFound() {
                         거래해 보세요
                     </h1>
                 </Banner>   
-                <section id="features" class="wrapper">
-                <div class="feature">
-                <img src="images/home/feature1-image.png" alt="인기 상품" />
-                <div class="feature-content">
-                    <h2>Hot item</h2>
-                    <h1>
-                    인기 상품을 <span class="break-on-desktop"><br/></span>확인해
-                    보세요
-                    </h1>
-                    <p class="feature-description">
-                    가장 HOT한 중고거래 물품을<br />판다마켓에서 확인해 보세요
-                    </p>
-                </div>
-                </div>
-                </section>
+                <Features/>
                 <Banner 
                     bgImg={bottomBannerImg}
                 >
@@ -57,4 +44,4 @@ function NotFound() {
     );
 }
 
-export default NotFound;
+export default Home;

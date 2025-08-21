@@ -34,7 +34,7 @@ function NotFound() {
 
     return (
         <>
-            <HomeHeader deviceType={deviceType}/>
+            <HomeHeader/>
             <main className="with-header">
                 <p style={style}> 해당 페이지는 없는 페이지입니다. </p>
             </main> 
