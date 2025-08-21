@@ -82,7 +82,7 @@ function AllItemsSection() {
           />
         </div>
 
-        <Link to="/additem" className="createItemButton button">
+        <Link to="/registration" className="createItemButton button">
           상품 등록하기
         </Link>
 

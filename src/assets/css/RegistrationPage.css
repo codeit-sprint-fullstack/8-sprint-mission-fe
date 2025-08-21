@@ -1,0 +1,153 @@
+/* Wrapper 전체 설정 */
+.registrationPageWrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 24px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* 상단 헤더 + 등록 버튼 wrapper */
+.registrationHeaderWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+/* 상단 타이틀 */
+.registrationHeader {
+  font-family: Pretendard;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #1f2937;
+}
+
+/* 상단 등록 버튼 */
+.topSubmitButton {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 42px;
+  padding: 12px 23px;
+  gap: 10px;
+  border-radius: 8px;
+  background: #9ca3af; /* var(--Cool-Gray-400) */
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+.topSubmitButton:hover {
+  background: #7b8794;
+}
+
+/* Form 전체 */
+.registrationForm {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Form 라벨 */
+.formLabel {
+  font-family: Pretendard;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  color: #1f2937;
+}
+
+/* 일반 input */
+.formInput {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #9ca3af;
+  height: 56px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  background: #f3f4f6; /* var(--Cool-Gray-100) */
+  border: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* textarea */
+.formTextarea {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: #9ca3af;
+  width: 100%;
+  height: 282px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  background: #f3f4f6;
+  border: none;
+  resize: none;
+  box-sizing: border-box;
+}
+
+/* 태그 input wrapper */
+.tagInputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* 태그 리스트 */
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* 각 태그 */
+.tagItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px 6px 16px;
+  height: 36px;
+  border-radius: 26px;
+  background: #f3f4f6;
+  color: #1f2937;
+  font-family: Pretendard;
+  font-size: 16px;
+}
+
+.tagItem span {
+  cursor: pointer;
+}
+
+/* 기존 form submit 버튼 (맨 하단용) */
+.submitButton {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 42px;
+  padding: 12px 23px;
+  gap: 10px;
+  border-radius: 8px;
+  background: #9ca3af;
+  color: #f3f4f6;
+  border: none;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background: #7b8794;
+}

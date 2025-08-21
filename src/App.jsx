@@ -1,8 +1,11 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// App.jsx
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-// 기본 메인 페이지 컴포넌트
+// 공통 레이아웃
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+
+// 메인 페이지 섹션
 import Hero from "./components/Hero";
 import SectionBestItem from "./components/SectionBestItem";
 import SectionSearch from "./components/SectionSearch";
@@ -16,6 +19,7 @@ import Signup from "./pages/Signup";
 // 마켓 페이지 관련
 import MarketPage from "./pages/MarketPage/MarketPage";
 import MarketHeader from "./components/Layout/Header";
+import RegistrationPage from "./pages/MarketPage/RegistrationPage";
 
 function App() {
   return (
@@ -50,6 +54,20 @@ function App() {
                 <MarketHeader />
                 <div className="withHeader">
                   <MarketPage />
+                </div>
+                <Footer />
+              </>
+            }
+          />
+
+          {/* 상품 등록 페이지 */}
+          <Route
+            path="/registration"
+            element={
+              <>
+                <MarketHeader />
+                <div className="withHeader">
+                  <RegistrationPage />
                 </div>
                 <Footer />
               </>
