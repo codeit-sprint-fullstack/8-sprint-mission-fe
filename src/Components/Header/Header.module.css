@@ -12,6 +12,7 @@
   border-bottom: 1px solid var(--header-bottom-border-color);
   background-color: var(--header-bg-color);
   height: 70px;
+  padding: 0 200px;
 }
 
 .navBox {

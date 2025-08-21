@@ -34,8 +34,7 @@ function ProductListController({ option: controls = {}, setQuery = null }) {
           </div>
         }
 
-        {controls.upload && <button>상품 등록하기</button>}
-        {/* onClick={handleUpload} */}
+        {controls.upload && <a href="/registration" className={style.registrationButton}>상품 등록하기</a>}
 
         {controls.orderBy &&
           <DropDown

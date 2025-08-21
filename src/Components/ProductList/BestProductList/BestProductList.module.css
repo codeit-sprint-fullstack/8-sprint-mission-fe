@@ -1,17 +1,16 @@
 @import '../../../style/color_variables.css';
 
 .bestProduct {
-  display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin: 40px 0;
 
   h2 {
     font-size: 20px;
     font-weight: 700;
     color: var(--Secondary-900);
+    margin-bottom: 16px;
   }
 
   .bestProductList {

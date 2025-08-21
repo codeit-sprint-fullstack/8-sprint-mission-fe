@@ -26,7 +26,7 @@ main {
 }
 
 /* Tablet 744~1199px */
-@media (min-width: 744px) {
+@media (max-width: 1199px) {
   header {
     padding: 9px 24px;
   }

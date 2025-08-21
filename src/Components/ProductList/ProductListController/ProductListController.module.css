@@ -31,6 +31,10 @@
         background-color: var(--Secondary-100);
       }
 
+      input:focus {
+        border: 1px solid var(--Secondary-400);
+      }
+
       img {
         position: absolute;
         left: 16px;
@@ -40,7 +44,7 @@
       }
     }
 
-    button {
+    .registrationButton {
       justify-content: center;
       align-items: center;
       background-color: var(--button-color);
@@ -48,10 +52,16 @@
       border: none;
       outline: none;
       width: 128px;
+      padding: 12px 0;
       text-decoration: none;
       font-size: 1rem; /* 16px */
       color: var(--Cool-Gray-100);
+      text-align: center;
       cursor: pointer;
+    }
+
+    .registrationButton:hover {
+      text-decoration: underline;
     }
   }
 }
