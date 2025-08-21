@@ -5,19 +5,19 @@ import mongoose from 'mongoose';
 //mongoose.connect(DATABASE_URL).then(() => console.log('Connected to DB'));
 
 //스키마 정의
-const SubscriptionSchema = new mongoose.Schema(
+const ProductsSchema = new mongoose.Schema(
   // 여기에 코드를 작성하세요.
   {
     name:{
-        type: String,
-        reqired: true,
-        maxLength: 20,
-        validate:{
-          validator: function (title) {
-            return title.split(' ').length > 1;
-          },
-          message: 'Must contain at least 2 words.'
-        }
+      type: String,
+      reqired: true,
+      maxLength: 20,
+      validate:{
+        validator: function (title) {
+          return title.length < 10;
+        },
+        message: 'product name must be 10 words'
+      }
     },
     price: {
       type: Number,
@@ -29,21 +29,7 @@ const SubscriptionSchema = new mongoose.Schema(
         message: 'Must much then 0'
       }
     },
-    cycle: {
-      type: String,
-      required: true,
-      validate:{
-        validator: function (cycle) {
-          return cycle === 'm ' || cycle === 'y';
-        },
-        message: 'cycle is must m or y'
-      }
-    },
-    firstPaymentDate: {
-      type: Date,
-      required: true,
-    },
-    memo: {
+    description: {
       type: String,
     },
   },
@@ -55,6 +41,6 @@ const SubscriptionSchema = new mongoose.Schema(
 );
 
 //모델은 해당 스키마를 다루는 것. 이름은 첫 대문자. 단수형으로 쓴다. 
-const Subscription = mongoose.model('Subscription', SubscriptionSchema);
+const Products = mongoose.model('Subscription', ProductsSchema);
 
-export default Subscription;
+export default Products;
