@@ -1,6 +1,5 @@
-// src/components/CardItemList.jsx
 import { useMemo, useState, useEffect, useRef } from "react";
-import { useProducts } from "../hooks/useProducts.js"; // ← useBestProducts 제거
+import { useProducts } from "../hooks/useProducts.js";
 import { useResponsivePageSize } from "../hooks/useResponsivePageSize.js";
 import ProductCard from "./ProductCard.jsx";
 import Pagination from "./Pagination.jsx";
@@ -16,7 +15,7 @@ export default function CardItemList() {
   const bestR = useResponsivePageSize("best");
   const listR = useResponsivePageSize("list");
 
-  // ✅ 같은 훅을 두 번 호출해서 best/list 분리
+  // 같은 훅을 두 번 호출해서 best/list 분리
   const { data: bestData } = useProducts({
     page: 1,
     pageSize: bestR.pageSize,
@@ -36,7 +35,7 @@ export default function CardItemList() {
     return Math.max(1, Math.ceil(total / listR.pageSize));
   }, [data?.totalCount, listR.pageSize]);
 
-  // A+ 페이지 보정 (deps에서 pageCnt 제외)
+  // 페이지 보정 (deps에서 pageCnt 제외)
   const prevPageSizeRef = useRef(listR.pageSize);
   useEffect(() => {
     const total = data?.totalCount || 0;
@@ -54,7 +53,6 @@ export default function CardItemList() {
       if (clamped !== pageCnt) setPageCnt(clamped);
     }
     prevPageSizeRef.current = next;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listR.pageSize, data?.totalCount]);
 
   return (
