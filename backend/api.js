@@ -1,4 +1,5 @@
 import 'dotenv/config';
+
 import express from 'express';
 import mongoose from 'mongoose';
 import Product from "./schema.js";
@@ -26,14 +27,17 @@ function asyncHandler(handler) {
   return asyncReqHandler;
 }
 
-// router.get('/', asyncHandler( async (req, res) => {
-//
-// }));
-
 // 상품 등록 API
 router.post('/products', asyncHandler(async (req, res) => {
-    const productData = req.body;
-    const newProductData = await Product.create(productData);
-    res.status(201).send(newProductData);
+    const newProductData = req.body;
+    const createProductData = await Product.create(newProductData);
+    res.status(201).send(createProductData);
 }));
 
+// 상품 상세 조회 API
+router.get('/products/:id', asyncHandler( async (req, res) => {
+    const id = req.params.id;
+    const productData = await Product.find((product) => product.id === id);
+
+    res.status(200).send(productData);
+}));
