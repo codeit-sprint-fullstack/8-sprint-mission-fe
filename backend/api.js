@@ -72,3 +72,48 @@ router.patch('/products/:id', asyncHandler(async (req, res) => {
     // 수정된 상품 데이터를 응답으로 반환
     res.status(200).send(updatedProduct);
 }));
+
+// 상품 삭제 API
+router.delete('/products/:id', asyncHandler(async (req, res) => {
+    // 삭제할 상품의 ID
+    const id = req.params.id;
+
+    // ID로 상품 데이터를 찾고 삭제
+    await Product.findByIdAndDelete(id);
+
+    // 삭제된 경우, 성공 응답 송신
+    res.status(204).send();
+}));
+
+// 상품 목록 조회 API
+router.get('/products', asyncHandler(async (req, res) => {
+    // 쿼리 파라미터에서 데이터를 불러옴
+    const sortData = req.query.sort;
+    const offsetData = parseInt(req.query.offset) || 1;
+    const nameData = req.query.name || '';
+    const descriptionData = req.query.description || '';
+
+    // 쿼리 파라미터를 이용하여, 정렬 기능 구현
+    const compareFn =
+        sortData === 'recent'
+            ? (a, b) => a.updatedAt - b.updatedAt
+            : (a, b) => b.updatedAt - a.updatedAt;
+    let printProducts = await Product.sort(compareFn);
+
+
+    //쿼리 파라미터를 이용하여, Pagination 기능 구현
+    if (offsetData) {
+        printProducts = printProducts.slice(0, offsetData);
+    }
+
+    // 쿼리 파라미터를 이용하여, 검색 기능 구현
+    printProducts = printProducts.filter((product) => {
+        return (
+            product.name.includes(nameData) &&
+            product.description.includes(descriptionData)
+        );
+    })
+
+    // 필터링된 결과 반환
+    res.status(200).send(printProducts);
+}));
