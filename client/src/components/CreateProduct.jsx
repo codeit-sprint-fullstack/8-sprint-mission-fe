@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "../styles/CreateProduct.module.scss";
+import { createProductApi } from "../lib/ProductApi";
 import ic_X from "../assets/ic_x.svg";
 
 function CreateProduct() {
@@ -10,9 +12,20 @@ function CreateProduct() {
     tags: [],
   };
 
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState(INIT_VALUE);
 
   const [tagInput, setTagInput] = useState("");
+
+  const isFormValid = useMemo(() => {
+    return (
+      formData.name.trim() !== "" &&
+      formData.description.trim() !== "" &&
+      formData.price.trim() !== "" &&
+      formData.tags.length > 0
+    );
+  }, [formData]);
 
   const formChangeFn = (e) => {
     const { name, value } = e.target;
@@ -41,10 +54,21 @@ function CreateProduct() {
     }));
   };
 
-  const submitButton = (e) => {
+  const submitButton = async (e) => {
     e.preventDefault();
 
-    console.log(formData);
+    try {
+      const result = await createProductApi(formData);
+      console.log("상품 등록 성공", result);
+
+      setFormData(INIT_VALUE);
+      setTagInput("");
+
+      navigate(`/items/${result._id}`);
+    } catch (e) {
+      console.log("등록 실패", e.message);
+      alert("상품 등록에 실패했습니다.");
+    }
   };
 
   const handleTagInput = (e) => {
@@ -60,7 +84,12 @@ function CreateProduct() {
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.title}>상품 등록하기</div>
-        <button className={styles.createButton} onClick={submitButton}>
+        <button
+          className={`${styles.createButton} ${
+            isFormValid ? styles.active : styles.inactive
+          }`}
+          onClick={submitButton}
+        >
           등록
         </button>
       </div>

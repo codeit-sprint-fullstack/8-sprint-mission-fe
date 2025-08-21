@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASE_URL = "https://product-api-wbmj.onrender.com";
 
-const ProductApi = async ({
+export const getProductApi = async ({
   page = "",
   limit = "",
   sort = "",
@@ -23,4 +23,11 @@ const ProductApi = async ({
   }
 };
 
-export default ProductApi;
+export const createProductApi = async (productData) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/products`, productData);
+    return response.data;
+  } catch (e) {
+    throw new Error("상품 등록 에러", e.message);
+  }
+};

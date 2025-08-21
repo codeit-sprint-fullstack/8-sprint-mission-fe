@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { getProduct } from "../lib/api.js";
-import ProductApi from "../lib/ProductApi.js";
+import { getProductApi } from "../lib/ProductApi.js";
 import ProductCard from "./ProductCard.jsx";
 import "../styles/ProductList.css";
 import ProductListHeader from "./ProductListHeader.jsx";
@@ -32,7 +31,7 @@ function ProductList() {
 
         setLoadingError(null);
         setLoading(true);
-        result = await ProductApi(options);
+        result = await getProductApi(options);
         setProducts(result.products);
         setCurrentPage(options.page);
         setLoadingStatus("APi Loading Success");
