@@ -11,7 +11,7 @@ function Header() {
         </Link>
         <nav className="nav-menu">
           <Link to="/board">자유게시판</Link>
-          <Link to="/market">중고마켓</Link>
+          <Link to="/items">중고마켓</Link>
         </nav>
       </div>
       <Link to="/login" className="loginButton" id="login">
