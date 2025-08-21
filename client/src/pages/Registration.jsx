@@ -1,8 +1,8 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import productApi from '../api/ProductService.js';
 
-import useAsync from '../components/hooks/useAsync.jsx';
-import LocaleContext from '../contexts/LocaleContext.js';
+
 import '../styles/registration.css';
 
 import HomeHeader from '../components/HomeHeader.jsx';
@@ -11,26 +11,30 @@ import HomeFooter from '../components/HomeFooter.jsx';
 import cancleTagImg from '/images/registration/cancle_tag.svg';
 
 function InputForm({label, name, value, handleChange, handleKeyDown = null, placeholder = '', rows=1, validErrorMsg = ''}){
+    
+    const style = validErrorMsg === '' 
+        ?{} 
+        :{border: '1px solid var(--error-red, #F74747)'}
+
+    //공통되는 prop을 묶었습니다.
+    const props = {
+        className:'inputPlace',
+        style: style,
+        name: name, 
+        value: value,
+        onChange: handleChange, 
+        onKeyDown: handleKeyDown,
+        placeholder: placeholder,
+    }
+
     //textara는 기본적으로 rows={2}로 설정 되어 있다. 
     //input처럼 높이를 맞추려면 rows={1}이 꼭 필요.
+    //rows={1}인 textarea보다 input이 EX적으로 좋다고 판단.
     return (
         <div className='inputForm'>
             <label>{label}</label>
-            {rows===1 && <input className='inputPlace'
-                name={name} 
-                value={value} 
-                onChange={handleChange} 
-                onKeyDown={handleKeyDown}
-                placeholder={placeholder}
-            />}
-            {rows>1 && <textarea className='inputPlace'
-                rows={rows} 
-                name={name} 
-                value={value} 
-                onChange={handleChange} 
-                onKeyDown={handleKeyDown}
-                placeholder={placeholder}
-            />}
+            {rows===1 && <input {...props}/>}
+            {rows>1 && <textarea {...props} rows={rows}/>}
             {validErrorMsg.length>0 && <p className='validErrorMsg'>{validErrorMsg}</p>}
         </div>
     );
@@ -70,7 +74,7 @@ function Registration({}){
         tag: '',
     });
 
-    const [tags, setTags] = useState(new Set());
+    const nav = useNavigate();
 
     const handleChange = (e) => {
         const { name , value } = e.target;
@@ -101,7 +105,7 @@ function Registration({}){
         }
     };
 
-    const handleRegistration = () => {
+    const handleRegistration = async () => {
         //등록 시 name, description, price 항목 valid 체크 후 오류메세지를 띄웁니다.
         //(tags는 등록하지 않아도 통과)
         setValidErrorMsgs((prevValues) => ({
@@ -111,8 +115,8 @@ function Registration({}){
             price: checkValidity('price', values.price).message,
         }));
 
-        for(const key in validErrorMsgs){
-            //하나라도 Invalid하면 api 리퀘스트를 보내지 않습니다.
+        //하나라도 invalid하면 api 리퀘스트를 보내지 않습니다.
+        for(const key in validErrorMsgs){          
             if(validErrorMsgs[key]!=='')return;
         }
         
@@ -126,9 +130,22 @@ function Registration({}){
             description: values.description,
             name: values.name,
         }
-        productApi.createProduct(RqBody);
+
+        const res = await productApi.createProduct(RqBody);
+        
+        //리퀘스트에 성공하면 상품 상세 사이트 이동
+        if(res){nav("/productdetail");}
     }
 
+
+    /*
+    오류 검사 후
+    {
+        result: 유효 여부,
+        message: '에러 메세지'
+    }
+    로 반환 합니다.
+    */
     const checkValidity = (name, value) => {
         switch(name){
             case 'name':
@@ -194,7 +211,7 @@ function Registration({}){
                     <div className='wrapper'>
                         <div className='headline'>
                             <h1>상품 등록하기</h1>
-                            <button onClick={handleRegistration}>등록</button>
+                            <button className='button' onClick={handleRegistration}>등록</button>
                         </div>
                         <InputForm 
                             label='상품명' 

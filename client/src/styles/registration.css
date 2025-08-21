@@ -25,17 +25,13 @@
     line-height: 32px;
 }
 
-.registMain .headline button{
-    display: flex;
+/* 버튼 공통 스타일은 global.css에 정의 */
+.registMain .headline .button{
     height: 42px;
     padding: 12px 23px;
-    justify-content: center;
-    align-items: center;
     gap: 10px;
 
     border-radius: 8px;
-    background: var(--Primary-100, #3692FF);
-    color: var(--Cool-Gray-100, #F3F4F6);
     font-size: 16px;
     font-weight: 600;
     line-height: 26px; /* 162.5% */

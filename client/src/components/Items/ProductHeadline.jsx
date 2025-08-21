@@ -14,7 +14,7 @@ function ProductHeadline({ order, onChangeOrder, search, onChangeSearch }){
         <div className='section-headline'>
             <div className='title'>
                 <p>판매 중인 상품</p>
-                {deviceType=='mobile'&& <Link to="/registration"><button>상품 등록하기</button></Link>}
+                {deviceType=='mobile'&& <Link to="/registration"><button className='button'>상품 등록하기</button></Link>}
             </div>  
             <div>
                 <div className='search-box'>
@@ -26,7 +26,7 @@ function ProductHeadline({ order, onChangeOrder, search, onChangeSearch }){
                         onChange={onChangeSearch}
                     />
                 </div>  
-                {deviceType!='mobile'&& <Link to="/registration"><button>상품 등록하기</button></Link>}
+                {deviceType!='mobile'&& <Link to="/registration"><button className='button'>상품 등록하기</button></Link>}
                 <div className='dropdown'>
                     <select value={order} name="order" onChange={onChangeOrder}>
                         <option value="recent">최신순</option>

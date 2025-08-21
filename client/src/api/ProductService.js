@@ -26,8 +26,8 @@ async function getProduct(id){
     return result;
 }
 
-//테스트용 body인 것 같아 가공은 안했습니다.
-const postRqBody = {
+//테스트용 body 예시.
+const postRqBodyEaxmple = {
   images: [
     "https://example.com/..."
   ],
