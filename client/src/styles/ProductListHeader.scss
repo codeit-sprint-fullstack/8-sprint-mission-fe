@@ -10,6 +10,15 @@
   align-items: center;
   justify-content: space-between;
 
+  .title {
+    font-family: "Pretendard";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px;
+    color: #111827;
+  }
+
   .listHeader {
     display: flex;
     gap: 12px;

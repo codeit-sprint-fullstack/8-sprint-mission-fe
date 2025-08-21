@@ -36,4 +36,19 @@
   flex-direction: row;
   align-items: center;
   gap: 12px;
+}
+
+@media (max-width: 743px) {
+  footer {
+    width: 100%;
+    padding: 32px 16px;
+  }
+  footer .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  footer .wrapper .codeit {
+    width: 112px;
+  }
 }/*# sourceMappingURL=Footer.css.map */

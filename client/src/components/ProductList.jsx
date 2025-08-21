@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { getProductApi } from "../lib/ProductApi.js";
 import ProductCard from "./ProductCard.jsx";
-import "../styles/ProductList.css";
 import ProductListHeader from "./ProductListHeader.jsx";
 import Pagination from "./Pagination.jsx";
+import styles from "../styles/ProductList.module.scss";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -56,14 +56,14 @@ function ProductList() {
   }, [search, sortValue, fetchProduct]);
 
   return (
-    <div className="productList">
+    <div className={styles.productList}>
       <ProductListHeader
         search={search}
         setSearch={setSearch}
         sortValue={sortValue}
         setSortValue={setSortValue}
       />
-      <div className="productCardList">
+      <div className={styles.productCardList}>
         {products.map((product) => {
           return (
             <ProductCard product={product} key={product._id} type={"regular"} />
