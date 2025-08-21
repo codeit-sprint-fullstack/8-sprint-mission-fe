@@ -1,6 +1,6 @@
 import React from 'react';
-import LoginForm from '../components/LoginForm';
-import AuthHeader from '../components/AuthHeader';
+import LoginForm from '../components/auth/LoginForm';
+import AuthHeader from '../components/auth/AuthHeader';
 import styles from './Auth.module.css';
 
 const Login = () => {

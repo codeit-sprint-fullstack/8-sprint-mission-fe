@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useInputCheck } from '../utils/inputCheck';
+import { useAuthInputCheck } from '../../utils/useAuthInputCheck';
 import { useNavigate, Link } from 'react-router-dom';
-import { USER_DATA } from '../data/users';
+import { USER_DATA } from '../../data/users';
 import SocialLogin from './SocialLogin';
 import styles from './LoginForm.module.css';
 
@@ -19,7 +19,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const { errors, validateEmail, checkPassword } = useInputCheck();
+  const { errors, validateEmail, checkPassword } = useAuthInputCheck();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,6 +64,7 @@ const LoginForm = () => {
           <input
             type="email"
             id="email"
+            className={`${errors.email ? styles.error : ''}`}
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
@@ -79,6 +80,7 @@ const LoginForm = () => {
           <input
             type="password"
             id="password"
+            className={`${errors.password ? styles.error : ''}`}
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);

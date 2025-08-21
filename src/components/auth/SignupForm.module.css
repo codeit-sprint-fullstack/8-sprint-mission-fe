@@ -56,11 +56,11 @@ label {
   width: 24px;
   height: 24px;
   cursor: pointer;
-  background-image: url("../assets/btn/btn_visibility_off_24px.svg");
+  background-image: url("../../assets/btn/btn_visibility_off_24px.svg");
 }
 
 .password-wrapper button.password-toggle.active {
-  background-image: url("../assets/btn/btn_visibility_on_24px.svg");
+  background-image: url("../../assets/btn/btn_visibility_on_24px.svg");
 }
 
 /* ############################## form btn ############################## */
@@ -98,6 +98,7 @@ label {
 }
 
 /* ############################## alert-box ############################## */
+
 .overlay {
   position: fixed;
   z-index: 9999;

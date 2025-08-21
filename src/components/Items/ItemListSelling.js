@@ -1,10 +1,10 @@
 // SellingItemList.jsx
 
 import React, { useEffect, useState } from 'react';
-import { getProductList } from '../api/ProductService';
+import { getProductList } from '../../api/ProductService';
 import styles from './ItemListSelling.module.css';
 import ProductCard from './ProductCard';
-import useResponsivePageSize from '../utils/useResponsivePageSize';
+import useResponsivePageSize from '../../utils/useResponsivePageSize';
 import { Link } from 'react-router-dom';
 
 const SellingItemList = () => {

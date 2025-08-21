@@ -7,7 +7,7 @@
 .inputLabel {
   font-size: 16px;
   font-weight: 600;
-  color: #333;
+  color: var(--color-gray-800);
   margin-bottom: 8px;
 }
 
@@ -18,16 +18,26 @@
   border: none;
   border-radius: 8px;
   font-size: 14px;
-  background-color: #f3f4f6;
-  color: #333;
+  background-color: var(--color-secondary-100);
+  color: var(--color-gray-800);
   box-sizing: border-box;
   transition: background-color 0.2s;
 }
 
 .inputText:focus,
 .inputTextarea:focus {
+  border: 1px solid var(--color-primary);
+}
+
+.inputText.error,
+.inputTextarea.error {
+  border: 1px solid var(--color-error);
+}
+
+.inputText:focus,
+.inputTextarea:focus {
   outline: none;
-  background-color: #e5e7eb;
+  background-color: var(--color-gray-100);
 }
 
 .inputTextarea {
@@ -38,5 +48,11 @@
 
 .inputText::placeholder,
 .inputTextarea::placeholder {
-  color: #9ca3af;
+  color: var(--color-gray-400);
+}
+
+.inputError {
+  color: var(--color-danger, #d9534f);
+  font-size: 13px;
+  margin-top: 6px;
 }
