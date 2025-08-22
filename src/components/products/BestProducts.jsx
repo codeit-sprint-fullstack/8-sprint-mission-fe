@@ -1,17 +1,17 @@
-import ProductsItem from "./ProductsItem";
-import "./BestProducts.css";
+import ProductItem from "./ProductItem";
+import style from "./BestProducts.module.css";
 
 function BestProducts({ items }) {
   return (
-    <section className="bestProducts">
+    <section className={style.bestProducts}>
       <div className="section-wrap">
         <h1>베스트 상품</h1>
-        <ul className="bestProducts-container">
+        <ul className={style.bestProductsContainer}>
           {items.map((item) => {
             // map을 이용해서 렌더링
             return (
               <li key={item.id}>
-                <ProductsItem item={item} />
+                <ProductItem item={item} />
               </li>
             );
           })}

@@ -4,7 +4,7 @@
   position: relative;
 }
 
-.menu-btn {
+.menuBtn {
   width: 100%;
   height: 100%;
   display: flex;
@@ -26,16 +26,16 @@
   line-height: 26px; /* 162.5% */
 }
 
-.menu-drop {
+.menuDrop {
   position: absolute;
   width: 100%;
   margin-top: 8px;
 }
-.menu-drop li {
+.menuDrop li {
   width: 100%;
   height: 42px;
 }
-.menu-drop li button {
+.menuDrop li button {
   width: 100%;
   height: 100%;
   border: 1px solid var(--Cool-Gray-200);
@@ -50,10 +50,10 @@
   line-height: 26px; /* 162.5% */
   cursor: pointer;
 }
-.menu-drop li .menu-newest {
+.menuDrop li .menuNewest {
   border-radius: 12px 12px 0 0;
 }
-.menu-drop li .menu-best {
+.menuDrop li .menuBest {
   border-radius: 0 0 12px 12px;
   border-top: 0px;
 }
@@ -64,17 +64,17 @@
     width: 42px;
     height: 42px;
   }
-  .menu-drop {
+  .menuDrop {
     width: 130px;
     right: 0;
   }
 
-  .menu-btn {
+  .menuBtn {
     font-size: 0;
     background: url("../../assets/icon/ic_group.svg") no-repeat center center /
       50%;
   }
-  .menu-btn img {
+  .menuBtn img {
     display: none;
   }
 }

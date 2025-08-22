@@ -1,11 +1,9 @@
-import ProductsItem from "./ProductsItem";
+import ProductItem from "./ProductItem";
 import { useEffect, useState } from "react";
-import "./ProductsList.css";
 import ic_search from "../../assets/icon/ic_search.svg";
 import Dropdown from "../ui-components/dropdown";
 import Pagination from "../ui-components/Pagination";
-
-
+import style from "./ProductsList.module.css";
 
 function ProductsList({ items, totalCount, handleItemsLoad }) {
   const [page, setPage] = useState(1);
@@ -39,12 +37,12 @@ function ProductsList({ items, totalCount, handleItemsLoad }) {
   }, [page, keyword, order]);
 
   return (
-    <section className="productsList">
+    <section className={style.productsList}>
       <div className="section-wrap">
-        <div className="productsList-header">
+        <div className={style.productsListHeader}>
           <h1>판매 중인 상품</h1>
-          <div className="action-box">
-            <div className="input-box">
+          <div className={style.searchControls}>
+            <div className={style.inputContainer}>
               <img src={ic_search} alt="ic_search" />
               <input
                 name="search"
@@ -55,22 +53,30 @@ function ProductsList({ items, totalCount, handleItemsLoad }) {
                 onBlur={handleBlur}
               />
             </div>
-            <button className="product-register">상품 등록하기</button>
-            <Dropdown order={order} onNewestClick={handleNewestClick}  onBestClick={handleBestClick}/>
+            <button className={style.registerBtn}>상품 등록하기</button>
+            <Dropdown
+              order={order}
+              onNewestClick={handleNewestClick}
+              onBestClick={handleBestClick}
+            />
           </div>
         </div>
-        <ul className="productsList-container">
+        <ul className={style.productsListContainer}>
           {items.map((item) => {
             // map을 이용해서 렌더링
             return (
               <li key={item.id}>
-                <ProductsItem item={item} />
+                <ProductItem item={item} />
               </li>
             );
           })}
         </ul>
         {/* 페이지네이션 */}
-        <Pagination totalItems={totalCount} currentPage={page} onChange={handlePageClick}/>
+        <Pagination
+          totalItems={totalCount}
+          currentPage={page}
+          onChange={handlePageClick}
+        />
       </div>
     </section>
   );

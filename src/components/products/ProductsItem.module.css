@@ -1,6 +1,4 @@
-@import url(../css/common.css);
-
-.products-item {
+.productItem {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -8,7 +6,7 @@
   cursor: pointer;
 }
 
-.products-img {
+.productImg {
   width: 100%;
   aspect-ratio: 1 / 1; /* 1:1 비율을 의미 */
   object-fit: cover;
@@ -16,7 +14,7 @@
   background: var(--Cool-Gray-50);
 }
 
-.products-content {
+.productContent {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -28,26 +26,26 @@
   font-style: normal;
 }
 
-.products-name {
+.productName {
   /* pretendard/md-14px-medium */
   font-size: 14px;
   font-weight: 500;
   line-height: 24px; /* 171.429% */
 }
 
-.products-price {
+.productPrice {
   /* pretendard/lg-16px-bold */
   font-size: 16px;
   font-weight: 700;
   line-height: 26px; /* 162.5% */
 }
 
-.products-favorite {
+.productFavorite {
   display: flex;
   align-items: center;
   gap: 4px;
 }
-.products-favoriteCount {
+.productFavoriteCount {
   color: var(--Secondary-600);
   /* pretendard/xs-12px-medium */
   font-size: 12px;

@@ -1,6 +1,4 @@
-@import url(./common.css);
-
-.main-header {
+.header {
   display: flex;
   width: 100%;
   height: 70px;
@@ -14,7 +12,7 @@
   z-index: 2;
 }
 
-.header-wrap {
+.headerWrap {
   max-width: 1120px;
   width: 100%;
   display: flex;
@@ -23,14 +21,14 @@
   flex-shrink: 1;
 }
 
-.header-left {
+.headerLeft {
   width: 100%;
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-.header-left span {
+.headerLeft span {
   color: var(--Secondary-600);
   text-align: center;
 
@@ -67,7 +65,7 @@
   line-height: normal;
 }
 
-.login-button {
+.loginButton {
   background: var(--Primary-100);
   border-radius: 8px;
   border: 0;
@@ -91,14 +89,14 @@
 
 /* Tablet */
 @media (max-width: 1199px) {
-  .main-header {
+  .header {
     padding: 10px 24px;
   }
 }
 
 /* Mobile */
 @media (max-width: 744px) {
-  .main-header {
+  .header {
     padding: 10px 16px;
   }
 

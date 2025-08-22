@@ -1,14 +1,16 @@
 .productsList {
   margin-top: 40px;
+
+  margin-bottom: 140px;
 }
 
-.productsList-header {
+.productsListHeader {
   display: flex;
   width: 100%;
   margin-bottom: 24px;
   justify-content: space-between;
 }
-.productsList-header h1 {
+.productsListHeader h1 {
   color: var(--Secondary-900);
 
   /* pretendard/xl-20px-bold */
@@ -19,12 +21,12 @@
   line-height: 32px; /* 160% */
 }
 
-.action-box {
+.searchControls {
   display: flex;
   gap: 12px;
 }
 
-.input-box {
+.inputContainer {
   display: flex;
   width: 325px;
   height: 42px;
@@ -33,17 +35,17 @@
   padding: 9px 20px 9px 16px;
   gap: 4px;
 }
-.input-box img {
+.inputContainer img {
   width: 24px;
   height: 24px;
 }
-.input-box input {
+.inputContainer input {
   width: 250px;
   border: 0;
   background: none;
 }
 
-.product-register {
+.registerBtn {
   display: flex;
   height: 42px;
   padding: 12px 23px;
@@ -64,13 +66,13 @@
   cursor: pointer;
 }
 
-.productsList-container {
+.productsListContainer {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 40px 24px;
 }
 
-.productsList-container li {
+.productsListContainer li {
   width: 220px;
 }
 
@@ -80,48 +82,48 @@
     padding: 0 24px;
   }
 
-  .productsList-container {
+  .productsListContainer {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .productsList-container li {
+  .productsListContainer li {
     width: auto;
   }
 
-  .productsList-container li:nth-last-child(-n + 4) {
+  .productsListContainer li:nth-last-child(-n + 4) {
     display: none;
   }
 
-  .input-box {
+  .inputContainer {
     width: 242px;
   }
 }
 
 /* Mobile */
 @media (max-width: 744px) {
-  .productsList-header {
+  .productsListHeader {
     flex-direction: column;
     position: relative;
   }
-  .action-box {
+  .searchControls {
     margin-top: 12px;
     justify-content: flex-end;
     gap: 14px;
   }
-  .product-register {
+  .registerBtn {
     position: absolute;
     top: -5px;
     right: 45px;
   }
-  .input-box {
+  .inputContainer {
     width: 288px;
   }
 
-  .productsList-container {
+  .productsListContainer {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .productsList-container li:nth-last-child(-n + 6) {
+  .productsListContainer li:nth-last-child(-n + 6) {
     display: none;
   }
 }

@@ -1,5 +1,5 @@
 import arrow from "../../assets/icon/arrow_right.svg";
-import "./Pagination.css";
+import style from "./Pagination.module.css";
 
 function Pagination({
   totalItems,
@@ -25,7 +25,7 @@ function Pagination({
   for (let i = startPage; i <= endPage; i++) {
     pages.push(
       <button
-        className={`pageBtn page-${i} ${currentPage === i ? "on" : ""}`}
+        className={`${style.pageBtn} ${style[`page_${i}`]} ${currentPage === i ? style.on : ''}`}
         key={i}
         onClick={() => handleClick(i)}
       >
@@ -35,9 +35,9 @@ function Pagination({
   }
 
   return (
-    <div className="pagination">
+    <div className={style.pagination}>
       <button
-        className="pageBtn arrow_left"
+        className={`${style.pageBtn} ${style.arrow_left}`}
         onClick={() => handleClick(startPage - 1)}
         disabled={startPage === 1}
       >
@@ -45,7 +45,7 @@ function Pagination({
       </button>
       {pages}
       <button
-        className="pageBtn arrow_right"
+        className={`${style.pageBtn} ${style.arrow_right}`}
         onClick={() => handleClick(endPage + 1)}
         disabled={endPage === totalPages}
       >

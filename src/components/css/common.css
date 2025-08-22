@@ -1,7 +1,7 @@
 /* font */
 @font-face {
   font-family: "ROKAF Sans";
-  src: url("../assets/font/ROKAF-Sans-Medium.ttf") format("truetype");
+  src: url("../../assets/font/ROKAF-Sans-Medium.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -26,6 +26,20 @@
   --error-red: #f74747;
 }
 
+#root{
+  width: 100%;
+  background: #FCFCFC;
+}
+
+.wrap {
+  max-width: 1120px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 1;
+}
+
 section {
   width: 100%;
   display: flex;
@@ -41,6 +55,10 @@ section {
 
 /* Tablet */
 @media (max-width: 1199px) {
+  .wrap {
+    flex-direction: column;
+  } 
+  
   .section-wrap {
     width: 100%;
   }

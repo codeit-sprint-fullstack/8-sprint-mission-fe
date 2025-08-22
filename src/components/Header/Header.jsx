@@ -1,9 +1,9 @@
-import pandaLogo from '../assets/icon/ic_panda.svg';
-import './css/Header.css';
+import pandaLogo from '../../assets/icon/ic_panda.svg'
+import style from './Header.module.css';
 
 function Logo(){
   return (
-    <a href="../" className='logo'>
+    <a href="../" className={style.logo}>
       <img src={pandaLogo} alt='pandaLogo'/>
       <span>판다마켓</span>
     </a>
@@ -22,15 +22,15 @@ function Marketplace() { //임시 컴포넌트
 }
 function LoginButton() { //임시 컴포넌트
   return(
-    <button className='login-button'>로그인</button>
+    <button className={style.loginButton}>로그인</button>
   );
 }
 
 function Header(){
   return (
-    <header className='main-header'>
-      <div className='header-wrap'>
-        <div className='header-left'>
+    <header className={style.header}>
+      <div className={style.headerWrap}>
+        <div className={style.headerLeft}>
           <Logo />
           <FreeBoard />
           <Marketplace />
