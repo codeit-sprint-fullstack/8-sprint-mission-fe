@@ -16,7 +16,7 @@ export default function LandingPage() {
             일상의 모든 물건을 <br />
             거래해 보세요
           </h1>
-          <Link to="/market" id="lookaround">
+          <Link to="/items" id="lookaround">
             구경하러 가기
           </Link>
         </div>
