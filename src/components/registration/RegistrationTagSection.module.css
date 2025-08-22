@@ -7,7 +7,7 @@
 .inputLabel {
   font-size: 16px;
   font-weight: 600;
-  color: #333;
+  color: var(--color-gray-800);
   margin-bottom: 8px;
 }
 
@@ -18,7 +18,7 @@
   border-radius: 8px;
   font-size: 14px;
   background-color: var(--color-secondary-100);
-  color: #333;
+  color: var(--color-gray-800);
   box-sizing: border-box;
   transition: background-color 0.2s;
 }
