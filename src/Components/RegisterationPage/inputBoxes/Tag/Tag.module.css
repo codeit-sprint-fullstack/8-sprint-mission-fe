@@ -1,0 +1,32 @@
+@import '../../../../style/color_variables.css';
+
+.tag {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 36px;
+  padding: 6px 12px 6px 16px;
+
+  .tagText {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--Secondary-800);
+    
+    .tagRemove {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      width: 22px;
+      height: 24px;
+    }
+
+    .tagRemove:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+  }
+
+}
