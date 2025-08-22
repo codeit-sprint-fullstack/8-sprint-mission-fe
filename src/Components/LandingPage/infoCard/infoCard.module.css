@@ -1,3 +1,5 @@
+@import '../../../style/color_variables.css';
+
 .sectionBg {
   display: flex;
   flex-direction: column;

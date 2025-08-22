@@ -1,5 +1,5 @@
-import ic_heart from '../../../images/ic_heart.svg';
-import defaultImg from '../../../images/img_default.svg';
+import ic_heart from '../../../../images/ic_heart.svg';
+import defaultImg from '../../../../images/img_default.svg';
 import style from './ProductCard.module.css';
 
 function ProductCard({ name= '', price= 0, favoriteCount= 0 }) {

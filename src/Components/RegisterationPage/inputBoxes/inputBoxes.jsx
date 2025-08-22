@@ -1,5 +1,5 @@
 import style from './inputBoxes.module.css';
-import Tag from './Tag/Tag';
+import Tag from './Tag/Tag.jsx';
 
 function InputBoxes() {
 

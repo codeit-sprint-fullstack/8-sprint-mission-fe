@@ -1,8 +1,8 @@
 // 여기가 페이지네이션 기능
 
 import style from './PageButton.module.css';
-import ic_arrow_left from '../../images/ic_PageButton_left.svg';
-import ic_arrow_right from '../../images/ic_PageButton_right.svg';
+import ic_arrow_left from '../../../images/ic_PageButton_left.svg';
+import ic_arrow_right from '../../../images/ic_PageButton_right.svg';
 
 function PageButton({ nowPage = 1, buttonLength = 5, pageSize = 10, totalCount = 50, onChange = null }) {
   const startPage = Math.floor((nowPage - 1) / buttonLength) * buttonLength + 1;
