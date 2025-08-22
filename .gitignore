@@ -1,3 +1,4 @@
 node_modules/
 server/env.js
 server/.env
+server/request.http
