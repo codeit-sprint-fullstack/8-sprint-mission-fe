@@ -1,0 +1,31 @@
+@import '../../../../style/color_variables.css';
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--Secondary-800);
+  }
+
+  .registerButton {
+    height: 42px;
+    padding: 12px 23px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background-color: var(--Cool-Gray-400);
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--Cool-Gray-100);
+    border: none;
+    outline: none;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}

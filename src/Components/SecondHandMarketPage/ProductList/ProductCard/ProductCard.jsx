@@ -2,7 +2,7 @@ import ic_heart from '../../../images/ic_heart.svg';
 import defaultImg from '../../../images/img_default.svg';
 import style from './ProductCard.module.css';
 
-function ProductCard({ images= [], name= '', price= 0, favoriteCount= 0 }) {
+function ProductCard({ name= '', price= 0, favoriteCount= 0 }) {
   return (
     <li className={style.container}>
       <div className={style.ProductImg}>
