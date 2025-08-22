@@ -1,0 +1,40 @@
+@import "./reset.css";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Pretendard, sans-serif;
+  font-style: normal;
+  white-space: nowrap
+}
+
+body {
+  margin: 0;
+  background-color: #ffffff;
+}
+
+main {
+  width: 100%;
+}
+
+
+/* PC */
+@media (min-width: 1200px) {
+  
+}
+
+/* Tablet 744~1199px */
+@media (max-width: 1199px) {
+  header {
+    padding: 9px 24px;
+  }
+}
+
+/* Mobile 375~743px */
+@media (max-width: 743px) {
+  header {
+    padding: 9px 16px;
+  }
+}
