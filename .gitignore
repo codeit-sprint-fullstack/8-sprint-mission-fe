@@ -1,4 +1,13 @@
+'node_modules/\n.env\n*.http\n*.log\n*.gz\n.DS_Store' 
+# node_modules
+# .env - 환경변수
+# .http -백엔드 리퀘스트 시험 파일
+# .log
+# .gz
+# .DS_store
+# 제외
 node_modules/
 server/env.js
 server/.env
 server/request.http
+# 뭔가 불안해서 직접 정의도 넣음
