@@ -29,7 +29,7 @@ function InputForm({label, name, value, handleChange, handleKeyDown = null, plac
 
     //textara는 기본적으로 rows={2}로 설정 되어 있다. 
     //input처럼 높이를 맞추려면 rows={1}이 꼭 필요.
-    //rows={1}인 textarea보다 input이 EX적으로 좋다고 판단.
+    //rows={1}인 textarea보다 input이 UX적으로 좋다고 판단.
     return (
         <div className='inputForm'>
             <label>{label}</label>
@@ -43,10 +43,10 @@ function InputForm({label, name, value, handleChange, handleKeyDown = null, plac
 function SelectedTags({tags}){
     return (
         <div className='selectedTags'>
-            {tags.map((e)=>{
+            {tags.map((tag)=>{
                 return(
                     <div className='selectedTag'>
-                        <p>{e}</p>
+                        <p>{'#'+tag}</p>
                         <button className='cancleBtn'><img src={cancleTagImg}/></button>
                     </div>
                 );
@@ -96,7 +96,7 @@ function Registration({}){
         const { name , value } = e.target;
 
         if (e.key === 'Enter' && checkValidity(name, value).result) {
-            const newTags = [...values.tags, ('#' + values.tag)];
+            const newTags = [...values.tags, values.tag];
             setValues((prevValues) => ({
                 ...prevValues,
                 tag: '',

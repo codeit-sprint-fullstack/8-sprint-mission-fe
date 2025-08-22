@@ -23,7 +23,7 @@ function Product({item}){
                     <button>
                         <img src={heartIcon}/>
                     </button>
-                    <p>{240}</p> 
+                    <p>{item.favoriteCount}</p> 
                 </div>
             </div>
         </div>

@@ -1,11 +1,7 @@
 import mongoose from 'mongoose';
 
-//import { DATABASE_URL } from './env.js';
-
-//mongoose.connect(DATABASE_URL).then(() => console.log('Connected to DB'));
-
 //스키마 정의
-const ProductsSchema = new mongoose.Schema(
+const ProductSchema = new mongoose.Schema(
   // 여기에 코드를 작성하세요.
   {
     name:{
@@ -14,7 +10,7 @@ const ProductsSchema = new mongoose.Schema(
       maxLength: 20,
       validate:{
         validator: function (title) {
-          return title.length < 10;
+          return title.length <= 10;
         },
         message: 'product name must be 10 words'
       }
@@ -31,7 +27,20 @@ const ProductsSchema = new mongoose.Schema(
     },
     description: {
       type: String,
+      required: true,
     },
+    tags: {
+      type: [String],
+      default: []
+    },
+    images: {
+      type: [String],
+      required: true,
+    },
+    favoriteCount: {
+      type: Number,
+      default: 0
+    }
   },
   {
     timestamps: true,
@@ -41,6 +50,6 @@ const ProductsSchema = new mongoose.Schema(
 );
 
 //모델은 해당 스키마를 다루는 것. 이름은 첫 대문자. 단수형으로 쓴다. 
-const Products = mongoose.model('Subscription', ProductsSchema);
+const Product = mongoose.model('Product', ProductSchema);
 
-export default Products;
+export default Product;

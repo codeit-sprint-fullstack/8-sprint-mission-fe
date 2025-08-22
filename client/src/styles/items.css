@@ -3,10 +3,8 @@
     padding: 0;
 }
 
-.itemsMain > div {
-    /*네비게이션 때문에 일부러 위쪽 마진이 main에 들어가 있음*/
-    /*안쪽 컨텐츠는 일단 패딩으로 해결*/
-    padding: 17px 16px 0;
+.itemsMain .wrapper{
+    padding: 17px 0 140px;
 }
 
 .itemsMain section{
@@ -15,7 +13,7 @@
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-}
+}   
 
 #best-products{
     display: flex;
@@ -28,7 +26,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto 140px;
+    margin: 0 auto;
 }
 
 .section-headline{
@@ -343,8 +341,8 @@
 /* Tablet styles */
 @media (min-width: 744px) {
 
-    .itemsMain{
-        padding: 24px 0 0;
+    .itemsMain .wrapper{
+        padding: 26px 0 140px;
     }
 
     #common-products .section-headline{
@@ -375,10 +373,11 @@
 
 /* Desktop styles */
 @media (min-width: 1200px) {
-    .itemsMain{
-        padding: 24px 0 0;
-    }
 
+    .itemsMain .wrapper{
+        padding: 26px 0 140px;
+    }
+    
     #common-products .section-headline{
         margin: 0 0 24px;
     }

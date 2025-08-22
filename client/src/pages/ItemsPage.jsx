@@ -37,7 +37,7 @@ function Items() {
 
     const handleBestProductLoad = async () => {
         const res1 = await productApi.getProductList(1, 4, 'favorite');
-        setBestProducts(res1.list);
+        setBestProducts(res1);
     }
 
     const handleCommonProductLoad = async(deviceType, pageIdx, order, search) => {
@@ -55,14 +55,14 @@ function Items() {
         */
 
         const setPageSize = {
-            'mobile' : 6,
-            'tablet' : 8,
+            'mobile' : 4,
+            'tablet' : 6,
             'desktop' : 10,
         }
         //페이지 로딩이 끝날 때까지 페이지 이동이 안되도록 막았습니다.
         const res = await getItemsAsync(pageIdx, setPageSize[deviceType], order, search);
         if(!res)return;
-        setCommonProducts(res.list);
+        setCommonProducts(res);
     }
 
     const handlePagechange = (idx) => {

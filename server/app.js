@@ -1,29 +1,24 @@
 import express from 'express';
-import mockSubs from './data/mock.js';
+import cors from 'cors';
 
 import mongoose from 'mongoose';
-import { DATABASE_URL } from '../env.js';
-import Subs from './models/Subscription.js'
+import { DATABASE_URL } from './env.js';
+import Product from './models/Product.js';
 
 mongoose.connect(DATABASE_URL).then(() => console.log('Connected to DB'));
 
 const app = express();
 
+//cors 설정 -> '프론트엔드 코드에서 배포된 API를 사용할 수 있게 하려면 CORS를 허용해야 한다' 
+const corsOptions = {
+  origin: ['http://localhost:5173'] //프론트엔드 개발 로컬 주소
+}
+app.use(cors(corsOptions));
+
 //POST 리퀘스트에서 받는 body는 자동으로 json변환을 해주지 않는다.
 //(보낼 때는 자동으로 해주시만)
 //그래서 app.use로 json파일을 사용한다고 명시해주는게 필요하다.
 app.use(express.json());
-
-// function asyncHandler(handler){
-//   return async function (req, res){
-//     try{
-//       await handler(req, res);
-//     }catch (e){
-//       console.log(e.name);
-//       console.log(e.message);
-//     }
-//   }
-// }
 
 function asyncHandler(handler) {
   // 여기에 코드를 작성하세요.
@@ -40,55 +35,58 @@ function asyncHandler(handler) {
       return res.status(500).send({message: e.message});
     }
   }
-  //return asyncReqHandler;
 }
 
-app.get('/subscriptions', async (req, res) => {
-  const sort = req.query.sort;
-  const count  = Number(req.query.count) || 0;
+app.get('/products', async (req, res) => {
+  const sort = req.query.orderBy;
+  const count  = Number(req.query.pageSize) || 0;
+  const offset  = ((Number(req.query.page) || 0) -1)*count;
   
-  const sortOption = sort === 'price'
-    ? {price : 'desc'}
+  //좋아요 순 정렬은 구현하지 말라고 했지만 일단 만들어 놓기만..
+  const sortOption = sort === 'favorite'
+    ? {favoriteCount : 'desc'}
     : {createdAt: 'desc'};
 
-  const subs = await Subs.find().sort(sortOption).limit(count);//퀴리 메서드 체인이다. 모두 쿼리를 반환한다.
-  
-  res.send(subs);
+  //퀴리 메서드 체인이다. 모두 쿼리를 반환한다.
+  //const items = await Product.find().sort(sortOption).limit(count);
+  const items = await Product.find().skip(offset).limit(count);
+
+  res.send(items);
 });
 
-app.get('/subscriptions/:id', async (req, res) => {
-    const sub = await Subs.findById(req.params.id);//문자형으로 받기 때문에 숫자형변환 안한다. 
-  if(sub){
-    res.send(sub);
+app.get('/products/:id', async (req, res) => {
+    const item = await Product.findById(req.params.id);//문자형으로 받기 때문에 숫자형변환 안한다. 
+  if(item){
+    res.send(item);
   } else{
     res.status(404).send({message : 'Cannot find given id.'});
   }
 });
 
-app.post('/subscriptions', asyncHandler(async (req, res) => {
-  const newSubscription = await Subs.create(req.body);
-  res.status(201).send(newSubscription);
+app.post('/products', asyncHandler(async (req, res) => {
+  const newItem = await Product.create(req.body);
+  res.status(201).send(newItem);
 }));
 
-app.patch('/subscriptions/:id', asyncHandler(async (req, res) => {
+app.patch('/products/:id', asyncHandler(async (req, res) => {
     //양식 틀은 get과 비슷해서 복사 후 수정
   const id = req.params.id;
-  const sub = await Subs.findById(id);
-  if(sub){
+  const item = await Product.findById(id);
+  if(item){
     Object.keys(req.body).forEach((key)=>{
-        sub[key] = req.body[key];
+        item[key] = req.body[key];
     });
-    await sub.save(); //수정한 model을 MongoDB에 저장
-    res.send(sub);
+    await item.save(); //수정한 model을 MongoDB에 저장
+    res.send(item);
   } else{
     res.status(404).send({message : 'Cannot find given id.'});
   }
 }));
 
-app.delete('/subscriptions/:id', asyncHandler(async (req, res) => {
+app.delete('/products/:id', asyncHandler(async (req, res) => {
   const id = req.params.id;
-  const sub = await Subs.findByIdAndDelete(id);//찾고 지우는 것까지 해준다.(편함)
-  if(sub){
+  const item = await Product.findByIdAndDelete(id);//찾고 지우는 것까지 해준다.(편함)
+  if(item){
     res.sendStatus(204);//삭제 상태 코드는 204.
   } else{
     res.send({message : 'Cannot find given id.'});
