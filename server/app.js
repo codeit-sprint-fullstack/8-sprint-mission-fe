@@ -1,11 +1,12 @@
 import express from 'express';
 import cors from 'cors';
-
 import mongoose from 'mongoose';
-import { DATABASE_URL } from './env.js';
+import * as dotenv from 'dotenv'; //배포용 환경변수로 구성(.env)
+dotenv.config();
+
 import Product from './models/Product.js';
 
-mongoose.connect(DATABASE_URL).then(() => console.log('Connected to DB'));
+mongoose.connect(process.env.DATABASE_URL).then(() => console.log('Connected to DB'));
 
 const app = express();
 
@@ -108,4 +109,5 @@ app.delete('/products/:id', asyncHandler(async (req, res) => {
   }
 }));
 
-app.listen(3000, () => console.log('Server Started'));
+//배포용 포트 구성
+app.listen(process.env.PORT || 3000, () => console.log('Server Started'));
