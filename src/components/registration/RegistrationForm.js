@@ -4,8 +4,10 @@ import axios from 'axios';
 import RegistrationInput from './RegistrationInput';
 import RegistrationTagSection from './RegistrationTagSection';
 import styles from './RegistrationForm.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const RegistrationForm = () => {
+  const navigate = useNavigate();
   const [productName, setProductName] = useState('');
   const [productDescription, setProductDescription] = useState('');
   const [productPrice, setProductPrice] = useState('');
@@ -64,7 +66,7 @@ const RegistrationForm = () => {
       setProductName('');
       setProductDescription('');
       setProductPrice('');
-      setTags([]);
+      navigate('/productDetail');
     } catch (error) {
       if (error.response) {
         alert('서버 응답 에러: ' + error.response.data.message);

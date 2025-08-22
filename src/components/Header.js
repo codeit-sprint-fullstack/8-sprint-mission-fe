@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import styles from './Header.module.css';
 
 const Header = () => {
@@ -11,8 +11,8 @@ const Header = () => {
           <span className={styles['logo-text']}>판다마켓</span>
         </Link>
         <nav className={styles.nav}>
-          <Link to="/" className={styles['nav-item']}>자유게시판</Link>
-          <Link to="/" className={styles['nav-item']}>중고마켓</Link>
+          <NavLink to="/board" className={({ isActive }) => (isActive ? styles.current : '')} end>자유게시판</NavLink>
+          <NavLink to="/items" className={({ isActive }) => (isActive ? styles.current : '')}>중고마켓</NavLink>
         </nav>
         <Link className={styles['login-btn']} to="/login">로그인</Link>
         <Link className={styles['user']} to="/user">

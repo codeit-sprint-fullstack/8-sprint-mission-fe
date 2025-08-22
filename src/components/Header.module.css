@@ -65,6 +65,9 @@ nav {
     font-size: 18px;
     font-weight: 700;
     padding: 0 15px;
+    &.current {
+      color: var(--color-primary);
+    }
   }
 }
 
