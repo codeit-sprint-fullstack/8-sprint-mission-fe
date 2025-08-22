@@ -1,0 +1,49 @@
+@import '../../style/color_variables.css';
+
+.headerBox {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 10px;
+  z-index: 100;
+  border-bottom: 1px solid var(--header-bottom-border-color);
+  background-color: var(--header-bg-color);
+  height: 70px;
+  padding: 0 200px;
+}
+
+.navBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+}
+
+.navBox div {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.loginBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-end;
+  background-color: var(--button-color);
+  border-radius: 8px;
+  width: 128px;
+  height: 48px;
+  padding: 12px 23px;
+  text-decoration: none;
+  font-size: 1rem; /* 16px */
+  color: var(--login-button-text-color);
+}
+
+.loginBtn:hover {
+text-decoration: underline;
+}
