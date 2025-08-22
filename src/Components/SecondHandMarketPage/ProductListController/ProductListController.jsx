@@ -11,11 +11,7 @@ function ProductListController({ option: controls = {}, setQuery = null }) {
         setQuery?.(prev => ({ ...prev, keyword, page: 1 }));
     }
   };
-
-  // const handleUpload = (e) => {
-
-  // };
-
+  
   return (
     <section className={style.productListController}>
       <h2>판매 중인 상품</h2>
