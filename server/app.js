@@ -41,15 +41,30 @@ app.get('/products', async (req, res) => {
   const sort = req.query.orderBy;
   const count  = Number(req.query.pageSize) || 0;
   const offset  = ((Number(req.query.page) || 0) -1)*count;
+  const search = req.query.keyword  ;
   
+  //검색 필터 - 요구사항 (상품명, 상품 내용으로 검색)
+  const filter = search
+    ? { 
+      $or: [ //$or를 쓰면 하나라도 일치 할 시 참 (and는 그냥 조건을 여러 개 넣으면 된다.)
+        {name: { $regex: search, $options: 'i'}}, //options: 'i' => 대소문자 구분 x
+        {description: { $regex: search, $options: 'i'}}, 
+      ]
+    } 
+    : {};
+
+  //최신순 정렬 지원합니다 - 요구사항.
   //좋아요 순 정렬은 구현하지 말라고 했지만 일단 만들어 놓기만..
   const sortOption = sort === 'favorite'
     ? {favoriteCount : 'desc'}
     : {createdAt: 'desc'};
 
-  //퀴리 메서드 체인이다. 모두 쿼리를 반환한다.
-  //const items = await Product.find().sort(sortOption).limit(count);
-  const items = await Product.find().skip(offset).limit(count);
+  //퀴리 메서드 체인. (쿼리 반환)
+  const items = await Product
+    .find(filter)//검색 쿼리
+    .sort(sortOption)//정렬 쿼리
+    .skip(offset)//오프셋 방식 페이지네이션
+    .limit(count);//페이지네이션
 
   res.send(items);
 });
@@ -69,7 +84,7 @@ app.post('/products', asyncHandler(async (req, res) => {
 }));
 
 app.patch('/products/:id', asyncHandler(async (req, res) => {
-    //양식 틀은 get과 비슷해서 복사 후 수정
+  //양식 틀은 get과 비슷해서 복사 후 수정
   const id = req.params.id;
   const item = await Product.findById(id);
   if(item){
