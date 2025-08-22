@@ -1,0 +1,44 @@
+@import '../../../style/color_variables.css';
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  width: 1200px;
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 32px;
+  
+    h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--Secondary-800);
+    }
+  
+    input {
+      border-radius: 12px;
+      border: none;
+      background-color: var(--Cool-Gray-100);
+      display: flex;
+      padding: 16px 24px;
+      align-items: center;
+      gap: 10px;
+      align-self: stretch;
+      width: 100%;
+      height: 56px;
+    }
+
+    input:focus {
+      outline: 1px solid var(--Secondary-400);
+    }
+
+    .introduceInput {
+      height: 282px;
+    }
+  }
+}
