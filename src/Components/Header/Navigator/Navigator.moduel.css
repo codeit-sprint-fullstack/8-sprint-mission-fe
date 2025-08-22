@@ -1,0 +1,21 @@
+@import '../../../style/color_variables.css';
+
+.navigator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 15px;
+
+  a {
+    color: var(--Secondary-600);
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.125rem;  /* 18px */
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
