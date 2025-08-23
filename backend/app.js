@@ -11,6 +11,12 @@ import Product from './models/Product.js';
 mongoose.connect(process.env.DATABASE_URL).then(() => console.log('Connected to DB'));
 
 const app = express();
+/*
+POST 리퀘스트에서 받는 body는 자동으로 json변환을 해주지 않는다.
+(보낼 때는 자동으로 해주시만)
+그래서 app.use로 json파일을 사용한다고 명시해주는게 필요하다.
+*/
+app.use(express.json());
 
 //cors 설정 -> '프론트엔드 코드에서 배포된 API를 사용할 수 있게 하려면 CORS를 허용해야 한다' 
 const corsOptions = {
@@ -24,19 +30,18 @@ app.use(cors(corsOptions));
 //ES module 방식에서는 경로 지정을 수동으로 설정해줘야 한다고 합니다;;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-app.use(express.static(path.join(__dirname, 'public', 'index.html')));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 /*
-새로고침 시에 SPA는 경로를 서버가 직접 인식하지 못한다고 합니다.
+-> 새로고침 시에 SPA는 경로를 서버가 직접 인식하지 못한다고 합니다.
 그래서 index.html로 리다이렉트 시키는게 정석이라고 하는데 
 해줘야 하는 게 너무 많습니다 ㅜㅜ
 */
 
-/*
-POST 리퀘스트에서 받는 body는 자동으로 json변환을 해주지 않는다.
-(보낼 때는 자동으로 해주시만)
-그래서 app.use로 json파일을 사용한다고 명시해주는게 필요하다.
-*/
-app.use(express.json());
 
 function asyncHandler(handler) {
   // 여기에 코드를 작성하세요.
