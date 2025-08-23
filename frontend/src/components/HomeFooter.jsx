@@ -1,16 +1,16 @@
 //이미지 파일은 꼭 import해서 써야 빌드 시 포함 시켜 준다!!
-import facebookLogo from "images/social/facebook-logo.svg";
-import twitterLogo from "images/social/twitter-logo.svg";
-import youtubeLogo from "images/social/youtube-logo.svg";
-import instagramLogo from "images/social/instagram-logo.svg";
+import facebookLogo from "/images/social/facebook-logo.svg";
+import twitterLogo from "/images/social/twitter-logo.svg";
+import youtubeLogo from "/images/social/youtube-logo.svg";
+import instagramLogo from "/images/social/instagram-logo.svg";
 
 function HomeFooter(){
     return (
         <footer>
             <div id="copyright">©codeit - 2024</div>
             <div id="footerMenu">
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="faq.html">FAQ</a>
+                <a>Privacy Policy</a>
+                <a>FAQ</a>
             </div>
             <div id="socialMedia">
                 <a
