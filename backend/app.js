@@ -32,15 +32,22 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/:catchAll(.*)', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'public', 'index.html'));
+// });
 /*
 1) 새로고침 시에 SPA는 경로를 서버가 직접 인식하지 못한다고 합니다.
 그래서 index.html로 리다이렉트 시키는게 정석이라고 하는데 
 해줘야 하는 게 너무 많습니다 ㅜㅜ
-2) ES5 부터는 모든 경로를 '*'이 아니라 '/*' 로 표현한다네요...
+
+2) 이 코드를 넣으니 Time out 오류가 발생합니다. 
+ES5 부터는 모든 경로를 '*'이 아니라 '/*' 로 표현한다네요...
 배포 오류가 너무 많습니다. (ES4까지는 '*')
+
+3)고쳐도 안됩니다. 경로 정규식에 문제가 생긴다고 time out이 나는데
+SPA 새로고침 이슈를 결국 해결 할 수가 없었습니다... 요구사항에는 없기 때문에 포기하겠습니다..
+
+4)죄송합니다 멘토님...
 */
 
 
