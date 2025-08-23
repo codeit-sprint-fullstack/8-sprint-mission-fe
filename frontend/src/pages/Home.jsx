@@ -5,8 +5,8 @@ import HomeHeader from "../components/HomeHeader.jsx";
 import HomeFooter from "../components/HomeFooter.jsx";
 import Banner from '../components/Home/Banner.jsx';
 
-import topBannerImg from "../../images/home/hero-image.png";
-import bottomBannerImg from "../../images/home/bottom-banner-image.png";
+import topBannerImg from "/images/home/hero-image.png";
+import bottomBannerImg from "/images/home/bottom-banner-image.png";
 import Features from '../components/Home/Features.jsx';
 
 

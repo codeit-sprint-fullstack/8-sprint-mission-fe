@@ -1,8 +1,9 @@
 import heartIcon from '/images/items/ic_heart.svg';
-import productDefault from '../../images/items/product_default.svg';
+import productDefault from '/images/items/product_default.png';
+//png는 backgroundImage에 표시되고, svg는 표시되지 않는 문제 발생.
 
 function Product({item}){
-    
+
     //디폴트 이미지로 변경했습니다.
     const style = {
         backgroundImage: `url(${productDefault})`,
