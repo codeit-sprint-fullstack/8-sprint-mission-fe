@@ -4,7 +4,7 @@
 }
 
 .itemsMain .wrapper{
-    padding: 17px 0 140px;
+    padding: 17px 16px 140px;
 }
 
 .itemsMain section{
@@ -342,7 +342,7 @@
 @media (min-width: 744px) {
 
     .itemsMain .wrapper{
-        padding: 26px 0 140px;
+        padding: 26px 24px 140px;
     }
 
     #common-products .section-headline{
