@@ -13,7 +13,7 @@ function HomeFooter(){
                 <a>FAQ</a>
             </div>
             <div id="socialMedia">
-                <a
+                <a  
                 href="https://www.facebook.com/"
                 target="_blank"
                 rel="noopener noreferrer"
