@@ -4,6 +4,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import * as dotenv from 'dotenv'; //배포용 환경변수로 구성(.env)
 dotenv.config();
+import { fileURLToPath } from 'url';
 
 import Product from './models/Product.js';
 
@@ -18,7 +19,14 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 
+
+
+
+
 //배포용 정적 파일 서빙 설정...
+//ES module 방식에서는 경로 지정을 수동으로 설정해줘야 한다고 합니다;;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, 'public')));
 
 /*
