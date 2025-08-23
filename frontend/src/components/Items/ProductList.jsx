@@ -1,11 +1,11 @@
 import heartIcon from '/images/items/ic_heart.svg';
-import productDefualt from '/images/items/product_default.svg';
+import productDefault from '../../images/items/product_default.svg';
 
 function Product({item}){
     
     //디폴트 이미지로 변경했습니다.
     const style = {
-        backgroundImage: url(productDefualt),
+        backgroundImage: `url(${productDefault})`,
         backgroundRepeat: 'no-repeat',  
         backgroundSize: '100%',
         borderRadius: '10px',

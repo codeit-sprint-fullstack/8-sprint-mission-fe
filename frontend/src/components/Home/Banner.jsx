@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function Banner({bgImg, btnUrl='', btnText='', children}){
 
     const style = {
-        backgroundImage: url(bgImg)
+        backgroundImage: `url(${bgImg})`
     }
 
     return(
