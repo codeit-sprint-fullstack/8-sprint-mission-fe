@@ -85,9 +85,7 @@ header div{
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 30px;
-  /* 원래는 링크 글자를 div로 다시 감싸고 gap을 더 세세하게 나눠야 하지만,
-   이렇게 해도 Figma와 똑같은 형태가 되고 자연스러워서 이대로 뒀습니다.*/
+  gap: 8px;
 }
 
 header p{
@@ -95,10 +93,13 @@ header p{
   text-align: center;
   /* pretendard/2lg-18px-bold */
   font-family: Pretendard;
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 700;
   line-height: 26px; /* 144.444% */
+
+  display: flex;
+  padding: 25px 0;
 }
 
 footer {
@@ -186,6 +187,19 @@ h1 {
   header {
     padding: 0 24px;
   }
+  
+  header > div {
+    gap: 20px;
+  }
+
+  header > div > div {
+    gap: 0;
+  }
+
+  header p{
+    font-size: 18px;
+    padding: 21px 15px;
+  }
 
   .wrapper {
     padding: 0 24px;
@@ -212,6 +226,19 @@ h1 {
 @media (min-width: 1200px) {
   header {
     padding: 0 200px;
+  }
+
+  header > div {
+    gap: 24px;
+  }
+
+  header > div > div {
+    gap: 0;
+  }
+
+  header p{
+    font-size: 18px;
+    padding: 21px 15px;
   }
 
   .wrapper {

@@ -19,8 +19,13 @@ function HomeHeader(){
             <div>
                 <Link to="/"><img src={logo} alt="판다마켓 로고" width={logoWidth}/></Link>
                 {/* 랜딩 페이지에서는 네비게이션 목록이 안나오도록 설정 */}
-                {location.pathname !== '/' && <Link><p>자유게시판</p></Link>}
-                {location.pathname !== '/' && <Link to="/items"><p>중고마켓</p></Link>}
+                
+                {location.pathname !== '/' && 
+                    <div>
+                        <Link><p>자유게시판</p></Link>
+                        <Link to="/items"><p>중고마켓</p></Link>
+                    </div>
+                }
             </div>
             <Link to="/"><button id="loginLink" className="button">로그인</button></Link>
         </header>
