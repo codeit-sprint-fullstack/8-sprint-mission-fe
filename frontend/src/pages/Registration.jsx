@@ -40,14 +40,15 @@ function InputForm({label, name, value, handleChange, handleKeyDown = null, plac
     );
 }
 
-function SelectedTags({tags}){
+function SelectedTags({tags , handleDelete}){
+
     return (
         <div className='selectedTags'>
             {tags.map((tag)=>{
                 return(
                     <div className='selectedTag'>
                         <p>{'#'+tag}</p>
-                        <button className='cancleBtn'><img src={cancleTagImg}/></button>
+                        <button className='cancleBtn' onClick={() => handleDelete(tag)}><img src={cancleTagImg}/></button>
                     </div>
                 );
             })}
@@ -135,6 +136,14 @@ function Registration({}){
         
         //리퀘스트에 성공하면 상품 상세 사이트 이동
         if(res){nav("/productdetail");}
+    }
+
+    const handleDeleteTag = (tag) => {
+        setValues((prevValues) => ({
+            ...prevValues,
+            tag: '',
+            tags: [...values.tags.filter((e)=> e!==tag)] //즉정 태그 제거
+        })); 
     }
 
 
@@ -247,7 +256,7 @@ function Registration({}){
                             placeholder='태그를 입력해 주세요.'
                             validErrorMsg={validErrorMsgs.tag} 
                         />
-                        <SelectedTags tags={values.tags}/>
+                        <SelectedTags tags={values.tags} handleDelete={handleDeleteTag}/>
                     </div>
                 </main> 
             <HomeFooter />
