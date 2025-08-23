@@ -141,7 +141,6 @@ function Registration({}){
     const handleDeleteTag = (tag) => {
         setValues((prevValues) => ({
             ...prevValues,
-            tag: '',
             tags: [...values.tags.filter((e)=> e!==tag)] //즉정 태그 제거
         })); 
     }
