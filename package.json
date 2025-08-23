@@ -4,10 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "node backend/app.js",
+    "build": "npm install && cd frontend && vite build",
     "dev": "concurrently \"npm run client\" \"npm run server\"",
-    "client": "cd client && vite",
-    "server": "cd server && nodemon app.js",
-    "seed": "node server/data/seed.js"
+    "client": "cd frontend && vite",
+    "server": "cd backend && nodemon app.js",
+    "seed": "node backend/data/seed.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

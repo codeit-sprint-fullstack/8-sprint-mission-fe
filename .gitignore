@@ -7,7 +7,7 @@
 # .DS_store
 # 제외
 node_modules/
-server/env.js
-server/.env
-server/request.http
+backend/env.js
+backend/.env
+backend/request.http
 # 뭔가 불안해서 직접 정의도 넣음
