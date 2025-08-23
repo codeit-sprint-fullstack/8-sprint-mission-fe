@@ -32,13 +32,15 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 /*
--> 새로고침 시에 SPA는 경로를 서버가 직접 인식하지 못한다고 합니다.
+1) 새로고침 시에 SPA는 경로를 서버가 직접 인식하지 못한다고 합니다.
 그래서 index.html로 리다이렉트 시키는게 정석이라고 하는데 
 해줘야 하는 게 너무 많습니다 ㅜㅜ
+2) ES5 부터는 모든 경로를 '*'이 아니라 '/*' 로 표현한다네요...
+배포 오류가 너무 많습니다. (ES4까지는 '*')
 */
 
 
