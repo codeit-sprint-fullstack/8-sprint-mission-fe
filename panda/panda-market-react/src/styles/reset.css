@@ -1,12 +1,17 @@
+
 html {
   font-size: 62.5%;
 }
 
 *, *::before, *::after {
+
+* {
+
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 
 a {
   text-decoration: none;
@@ -32,4 +37,10 @@ input, textarea, select {
   background: none;
   border: none;
   outline: none;
+
+body {
+  font-family: 'Pretendard', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+
 }

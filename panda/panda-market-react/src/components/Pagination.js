@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/pagination.css';
 
 function Pagination({ currentPage, totalPages, onPageChange }) {
+
   const Max = 5;
 
   const windowIndex = Math.floor((currentPage - 1) / Max);
@@ -10,6 +11,9 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
 
   const count = Math.max(0, end - start + 1);
   const pages = Array.from({ length: count }, (_, i) => start + i);
+
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+
 
   const goToPrev = () => {
     if (currentPage > 1) onPageChange(currentPage - 1);

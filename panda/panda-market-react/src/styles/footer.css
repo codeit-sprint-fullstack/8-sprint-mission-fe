@@ -20,6 +20,7 @@
   margin-right: 30px;
 }
 
+
 .footer-right {
   display: flex;
   flex-direction: row;
@@ -33,6 +34,8 @@
   justify-content: center;
 }
 
+
+
 .footer-center a:hover {
   text-decoration: underline;
 }
@@ -41,5 +44,9 @@
   width: 20px;
   height: 20px;
   vertical-align: middle;
+
   margin: 0;
+
+  margin-right: 12px;
+
 }
