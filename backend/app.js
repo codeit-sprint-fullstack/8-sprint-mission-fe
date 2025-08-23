@@ -32,6 +32,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 /*
 -> 새로고침 시에 SPA는 경로를 서버가 직접 인식하지 못한다고 합니다.
 그래서 index.html로 리다이렉트 시키는게 정석이라고 하는데 
