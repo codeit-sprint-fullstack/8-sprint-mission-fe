@@ -24,7 +24,12 @@ app.use(cors(corsOptions));
 //ES module 방식에서는 경로 지정을 수동으로 설정해줘야 한다고 합니다;;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public', 'index.html')));
+/*
+새로고침 시에 SPA는 경로를 서버가 직접 인식하지 못한다고 합니다.
+그래서 index.html로 리다이렉트 시키는게 정석이라고 하는데 
+해줘야 하는 게 너무 많습니다 ㅜㅜ
+*/
 
 /*
 POST 리퀘스트에서 받는 body는 자동으로 json변환을 해주지 않는다.
