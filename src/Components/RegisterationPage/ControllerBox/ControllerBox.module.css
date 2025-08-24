@@ -29,3 +29,24 @@
     cursor: pointer;
   }
 }
+
+/* PC */
+@media (min-width: 1200px) {
+  .container{
+    gap: 1017px;
+  }
+}
+
+/* Tablet 744~1199px */
+@media (min-width: 744px) {
+  .container{
+    gap: 513px;
+  } 
+}
+
+/* Mobile 375~743px */
+@media (min-width: 375px) {
+  .container{
+    gap: 161px;
+  }
+}

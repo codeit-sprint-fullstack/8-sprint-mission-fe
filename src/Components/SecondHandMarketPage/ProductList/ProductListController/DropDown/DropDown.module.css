@@ -57,3 +57,18 @@
     } */
   }
 }
+
+/* Tablet 744~1199px
+@media (min-width: 744px) {
+  
+}
+
+/* Mobile 375~743px */
+/* @media (min-width: 375px) {
+  .dropDown {
+    display: flex;
+    width: 42px;
+    height: 42px;
+    padding: 9px;
+  }
+} */

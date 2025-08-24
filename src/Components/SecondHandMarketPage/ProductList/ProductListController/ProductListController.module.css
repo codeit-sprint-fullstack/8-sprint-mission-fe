@@ -65,3 +65,24 @@
     }
   }
 }
+
+/* PC */
+@media (min-width: 1200px) {
+  .productListController {
+    width: 1200px;
+  }
+}
+
+/* Tablet 744~1199px */
+@media (min-width: 744px) {
+  .productListController {
+    width: 692px;
+  }
+}
+
+/* Mobile 375~743px */
+@media (min-width: 375px) {
+  .productListController {
+    width: 299px;
+  }
+}

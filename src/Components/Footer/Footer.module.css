@@ -68,3 +68,18 @@
     }
   }
 }
+
+/* PC */
+@media (min-width: 1200px) {
+  
+}
+
+/* Tablet 744~1199px */
+@media (min-width: 744px) {
+  
+}
+
+/* Mobile 375~743px */
+@media (min-width: 375px) {
+  
+}

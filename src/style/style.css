@@ -26,14 +26,14 @@ main {
 }
 
 /* Tablet 744~1199px */
-@media (max-width: 1199px) {
+@media (min-width: 744px) {
   header {
     padding: 9px 24px;
   }
 }
 
 /* Mobile 375~743px */
-@media (max-width: 743px) {
+@media (min-width: 375px) {
   header {
     padding: 9px 16px;
   }
