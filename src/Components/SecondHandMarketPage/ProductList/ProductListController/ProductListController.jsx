@@ -13,7 +13,7 @@ function ProductListController({ option: controls = {}, setQuery = null }) {
   };
   
   return (
-    <section className={style.productListController}>
+    <div className={style.productListController}>
       <h2>판매 중인 상품</h2>
 
       <div className={style.controlBox}>
@@ -45,7 +45,7 @@ function ProductListController({ option: controls = {}, setQuery = null }) {
           />
         }
       </div>
-    </section>
+    </div>
   );
 }
 

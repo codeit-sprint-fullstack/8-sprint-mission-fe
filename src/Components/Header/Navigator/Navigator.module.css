@@ -6,7 +6,7 @@
   gap: 10px;
   margin: 15px;
 
-  Link {
+  a {
     color: var(--Secondary-600);
     text-align: center;
     font-weight: 700;
@@ -15,11 +15,11 @@
     cursor: pointer;
   }
 
-  Link:hover {
+  a:hover {
     text-decoration: underline;
   }
 
-  Link.active {
+  a.active {
     color: #3692ff;
   }
 }

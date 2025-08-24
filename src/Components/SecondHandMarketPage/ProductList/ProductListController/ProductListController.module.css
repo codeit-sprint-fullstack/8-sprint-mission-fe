@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 96px 360px 0 360px;
   margin-bottom: 24px;
 
   h2 {
@@ -69,7 +70,7 @@
 /* PC */
 @media (min-width: 1200px) {
   .productListController {
-    width: 1200px;
+    gap: 475px;
   }
 }
 

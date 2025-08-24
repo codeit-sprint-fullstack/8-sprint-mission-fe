@@ -1,10 +1,11 @@
 @import '../../../style/color_variables.css';
 
-section {
+.inputBoxes {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
+  margin: 0px 360px 300px 360px;
   
   .container {
     display: flex;
@@ -12,6 +13,7 @@ section {
     align-items: flex-start;
     gap: 16px;
     margin-bottom: 32px;
+    width: 100%;
   
     h2 {
       font-size: 18px;
@@ -42,6 +44,7 @@ section {
     }
 
     .introduceInput {
+      width: 100%;
       height: 282px;
     }
 
@@ -57,21 +60,24 @@ section {
 
 /* PC */
 @media (min-width: 1200px) {
-  section {
+  .container {
     width: 1200px;
   }
 }
 
 /* Tablet 744~1199px */
 @media (min-width: 744px) {
-  section {
+  .inputBoxes {
+    margin: 0px 24px 300px 24px;
+  }
+  .container {
     width: 696px;
   }
 }
 
 /* Mobile 375~743px */
 @media (min-width: 375px) {
-  section {
+  .container {
     width: 344px;
   }
 }

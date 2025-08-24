@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
+  margin: 96px 360px 24px 360px;
 
   h2 {
     font-size: 20px;

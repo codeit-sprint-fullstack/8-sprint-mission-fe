@@ -13,17 +13,13 @@ function LandingHome() {
       <Header />
 
       <main>
-        <section>
           <Headline />
-        </section>
 
-        <section>
-          <InfoCard />
-        </section>
+          <section>
+            <InfoCard />
+          </section>
 
-        <section>
           <Headline2 />
-        </section>
 
       </main>
 

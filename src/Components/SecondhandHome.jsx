@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Header from './Header/Header';
 import ProductListController from './SecondHandMarketPage/ProductList/ProductListController/ProductListController';
-import ProductList from './SecondHandMarketPage/ProductList/ProductList';
+import ProductList from './SecondHandMarketPage/ProductList/ProductList.jsx';
 import PageButton from './SecondHandMarketPage/PageButton/PageButton';
 import Footer from './Footer/Footer';
 import '../style/style.css';
@@ -35,7 +35,6 @@ function SecondhandHome() {
       <Header />
 
       <main>
-        <section>
           <ProductListController
             option={{ search: true, upload: true, orderBy: true }}
             setQuery={setProductListQuery}
@@ -50,15 +49,12 @@ function SecondhandHome() {
               onLoad={handleLoad}
             />
           )}
-        </section>
 
-        <section>
           <PageButton 
             nowPage={productListQuery.page}
             totalCount={totalCount}
             onChange={(newPage) => setProductListQuery(prev => ({ ...prev, page: newPage }))} 
           />
-        </section>
       </main>
 
       <Footer />

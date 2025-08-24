@@ -11,13 +11,9 @@ function RegisterationHome() {
       <Header />
 
       <main>
-        <section>
           <ControllerBox />
-        </section>
 
-        <section>
           <InputBox />
-        </section>
       </main>
 
       <Footer />

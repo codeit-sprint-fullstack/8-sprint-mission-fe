@@ -3,7 +3,7 @@ import HomeDownImg from '../../../images/home_bottom_img.svg';
 
 function Headline2() {
   return (
-    <section className={style.headlineSectionBg}>
+    <div className={style.headlineSectionBg}>
       <div className={style.headlineSection}>
         <div className={style.headlineTitle}>
           <h1>
@@ -13,7 +13,7 @@ function Headline2() {
         </div>
         <img src={HomeDownImg} alt="HomeDownImg" />
       </div>
-    </section>
+    </div>
   )
 }
 

@@ -6,7 +6,7 @@ function InputBoxes() {
   // const name = ;
 
   return (
-    <section> 
+    <div className={style.inputBoxes}>
       <div className={style.container}>
         <label>상품명</label>
         <input type="text" placeholder='상품명을 입력해주세요.' maxlength="10" required />
@@ -31,7 +31,7 @@ function InputBoxes() {
         <span className={style.errorMessage}>5글자 이내로 입력해주세요.</span>
         <Tag />
       </div>
-    </section>
+    </div>
   );
 }
 

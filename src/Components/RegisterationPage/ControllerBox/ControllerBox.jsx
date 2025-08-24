@@ -7,7 +7,7 @@ function ControllerBox() {
   return (
     <div className={style.container}>
       <h2>상품 등록하기</h2>
-      <button className={style.registerButton}>등록</button>
+      <a href='/items/new' className={style.registerButton}>등록</a>
     </div>
   );
 }
