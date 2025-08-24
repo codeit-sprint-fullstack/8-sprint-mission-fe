@@ -69,15 +69,20 @@
 @media (min-width: 744px) {
   .inputBoxes {
     margin: 0px 24px 300px 24px;
-  }
-  .container {
-    width: 696px;
+    
+    .container {
+      width: 696px;
+    }
   }
 }
 
 /* Mobile 375~743px */
 @media (min-width: 375px) {
-  .container {
-    width: 344px;
+  .inputBoxes {
+    margin: 0px 24px 300px 24px;
+
+    .container {
+      width: 344px;
+    }
   }
 }
