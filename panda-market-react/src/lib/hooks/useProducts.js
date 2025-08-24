@@ -15,8 +15,9 @@ export function useProducts(currentPage, pageSize, keyword, orderBy) {
     const getProductsList = async () => {
       try {
         setIsLoading(true);
-        const response = await getProducts(currentPage, pageSize, keyword, orderBy);
-        setProductsList(response.list);
+        const response = await getProducts(currentPage, pageSize, orderBy, keyword);
+        console.log(response);
+        setProductsList(response.products);
         setPageCount(response.totalCount);
       } catch (error) {
         console.error(error);

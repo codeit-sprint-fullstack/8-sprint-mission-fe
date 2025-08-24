@@ -5,8 +5,12 @@ import { Textarea } from '../components/molecules/Textarea';
 import { Tag } from '../components/atoms/Tag';
 import { useRegistrationFormValidation } from '../lib/hooks/useRegistrationFormValidation';
 import { REGISTRATION_ERROR_MESSAGES } from '../lib/constants/errorMessages';
+import { postProduct } from '../api/productsApi';
+import { useNavigate } from 'react-router-dom';
 
 export function RegistrationPage() {
+  const navigate = useNavigate();
+
   const [tag, setTag] = useState(''); // 태그 입력 값
   const [formData, setFormData] = useState({
     productName: '',
@@ -46,7 +50,7 @@ export function RegistrationPage() {
   const handleAddTag = (e) => {
     const trimmedTag = tag.trim();
 
-    if (e.key === 'Enter' || e.key === ' ' || e.type === 'click') {
+    if ((e.key === 'Enter' && !e.nativeEvent.isComposing) || e.key === ' ' || e.type === 'click') {
       if (formData.tags.includes(trimmedTag) || !trimmedTag || trimmedTag.length > 5) {
         console.log('이미 존재하는 태그이거나 태그를 입력해주세요.');
         return; // 이미 존재하는 태그이거나 빈값이거나 5글자 초과일 때 함수 종료
@@ -62,6 +66,13 @@ export function RegistrationPage() {
     }
   };
 
+  const handleTagKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleAddTag(e);
+    }
+  };
+
   // 태그 삭제 함수
   const handleDeleteTag = (e) => {
     const targetName = e.target.parentElement.name;
@@ -71,9 +82,22 @@ export function RegistrationPage() {
   };
 
   // 등록 폼 제출 이벤트
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    const product = {
+      name: formData.productName,
+      description: formData.productDescription,
+      price: formData.productPrice,
+      tags: formData.tags,
+    };
+
+    try {
+      const response = await postProduct(product);
+      navigate(`/items/${response._id}`);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -124,7 +148,7 @@ export function RegistrationPage() {
               placeholder="태그를 입력해주세요"
               value={tag}
               onChange={handleChangeTag}
-              onKeyDown={handleAddTag}
+              onKeyDown={handleTagKeyDown}
               isValid={isValid.tag.isValid}
               errorMessage={getErrorMessage(isValid.tag.errorType)}
             />

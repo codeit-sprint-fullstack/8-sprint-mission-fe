@@ -1,4 +1,7 @@
-import { validateProductResponse } from '../lib/validation/productResponse.guard.js';
+import {
+  validatePostProductResponse,
+  validateProductResponse,
+} from '../lib/validation/productResponse.guard.js';
 import { instance } from './client.js';
 
 export const getBestProducts = async (pageSize = 4) => {
@@ -24,7 +27,7 @@ export const getBestProducts = async (pageSize = 4) => {
   }
 };
 
-export const getProducts = async (page = 1, pageSize = 10, keyword = '', orderBy = 'recent') => {
+export const getProducts = async (page = 1, pageSize = 10, orderBy = 'recent', keyword = '') => {
   if (!Number.isInteger(page) || page < 1) {
     throw new Error('page는 정수 1이상의 숫자여야 합니다.');
   }
@@ -42,12 +45,24 @@ export const getProducts = async (page = 1, pageSize = 10, keyword = '', orderBy
       params: {
         page,
         pageSize,
-        keyword,
         orderBy,
+        keyword,
       },
     });
 
     validateProductResponse(response, '판매 중인 상품 데이터를 불러오는데 실패했습니다.');
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const postProduct = async (product) => {
+  try {
+    const response = await instance.post('/create', product);
+
+    validatePostProductResponse(response, '상품 등록에 실패했습니다.');
 
     return response.data;
   } catch (error) {

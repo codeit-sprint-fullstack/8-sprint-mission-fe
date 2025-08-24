@@ -6,15 +6,14 @@ import { Pagination } from '../components/molecules/Pagination';
 import { SearchInput } from '../components/molecules/SearchInput';
 import { Link } from 'react-router-dom';
 import { Dropdown } from '../components/molecules/Dropdown';
-import { useBestProducts } from '../lib/hooks/useBestProducts';
 import { useProducts } from '../lib/hooks/useProducts';
 import { useDeviceType } from '../lib/hooks/useDeviceType';
 
 // 화면 가로 사이즈 대비 모바일, 태블릿, 데스크탑 체크 시 보여줄 상품 갯수
 const pageSizes = {
-  mobile: { bestProductPageSize: 1, pageSize: 4 },
-  tablet: { bestProductPageSize: 2, pageSize: 6 },
-  desktop: { bestProductPageSize: 4, pageSize: 10 },
+  mobile: { pageSize: 4 },
+  tablet: { pageSize: 6 },
+  desktop: { pageSize: 10 },
 };
 
 export function ProductListPage() {
@@ -24,13 +23,7 @@ export function ProductListPage() {
   const [orderBy, setOrderBy] = useState('recent'); // 정렬 기준
   const deviceType = useDeviceType(); // 화면 가로 사이즈 대비 모바일, 태블릿, 데스크탑 체크
 
-  const { bestProductPageSize, pageSize } = pageSizes[deviceType];
-
-  /**
-   * 베스트 상품 리스트 조회
-   */
-  const { bestProductsList, bestProductsLoading, bestProductsError } =
-    useBestProducts(bestProductPageSize);
+  const { pageSize } = pageSizes[deviceType];
 
   /**
    * 판매 중인 상품 리스트 조회
@@ -85,33 +78,6 @@ export function ProductListPage() {
   return (
     <>
       <main className={styles.main}>
-        {/* 베스트 상품 리스트 */}
-        <section className={styles.productListSection}>
-          <ProductListTitle title="베스트 상품" />
-          <div className={styles.bestProductList}>
-            {bestProductsLoading || bestProductsError ? (
-              <div className={styles.loading}>
-                {bestProductsLoading
-                  ? '제품을 불러오는 중입니다.'
-                  : '제품을 불러오는 중에 오류가 발생했습니다.'}
-              </div>
-            ) : (
-              bestProductsList.map((product) => {
-                return (
-                  <ProductCard
-                    key={product.id}
-                    id={product.id}
-                    name={product.name}
-                    price={product.price}
-                    image={product.images[0]}
-                    favoriteCount={product.favoriteCount}
-                  />
-                );
-              })
-            )}
-          </div>
-        </section>
-
         {/* 판매 중인 상품 정렬 및 검색 */}
         <section>
           <div className={styles.productListTitleWrapper}>
@@ -148,11 +114,11 @@ export function ProductListPage() {
               productsList.map((product) => {
                 return (
                   <ProductCard
-                    key={product.id}
-                    id={product.id}
+                    key={product._id}
+                    id={product._id}
                     name={product.name}
                     price={product.price}
-                    image={product.images[0]}
+                    image={'/images/product.png'}
                     favoriteCount={product.favoriteCount}
                   />
                 );

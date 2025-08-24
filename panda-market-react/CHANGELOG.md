@@ -2,6 +2,11 @@
 
 - 배포주소 : https://panda-market-kr.netlify.app/
 
+## 2025.08.25. 스프린트 6 진행
+
+1. 상품 등록 페이지 등록 api 연결
+2. 배포된 벡엔드 주소로 변경
+
 ## 2025.08.17. 스프린트 6 진행
 
 1. useResgistrationFormValidation.js 에서 검증 함수들을 utils의 validator.js로 로직 분리
