@@ -7,7 +7,6 @@
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  gap: 10px;
   z-index: 100;
   border-bottom: 1px solid var(--header-bottom-border-color);
   background-color: var(--header-bg-color);
@@ -54,10 +53,14 @@ text-decoration: underline;
 
 /* Tablet 744~1199px */
 @media (min-width: 744px) {
-  
+  .headerBox {
+    padding: 0 24px;
+  }
 }
 
 /* Mobile 375~743px */
 @media (min-width: 375px) {
-  
+  .headerBox {
+    padding: 0 16px;
+  }
 }
