@@ -1,22 +1,17 @@
-import React from 'react';
-import '/src/styles/Header.css';         
-import '/src/styles/Global.css'; 
+import { Link } from "react-router-dom";
 
-const Header = () => {
+export default function Header() {
   return (
-    <nav className="header">
-      <div className="headerMenu">
-        <img src="/src/assets/panda.svg" alt="pandaImage" />
-        <div>자유게시판</div>
-        <a href="/" className="marketLink">
-          중고마켓
-        </a>
+    <header className="header">
+      <div className="header-wrapper">
+        <div className="header-content">
+          <div className="logo">
+            <Link to="/"><img src="/assets/logo.svg" alt="판다 마켓 로고" /></Link>
+          </div>
+          <Link to="/login" className="login-btn">로그인</Link>
+        </div>
       </div>
-      <a href="./" className="login button user">
-        로그인
-      </a>
-    </nav>
+    </header>
   );
-};
+}
 
-export default Header;

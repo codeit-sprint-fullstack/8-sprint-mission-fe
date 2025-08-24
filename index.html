@@ -1,10 +1,47 @@
-<!-- public/index.html -->
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" href="/assets/panda-face.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>스프린트 5</title>
+    <title>판다 마켓</title>
+
+    <!-- OG 태그 -->
+    <meta property="og:url" content="/" />
+    <meta property="og:title" content="판다마켓" />
+    <meta
+      property="og:description"
+      content="일상에서 모든 물건을 거래해보세요."
+    />
+    <meta property="og:image" content="/assets/panda-1.svg" />
+
+    <!-- Pretendard 웹폰트 preload -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+      />
+    </noscript>
+
+    <!-- Google Tag -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-14YPHPLMJC"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-14YPHPLMJC");
+    </script>
   </head>
   <body>
     <div id="root"></div>

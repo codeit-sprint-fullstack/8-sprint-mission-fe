@@ -1,7 +1,8 @@
-// vite.config.js (별칭 설정을 삭제해도 무방)
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
+// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-});
+})
+

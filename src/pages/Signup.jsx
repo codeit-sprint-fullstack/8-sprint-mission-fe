@@ -1,0 +1,195 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { USER_DATA } from "/src/data/USER_DATA";
+import "/src/assets/css/reset.css";
+import "/src/assets/css/common.css";
+
+// 커스텀 알럿 컴포넌트
+function CustomAlert({ message, onClose }) {
+  if (!message) return null;
+  return (
+    <div className="custom-alert-overlay">
+      <div className="custom-alert-box">
+        <p className="custom-alert-message">{message}</p>
+        <button className="custom-alert-button" onClick={onClose}>확인</button>
+      </div>
+    </div>
+  );
+}
+
+export default function Signup() {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [confirmError, setConfirmError] = useState("");
+  const [alertMsg, setAlertMsg] = useState("");
+
+  const validateEmail = (val) => {
+    if (!val) return "이메일을 입력해주세요.";
+    if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(val)) return "올바른 이메일 형식이 아닙니다.";
+    if (USER_DATA.some(u => u.email === val)) return "이미 사용 중인 이메일입니다.";
+    return "";
+  };
+
+  const validatePassword = (val) => {
+    if (!val) return "비밀번호를 입력해주세요.";
+    if (val.length < 8) return "비밀번호는 최소 8자 이상이어야 합니다.";
+    return "";
+  };
+
+  const validateConfirm = (pw, cp) => {
+    if (!cp) return "비밀번호 확인을 입력해주세요.";
+    if (pw !== cp) return "비밀번호가 일치하지 않습니다.";
+    return "";
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const emailErr = validateEmail(email.trim());
+    const pwErr = validatePassword(password.trim());
+    const confirmErr = validateConfirm(password.trim(), confirmPassword.trim());
+
+    setEmailError(emailErr);
+    setPasswordError(pwErr);
+    setConfirmError(confirmErr);
+
+    if (emailErr || pwErr || confirmErr) return;
+
+    // 회원가입 성공
+    setAlertMsg("회원가입이 완료되었습니다!");
+    setTimeout(() => navigate("/login"), 1000);
+  };
+
+  return (
+    <div className="page-container">
+      <div className="content-wrapper">
+        <header>
+          <a href="/"><img src="/assets/logo.svg" alt="판다마켓 로고" /></a>
+        </header>
+        <main>
+          <form className="form-container" onSubmit={handleSubmit}>
+            {/* 이메일 */}
+            <div className="form-field">
+              <label htmlFor="email" className="form-label">이메일</label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={e => {
+                  setEmail(e.target.value);
+                  setEmailError(validateEmail(e.target.value));
+                }}
+                className={emailError ? "input-error" : ""}
+                placeholder="이메일을 입력하세요"
+                required
+              />
+              {emailError && <div className="error-message">{emailError}</div>}
+            </div>
+
+            {/* 닉네임 */}
+            <div className="form-field">
+              <label htmlFor="nickname" className="form-label">닉네임</label>
+              <input
+                type="text"
+                id="nickname"
+                value={nickname}
+                onChange={e => setNickname(e.target.value)}
+                placeholder="닉네임을 입력하세요"
+                required
+              />
+            </div>
+
+            {/* 비밀번호 */}
+            <div className="form-field">
+              <label htmlFor="password" className="form-label">비밀번호</label>
+              <div className="input-wrapper">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  value={password}
+                  onChange={e => {
+                    setPassword(e.target.value);
+                    setPasswordError(validatePassword(e.target.value));
+                  }}
+                  className={passwordError ? "input-error" : ""}
+                  placeholder="비밀번호를 입력하세요"
+                  required
+                />
+                <button
+                  type="button"
+                  className="toggle-password"
+                  onClick={() => setShowPassword(!showPassword)}
+                  aria-label={showPassword ? "비밀번호 숨기기" : "비밀번호 보기"}
+                >
+                  <img src={showPassword ? "/assets/eye(open).svg" : "/assets/eye(close).svg"} alt="eye" />
+                </button>
+              </div>
+              {passwordError && <div className="error-message">{passwordError}</div>}
+            </div>
+
+            {/* 비밀번호 확인 */}
+            <div className="form-field">
+              <label htmlFor="confirm-password" className="form-label">비밀번호 확인</label>
+              <div className="input-wrapper">
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  id="confirm-password"
+                  value={confirmPassword}
+                  onChange={e => {
+                    setConfirmPassword(e.target.value);
+                    setConfirmError(validateConfirm(password, e.target.value));
+                  }}
+                  className={confirmError ? "input-error" : ""}
+                  placeholder="비밀번호를 다시 입력하세요"
+                  required
+                />
+                <button
+                  type="button"
+                  className="toggle-password"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  aria-label={showConfirmPassword ? "비밀번호 숨기기" : "비밀번호 보기"}
+                >
+                  <img src={showConfirmPassword ? "/assets/eye(open).svg" : "/assets/eye(close).svg"} alt="eye" />
+                </button>
+              </div>
+              {confirmError && <div className="error-message">{confirmError}</div>}
+            </div>
+
+            <button className="btn-primary" type="submit">회원가입</button>
+
+            {/* 간편 로그인 */}
+            <div className="simple-login-outline">
+              <div className="simple-login">
+                <p className="simple-login-text">간편 로그인</p>
+                <div className="img-outline">
+                  <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
+                    <img className="login-icon" src="/assets/google.svg" alt="구글" />
+                  </a>
+                  <a href="https://www.kakaocorp.com/page/" target="_blank" rel="noopener noreferrer">
+                    <img className="login-icon" src="/assets/kakao.svg" alt="카카오" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* 하단 안내 */}
+            <p className="form-footer-text">
+              이미 회원이신가요? <a href="/login">로그인</a>
+            </p>
+          </form>
+        </main>
+
+        <CustomAlert message={alertMsg} onClose={() => setAlertMsg("")} />
+      </div>
+    </div>
+  );
+}
