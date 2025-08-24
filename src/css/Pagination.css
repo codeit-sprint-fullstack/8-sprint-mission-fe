@@ -1,0 +1,19 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 6px;
+}
+
+.pageBtn {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 6px 10px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.pageBtn.active {
+  background-color: #3692FF;
+  color: #fff;
+}

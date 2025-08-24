@@ -1,0 +1,9 @@
+.addBtn {
+  background-color: #3692FF;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+

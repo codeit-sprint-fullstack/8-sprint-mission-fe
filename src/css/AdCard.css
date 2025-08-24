@@ -1,0 +1,53 @@
+.adPage {
+  background: #cfe5ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 200px;
+}
+
+.adContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.adText {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 60px;
+  font-family: Pretendard;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 140%;
+  width: 357px;
+}
+
+.adBtn {
+  margin: 0;
+  margin-top: 16px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 40px;
+  background: #3692ff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.adImage {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.adTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #374151;
+  white-space: pre-line;
+  line-height: 1.4;
+  margin: 5px;
+}

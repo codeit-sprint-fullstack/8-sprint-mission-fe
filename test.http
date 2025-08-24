@@ -1,0 +1,38 @@
+GET http://localhost:3000/items
+
+
+### 상품 목록 조회 (페이지네이션, 검색, 정렬 포함)
+GET http://localhost:3000/items?offset=0&limit=10&sort=recent&q=청소기
+Content-Type: application/json
+
+
+### 상품 상세 조회
+GET http://localhost:3000/items/68aa3d1d55b6c96fe70e2120
+Content-Type: application/json
+
+
+### 상품 등록
+POST http://localhost:3000/items
+Content-Type: application/json
+
+{
+  "name": "테스트 상품",
+  "description": "이건 테스트용으로 등록한 상품입니다. 설명이 10자 이상!",
+  "price": 12345,
+  "tags": ["테스트", "샘플"]
+}
+
+
+### 상품 수정
+PATCH http://localhost:3000/items/68aa3d1d55b6c96fe70e2120
+Content-Type: application/json
+
+{
+  "price": 999999,
+  "description": "수정된 상품 설명입니다."
+}
+
+
+### 상품 삭제
+DELETE http://localhost:3000/items/68aa3d1d55b6c96fe70e2120
+Content-Type: application/json

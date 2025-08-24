@@ -1,0 +1,53 @@
+.shopCard_content .content,
+.shopCard_content .text_footer {
+  white-space: pre-line;
+}
+
+.shopCard_section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #fcfcfc;
+  padding: 138px 344px;
+  gap: 40px;
+}
+
+.shopCard_section.reverse {
+  flex-direction: row-reverse;
+}
+
+.shopCard_img img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.shopCard_content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  color: var(--Primary-100, #3692ff);
+  font-family: Pretendard;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.content {
+  color: var(--Secondary-700, #374151);
+  font-family: Pretendard;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 140%;
+}
+
+.text_footer {
+  color: var(--Secondary-700, #374151);
+  font-family: Pretendard;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 32px;
+}

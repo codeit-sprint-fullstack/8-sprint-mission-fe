@@ -1,0 +1,12 @@
+.sortBtn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+.sortBtn.active {
+  background-color: #3692FF;
+  color: white;
+}
