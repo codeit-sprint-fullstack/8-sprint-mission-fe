@@ -77,7 +77,7 @@
 @media (max-width: 1199px) {
   .homeBanner {
     padding: 0 24px;
-    background: #FCFCFC;
+    background: #fcfcfc;
   }
 
   .banner {
@@ -119,9 +119,18 @@
 }
 
 /* Mobile */
-@media (max-width: 744px) {
-
-    .banner {
+@media (max-width: 743px) {
+  .banner {
     width: auto;
+  }
+
+  .badget {
+    font-size: 16px;
+  }
+  .title {
+    font-size: 24px;
+  }
+  .content {
+    font-size: 16px;
   }
 }

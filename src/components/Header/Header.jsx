@@ -1,41 +1,43 @@
-import pandaLogo from '../../assets/icon/ic_panda.svg'
-import style from './Header.module.css';
+import { Link } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
+import style from "./Header.module.css";
+import Logo from "../Atoms/Logo";
+import BasicButton from "../Atoms/BasicButton";
 
-function Logo(){
-  return (
-    <a href="../" className={style.logo}>
-      <img src={pandaLogo} alt='pandaLogo'/>
-      <span>판다마켓</span>
-    </a>
-  );
-} 
-
-function FreeBoard() { //임시 컴포넌트
-  return(
-    <span>자유게시판</span>
-  );
+function FreeBoard() {
+  //임시 컴포넌트
+  return <span>자유게시판</span>;
 }
-function Marketplace() { //임시 컴포넌트
-  return(
-    <span>중고마켓</span>
-  );
-}
-function LoginButton() { //임시 컴포넌트
-  return(
-    <button className={style.loginButton}>로그인</button>
-  );
+function Marketplace() {
+  //임시 컴포넌트
+  return <span>중고마켓</span>;
 }
 
-function Header(){
+function Header() {
+  const isMobile = useMediaQuery({ maxWidth: 743 });
+
+  let logoSize = "small";
+  if (isMobile) logoSize = "tiny"; // Mobile
+
   return (
     <header className={style.header}>
       <div className={style.headerWrap}>
         <div className={style.headerLeft}>
-          <Logo />
+          <Link to="/">
+            <Logo size={logoSize} />
+          </Link>
           <FreeBoard />
           <Marketplace />
-        </div>  
-        <LoginButton />
+        </div>
+        <Link to="/login">
+          <BasicButton
+            name="로그인"
+            widthSize="88px"
+            heightSize="42px"
+            fontSize="16px"
+            shape="square"
+          />
+        </Link>
       </div>
     </header>
   );

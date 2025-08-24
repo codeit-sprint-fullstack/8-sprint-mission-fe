@@ -1,8 +1,8 @@
 import ProductItem from "./ProductItem";
 import { useEffect, useState } from "react";
 import ic_search from "../../assets/icon/ic_search.svg";
-import Dropdown from "../ui-components/dropdown";
-import Pagination from "../ui-components/Pagination";
+import Dropdown from "../Atoms/dropdown";
+import Pagination from "../Atoms/Pagination";
 import style from "./ProductsList.module.css";
 
 function ProductsList({ items, totalCount, handleItemsLoad }) {

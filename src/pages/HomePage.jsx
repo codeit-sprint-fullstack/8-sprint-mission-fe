@@ -1,13 +1,13 @@
-import HomBanner from "../components/home/HomeBanner";
-import MainVisual from "../components/home/MainVisual";
+import HomBanner from "../components/Home/HomeBanner";
+import MainVisual from "../components/Home/MainVisual";
 import img_home01 from "../assets/img_home/img_home_01.svg";
 import img_home02 from "../assets/img_home/img_home_02.svg";
 import img_home03 from "../assets/img_home/img_home_03.svg";
-import HomeBottom from "../components/home/HomeBottom";
+import HomeBottom from "../components/Home/HomeBottom";
 
 function HomPage() {
   return (
-    <div>
+    <>
       <MainVisual />
       <HomBanner
         bannerImg={img_home01}
@@ -35,7 +35,7 @@ function HomPage() {
         secondContent="쉽게 등록하세요"
       />
       <HomeBottom />
-    </div>
+    </>
   );
 }
 export default HomPage;

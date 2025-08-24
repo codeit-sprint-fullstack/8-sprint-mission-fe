@@ -1,7 +1,7 @@
 .bottom {
   width: 100%;
   height: 540px;
-  background: #CFE5FF;
+  background: #cfe5ff;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -43,5 +43,12 @@
 }
 
 /* Mobile */
-@media (max-width: 744px) {
+@media (max-width: 743px) {
+  .bottom {
+    height: 540px;
+  }
+  .bottom h1 {
+    font-size: 32px;
+    margin-bottom: 131px;
+  }
 }

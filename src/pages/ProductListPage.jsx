@@ -1,7 +1,7 @@
-import BestProducts from "../components/products/BestProducts";
+import BestProducts from "../components/Products/BestProducts";
 import { getProductList } from "../api";
 import { useEffect, useState } from "react";
-import ProductsList from "../components/products/ProductsList";
+import ProductsList from "../components/Products/ProductsList";
 
 function ProductListPage() {
   const PAGESIZE = 10;
@@ -48,14 +48,14 @@ function ProductListPage() {
   }, []);
 
   return (
-    <div>
+    <>
       <BestProducts items={bestItems} />
       <ProductsList
         items={items}
         totalCount={totalCount}
         handleItemsLoad={handleItemsLoad}
       />
-    </div>
+    </>
   );
 }
 

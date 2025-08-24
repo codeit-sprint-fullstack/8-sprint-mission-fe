@@ -1,0 +1,46 @@
+.container {
+  width: 100%;
+}
+
+.label {
+  color: var(--Secondary-800);
+  font-family: Pretendard;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.input {
+  width: 100%;
+  height: 56px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  background: var(--Cool-Gray-100);
+  border: 1px solid transparent;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.focused {
+  border: 1px solid var(--brand-blue);
+}
+
+.valid{
+  border: 1px solid var(--brand-blue, #3692FF);
+  background: rgb(232, 240, 254); 
+}
+
+.invalid {
+  border: 1px solid var(--error-red);
+}
+
+.errorMsg {
+  color: var(--error-red);
+  font-family: Pretendard;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: 8px;
+}
