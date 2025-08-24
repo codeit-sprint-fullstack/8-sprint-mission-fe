@@ -118,3 +118,13 @@
     height: 24px;
   }
 }
+
+@media (max-width: 1199px) {
+  .productListHeader {
+    .searchWrapper {
+      width: 242px;
+      height: 42px;
+      padding: 9px 20px 9px 16px;
+    }
+  }
+}

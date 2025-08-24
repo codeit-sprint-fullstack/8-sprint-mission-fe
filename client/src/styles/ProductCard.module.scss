@@ -56,11 +56,3 @@
     }
   }
 }
-
-.productCard.best {
-  flex: 0 0 calc((100% - 24px * 3) / 4);
-}
-
-.productCard.regular {
-  flex: 0 0 calc((100% - 24px * 4) / 5);
-}

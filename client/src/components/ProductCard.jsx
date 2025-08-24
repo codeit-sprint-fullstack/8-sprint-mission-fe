@@ -7,7 +7,7 @@ function ProductCard({ product, type }) {
   const priceNum = Number(price);
 
   return (
-    <div className={`${styles.productCard} ${styles.type}`}>
+    <div className={`${styles.productCard} ${type}`}>
       <img src={sampleImg} alt={id} />
       <div className={styles.detail}>
         <div className={styles.name}>{name}</div>

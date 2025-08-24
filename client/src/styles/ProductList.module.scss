@@ -8,9 +8,39 @@
   gap: 16px;
 
   .productCardList {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, auto);
     gap: 40px 24px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .productList {
+    width: 692px;
+    margin: 0 auto;
+    padding-top: 32px;
+
+    .productCardList {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, auto);
+      gap: 40px 16px;
+    }
+  }
+}
+
+@media (max-width: 743px) {
+  .productList {
+    width: 344px;
+    margin: 0 auto;
+    padding-top: 17px;
+
+    .productCardList {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, auto);
+      gap: 8px 32px;
+    }
   }
 }

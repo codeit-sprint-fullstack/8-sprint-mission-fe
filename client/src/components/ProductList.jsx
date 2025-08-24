@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { getProductApi } from "../lib/ProductApi.js";
+import useItemCount from "../hooks/useItemCount.jsx";
 import ProductCard from "./ProductCard.jsx";
 import ProductListHeader from "./ProductListHeader.jsx";
 import Pagination from "./Pagination.jsx";
@@ -15,23 +16,27 @@ function ProductList() {
   const [pagination, setPagination] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
 
+  const itemCount = useItemCount();
+
   const fetchProduct = useCallback(
-    async (
-      options = {
+    async (options = {}) => {
+      const defaultOptions = {
         page: 1,
-        limit: 10,
+        limit: itemCount,
         sort: sortValue,
         search: search,
-      }
-    ) => {
+        ...options,
+      };
+
       let result;
 
       try {
         console.log(`API Current Page: ${options.page}`);
+        console.log(`API Item Count (limit): ${defaultOptions.limit}`);
 
         setLoadingError(null);
         setLoading(true);
-        result = await getProductApi(options);
+        result = await getProductApi(defaultOptions);
         setProducts(result.products);
         setCurrentPage(options.page);
         setLoadingStatus("APi Loading Success");
@@ -43,17 +48,17 @@ function ProductList() {
         setLoading(false);
       }
     },
-    [search, sortValue]
+    [search, sortValue, itemCount]
   );
 
   useEffect(() => {
     fetchProduct({
       page: 1,
-      limit: 10,
+      limit: itemCount,
       sort: sortValue,
       search: search,
     });
-  }, [search, sortValue, fetchProduct]);
+  }, [search, sortValue, fetchProduct, itemCount]);
 
   return (
     <div className={styles.productList}>
