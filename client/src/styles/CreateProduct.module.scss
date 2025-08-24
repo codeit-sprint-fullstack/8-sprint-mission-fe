@@ -145,3 +145,19 @@
     }
   }
 }
+
+@media (max-width: 1199px) {
+  .container {
+    width: 696px;
+    margin: 18px auto;
+    margin-bottom: 194px;
+  }
+}
+
+@media (max-width: 743px) {
+  .container {
+    width: 344px;
+    margin: 24px auto;
+    margin-bottom: 186px;
+  }
+}
