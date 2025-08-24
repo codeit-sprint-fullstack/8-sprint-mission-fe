@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import pandaLogo from "../assets/pandaLogo.svg";
-import "../styles/Header.css";
+import styles from "../styles/Header.module.scss";
 
 function Header() {
   return (
-    <div className="header">
-      <div className="nav">
+    <div className={styles.header}>
+      <div className={styles.nav}>
         <Link to="/">
           <img src={pandaLogo} alt="pandaLogo" />
         </Link>
-        <div className="navMenu">
+        <div className={styles.navMenu}>
           <div>자유게시판</div>
           <div>중고마켓</div>
         </div>

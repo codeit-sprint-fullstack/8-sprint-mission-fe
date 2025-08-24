@@ -1,7 +1,7 @@
-import "../styles/ProductListHeader.css";
 import ic_search from "../assets/ic_search.svg";
 import ic_arrow_down from "../assets/ic_arrow_down.svg";
 import { Link } from "react-router-dom";
+import styles from "../styles/ProductListHeader.module.scss";
 
 function ProductListHeader({ search, setSearch, sortValue, setSortValue }) {
   const handleSearch = (e) => {
@@ -15,38 +15,38 @@ function ProductListHeader({ search, setSearch, sortValue, setSortValue }) {
   };
 
   return (
-    <div className="productListHeader">
-      <div className="title">판매 중인 상품</div>
-      <div className="listHeader">
-        <div className="searchWrapper">
+    <div className={styles.productListHeader}>
+      <div className={styles.title}>판매 중인 상품</div>
+      <div className={styles.listHeader}>
+        <div className={styles.searchWrapper}>
           <img src={ic_search} alt="searchIc" />
           <input
-            className="searchInput"
+            className={styles.searchInput}
             type="text"
             placeholder="검색할 상품을 입력해주세요"
             value={search}
             onChange={handleSearch}
           />
         </div>
-        <Link className="addButton" to="/registration">
+        <Link className={styles.addButton} to="/registration">
           상품 등록하기
         </Link>
-        <div className="customSelectContainer">
+        <div className={styles.customSelectContainer}>
           <select
-            className="hiddenSelect"
+            className={styles.hiddenSelect}
             onChange={handleDropDown}
             value={sortValue}
           >
             <option value={"recent"}>최신순</option>
             <option value={"favorite"}>좋아요순</option>
           </select>
-          <div className="customSelectDisplay">
-            <span className="selectedText">
+          <div className={styles.customSelectDisplay}>
+            <span className={styles.selectedText}>
               {sortValue === "recent" && "최신순"}
               {sortValue === "favorite" && "좋아요순"}
             </span>
             <img
-              className="dropdownArrow"
+              className={styles.dropdownArrow}
               src={ic_arrow_down}
               alt="arrowDownIC"
             />

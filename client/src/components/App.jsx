@@ -3,6 +3,7 @@ import LandingPage from "../pages/LandingPage.jsx";
 import LayoutItems from "../layout/LayoutItems.jsx";
 import LayoutCreateProduct from "../layout/LayoutCreateProduct.jsx";
 import ProductDetail from "./ProductDetail.jsx";
+import "../styles/global.scss";
 
 function App() {
   return (

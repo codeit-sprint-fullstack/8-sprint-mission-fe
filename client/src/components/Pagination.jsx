@@ -1,7 +1,7 @@
-import "../styles/Pagination.css";
 import arrow_left from "../assets/arrow_left.svg";
 import arrow_right from "../assets/arrow_right.svg";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
+import styles from "../styles/Pagination.module.scss";
 
 function Pagination({ pagination, setPagination, fetchProduct, currentPage }) {
   const handleClickButton = (e) => {
@@ -82,7 +82,7 @@ function Pagination({ pagination, setPagination, fetchProduct, currentPage }) {
   }, [pagination, fetchProduct]);
 
   return (
-    <div className="pagination">
+    <div className={styles.pagination}>
       <button onClick={handleClickButton} data-value="prev">
         <img src={arrow_left} alt="arrow_left" />
       </button>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard.jsx";
 import { getProduct } from "../lib/api.js";
-import "../styles/BestProduct.css";
+import styles from "../styles/BestProduct.module.scss";
 
 export function BestProduct() {
   const [products, setProducts] = useState([]);
@@ -41,9 +41,9 @@ export function BestProduct() {
   }, []);
 
   return (
-    <div className="bestProduct">
-      <div className="title">베스트 상품</div>
-      <div className="productCardList">
+    <div className={styles.bestProduct}>
+      <div className={styles.title}>베스트 상품</div>
+      <div className={styles.productCardList}>
         {products.map((product) => {
           return (
             <ProductCard product={product} key={product.id} type={"best"} />
