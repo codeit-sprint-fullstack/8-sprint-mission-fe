@@ -128,3 +128,15 @@
     }
   }
 }
+
+@media (max-width: 743px) {
+  .productListHeader {
+    .searchWrapper {
+      display: none;
+    }
+
+    .customSelectContainer {
+      display: none;
+    }
+  }
+}

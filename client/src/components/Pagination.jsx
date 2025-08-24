@@ -2,8 +2,11 @@ import arrow_left from "../assets/arrow_left.svg";
 import arrow_right from "../assets/arrow_right.svg";
 import { useEffect } from "react";
 import styles from "../styles/Pagination.module.scss";
+import useItemCount from "../hooks/useItemCount";
 
 function Pagination({ pagination, setPagination, fetchProduct, currentPage }) {
+  const itemCount = useItemCount();
+
   const handleClickButton = (e) => {
     const buttonText = e.currentTarget.textContent;
 
@@ -23,6 +26,7 @@ function Pagination({ pagination, setPagination, fetchProduct, currentPage }) {
 
     console.log(`pagination: ${pagination}`);
     console.log(`current page: ${currentPage}`);
+    console.log(`current itemCount: ${itemCount}`);
 
     const convertedNumber = Number(pagination);
 
@@ -36,7 +40,7 @@ function Pagination({ pagination, setPagination, fetchProduct, currentPage }) {
       if (convertedNumber !== currentPage) {
         fetchProduct({
           page: convertedNumber,
-          limit: 10,
+          limit: itemCount,
           sort: "recent",
           search: "",
         });
@@ -71,7 +75,7 @@ function Pagination({ pagination, setPagination, fetchProduct, currentPage }) {
       if (targetPage !== currentPage) {
         fetchProduct({
           page: targetPage,
-          limit: 10,
+          limit: itemCount,
           sort: "recent",
           search: "",
         });
