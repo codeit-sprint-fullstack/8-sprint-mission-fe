@@ -9,7 +9,7 @@ function LabeledInput({
   value,
   onChange,
   errMessage = "",
-  isValid = false,
+  isValid = true,
 }) {
   const [isFocused, setIsFocused] = useState(false);
   const [isTouched, setIsTouched] = useState(false);

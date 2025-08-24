@@ -4,6 +4,7 @@ import ic_search from "../../assets/icon/ic_search.svg";
 import Dropdown from "../Atoms/dropdown";
 import Pagination from "../Atoms/Pagination";
 import style from "./ProductsList.module.css";
+import { Link } from "react-router-dom";
 
 function ProductsList({ items, totalCount, handleItemsLoad }) {
   const [page, setPage] = useState(1);
@@ -53,7 +54,9 @@ function ProductsList({ items, totalCount, handleItemsLoad }) {
                 onBlur={handleBlur}
               />
             </div>
-            <button className={style.registerBtn}>상품 등록하기</button>
+            <Link to="/registration">
+              <button className={style.registerBtn}>상품 등록하기</button>
+            </Link>
             <Dropdown
               order={order}
               onNewestClick={handleNewestClick}

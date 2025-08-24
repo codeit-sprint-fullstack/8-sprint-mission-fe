@@ -25,3 +25,20 @@ export function validatePasswordChecker(val, checker) {
     return "비밀번호가 일치하지 않습니다.";
   return "";
 }
+
+export function validateProductName(val) {
+  if (!val || val.length > 10) return "10자 이내로 입력해주세요.";
+  return "";
+}
+export function validateDescription(val) {
+  if (!val || val.length < 10) return "10자 이상 입력해주세요.";
+  return "";
+}
+export function validatePrice(val) {
+  if (!val || Number.isFinite(val)) return "숫자로 입력해주세요.";
+  return "";
+}
+export function validateTag (val) {
+  if (val.length > 5) return "5자 이내롤 입력해주세요.";
+  return "";
+}
