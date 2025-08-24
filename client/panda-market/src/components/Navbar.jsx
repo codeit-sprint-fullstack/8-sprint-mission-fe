@@ -10,15 +10,6 @@ export default function Navbar() {
   );
 }
 
-// src/components/Footer.jsx
-export default function Footer() {
-  return (
-    <footer className="footer">
-      <div className="container">© 2025 Panda Market</div>
-    </footer>
-  );
-}
-
 export default function Navbar() {
   return (
     <nav style={{ borderBottom: '1px solid #eee', padding: '12px 0' }}>
