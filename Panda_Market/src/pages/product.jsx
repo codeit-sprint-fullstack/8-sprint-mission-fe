@@ -1,11 +1,10 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import ProductSection from '../components/ProductSection.jsx';
+import React from "react";
+import ProductSection from "../components/ProductSection.jsx";
 
-function ItemsPage() {
+export default function ProductPage() {
   return (
     <>
-      <ProductSection
+     <ProductSection
         title="베스트 상품"
         defaultSort="favorite"
         showToolbar={false}
@@ -25,5 +24,3 @@ function ItemsPage() {
     </>
   );
 }
-
-createRoot(document.getElementById('root')).render(<ItemsPage />);

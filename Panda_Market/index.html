@@ -3,9 +3,6 @@
 <head>
   <meta charset="utf-8">
   <title>판다마켓</title>
-  <link rel="stylesheet" href="./src/styles/reset.css">
-  <link rel="stylesheet" href="./src/styles/style.css">
-  <link rel="stylesheet" href="./src/styles/responsive.css">
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css" />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css" />
@@ -28,104 +25,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <div>
-    <header>
-      <div class="frame">
-        <a class="logo" href="index.html">
-          <img src="images/logo_panda.png" alt="판다마켓 로고">
-        </a>
-        <a class="login" href="login/login.html">
-          <div class="login_button" href="login/login.html">로그인</div>
-        </a>
-      </div>      
-    </header>
-    <main>
-      <div class="total_section">
-        <div class="mini_header">
-          <div class="minii_header">
-            <div class="header_background">
-              <div class="header_layout">
-                <div class="panda_header">
-                  <div class="first_layout">
-                    <h1 class="mini_ment">일상의 모든 물건을<br>거래해 보세요</h1>
-                    <a class="button_layout" href="items.html">
-                      <div class="button_ment">구경하러 가기</div>
-                    </a>
-                  </div>
-                </div>
-                <img class="main_panda" src="images/Img_home_top.png" alt="메인판다">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="section_total">
-          <img class="section_one" src="images/Img_home_01.png" alt="인기상품">
-          <div class="one_content">
-            <div class="one_content_section">
-              <h3 class="content_one">Hot item</h3>
-              <h4 class="content_two">인기 상품을<br>확인해 보세요</h4>
-              <h5 class="content_three">가장 HOT한 중고거래 물품을<br>판다 마켓에서 확인해 보세요</h5>
-            </div>
-          </div>
-        </div>
-        </div>
-        <div class="section_total">
-          <div class="section_one">
-              <div class="two_content">
-                <div class="two_content_section">
-                  <h3 class="content_search">Search</h3>
-                  <h4 class="content_two">구매를 원하는<br>상품을 검색하세요</h4>
-                  <h5 class="content_three">구매하고 싶은 물품은 검색해서<br>쉽게 찾아보세요</h5>
-                </div>
-                <img class="one_img_total" src="images/Img_home_02.png" alt="상품검색">
-              </div>
-          </div>
-        </div>
-        <div class="section_total">
-          <div class="section_one">
-              <img class="one_img_total" src="images/Img_home_03.png" alt="상품등록">
-              <div class="one_content">
-                <div class="one_content_section">
-                  <h3 class="content_one">Register</h3>
-                  <h4 class="content_two">판매를 원하는<br>상품을 등록하세요</h4>
-                  <h5 class="content_three">어떤 물건이든 판매하고 싶은 상품을<br>쉽게 등록하세요</h5>
-                </div>
-              </div>
-          </div>
-        </div>
-        <div class="bottom_total">
-          <div class="bottom_blueback"></div>
-          <div class="bottom_layout">
-            <div class="ment_layout">
-              <h4 class="bottom_ment">믿을 수 있는<br>판다마켓 중고 거래</h4>
-            </div>
-            <img class="bottom_img" src="images/Img_home_bottom.png" alt="하단배너판다">
-          </div>
-        </div>
-    </main>
-    <footer>
-      <div class="footer_total">
-        <h7 class="footer_codeit">©codeit - 2024</h7>
-        <div class="footer_layout">
-          <a href="privacy.html" class="footer_ment">Privacy Policy</a>
-          <a href="faq.html" class="footer_ment">FAQ</a>
-        </div>
-        <div class="icon_layout">
-          <a href="https://www.facebook.com" target="_blank">
-            <img class="icon_img" src="images/ic_facebook.png" alt="페이스북 아이콘">
-          </a>
-          <a href="https://x.com" target="_blank">
-            <img class="icon_img" src="images/ic_twitter.png" alt="트위터 아이콘">
-          </a>
-          <a href="https://www.youtube.com/" target="_blank">
-            <img class="icon_img" src="images/ic_youtube.png" alt="유튜브 아이콘">
-          </a>
-          <a href="https://www.instagram.com/" target="_blank">
-            <img class="icon_img" src="images/ic_instagram.png" alt="인스타그램 아이콘">
-          </a>
-        </div>
-      </div>
-    </footer>
-  </div>
-  <script type="module" src="./src/main.js"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
