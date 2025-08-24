@@ -3,6 +3,9 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import './styles/home.css';
 import MarketPage from './pages/MarketPage';
+import RegistrationPage from './pages/RegistrationPage';
+import ItemDetailPage from './pages/ItemDetailPage';
+import HomePage from './pages/HomePage';
 
 // 라우팅 대상 페이지는 필요 시 추가
 function Placeholder({ title }) {
@@ -18,7 +21,10 @@ export default function App() {
         <>
             <Navbar />
             <Routes>
-                <Route path="/" element={<MarketPage />} />
+                <Route path="/" element={<HomePage />} />
+                <Route path="/items" element={<MarketPage />} />
+                <Route path="/items/:id" element={<ItemDetailPage />} />
+                <Route path="/registration" element={<RegistrationPage />} />
                 <Route path="/login" element={<Placeholder title="로그인" />} />
                 <Route
                     path="/signup"

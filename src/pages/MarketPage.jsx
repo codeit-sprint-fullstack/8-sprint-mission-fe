@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import useBreakpoint from '../hooks/useBreakpoint';
 import useProducts from '../hooks/useProducts';
+import { Link } from 'react-router-dom';
 import '../styles/market.css';
 
 function formatPrice(v) {
@@ -11,18 +12,14 @@ export default function MarketPage() {
     const { current } = useBreakpoint();
 
     const columns = useMemo(() => {
-        const best = current === 'desktop' ? 4 : current === 'tablet' ? 2 : 1;
         const all = current === 'desktop' ? 5 : current === 'tablet' ? 3 : 2;
-        return { best, all };
+        return { all };
     }, [current]);
 
-    const rows = useMemo(() => ({ best: 2, all: 2 }), []);
+    const rows = useMemo(() => ({ all: 2 }), []);
 
     const pageSize = useMemo(
-        () => ({
-            best: columns.best * rows.best,
-            all: columns.all * rows.all,
-        }),
+        () => ({ all: columns.all * rows.all }),
         [columns, rows],
     );
 
@@ -34,15 +31,7 @@ export default function MarketPage() {
     // reset page when responsive or controls change
     useEffect(() => setPageAll(1), [pageSize.all, order, query]);
 
-    // best: favorite order
-    const { data: bestList, loading: bestLoading } = useProducts({
-        page: 1,
-        pageSize: pageSize.best,
-        order: 'favorite',
-        name: '',
-    });
-
-    // all products
+    // all products (좋아요 정렬 제외)
     const {
         data: allList,
         totalCount,
@@ -70,59 +59,18 @@ export default function MarketPage() {
     return (
         <main>
             <div className="wrapper">
-                <h2 className="section-title">베스트 상품</h2>
                 <div
-                    className="grid"
-                    style={{
-                        gridTemplateColumns: `repeat(${columns.best}, minmax(0,1fr))`,
-                    }}
+                    className="controlbar"
+                    style={{ justifyContent: 'space-between' }}
                 >
-                    {bestLoading
-                        ? Array.from({ length: pageSize.best }).map((_, i) => (
-                              <article key={i} className="card">
-                                  <div
-                                      className="thumb"
-                                      style={{
-                                          background: '#f3f3f3',
-                                          height: 0,
-                                          paddingBottom: '100%',
-                                      }}
-                                  />
-                                  <div className="meta">로딩...</div>
-                              </article>
-                          ))
-                        : bestList.map((item) => (
-                              <article key={item.id} className="card">
-                                  <img
-                                      className="thumb"
-                                      src={
-                                          item.images?.[0] ||
-                                          '/images/img_panda_face.svg'
-                                      }
-                                      alt={item.name}
-                                  />
-                                  <div className="meta">
-                                      <div style={{ fontWeight: 600 }}>
-                                          {item.name}
-                                      </div>
-                                      <div>{formatPrice(item.price)}</div>
-                                      <div
-                                          style={{
-                                              fontSize: 12,
-                                              color: '#666',
-                                          }}
-                                      >
-                                          좋아요 {item.favoriteCount}
-                                      </div>
-                                  </div>
-                              </article>
-                          ))}
+                    <h2 className="section-title" style={{ margin: 0 }}>
+                        전체 상품
+                    </h2>
                 </div>
-
                 <div className="controlbar">
                     <input
                         type="search"
-                        placeholder="상품명을 입력하세요"
+                        placeholder="검색할 상품을 입력해주세요"
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                         onKeyDown={(e) => {
@@ -130,22 +78,24 @@ export default function MarketPage() {
                         }}
                         aria-label="상품 검색"
                     />
+                    <Link
+                        to="/registration"
+                        className="button"
+                        style={{
+                            borderRadius: 8,
+                            padding: '8px 12px',
+                            fontWeight: 600,
+                        }}
+                    >
+                        상품 등록하기
+                    </Link>
                     <select
                         value={order}
                         onChange={(e) => setOrder(e.target.value)}
                     >
                         <option value="latest">최신 순</option>
-                        <option value="favorite">좋아요 순</option>
                     </select>
-                    <button type="button" onClick={() => setPageAll(1)}>
-                        검색
-                    </button>
-                    <span style={{ marginLeft: '8px', color: '#666' }}>
-                        페이지 크기: {pageSize.all}
-                    </span>
                 </div>
-
-                <h2 className="section-title">전체 상품</h2>
                 {allError ? (
                     <div style={{ padding: 24, color: 'crimson' }}>
                         데이터를 불러오는 중 오류가 발생했습니다.
