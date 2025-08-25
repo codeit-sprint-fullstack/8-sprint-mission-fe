@@ -1,0 +1,189 @@
+.registration-page {
+  width: 100%;
+  padding: 26px 0 120px;
+  box-sizing: border-box;
+}
+
+.reg-card {
+  margin: 0 360px;
+}
+
+.reg-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.reg-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1F2937;
+  margin: 0;
+  height: 32px;
+}
+
+.reg-top-submit {
+  height: 42px;
+  padding: 0 23px;
+  border: 1px solid #FFFFFF;
+  background: #9ca3af;
+  border-radius: 8px;
+  color: #f3f4f6;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.reg-top-submit {
+  transition: background .15s ease, border-color .15s ease, opacity .15s ease, transform .02s;
+}
+
+.reg-top-submit:disabled,
+.reg-top-submit[aria-disabled="true"] {
+  background: #9ca3af;
+  color: #f3f4f6;
+}
+
+.reg-top-submit:not(:disabled),
+.reg-top-submit[aria-disabled="false"] {
+  background: #3692ff;
+  color: #f3f4f6;
+}
+
+.reg-row:first-child .reg-label {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.reg-row:first-child .reg-input {
+  width: 100%;
+  height: 56px;
+  padding: 16px 24px;
+  box-sizing: border-box;
+  background: #f3f4f6;
+  color: #9ca3af;
+  border: 1px solid #FFFFFF;
+  border-radius: 12px;
+  outline: none;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.reg-row .reg-label[for="desc"] {
+  display: block;
+  margin: 32px 0 16px;
+  height: 26px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+#desc.reg-textarea {
+  width: 100%;
+  height: 282px;
+  box-sizing: border-box;
+  resize: none;
+  overflow: auto;
+  padding: 16px 24px;
+  background: #f3f4f6;
+  border-radius: 12px;
+  color: #9ca3af;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+label.reg-label[for="price"] {
+  display: block;
+  margin: 32px 0 16px;
+  width: 100%;
+  height: 26px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+#price.reg-input {
+  width: 100%;
+  height: 56px;
+  padding: 16px 24px;
+  box-sizing: border-box;
+  background: #f3f4f6;
+  border-radius: 12px;
+  color: #9ca3af;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.reg-row #price.reg-input::-webkit-outer-spin-button,
+.reg-row #price.reg-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+label.reg-label[for="tags"] {
+  display: block;
+  margin: 32px 0 16px;
+  width: 100%;
+  height: 26px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+#tags.reg-input {
+  width: 100%;
+  height: 56px;
+  padding: 16px 24px;
+  box-sizing: border-box;
+  background: #f3f4f6;
+  border-radius: 12px;
+  color: #9ca3af;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+#tags.reg-input + .reg-chips {
+  margin-top: 14px;
+}
+
+.reg-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.reg-chip {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 6px 12px 6px 16px;
+  border-radius: 26px;
+  background: #f3f4f6;
+  color: #1f2937;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.reg-chip-remove,
+.reg-chip-x {
+  margin-left: 8px;
+  display: inline-flex;
+}
+
+.reg-error {
+  color: #f74747;
+  font-size: 14px;
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+.reg-input.is-invalid,
+.reg-textarea.is-invalid,
+.reg-input[aria-invalid="true"],
+.reg-textarea[aria-invalid="true"] {
+  border-color: #f74747;
+  background: #ffffff;
+  box-shadow: 0 0 0 1px #f74747 inset;
+}
