@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".", // 프로젝트 루트
+    "paths": {
+      "@/*": ["src/*"] // @/xxx → src/xxx
+    }
+  },
+  "include": ["src"]
+}
