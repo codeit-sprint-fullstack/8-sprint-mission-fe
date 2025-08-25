@@ -1,0 +1,29 @@
+/* 루트 폰트 크기 설정: 1rem = 10px */
+html {
+  font-size: 62.5%; /* 16px -> 10px */
+  font-family: "Pretendard", sans-serif;
+}
+
+:root {
+  /* Primary */
+  --Primary-100: #3692ff;
+  --Primary-200: #1967d6;
+  --Primary-300: #1251aa;
+
+  /* Secondary */
+  --Secondary-100: #f9fafb;
+  --Secondary-200: #f3f4f6;
+  --Secondary-300: #e5e7eb;
+  --Secondary-400: #9ca3af;
+  --Secondary-500: #6b7280;
+  --Secondary-600: #4b5563;
+  --Secondary-700: #374151;
+  --Secondary-800: #1f2937;
+  --Secondary-900: #111827;
+
+  /* Error */
+  --Error-400: #f74747;
+
+  /* Gray */
+  --Cool-Gray-100: #f3f4f6;
+}

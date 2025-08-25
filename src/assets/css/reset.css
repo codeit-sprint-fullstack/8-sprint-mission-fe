@@ -1,0 +1,44 @@
+/* reset.css - 아주 기본적인 CSS 초기화 */
+
+/* 모든 요소의 여백과 패딩 제거, 박스 사이징을 border-box로 설정 */
+*,
+*::before,
+*::after {
+  margin: 0; /* 기본 마진 제거 */
+  padding: 0; /* 기본 패딩 제거 */
+  box-sizing: border-box; /* 테두리와 패딩을 포함한 크기 계산 */
+}
+
+/* body 기본 폰트와 배경 설정 */
+body {
+  font-family: Arial, Helvetica, sans-serif; /* 기본 폰트 설정 */
+  line-height: 1.5; /* 기본 줄 간격 설정 */
+  background-color: #fff; /* 기본 배경색 */
+  color: #000; /* 기본 글자색 */
+}
+
+/* 링크 기본 스타일 제거 */
+a {
+  text-decoration: none; /* 밑줄 제거 */
+  color: inherit; /* 부모 색상 상속 */
+}
+
+/* 리스트 스타일 제거 */
+ul,
+ol {
+  list-style: none; /* 기본 리스트 점 제거 */
+}
+
+/* 이미지 기본 스타일 */
+img {
+  max-width: 100%; /* 부모 너비에 맞게 조정 */
+  display: block; /* inline-block의 여백 제거 */
+}
+
+/* 버튼 기본 스타일 제거 */
+button {
+  background: none;
+  border: none;
+  cursor: pointer; /* 커서를 포인터로 변경 */
+  font: inherit; /* 부모 폰트 상속 */
+}
