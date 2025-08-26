@@ -4,7 +4,7 @@ import Items from "./pages/Items";
 import Registration from "./pages/Registration";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import FAQ from "./pages/FAQ/FAQ";
+import FAQ from "./pages/FAQ";
 import Privacy from "./pages/Policy/Policy";
 import "./index.css"; // 전역 스타일
 import Layout from "./layouts/Layout";
