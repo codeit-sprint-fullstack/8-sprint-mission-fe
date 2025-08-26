@@ -1,9 +1,11 @@
 import "./Button.css";
 
-function SmallButton({ children }) {
+function SmallButton({ disabled = false, type = "button", children }) {
   return (
     <>
-      <button className="small">{children}</button>
+      <button disabled={disabled} type={type} className="small">
+        {children}
+      </button>
     </>
   );
 }

@@ -7,7 +7,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.2rem 4rem;
+  padding: 1.2rem 3rem;
   border-radius: 8px;
   background: var(--Primary-100, #3692ff);
+}
+
+button:disabled {
+  background: var(--Cool-Gray-400, #9ca3af);
 }
