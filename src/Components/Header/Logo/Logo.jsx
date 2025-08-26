@@ -1,4 +1,4 @@
-import logo_img from '../../../images/logo_md.svg';
+import logo_img from './logo_img.svg';
 import style from './Logo.module.css';
 
 function Logo() {
