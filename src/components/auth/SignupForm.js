@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useInputCheck } from '../utils/inputCheck';
-import { USER_DATA } from '../data/users';
+import { useAuthInputCheck } from '../../utils/useAuthInputCheck';
+import { USER_DATA } from '../../data/users';
 import styles from './SignupForm.module.css';
 import SocialLogin from './SocialLogin';
 
@@ -13,7 +13,7 @@ const SignupForm = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [error, setError] = useState('');
-  const { errors, validateEmail, checkName, checkPassword, checkPasswordConfirm } = useInputCheck();
+  const { errors, validateEmail, checkName, checkPassword, checkPasswordConfirm } = useAuthInputCheck();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -60,6 +60,7 @@ const SignupForm = () => {
           <input
             type="email"
             id="email"
+            className={`${errors.email ? styles.error : ''}`}
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
@@ -74,6 +75,7 @@ const SignupForm = () => {
           <input
             type="text"
             id="name"
+            className={`${errors.name ? styles.error : ''}`}
             value={name}
             onChange={(e) => {
               setName(e.target.value);
@@ -88,10 +90,12 @@ const SignupForm = () => {
           <input
             type="password"
             id="password"
+            className={`${errors.password ? styles.error : ''}`}
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
               checkPassword(e.target.value);
+              checkPasswordConfirm(e.target.value, passwordConfirm);
             }}
             placeholder="비밀번호를 입력해 주세요"
           />
@@ -102,6 +106,7 @@ const SignupForm = () => {
           <input
             type="password"
             id="password-confirm"
+            className={`${errors.passwordConfirm ? styles.error : ''}`}
             value={passwordConfirm}
             onChange={(e) => {
               setPasswordConfirm(e.target.value);

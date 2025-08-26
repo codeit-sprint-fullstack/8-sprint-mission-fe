@@ -1,11 +1,11 @@
-import { getProductList } from '../api/ProductService';
+import { getProductList } from '../../api/ProductService';
 import styles from './ItemList.module.css';
 import ItemListSelling from './ItemListSelling';
 import ProductCard from './ProductCard';
 // ItemList.jsx
 
 import React, { useEffect, useState } from 'react';
-import useResponsivePageSize from '../utils/useResponsivePageSize';
+import useResponsivePageSize from '../../utils/useResponsivePageSize';
 
 const ItemList = () => {
   const [bestItems, setBestItems] = useState([]);

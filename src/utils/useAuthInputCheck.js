@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export function useInputCheck() {
+export function useAuthInputCheck() {
   const [errors, setErrors] = useState({});
 
   const validateEmail = (email) => {

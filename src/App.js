@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Items from './pages/Items';
+import Registration from './pages/Registration';
 import './styles/reset.css';
 import './styles/global.css';
 import './styles/index.css';
@@ -16,6 +17,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/items" element={<Items />} />
+        <Route path="/registration" element={<Registration />} />
       </Routes>
     </Router>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
-import SignupForm from '../components/SignupForm';
-import AuthHeader from '../components/AuthHeader';
+import SignupForm from '../components/auth/SignupForm';
+import AuthHeader from '../components/auth/AuthHeader';
 import styles from './Auth.module.css';
 
 const Signup = () => {

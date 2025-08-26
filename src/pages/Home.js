@@ -1,8 +1,8 @@
 import React from 'react';
 import Header from '../components/Header';
-import BannerTop from '../components/BannerTop';
-import HotItem from '../components/HotItem';
-import BannerBottom from '../components/BannerBottom';
+import BannerTop from '../components/home/BannerTop';
+import HotItem from '../components/home/HotItem';
+import BannerBottom from '../components/home/BannerBottom';
 import Footer from '../components/Footer';
 
 const Home = () => {
