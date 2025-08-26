@@ -1,0 +1,31 @@
+.pagination {
+  padding-top: 43px;
+
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    padding: 12.5px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+
+    font-family: "Pretendard";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 26px;
+
+    cursor: pointer;
+  }
+}
