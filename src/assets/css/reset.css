@@ -42,3 +42,15 @@ button {
   cursor: pointer; /* 커서를 포인터로 변경 */
   font: inherit; /* 부모 폰트 상속 */
 }
+
+/* input type num spinner 제거 */
+/* 크롬, 사파리, 엣지 */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* 파이어폭스 */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

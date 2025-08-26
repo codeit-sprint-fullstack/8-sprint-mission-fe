@@ -1,6 +1,6 @@
 /* 루트 폰트 크기 설정: 1rem = 10px */
 html {
-  font-size: 62.5%; /* 16px -> 10px */
+  font-size: 10px;
   font-family: "Pretendard", sans-serif;
 }
 
