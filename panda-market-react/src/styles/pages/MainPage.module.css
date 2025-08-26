@@ -1,0 +1,27 @@
+.mainContainer {
+  background-color: var(--background-color);
+  padding-bottom: 13.8rem;
+}
+
+.featuresSection {
+  background-color: #fff;
+  padding-bottom: 13.8rem;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 1199px) {
+  .mainContainer {
+    padding-bottom: 0;
+  }
+
+  .featuresSection {
+    margin-top: 5.2rem;
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 743px) {
+  .main {
+    margin-top: 6rem;
+  }
+}
