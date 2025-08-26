@@ -1,0 +1,59 @@
+@import '../../../../style/color_variables.css';
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  .ProductImg {
+    position: relative;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    border-radius: 16px;
+    background-color: var(--Cool-Gray-50);
+
+    img {
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  .ProductInfo {
+    align-items: flex-start;
+    gap: 6px;
+    align-self: stretch;
+
+    h2 {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--Secondary-800);
+    }
+  
+    p {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--Secondary-800);
+    }
+  
+    .favorite {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+  
+      img {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+      }
+  
+      p {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--Secondary-600);
+      }
+    }
+  }
+}

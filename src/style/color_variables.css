@@ -10,6 +10,7 @@
   --footer-bg-color: #111827;
   --footer-text-color: #9CA3AF;
   --footer-link-color: #E5E7EB;
+  --error-color: #F74747;
 
   --Cool-Gray-500: #6B7280;
   --Cool-Gray-400: #9CA3AF;
@@ -21,4 +22,5 @@
   --Secondary-800: #1F2937;
   --Secondary-600: #4B5563;
   --Secondary-400: #9CA3AF;
+  --Secondary-100: #F3F4F6;
 }

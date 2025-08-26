@@ -1,0 +1,69 @@
+@import '../../../style/color_variables.css';
+
+.headlineSectionBg {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background-color: var(--headline-bg-color);
+  margin: 0;
+  width: 100%;
+  height: 540px;
+  flex-shrink: 0;
+}
+
+.headlineSection {
+  display: inline-flex;
+  position: absolute;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  margin-top: 200px;
+  margin-left: 405px;
+  margin-right: 405px;
+
+  img {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+}
+
+.headlineButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--button-color);
+  border-radius: 40px;
+  height: 56px;
+  padding: 16px 124px;
+  gap: 10px;
+  text-decoration: none;
+  font-size: 1.25rem; /* 20px */
+  font-weight: 600;
+  line-height: 32px;
+  color: var(--button-text-color);
+  text-align: center;
+}
+
+.headlineButton:hover {
+  text-decoration: underline;
+}
+
+.headlineTitle {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 32px;
+  padding-bottom: 60px;
+
+  h1 {
+    display: flex;
+    font-size: 2.5rem; /* 40px */
+    font-weight: 700;
+    color: var(--text-color);
+    line-height: 140%;
+    margin: 0;
+  }
+}

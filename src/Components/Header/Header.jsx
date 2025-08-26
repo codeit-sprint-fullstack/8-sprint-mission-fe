@@ -1,5 +1,5 @@
-import Logo from './Logo/logo.jsx';
-import Nav from './Navigator/Nav.jsx';
+import Logo from './Logo/Logo.jsx';
+import Nav from './Navigator/Navigator.jsx';
 import style from './Header.module.css';
 
 function Header() {

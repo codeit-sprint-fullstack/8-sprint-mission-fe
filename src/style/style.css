@@ -22,7 +22,7 @@ main {
 
 /* PC */
 @media (min-width: 1200px) {
-  
+
 }
 
 /* Tablet 744~1199px */
@@ -33,7 +33,7 @@ main {
 }
 
 /* Mobile 375~743px */
-@media (max-width: 743px) {
+@media (min-width: 375px) {
   header {
     padding: 9px 16px;
   }

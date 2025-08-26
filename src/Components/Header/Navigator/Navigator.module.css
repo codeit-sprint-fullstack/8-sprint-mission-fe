@@ -1,4 +1,4 @@
-@import '../../../style/color_variables.css';
+@import '../../../style//color_variables.css';
 
 .navigator {
   display: flex;
@@ -13,5 +13,13 @@
     font-size: 1.125rem;  /* 18px */
     text-decoration: none;
     cursor: pointer;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  a.active {
+    color: #3692ff;
   }
 }
