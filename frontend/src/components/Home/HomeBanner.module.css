@@ -1,0 +1,136 @@
+.homeBanner {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  padding: 138px 200px;
+  background-color: #fff;
+}
+.homeBanner .wrap {
+  justify-content: center;
+}
+
+.banner {
+  display: flex;
+  max-width: 988px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 6.5%;
+  background: #fcfcfc;
+  cursor: pointer;
+}
+.banner img {
+  max-width: 588px;
+  /* 30.6250vw*/
+  width: 100%;
+  height: auto;
+  flex-shrink: 1;
+}
+
+.badget {
+  margin-bottom: 12px;
+  display: block;
+  color: var(--Primary-100);
+  /* pretendard/2lg-18px-bold */
+  font-family: Pretendard;
+  font-size: 18px;
+  /* 0.9375vw*/
+  font-style: normal;
+  font-weight: 700;
+  line-height: 26px;
+  /* 144.444% */
+}
+.title {
+  margin-bottom: 24px;
+
+  color: var(--Secondary-700);
+  font-family: Pretendard;
+  font-size: 40px;
+  /* 2.0833vw */
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+  /* 56px */
+  letter-spacing: 0.8px;
+}
+.content {
+  color: var(--Secondary-700);
+  /* pretendard/2xl-24px-medium */
+  font-family: Pretendard;
+  font-size: 24px;
+  /* 1.25vw;*/
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+  /* 133.333% */
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
+.reverse .txtbox {
+  text-align: right;
+}
+
+/* Tablet */
+@media (max-width: 1199px) {
+  .homeBanner {
+    padding: 0 24px;
+    background: #fcfcfc;
+  }
+
+  .banner {
+    flex-direction: column;
+    width: 698px;
+  }
+
+  .banner img {
+    max-width: 100%;
+  }
+
+  .txtbox {
+    width: 100%;
+    margin-top: 24px;
+    margin-bottom: 52px;
+  }
+
+  .title {
+    font-size: 32px;
+    line-height: 42px;
+    /* 131.25% */
+    letter-spacing: 0;
+    display: flex;
+  }
+
+  .title p:last-child {
+    margin-left: 10px;
+  }
+
+  .content {
+    font-size: 18px;
+    line-height: 26px;
+    /* 144.444% */
+  }
+
+  .reverse .title {
+    justify-content: flex-end;
+  }
+}
+
+/* Mobile */
+@media (max-width: 743px) {
+  .banner {
+    width: auto;
+  }
+
+  .badget {
+    font-size: 16px;
+  }
+  .title {
+    font-size: 24px;
+  }
+  .content {
+    font-size: 16px;
+  }
+}

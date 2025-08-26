@@ -1,0 +1,65 @@
+/* font */
+@font-face {
+  font-family: "ROKAF Sans";
+  src: url("../../assets/font/ROKAF-Sans-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* color palette */
+:root {
+  --brand-blue: #3692ff;
+  --Primary-100: #3692ff;
+  --Cool-Gray-50: #f9fafb;
+  --Cool-Gray-100: #f3f4f6;
+  --Cool-Gray-200: #e5e7eb;
+  --Cool-Gray-500: #6b7280;
+  --Cool-Gray-800: #1f2937;
+  --Secondary-50: #f9fafb;
+  --Secondary-100: #f3f4f6;
+  --Secondary-200: #e5e7eb;
+  --Secondary-400: #9ca3af;
+  --Secondary-600: #4b5563;
+  --Secondary-700: #374151;
+  --Secondary-800: #1f2937;
+  --Secondary-900: #111827;
+  --error-red: #f74747;
+}
+
+#root{
+  width: 100%;
+  background: #FCFCFC;
+}
+
+.wrap {
+  max-width: 1120px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 1;
+}
+
+section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.section-wrap {
+  width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Tablet */
+@media (max-width: 1199px) {
+  .wrap {
+    flex-direction: column;
+  } 
+  
+  .section-wrap {
+    width: 100%;
+  }
+}
