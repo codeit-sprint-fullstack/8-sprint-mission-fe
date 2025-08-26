@@ -1,0 +1,37 @@
+POST http://localhost:3000/products
+Content-Type: application/json
+
+[
+  {
+    "id": 1,
+    "name": "Product 1",
+    "description": "Description for Product 1",
+    "price": 100,
+    "tags": ["electronics", "gadgets"]
+  }
+]
+
+###
+
+GET http://localhost:3000/products/1
+
+###
+
+PATCH http://localhost:3000/products/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Updated Product 1",
+  "description": "Updated description for Product 1",
+  "price": 150,
+  "tags": ["electronics", "gadgets", "updated"]
+}
+
+###
+
+DELETE http://localhost:3000/products/1
+
+###
+
+GET http://localhost:3000/products?name=Product%201&offset=10
