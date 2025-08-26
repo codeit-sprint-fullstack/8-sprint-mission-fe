@@ -1,0 +1,10 @@
+.middle {
+  width: 100%;
+  max-width: 100rem;
+  margin: 0 auto;
+}
+
+.middle > * {
+  width: 100%;
+  padding: 13.8rem 0;
+}
