@@ -1,6 +1,7 @@
 import { useMemo, useState, useEffect } from "react";
-import { useBestProducts, useProducts } from "../hooks/useProducts.js";
+import { useProducts } from "../hooks/useProducts.js";
 import { useResponsivePageSize } from "../hooks/useResponsivePageSize.js";
+import { useNavigate } from "react-router-dom";
 import "../css/cardItemList.css";
 
 /* 페이지네이션 윈도우 계산 */
@@ -15,22 +16,33 @@ const getPageWindow = (current, total, win = 5) => {
   return Array.from({ length: end - start + 1 }, (_, i) => start + i);
 };
 
+/* 프론트에서 처리하는 디폴트 이미지  */
+const FALLBACK_IMG =
+  "data:image/svg+xml;utf8," +
+  encodeURIComponent(
+    `
+<svg xmlns='http://www.w3.org/2000/svg' width='640' height='480'>
+  <rect width='100%' height='100%' fill='#e5e7eb'/>
+  <text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle'
+        fill='#9ca3af' font-size='24'
+        font-family='Pretendard, Arial, sans-serif'>No Image</text>
+</svg>`
+  );
+
 export default function CardItemList() {
   const [pageCnt, setPageCnt] = useState(1);
-  const [sort, setSort] = useState("recent");
+  const [sort, setSort] = useState("recent"); // 좋아요 정렬 제외 → 최신순만 사용
   const [rawKeyword, setRawKeyword] = useState("");
   const [keyword, setKeyword] = useState("");
-
-  /* 반응형: 열 수에 맞춰 pageSize 조정 */
-  const bestR = useResponsivePageSize("best"); // 4/2/1
+  const navigate = useNavigate();
+  /* 반응형: 열 수에 맞춰 pageSize 조정 (베스트 섹션은 제거했으니 list만 사용) */
   const listR = useResponsivePageSize("list"); // 5/3/2
 
-  /* 데이터 */
-  const { data: bestData } = useBestProducts(bestR.pageSize);
+  /* 데이터 (3번 명세: 본인이 만든 GET 메서드 사용 - useProducts 내부에서 호출) */
   const { data, isLoading, isError } = useProducts({
     page: pageCnt,
     pageSize: listR.pageSize,
-    orderBy: sort,
+    orderBy: sort, // "recent"만 전달됨
     keyword,
   });
 
@@ -60,28 +72,6 @@ export default function CardItemList() {
 
   return (
     <div className="ProductListContainer">
-      <h2>베스트 상품</h2>
-      <div className="productGrid best">
-        {(bestData?.list || []).map((row) => (
-          <div key={row.id} className="productCard">
-            <img
-              className="card-thumb"
-              src={row.imageSrc || "/fallback-product.png"}
-              alt={row.name}
-              onError={(e) => (e.currentTarget.src = "/fallback-product.png")}
-            />
-            <div className="card-title">{row.name}</div>
-            <div className="card-price">
-              {Number(row.price || 0).toLocaleString()}원
-            </div>
-            <div className="card-meta">
-              <span>♡</span>
-              <span>240</span>
-            </div>
-          </div>
-        ))}
-      </div>
-
       <div className="section-header">
         <h2>판매 중인 상품</h2>
         <div className="toolbar">
@@ -92,7 +82,11 @@ export default function CardItemList() {
               onChange={(e) => setRawKeyword(e.target.value)}
             />
           </div>
-          <button className="primary">상품 등록하기</button>
+
+          <button className="primary" onClick={() => navigate("/registration")}>
+            상품 등록하기
+          </button>
+
           <div className="sortSelect">
             <select
               value={sort}
@@ -102,7 +96,6 @@ export default function CardItemList() {
               }}
             >
               <option value="recent">최신순</option>
-              <option value="like">좋아요순</option>
             </select>
           </div>
         </div>
@@ -110,6 +103,7 @@ export default function CardItemList() {
 
       {isError && <div>목록을 불러오지 못했습니다.</div>}
       {isLoading && <div>불러오는 중입니다.</div>}
+
       {!isLoading && !isError && (
         <>
           <div className="productGrid all">
@@ -117,11 +111,9 @@ export default function CardItemList() {
               <div key={row.id} className="productCard">
                 <img
                   className="card-thumb"
-                  src={row.imageSrc || "/fallback-product.png"}
+                  src={row.imageSrc || FALLBACK_IMG}
                   alt={row.name}
-                  onError={(e) =>
-                    (e.currentTarget.src = "/fallback-product.png")
-                  }
+                  onError={(e) => (e.currentTarget.src = FALLBACK_IMG)}
                 />
                 <div className="card-title">{row.name}</div>
                 <div className="card-price">
