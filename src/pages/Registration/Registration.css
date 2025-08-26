@@ -1,0 +1,58 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
+form > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 3.2rem; /* 160% */
+}
+
+.top {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+label {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+input,
+textarea {
+  font-size: 1.6rem;
+  border-radius: 12px;
+  background: var(--Cool-Gray-100, #f3f4f6);
+  border: none;
+  padding: 16px 24px;
+  align-items: flex-start;
+}
+
+input {
+  display: flex;
+  height: 56px;
+  /* align-self: stretch; */
+  margin-bottom: 0.8rem;
+}
+
+textarea {
+  display: flex;
+  height: 282px;
+  resize: none;
+}
