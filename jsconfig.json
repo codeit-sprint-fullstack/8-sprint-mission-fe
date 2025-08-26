@@ -3,7 +3,9 @@
     "baseUrl": ".", // 프로젝트 루트
     "paths": {
       "@/*": ["src/*"] // @/xxx → src/xxx
-    }
+    },
+    "module": "esnext", // ✅ ESM 방식으로 강제
+    "moduleResolution": "node" // ✅ Node 해석 방식
   },
   "include": ["src"]
 }
