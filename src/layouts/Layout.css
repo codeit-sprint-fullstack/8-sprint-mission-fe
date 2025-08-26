@@ -1,0 +1,46 @@
+.header-container {
+  width: 100%;
+  height: 7rem;
+  padding: 0 2.4rem;
+}
+
+.footer-container {
+  background: var(--Secondary-900, #111827);
+  width: 100%;
+  height: 16rem;
+  padding: 0 2.4rem;
+  padding-top: 3.2rem;
+}
+
+.inner-container {
+  max-width: 152rem;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  /* TODO: 첫번째 요소가 내려가도록 */
+}
+
+.inner-header {
+  height: 100%;
+  align-items: center;
+}
+
+.inner-container > * {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.copyright {
+  color: var(--Secondary-400, #9ca3af);
+}
+
+.info {
+  color: var(--Secondary-200, #e5e7eb);
+}
+
+.sns {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
