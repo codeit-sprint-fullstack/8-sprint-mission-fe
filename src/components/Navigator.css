@@ -1,0 +1,25 @@
+.navigator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px;
+}
+
+.navigator a {
+    color: var(--Secondary-600, #4b5563);
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.75rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.navigator a:hover {
+    text-decoration: underline;
+}
+
+.navLeft {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}

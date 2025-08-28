@@ -1,0 +1,8 @@
+dist/
+node_modules/
+coverage/
+.vscode/
+**/*.min.js
+**/*.min.css
+# ignore vendor font css
+public/fonts/

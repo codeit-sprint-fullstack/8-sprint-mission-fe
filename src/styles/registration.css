@@ -1,0 +1,56 @@
+.form-grid {
+    display: grid;
+    gap: 24px;
+}
+
+.form-grid.cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.form-col {
+    display: grid;
+    gap: 12px;
+}
+
+.label-strong {
+    font-weight: 600;
+}
+
+.mt-8 {
+    margin-top: 8px;
+}
+
+.input {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.textarea {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    resize: vertical;
+}
+
+.error-text {
+    color: crimson;
+    font-size: 12px;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn--rounded {
+    border-radius: 8px;
+}
+
+.btn--md {
+    padding: 10px 16px;
+}
+
+.btn--bold {
+    font-weight: 700;
+}
