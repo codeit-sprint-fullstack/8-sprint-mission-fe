@@ -12,6 +12,7 @@
     "seed": "node backend/data/seed.js"
   },
   "dependencies": {
+    "@prisma/client": "^6.15.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
@@ -31,6 +32,7 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
     "nodemon": "^3.1.10",
+    "prisma": "^6.15.0",
     "vite": "^7.0.6"
   }
 }
