@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-
 import '../styles/registration.css';
 
 import HomeHeader from '../components/HomeHeader.jsx';
