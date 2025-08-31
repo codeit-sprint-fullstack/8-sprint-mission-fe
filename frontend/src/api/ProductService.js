@@ -40,10 +40,10 @@ async function createProduct(RqBody) {
 }
 
 //상품 수정 - 요구사항 (api만)
-async function patchProduct(id) {
+async function patchProduct(id, RqBody) {
     const result = await fetch(url+`/${id}`, {
             method: 'PATCH',
-            body: JSON.stringify(postRqBody),
+            body: JSON.stringify(RqBody),
             headers: { 'Content-Type' : 'application/json' }
         })
         .then(async (res) => {

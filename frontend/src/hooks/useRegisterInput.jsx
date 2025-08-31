@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import productApi from '../../api/ProductService.js';
+import productApi from '../api/ProductService.js';
 import { useNavigate } from 'react-router-dom';
 
 //유효성 검사 커스텀 훅
@@ -110,14 +110,14 @@ function useRegisterInput(){
         }
         
         //모두 vailid 하다면 리퀘스트를 보냅니다.
-        const RqBody = {
+        const RqBody = {          
+            name: values.name,
+            description: values.description,
+            price: parseInt(values.price),
+            tags: values.tags,
             images: [
                 "https://example.com/..."
-            ],
-            tags: values.tags,
-            price: values.price,
-            description: values.description,
-            name: values.name,
+            ]
         }
 
         const res = await productApi.createProduct(RqBody);

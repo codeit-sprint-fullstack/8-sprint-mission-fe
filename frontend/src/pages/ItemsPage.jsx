@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import useAsync from '../components/hooks/useAsync.jsx';
+import useAsync from '../hooks/useAsync.jsx';
 import LocaleContext from '../contexts/LocaleContext.js';
 
 import HomeHeader from "../components/HomeHeader.jsx";

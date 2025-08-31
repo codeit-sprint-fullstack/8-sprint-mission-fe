@@ -8,8 +8,8 @@
     "build": "npm install && cd frontend && vite build",
     "dev": "concurrently \"npm run client\" \"npm run server\"",
     "client": "cd frontend && npm run dev",
-    "server": "cd backend/mongo_db_back && npm run dev",
-    "seed": "node backend/mongo_db_back/data/seed.js"
+    "server": "cd backend/prisma_back && npm run dev",
+    "seed": "node backend/prisma_back/data/seed.js"
   },
   "devDependencies": {
     "concurrently": "^9.2.1"
@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/HwSoonDev/8-sprint-mission-fe/issues"
   },
-  "homepage": "https://github.com/HwSoonDev/8-sprint-mission-fe#readme"
+  "homepage": "https://github.com/HwSoonDev/8-sprint-mission-fe#readme",
+  "dependencies": {
+    "currently": "^0.0.8"
+  }
 }

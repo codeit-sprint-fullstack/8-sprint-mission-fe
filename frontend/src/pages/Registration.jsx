@@ -4,7 +4,7 @@ import HomeHeader from '../components/HomeHeader.jsx';
 import HomeFooter from '../components/HomeFooter.jsx';
 
 import cancleTagImg from '/images/registration/cancle_tag.svg';
-import useRegisterInput from '../components/hooks/useRegisterInput.jsx';
+import useRegisterInput from '../hooks/useRegisterInput.jsx';
 
 function InputForm({label, name, value, onChange, onKeyDown = null, placeholder = '', rows=1, validErrorMsg = ''}){
     

@@ -1,6 +1,7 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
+import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -8,37 +9,50 @@ const prisma = new PrismaClient();
 const app = express();
 app.use(express.json());
 
-app.get('/users', async (req, res) => {
-  const { offset = 0, limit = 10, order = 'newest' } = req.query;
-  const users = await prisma.user.findMany({
-    orderBy: { createdAt: 'asc' },
+//cors 설정
+const corsOptions = {
+  origin: ['http://localhost:5173'] //프론트엔드 개발 로컬 주소
+  //origin: ['https://pandamarket-kwxe.onrender.com'] //render 배포 주소
+}
+app.use(cors(corsOptions));
+
+
+app.get('/products', async (req, res) => {
+
+  const { page = 1, pageSize = 10, orderBy = 'newest', keyword='' } = req.query;
+
+  const limit  = parseInt(pageSize);
+  const offset  = (parseInt(page) -1) * limit;
+  
+  const users = await prisma.product.findMany({
+    orderBy: orderBy == 'recent' ? { createdAt: 'desc' } : {favoriteCount: 'desc'},
     skip: parseInt(offset),
     take: parseInt(limit),
   });
   res.send(users);
 });
 
-app.get('/users/:id', async (req, res) => {
+app.get('/products/:id', async (req, res) => {
   const { id } = req.params;
-  const user = await prisma.user.findUnique({
+  const user = await prisma.product.findUnique({
     where: { id },
   });
   res.send(user);
 });
 
-app.post('/users', async (req, res) => {
+app.post('/products', async (req, res) => {
   // 리퀘스트 바디 내용으로 유저 생성
-  const user = await prisma.user.create({
+  const user = await prisma.product.create({
     data: req.body,
   });
 
   res.status(201).send(user);
 });
 
-app.patch('/users/:id', async (req, res) => {
+app.patch('/products/:id', async (req, res) => {
   const { id } = req.params;
   // 리퀘스트 바디 내용으로 id에 해당하는 유저 수정
-  const user = await prisma.user.update({
+  const user = await prisma.product.update({
     where: {id},
     data: req.body,
   });
@@ -46,10 +60,10 @@ app.patch('/users/:id', async (req, res) => {
   res.send(user);
 });
 
-app.delete('/users/:id', async (req, res) => {
+app.delete('/products/:id', async (req, res) => {
   const { id } = req.params;
   // id에 해당하는 유저 삭제
-  await prisma.user.delete({
+  await prisma.product.delete({
     where: {id},
   });
   res.sendStatus(204);
