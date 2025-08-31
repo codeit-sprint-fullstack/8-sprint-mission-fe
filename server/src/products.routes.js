@@ -113,4 +113,20 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+// > +    const { _id, name, description, price, tags, createdAt } = p;
+// +    return res.json({
+// +      id: _id.toString(),
+// +      name,
+// +      description,
+// +      price,
+// +      tags,
+// +      createdAt,
+// +    });
+// const {_id, ...rest } = p;
+// resturn res.json({
+//   id: ...,
+//   ...rest
+// })
+// 이렇게 destructuring을 활용하는 방법도 있으니 참고해보세요 : -)
+
 export default router;
