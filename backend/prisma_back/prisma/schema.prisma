@@ -9,6 +9,14 @@ generator client {
   //output   = "../generated/prisma" 
   /**
    * /**
+   * /**
+   * /**
+   * /**
+   * /**
+   * /**
+   * /**
+   * /**
+   * /**
    * /*
    * 이 설정 때문에 기본 경로(node_module/@prisma/client)에 생성이 안되서 문제가 생긴 것.
    * ../generated/prisma 위치에 마이그레이션 파일을 생성하고 싶으면 이렇게 하면 된다.
@@ -31,13 +39,35 @@ datasource db {
 // }
 
 model Product {
-  id            String   @id @default(uuid())
+  id            String           @id @default(uuid())
   name          String
   price         Int
   description   String
   tags          String[]
   images        String[]
-  favoriteCount Int      @default(0)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  favoriteCount Int              @default(0)
+  comment       Comment[]
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+}
+
+model Article {
+  id        String           @id @default(uuid())
+  title     String
+  content   String
+  comment   Comment[]
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  product   Product?  @relation(fields: [productId], references: [id])
+  article   Article?  @relation(fields: [articleId], references: [id])
+  productId String?
+  articleId String?
 }

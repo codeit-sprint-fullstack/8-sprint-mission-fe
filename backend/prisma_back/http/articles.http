@@ -1,31 +1,30 @@
-GET http://localhost:3000/products
+GET http://localhost:3000/articles
 
 ###
 
-GET http://localhost:3000/products?page=1&pageSize=2
+GET http://localhost:3000/articles?page=1&pageSize=2
 
 ###
 
-POST http://localhost:3000/products
+POST http://localhost:3000/articles
 Content-Type: application/json
 
 {
-  "name": "테스트 상품",
-  "price": 1500,
-  "description": "테스트 상품입니다. 테스트",
-  "tags": [],
-  "images": []
+  "title": "테스트 게시글",
+  "content": "테스트 게시글입니다. 테스트"
+}
+
+# 댓글은 자동 생성 (comment)
+
+###
+
+PATCH http://localhost:3000/articles/733653fb-6a4d-4a0d-90ca-31de1072de91
+Content-Type: application/json
+
+{
+  "title": "맥북 16인치"
 }
 
 ###
 
-PATCH http://localhost:3000/products/b8f11e76-0a9e-4b3f-bccf-8d9b4fbf331e
-Content-Type: application/json
-
-{
-  "name": "푸바오 인형"
-}
-
-###
-
-DELETE http://localhost:3000/products/b8f11e76-0a9e-4b3f-bccf-8d9b4fbf331e
+DELETE http://localhost:3000/articles/733653fb-6a4d-4a0d-90ca-31de1072de91
