@@ -65,9 +65,10 @@ model Comment {
   content   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  product   Product?  @relation(fields: [productId], references: [id])
-  article   Article?  @relation(fields: [articleId], references: [id])
+  
+  //onDlete 설정 - Cascade 상위 항목 삭제시 같이 삭제 (게시글이 사라지면 댓글도 사라집니다.)
+  product   Product?  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  article   Article?  @relation(fields: [articleId], references: [id], onDelete: Cascade)
   productId String?
   articleId String?
 }
