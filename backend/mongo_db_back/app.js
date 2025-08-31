@@ -20,8 +20,8 @@ app.use(express.json());
 
 //cors 설정 -> '프론트엔드 코드에서 배포된 API를 사용할 수 있게 하려면 CORS를 허용해야 한다' 
 const corsOptions = {
-  //origin: ['http://localhost:5173'] //프론트엔드 개발 로컬 주소
-  origin: ['https://pandamarket-kwxe.onrender.com'] //render 배포 주소
+  origin: ['http://localhost:5173'] //프론트엔드 개발 로컬 주소
+  //origin: ['https://pandamarket-kwxe.onrender.com'] //render 배포 주소
 }
 app.use(cors(corsOptions));
 

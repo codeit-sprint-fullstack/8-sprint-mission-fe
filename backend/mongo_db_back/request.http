@@ -1,0 +1,28 @@
+GET http://localhost:3000/products
+###
+GET http://localhost:3000/products/1
+###
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+  "images": [
+    "https://example.com/..."
+  ],
+  "tags": [
+    "전자제품"
+  ],
+  "price": 0,
+  "description": "string",
+  "name": "상품 이름"
+}
+
+###
+PATCH http://localhost:3000/products/1
+Content-Type: application/json
+
+{
+    "isComplete": true
+}
+###
+DELETE  http://localhost:3000/products/1

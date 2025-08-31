@@ -4,6 +4,7 @@ import Items from "../pages/ItemsPage";
 import NotFound from "../pages/NotFound";
 import Registration from "../pages/Registration";
 import ProductDetail from "../pages/ProductDetail";
+import Articles from "../pages/ArticlePage/ArticlePage.jsx";
 
 //React Router 6.4v 데이터 라우터 PAI 방식
 const router = createBrowserRouter([
@@ -11,6 +12,7 @@ const router = createBrowserRouter([
   { path: "/items", element: <Items /> },
   { path: "/registration", element: <Registration /> },
   { path: "/productdetail", element: <ProductDetail /> },
+  { path: "/articles", element: <Articles/> },
   { path: "*", element: <NotFound /> },
 ]);
 

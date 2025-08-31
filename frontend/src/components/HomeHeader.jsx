@@ -22,7 +22,7 @@ function HomeHeader(){
                 
                 {location.pathname !== '/' && 
                     <div>
-                        <Link><p>자유게시판</p></Link>
+                        <Link to="/articles"><p>자유게시판</p></Link>
                         <Link to="/items"><p>중고마켓</p></Link>
                     </div>
                 }

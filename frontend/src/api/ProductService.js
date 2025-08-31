@@ -1,6 +1,6 @@
 //const url = 'https://panda-market-api-crud.vercel.app/products' //판다마켓 코드잇 api (사용시 result.list 경로 사용)
-//const url = 'http://localhost:3000/products' //직접 만든 개발용 백엔드 로컬 주소입니다.
-const url = 'https://pandamarket-kwxe.onrender.com/products' //Render 배포 백엔드 주소입니다.
+const url = 'http://localhost:3000/products' //직접 만든 개발용 백엔드 로컬 주소입니다.
+//const url = 'https://pandamarket-kwxe.onrender.com/products' //Render 배포 백엔드 주소입니다.
 
 //상품 목록 조회 - 요구사항
 async function getProductList(page=1, pagesize=10, orderBy='recent', keyword=''){
@@ -40,10 +40,10 @@ async function createProduct(RqBody) {
 }
 
 //상품 수정 - 요구사항 (api만)
-async function patchProduct(id) {
+async function patchProduct(id, RqBody) {
     const result = await fetch(url+`/${id}`, {
             method: 'PATCH',
-            body: JSON.stringify(postRqBody),
+            body: JSON.stringify(RqBody),
             headers: { 'Content-Type' : 'application/json' }
         })
         .then(async (res) => {

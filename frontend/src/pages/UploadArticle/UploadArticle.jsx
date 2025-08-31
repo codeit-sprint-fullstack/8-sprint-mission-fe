@@ -4,7 +4,7 @@ import HomeHeader from '../components/HomeHeader.jsx';
 import HomeFooter from '../components/HomeFooter.jsx';
 
 import cancleTagImg from '/images/registration/cancle_tag.svg';
-import useRegisterInput from '../hooks/useRegisterInput.jsx';
+import useRegisterInput from '../components/hooks/useRegisterInput.jsx';
 
 function InputForm({label, name, value, onChange, onKeyDown = null, placeholder = '', rows=1, validErrorMsg = ''}){
     
@@ -52,7 +52,7 @@ function SelectedTags({tags , handleDelete}){
     );
 }
 
-function Registration({}){
+function UploadArticle({}){
 
     //입력값, 유효성 검사, 입력값을 다루는 함수 묶어서 커스텀 훅으로 만들었습니다.
     //유효성 검사 커스텀 훅(요구사항)은 이 커스텀 훅 안에 있습니다.
@@ -99,24 +99,7 @@ function Registration({}){
                             rows={10}
                             validErrorMsg={errors.description} 
                         />
-                        <InputForm 
-                            label='판매 가격' 
-                            name='price' 
-                            value={values.price} 
-                            onChange={onChange}
-                            placeholder='판매 가격을 입력해 주세요.'
-                            validErrorMsg={errors.price} 
-                        />
-                        <InputForm 
-                            label='태그' 
-                            name='tag' 
-                            value={values.tag} 
-                            onChange={onChange}
-                            onKeyDown={handleKeyDown}
-                            placeholder='태그를 입력해 주세요.'
-                            validErrorMsg={errors.tag} 
-                        />
-                        <SelectedTags tags={values.tags} handleDelete={deleteTag}/>
+                        <p>이미지 인풋 구현하기</p>
                     </div>
                 </main> 
             <HomeFooter />
@@ -124,4 +107,4 @@ function Registration({}){
     );
 }
 
-export default Registration;
+export default UploadArticle;

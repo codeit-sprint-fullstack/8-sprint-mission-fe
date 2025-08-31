@@ -4,33 +4,30 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "node backend/app.js",
+    "start": "node backend/mongoDBBack/app.js",
     "build": "npm install && cd frontend && vite build",
     "dev": "concurrently \"npm run client\" \"npm run server\"",
-    "client": "cd frontend && vite",
-    "server": "cd backend && nodemon app.js",
-    "seed": "node backend/data/seed.js"
-  },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^17.2.1",
-    "express": "^5.1.0",
-    "mongoose": "^7.8.7",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-router-dom": "^6.30.1"
+    "client": "cd frontend && npm run dev",
+    "server": "cd backend/prisma_back && npm run dev",
+    "seed": "node backend/prisma_back/data/seed.js"
   },
   "devDependencies": {
-    "@eslint/js": "^9.30.1",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
-    "@vitejs/plugin-react": "^4.6.0",
-    "concurrently": "^9.2.0",
-    "eslint": "^9.30.1",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.20",
-    "globals": "^16.3.0",
-    "nodemon": "^3.1.10",
-    "vite": "^7.0.6"
+    "concurrently": "^9.2.1"
+  },
+  "description": "> _이 저장소는 판다마켓 프로젝트의 프론트엔드 코드를 관리하는 곳입니다. 프로젝트를 클론하여 개발 환경을 설정하고, 각 브랜치에서 해당 스프린트 미션을 수행해 주세요!_ 🛠️",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HwSoonDev/8-sprint-mission-fe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HwSoonDev/8-sprint-mission-fe/issues"
+  },
+  "homepage": "https://github.com/HwSoonDev/8-sprint-mission-fe#readme",
+  "dependencies": {
+    "currently": "^0.0.8"
   }
 }
