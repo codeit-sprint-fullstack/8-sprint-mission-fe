@@ -114,8 +114,8 @@ export function ProductListPage() {
               productsList.map((product) => {
                 return (
                   <ProductCard
-                    key={product._id}
-                    id={product._id}
+                    key={product.id}
+                    id={product.id}
                     name={product.name}
                     price={product.price}
                     image={'/images/product.png'}
