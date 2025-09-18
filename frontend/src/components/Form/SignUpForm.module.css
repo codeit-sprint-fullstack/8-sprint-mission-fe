@@ -1,9 +1,0 @@
-.signUpForm {
-  max-width: 640px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 40px;
-  gap: 24px;
-}
