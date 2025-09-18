@@ -7,13 +7,7 @@ const Logo = () => {
       href="/"
       className="flex justify-center items-end w-[153px] h-[50px] mr-5 cursor-pointer"
     >
-      <Image
-        src="/image/logo_md.svg"
-        alt="Logo"
-        width={153}
-        height={50}
-        priority
-      />
+      <Image src="/logo_md.svg" alt="Logo" width={153} height={50} priority />
     </Link>
   );
 };

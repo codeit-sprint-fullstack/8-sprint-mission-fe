@@ -1,7 +1,9 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import { useRouter } from "next/navigation";
 
 const freeboardPage = () => {
@@ -24,9 +26,9 @@ const freeboardPage = () => {
         <div>
           <div>
             <h1>게시글</h1>
-            <button className="" onClick={handleMovePage}>
+            <Link className="" onClick={handleMovePage}>
               글쓰기
-            </button>
+            </Link>
           </div>
           <Controller />
 
