@@ -16,7 +16,7 @@ const Comment = () => {
           </div>
         </div>
         <div className="absolute top-0 right-0">
-          <Image src="/ic_kebab.svg" alt="Kebab" width={24} height={24} />
+          <Image src="/ic_kebab.svg" alt="Kebab icon" width={24} height={24} />
         </div>
       </div>
     </div>

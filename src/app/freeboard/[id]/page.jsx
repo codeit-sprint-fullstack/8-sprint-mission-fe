@@ -4,7 +4,8 @@ import Image from "next/image";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import BoardId from "@/components/Board/BoardId";
-import Comment from "@/components/Comment";
+import Comment from "@/components/Comment/Comment";
+import NoneComment from "@/components/Comment/NoneComment";
 
 const freeboardIdPage = () => {
   return (
