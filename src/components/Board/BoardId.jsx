@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import KebabMenu from "../Kebab/KebabMenu";
 
 const BoardId = () => {
   return (
@@ -9,7 +10,8 @@ const BoardId = () => {
           <h1 className="w-full text-xl font-bold text-[#1F2937] leading-8">
             title
           </h1>
-          <Image src="/ic_kebab.svg" alt="Kebab icon" width={24} height={24} />
+          <KebabMenu />
+          {/* type="board" id={board.id} */}
         </div>
 
         <div className="flex items-center gap-8 place-self-stretch mb-4 w-full">
@@ -24,7 +26,7 @@ const BoardId = () => {
           <div className="h-[34px] border-l border-gray-200" />
 
           <button className="flex flex-col gap-[10px] h-10 ml-4 px-3 py-1 bg-white border border-[#E5E7EB] rounded-[35px]">
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 cursor-pointer">
               <Image src="/ic_heart.svg" alt="Heart" width={32} height={32} />
               <p className="text-base font-medium text-[#6B7280] leading-[26px]">
                 123

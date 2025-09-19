@@ -14,6 +14,7 @@ const BoardWritePage = () => {
             <button className="flex justify-center items-center bg-[#9CA3AF] rounded-lg w-22 h-12 px-[23px] py-3 text-base text-[#F3F4F6] whitespace-nowrap hover:underline">
               등록
             </button>
+            {/* 게시글 등록 후 상세 페이지로 이동 */}
           </div>
 
           <div>
