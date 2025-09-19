@@ -7,7 +7,7 @@ const BoardWritePage = () => {
     <div className="flex flex-col min-h-screen bg-white">
       <Header />
 
-      <main className="flex-1 flex flex-col items-stretch mx-auto p-4 w-[1200px]">
+      <main className="flex-1 flex flex-col items-stretch mx-auto mb-[200px] p-4 w-[1200px]">
         <div>
           <div className="flex justify-between items-center mb-8">
             <h1 className="text-xl font-bold text-[#1F2937]">게시글 쓰기</h1>
