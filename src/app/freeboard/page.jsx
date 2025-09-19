@@ -1,39 +1,42 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import { useRouter } from "next/navigation";
+import BestCard from "../../components/BestCard";
+import Boards from "../../components/Borads";
+import Controller from "../../components/Controller/Controller";
 
 const freeboardPage = () => {
-  const router = useRouter();
+  const [board, setBoard] = useState();
 
-  const handleMovePage = () => {
-    router.push(`/freeboard/write`);
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch("");
+      const data = await res.json();
+
+      setBoard(data);
+    };
+
+    fetchData();
+  }, []);
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen bg-white">
       <Header />
 
-      <main>
-        <div>
-          <h1>베스트 게시글</h1>
+      <main className="flex-1 flex flex-col items-stretch mx-auto p-4 w-[1200px]">
+        <section>
+          <h1 className="mb-6 text-xl text-[#111827] font-bold">
+            베스트 게시글
+          </h1>
           <BestCard />
-        </div>
+        </section>
 
-        <div>
-          <div>
-            <h1>게시글</h1>
-            <Link className="" onClick={handleMovePage}>
-              글쓰기
-            </Link>
-          </div>
+        <section>
           <Controller />
-
-          <Card />
-        </div>
+          <Boards />
+        </section>
       </main>
 
       <Footer />
