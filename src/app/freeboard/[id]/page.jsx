@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/Header/Header";
@@ -8,6 +10,32 @@ import Comment from "@/components/Comment/Comment";
 import NoneComment from "@/components/Comment/NoneComment";
 
 const freeboardIdPage = () => {
+  const [comment, setComment] = useState("");
+
+  const isFormValid = comment.trim() !== "";
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!isFormValid) return;
+
+    // 게시글 등록 API 호출
+    console.log("내용:", comment);
+    // try {
+    //   const res = await fetch("http://localhost:3000/freeboard", {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({ title, content }),
+    //   });
+
+    //   if (!res.ok) throw new Error("게시글 등록 실패");
+
+    //   const data = await res.json(); // { id: 123, ... }
+    //   router.push(`/freeboard/${data.id}`);
+    // } catch (err) {
+    //   console.error("등록 ERROR:", err);
+    // }
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <Header />
@@ -21,11 +49,21 @@ const freeboardIdPage = () => {
               댓글 달기
             </h1>
             <textarea
+              value={comment}
               placeholder="댓글을 입력해주세요."
+              onChange={(e) => setComment(e.target.value)}
               className="items-start w-full h-[104px] px-6 py-4 rounded-xl bg-gray-100 focus:border-gray-400 focus:outline-none placeholder-[#9CA3AF] text-black"
             />
           </div>
-          <button className="flex justify-center items-center bg-[#9CA3AF] rounded-lg w-22 h-12 px-[23px] py-3 text-base text-[#F3F4F6] whitespace-nowrap hover:underline">
+          <button
+            onClick={handleSubmit}
+            disabled={!isFormValid}
+            className={`flex justify-center items-center bg-[#9CA3AF] rounded-lg w-22 h-12 px-[23px] py-3 text-base text-[#F3F4F6] whitespace-nowrap ${
+              isFormValid
+                ? "bg-[#3692FF] cursor-pointer hover:underline"
+                : "bg-[#9CA3AF] cursor-not-allowed"
+            }`}
+          >
             등록
           </button>
         </form>
