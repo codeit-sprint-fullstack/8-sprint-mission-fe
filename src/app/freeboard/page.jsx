@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
-import BestCard from "../../components/BestCard";
-import Boards from "../../components/Borads";
-import Controller from "../../components/Controller/Controller";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
+import BestCard from "@/components/BestCard";
+import Boards from "@/components/Boards";
+import Controller from "@/components/Controller/Controller";
 
 const freeboardPage = () => {
   const [board, setBoard] = useState();
@@ -30,12 +30,25 @@ const freeboardPage = () => {
           <h1 className="mb-6 text-xl text-[#111827] font-bold">
             베스트 게시글
           </h1>
-          <BestCard />
+          {/* Array는 실제 데이터 연동 후 {boards.map((board) => 같은 형식으로 변경 */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {[...Array(3)].map((_, idx) => (
+              <BestCard key={idx} />
+            ))}
+          </div>
         </section>
 
         <section>
-          <Controller />
-          <Boards />
+          <Controller
+            controls={{ search: true, orderBy: true }}
+            boards={board ?? []}
+            setSortedBoards={setBoard}
+          />
+          <div className="grid grid-cols-1 gap-4 md:gap-6">
+            {[...Array(4)].map((_, idx) => (
+              <Boards key={idx} />
+            ))}
+          </div>
         </section>
       </main>
 
