@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from "react";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import BestCard from "@/components/BestCard";
-import Boards from "@/components/Boards";
+import BestCard from "@/components/Board/BestCard";
+import BoardCard from "@/components/Board/BoardCard";
 import Controller from "@/components/Controller/Controller";
 
 const freeboardPage = () => {
@@ -46,7 +46,7 @@ const freeboardPage = () => {
           />
           <div className="grid grid-cols-1 gap-4 md:gap-6">
             {[...Array(4)].map((_, idx) => (
-              <Boards key={idx} />
+              <BoardCard key={idx} />
             ))}
           </div>
         </section>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import BoardId from "@/components/Board/BoardId";
 import Comment from "@/components/Comment";
 
 const freeboardIdPage = () => {
@@ -11,36 +12,7 @@ const freeboardIdPage = () => {
       <Header />
 
       <main className="flex-1 flex flex-col items-stretch mx-auto p-4 w-[1200px]">
-        <div>
-          <div>
-            <h1>title</h1>
-            <Image
-              src="/ic_kebab.svg"
-              alt="Kebab icon"
-              width={24}
-              height={24}
-            />
-          </div>
-          <div>
-            <div>
-              <Image
-                src="/ic_profile.svg"
-                alt="Profile"
-                width={40}
-                height={40}
-              />
-              <p>user_name</p>
-              <p>createdAt</p>
-            </div>
-            <div>
-              <Image src="/ic_heart.svg" alt="Heart" width={32} height={32} />
-              <p>123</p>
-            </div>
-          </div>
-          <div>
-            <p>content</p>
-          </div>
-        </div>
+        <BoardId />
 
         <form>
           <h1>댓글 달기</h1>
