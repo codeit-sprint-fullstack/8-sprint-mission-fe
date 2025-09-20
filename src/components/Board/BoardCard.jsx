@@ -13,7 +13,7 @@ const Boards = () => {
       <div className="flex flex-col w-full mb-6 gap-4">
         <div className="flex justify-between items-start self-stretch w-full gap-2">
           <p className="text-xl font-semibold text-[#1F2937] leading-8">
-            맥북 16인치 16기가 1테라 정도 사양이면 얼마에 팔아야하나요?
+            title
           </p>
           <div className="justify-center items-center w-18 h-18 p-3">
             <Image src="/board_image.svg" alt="Board" width={48} height={44} />

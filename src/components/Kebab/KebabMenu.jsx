@@ -23,7 +23,7 @@ const KebabMenu = ({ type, id }) => {
 
   const handleEdit = () => {
     if (type === "board") {
-      router.push("/freeboard/write");
+      router.push("/freeboard/edit");
     }
     if (type === "comment") {
       // 댓글 수정하기 UI는 뭐지

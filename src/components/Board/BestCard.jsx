@@ -23,9 +23,7 @@ const BestCard = () => {
 
           <div>
             <div className="flex justify-between items-start gap-[8px] mb-4.5">
-              <p className="text-[#1F2937] font-semibold leading-8">
-                맥북 16인치 16기가 1테라 정도 사양이면 얼마에 팔아야하나요?
-              </p>
+              <p className="text-[#1F2937] font-semibold leading-8">title</p>
               <div className="justify-center items-center w-18 h-18 p-3">
                 <Image
                   src="/board_image.svg"
@@ -46,7 +44,7 @@ const BestCard = () => {
                     width={16}
                     height={16}
                   />
-                  <p className="text-[#6B7280]">9999+</p>
+                  <p className="text-[#6B7280]">heart_count</p>
                 </div>
               </div>
               <p className="items-end text-[#9CA3AF]">createdAt</p>
