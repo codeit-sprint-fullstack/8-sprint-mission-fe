@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const SearchBar = ({ search, onChange, onSearch }) => {
   return (
-    <div className="relative w-full">
+    <div className="relative w-full mr-1">
       <input
         type="text"
         value={search}
