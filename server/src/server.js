@@ -36,3 +36,14 @@ mongoose
     console.error("MongoDB connection error", e);
     process.exit(1);
   });
+
+//   In server/src/products.routes.js:
+
+// > +    const [items, total] = await Promise.all([
+// +      Product.find(filter)
+// +        .sort(sort === "recent" ? { createdAt: -1 } : {})
+// +        .skip(offset)
+// +        .limit(limit)
+// +        .select("name price createdAt")
+// +        .lean(),
+// 조회 API에서 lean 메서드를 사용하신 이유는 퍼포먼스 개선을 위한 것이라고 생각하면 될까요 ? 🤔 => 이해를 못했습니다.

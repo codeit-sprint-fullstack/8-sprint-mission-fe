@@ -127,6 +127,6 @@ router.get("/", async (req, res, next) => {
 //   id: ...,
 //   ...rest
 // })
-// 이렇게 destructuring을 활용하는 방법도 있으니 참고해보세요 : -)
+// 이렇게 destructuring을 활용하는 방법도 있으니 참고해보세요 : -) => 넵 알겠습니다
 
 export default router;
