@@ -1,6 +1,10 @@
 @use "@/styles/mixin" as m;
 @use "@/styles/variable" as v;
 
+.dropdown {
+  position: relative;
+}
+
 .button {
   @include m.button-reset;
 
@@ -39,6 +43,10 @@
   width: 130px;
   flex-direction: column;
   align-items: flex-start;
+
+  position: absolute;
+  top: 100%;
+  left: 0;
 }
 
 .item {

@@ -6,16 +6,23 @@ import styles from "@/styles/components/SearchInput.module.scss";
 
 import ic_search from "/public/icons/ic_search.svg";
 
-const SearchInput = () => {
+const SearchInput = ({ size = "sm" }) => {
   const [value, setValue] = useState("");
 
+  const handleChange = (e) => {
+    const searchValue = e.target.value;
+    setValue(searchValue);
+  };
+
   return (
-    <div className={styles.input}>
+    <div className={`${styles.input} ${styles[size]}`}>
       <Image className={styles.searchIcon} src={ic_search} alt="ic_search" />
       <input
         className={styles.searchInput}
         type="text"
         placeholder="검색할 상품을 입력해주세요"
+        value={value}
+        onChange={handleChange}
       />
     </div>
   );

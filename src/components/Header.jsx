@@ -1,5 +1,6 @@
 import Image from "next/image";
 import brandLogo from "../../public/brandLogo.svg";
+import Button from "@/components/Button.jsx";
 import styles from "@/styles/components/Header.module.scss";
 
 const Header = () => {
@@ -12,7 +13,7 @@ const Header = () => {
           <div className={styles.linkContent}>중고마켓</div>
         </div>
       </div>
-      <button className={styles.loginBtn}>로그인</button>
+      <Button type="login" />
     </div>
   );
 };

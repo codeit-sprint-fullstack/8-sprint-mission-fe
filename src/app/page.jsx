@@ -1,7 +1,5 @@
-import SearchInput from "@/components/SearchInput";
-
 const Home = () => {
-  return <SearchInput />;
+  return <div>판다마켓 HOME</div>;
 };
 
 export default Home;
