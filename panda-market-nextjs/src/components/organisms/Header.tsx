@@ -23,6 +23,7 @@ export default function Header() {
                   priority
                   width={153}
                   height={32}
+                  style={{ width: "153", height: "32" }}
                 ></Image>
               </Link>
             </li>
