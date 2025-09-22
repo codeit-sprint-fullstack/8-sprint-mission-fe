@@ -1,5 +1,7 @@
+import Header from "@/components/Header";
+
 const Home = () => {
-  return <div>Hello Next.js</div>;
+  return <Header />;
 };
 
 export default Home;
