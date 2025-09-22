@@ -1,9 +1,9 @@
 import Image from "next/image";
 import styles from "@/styles/components/BestArticleCard.module.scss";
 
-import ic_medal from "../../public/ic_medal.svg";
 import articleImg from "../../public/articleImg.svg";
-import ic_heart from "../../public/ic_heart.svg";
+import ic_medal from "../../public/icons/ic_medal.svg";
+import ic_heart from "../../public/icons/ic_heart.svg";
 
 const BestArticleCard = () => {
   return (

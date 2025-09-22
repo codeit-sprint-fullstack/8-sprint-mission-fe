@@ -1,7 +1,7 @@
-import ArticleList from "@/components/ArticleList";
+import Footer from "@/components/Footer";
 
 const Home = () => {
-  return <ArticleList />;
+  return <Footer />;
 };
 
 export default Home;

@@ -2,8 +2,8 @@ import Image from "next/image";
 import styles from "@/styles/components/ArticleList.module.scss";
 
 import articleImg from "../../public/articleImg.svg";
-import ic_profile from "../../public/ic_profile.svg";
-import ic_heart from "../../public/ic_heart.svg";
+import ic_profile from "../../public/icons/ic_profile.svg";
+import ic_heart from "../../public/icons/ic_heart.svg";
 
 const ArticleList = () => {
   return (
