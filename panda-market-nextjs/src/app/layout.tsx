@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/organisms/Header";
 import localFont from "next/font/local";
 import { Footer } from "@/components/organisms/Footer";
+import QueryProvider from "@/lib/QueryProvider";
 
 const pretendard = localFont({
   src: "../../font/PretendardVariable.woff2",
@@ -23,12 +24,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body className={`antialiased ${pretendard.variable}`}>
         <Header />
-        <main className="px-[30px] pt-[30px] w-full mx-auto max-w-[1260px]">
-          {children}
-        </main>
+        <QueryProvider>
+          <main className="px-[30px] pt-[30px] w-full mx-auto max-w-[1260px]">
+            {children}
+          </main>
+        </QueryProvider>
         <Footer />
       </body>
     </html>

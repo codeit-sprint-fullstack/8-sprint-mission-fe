@@ -1,8 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const pathname = usePathname();
+
+  console.log(pathname);
   return (
     <header className="border-b fixed top-0 z-10 w-full">
       <div className="w-full max-w-[1260px] mx-auto px-[30px] py-[6px] flex items-center justify-between">
@@ -21,12 +27,22 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link href="/free-board" className="text-md">
+              <Link
+                href="/free-board"
+                className={`text-md ${
+                  pathname === "/free-board" ? "text-primary" : ""
+                }`}
+              >
                 자유게시판
               </Link>
             </li>
             <li>
-              <Link href="/items" className="text-md">
+              <Link
+                href="/items"
+                className={`text-md ${
+                  pathname === "/items" ? "text-primary" : ""
+                }`}
+              >
                 중고마켓
               </Link>
             </li>
