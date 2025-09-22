@@ -1,7 +1,53 @@
+@use "@/styles/mixin" as m;
+@use "@/styles/variable" as v;
+
 .header {
   padding: 0 200px;
+  height: 68px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  .wrapper {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+
+    .link {
+      display: flex;
+      align-items: center;
+
+      .linkContent {
+        padding: 21px 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        color: v.$secondary-600;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 26px; /* 144.444% */
+      }
+    }
+  }
+}
+
+.loginBtn {
+  @include m.button-reset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 42px;
+
+  background: v.$primary-100;
+  padding: 12px 23px;
+  border-radius: 8px;
+
+  color: v.$coolGray-100;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px;
 }
