@@ -1,7 +1,7 @@
-import Footer from "@/components/Footer";
+import DropDownSort from "@/components/DropDownSort";
 
 const Home = () => {
-  return <Footer />;
+  return <DropDownSort />;
 };
 
 export default Home;
