@@ -1,7 +1,7 @@
-import BestArticleCard from "@/components/BestArticleCard";
+import ArticleList from "@/components/ArticleList";
 
 const Home = () => {
-  return <BestArticleCard />;
+  return <ArticleList />;
 };
 
 export default Home;
