@@ -1,7 +1,7 @@
-import Header from "@/components/Header";
+import BestArticleCard from "@/components/BestArticleCard";
 
 const Home = () => {
-  return <Header />;
+  return <BestArticleCard />;
 };
 
 export default Home;
