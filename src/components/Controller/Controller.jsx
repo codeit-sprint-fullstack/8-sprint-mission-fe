@@ -1,9 +1,11 @@
+"use client";
+
 import React, { useState } from "react";
 import Link from "next/link";
 import SearchBar from "./SearchBar/SearchBar";
 import DropDown from "./DropDown/DropDown";
 
-const Controller = ({ controls = {}, todos: boards = [], setSortedBoards }) => {
+const Controller = ({ controls = {}, boards = [], setSortedBoards }) => {
   const [search, setSearch] = useState("");
   const [sortOption, setSortOption] = useState({
     label: "최신순",

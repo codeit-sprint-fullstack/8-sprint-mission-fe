@@ -11,7 +11,7 @@ const BoardWritePage = () => {
 
   const handleCreate = async (data) => {
     try {
-      const res = await fetch("http://localhost:3000/freeboard", {
+      const res = await fetch("", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

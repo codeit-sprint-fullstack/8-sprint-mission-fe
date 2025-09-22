@@ -11,6 +11,7 @@ import NoneComment from "@/components/Comment/NoneComment";
 
 const freeboardIdPage = () => {
   const [comment, setComment] = useState("");
+  const [commentList, setCommentList] = useState([]);
 
   const isFormValid = comment.trim() !== "";
 
@@ -34,6 +35,9 @@ const freeboardIdPage = () => {
     // } catch (err) {
     //   console.error("등록 ERROR:", err);
     // }
+
+    setCommentList((prev) => [...prev, newComment]);
+    setComment("");
   };
 
   return (
@@ -68,11 +72,15 @@ const freeboardIdPage = () => {
           </button>
         </form>
 
-        <div className="grid grid-cols-1 gap-6">
-          {[...Array(3)].map((_, idx) => (
-            <Comment key={idx} />
-          ))}
-        </div>
+        {commentList.length === 0 ? (
+          <NoneComment />
+        ) : (
+          <div className="grid grid-cols-1 gap-6">
+            {commentList.map((c) => (
+              <Comment key={c.id} comment={c} />
+            ))}
+          </div>
+        )}
 
         <Link
           href="/freeboard"

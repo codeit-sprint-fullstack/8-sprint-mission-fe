@@ -45,8 +45,8 @@ const freeboardPage = () => {
             setSortedBoards={setBoard}
           />
           <div className="grid grid-cols-1 gap-4">
-            {[...Array(4)].map((_, idx) => (
-              <BoardCard key={idx} />
+            {(board ?? []).map((item, idx) => (
+              <BoardCard key={idx} board={item} />
             ))}
           </div>
         </section>
