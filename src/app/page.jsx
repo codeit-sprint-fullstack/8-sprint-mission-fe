@@ -1,7 +1,7 @@
-import DropDownSort from "@/components/DropDownSort";
+import SearchInput from "@/components/SearchInput";
 
 const Home = () => {
-  return <DropDownSort />;
+  return <SearchInput />;
 };
 
 export default Home;
