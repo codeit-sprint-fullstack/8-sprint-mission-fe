@@ -26,7 +26,7 @@ const DropDown = ({ options = [], selected, onSelect }) => {
         className="appearance-none px-4 sm:px-5 md:px-6 py-2 border border-gray-200 rounded-xl bg-white text-base text-gray-800 cursor-pointer"
       >
         <div className=" flex items-center self-stretch w-full gap-2">
-          <span className="text-nowrap">{defaultSelected.label}</span>
+          <span className="whitespace-nowrap">{defaultSelected.label}</span>
           <Image
             src="/ic_DownArrow.svg"
             alt="DropDown Arrow"

@@ -12,7 +12,7 @@ const Header = () => {
         </div>
         <Link
           href="/login"
-          className="flex justify-center items-center bg-[#3692FF] rounded-lg w-22 h-12 px-[23px] py-3 text-base text-[#F3F4F6] whitespace-nowrap hover:underline"
+          className="flex justify-center items-center bg-[#3692FF] rounded-lg w-[88px] h-12 px-[23px] py-3 text-base text-[#F3F4F6] whitespace-nowrap hover:underline"
         >
           로그인
         </Link>

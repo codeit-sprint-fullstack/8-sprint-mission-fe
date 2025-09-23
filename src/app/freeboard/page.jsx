@@ -6,16 +6,20 @@ import Footer from "@/components/Footer/Footer";
 import BestCard from "@/components/Board/BestCard";
 import BoardCard from "@/components/Board/BoardCard";
 import Controller from "@/components/Controller/Controller";
+import { fetchBoards } from "@/api/boards";
 
 const freeboardPage = () => {
-  const [board, setBoard] = useState();
+  const [board, setBoard] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("");
-      const data = await res.json();
+      try {
+        const data = await fetchBoards();
 
-      setBoard(data);
+        setBoard(data);
+      } catch (error) {
+        console.error(error);
+      }
     };
 
     fetchData();
@@ -30,10 +34,9 @@ const freeboardPage = () => {
           <h1 className="mb-6 text-xl text-[#111827] font-bold">
             베스트 게시글
           </h1>
-          {/* Array는 실제 데이터 연동 후 {boards.map((board) => 같은 형식으로 변경 */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {[...Array(3)].map((_, idx) => (
-              <BestCard key={idx} />
+            {(board ?? []).slice(0, 3).map((board) => (
+              <BestCard key={board.id} board={board} />
             ))}
           </div>
         </section>
@@ -45,8 +48,8 @@ const freeboardPage = () => {
             setSortedBoards={setBoard}
           />
           <div className="grid grid-cols-1 gap-4">
-            {(board ?? []).map((item, idx) => (
-              <BoardCard key={idx} board={item} />
+            {(board ?? []).map((board) => (
+              <BoardCard key={board.id} board={board} />
             ))}
           </div>
         </section>

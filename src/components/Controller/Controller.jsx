@@ -13,15 +13,20 @@ const Controller = ({ controls = {}, boards = [], setSortedBoards }) => {
   });
 
   const handleSearch = () => {
-    setQuery?.((prev) => ({ ...prev, keyword: search, page: 1 }));
+    const filtered = boards.filter((b) =>
+      b.title.toLowerCase().includes(search.toLowerCase())
+    );
+    setSortedBoards(filtered);
   };
 
   const handleSort = (option) => {
     setSortOption(option);
 
     const sorted = [...boards].sort((a, b) => {
-      if (option.value === "latest") return b.createdAt - a.createdAt;
-      if (option.value === "likes") return b.likes - a.likes;
+      if (option.value === "latest") {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      }
+      if (option.value === "likes") return b.heart_count - a.heart_count;
       return 0;
     });
 
@@ -34,7 +39,7 @@ const Controller = ({ controls = {}, boards = [], setSortedBoards }) => {
         <h1 className="text-xl font-bold text-[#1F2937]">게시글</h1>
         <Link
           href="/freeboard/write"
-          className="flex justify-center items-center bg-[#3692FF] rounded-lg w-22 h-12 px-[23px] py-3 text-base text-[#F3F4F6] whitespace-nowrap hover:underline"
+          className="flex justify-center items-center bg-[#3692FF] rounded-lg w-[88px] h-12 px-[23px] py-3 text-base text-[#F3F4F6] whitespace-nowrap hover:underline"
         >
           글쓰기
         </Link>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { addBoard } from "@/api/boards";
 
 const BoardForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
   const [title, setTitle] = useState("");
@@ -22,7 +23,7 @@ const BoardForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
         <button
           onClick={handleSubmit}
           disabled={!isFormValid}
-          className={`flex justify-center items-center bg-[#9CA3AF] rounded-lg w-22 h-12 px-[23px] py-3 text-base text-[#F3F4F6] whitespace-nowrap ${
+          className={`flex justify-center items-center bg-[#9CA3AF] rounded-lg w-[88px] h-12 px-[23px] py-3 text-base text-[#F3F4F6] whitespace-nowrap ${
             isFormValid
               ? "bg-[#3692FF] cursor-pointer hover:underline"
               : "bg-[#9CA3AF] cursor-not-allowed"

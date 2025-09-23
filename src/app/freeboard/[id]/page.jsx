@@ -1,8 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { fetchBoard } from "@/api/boards";
+import { fetchComments, addComment } from "@/api/comments.js";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import BoardId from "@/components/Board/BoardId";
@@ -10,34 +13,50 @@ import Comment from "@/components/Comment/Comment";
 import NoneComment from "@/components/Comment/NoneComment";
 
 const freeboardIdPage = () => {
+  const { id } = useParams();
   const [comment, setComment] = useState("");
   const [commentList, setCommentList] = useState([]);
 
+  // 댓글 목록 조회 API
+  useEffect(() => {
+    const getComments = async () => {
+      try {
+        const data = await fetchComments(); // 상단 API 함수 사용
+
+        const commentsWithDummy = data.map((c) => ({
+          ...c,
+          user_name: "테스트유저",
+          heart_count: Math.floor(Math.random() * 50),
+        }));
+        setCommentList(commentsWithDummy);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getComments();
+  }, [id]);
+
   const isFormValid = comment.trim() !== "";
 
-  const handleSubmit = (e) => {
+  // 댓글 등록 API
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isFormValid) return;
 
-    // 게시글 등록 API 호출
-    console.log("내용:", comment);
-    // try {
-    //   const res = await fetch("http://localhost:3000/freeboard", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({ title, content }),
-    //   });
+    try {
+      const newComment = await addComment({
+        content: comment,
+        user_name: "테스트유저",
+        isDeleted: false,
+        heart_count: Math.floor(Math.random() * 50),
+        createdAt: "방금 전",
+      });
 
-    //   if (!res.ok) throw new Error("게시글 등록 실패");
-
-    //   const data = await res.json(); // { id: 123, ... }
-    //   router.push(`/freeboard/${data.id}`);
-    // } catch (err) {
-    //   console.error("등록 ERROR:", err);
-    // }
-
-    setCommentList((prev) => [...prev, newComment]);
-    setComment("");
+      setCommentList((prev) => [newComment, ...prev]);
+      setComment("");
+    } catch (err) {
+      console.error("댓글 등록 ERROR:", err);
+    }
   };
 
   return (
@@ -62,7 +81,7 @@ const freeboardIdPage = () => {
           <button
             onClick={handleSubmit}
             disabled={!isFormValid}
-            className={`flex justify-center items-center bg-[#9CA3AF] rounded-lg w-22 h-12 px-[23px] py-3 text-base text-[#F3F4F6] whitespace-nowrap ${
+            className={`flex justify-center items-center bg-[#9CA3AF] rounded-lg w-[88px] h-12 px-[23px] py-3 text-base text-[#F3F4F6] whitespace-nowrap ${
               isFormValid
                 ? "bg-[#3692FF] cursor-pointer hover:underline"
                 : "bg-[#9CA3AF] cursor-not-allowed"
@@ -76,8 +95,8 @@ const freeboardIdPage = () => {
           <NoneComment />
         ) : (
           <div className="grid grid-cols-1 gap-6">
-            {commentList.map((c) => (
-              <Comment key={c.id} comment={c} />
+            {(commentList ?? []).slice(0, 4).map((comment) => (
+              <Comment key={comment.id} comment={comment} />
             ))}
           </div>
         )}

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { addBoard } from "@/api/boards";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import BoardForm from "@/components/Board/BoardForm";
@@ -11,15 +12,16 @@ const BoardWritePage = () => {
 
   const handleCreate = async (data) => {
     try {
-      const res = await fetch("", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      // 서버 연동이 없을 경우, 임의 데이터 처리
+      const newBoard = {
+        id: Date.now(),
+        ...data,
+        user_name: "테스트유저",
+        heart_count: Math.floor(Math.random() * 100),
+        createdAt: new Date().toISOString(),
+      };
+      // const newBoard = await addBoard(data);
 
-      if (!res.ok) throw new Error("게시글 등록 실패");
-
-      const newBoard = await res.json(); //서버에서 새 게시글 id 반환
       router.push(`/freeboard/${newBoard.id}`);
     } catch (error) {
       console.error("게시글 등록 에러:", error);

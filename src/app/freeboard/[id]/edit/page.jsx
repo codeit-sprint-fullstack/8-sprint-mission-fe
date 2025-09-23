@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { updateBoard } from "@/api/boards";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import BoardForm from "@/components/Board/BoardForm";
