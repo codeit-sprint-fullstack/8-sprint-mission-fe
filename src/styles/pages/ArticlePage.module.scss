@@ -73,3 +73,7 @@
   gap: 24px;
   justify-content: center;
 }
+
+.linkTag {
+  @include m.link-reset;
+}

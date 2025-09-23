@@ -1,9 +1,11 @@
+import Link from 'next/link';
 import Button from '@/components/Button';
 import BestArticleCard from '@/components/BestArticleCard';
-import styles from '@/styles/pages/ArticlePage.module.scss';
 import SearchInput from '@/components/SearchInput';
 import DropDownSort from '@/components/DropDownSort';
 import ArticleList from '@/components/ArticleList';
+
+import styles from '@/styles/pages/ArticlePage.module.scss';
 
 const ArticlePage = () => {
   return (
@@ -19,7 +21,9 @@ const ArticlePage = () => {
       <div className={styles.normalContents}>
         <div className={styles.header}>
           <div className={styles.title}>게시글</div>
-          <Button type="write" />
+          <Link href="/article/post" className={styles.linkTag}>
+            <Button type="write" />
+          </Link>
         </div>
         <div className={styles.searchWrapper}>
           <SearchInput className={styles.input} size="lg" />

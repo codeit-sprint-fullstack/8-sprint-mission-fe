@@ -6,12 +6,10 @@ import styles from '@/styles/components/SearchInput.module.scss';
 
 import ic_search from '/public/icons/ic_search.svg';
 
-const SearchInput = ({ size = 'sm' }) => {
-  const [value, setValue] = useState('');
-
+const SearchInput = ({ size = 'sm', value = '', onChange = () => {} }) => {
   const handleChange = (e) => {
     const searchValue = e.target.value;
-    setValue(searchValue);
+    onChange(searchValue);
   };
 
   return (

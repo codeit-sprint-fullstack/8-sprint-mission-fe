@@ -21,19 +21,19 @@ const Header = () => {
         <div className={styles.link}>
           <Link
             href="/article"
-            className={clsx(styles.linkContent, pathname === '/article' && styles.active)}
+            className={clsx(styles.linkContent, pathname.startsWith('/article') && styles.active)}
           >
             자유게시판
           </Link>
           <Link
             href="/market"
-            className={clsx(styles.linkContent, pathname === '/market' && styles.active)}
+            className={clsx(styles.linkContent, pathname.startsWith('/market') && styles.active)}
           >
             중고마켓
           </Link>
         </div>
       </div>
-      <Link href="/login">
+      <Link href="/login" className={styles.linkTag}>
         <Button type="login" />
       </Link>
     </div>

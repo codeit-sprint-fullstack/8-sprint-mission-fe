@@ -1,5 +1,5 @@
 const Home = () => {
-  return <div>판다마켓 HOME</div>;
+  return <div>HOME</div>;
 };
 
 export default Home;

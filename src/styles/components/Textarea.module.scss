@@ -1,0 +1,22 @@
+@use '@/styles/mixin' as m;
+@use '@/styles/variable' as v;
+
+.textarea {
+  @include m.textarea-reset;
+  width: 100%;
+
+  display: flex;
+  padding: 16px 24px;
+  align-items: flex-start;
+
+  border-radius: 12px;
+  background: v.$coolGray-100;
+}
+
+.sm {
+  height: 104px;
+}
+
+.lg {
+  height: 282px;
+}

@@ -40,3 +40,7 @@
     }
   }
 }
+
+.linkTag {
+  @include m.link-reset;
+}

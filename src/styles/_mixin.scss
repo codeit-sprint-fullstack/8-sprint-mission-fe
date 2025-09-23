@@ -26,6 +26,19 @@
   color: inherit;
 }
 
+@mixin textarea-reset {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: none;
+  resize: none; // 크기 조절 핸들 제거
+  overflow: auto; // 내용 넘칠 때 내부 스크롤
+  font: inherit;
+  color: inherit;
+  line-height: inherit;
+}
+
 @mixin link-reset {
   appearance: none;
   background: none;
