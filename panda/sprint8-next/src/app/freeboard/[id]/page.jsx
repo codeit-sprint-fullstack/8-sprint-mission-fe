@@ -381,6 +381,30 @@ export default function FreeboardDetailPage() {
             </ul>
           )}
         </div>
+
+        <div className="mt-[64px] mx-[840px]">
+          <button
+            type="button"
+            onClick={() => router.push("/freeboard")}
+            className="
+              w-[240px] h-[48px]
+              rounded-[40px] bg-[#3692ff]
+              flex items-center justify-center
+              px-[64px] py-[12px] gap-2
+              text-[#F3F4F6] text-[18px] font-semibold
+              whitespace-nowrap
+            "
+          >
+            <span>목록으로 돌아가기</span>
+            <img
+              src="/images/ic-back.svg"
+              alt=""
+              className="w-5 h-5"
+            />
+          </button>
+        </div>
+
+        <div className="h-[193px]" />
       </section>
     </main>
   );
