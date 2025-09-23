@@ -1,9 +1,9 @@
-import Image from "next/image";
-import styles from "@/styles/components/BestArticleCard.module.scss";
+import Image from 'next/image';
+import styles from '@/styles/components/BestArticleCard.module.scss';
 
-import articleImg from "../../public/articleImg.svg";
-import ic_medal from "../../public/icons/ic_medal.svg";
-import ic_heart from "../../public/icons/ic_heart.svg";
+import articleImg from '../../public/articleImg.svg';
+import ic_medal from '../../public/icons/ic_medal.svg';
+import ic_heart from '../../public/icons/ic_heart.svg';
 
 const BestArticleCard = () => {
   return (
@@ -14,11 +14,7 @@ const BestArticleCard = () => {
       </div>
       <div className={styles.contents}>
         <div className={styles.title}>게시글 제목</div>
-        <Image
-          className={styles.contentsImg}
-          src={articleImg}
-          alt="articleImg"
-        />
+        <Image className={styles.contentsImg} src={articleImg} alt="articleImg" />
       </div>
       <div className={styles.footer}>
         <div className={styles.nickAndLikes}>

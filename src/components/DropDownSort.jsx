@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import styles from "@/styles/components/DropDownSort.module.scss";
+import { useState } from 'react';
+import styles from '@/styles/components/DropDownSort.module.scss';
 
 const DropDownSort = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState("recent");
-  const options = ["recent", "favorite"];
+  const [selected, setSelected] = useState('recent');
+  const options = ['recent', 'favorite'];
 
   const labelMap = {
-    recent: "최신순",
-    favorite: "좋아요순",
+    recent: '최신순',
+    favorite: '좋아요순',
   };
 
   const toggle = () => {

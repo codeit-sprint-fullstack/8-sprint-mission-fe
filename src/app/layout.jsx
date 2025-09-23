@@ -1,14 +1,14 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import "./globals.css";
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import './globals.css';
 
 export const metadata = {
-  title: "판다마켓",
-  description: "판다마켓",
+  title: '판다마켓',
+  description: '판다마켓',
 };
 
 export const viewport = {
-  width: "device-width",
+  width: 'device-width',
   initialScale: 1,
 };
 

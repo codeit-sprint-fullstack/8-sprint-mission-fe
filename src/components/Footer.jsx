@@ -1,10 +1,10 @@
-import Image from "next/image";
-import styles from "@/styles/components/Footer.module.scss";
+import Image from 'next/image';
+import styles from '@/styles/components/Footer.module.scss';
 
-import ic_facebook from "/public/icons/ic_social/ic_facebook.svg";
-import ic_twitter from "/public/icons/ic_social/ic_twitter.svg";
-import ic_youtube from "/public/icons/ic_social/ic_youtube.svg";
-import ic_instagram from "/public/icons/ic_social/ic_instagram.svg";
+import ic_facebook from '/public/icons/ic_social/ic_facebook.svg';
+import ic_twitter from '/public/icons/ic_social/ic_twitter.svg';
+import ic_youtube from '/public/icons/ic_social/ic_youtube.svg';
+import ic_instagram from '/public/icons/ic_social/ic_instagram.svg';
 
 const Footer = () => {
   return (
@@ -15,26 +15,10 @@ const Footer = () => {
         <div className={styles.faq}>FAQ</div>
       </div>
       <div className={styles.socials}>
-        <Image
-          className={styles.socialIcon}
-          src={ic_facebook}
-          alt="ic_facebook"
-        />
-        <Image
-          className={styles.socialIcon}
-          src={ic_twitter}
-          alt="ic_twitter "
-        />
-        <Image
-          className={styles.socialIcon}
-          src={ic_youtube}
-          alt="ic_youtube"
-        />
-        <Image
-          className={styles.socialIcon}
-          src={ic_instagram}
-          alt="ic_instagram"
-        />
+        <Image className={styles.socialIcon} src={ic_facebook} alt="ic_facebook" />
+        <Image className={styles.socialIcon} src={ic_twitter} alt="ic_twitter " />
+        <Image className={styles.socialIcon} src={ic_youtube} alt="ic_youtube" />
+        <Image className={styles.socialIcon} src={ic_instagram} alt="ic_instagram" />
       </div>
     </div>
   );

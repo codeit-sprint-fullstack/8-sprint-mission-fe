@@ -1,9 +1,9 @@
-import styles from "@/styles/components/Button.module.scss";
+import styles from '@/styles/components/Button.module.scss';
 
-const Button = ({ type = "login" }) => {
+const Button = ({ type = 'login' }) => {
   const typeMap = {
-    login: "로그인",
-    write: "글쓰기",
+    login: '로그인',
+    write: '글쓰기',
   };
 
   return <button className={styles.button}>{typeMap[type]}</button>;

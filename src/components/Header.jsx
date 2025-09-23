@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import Image from "next/image";
-import clsx from "clsx";
-import Button from "@/components/Button.jsx";
-import styles from "@/styles/components/Header.module.scss";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import Image from 'next/image';
+import clsx from 'clsx';
+import Button from '@/components/Button.jsx';
+import styles from '@/styles/components/Header.module.scss';
 
-import brandLogo from "../../public/brandLogo.svg";
+import brandLogo from '../../public/brandLogo.svg';
 
 const Header = () => {
   const pathname = usePathname();
@@ -21,19 +21,13 @@ const Header = () => {
         <div className={styles.link}>
           <Link
             href="/article"
-            className={clsx(
-              styles.linkContent,
-              pathname === "/article" && styles.active
-            )}
+            className={clsx(styles.linkContent, pathname === '/article' && styles.active)}
           >
             자유게시판
           </Link>
           <Link
             href="/market"
-            className={clsx(
-              styles.linkContent,
-              pathname === "/market" && styles.active
-            )}
+            className={clsx(styles.linkContent, pathname === '/market' && styles.active)}
           >
             중고마켓
           </Link>

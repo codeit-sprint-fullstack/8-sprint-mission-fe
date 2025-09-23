@@ -1,9 +1,9 @@
-import Button from "@/components/Button";
-import BestArticleCard from "@/components/BestArticleCard";
-import styles from "@/styles/pages/ArticlePage.module.scss";
-import SearchInput from "@/components/SearchInput";
-import DropDownSort from "@/components/DropDownSort";
-import ArticleList from "@/components/ArticleList";
+import Button from '@/components/Button';
+import BestArticleCard from '@/components/BestArticleCard';
+import styles from '@/styles/pages/ArticlePage.module.scss';
+import SearchInput from '@/components/SearchInput';
+import DropDownSort from '@/components/DropDownSort';
+import ArticleList from '@/components/ArticleList';
 
 const ArticlePage = () => {
   return (

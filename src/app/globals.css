@@ -1,5 +1,5 @@
-@import "../styles/reset.css";
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+@import '../styles/reset.css';
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 
 *,
 *::before,
@@ -13,5 +13,8 @@ body {
 
 html,
 body {
-  font-family: "Pretendard", -apple-system, sans-serif;
+  font-family:
+    'Pretendard',
+    -apple-system,
+    sans-serif;
 }
