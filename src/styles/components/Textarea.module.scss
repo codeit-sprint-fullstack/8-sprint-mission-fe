@@ -11,12 +11,12 @@
 
   border-radius: 12px;
   background: v.$coolGray-100;
-}
 
-.sm {
-  height: 104px;
-}
+  &.sm {
+    height: 104px;
+  }
 
-.lg {
-  height: 282px;
+  &.lg {
+    height: 282px;
+  }
 }

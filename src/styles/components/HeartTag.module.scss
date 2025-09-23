@@ -1,0 +1,25 @@
+@use '@/styles/variable' as v;
+@use '@/styles/mixin' as m;
+
+.tag {
+  @include m.button-reset;
+  display: flex;
+  height: 40px;
+  padding: 4px 12px;
+  gap: 4px;
+
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 35px;
+  border: 1px solid v.$secondary-200;
+  background: v.$white;
+}
+
+.count {
+  color: v.$coolGray-500;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+}

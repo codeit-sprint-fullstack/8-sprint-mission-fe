@@ -8,6 +8,9 @@ import ic_kebab from '/public/icons/ic_kebab.svg';
 
 import styles from '@/styles/components/DropDown.module.scss';
 
+/*
+  type: sort | modify
+*/
 const DropDownSort = ({ type = 'sort' }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState('recent');
