@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import Button from '@/components/Button';
-import BestArticleCard from '@/components/BestArticleCard';
-import SearchInput from '@/components/SearchInput';
-import DropDownSort from '@/components/DropDownSort';
-import ArticleList from '@/components/ArticleList';
+import Button from '@/components/Button.jsx';
+import BestArticleCard from '@/components/BestArticleCard.jsx';
+import SearchInput from '@/components/SearchInput.jsx';
+import DropDown from '@/components/DropDown.jsx';
+import ArticleList from '@/components/ArticleList.jsx';
 
 import styles from '@/styles/pages/ArticlePage.module.scss';
 
@@ -27,7 +27,7 @@ const ArticlePage = () => {
         </div>
         <div className={styles.searchWrapper}>
           <SearchInput className={styles.input} size="lg" />
-          <DropDownSort />
+          <DropDown />
         </div>
         <div className={styles.contentsWrapper}>
           <ArticleList />

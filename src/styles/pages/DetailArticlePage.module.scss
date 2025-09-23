@@ -1,0 +1,8 @@
+@use '@/styles/mixin' as m;
+@use '@/styles/variable' as v;
+
+.detailArticlePage {
+  @include m.center-block(1200px);
+  margin-top: 34px;
+  margin-bottom: 193px;
+}

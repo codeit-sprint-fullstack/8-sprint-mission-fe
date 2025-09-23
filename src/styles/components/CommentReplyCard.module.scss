@@ -1,0 +1,64 @@
+@use '@/styles/variable' as v;
+
+.replyCard {
+  width: 100%;
+  padding-bottom: 12px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 24px;
+
+  border-bottom: 1px solid v.$secondary-300;
+  background: v.$bg-gray;
+}
+
+.comment {
+  width: 100%;
+
+  display: flex;
+  gap: 4px;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  .detail {
+    align-self: stretch;
+
+    color: v.$secondary-800;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
+}
+
+.userInfo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.nameAndTime {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+
+  .userName {
+    color: v.$secondary-600;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+  }
+
+  .timeAgo {
+    width: 40px;
+    color: v.$secondary-400;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+  }
+}
