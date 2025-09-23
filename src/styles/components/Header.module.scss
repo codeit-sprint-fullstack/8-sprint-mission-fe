@@ -20,6 +20,8 @@
       align-items: center;
 
       .linkContent {
+        @include m.link-reset;
+
         padding: 21px 15px;
         display: flex;
         justify-content: center;
@@ -29,7 +31,11 @@
         font-size: 18px;
         font-style: normal;
         font-weight: 700;
-        line-height: 26px; /* 144.444% */
+        line-height: 26px;
+
+        &.active {
+          color: v.$primary-100;
+        }
       }
     }
   }
