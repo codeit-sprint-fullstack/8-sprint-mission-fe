@@ -6,7 +6,7 @@ import Image from "next/image";
 import { deleteBoard } from "@/api/boards";
 import { updateComment, deleteComment } from "@/api/comments";
 
-const KebabMenu = ({ type, id }) => {
+const KebabMenu = ({ type, id, onDelete }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null); // React 컴포넌트 안에서 변경 가능한 값을 저장 - 외부 클릭 시 닫기
   const router = useRouter();
@@ -21,7 +21,7 @@ const KebabMenu = ({ type, id }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleEdit = () => {
+  const handleEdit = async () => {
     if (type === "board") {
       router.push(`/freeboard/${id}/edit`);
     }
@@ -32,12 +32,14 @@ const KebabMenu = ({ type, id }) => {
     }
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     if (type === "board") {
-      deleteBoard(id);
+      await deleteBoard(id);
+      router.push("/freeboard");
     }
     if (type === "comment") {
-      deleteComment(id);
+      await deleteComment(id);
+      if (onDelete) onDelete(id);
     }
   };
 

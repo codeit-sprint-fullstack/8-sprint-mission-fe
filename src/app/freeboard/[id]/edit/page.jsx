@@ -2,41 +2,32 @@
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { updateBoard } from "@/api/boards";
+import { fetchBoard, updateBoard } from "@/api/boards";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import BoardForm from "@/components/Board/BoardForm";
 
 const BoardWritePage = ({ params }) => {
   const boardId = params.id;
-  const [initialData, setInitialData] = useState("");
+  const [initialData, setInitialData] = useState({ title: "", content: "" });
   const router = useRouter();
 
   useEffect(() => {
-    const fetchBoard = async () => {
+    const getBoard = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/freeboard/${boardId}`);
-        if (!res.ok) throw new Error("게시글 불러오기 실패");
-        const data = await res.json();
+        const data = await fetchBoard(boardId);
         setInitialData({ title: data.title, content: data.content });
       } catch (error) {
         console.error("게시글 불러오기 에러:", error);
       }
     };
 
-    fetchBoard();
+    getBoard();
   }, [boardId]);
 
   const handleUpdate = async (data) => {
     try {
-      const res = await fetch(`http://localhost:3000/freeboard/${boardId}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      if (!res.ok) throw new Error("게시글 수정 실패");
-
+      await updateBoard(boardId, data);
       router.push(`/freeboard/${boardId}`);
     } catch (error) {
       console.error("게시글 수정 에러:", error);

@@ -96,7 +96,16 @@ const freeboardIdPage = () => {
         ) : (
           <div className="grid grid-cols-1 gap-6">
             {(commentList ?? []).slice(0, 4).map((comment) => (
-              <Comment key={comment.id} comment={comment} />
+              <Comment
+                key={comment.id}
+                comment={comment}
+                onDelete={(id) =>
+                  setCommentList((prev) =>
+                    prev.filter((comment) => comment.id !== id)
+                  )
+                }
+                //onDelete prop drilling(freeboardIdPage → Comment → KebabMenu). 추후 수정
+              />
             ))}
           </div>
         )}

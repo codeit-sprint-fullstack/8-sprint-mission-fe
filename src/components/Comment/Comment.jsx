@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import KebabMenu from "../Kebab/KebabMenu";
 
-const Comment = ({ comment }) => {
+const Comment = ({ comment, onDelete }) => {
   return (
     <div className="bg-[#FCFCFC] border-b border-[#E5E7EB]">
       <div className="relative mb-3">
@@ -25,7 +25,7 @@ const Comment = ({ comment }) => {
           </div>
         </div>
         <div className="absolute top-0 right-0">
-          <KebabMenu type="comment" id={comment.id} />
+          <KebabMenu type="comment" id={comment.id} onDelete={onDelete} />
         </div>
       </div>
     </div>
