@@ -12,17 +12,17 @@ const BoardWritePage = () => {
 
   const handleCreate = async (data) => {
     try {
-      // 서버 연동이 없을 경우, 임의 데이터 처리
-      const newBoard = {
-        id: Date.now(),
-        ...data,
-        user_name: "테스트유저",
-        heart_count: Math.floor(Math.random() * 100),
-        createdAt: new Date().toISOString(),
-      };
-      // const newBoard = await addBoard(data);
+      const newBoard = await addBoard(data);
 
-      router.push(`/freeboard/${newBoard.id}`);
+      // 프론트에서 임의값으로 처리
+      const enrichedBoard = {
+        ...newBoard,
+        user_name: newBoard.user_name || "게시글 추가 테스트유저",
+        heart_count: newBoard.heart_count ?? Math.floor(Math.random() * 100),
+        createdAt: newBoard.createdAt || new Date().toISOString(),
+      };
+
+      router.push(`/freeboard/${enrichedBoard.id}`);
     } catch (error) {
       console.error("게시글 등록 에러:", error);
     }

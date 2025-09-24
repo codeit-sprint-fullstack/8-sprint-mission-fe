@@ -21,7 +21,13 @@ export const fetchBoard = async (id) => {
   if (!res.ok) {
     throw new Error("게시글 가져오기 실패");
   }
-  return await res.json();
+  const data = await res.json();
+
+  return {
+    ...data,
+    user_name: data.user_name ?? "테스트유저",
+    heart_count: data.heart_count ?? Math.floor(Math.random() * 100),
+  };
 };
 
 // 게시글 추가
