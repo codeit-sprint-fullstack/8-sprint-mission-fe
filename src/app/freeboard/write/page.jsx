@@ -10,6 +10,7 @@ import BoardForm from "@/components/Board/BoardForm";
 const BoardWritePage = () => {
   const router = useRouter();
 
+  //게시글 등록 API
   const handleCreate = async (data) => {
     try {
       const newBoard = await addBoard(data);

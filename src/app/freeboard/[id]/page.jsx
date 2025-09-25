@@ -20,14 +20,8 @@ const freeboardIdPage = () => {
   useEffect(() => {
     const getComments = async () => {
       try {
-        const data = await fetchComments(); // 상단 API 함수 사용
-
-        const commentsWithDummy = data.map((c) => ({
-          ...c,
-          user_name: "테스트유저",
-          heart_count: Math.floor(Math.random() * 50),
-        }));
-        setCommentList(commentsWithDummy);
+        const data = await fetchComments(id); // 상단 API 함수 사용
+        setCommentList(data);
       } catch (err) {
         console.error(err);
       }
@@ -43,15 +37,18 @@ const freeboardIdPage = () => {
     if (!isFormValid) return;
 
     try {
-      const newComment = await addComment({
+      const newComment = await addComment(id, {
         content: comment,
-        user_name: "테스트유저",
-        isDeleted: false,
-        heart_count: Math.floor(Math.random() * 50),
-        createdAt: "방금 전",
       });
 
-      setCommentList((prev) => [newComment, ...prev]);
+      const enrichedComment = {
+        ...newComment,
+        user_name: newComment.user_name || "테스트유저",
+        heart_count: newComment.heart_count ?? Math.floor(Math.random() * 50),
+        createdAt: newComment.createdAt || new Date().toISOString(),
+      };
+
+      setCommentList((prev) => [enrichedComment, ...prev]);
       setComment("");
     } catch (err) {
       console.error("댓글 등록 ERROR:", err);
