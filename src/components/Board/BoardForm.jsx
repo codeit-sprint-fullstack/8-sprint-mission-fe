@@ -7,6 +7,11 @@ const BoardForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
+  useEffect(() => {
+    setTitle(initialData.title || "");
+    setContent(initialData.content || "");
+  }, [initialData]);
+
   const isFormValid = title.trim() !== "" && content.trim() !== "";
 
   const handleSubmit = () => {

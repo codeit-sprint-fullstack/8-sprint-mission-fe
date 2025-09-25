@@ -44,7 +44,6 @@ const freeboardIdPage = () => {
       const enrichedComment = {
         ...newComment,
         user_name: newComment.user_name || "테스트유저",
-        heart_count: newComment.heart_count ?? Math.floor(Math.random() * 50),
         createdAt: newComment.createdAt || new Date().toISOString(),
       };
 
