@@ -40,9 +40,7 @@ export const updateComment = async (id, comment) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      content: comment,
-    }),
+    body: JSON.stringify(comment),
   });
 
   if (!res.ok) {

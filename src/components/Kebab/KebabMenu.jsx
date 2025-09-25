@@ -4,9 +4,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { deleteBoard } from "@/api/boards";
-import { updateComment, deleteComment } from "@/api/comments";
+import { deleteComment } from "@/api/comments";
 
-const KebabMenu = ({ type, id, onDelete }) => {
+const KebabMenu = ({ type, id, onDelete, onEdit }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null); // React 컴포넌트 안에서 변경 가능한 값을 저장 - 외부 클릭 시 닫기
   const router = useRouter();
@@ -26,9 +26,8 @@ const KebabMenu = ({ type, id, onDelete }) => {
       router.push(`/freeboard/${id}/edit`);
     }
     if (type === "comment") {
-      // 댓글 수정하기 UI는 뭐지
+      onEdit();
       console.log("댓글 수정");
-      updateComment(id);
     }
   };
 

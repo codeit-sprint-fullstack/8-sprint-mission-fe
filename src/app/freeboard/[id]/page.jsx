@@ -20,7 +20,7 @@ const freeboardIdPage = () => {
   useEffect(() => {
     const getComments = async () => {
       try {
-        const data = await fetchComments(id); // 상단 API 함수 사용
+        const data = await fetchComments(id);
         setCommentList(data);
       } catch (err) {
         console.error(err);
@@ -100,6 +100,14 @@ const freeboardIdPage = () => {
                   )
                 }
                 //onDelete prop drilling(freeboardIdPage → Comment → KebabMenu). 추후 수정
+                onUpdate={(updatedComment) =>
+                  setCommentList((prev) =>
+                    prev.map((c) =>
+                      c.id === updatedComment.id ? updatedComment : c
+                    )
+                  )
+                }
+                //onUpdate prop drilling(freeboardIdPage → Comment → KebabMenu). 추후 수정
               />
             ))}
           </div>
