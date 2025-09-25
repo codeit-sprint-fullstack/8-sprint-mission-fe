@@ -83,7 +83,9 @@ const Comment = ({ comment, onDelete, onUpdate }) => {
               <div className="flex flex-col items-start gap-1 text-xs leading-[18px]">
                 <p className="text-[#4B5563]">{comment.user_name}</p>
                 <p className="text-[#9CA3AF]">
-                  {getTimeAgo(comment.createdAt)}
+                  {comment.updatedAt
+                    ? `${getTimeAgo(comment.updatedAt)} (수정됨)`
+                    : getTimeAgo(comment.createdAt)}
                 </p>
               </div>
             </div>
