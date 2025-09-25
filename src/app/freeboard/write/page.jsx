@@ -33,7 +33,7 @@ const BoardWritePage = () => {
     <div className="flex flex-col min-h-screen bg-white">
       <Header />
 
-      <main className="flex-1 flex flex-col items-stretch mx-auto mb-[200px] p-4 w-[1200px]">
+      <main className="flex-1 flex flex-col items-stretch mx-auto mb-[200px] p-4 w-full max-w-[1200px]">
         <BoardForm onSubmit={handleCreate} mode="create" />
       </main>
 

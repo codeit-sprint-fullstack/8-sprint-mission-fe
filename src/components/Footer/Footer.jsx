@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col items-start gap-2 shrink-0 h-40 px-[200px] py-8 bg-[#111827]">
+    <footer className="flex flex-col items-start gap-2 shrink-0 h-40 py-8 px-4 sm:px-6 lg:px-[200px] bg-[#111827]">
       <div className="flex justify-between items-center w-full flex-wrap">
         <p className="text-center text-base font-normal text-[#9CA3AF]">
           @codeit - 2024

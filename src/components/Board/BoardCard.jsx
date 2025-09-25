@@ -8,7 +8,7 @@ const BoardCard = ({ board }) => {
   return (
     <Link
       href={`/freeboard/${board.id}`}
-      className="flex w-full h-[138px] bg-[#FCFCFC] mb-6"
+      className="flex w-full max-w-[1200px] mx-auto h-[138px] bg-[#FCFCFC] mb-6"
     >
       <div className="flex flex-col w-full mb-6 gap-4">
         <div className="flex justify-between items-start self-stretch w-full gap-2">

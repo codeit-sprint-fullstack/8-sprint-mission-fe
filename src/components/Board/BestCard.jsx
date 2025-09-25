@@ -10,7 +10,7 @@ const BestCard = ({ board }) => {
     <div className="mb-10">
       <Link
         href={`/freeboard/${board.id}`}
-        className="flex flex-col px-6 bg-[#F9FAFB] rounded-lg w-[364px]"
+        className="flex flex-col px-6 bg-[#F9FAFB] rounded-lg w-full max-w-[364px]"
       >
         <div className="flex flex-col">
           <div className="flex flex-col justify-center items-center w-25 mb-4 px-6 py-0.5 bg-[#3692FF] rounded-b-xl text-white font-semibold">

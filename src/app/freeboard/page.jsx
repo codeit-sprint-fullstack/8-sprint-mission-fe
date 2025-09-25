@@ -29,12 +29,12 @@ const freeboardPage = () => {
     <div className="flex flex-col min-h-screen bg-white">
       <Header />
 
-      <main className="flex-1 flex flex-col items-stretch mx-auto mb-[200px] p-4 w-[1200px]">
+      <main className="flex-1 flex flex-col items-stretch mx-auto mb-[200px] p-4 w-full max-w-[1200px]">
         <section>
           <h1 className="mb-6 text-xl text-[#111827] font-bold">
             베스트 게시글
           </h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {(board ?? []).slice(0, 3).map((board) => (
               <BestCard key={board.id} board={board} />
             ))}

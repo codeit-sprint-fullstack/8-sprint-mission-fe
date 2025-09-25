@@ -5,7 +5,7 @@ import Link from "next/link";
 const Header = () => {
   return (
     <header className="sticky top-0 z-[100] flex justify-center items-center w-full h-[70px] border-b border-[#DFDFDF] bg-white">
-      <nav className="flex justify-between items-center w-full px-4 md:px-6 lg:px-[200px]">
+      <nav className="flex justify-between items-center w-full px-4 md:px-6 lg:px-[100px]">
         <div className="flex justify-center items-end">
           <Logo />
           <Nav />
