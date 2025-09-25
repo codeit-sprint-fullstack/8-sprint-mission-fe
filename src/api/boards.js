@@ -1,4 +1,8 @@
 const API_URL = "http://localhost:5000/freeboard";
+const formatDate = (date) => {
+  const d = new Date(date);
+  return `${d.getFullYear()}. ${d.getMonth() + 1}. ${d.getDate()}`;
+};
 
 // 게시글 목록 조회
 export const fetchBoards = async () => {
@@ -12,6 +16,8 @@ export const fetchBoards = async () => {
     ...b,
     user_name: "테스트유저",
     heart_count: Math.floor(Math.random() * 100),
+    createdAt: formatDate(b.createdAt),
+    updatedAt: formatDate(b.updatedAt),
   }));
 };
 
@@ -27,6 +33,8 @@ export const fetchBoard = async (id) => {
     ...data,
     user_name: data.user_name ?? "테스트유저",
     heart_count: data.heart_count ?? Math.floor(Math.random() * 100),
+    createdAt: formatDate(data.createdAt),
+    updatedAt: formatDate(data.updatedAt),
   };
 };
 

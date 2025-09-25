@@ -26,6 +26,17 @@ const Comment = ({ comment, onDelete, onUpdate }) => {
 
   const isFormValid = editedContent.trim() !== "";
 
+  const getTimeAgo = (dateString) => {
+    const now = new Date();
+    const date = new Date(dateString);
+    const diff = Math.floor((now - date) / 1000);
+
+    if (diff < 60) return `${diff}초 전`;
+    if (diff < 3600) return `${Math.floor(diff / 60)}분 전`;
+    if (diff < 86400) return `${Math.floor(diff / 3600)}시간 전`;
+    return `${Math.floor(diff / 86400)}일 전`;
+  };
+
   return (
     <div className="bg-[#FCFCFC] border-b border-[#E5E7EB]">
       {isEditing ? (
@@ -71,7 +82,9 @@ const Comment = ({ comment, onDelete, onUpdate }) => {
               />
               <div className="flex flex-col items-start gap-1 text-xs leading-[18px]">
                 <p className="text-[#4B5563]">{comment.user_name}</p>
-                <p className="text-[#9CA3AF]">{comment.createdAt} 전</p>
+                <p className="text-[#9CA3AF]">
+                  {getTimeAgo(comment.createdAt)}
+                </p>
               </div>
             </div>
           </div>
