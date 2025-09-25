@@ -84,7 +84,7 @@ const Comment = ({ comment, onDelete, onUpdate }) => {
                 <p className="text-[#4B5563]">{comment.user_name}</p>
                 <p className="text-[#9CA3AF]">
                   {comment.updatedAt
-                    ? `${getTimeAgo(comment.updatedAt)} (수정됨)`
+                    ? `${getTimeAgo(comment.updatedAt)}`
                     : getTimeAgo(comment.createdAt)}
                 </p>
               </div>
