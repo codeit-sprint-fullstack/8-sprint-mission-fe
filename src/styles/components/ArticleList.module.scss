@@ -1,6 +1,9 @@
 @use '@/styles/variable' as v;
+@use '@/styles/mixin' as m;
 
 .articleList {
+  @include m.link-reset;
+
   width: 1200px;
   background: v.$bg-gray;
 

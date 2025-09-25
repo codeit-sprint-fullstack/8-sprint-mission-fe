@@ -10,7 +10,13 @@ import styles from '@/styles/components/Button.module.scss';
   bg: primary-100 | 200 | 300
   disabled: true | false
 */
-const Button = ({ type = 'login', size = 'sm', bg = 'primary-100', disabled = false }) => {
+const Button = ({
+  type = 'login',
+  size = 'sm',
+  bg = 'primary-100',
+  disabled = false,
+  onClick = () => {},
+}) => {
   const typeMap = {
     login: '로그인',
     write: '글쓰기',
@@ -34,6 +40,7 @@ const Button = ({ type = 'login', size = 'sm', bg = 'primary-100', disabled = fa
       className={clsx(styles.button, styles[type], styles[size], styles[bg], {
         [styles.disabled]: disabled,
       })}
+      onClick={onClick}
     >
       {typeMap[type]}
     </button>

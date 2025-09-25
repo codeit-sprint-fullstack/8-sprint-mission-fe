@@ -10,15 +10,40 @@ import DropDown from '@/components/DropDown.jsx';
 import ic_profile from '/public/icons/ic_profile.svg';
 
 import styles from '@/styles/pages/DetailArticlePage.module.scss';
+import { useQuery } from '@tanstack/react-query';
+import api from '@/lib/api';
+import { useParams } from 'next/navigation';
+import LoadingSpinner from '@/components/LoadingSpinner';
+import { convertTz } from '@/lib/dayjs';
 
 const DetailArticlePage = () => {
+  const params = useParams();
+  const { id } = params;
+
   const [textValue, setTextValue] = useState('');
   const [isBtnDisabled, setIsBtnDisabled] = useState(true);
+
+  const getDetailArticle = async () => {
+    const res = await api(`/articles/${id}`);
+    return res.json();
+  };
+
+  const {
+    data: article,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ['article'],
+    queryFn: getDetailArticle,
+  });
 
   const handleTextareaChange = (value) => {
     setTextValue(value);
     setIsBtnDisabled(value.trim().length === 0);
   };
+
+  if (isLoading) return <LoadingSpinner />;
+  if (error) return <p>{error.message}</p>;
 
   return (
     <div className={styles.detailArticlePage}>
@@ -26,9 +51,7 @@ const DetailArticlePage = () => {
         <div className={styles.article}>
           <div className={styles.header}>
             <div className={styles.titleWrapper}>
-              <div className={styles.title}>
-                맥북 16인치 16기가 1테라 정도 사양이면 얼마에 팔아야하나요?
-              </div>
+              <div className={styles.title}>{article.data.title}</div>
               <DropDown type="modify" />
             </div>
             <div className={styles.userAndFavorite}>
@@ -36,7 +59,7 @@ const DetailArticlePage = () => {
                 <Image src={ic_profile} alt="ic_profile" width={40} height={40} />
                 <div className={styles.nameAndDate}>
                   <div className={styles.name}>총명한판다</div>
-                  <div className={styles.date}>2025. 09. 24</div>
+                  <div className={styles.date}>{convertTz(article.data.createdAt)}</div>
                 </div>
               </div>
               <svg
@@ -51,9 +74,7 @@ const DetailArticlePage = () => {
               <HeartTag />
             </div>
           </div>
-          <div className={styles.detail}>
-            맥북 16인치 16기가 1테라 정도 사양이면 얼마에 팔아야하나요?
-          </div>
+          <div className={styles.detail}>{article.data.content}</div>
         </div>
         <div className={styles.commentWrapper}>
           <div className={styles.addComment}>
