@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import Image from 'next/image';
 import ic_arrowDown from '/public/icons/ic_arrowDown.svg';
@@ -11,7 +11,7 @@ import styles from '@/styles/components/DropDown.module.scss';
 /*
   type: sort | modify
 */
-const DropDownSort = ({ type = 'sort' }) => {
+const DropDownSort = ({ type = 'sort', handlers = {} }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState('recent');
   const sortOptions = ['recent', 'favorite'];
@@ -29,6 +29,10 @@ const DropDownSort = ({ type = 'sort' }) => {
   };
 
   const handleSelect = (option) => {
+    if (handlers[option]) {
+      handlers[option]();
+    }
+
     setSelected(option);
     setIsOpen(false);
   };

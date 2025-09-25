@@ -10,13 +10,15 @@ import DropDown from '@/components/DropDown.jsx';
 import ic_profile from '/public/icons/ic_profile.svg';
 
 import styles from '@/styles/pages/DetailArticlePage.module.scss';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import api from '@/lib/api';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { convertTz } from '@/lib/dayjs';
 
 const DetailArticlePage = () => {
+  const queryClient = useQueryClient();
+  const router = useRouter();
   const params = useParams();
   const { id } = params;
 
@@ -25,6 +27,14 @@ const DetailArticlePage = () => {
 
   const getDetailArticle = async () => {
     const res = await api(`/articles/${id}`);
+    return res.json();
+  };
+
+  const deleteArticle = async (id) => {
+    const res = await api(`/articles/${id}`, {
+      method: 'DELETE',
+    });
+
     return res.json();
   };
 
@@ -37,9 +47,32 @@ const DetailArticlePage = () => {
     queryFn: getDetailArticle,
   });
 
+  const deleteMutate = useMutation({
+    mutationFn: (id) => deleteArticle(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['articles'] });
+      router.push('/article');
+    },
+    onError: (err) => {
+      alert(err.message);
+    },
+  });
+
   const handleTextareaChange = (value) => {
     setTextValue(value);
     setIsBtnDisabled(value.trim().length === 0);
+  };
+
+  const handleEdit = () => {
+    router.push(`/article/edit/${id}`);
+  };
+
+  const handleDelete = () => {
+    deleteMutate.mutate(id);
+  };
+
+  const handleGoBack = () => {
+    router.push('/article');
   };
 
   if (isLoading) return <LoadingSpinner />;
@@ -52,7 +85,13 @@ const DetailArticlePage = () => {
           <div className={styles.header}>
             <div className={styles.titleWrapper}>
               <div className={styles.title}>{article.data.title}</div>
-              <DropDown type="modify" />
+              <DropDown
+                type="modify"
+                handlers={{
+                  edit: handleEdit,
+                  delete: handleDelete,
+                }}
+              />
             </div>
             <div className={styles.userAndFavorite}>
               <div className={styles.userInfo}>
@@ -92,7 +131,7 @@ const DetailArticlePage = () => {
           <CommentReplyCard />
         </div>
         <div className={styles.buttonWrapper}>
-          <Button type="goBack" size="md" />
+          <Button type="goBack" size="md" onClick={handleGoBack} />
         </div>
       </div>
     </div>

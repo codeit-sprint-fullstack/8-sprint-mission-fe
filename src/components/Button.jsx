@@ -26,7 +26,10 @@ const Button = ({
 
   if (type === 'goBack') {
     return (
-      <button className={clsx(styles.button, styles.goBack, styles[size], styles[bg])}>
+      <button
+        className={clsx(styles.button, styles.goBack, styles[size], styles[bg])}
+        onClick={onClick}
+      >
         <div className={styles.detail}>목록으로 돌아가기</div>
         <Image src={ic_back} alt="ic_back" width={24} height={24} />
       </button>
