@@ -1,0 +1,69 @@
+"use client";
+import React, { useEffect, useState } from "react";
+import Card from "./Card";
+import Button from "@/app/(components)/atoms/Button";
+import Search from "@/app/(components)/atoms/Search";
+import Dropdown from "@/app/(components)/atoms/Dropdown";
+import ListCommunity from "./ListCommunity";
+import { fetchArticle } from "@/api/fetchArticle";
+import Link from "next/link";
+
+const BoardPage = () => {
+  const [articles, setArticles] = useState([]);
+
+  const loadArticle = async () => {
+    try {
+      const data = await fetchArticle();
+      console.log(data);
+      setArticles(data);
+    } catch (err) {
+      console.err(err.message);
+    }
+  };
+
+  useEffect(() => {
+    loadArticle();
+  }, []);
+
+  return (
+    <>
+      <section className="mt-6.5">
+        <h1 className=" text-gray-900 font-bold text-xl mb-6">베스트 게시글</h1>
+        <div className="flex gap-6">
+          {articles.slice(0, 3).map((article) => {
+            return (
+              <Card
+                key={article.id}
+                title={article.title}
+                createdAt={article.createdAt}
+              ></Card>
+            );
+          })}
+        </div>
+        <div className="flex items-center justify-between mt-10 mb-6">
+          <h1 className="text-gray-900 font-bold text-xl">게시글</h1>
+          <Button>글쓰기</Button>
+        </div>
+        <div className="flex items-center justify-between gap-4">
+          <Search />
+          <Dropdown />
+        </div>
+        <div className="mt-6 flex flex-col gap-6">
+          {articles.map((article) => {
+            return (
+              <Link href={`board/${article.id}`} key={article.id}>
+                <ListCommunity
+                  key={article.id}
+                  title={article.title}
+                  createdAt={article.createdAt}
+                />
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default BoardPage;
