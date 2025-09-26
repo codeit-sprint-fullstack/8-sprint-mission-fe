@@ -1,7 +1,42 @@
+import Image from "next/image";
 import React from "react";
 
-const BoardDetail = () => {
-  return <div>BoardDetail</div>;
+const BoardDetail = ({ data }) => {
+  return (
+    <div>
+      <div className="flex justify-between">
+        <div>{data.title}</div>
+        <div>
+          <Image
+            src="/icons/kebab.svg"
+            alt="modify or remove this post"
+            width={24}
+            height={24}
+          />
+        </div>
+      </div>
+      <div className="flex items-center gap-8">
+        <div className="flex items-center gap-4">
+          <div>
+            <Image
+              src={data.profile}
+              alt="writer image"
+              width={40}
+              height={40}
+            />
+          </div>
+          <div className="flex items-center gap-2">
+            <div>{data.author}</div>
+            <div>{data.createdAt}</div>
+          </div>
+        </div>
+        <div className="w-px h-6 bg-gray-200"></div>
+        <div>{data.likes}</div>
+      </div>
+      <hr className="border-t border-gray-200" />
+      <div>{data.content}</div>
+    </div>
+  );
 };
 
 export default BoardDetail;
