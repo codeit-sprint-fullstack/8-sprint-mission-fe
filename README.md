@@ -11,4 +11,4 @@
 
 ## 배포 링크
 
-(Vercel 링크)
+https://codeit-sprint-mission.vercel.app/
