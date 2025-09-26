@@ -22,7 +22,10 @@ export interface ArticleFilters {
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const articlesApi = {
-  // 베스트 게시글 3개 가져오기
+  /**
+   * 베스트 게시글 3개 가져오기
+   * @returns BestArticle[]
+   */
   getBestArticles: async (): Promise<BestArticle[]> => {
     try {
       const response = await fetch(`${API_URL}/best-articles`);
@@ -36,7 +39,11 @@ export const articlesApi = {
     }
   },
 
-  // 게시글 목록 가져오기
+  /**
+   * 게시글 목록 가져오기
+   * @param params ArticleFilters 검색 조건
+   * @returns Article
+   */
   getArticles: async (params: ArticleFilters = {}): Promise<Article> => {
     try {
       const { page, pageSize, orderBy, keyword } = params;

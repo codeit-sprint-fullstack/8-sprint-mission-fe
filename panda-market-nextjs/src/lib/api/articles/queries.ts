@@ -5,7 +5,7 @@ import {
   articlesApi,
   Article,
   ArticleFilters,
-} from "@/lib/api/articles";
+} from "@/lib/api/articles/fetchers";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
 // 개별 훅으로 내보내기
@@ -18,7 +18,7 @@ const useGetBestArticles = (): UseQueryResult<BestArticle[]> => {
 
 const useGetArticles = (params: ArticleFilters): UseQueryResult<Article> => {
   return useQuery({
-    queryKey: ["articles"],
+    queryKey: ["articles", params],
     queryFn: () => articlesApi.getArticles(params),
   });
 };
