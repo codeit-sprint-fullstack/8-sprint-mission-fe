@@ -48,6 +48,8 @@ const DetailArticlePage = () => {
               comments.data.map((comment) => (
                 <CommentReplyCard
                   key={comment.id}
+                  id={comment.id}
+                  articleId={id}
                   content={comment.content}
                   updatedAt={comment.updatedAt}
                 />

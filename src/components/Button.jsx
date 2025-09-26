@@ -22,6 +22,8 @@ const Button = ({
     write: '글쓰기',
     post: '등록',
     explore: '구경하러 가기',
+    edit: '수정',
+    cancel: '취소',
   };
 
   if (type === 'goBack') {

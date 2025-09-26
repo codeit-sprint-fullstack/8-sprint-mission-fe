@@ -30,7 +30,7 @@ const AddComment = ({ id = '' }) => {
   const addMutation = useMutation({
     mutationFn: addComment,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['comments'], id });
+      queryClient.invalidateQueries({ queryKey: ['comments', id] });
     },
   });
 
@@ -48,6 +48,7 @@ const AddComment = ({ id = '' }) => {
     };
 
     addMutation.mutate(data);
+    setTextValue('');
   };
 
   return (

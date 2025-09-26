@@ -10,6 +10,7 @@ import { convertTz } from '@/lib/dayjs';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import api from '@/lib/api';
 import { useRouter } from 'next/navigation';
+import LoadingSpinner from './LoadingSpinner';
 
 const DetailArticleCard = ({ id = '' }) => {
   const queryClient = useQueryClient();
@@ -57,7 +58,7 @@ const DetailArticleCard = ({ id = '' }) => {
   };
 
   if (articleError) return <p>{articleError.message}</p>;
-  if (isArticleLoading) return <div>로딩 중...</div>;
+  if (isArticleLoading) return <LoadingSpinner fullscreen={true} />;
 
   return (
     <div className={styles.article}>

@@ -64,3 +64,11 @@
     white-space: nowrap;
   }
 }
+
+.editButtonWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+}
