@@ -11,15 +11,14 @@ import styles from '@/styles/components/DropDown.module.scss';
 /*
   type: sort | modify
 */
-const DropDownSort = ({ type = 'sort', handlers = {} }) => {
+const DropDown = ({ type = 'sort', handlers = {}, selected, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState('recent');
-  const sortOptions = ['recent', 'favorite'];
+  const sortOptions = ['recent', 'like'];
   const modifyOptions = ['edit', 'delete'];
 
   const labelMap = {
     recent: '최신순',
-    favorite: '좋아요순',
+    like: '좋아요순',
     edit: '수정하기',
     delete: '삭제하기',
   };
@@ -33,7 +32,7 @@ const DropDownSort = ({ type = 'sort', handlers = {} }) => {
       handlers[option]();
     }
 
-    setSelected(option);
+    onChange(option);
     setIsOpen(false);
   };
 
@@ -69,4 +68,4 @@ const DropDownSort = ({ type = 'sort', handlers = {} }) => {
   );
 };
 
-export default DropDownSort;
+export default DropDown;

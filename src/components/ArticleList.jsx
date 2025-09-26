@@ -8,7 +8,7 @@ import articleImg from '../../public/articleImg.svg';
 import ic_profile from '../../public/icons/ic_profile.svg';
 import ic_heart from '../../public/icons/ic_heart.svg';
 
-const ArticleList = ({ id = '', title = '', nickName = '', date = '' }) => {
+const ArticleList = ({ id = '', title = '', nickName = '', like = 0, date = '' }) => {
   return (
     <Link href={`/article/${id}`} className={styles.articleList}>
       <div className={styles.contents}>
@@ -23,7 +23,7 @@ const ArticleList = ({ id = '', title = '', nickName = '', date = '' }) => {
         </div>
         <div className={styles.likesWrapper}>
           <Image className={styles.icon} src={ic_heart} alt="ic_heart" />
-          <div className={styles.likes}>9999+</div>
+          <div className={styles.likes}>{like}</div>
         </div>
       </div>
     </Link>

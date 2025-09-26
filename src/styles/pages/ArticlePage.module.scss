@@ -68,10 +68,12 @@
 }
 
 .contentsWrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 24px;
   justify-content: center;
+  min-height: 200px; // 로딩 스피너가 표시될 최소 높이
 }
 
 .linkTag {

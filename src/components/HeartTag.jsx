@@ -1,6 +1,6 @@
 import styles from '@/styles/components/HeartTag.module.scss';
 
-const HeartTag = () => {
+const HeartTag = ({ like = 0 }) => {
   return (
     <button className={styles.tag}>
       <svg
@@ -16,7 +16,7 @@ const HeartTag = () => {
           strokeWidth="1.8"
         />
       </svg>
-      <div className={styles.count}>123</div>
+      <div className={styles.count}>{like}</div>
     </button>
   );
 };

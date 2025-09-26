@@ -48,6 +48,7 @@
     position: absolute;
     top: 100%;
     left: 0;
+    z-index: 1000; // 다른 요소들 위에 표시
   }
 
   .item {
@@ -73,7 +74,7 @@
       background: v.$white;
     }
 
-    &.favorite {
+    &.like {
       border-radius: 0 0 12px 12px;
       border: 1px solid v.$coolGray-200;
       background: v.$white;
@@ -102,6 +103,7 @@
     position: absolute;
     top: 100%;
     right: 0;
+    z-index: 1000; // 다른 요소들 위에 표시
   }
 
   .item {

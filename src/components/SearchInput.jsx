@@ -1,12 +1,11 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
 import styles from '@/styles/components/SearchInput.module.scss';
 
 import ic_search from '/public/icons/ic_search.svg';
 
-const SearchInput = ({ size = 'sm', value = '', onChange = () => {} }) => {
+const SearchInput = ({ size = 'sm', value, onChange }) => {
   const handleChange = (e) => {
     const searchValue = e.target.value;
     onChange(searchValue);

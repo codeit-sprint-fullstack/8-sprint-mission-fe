@@ -110,7 +110,7 @@ const DetailArticlePage = () => {
               >
                 <path d="M1 0V34" stroke="#E5E7EB" />
               </svg>
-              <HeartTag />
+              <HeartTag like={article.data.like} />
             </div>
           </div>
           <div className={styles.detail}>{article.data.content}</div>
