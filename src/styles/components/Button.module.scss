@@ -40,6 +40,12 @@
     background: v.$primary-300;
   }
 
+  &.none {
+    background: inherit;
+
+    color: v.$coolGray-500;
+  }
+
   &.disabled {
     background: v.$coolGray-400;
   }

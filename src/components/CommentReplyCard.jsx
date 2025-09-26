@@ -11,6 +11,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import Button from '@/components/Button.jsx';
 import Input from '@/components/Input.jsx';
+import Textarea from './Textarea';
 
 const CommentReplyCard = ({ id = '', articleId = '', content = '', updatedAt = '' }) => {
   const queryClient = useQueryClient();
@@ -81,11 +82,13 @@ const CommentReplyCard = ({ id = '', articleId = '', content = '', updatedAt = '
     <div className={styles.replyCard}>
       <div className={styles.comment}>
         {isEditing ? (
-          <Input type="editComment" value={newComment} onChange={setNewComment} />
+          <Textarea type="editComment" size="xs" value={newComment} onChange={setNewComment} />
         ) : (
           <div className={styles.detail}>{content}</div>
         )}
-        <DropDown type="modify" handlers={{ edit: handleEdit, delete: handleDelete }} />
+        {!isEditing && (
+          <DropDown type="modify" handlers={{ edit: handleEdit, delete: handleDelete }} />
+        )}
       </div>
       <div className={styles.userInfo}>
         <Image
@@ -95,17 +98,19 @@ const CommentReplyCard = ({ id = '', articleId = '', content = '', updatedAt = '
           width={32}
           height={32}
         />
-        <div className={styles.nameAndTime}>
-          <div className={styles.userName}>똑똑한판다</div>
-          <div className={styles.timeAgo}>{formatTimeAgo(updatedAt)}</div>
+        <div className={styles.editWrapper}>
+          <div className={styles.user}>
+            <div className={styles.userName}>똑똑한판다</div>
+            <div className={styles.timeAgo}>{formatTimeAgo(updatedAt)}</div>
+          </div>
+          {isEditing && (
+            <div className={styles.editButtonWrapper}>
+              <Button type="cancel" bg="none" onClick={handleCancel} />
+              <Button type="edit" disabled={false} onClick={handleEditConfirm} />
+            </div>
+          )}
         </div>
       </div>
-      {isEditing && (
-        <div className={styles.editButtonWrapper}>
-          <Button type="edit" disabled={false} onClick={handleEditConfirm} />
-          <Button type="cancel" onClick={handleCancel} />
-        </div>
-      )}
     </div>
   );
 };

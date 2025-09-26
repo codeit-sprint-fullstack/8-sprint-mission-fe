@@ -7,7 +7,7 @@ import styles from '@/styles/components/Button.module.scss';
 /*
   type: login | write | post | explore | goBack
   size: sm | md | lg
-  bg: primary-100 | 200 | 300
+  bg: primary-100 | 200 | 300 | none
   disabled: true | false
 */
 const Button = ({
@@ -22,7 +22,7 @@ const Button = ({
     write: '글쓰기',
     post: '등록',
     explore: '구경하러 가기',
-    edit: '수정',
+    edit: '수정 완료',
     cancel: '취소',
   };
 

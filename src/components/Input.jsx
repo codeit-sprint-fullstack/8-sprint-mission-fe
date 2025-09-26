@@ -3,7 +3,6 @@ import styles from '@/styles/components/Input.module.scss';
 const Input = ({ type = 'title', value = '', onChange = () => {} }) => {
   const typeMap = {
     title: '제목을 입력해주세요',
-    editComment: '댓글을 수정해주세요',
   };
 
   const handleChange = (e) => {
