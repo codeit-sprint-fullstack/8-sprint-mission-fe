@@ -1,14 +1,15 @@
 import Image from 'next/image';
 import DropDown from '@/components/DropDown.jsx';
 import ic_profile from '/public/icons/ic_profile.svg';
+import { formatTimeAgo } from '@/lib/dayjs.js';
 
 import styles from '@/styles/components/CommentReplyCard.module.scss';
 
-const CommentReplyCard = () => {
+const CommentReplyCard = ({ content = '', updatedAt = '' }) => {
   return (
     <div className={styles.replyCard}>
       <div className={styles.comment}>
-        <div className={styles.detail}>혹시 사용기간이 어떻게 되실까요?</div>
+        <div className={styles.detail}>{content}</div>
         <DropDown type="modify" />
       </div>
       <div className={styles.userInfo}>
@@ -21,7 +22,7 @@ const CommentReplyCard = () => {
         />
         <div className={styles.nameAndTime}>
           <div className={styles.userName}>똑똑한판다</div>
-          <div className={styles.timeAgo}>1시간 전</div>
+          <div className={styles.timeAgo}>{formatTimeAgo(updatedAt)}</div>
         </div>
       </div>
     </div>

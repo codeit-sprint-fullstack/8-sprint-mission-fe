@@ -11,7 +11,7 @@ import styles from '@/styles/components/DropDown.module.scss';
 /*
   type: sort | modify
 */
-const DropDown = ({ type = 'sort', handlers = {}, selected, onChange }) => {
+const DropDown = ({ type = 'sort', handlers = {}, selected, onChange = () => {} }) => {
   const [isOpen, setIsOpen] = useState(false);
   const sortOptions = ['recent', 'like'];
   const modifyOptions = ['edit', 'delete'];

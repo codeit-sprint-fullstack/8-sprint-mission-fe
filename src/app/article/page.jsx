@@ -69,7 +69,7 @@ const ArticlePage = () => {
           <DropDown selected={sort} onChange={setSort} />
         </div>
         <div className={styles.contentsWrapper}>
-          {isLoading && <LoadingSpinner fullscreen={false} blur={false} />}
+          {isLoading && <LoadingSpinner fullscreen={false} />}
           {articles?.data && articles.data.length > 0
             ? articles.data.map((article) => (
                 <ArticleList
