@@ -24,7 +24,7 @@ const useGetArticles = (params: ArticleFilters): UseQueryResult<Article> => {
 };
 
 // 기존 객체 방식도 유지
-export const useArticles = {
+export const useArticlesQuery = {
   useGetBestArticles,
   useGetArticles,
 };

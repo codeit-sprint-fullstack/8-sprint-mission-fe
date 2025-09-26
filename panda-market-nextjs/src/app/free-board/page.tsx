@@ -12,35 +12,31 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useArticles } from "@/lib/api/articles/queries";
+import { useArticlesQuery } from "@/lib/api/articles/queries";
+import useArticles from "@/hooks/useArticles";
 import dayjs from "dayjs";
 import Link from "next/link";
-import { useState } from "react";
 
-const ARTICLE_PAGE_SIZE = 4;
+const ARTICLE_PAGE_SIZE = 4; // 게시글 수
 
 export default function FreeBoardPage() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [keyword, setKeyword] = useState("");
-  const [orderBy, setOrderBy] = useState("recent");
-  const [inputValue, setInputValue] = useState("");
-
   const {
     data: bestArticles,
     isLoading: isBestLoading,
     isError: isBestError,
-  } = useArticles.useGetBestArticles();
+  } = useArticlesQuery.useGetBestArticles();
 
   const {
-    data: articles,
-    isLoading: isLoading,
-    isError: isError,
-  } = useArticles.useGetArticles({
-    page: currentPage,
-    pageSize: ARTICLE_PAGE_SIZE,
-    orderBy: orderBy as "recent" | "like",
-    keyword: keyword,
-  });
+    currentPage,
+    articles,
+    isLoading,
+    isError,
+    inputValue,
+    handleSearchEvent,
+    handleSearchKeyDownEvent,
+    handleOrderByEvent,
+    handlePageChange,
+  } = useArticles(ARTICLE_PAGE_SIZE);
 
   const articlesList = articles?.articles || [];
 
@@ -57,31 +53,6 @@ export default function FreeBoardPage() {
       </div>
     );
   }
-
-  const handleSearchEvent = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-    setInputValue(e.target.value);
-  };
-
-  const handleSearchKeyDownEvent = (
-    e: React.KeyboardEvent<HTMLInputElement>
-  ) => {
-    console.log(e.key);
-    if (e.key === "Enter") {
-      setKeyword(inputValue);
-      setCurrentPage(1);
-    }
-  };
-
-  const handleOrderByEvent = (value: string) => {
-    console.log(value);
-    setOrderBy(value);
-    setCurrentPage(1);
-  };
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
 
   return (
     <main className="px-[30px] pt-[30px] w-full mx-auto max-w-[1260px] pb-[200px]">
