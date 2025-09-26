@@ -40,9 +40,11 @@ export default function ArticlePage() {
     handlePageChange,
   } = useArticles(ARTICLE_PAGE_SIZE);
 
+  // 베스트 게시글 페이지 사이즈
   const bestArticlesPageSize: number = useBestArticlesPageSize();
   const bestArticlesList = bestArticles?.slice(0, bestArticlesPageSize) || [];
 
+  // 게시글 리스트
   const articlesList = articles?.articles || [];
 
   if (isBestLoading || isLoading) {

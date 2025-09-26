@@ -6,9 +6,19 @@ import {
   Article,
   ArticleFilters,
 } from "@/lib/api/articles/fetchers";
-import { useQuery, UseQueryResult } from "@tanstack/react-query";
+import { ArticleSchema } from "@/lib/schema/article";
+import {
+  useMutation,
+  UseMutationResult,
+  useQuery,
+  useQueryClient,
+  UseQueryResult,
+} from "@tanstack/react-query";
 
-// 개별 훅으로 내보내기
+/**
+ * 베스트 게시글 조회
+ * @returns BestArticle[]
+ */
 const useGetBestArticles = (): UseQueryResult<BestArticle[]> => {
   return useQuery({
     queryKey: ["bestArticles"],
@@ -16,6 +26,11 @@ const useGetBestArticles = (): UseQueryResult<BestArticle[]> => {
   });
 };
 
+/**
+ * 게시글 조회
+ * @param params ArticleFilters
+ * @returns Article
+ */
 const useGetArticles = (params: ArticleFilters): UseQueryResult<Article> => {
   return useQuery({
     queryKey: ["articles", params],
@@ -23,8 +38,26 @@ const useGetArticles = (params: ArticleFilters): UseQueryResult<Article> => {
   });
 };
 
-// 기존 객체 방식도 유지
+/**
+ * 게시글 생성
+ * @returns ArticleSchema
+ */
+const useCreateArticle = (): UseMutationResult<
+  Article,
+  Error,
+  ArticleSchema
+> => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (article: ArticleSchema) => articlesApi.createArticle(article),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["articles"] });
+    },
+  });
+};
+
 export const useArticlesQuery = {
   useGetBestArticles,
   useGetArticles,
+  useCreateArticle,
 };

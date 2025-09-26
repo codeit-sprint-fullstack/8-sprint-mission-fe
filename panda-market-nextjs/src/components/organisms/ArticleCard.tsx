@@ -24,7 +24,7 @@ export default function ArticleCard({
 }: ArticleCardProps) {
   return (
     <div className="bg-(--background-color) border-b border-secondary-200 p-1 pb-5">
-      <Link href={`/free-board/${id}`} className="flex flex-col gap-4">
+      <Link href={`/article/${id}`} className="flex flex-col gap-4">
         <div className="flex justify-between items-center">
           <Text
             styleName="text-2lg-bold"

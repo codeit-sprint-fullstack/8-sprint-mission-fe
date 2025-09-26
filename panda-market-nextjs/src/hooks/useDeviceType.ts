@@ -9,12 +9,15 @@ export function useDeviceType() {
     return "desktop";
   };
 
-  const [deviceType, setDeviceType] = useState(getDeviceType(0));
+  const [deviceType, setDeviceType] = useState<"mobile" | "tablet" | "desktop">(
+    "desktop"
+  );
 
   useEffect(() => {
+    setDeviceType(getDeviceType(window.innerWidth));
     let timeoutId: NodeJS.Timeout;
     const handleResize = () => {
-      clearTimeout(timeoutId); // 함수가 실행될 때 이전의 타임아웃 취소
+      clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
         setDeviceType(getDeviceType(window.innerWidth));
       }, 100);
@@ -23,9 +26,9 @@ export function useDeviceType() {
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
-      clearTimeout(timeoutId); // 컴포넌트가 언마운트 될 때 타임아웃 취소
+      clearTimeout(timeoutId);
     };
-  }, [deviceType]);
+  }, []);
 
   return deviceType;
 }

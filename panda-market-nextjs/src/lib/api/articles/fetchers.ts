@@ -1,3 +1,5 @@
+import { ArticleSchema } from "@/lib/schema/article";
+
 export interface BestArticle {
   id: string;
   title: string;
@@ -21,65 +23,80 @@ export interface ArticleFilters {
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
+/**
+ * 베스트 게시글 3개 가져오기
+ * @returns BestArticle[]
+ */
+const getBestArticles = async (): Promise<BestArticle[]> => {
+  try {
+    const response = await fetch(`${API_URL}/best-articles`);
+    if (!response.ok) {
+      throw new Error("베스트 게시글 조회 실패");
+    }
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+/**
+ * 게시글 목록 가져오기
+ * @param params ArticleFilters 검색 조건
+ * @returns Article
+ */
+const getArticles = async (params: ArticleFilters = {}): Promise<Article> => {
+  try {
+    const { page, pageSize, orderBy, keyword } = params;
+
+    const searchParams = new URLSearchParams({
+      page: page?.toString() || "1",
+      pageSize: pageSize?.toString() || "4",
+      orderBy: orderBy || "recent",
+      keyword: keyword || "",
+    });
+
+    if (keyword) {
+      searchParams.set("keyword", keyword);
+    }
+
+    const response = await fetch(`${API_URL}/articles?${searchParams}`);
+    if (!response.ok) {
+      throw new Error("게시글 조회 실패");
+    }
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+/**
+ * 게시글 생성하기
+ * @param article ArticleSchema 게시글 데이터
+ * @returns 생성된 게시글 정보
+ */
+const createArticle = async (article: ArticleSchema) => {
+  try {
+    const response = await fetch(`${API_URL}/articles`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(article),
+    });
+    if (!response.ok) {
+      throw new Error("게시글 생성 실패");
+    }
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
 export const articlesApi = {
-  /**
-   * 베스트 게시글 3개 가져오기
-   * @returns BestArticle[]
-   */
-  getBestArticles: async (): Promise<BestArticle[]> => {
-    try {
-      const response = await fetch(`${API_URL}/best-articles`);
-      if (!response.ok) {
-        throw new Error("베스트 게시글 조회 실패");
-      }
-      return response.json();
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
-  },
-
-  /**
-   * 게시글 목록 가져오기
-   * @param params ArticleFilters 검색 조건
-   * @returns Article
-   */
-  getArticles: async (params: ArticleFilters = {}): Promise<Article> => {
-    try {
-      const { page, pageSize, orderBy, keyword } = params;
-
-      const searchParams = new URLSearchParams({
-        page: page?.toString() || "1",
-        pageSize: pageSize?.toString() || "4",
-        orderBy: orderBy || "recent",
-        keyword: keyword || "",
-      });
-
-      if (keyword) {
-        searchParams.set("keyword", keyword);
-      }
-
-      const response = await fetch(`${API_URL}/articles?${searchParams}`);
-      if (!response.ok) {
-        throw new Error("게시글 조회 실패");
-      }
-      return response.json();
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
-  },
-
-  // getArticle: async (id: string): Promise<Article> => {
-  //   try {
-  //     const response = await fetch(`${API_URL}/articles/${id}`);
-  //     if (!response.ok) {
-  //       throw new Error("Failed to fetch article");
-  //     }
-  //     return response.json();
-  //   } catch (error) {
-  //     console.error(error);
-  //     throw error;
-  //   }
-  // },
+  getBestArticles,
+  getArticles,
+  createArticle,
 };

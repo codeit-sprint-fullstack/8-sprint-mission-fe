@@ -5,14 +5,14 @@ export const useBestArticlesPageSize = () => {
   let bestArticlesPageSize = 3;
 
   switch (deviceType) {
-    case "mobile":
-      bestArticlesPageSize = 1;
+    case "desktop":
+      bestArticlesPageSize = 3;
       break;
     case "tablet":
       bestArticlesPageSize = 2;
       break;
-    default:
-      bestArticlesPageSize = 3;
+    case "mobile":
+      bestArticlesPageSize = 1;
       break;
   }
 
