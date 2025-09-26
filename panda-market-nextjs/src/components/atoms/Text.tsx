@@ -7,7 +7,7 @@ interface TextProps {
   styleName: TextStyleName;
   color?: string;
   content: string | number;
-  addClassName?: string;
+  className?: string;
 }
 
 export default function Text({
@@ -15,10 +15,10 @@ export default function Text({
   styleName,
   color = "text-secondary-800",
   content,
-  addClassName,
+  className,
 }: TextProps) {
   return (
-    <Component className={cn(textStyles[styleName], color, addClassName)}>
+    <Component className={cn(textStyles[styleName], color, className)}>
       {content}
     </Component>
   );

@@ -2,12 +2,12 @@
 
 import { useParams } from "next/navigation";
 
-export default function FreeBoardDetailPage() {
+export default function ArticleDetailPage() {
   const { id } = useParams();
 
   return (
     <div>
-      <h1>FreeBoardDetailPage</h1>
+      <h1>ArticleDetailPage</h1>
       <h2>article id : {id}</h2>
     </div>
   );

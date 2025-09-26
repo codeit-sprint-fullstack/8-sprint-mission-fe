@@ -16,10 +16,12 @@ import { useArticlesQuery } from "@/lib/api/articles/queries";
 import useArticles from "@/hooks/useArticles";
 import dayjs from "dayjs";
 import Link from "next/link";
+import { useBestArticlesPageSize } from "@/hooks/useBestArticlesPageSize";
+import Text from "@/components/atoms/Text";
 
 const ARTICLE_PAGE_SIZE = 4; // 게시글 수
 
-export default function FreeBoardPage() {
+export default function ArticlePage() {
   const {
     data: bestArticles,
     isLoading: isBestLoading,
@@ -38,6 +40,9 @@ export default function FreeBoardPage() {
     handlePageChange,
   } = useArticles(ARTICLE_PAGE_SIZE);
 
+  const bestArticlesPageSize: number = useBestArticlesPageSize();
+  const bestArticlesList = bestArticles?.slice(0, bestArticlesPageSize) || [];
+
   const articlesList = articles?.articles || [];
 
   if (isBestLoading || isLoading) {
@@ -55,13 +60,17 @@ export default function FreeBoardPage() {
   }
 
   return (
-    <main className="px-[30px] pt-[30px] w-full mx-auto max-w-[1260px] pb-[200px]">
+    <>
       <section className="mb-10">
-        <h1 className="text-xl font-bold mb-6">베스트 게시글</h1>
+        <Text
+          styleName="text-xl-bold"
+          content="베스트 게시글"
+          className="mb-6"
+        />
 
         {/* 베스트 게시글 리스트 */}
         <div className="flex gap-6">
-          {bestArticles?.map((article) => (
+          {bestArticlesList?.map((article) => (
             <BestCard
               key={article.id}
               id={article.id}
@@ -78,9 +87,9 @@ export default function FreeBoardPage() {
       {/* 게시글 섹션 */}
       <section>
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-xl font-bold">게시글</h1>
+          <Text styleName="text-xl-bold" content="게시글" />
           <Button variant="default" asChild>
-            <Link href="/free-board/write">글쓰기</Link>
+            <Link href="/article/create">글쓰기</Link>
           </Button>
         </div>
 
@@ -128,6 +137,6 @@ export default function FreeBoardPage() {
           onPageChange={handlePageChange}
         />
       </section>
-    </main>
+    </>
   );
 }

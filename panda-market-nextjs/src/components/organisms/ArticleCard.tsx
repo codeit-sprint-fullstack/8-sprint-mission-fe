@@ -29,7 +29,7 @@ export default function ArticleCard({
           <Text
             styleName="text-2lg-bold"
             content={title}
-            addClassName="break-keep"
+            className="break-keep"
           />
           <Image
             src={image}

@@ -18,7 +18,7 @@ export default function BestCard({
   likeCount: number;
 }) {
   return (
-    <div className="p-[0_24px_16px_24px] w-full max-w-[384px] bg-secondary-50 rounded-lg">
+    <div className="p-[0_24px_16px_24px] w-full xl:max-w-[384px] bg-secondary-50 rounded-lg">
       <Link href={`/free-board/${id}`}>
         <div>
           <Image
@@ -33,7 +33,7 @@ export default function BestCard({
           <Text
             styleName="text-2lg-bold"
             content={title}
-            addClassName="break-keep"
+            className="break-keep"
           />
           <div className="p-3 bg-white rounded-[6px] border border-secondary-200">
             <Image

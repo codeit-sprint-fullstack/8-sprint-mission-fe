@@ -11,27 +11,33 @@ export default function Header() {
   console.log(pathname);
   return (
     <header className="border-b fixed top-0 z-10 w-full bg-white">
-      <div className="w-full max-w-[1260px] mx-auto px-[30px] py-[6px] flex items-center justify-between">
+      <div className="w-full max-w-[1260px] mx-auto px-4 md:px-[30px] py-[6px] flex items-center justify-between">
         {/* 로고 */}
         <div>
-          <ul className="flex items-center gap-4">
+          <ul className="flex items-center gap-2 md:gap-4">
             <li>
-              <Link href="/" className="block font-bold text-xl relative w-40">
-                <Image
-                  src="/header/logo.svg"
-                  alt="판다마켓 로고"
-                  priority
-                  width={153}
-                  height={32}
-                  style={{ width: "153", height: "32" }}
-                ></Image>
+              <Link href="/" className="block font-bold text-xl relative">
+                <picture>
+                  <source
+                    srcSet="/header/logo-sm.svg"
+                    media="(max-width: 768px)"
+                  />
+                  <Image
+                    src="/header/logo.svg"
+                    alt="판다마켓 로고"
+                    priority
+                    width={81}
+                    height={32}
+                    className="w-[81px] md:w-[153px]"
+                  />
+                </picture>
               </Link>
             </li>
             <li>
               <Link
-                href="/free-board"
-                className={`text-md ${
-                  pathname === "/free-board" ? "text-primary" : ""
+                href="/article"
+                className={`text-md font-medium ${
+                  pathname === "/article" ? "text-primary" : ""
                 }`}
               >
                 자유게시판
