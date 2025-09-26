@@ -63,9 +63,11 @@ const ArticleFormClient = ({ id }) => {
 
   const createMutation = useMutation({
     mutationFn: createArticle,
-    onSuccess: () => {
+    onSuccess: (response) => {
+      const newArticleId = response.data.id;
+
       queryClient.invalidateQueries({ queryKey: ['articles'] });
-      router.push('/article');
+      router.push(`/article/${newArticleId}`);
     },
     onError: (err) => {
       alert(`게시글 작성 실패: ${err.message}`);
