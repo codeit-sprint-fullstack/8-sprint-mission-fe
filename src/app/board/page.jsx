@@ -4,7 +4,7 @@ import Link from "next/link";
 import React, { useEffect, useMemo, useState } from "react";
 
 const MarketPage = () => {
-  const [products, setProducts] = useState([]);
+  const [articles, setarticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errMsg, setErrMsg] = useState("");
   const [search, setSearch] = useState("");
@@ -15,16 +15,16 @@ const MarketPage = () => {
   useEffect(() => {
     const ac = new AbortController();
 
-    async function getProducts() {
+    async function getarticles() {
       try {
         setLoading(true);
         setErrMsg("");
-        const res = await fetch(`${BASE_URL}/products`, {
+        const res = await fetch(`${BASE_URL}/articles`, {
           signal: ac.signal,
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
-        setProducts(Array.isArray(data.list) ? data.list : []);
+        setarticles(Array.isArray(data.list) ? data.list : []);
       } catch (err) {
         if (err.name !== "AbortError") {
           console.error("목록을 불러오는 중 에러:", err);
@@ -35,7 +35,7 @@ const MarketPage = () => {
       }
     }
 
-    getProducts();
+    getarticles();
     return () => ac.abort();
   }, [BASE_URL]);
 
@@ -45,11 +45,11 @@ const MarketPage = () => {
   const visibleList = useMemo(() => {
     const q = search.trim().toLowerCase();
     const filtered = q
-      ? products.filter((p) => {
+      ? articles.filter((p) => {
           const title = (p?.name ?? p?.title ?? "").toLowerCase();
           return title.includes(q);
         })
-      : products.slice();
+      : articles.slice();
 
     filtered.sort((a, b) => {
       const ad = new Date(getCreatedAt(a) ?? 0).getTime();
@@ -59,7 +59,7 @@ const MarketPage = () => {
     });
 
     return filtered;
-  }, [products, search, sortKey]);
+  }, [articles, search, sortKey]);
 
   const best3 = useMemo(() => visibleList.slice(0, 3), [visibleList]);
 
@@ -72,11 +72,8 @@ const MarketPage = () => {
         <h2 className="font-semibold mb-3">베스트 게시글</h2>
         <div className="grid gap-3 sm:grid-cols-3">
           {best3.map((p) => (
-            <Link href={`/board/${p.id}`} className="block">
-              <article
-                key={p.id}
-                className="flex w-[384px] h-[169px] px-6 flex-col items-start gap-[10px] rounded-[8px] bg-[var(--Cool-Gray-50,#F9FAFB)]"
-              >
+            <Link key={p.id} href={`/board/${p.id}`} className="block">
+              <article className="flex w-[384px] h-[169px] px-6 flex-col items-start gap-[10px] rounded-[8px] bg-[var(--Cool-Gray-50,#F9FAFB)]">
                 <div className="flex w-[102px] py-[2px] px-6 justify-center items-center rounded-b-[16px] bg-[var(--brand-blue,#3692FF)] text-sm mb-1 text-white font-pretendard text-[16px] font-semibold leading-[26px] gap-1">
                   <Image
                     src="/ic_medal.svg"
@@ -86,21 +83,17 @@ const MarketPage = () => {
                   />
                   <span>best</span>
                 </div>
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-4 w-full">
                   <div className="flex-1">
-                    <h3 className="font-medium line-clamp-2">
-                      <Link href={`/board/${p.id}`}>
-                        맥북 16인치 16기가 1테라 정도 사양이면 얼마에 팔아야
-                        하나요?
-                      </Link>
-                    </h3>
+                    <h3 className="font-medium line-clamp-2">{p.title}</h3>
                   </div>
 
-                  <div className="w-[72px] h-[72px] flex-shrink-0">
-                    <img
+                  <div className="w-[72px] h-[72px] ml-auto">
+                    <Image
                       src="/default.png"
-                      alt="게시글 이미지"
-                      className="w-full h-full object-cover rounded"
+                      alt="베스트 게시글 이미지"
+                      width={72}
+                      height={72}
                     />
                   </div>
                 </div>
@@ -177,23 +170,18 @@ const MarketPage = () => {
 
         <div className="space-y-6 ">
           {visibleList.map((p) => (
-            <Link className="block" href={`/board/${p.id}`}>
-              <article
-                key={p.id}
-                className="flex w-full px-6 py-4 flex-col items-start gap-3 rounded-[8px] border border-gray-200 bg-[#FCFCFC]"
-              >
+            <Link key={p.id} className="block" href={`/board/${p.id}`}>
+              <article className="flex w-full px-6 py-4 flex-col items-start gap-3 rounded-[8px] border border-gray-200 bg-[#FCFCFC]">
                 <div className="flex items-start gap-4 w-full">
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-medium line-clamp-2">
-                      맥북 16인치 16기가 1테라 정도 사양이면 얼마에 팔아야
-                      하나요?
-                    </h3>
+                    <h3 className="font-medium line-clamp-2">{p.title}</h3>
                   </div>
                   <div className="w-[72px] h-[72px] flex-shrink-0">
-                    <img
+                    <Image
                       src="/default.png"
                       alt="게시글 이미지"
-                      className="w-full h-full object-cover rounded"
+                      width={72}
+                      height={72}
                     />
                   </div>
                 </div>

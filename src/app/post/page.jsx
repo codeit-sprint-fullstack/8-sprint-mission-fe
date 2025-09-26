@@ -1,7 +1,10 @@
-import React from "react";
+"use client";
+import PostForm from "@/components/PostForm";
 
-const UpdatePage = () => {
-  return <div></div>;
-};
-
-export default UpdatePage;
+export default function CreatePostPage() {
+  return (
+    <div className="px-[22.5rem] py-8">
+      <PostForm mode="create" />
+    </div>
+  );
+}
