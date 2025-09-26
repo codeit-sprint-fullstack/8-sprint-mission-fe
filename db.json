@@ -3,8 +3,9 @@
     {
       "id": 1,
       "author": "Mia",
+      "profile": "/profile-default.svg",
       "title": "첫 번째 글",
-      "thumbnail": "/img_default-sm.svg",
+      "thumbnail": "/product-default.svg",
       "likes": 10,
       "createdAt": "2025-09-22T08:00:00Z",
       "content": "게시글 내용 1",
@@ -12,18 +13,21 @@
         {
           "id": 1,
           "author": "Alice",
+          "profile": "/profile-default.svg",
           "content": "좋은 글이네요!",
           "createdAt": "2025-09-22T09:00:00Z"
         },
         {
           "id": 2,
           "author": "Bob",
+          "profile": "/profile-default.svg",
           "content": "감사합니다!",
           "createdAt": "2025-09-22T09:30:00Z"
         },
         {
           "id": 3,
           "author": "Charlie",
+          "profile": "/profile-default.svg",
           "content": "잘 읽었습니다.",
           "createdAt": "2025-09-22T10:00:00Z"
         }
@@ -32,8 +36,9 @@
     {
       "id": 2,
       "author": "Alice",
+      "profile": "/profile-default.svg",
       "title": "두 번째 글",
-      "thumbnail": "/img_default-sm.svg",
+      "thumbnail": "/product-default.svg",
       "likes": 15,
       "createdAt": "2025-09-21T14:30:00Z",
       "content": "게시글 내용 2",
@@ -41,18 +46,21 @@
         {
           "id": 1,
           "author": "Mia",
+          "profile": "/profile-default.svg",
           "content": "멋지네요!",
           "createdAt": "2025-09-21T15:00:00Z"
         },
         {
           "id": 2,
           "author": "Bob",
+          "profile": "/profile-default.svg",
           "content": "좋아요!",
           "createdAt": "2025-09-21T15:30:00Z"
         },
         {
           "id": 3,
           "author": "Charlie",
+          "profile": "/profile-default.svg",
           "content": "배워갑니다.",
           "createdAt": "2025-09-21T16:00:00Z"
         }
@@ -61,8 +69,9 @@
     {
       "id": 3,
       "author": "Bob",
+      "profile": "/profile-default.svg",
       "title": "세 번째 글",
-      "thumbnail": "/img_default-sm.svg",
+      "thumbnail": "/product-default.svg",
       "likes": 8,
       "createdAt": "2025-09-20T10:00:00Z",
       "content": "게시글 내용 3",
@@ -70,18 +79,21 @@
         {
           "id": 1,
           "author": "Alice",
+          "profile": "/profile-default.svg",
           "content": "좋아요!",
           "createdAt": "2025-09-20T11:00:00Z"
         },
         {
           "id": 2,
           "author": "Mia",
+          "profile": "/profile-default.svg",
           "content": "감사합니다.",
           "createdAt": "2025-09-20T11:30:00Z"
         },
         {
           "id": 3,
           "author": "Charlie",
+          "profile": "/profile-default.svg",
           "content": "흥미롭네요.",
           "createdAt": "2025-09-20T12:00:00Z"
         }
@@ -90,8 +102,9 @@
     {
       "id": 4,
       "author": "Charlie",
+      "profile": "/profile-default.svg",
       "title": "네 번째 글",
-      "thumbnail": "/img_default-sm.svg",
+      "thumbnail": "/product-default.svg",
       "likes": 12,
       "createdAt": "2025-09-19T09:00:00Z",
       "content": "게시글 내용 4",
@@ -99,18 +112,21 @@
         {
           "id": 1,
           "author": "Mia",
+          "profile": "/profile-default.svg",
           "content": "잘 쓰셨네요.",
           "createdAt": "2025-09-19T10:00:00Z"
         },
         {
           "id": 2,
           "author": "Alice",
+          "profile": "/profile-default.svg",
           "content": "좋은 정보 감사합니다.",
           "createdAt": "2025-09-19T10:30:00Z"
         },
         {
           "id": 3,
           "author": "Bob",
+          "profile": "/profile-default.svg",
           "content": "흥미롭네요.",
           "createdAt": "2025-09-19T11:00:00Z"
         }
@@ -119,8 +135,9 @@
     {
       "id": 5,
       "author": "Mia",
+      "profile": "/profile-default.svg",
       "title": "다섯 번째 글",
-      "thumbnail": "/img_default-sm.svg",
+      "thumbnail": "/product-default.svg",
       "likes": 20,
       "createdAt": "2025-09-18T08:00:00Z",
       "content": "게시글 내용 5",
@@ -128,18 +145,21 @@
         {
           "id": 1,
           "author": "Charlie",
+          "profile": "/profile-default.svg",
           "content": "좋아요!",
           "createdAt": "2025-09-18T09:00:00Z"
         },
         {
           "id": 2,
           "author": "Alice",
+          "profile": "/profile-default.svg",
           "content": "잘 읽었습니다.",
           "createdAt": "2025-09-18T09:30:00Z"
         },
         {
           "id": 3,
           "author": "Bob",
+          "profile": "/profile-default.svg",
           "content": "감사합니다.",
           "createdAt": "2025-09-18T10:00:00Z"
         }
@@ -148,8 +168,9 @@
     {
       "id": 6,
       "author": "Alice",
+      "profile": "/profile-default.svg",
       "title": "여섯 번째 글",
-      "thumbnail": "/img_default-sm.svg",
+      "thumbnail": "/product-default.svg",
       "likes": 7,
       "createdAt": "2025-09-17T07:00:00Z",
       "content": "게시글 내용 6",
@@ -157,18 +178,21 @@
         {
           "id": 1,
           "author": "Mia",
+          "profile": "/profile-default.svg",
           "content": "좋아요!",
           "createdAt": "2025-09-17T08:00:00Z"
         },
         {
           "id": 2,
           "author": "Bob",
+          "profile": "/profile-default.svg",
           "content": "감사합니다.",
           "createdAt": "2025-09-17T08:30:00Z"
         },
         {
           "id": 3,
           "author": "Charlie",
+          "profile": "/profile-default.svg",
           "content": "잘 읽었습니다.",
           "createdAt": "2025-09-17T09:00:00Z"
         }
@@ -177,8 +201,9 @@
     {
       "id": 7,
       "author": "Bob",
+      "profile": "/profile-default.svg",
       "title": "일곱 번째 글",
-      "thumbnail": "/img_default-sm.svg",
+      "thumbnail": "/product-default.svg",
       "likes": 13,
       "createdAt": "2025-09-16T06:00:00Z",
       "content": "게시글 내용 7",
@@ -186,18 +211,21 @@
         {
           "id": 1,
           "author": "Alice",
+          "profile": "/profile-default.svg",
           "content": "좋아요!",
           "createdAt": "2025-09-16T07:00:00Z"
         },
         {
           "id": 2,
           "author": "Mia",
+          "profile": "/profile-default.svg",
           "content": "감사합니다.",
           "createdAt": "2025-09-16T07:30:00Z"
         },
         {
           "id": 3,
           "author": "Charlie",
+          "profile": "/profile-default.svg",
           "content": "잘 읽었습니다.",
           "createdAt": "2025-09-16T08:00:00Z"
         }
