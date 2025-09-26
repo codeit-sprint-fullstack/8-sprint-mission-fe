@@ -14,9 +14,13 @@
   border-radius: 12px;
   background: v.$coolGray-100;
 
-  color: v.$secondary-400;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 26px;
+  color: v.$coolGray-800;
+
+  &::placeholder {
+    color: v.$secondary-400;
+  }
 }

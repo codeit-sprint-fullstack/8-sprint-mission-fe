@@ -12,14 +12,12 @@ const Input = ({ type = 'title', value = '', onChange = () => {} }) => {
   };
 
   return (
-    <div>
-      <input
-        placeholder={typeMap[type]}
-        className={styles.input}
-        value={value}
-        onChange={handleChange}
-      />
-    </div>
+    <input
+      className={styles.input}
+      placeholder={typeMap[type]}
+      value={value}
+      onChange={handleChange}
+    />
   );
 };
 
