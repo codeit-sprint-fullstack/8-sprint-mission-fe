@@ -10,7 +10,7 @@ export default function Header() {
 
   console.log(pathname);
   return (
-    <header className="border-b fixed top-0 z-10 w-full">
+    <header className="border-b fixed top-0 z-10 w-full bg-white">
       <div className="w-full max-w-[1260px] mx-auto px-[30px] py-[6px] flex items-center justify-between">
         {/* 로고 */}
         <div>
