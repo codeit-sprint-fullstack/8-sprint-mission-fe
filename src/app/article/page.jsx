@@ -45,6 +45,11 @@ const ArticlePage = () => {
     keepPreviousData: true,
   });
 
+  const bestArticles = articles?.data
+    .slice()
+    .sort((a, b) => b.like - a.like)
+    .slice(0, 3);
+
   if (error) return <p>{error.message}</p>;
 
   return (
@@ -52,9 +57,16 @@ const ArticlePage = () => {
       <div className={styles.bestContents}>
         <div className={styles.title}>베스트 게시글</div>
         <div className={styles.cardWrapper}>
-          <BestArticleCard />
-          <BestArticleCard />
-          <BestArticleCard />
+          {bestArticles?.map((article, index) => (
+            <BestArticleCard
+              key={article.id}
+              id={article.id}
+              rank={index + 1}
+              title={article.title}
+              like={article.like}
+              date={article.createdAt}
+            />
+          ))}
         </div>
       </div>
       <div className={styles.normalContents}>

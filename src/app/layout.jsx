@@ -7,6 +7,9 @@ import './globals.css';
 export const metadata = {
   title: '판다마켓',
   description: '판다마켓',
+  icons: {
+    icon: '/public/favicon.ico',
+  },
 };
 
 export const viewport = {

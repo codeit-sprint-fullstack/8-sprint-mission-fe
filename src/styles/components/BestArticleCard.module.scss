@@ -1,6 +1,9 @@
 @use '@/styles/variable' as v;
+@use '@/styles/mixin' as m;
 
 .bestCard {
+  @include m.link-reset;
+
   display: flex;
   width: 384px;
   height: 169px;
@@ -29,6 +32,8 @@
     font-style: normal;
     font-weight: 600;
     line-height: 26px;
+
+    white-space: nowrap;
   }
 }
 
