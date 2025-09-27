@@ -22,7 +22,7 @@ export default function BestCard({
       <Link href={`/article/${id}`}>
         <div>
           <Image
-            src="/free-board/best-article-badge.svg"
+            src="/article/best-article-badge.svg"
             alt="베스트 게시글"
             width={102}
             height={30}
@@ -30,11 +30,9 @@ export default function BestCard({
           />
         </div>
         <div className="flex items-center justify-between gap-2 m-[16px_0_18px]">
-          <Text
-            styleName="text-2lg-bold"
-            content={title}
-            className="break-keep"
-          />
+          <Text styleName="text-2lg-bold" className="break-keep">
+            {title}
+          </Text>
           <div className="p-3 bg-white rounded-[6px] border border-secondary-200">
             <Image
               src={image}
@@ -47,11 +45,10 @@ export default function BestCard({
         </div>
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
-            <Text
-              styleName="text-md-regular"
-              color="text-secondary-600"
-              content={nickname}
-            />
+            <Text styleName="text-md-regular" color="text-secondary-600">
+              {nickname}
+            </Text>
+
             {/* 좋아요 컴포넌트 분리 요망 */}
             <div className="flex items-center gap-1">
               <Image
@@ -61,18 +58,14 @@ export default function BestCard({
                 alt="좋아요"
                 style={{ width: "16", height: "16" }}
               />
-              <Text
-                styleName="text-md-regular"
-                color="text-secondary-500"
-                content={likeCount}
-              />
+              <Text styleName="text-md-regular" color="text-secondary-500">
+                {likeCount}
+              </Text>
             </div>
           </div>
-          <Text
-            styleName="text-md-regular"
-            color="text-secondary-400"
-            content={createdAt}
-          />
+          <Text styleName="text-md-regular" color="text-secondary-400">
+            {createdAt}
+          </Text>
         </div>
       </Link>
     </div>

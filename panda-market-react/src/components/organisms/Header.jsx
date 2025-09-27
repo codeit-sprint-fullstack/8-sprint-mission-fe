@@ -17,7 +17,7 @@ export function Header() {
           {!isMainPage && (
             <ul>
               <li>
-                <NavLink to="/free-board">자유게시판</NavLink>
+                <NavLink to="/article">자유게시판</NavLink>
               </li>
               <li>
                 <NavLink to="/items">중고마켓</NavLink>

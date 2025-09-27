@@ -6,20 +6,20 @@ interface TextProps {
   as?: ElementType;
   styleName: TextStyleName;
   color?: string;
-  content: string | number;
   className?: string;
+  children?: React.ReactNode;
 }
 
 export default function Text({
   as: Component = "div",
   styleName,
   color = "text-secondary-800",
-  content,
+  children,
   className,
 }: TextProps) {
   return (
     <Component className={cn(textStyles[styleName], color, className)}>
-      {content}
+      {children}
     </Component>
   );
 }

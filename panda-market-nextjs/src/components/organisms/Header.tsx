@@ -9,6 +9,10 @@ export default function Header() {
   const pathname = usePathname();
 
   console.log(pathname);
+
+  const isArticlePage = pathname.includes("article");
+  const isMarketPage = pathname.includes("market");
+
   return (
     <header className="border-b fixed top-0 z-10 w-full bg-white">
       <div className="w-full max-w-[1260px] mx-auto px-4 md:px-[30px] py-[6px] flex items-center justify-between">
@@ -37,7 +41,7 @@ export default function Header() {
               <Link
                 href="/article"
                 className={`text-md font-medium ${
-                  pathname === "/article" ? "text-primary" : ""
+                  isArticlePage ? "text-primary" : ""
                 }`}
               >
                 자유게시판
@@ -45,10 +49,8 @@ export default function Header() {
             </li>
             <li>
               <Link
-                href="/items"
-                className={`text-md ${
-                  pathname === "/items" ? "text-primary" : ""
-                }`}
+                href="/market"
+                className={`text-md ${isMarketPage ? "text-primary" : ""}`}
               >
                 중고마켓
               </Link>

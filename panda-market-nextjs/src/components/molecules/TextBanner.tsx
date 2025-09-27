@@ -20,11 +20,11 @@ export function TextBanner({
     <section className="bg-[#cfe5ff]">
       <div
         className={`
-          w-full max-w-[1200px] mx-auto bg-no-repeat bg-right-bottom
+          w-full max-w-[1200px] mx-auto bg-no-repeat bg-right-bottom text-center
           ${
             isSection2
-              ? "pt-[20rem] pb-[61.4rem] lg:pt-[20rem] lg:pb-[30rem] md:pt-[12rem] md:pb-[30rem]"
-              : "pt-[24rem] pb-[10rem] lg:pt-[8.4rem] lg:pb-[30rem] md:pt-[4.8rem] md:pb-[33.6rem]"
+              ? "pt-[12rem] pb-[20rem] lg:pt-[20rem] lg:pb-[30rem] md:pt-[12rem] md:pb-[30rem]"
+              : "pt-[12rem] pb-[20rem] lg:pt-[8.4rem] lg:pb-[30rem] md:pt-[4.8rem] md:pb-[33.6rem]"
           }
           lg:text-center lg:bg-bottom
           md:bg-[length:calc(100%-6.4rem)]

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Text from "../atoms/Text";
 import Image from "next/image";
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 
 interface ArticleCardProps {
   id: string;
@@ -26,11 +26,9 @@ export default function ArticleCard({
     <div className="bg-(--background-color) border-b border-secondary-200 p-1 pb-5">
       <Link href={`/article/${id}`} className="flex flex-col gap-4">
         <div className="flex justify-between items-center">
-          <Text
-            styleName="text-2lg-bold"
-            content={title}
-            className="break-keep"
-          />
+          <Text styleName="text-2lg-bold" className="break-keep">
+            {title}
+          </Text>
           <Image
             src={image}
             alt={title}
@@ -48,10 +46,9 @@ export default function ArticleCard({
                 width={24}
                 height={24}
               />
-              <AvatarFallback>CN</AvatarFallback>
             </Avatar>
-            <Text styleName="text-md-regular" content={nickname} />
-            <Text styleName="text-md-regular" content={createdAt} />
+            <Text styleName="text-md-regular">{nickname}</Text>
+            <Text styleName="text-md-regular">{createdAt}</Text>
           </div>
           <div className="flex items-center gap-1">
             <Image
@@ -61,7 +58,7 @@ export default function ArticleCard({
               alt="좋아요"
               style={{ width: "16", height: "16" }}
             />
-            <Text styleName="text-md-regular" content={likeCount} />
+            <Text styleName="text-md-regular">{likeCount}</Text>
           </div>
         </div>
       </Link>
