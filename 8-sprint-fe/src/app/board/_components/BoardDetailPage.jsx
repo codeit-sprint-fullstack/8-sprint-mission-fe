@@ -1,21 +1,18 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 
 import KebabMenu from "@/app/(components)/atoms/KebabMenu";
 import ProfileIcon from "@/app/(components)/atoms/ProfileIcon";
 import Heart from "@/app/(components)/atoms/Heart";
-import TextareaInput from "@/app/(components)/atoms/TextareaInput";
+import CommentInput from "@/app/(components)/atoms/CommentInput";
 import CommentList from "./CommentList";
 import ic_return from "/public/ic_arrow_return.svg";
 import Link from "next/link";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
-import {
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { deleteArticle, fetchArticle } from "@/api/fetchArticle";
+import { fetchComments } from "@/api/fetchComment";
 
 const BoardDetailPage = () => {
   const { id } = useParams();
@@ -28,6 +25,16 @@ const BoardDetailPage = () => {
   } = useQuery({
     queryKey: ["article", id],
     queryFn: () => fetchArticle(id),
+    gcTime: 10 * 60 * 1000,
+  });
+
+  const {
+    data: comments,
+    isPending: commentLoading,
+    error: commentErr,
+  } = useQuery({
+    queryKey: ["comments", id],
+    queryFn: () => fetchComments(id),
     gcTime: 10 * 60 * 1000,
   });
 
@@ -56,7 +63,7 @@ const BoardDetailPage = () => {
 
   const handlePatch = () => {
     router.push(`/board/${id}/patch`);
-  }
+  };
 
   if (isLoading) {
     return (
@@ -113,19 +120,23 @@ const BoardDetailPage = () => {
       </div>
       <div className="w-full h-0.25 bg-gray-200"></div>
       <p className="w-full mt-6 mb-8">{article.content}</p>
-      <TextareaInput name="comments" title="댓글달기" type="textarea" />
-      <div className="mt-10">
-        {commentTemp.map((comnt) => {
-          return (
-            <CommentList
-              key={comnt.id}
-              content={comnt.content}
-              name={comnt.name}
-              time={comnt.time}
-            />
-          );
-        })}
-      </div>
+      <CommentInput postId={id} />
+      {!commentLoading && (
+        <div className="mt-10">
+          {comments.map((comnt) => {
+            return (
+              <CommentList
+                key={comnt.id}
+                id={comnt.id}
+                postId={id}
+                content={comnt.content}
+                name="똑똑한 판다"
+                date={comnt.createdAt}
+              />
+            );
+          })}
+        </div>
+      )}
       <div className="flex justify-center mt-16">
         <Link
           href="/board"

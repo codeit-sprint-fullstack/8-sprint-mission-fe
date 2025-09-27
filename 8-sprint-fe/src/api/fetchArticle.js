@@ -1,6 +1,6 @@
 import React from "react";
 
-const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/article`;
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/articles`;
 
 // articles list get
 export const fetchArticles = async () => {
