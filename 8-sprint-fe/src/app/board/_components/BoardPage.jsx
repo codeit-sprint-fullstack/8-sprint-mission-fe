@@ -5,26 +5,33 @@ import Button from "@/app/(components)/atoms/Button";
 import Search from "@/app/(components)/atoms/Search";
 import Dropdown from "@/app/(components)/atoms/Dropdown";
 import ListCommunity from "./ListCommunity";
-import { fetchArticle } from "@/api/fetchArticle";
+import { fetchArticles } from "@/api/fetchArticle";
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
 
 const BoardPage = () => {
-  const [articles, setArticles] = useState([]);
-  const [error, setError] = useState(null);
+  const {
+    data: articles,
+    isPending,
+    error,
+  } = useQuery({
+    queryKey: ["articles"],
+    queryFn: fetchArticles,
+  });
 
-  const loadArticle = async () => {
-    try {
-      const data = await fetchArticle();
-      console.log(data);
-      setArticles(data);
-    } catch (err) {
-      setError(err.message);
-    }
-  };
+  if (isPending) {
+    return (
+      <div className="container mx-auto px-4 py-8 text-center">로딩 중...</div>
+    );
+  }
 
-  useEffect(() => {
-    loadArticle();
-  }, []);
+  if (error) {
+    return (
+      <div className="container mx-auto px-4 py-8 text-center text-red-500">
+        {error}
+      </div>
+    );
+  }
 
   return (
     <>
@@ -47,7 +54,9 @@ const BoardPage = () => {
         )}
         <div className="flex items-center justify-between mt-10 mb-6">
           <h1 className="text-gray-900 font-bold text-xl">게시글</h1>
-          <Link href="board/post"><Button>글쓰기</Button></Link>
+          <Link href="board/post">
+            <Button>글쓰기</Button>
+          </Link>
         </div>
         <div className="flex items-center justify-between gap-4">
           <Search />

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 import KebabMenu from "@/app/(components)/atoms/KebabMenu";
@@ -8,8 +9,67 @@ import CommentList from "./CommentList";
 import ic_return from "/public/ic_arrow_return.svg";
 import Link from "next/link";
 import Image from "next/image";
+import { useParams, useRouter } from "next/navigation";
+import {
+  QueryClient,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
+import { deleteArticle, fetchArticle } from "@/api/fetchArticle";
 
 const BoardDetailPage = () => {
+  const { id } = useParams();
+  const router = useRouter();
+
+  const {
+    data: article,
+    isPending: isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["article", id],
+    queryFn: () => fetchArticle(id),
+    gcTime: 10 * 60 * 1000,
+  });
+
+  const queryClient = useQueryClient();
+  const {
+    mutate: mutateDeleteArticle,
+    isPending: isDelete,
+    error: deleteErr,
+  } = useMutation({
+    mutationFn: deleteArticle,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["articles"] });
+    },
+    onError: (error) => {
+      console.error("게시글 삭제 중 오류 발생: ", error);
+      alert("게시글을 삭제하는데 실패했습니다.");
+    },
+  });
+
+  const handleDelete = () => {
+    mutateDeleteArticle(id);
+
+    alert("게시글 삭제완료");
+    router.push("/board");
+  };
+
+  if (isLoading) {
+    return (
+      <div className="container mx-auto px-4 py-8 text-center">로딩 중...</div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container mx-auto px-4 py-8 text-center text-red-500">
+        {error}
+      </div>
+    );
+  }
+
+  // 댓글 임시 데이터
   const commentTemp = [
     {
       id: 1,
@@ -30,11 +90,12 @@ const BoardDetailPage = () => {
       time: "30분 전",
     },
   ];
+
   return (
     <section className="mt-8">
       <div className="flex items-center justify-between">
-        <p className="text-gray-800 text-xl/8 font-bold">맥북 어쩌구 title</p>
-        <KebabMenu />
+        <p className="text-gray-800 text-xl/8 font-bold">{article.title}</p>
+        <KebabMenu handleDelete={handleDelete} />
       </div>
       <div className="flex gap-8 items-center my-4 ">
         <div className="flex items-center gap-2 text-sm/6 font-normal">
@@ -48,9 +109,7 @@ const BoardDetailPage = () => {
         </div>
       </div>
       <div className="w-full h-0.25 bg-gray-200"></div>
-      <p className="w-full mt-6 mb-8">
-        맥북 16인치 16기가 1테라 정도 사양이면 얼마에 팔아야하나요?
-      </p>
+      <p className="w-full mt-6 mb-8">{article.content}</p>
       <TextareaInput name="comments" title="댓글달기" type="textarea" />
       <div className="mt-10">
         {commentTemp.map((comnt) => {
