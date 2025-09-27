@@ -1,9 +1,11 @@
+import { DefaultLayout } from "@/components/Layout";
+import HomePage from "@/components/pages/HomePage";
 import React from "react";
 
-export default function HomePage() {
+export default function Home() {
   return (
-    <div>
-      ㅇㅇ
-    </div>
+    <DefaultLayout>
+      <HomePage />
+    </DefaultLayout>
   );
 }
