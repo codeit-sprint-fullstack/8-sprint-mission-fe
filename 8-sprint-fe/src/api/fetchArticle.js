@@ -21,10 +21,10 @@ export const fetchArticle = async (id) => {
 };
 
 // article post
-export const addArticle = async ({title, content}) => {
+export const addArticle = async (article) => {
   const newArticle = {
-    title: title,
-    content: content,
+    title: article.title,
+    content: article.content,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   };
@@ -43,7 +43,7 @@ export const addArticle = async ({title, content}) => {
 };
 
 // article patch
-export const patchArticle = async ({id, article}) => {
+export const patchArticle = async ({ id, article }) => {
   const newArticle = {
     title: article.title,
     content: article.content,

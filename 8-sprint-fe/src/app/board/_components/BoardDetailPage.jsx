@@ -11,7 +11,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import {
-  QueryClient,
   useMutation,
   useQuery,
   useQueryClient,
@@ -55,6 +54,10 @@ const BoardDetailPage = () => {
     router.push("/board");
   };
 
+  const handlePatch = () => {
+    router.push(`/board/${id}/patch`);
+  }
+
   if (isLoading) {
     return (
       <div className="container mx-auto px-4 py-8 text-center">로딩 중...</div>
@@ -95,7 +98,7 @@ const BoardDetailPage = () => {
     <section className="mt-8">
       <div className="flex items-center justify-between">
         <p className="text-gray-800 text-xl/8 font-bold">{article.title}</p>
-        <KebabMenu handleDelete={handleDelete} />
+        <KebabMenu handlePatch={handlePatch} handleDelete={handleDelete} />
       </div>
       <div className="flex gap-8 items-center my-4 ">
         <div className="flex items-center gap-2 text-sm/6 font-normal">
