@@ -1,0 +1,4 @@
+/* 그리드/컨테이너 반응형 예시 */
+.container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+.grid-5 { display:grid; grid-template-columns: repeat(5, 1fr); gap: 24px; }
+

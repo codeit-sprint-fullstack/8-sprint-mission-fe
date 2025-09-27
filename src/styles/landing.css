@@ -1,0 +1,116 @@
+/* ===== Landing only (hero / cards / review) ===== */
+
+/* Hero */
+.hero{background-color:var(--color10);width:100%;height:540px;}
+.hero-inner{
+  max-width:1920px;height:100%;display:flex;justify-content:center;align-items:center;
+  margin:0 auto;padding:0 200px;gap:8px;
+}
+.hero-text h2{
+  color:var(--color5);font-family:Pretendard;
+  font-size:40px;font-weight:700;line-height:140%;padding-bottom:60px;margin-top:240px;margin-bottom:0;
+}
+.hero-img{display:flex;justify-content:center;align-self:flex-end;}
+.hero-img img{width:746px;height:340px;object-fit:contain;}
+
+/* CTA button */
+.cta-btn{
+  display:inline-block;background-color:var(--color4);color:var(--color16);gap:10;
+  padding:16px 124px;font-size:20px;font-weight:600;border-radius:40px;cursor:pointer;text-align:center;margin-bottom:100px;
+}
+.cta-btn:hover{background-color:var(--color4);}
+
+/* Cards */
+.card-section{background-color:var(--color9);padding:138px 0;}
+.card{
+  display:flex;justify-content:center;align-items:center;
+  background:var(--color9); /* ← 기존 오타: (--color9) 를 var(--color9)로 수정 */
+  border-radius:16px;margin:0 auto 276px;gap:64px;max-width:1100px;
+}
+.card img{
+  display:flex;width:588px;height:444px;justify-content:center;align-items:center;flex-shrink:0;object-fit:contain;
+}
+.card-type2{background:var(--color9);}
+.card-type2 .card-text{text-align:right;margin-left:auto;max-width:988px;}
+.card-type2 .label{color:var(--color4);font-weight:700;margin-bottom:12px;}
+
+.card-text{
+  color:var(--color5);font-family:Pretendard, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", sans-serif;
+  text-align:left;gap:24px;font-weight:500;line-height:32px;font-size:40px;
+}
+.card .desc{font-size:24px;line-height:32px;color:var(--color5);font-weight:500;}
+.card .label{font-size:18px;font-weight:700;margin-bottom:12px;line-height:26px;color:var(--color4);}
+.card h3{color:var(--color5);font-size:24px;font-weight:700;line-height:140%;letter-spacing:0.8px;margin-bottom:24px;}
+.card-type{flex-direction:row-reverse;}
+
+/* Review */
+.review-section{background-color:var(--color10);height:540px;padding:100px 0;text-align:center;}
+.review-inner{
+  max-width:1920px;height:auto;margin:auto;padding:0 200px;display:inline-flex;justify-content:center;gap:69px;
+}
+.review-text p{
+  font-family:Pretendard, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", sans-serif;
+  font-size:40px;font-weight:700;line-height:140%;color:var(--color5);margin-top:172.5px;text-align:left;
+}
+.review-img{display:flex;justify-content:center;align-self:flex-end;}
+.review-img img{
+  width:746px;height:397px;margin-bottom:-157px;justify-content:center;align-items:center;object-fit:contain;
+}
+
+
+/* ===== PC (≥1200px) ===== */
+@media (min-width: 1200px) {
+  .hero-inner,
+  .review-inner { padding: 0 200px; }
+
+  /* PC/Tablet은 고정 크기 */
+  .hero-img img   { width: 746px; height: 340px; }
+  .card img       { width: 588px; height: 444px; }
+  .review-img img { width: 746px; height: 397px; }
+
+  /* 카드 가로 배치 */
+  .card { flex-direction: row; }
+  .card-type2 .card-text { text-align: right; margin-left: auto; max-width: 988px; }
+}
+
+/* ===== Tablet (744–1199px) ===== */
+@media (min-width: 744px) and (max-width: 1199px) {
+  .hero-inner,
+  .review-inner { padding: 0 40px; }
+
+  /* PC/Tablet은 고정 크기 */
+  .hero-img img   { width: 746px; height: 340px; }
+  .card img       { width: 588px; height: 444px; }
+  .review-img img { width: 746px; height: 397px; }
+
+  /* 카드 세로 스택(필요 시 row로 바꿔도 됨) */
+  .card { flex-direction: column; gap: 32px; }
+  .card-type2 .card-text { text-align: right; margin-left: auto; max-width: 988px; }
+}
+
+/* ===== Mobile (375–743px) ===== */
+@media (min-width: 375px) and (max-width: 743px) {
+  .hero-inner,
+  .review-inner { padding: 0 16px; }
+
+  /* 좌우 여백 32px 제외하고 꽉 차게 (비율 유지) */
+  .hero-img img,
+  .review-img img,
+  .card img {
+    width: calc(100vw - 32px);
+    height: auto;
+    max-width: 100%;
+  }
+
+  .hero-text h2,
+  .card-text,
+  .review-text p {
+    font-size: 24px;
+    line-height: 1.4;
+    text-align: center;
+  }
+  .cta-btn { padding: 12px 24px; font-size: 16px; width: 100%; }
+
+  /* 카드 세로 배치 */
+  .card { flex-direction: column; gap: 24px; }
+}

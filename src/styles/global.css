@@ -1,0 +1,44 @@
+:root{
+  --color1:#111827; --color2:#1251aa; --color3:#1967d6; --color4:#3692ff;
+  --color5:#374151; --color6:#9ca3af; --color7:#dfdfdf; --color8:#e5e7eb;
+  --color9:#ffffff; --color10:#cfe5ff; --color11:#1f2937; --color12:#F3F4F6;
+  --color13:#e6f2ff; --color14:#f3f4f6; --color15:#f9f9f9; --color16:#F9FAFB;
+  --error-red:#F74747; display: flex; flex-direction: column;
+}
+
+/* 공통 레이아웃 */
+.container{max-width:1199px;margin:0 auto;padding:0 400px;}
+.main-offset { flex: 1; padding-top: 70px; }
+
+html, body, #root {height: 100%}
+
+/* ===== Header / Nav ===== */
+.nav{
+  position:fixed;top:0;left:0;width:100%;height:70px;
+  background-color:var(--color9);border-bottom:1px solid var(--color7);z-index:1000;
+}
+.nav-inner{
+  max-width:1920px;width:100%;height:70px;margin:0 auto;padding:0 40px;
+  display:flex;justify-content:space-between;align-items:center;gap:10px;flex-shrink:0;
+}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;}
+.logo img{width:40px;height:40px;flex-shrink:0;}
+.logo span{color:var(--color4);font-family:"ROKAF Sans";font-size:24px;font-weight:800;}
+
+.login-btn{
+  display:flex;justify-content:center;align-items:center;
+  width:128px;height:48px;padding:12px 23px;background-color:var(--color4);
+  border-radius:8px;color:var(--color12);font-size:16px;font-weight:600;gap:10px;
+}
+
+/* 네비 메뉴 활성(#3692FF) */
+.nav .menu{display:flex;gap:16px;}
+.nav .menu a{color:var(--color1);text-decoration:none;padding:8px 12px;}
+.nav .menu a.active{color:#3692FF;font-weight:700;}
+
+
+@media (max-width:743px) {
+  .nav-inner {
+    padding:0 16px;   /* 모바일은 16px */
+  }
+}

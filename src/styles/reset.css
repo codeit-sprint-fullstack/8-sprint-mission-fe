@@ -1,0 +1,57 @@
+/* ===== Minimal, modern reset for Panda Market ===== */
+
+/* 1) 박스 사이징 통일 */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* 2) 기본 마진 제거 */
+* { margin: 0; }
+
+/* 3) 문서/텍스트 기본값 */
+html, body { height: 100%; }
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* 프로젝트 기본 폰트 (원하면 Pretendard/ROKAF Sans로 교체) */
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans KR", sans-serif;
+  color: #111827;          /* 다크 그레이 */
+  background: #ffffff;
+}
+
+/* 4) 미디어 요소 기본 처리 */
+img, picture, video, canvas, svg { display: block; max-width: 100%; }
+
+/* 5) 폼 요소 폰트/색상 상속 */
+input, button, textarea, select { font: inherit; color: inherit; }
+
+/* 6) 링크 기본 스타일 제거(프로젝트에서 색/밑줄 제어) */
+a { color: inherit; text-decoration: none; }
+
+/* 7) 리스트 마커 제거(필요한 곳에만 따로 지정) */
+ul, ol { list-style: none; padding-left: 0; }
+
+/* 8) 버튼 기본 테두리/배경 제거(컴포넌트에서 스타일 지정) */
+button {
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+/* 9) 테이블 기본 간격 제거 */
+table { border-collapse: collapse; border-spacing: 0; }
+
+/* 10) 포커스 접근성(키보드 탐색 시 표시) */
+:focus-visible {
+  outline: 2px solid #3692FF;
+  outline-offset: 2px;
+}
+
+/* 11) 모션 최소화 옵션 존중 */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
