@@ -1,9 +1,9 @@
 "use client";
 
 import {
-  BestArticle,
-  articlesApi,
   Article,
+  articlesApi,
+  ArticleList,
   ArticleFilters,
 } from "@/lib/api/articles/fetchers";
 import { ArticleSchema } from "@/lib/schema/article";
@@ -19,7 +19,7 @@ import {
  * 베스트 게시글 조회
  * @returns BestArticle[]
  */
-const useGetBestArticles = (): UseQueryResult<BestArticle[]> => {
+const useGetBestArticles = (): UseQueryResult<Article[]> => {
   return useQuery({
     queryKey: ["bestArticles"],
     queryFn: articlesApi.getBestArticles,
@@ -31,10 +31,24 @@ const useGetBestArticles = (): UseQueryResult<BestArticle[]> => {
  * @param params ArticleFilters
  * @returns Article
  */
-const useGetArticles = (params: ArticleFilters): UseQueryResult<Article> => {
+const useGetArticles = (
+  params: ArticleFilters
+): UseQueryResult<ArticleList> => {
   return useQuery({
     queryKey: ["articles", params],
     queryFn: () => articlesApi.getArticles(params),
+  });
+};
+
+/**
+ * 게시글 상세 조회
+ * @param id 게시글 ID
+ * @returns Article
+ */
+const useGetArticleDetail = (id: string): UseQueryResult<Article> => {
+  return useQuery({
+    queryKey: ["articleDetail", id],
+    queryFn: () => articlesApi.getArticleDetail(id),
   });
 };
 
@@ -56,8 +70,54 @@ const useCreateArticle = (): UseMutationResult<
   });
 };
 
+/**
+ * 게시글 수정
+ * @returns
+ */
+const useUpdateArticle = (): UseMutationResult<
+  Article,
+  Error,
+  { id: string; article: ArticleSchema }
+> => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, article }: { id: string; article: ArticleSchema }) =>
+      articlesApi.updateArticle(id, article),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["articles"] });
+    },
+  });
+};
+
+/**
+ * 게시글 삭제
+ * @returns
+ */
+const useDeleteArticle = (): UseMutationResult<
+  number,
+  Error,
+  { id: string }
+> => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id }: { id: string }) => articlesApi.deleteArticle(id),
+    onSuccess: (_, variables) => {
+      // 삭제된 게시글 상세 캐시도 무효화
+      queryClient.invalidateQueries({ queryKey: ["articles"] });
+      if (variables?.id) {
+        queryClient.invalidateQueries({
+          queryKey: ["articleDetail", variables.id],
+        });
+      }
+    },
+  });
+};
+
 export const useArticlesQuery = {
   useGetBestArticles,
   useGetArticles,
+  useGetArticleDetail,
   useCreateArticle,
+  useUpdateArticle,
+  useDeleteArticle,
 };

@@ -7,16 +7,28 @@ import { Textarea } from "@/components/ui/textarea";
 import { useArticlesQuery } from "@/lib/api/articles/queries";
 import { articleSchema, ArticleSchema } from "@/lib/schema/article";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
+import { UseQueryResult } from "@tanstack/react-query";
+import { useParams, useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-export default function ArticleCreatePage() {
+export default function ArticleUpdatePage() {
   const router = useRouter();
+  const params = useParams();
+  const id = params?.id as string;
+
+  const {
+    data: articleDetail,
+    isLoading: isArticleDetailLoading,
+    isError: isArticleDetailError,
+    error: articleDetailError,
+  }: UseQueryResult<any> = useArticlesQuery.useGetArticleDetail(id);
 
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
+    setValue,
   } = useForm<ArticleSchema>({
     resolver: zodResolver(articleSchema),
     mode: "onChange",
@@ -27,46 +39,64 @@ export default function ArticleCreatePage() {
   });
 
   const {
-    mutate: createArticleMutation,
-    isPending,
-    isError,
-    error,
-  } = useArticlesQuery.useCreateArticle();
+    mutate: updateArticleMutation,
+    isPending: isUpdateArticlePending,
+    isError: isUpdateArticleError,
+    error: updateArticleError,
+  } = useArticlesQuery.useUpdateArticle();
 
   /**
    * 게시글 작성
    * @param data 게시글 데이터
    */
   const onSubmit = async (data: ArticleSchema) => {
-    createArticleMutation(data, {
-      onSuccess: () => {
-        router.push("/article");
-        console.log("게시글이 성공적으로 작성되었습니다.");
-      },
-      onError: (error) => {
-        console.error("게시글 작성 중 오류가 발생했습니다:", error);
-      },
-    });
+    updateArticleMutation(
+      { id, article: data },
+      {
+        onSuccess: () => {
+          router.push(`/article/${id}`);
+          console.log("게시글이 성공적으로 작성되었습니다.");
+        },
+        onError: (error) => {
+          console.error("게시글 작성 중 오류가 발생했습니다:", error);
+        },
+      }
+    );
   };
 
-  if (isPending) {
-    return <div>글 생성 중</div>;
+  useEffect(() => {
+    if (articleDetail) {
+      setValue("title", articleDetail.title);
+      setValue("content", articleDetail.content);
+    }
+  }, [articleDetail]);
+
+  if (isArticleDetailLoading) {
+    return <div>글 상세 조회 중</div>;
   }
 
-  if (isError) {
-    return <div>Error: {error.message}</div>;
+  if (isUpdateArticlePending) {
+    return <div>글 수정 중</div>;
+  }
+
+  if (isUpdateArticleError || isArticleDetailError) {
+    return (
+      <div>
+        Error: {updateArticleError?.message || articleDetailError?.message}
+      </div>
+    );
   }
 
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex justify-between items-center mb-9">
-          <Text styleName="text-xl-bold">게시글 쓰기</Text>
+          <Text styleName="text-xl-bold">게시글 수정</Text>
           <Button
             variant={isValid ? "default" : "disabled"}
             disabled={!isValid}
           >
-            등록
+            수정
           </Button>
         </div>
 

@@ -64,11 +64,9 @@ export default function ArticlePage() {
   return (
     <>
       <section className="mb-10">
-        <Text
-          styleName="text-xl-bold"
-          content="베스트 게시글"
-          className="mb-6"
-        />
+        <Text styleName="text-xl-bold" className="mb-6" as="h1">
+          베스트 게시글
+        </Text>
 
         {/* 베스트 게시글 리스트 */}
         <div className="flex gap-6">
@@ -77,7 +75,7 @@ export default function ArticlePage() {
               key={article.id}
               id={article.id}
               title={article.title}
-              image="/free-board/note-book-img.png"
+              image="/article/note-book-img.png"
               nickname={article.author}
               createdAt={dayjs(article.createdAt).format("YYYY. MM. DD.")}
               likeCount={article.likes}
@@ -89,7 +87,9 @@ export default function ArticlePage() {
       {/* 게시글 섹션 */}
       <section>
         <div className="flex justify-between items-center mb-6">
-          <Text styleName="text-xl-bold" content="게시글" />
+          <Text styleName="text-xl-bold" as="h1">
+            게시글
+          </Text>
           <Button variant="default" asChild>
             <Link href="/article/create">글쓰기</Link>
           </Button>
@@ -122,8 +122,8 @@ export default function ArticlePage() {
               key={article.id}
               id={article.id}
               title={article.title}
-              image="/free-board/note-book-img.png"
-              avatarImage="/free-board/avatar-img.svg"
+              image="/article/note-book-img.png"
+              avatarImage="/article/avatar-img.svg"
               nickname={article.author}
               createdAt={dayjs(article.createdAt).format("YYYY. MM. DD.")}
               likeCount={article.likes}
