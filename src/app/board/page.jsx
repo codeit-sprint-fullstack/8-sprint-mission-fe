@@ -11,7 +11,8 @@ const MarketPage = () => {
   const [sortKey, setSortKey] = useState("latest");
 
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE;
-
+  const defaultLike = 992;
+  const defaultName = "총명한 판다";
   useEffect(() => {
     const ac = new AbortController();
 
@@ -99,9 +100,13 @@ const MarketPage = () => {
                 </div>
                 <div className="flex items-center text-xs text-gray-500 mt-3 w-full">
                   <div className="flex items-center gap-1">
-                    <span className="flex items-center gap-1">총명한판다 </span>
+                    <span className="flex items-center gap-1">
+                      {defaultName}{" "}
+                    </span>
                     <Image src="/ic_heart.svg" alt="" width={16} height={16} />
-                    <span className="text-[11px] text-gray-400">922</span>
+                    <span className="text-[11px] text-gray-400">
+                      {defaultLike}
+                    </span>
                   </div>
                   <span className="ml-auto pr-2">
                     {getCreatedAt(p)
@@ -189,7 +194,7 @@ const MarketPage = () => {
                 <div className="flex items-center text-xs text-gray-500 mt-3 w-full">
                   <div className="flex items-center gap-1">
                     <span className="flex items-center gap-1">
-                      총명한판다{" "}
+                      {defaultName}{" "}
                       {getCreatedAt(p)
                         ? new Date(getCreatedAt(p))
                             .toLocaleDateString("ko-KR", {
@@ -204,7 +209,9 @@ const MarketPage = () => {
                   </div>
                   <div className="ml-auto flex items-center gap-1">
                     <Image src="/ic_heart.svg" alt="" width={24} height={24} />
-                    <span className="text-[16px] text-gray-400">922</span>
+                    <span className="text-[16px] text-gray-400">
+                      {defaultLike}
+                    </span>
                   </div>
                 </div>
               </article>
