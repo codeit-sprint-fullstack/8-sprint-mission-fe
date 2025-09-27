@@ -26,8 +26,8 @@ const Header = () => {
             자유게시판
           </Link>
           <Link
-            href="/market"
-            className={clsx(styles.linkContent, pathname.startsWith('/market') && styles.active)}
+            href="/items"
+            className={clsx(styles.linkContent, pathname.startsWith('/items') && styles.active)}
           >
             중고마켓
           </Link>

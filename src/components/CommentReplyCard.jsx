@@ -10,7 +10,6 @@ import api from '@/lib/api.js';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import Button from '@/components/Button.jsx';
-import Input from '@/components/Input.jsx';
 import Textarea from './Textarea';
 
 const CommentReplyCard = ({ id = '', articleId = '', content = '', updatedAt = '' }) => {
