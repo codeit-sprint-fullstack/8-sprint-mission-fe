@@ -1,0 +1,58 @@
+:root{
+  --color1:#111827; --color4:#3692ff; --color7:#dfdfdf; --color9:#ffffff;
+  --muted:#374151;
+}
+
+/* 상단 전체 래퍼 */
+.nav{
+  display: fixed;
+  width:1920px;
+  padding: 0 200px;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color9);
+  border-bottom:1px solid var(--color7);
+  z-index:100;
+}
+
+/* 내부 너비 & 좌우 패딩 */
+.nav-inner{
+  max-width: 1920px;
+  height: 70px;
+  margin:0 auto;
+  padding: 0 200px;              
+  display:flex; align-items:center; justify-content:space-between; gap:24px;
+}
+
+/* 왼쪽 그룹: 로고 + 메뉴 */
+.left{ display:flex; align-items:center; gap:32px; }
+
+/* 로고 */
+.brand{ display:flex; align-items:center; gap:8.6px; text-decoration:none; }
+.badge{
+  width:40px; height:40.135px; border-radius:12px;
+  background: var(--color4);
+  display:inline-flex; align-items:center; justify-content:center;
+}
+.badge img{ width:40px; height:40px; display:block; }
+.brand-name{ font-weight:700; font-size:25.633px; color: var(--color4); line-height:normal; }
+
+/* 메뉴 */
+.menu{ display:flex; align-items:center; gap:20px; }
+.menu a{ color: var(--muted); font-size:18px; font-weight:700; }
+/* ⬇️ /items 일 때 활성 색상 */
+.menu a.active{ color:#3692FF; }
+
+/* 오른쪽 로그인 버튼 */
+.login-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  height:42px; padding:12px 23px;
+  background: var(--color4); color:#fff;
+  border-radius:8px; font-weight:600; font-size:16px; gap:10px;
+}
+
+/* 본문이 헤더에 가리지 않도록 */
+.main-offset{ padding-top:70px; }
+
+@media (max-width:1199px){ .nav-inner{ padding:0 40px; } }
+@media (max-width:743px){ .nav-inner{ padding:0 16px; } .left{ gap:16px; } }

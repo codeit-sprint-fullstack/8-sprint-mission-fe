@@ -1,0 +1,54 @@
+
+:root{
+  --color1:#111827;  --color7:#dfdfdf; --color6: #9ca3af; --color8: #e5e7eb;
+}
+
+.foot {
+  margin-top: auto;                 /* 보조용 */
+  background: var(--color1);
+  border-top: 1px solid var(--color7);
+  width: 100%;
+  
+}
+
+.foot .footer-inner {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 32px 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  min-height: 160px; 
+}
+
+.footer-left {
+  font-size: 16px;
+  font-weight:400;
+  color: var(--color6);
+}
+
+.footer-center  {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  font-size: 16px;
+  color: var(--color8);
+}
+
+
+.footer-right  {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.footer-right img {
+  width: 20px;
+  height: 20px;
+  padding: 0.853px 1px 1.147px 1px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}

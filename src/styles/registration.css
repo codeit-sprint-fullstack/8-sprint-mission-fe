@@ -1,0 +1,132 @@
+:root{
+  --gray:#E5E7EB;
+  --text:#111827;
+  --muted:#9CA3AF;
+  --bg:#F3F4F6;
+  --blue:#3692FF;
+}
+
+
+.reg-wrap{
+  max-width: 1200px;   
+  width: 100%;
+  margin: 0 auto;
+  padding: 24px;
+  font-family: Pretendard;
+}
+
+/* 제목 */
+.reg-wrap h2{
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.reg-head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;   /* ⬅️ 이게 바로 between */
+  margin-bottom: 16px;
+}
+
+/* 상단 작은 등록 버튼 사이즈 */
+.btn.small{
+  height: 42px;
+  padding: 12px 23px;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 1;
+  gap: 10px;
+}
+  
+/* 폼 컨테이너: 섹션(필드) 사이 간격 32px */
+.reg-form{
+  display: flex;           
+  flex-direction: column;
+  gap: 32px;                 
+  font-size: 18px;
+}
+
+/* 한 섹션 내부(라벨/인풋 사이) 간격 */
+.field{ display:flex; flex-direction:column; gap: 16px; }
+
+/* 라벨 */
+.label{ font-weight: 700; }
+
+/* ===== 인풋들 공통 ===== */
+.reg-input,
+.reg-textarea,
+.tag-input{
+  width: 100%;
+  padding: 16px 24px;
+  border: 1px solid var(--gray); 
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 400;
+  background-color: var(--bg);
+  color: var(--text);
+                
+}
+.reg-input::placeholder,
+.reg-textarea::placeholder,
+.tag-input::placeholder{ color: var(--muted); }
+.reg-input:focus,
+.reg-textarea:focus,
+.tag-input:focus{
+  outline: none;
+  border-color: var(--blue);
+}
+
+/* 태그 입력 줄(입력 + 버튼) */
+.tag-row{ display:flex; gap: 8px; }
+
+/* 칩 목록 */
+.chips{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+.chip{
+  display:inline-flex; align-items:center; gap:6px;
+  padding: 6px 10px;
+  border: 1px solid var(--blue);
+  background: #F4F7FF;
+  border-radius: 999px;
+  font-size: 14px;
+}
+.chip-x{
+  background: transparent; border:0; cursor:pointer; font-size:14px; line-height:1;
+}
+
+/* ===== 버튼 ===== */
+.btn{
+  height: 42px;
+  padding: 12px 23px;
+  border-radius: 8px;
+  border: 1px solid var(--gray);
+  background: #FFFFFF;
+  color: var(--text);
+  cursor: pointer;
+  display: flex; justify-content:center; align-items:center;
+}
+
+
+.btn.primary{
+  background: var(--muted);
+  border-color: none;
+  color: #fff;
+}
+
+.btn:disabled{ opacity: .6; cursor: not-allowed; }
+
+/* ========= 반응형 ========= */
+/* PC: 1200px 이상 → 여백 24px 유지(디자인 고정폭) */
+@media (min-width:1200px){
+  .reg-wrap{ padding: 24px; }
+}
+
+/* Tablet: 744–1199px → 좌우 여백 24px */
+@media (min-width:744px) and (max-width:1199px){
+  .reg-wrap{ padding: 24px; }
+}
+
+/* Mobile: 375–743px → 좌우 여백 16px */
+@media (min-width:375px) and (max-width:743px){
+  .reg-wrap{ padding: 16px; }
+}
