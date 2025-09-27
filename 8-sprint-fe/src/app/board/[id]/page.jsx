@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import BoardDetailPage from "../_components/BoardDetailPage";
 
 const BoardDetail = () => {
-  return (
-    <div>BoardDetail</div>
-  )
-}
+  return <BoardDetailPage />;
+};
 
 export default BoardDetail;

@@ -1,10 +1,9 @@
 import React from "react";
 
-import Image from "next/image";
 import ImageBox from "@/app/board/_components/ImageBox";
 
-import ic_profile from "/public/ic_profile.svg";
 import Heart from "@/app/(components)/atoms/Heart";
+import ProfileIcon from "@/app/(components)/atoms/ProfileIcon";
 
 const ListCommunity = ({ title, createdAt }) => {
   // 작성일 포맷 변경
@@ -19,17 +18,11 @@ const ListCommunity = ({ title, createdAt }) => {
       </div>
       <div className="flex justify-between items-center mt-4">
         <div className="flex gap-2 text-sm/6 font-normal">
-          <Image
-            src={ic_profile}
-            alt="profile_icon"
-            width={24}
-            height={24}
-            className="bg-gray-400 rounded-full"
-          />
+          <ProfileIcon />
           <span className="text-gray-600">총명한 판다</span>
           <span className="text-gray-400">{date}</span>
         </div>
-        <Heart />
+        <Heart size="16" count="9999" fontSize="text-sm"/>
       </div>
     </div>
   );

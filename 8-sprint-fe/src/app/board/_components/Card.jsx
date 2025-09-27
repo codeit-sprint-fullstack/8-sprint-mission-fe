@@ -27,7 +27,7 @@ const Card = ({ title, createdAt }) => {
         <div className="flex items-center justify-between">
           <div className="flex gap-2 text-sm/6 font-normal">
             <span className="text-gray-600">총명한 판다</span>
-            <Heart />
+            <Heart size="16" count="9999" fontSize="text-sm"/>
           </div>
           <span className="text-sm/6 text-gray-400 font-normal">
             {date}
