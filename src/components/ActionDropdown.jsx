@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
-const ActionDropdown = () => {
+const ActionDropdown = ({ onModify, onDelete }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
@@ -18,8 +18,12 @@ const ActionDropdown = () => {
       </button>
       {isOpen ? (
         <div className="bg-white absolute right-0">
-          <div className="rounded-t-lg border-black">수정하기</div>
-          <div className="rounded-t-lg">삭제하기</div>
+          <div onClick={onModify} className="rounded-t-lg border-black">
+            수정하기
+          </div>
+          <div onClick={onDelete} className="rounded-t-lg">
+            삭제하기
+          </div>
         </div>
       ) : null}
     </div>

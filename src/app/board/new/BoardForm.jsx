@@ -1,45 +1,65 @@
 "use client";
 
 import Button from "@/app/components/Button";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 
 const BoardForm = () => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const searchParams = useSearchParams();
   const router = useRouter();
+
+  const modifyId = searchParams.get("id");
+  const initialTitle = searchParams.get("title") || "";
+  const initialContent = searchParams.get("content") || "";
+  const initialAuthor = searchParams.get("author") || "Mia";
+
+  const [title, setTitle] = useState(initialTitle);
+  const [content, setContent] = useState(initialContent);
+
+  const isModifyMode = !!modifyId;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:4000/posts", {
-        method: "POST",
+      const apiUrl = isModifyMode
+        ? `http://localhost:4000/posts/${modifyId}`
+        : "http://localhost:4000/posts";
+      const method = isModifyMode ? "PUT" : "POST";
+
+      const response = await fetch(apiUrl, {
+        method: method,
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          author: "Mia",
+          author: isModifyMode ? initialAuthor : "Mia",
           profile: "/profile-default.svg",
           title: title,
           thumbnail: "/product-default.svg",
-          likes: 0,
-          createdAt: new Date(), //.toISOString(),
+          // 신규 등록 시에만 전송하기
+          ...(!isModifyMode && {
+            createdAt: new Date().toISOString(),
+            likes: 0,
+          }),
           content: content,
         }),
       });
 
       if (response.ok) {
-        // 등록 성공 시 게시판 목록 페이지로 이동
-        router.push("/board");
+        // 성공 시 게시글 상세 페이지 또는 목록 페이지로 이동
+        const newPost = await response.json();
+        router.push(
+          isModifyMode ? `/board/${modifyId}` : `/board/${newPost.id}`
+        );
       } else {
         // 서버에서 에러 응답이 온 경우
-        alert("게시글 등록에 실패했습니다.");
+        alert(`게시글 ${isModifyMode ? "수정" : "등록"}에 실패했습니다.`);
         console.error("Server response not OK:", response.statusText);
       }
     } catch (err) {
       // 네트워크 에러 등 fetch 자체가 실패한 경우
-      alert("게시글 등록 중 오류가 발생했습니다.");
+      alert(`게시글 ${isModifyMode ? "수정" : "등록"} 중 오류가 발생했습니다.`);
       console.error(err);
     }
   };
@@ -47,13 +67,18 @@ const BoardForm = () => {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-6 my-6">
       <div className="flex justify-between items-center">
-        <div className="text-xl font-bold">게시글 쓰기</div>
-        <Button disabled={!(title && content)}>등록</Button>
+        <div className="text-xl font-bold">
+          {isModifyMode ? "게시글 수정" : "게시글 쓰기"}
+        </div>
+        <Button disabled={!(title && content)}>
+          {isModifyMode ? "수정" : "등록"}
+        </Button>
       </div>
       <div className="flex flex-col gap-3">
         <div className="text-lg font-bold">제목</div>
         <input
           placeholder="제목을 입력해주세요"
+          value={title}
           onChange={(e) => setTitle(e.target.value)}
           className="bg-gray-100 p-4 rounded-lg"
         />
@@ -62,6 +87,7 @@ const BoardForm = () => {
         <div className="text-lg font-bold">내용</div>
         <textarea
           placeholder="내용을 입력해주세요"
+          value={content}
           onChange={(e) => setContent(e.target.value)}
           className="bg-gray-100 resize-none p-4 rounded-lg min-h-80"
         />

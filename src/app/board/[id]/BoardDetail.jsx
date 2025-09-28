@@ -1,13 +1,27 @@
+"use client";
+
 import ActionDropdown from "@/components/ActionDropdown";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const BoardDetail = ({ data }) => {
+  const router = useRouter();
+  const handleModify = () => {
+    router.push(
+      `/board/new?id=${data.id}&title=${encodeURIComponent(
+        data.title
+      )}&content=${encodeURIComponent(
+        data.content
+      )}&author=${encodeURIComponent(data.author)}`
+    );
+  };
+  const handleDelete = () => {};
   return (
     <div>
       <div className="flex justify-between">
         <div>{data.title}</div>
-        <ActionDropdown />
+        <ActionDropdown onModify={handleModify} onDelete={handleDelete} />
       </div>
       <div className="flex items-center gap-8">
         <div className="flex items-center gap-4">
