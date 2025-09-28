@@ -1,3 +1,4 @@
+import ActionDropdown from "@/components/ActionDropdown";
 import Image from "next/image";
 import React from "react";
 
@@ -6,14 +7,7 @@ const BoardDetail = ({ data }) => {
     <div>
       <div className="flex justify-between">
         <div>{data.title}</div>
-        <div>
-          <Image
-            src="/icons/kebab.svg"
-            alt="modify or remove this post"
-            width={24}
-            height={24}
-          />
-        </div>
+        <ActionDropdown />
       </div>
       <div className="flex items-center gap-8">
         <div className="flex items-center gap-4">
