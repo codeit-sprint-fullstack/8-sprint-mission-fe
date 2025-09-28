@@ -29,6 +29,10 @@ export default function ArticleDetailPage() {
 
   const { mutate: deleteArticleMutation } = useArticlesQuery.useDeleteArticle();
   const { mutate: createCommentMutation } = useCommentsQuery.useCreateComment();
+
+  /**
+   * 게시글 삭제
+   */
   const handleDelete = () => {
     deleteArticleMutation(
       { id },
@@ -46,14 +50,25 @@ export default function ArticleDetailPage() {
 
   const createdAt = dayjs(articleDetail?.createdAt).format("YYYY. MM. DD.");
 
+  /**
+   * 게시글 수정
+   */
   const handleUpdate = () => {
     router.push(`/article/${id}/edit`);
   };
 
+  /**
+   * 댓글 입력 값 변경 시 호출할 함수
+   * @param e
+   */
   const handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(e.target.value);
   };
 
+  /**
+   * 댓글 등록 시 호출할 함수
+   * @param e
+   */
   const handleCommentSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

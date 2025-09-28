@@ -20,11 +20,18 @@ export default function useArticles(ARTICLE_PAGE_SIZE: UseArticlesProps) {
     keyword: keyword,
   });
 
+  /**
+   * 검색 값 변경 시 호출할 함수
+   * @param e 이벤트 객체
+   */
   const handleSearchEvent = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
     setInputValue(e.target.value);
   };
 
+  /**
+   * 검색 버튼 클릭 및 엔터키 눌렀을 때 호출할 함수
+   * @param e
+   */
   const handleSearchKeyDownEvent = (
     e: React.KeyboardEvent<HTMLInputElement>
   ) => {
@@ -34,11 +41,19 @@ export default function useArticles(ARTICLE_PAGE_SIZE: UseArticlesProps) {
     }
   };
 
+  /**
+   * 최신순, 좋아요순 정렬 이벤트 핸들러
+   * @param value
+   */
   const handleOrderByEvent = (value: string) => {
     setOrderBy(value);
     setCurrentPage(1);
   };
 
+  /**
+   * 페이지 번호 변경 시 호출할 함수
+   * @param page
+   */
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
