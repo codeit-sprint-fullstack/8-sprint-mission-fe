@@ -101,14 +101,8 @@ const useDeleteArticle = (): UseMutationResult<
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: ({ id }: { id: string }) => articlesApi.deleteArticle(id),
-    onSuccess: (_, variables) => {
-      // 삭제된 게시글 상세 캐시도 무효화
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["articles"] });
-      if (variables?.id) {
-        queryClient.invalidateQueries({
-          queryKey: ["articleDetail", variables.id],
-        });
-      }
     },
   });
 };

@@ -3,17 +3,22 @@
 import BtnHeart from "@/components/atoms/BtnHeart";
 import Text from "@/components/atoms/Text";
 import BasicDropdown from "@/components/molecules/BasicDropdown";
+import CommentList from "@/components/organisms/CommentList";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useArticlesQuery } from "@/lib/api/articles/queries";
+import { useCommentsQuery } from "@/lib/api/comments/queries";
 import { useQueryClient, UseQueryResult } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { useParams, useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function ArticleDetailPage() {
   const { id }: { id: string } = useParams();
   const router = useRouter();
   const queryClient = useQueryClient();
+  const [comment, setComment] = useState("");
 
   const {
     data: articleDetail,
@@ -23,12 +28,12 @@ export default function ArticleDetailPage() {
   }: UseQueryResult<any> = useArticlesQuery.useGetArticleDetail(id);
 
   const { mutate: deleteArticleMutation } = useArticlesQuery.useDeleteArticle();
+  const { mutate: createCommentMutation } = useCommentsQuery.useCreateComment();
   const handleDelete = () => {
     deleteArticleMutation(
       { id },
       {
         onSuccess: () => {
-          queryClient.cancelQueries({ queryKey: ["articleDetail", id] });
           router.push("/article");
           console.log("게시글이 성공적으로 삭제되었습니다.");
         },
@@ -45,8 +50,30 @@ export default function ArticleDetailPage() {
     router.push(`/article/${id}/edit`);
   };
 
+  const handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setComment(e.target.value);
+  };
+
+  const handleCommentSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    createCommentMutation(
+      { id, comment },
+      {
+        onSuccess: () => {
+          setComment("");
+          queryClient.invalidateQueries({ queryKey: ["comments"] });
+          console.log("댓글이 성공적으로 생성되었습니다.");
+        },
+        onError: (error) => {
+          console.error("댓글 생성 중 오류가 발생했습니다:", error);
+        },
+      }
+    );
+  };
+
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>글 상세 조회 중</div>;
   }
 
   if (isError) {
@@ -60,11 +87,7 @@ export default function ArticleDetailPage() {
           <Text styleName="text-3xl-bold" className="mb-4" as="h1">
             {articleDetail?.title}
           </Text>
-          <BasicDropdown
-            id={id}
-            onDelete={handleDelete}
-            onUpdate={handleUpdate}
-          />
+          <BasicDropdown onDelete={handleDelete} onUpdate={handleUpdate} />
         </div>
         <div className="flex items-center gap-8 border-b border-secondary-200 pb-4 mb-6">
           {/* 작성자 정보 */}
@@ -103,10 +126,32 @@ export default function ArticleDetailPage() {
         <Text styleName="text-lg-semibold" className="text-secondary-800 mb-2">
           댓글달기
         </Text>
-        <Textarea
-          className="bg-(--secondary-color-100) resize-none h-[104px] py-4 px-6 border-none"
-          placeholder="댓글을 입력해주세요"
-        />
+        <form onSubmit={handleCommentSubmit} className="mb-10">
+          <Textarea
+            className="bg-(--secondary-color-100) resize-none h-[104px] py-4 px-6 border-none"
+            placeholder="댓글을 입력해주세요"
+            value={comment}
+            onChange={handleCommentChange}
+          />
+          <div className="flex justify-end mt-4">
+            <Button
+              variant={comment ? "default" : "disabled"}
+              disabled={!comment}
+            >
+              등록
+            </Button>
+          </div>
+        </form>
+
+        {/* 댓글 리스트 */}
+        <CommentList id={articleDetail?.id} />
+
+        {/* 목록으로 돌아가기 */}
+        <div className="flex justify-center mt-16">
+          <Button variant="default" onClick={() => router.push("/article")}>
+            목록으로 돌아가기
+          </Button>
+        </div>
       </section>
     </main>
   );

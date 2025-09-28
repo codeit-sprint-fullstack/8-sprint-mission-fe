@@ -7,13 +7,11 @@ import {
 import Image from "next/image";
 
 interface BasicDropdownProps {
-  id: string;
   onDelete: () => void;
   onUpdate: () => void;
 }
 
 export default function BasicDropdown({
-  id,
   onDelete,
   onUpdate,
 }: BasicDropdownProps) {
