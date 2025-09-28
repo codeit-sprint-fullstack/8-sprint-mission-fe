@@ -27,8 +27,9 @@ export default function BestItem({ item }) {
           />
         </div>
       </div>
-      <div className="flex items-center text-xs text-gray-500">
-  <span>♥ {likes.toLocaleString()}</span>
+      <div className="flex items-center gap-1 text-xs text-gray-500">
+        <Image src='/images/icon/ic_heart.svg' alt="좋아요" width={20} height={20} />
+        <span> {likes.toLocaleString()} </span>
       </div>
     </div>
   );

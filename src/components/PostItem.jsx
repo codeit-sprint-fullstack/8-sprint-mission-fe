@@ -33,8 +33,9 @@ export default function PostItem({ item }) {
           <span>{author}</span>
           <span>{createdAt}</span>
         </div>
-        <div className="flex items-center text-sm" style={{color: 'var(--gray-500)'}}>
-          <span>♥ {likes.toLocaleString()}</span>
+        <div className="flex items-center gap-1 text-sm" style={{color: 'var(--gray-500)'}}>
+          <Image src='/images/icon/ic_heart.svg' alt="좋아요" width={20} height={20} />
+          <span>{likes.toLocaleString()}</span>
         </div>
       </div>
     </div>

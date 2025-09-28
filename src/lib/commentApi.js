@@ -110,8 +110,7 @@ export const deleteComment = async (commentId) => {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
-    return await response.json();
+    return;
   } catch (error) {
     console.error('댓글 삭제 실패:', error);
     throw error;
