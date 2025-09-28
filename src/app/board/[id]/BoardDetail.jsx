@@ -16,7 +16,24 @@ const BoardDetail = ({ data }) => {
       )}&author=${encodeURIComponent(data.author)}`
     );
   };
-  const handleDelete = () => {};
+  const handleDelete = async () => {
+    try {
+      const res = await fetch(`http://localhost:4000/posts/${data.id}`, {
+        method: "DELETE",
+        // header 필요해? // 오답노트: 나중에 인가시에 필요
+      });
+
+      if (!res.ok) {
+        alert("게시글 삭제에 실패했습니다.");
+        console.error(res.statusText);
+      }
+
+      alert("삭제가 완료되었습니다.");
+      router.push("/board");
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
     <div>
       <div className="flex justify-between">

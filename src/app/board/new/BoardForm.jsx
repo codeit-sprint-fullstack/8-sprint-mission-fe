@@ -27,7 +27,7 @@ const BoardForm = () => {
         : "http://localhost:4000/posts";
       const method = isModifyMode ? "PUT" : "POST";
 
-      const response = await fetch(apiUrl, {
+      const res = await fetch(apiUrl, {
         method: method,
         headers: {
           "Content-Type": "application/json",
@@ -46,19 +46,18 @@ const BoardForm = () => {
         }),
       });
 
-      if (response.ok) {
-        // 성공 시 게시글 상세 페이지 또는 목록 페이지로 이동
-        const newPost = await response.json();
+      if (res.ok) {
+        const newPost = await res.json();
         router.push(
           isModifyMode ? `/board/${modifyId}` : `/board/${newPost.id}`
         );
       } else {
-        // 서버에서 에러 응답이 온 경우
+        // 오답노트: 서버에서 에러 응답이 온 경우
         alert(`게시글 ${isModifyMode ? "수정" : "등록"}에 실패했습니다.`);
-        console.error("Server response not OK:", response.statusText);
+        console.error(res.statusText);
       }
     } catch (err) {
-      // 네트워크 에러 등 fetch 자체가 실패한 경우
+      // 오답노트: 네트워크 에러 등 fetch 자체가 실패한 경우
       alert(`게시글 ${isModifyMode ? "수정" : "등록"} 중 오류가 발생했습니다.`);
       console.error(err);
     }
