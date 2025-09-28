@@ -1,0 +1,81 @@
+@use '@/styles/variable' as v;
+@use '@/styles/mixin' as m;
+
+.articleList {
+  @include m.link-reset;
+
+  width: 1200px;
+  background: v.$bg-gray;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+
+  padding-bottom: 24px;
+}
+
+.contents {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .title {
+    color: v.$coolGray-800;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 32px; /* 160% */
+  }
+}
+
+.footer {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.nickAndDate {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .nickName {
+    color: v.$secondary-600;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  .date {
+    color: v.$secondary-400;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
+}
+
+.likesWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .likes {
+    color: v.$secondary-500;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px; /* 162.5% */
+  }
+}

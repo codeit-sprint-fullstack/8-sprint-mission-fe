@@ -1,0 +1,31 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999; // 항상 최상단에 뜨도록
+
+  background-color: rgba(255, 255, 255, 0.4); // 반투명 배경
+  backdrop-filter: blur(6px); // 블러 처리
+}
+
+.container {
+  width: 100%;
+  min-height: 230px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

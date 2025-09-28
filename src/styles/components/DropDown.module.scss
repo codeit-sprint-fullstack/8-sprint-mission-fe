@@ -1,0 +1,142 @@
+@use '@/styles/mixin' as m;
+@use '@/styles/variable' as v;
+
+.dropdown {
+  position: relative;
+}
+
+.sort {
+  .button {
+    @include m.button-reset;
+
+    display: flex;
+    width: 130px;
+    height: 42px;
+    padding: 12px 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    border-radius: 12px;
+    border: 1px solid v.$coolGray-200;
+    background: v.$white;
+
+    white-space: nowrap;
+  }
+
+  .buttonWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .dropdownText {
+    color: v.$secondary-800;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+  }
+
+  .menu {
+    display: flex;
+    width: 130px;
+    flex-direction: column;
+    align-items: flex-start;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000; // 다른 요소들 위에 표시
+  }
+
+  .item {
+    width: 130px;
+    height: 42px;
+    background: v.$white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: v.$secondary-800;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+
+    cursor: pointer;
+
+    &.recent {
+      border-radius: 12px 12px 0 0;
+      border: 1px solid v.$coolGray-200;
+      background: v.$white;
+    }
+
+    &.like {
+      border-radius: 0 0 12px 12px;
+      border: 1px solid v.$coolGray-200;
+      background: v.$white;
+    }
+  }
+}
+
+.modify {
+  .button {
+    @include m.button-reset;
+
+    display: flex;
+    width: 24px;
+    height: 24px;
+    padding: 5px 0 6px 0;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .menu {
+    display: flex;
+    width: 130px;
+    flex-direction: column;
+    align-items: flex-start;
+
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1000; // 다른 요소들 위에 표시
+  }
+
+  .item {
+    display: flex;
+    height: 46px;
+    padding: 16px 0 12px 0;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+
+    background: v.$white;
+    cursor: pointer;
+
+    color: v.$secondary-500;
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+
+    &.edit {
+      border-radius: 8px 8px 0 0;
+      border-top: 1px solid v.$coolGray-300;
+      border-right: 1px solid v.$coolGray-300;
+      border-left: 1px solid v.$coolGray-300;
+    }
+
+    &.delete {
+      border-radius: 0 0 8px 8px;
+      border-right: 1px solid v.$coolGray-300;
+      border-bottom: 1px solid v.$coolGray-300;
+      border-left: 1px solid v.$coolGray-300;
+    }
+  }
+}
