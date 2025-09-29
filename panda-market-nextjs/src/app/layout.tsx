@@ -5,6 +5,7 @@ import Header from "@/components/organisms/Header";
 import localFont from "next/font/local";
 import { Footer } from "@/components/organisms/Footer";
 import QueryProvider from "@/lib/providers/QueryProvider";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const pretendard = localFont({
   src: "../../font/PretendardVariable.woff2",
@@ -27,7 +28,10 @@ export default function RootLayout({
     <html lang="ko">
       <body className={`antialiased ${pretendard.variable}`}>
         <Header />
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+          {children}
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryProvider>
         <Footer />
       </body>
     </html>
