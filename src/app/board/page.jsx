@@ -1,13 +1,14 @@
 import React from "react";
-import Board from "./_components/Board";
+import BoardBest from "./_components/BoardBest";
+import BoardList from "./_components/BoardList";
 
 const BoardPage = async () => {
-  // TODO: 최초 데이터 패칭 -> Board에 데이터 전달
-  const res = await fetch("http://localhost:4000/posts?_sort=createdAt&_order=desc");
-  const posts = await res.json();
   return (
     <div>
-      <Board posts={posts} />
+      {/* 서버로 */}
+      <BoardBest />
+      {/* 클라이언트로 */}
+      <BoardList />
     </div>
   );
 };
