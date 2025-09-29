@@ -45,10 +45,10 @@ const InfoCard = () => {
           <div className="flex flex-col gap-6 items-start">
             <p className="text-blue-500 text-lg font-bold">{label}</p>
             <div className="flex flex-col gap-4">
-              <h1 className="text-[40px] font-bold leading-[140%] text-gray-800 whitespace-pre-line">
+              <h1 className="text-[40px] font-bold leading-[140%] text-gray-800 whitespace-pre-line text-nowrap">
                 {title}
               </h1>
-              <p className="text-[24px] font-medium leading-8 text-[#374151] whitespace-pre-line">
+              <p className="text-[24px] font-medium leading-8 text-[#374151] whitespace-pre-line text-nowrap">
                 {desc}
               </p>
             </div>
