@@ -5,7 +5,7 @@ import BoardList from "./BoardList";
 const Board = ({ posts }) => {
   return (
     <div>
-      <BoardBest />
+      <BoardBest posts={posts.slice(0, 3)} />
       <BoardList posts={posts} />
     </div>
   );

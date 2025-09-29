@@ -1,11 +1,15 @@
-import React from 'react'
+import React from "react";
+import BestItem from "./BestItem";
 
-const BoardBest = () => {
+const BoardBest = ({ posts }) => {
+  console.log(posts);
   return (
-    <div>
-      BoardBestContainer
+    <div className="flex gap-6">
+      {posts.map((post) => (
+        <BestItem key={post.id} post={post} />
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default BoardBest
+export default BoardBest;
