@@ -11,7 +11,9 @@ const Comments = ({ id }) => {
 
   const getComments = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/comments?postId=${id}`);
+      const res = await fetch(
+        `http://localhost:4000/comments?postId=${id}&_sort=-createdAt`
+      );
 
       if (!res.ok) throw new Error("get failed: ", res.statusText);
       const data = await res.json();
@@ -23,12 +25,18 @@ const Comments = ({ id }) => {
 
   const postComment = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/posts/${id}`, {
+      const res = await fetch(`http://localhost:4000/comments`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({}),
+        body: JSON.stringify({
+          postId: id,
+          author: "Mia",
+          profile: "/profile-default.svg",
+          content: text,
+          createdAt: new Date(),
+        }),
       });
 
       if (!res.ok) throw new Error("post failed: ", res.statusText);
@@ -54,7 +62,9 @@ const Comments = ({ id }) => {
           className="bg-gray-100 resize-none p-4 rounded-lg mt-2 mb-4"
         />
         <div className="flex justify-end">
-          <Button disabled={!text.trim()}>등록</Button>
+          <Button disabled={!text.trim()} onClick={postComment}>
+            등록
+          </Button>
         </div>
       </form>
       {comments.length !== 0 ? (
