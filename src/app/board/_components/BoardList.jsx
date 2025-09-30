@@ -6,36 +6,35 @@ import Button from "@/app/components/Button";
 import Link from "next/link";
 
 const BoardList = () => {
-  const [renderPosts, setRenderPosts] = useState([]);
-  const [search, setSearch] = useState("");
+  const [posts, setPosts] = useState([]);
   const [sort, setSort] = useState("latest");
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       const sortParams =
-        sort === "latest"
-          ? "_sort=createdAt&_order=desc"
-          : "_sort=likes&_order=desc";
-      const searchParams = search ? `&q=${search}` : "";
+        sort === "latest" ? "_sort=-createdAt" : "_sort=-likes";
 
       try {
-        const res = await fetch(
-          `http://localhost:4000/posts?${sortParams}${searchParams}`
-        );
+        const res = await fetch(`http://localhost:4000/posts?${sortParams}`);
 
         if (!res.ok) {
           throw new Error("response error: ", res.statusText);
         }
 
         const data = await res.json();
-        setRenderPosts(data);
+        setPosts(data);
       } catch (err) {
         console.error(err);
       }
     };
 
     fetchData();
-  }, [search, sort]);
+  }, [sort]);
+
+  const filteredPosts = posts.filter((post) =>
+    post.title.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <div>
@@ -61,7 +60,7 @@ const BoardList = () => {
           <option value="likes">좋아요 순</option>
         </select>
       </div>
-      {renderPosts.map((post) => (
+      {filteredPosts.map((post) => (
         <BoardItem key={post.id} post={post} />
       ))}
     </div>
