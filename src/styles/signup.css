@@ -67,7 +67,7 @@ a {
   transition: border 0.3s ease;
 }
 
-.signup-form input:focus {
+.signup-form  {
   border: 1px solid var(--color4);
   background-color: white;
 }

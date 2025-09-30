@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import HomeLayout from './components/HomeLayout.jsx'
 import MarketLayout from './components/MarketLayout.jsx'
+
 import LandingPage from './pages/LandingPage.jsx'
 import ItemsPage from './pages/ItemsPage.jsx'
 import RegistrationPage from './pages/RegistrationPage.jsx'

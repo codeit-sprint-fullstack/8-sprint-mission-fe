@@ -3,48 +3,46 @@
   --muted:#374151;
 }
 
-/* 상단 전체 래퍼 */
+/* 상단 전체 래퍼 (마켓 공용) */
 .nav{
-  display: fixed;
-  width:1920px;
-  padding: 0 200px;
-  justify-content: space-between;
-  align-items: center;
+  position: fixed;           /* ← 오타(display) 수정 */
+  top:0; left:0;
+  width:100%;                /* ← 1920px 고정 삭제 */
+  height:70px;
   background: var(--color9);
   border-bottom:1px solid var(--color7);
-  z-index:100;
+  z-index:1000;
 }
 
 /* 내부 너비 & 좌우 패딩 */
-.nav-inner{
-  max-width: 1920px;
-  height: 70px;
+.nav .nav-inner{
+  max-width:1920px;
+  height:70px;
   margin:0 auto;
-  padding: 0 200px;              
+  padding:0 200px;           /* 데스크톱 */
   display:flex; align-items:center; justify-content:space-between; gap:24px;
 }
 
 /* 왼쪽 그룹: 로고 + 메뉴 */
-.left{ display:flex; align-items:center; gap:32px; }
+.nav .left{ display:flex; align-items:center; gap:32px; }
 
 /* 로고 */
-.brand{ display:flex; align-items:center; gap:8.6px; text-decoration:none; }
-.badge{
+.nav .brand{ display:flex; align-items:center; gap:8.6px; text-decoration:none; }
+.nav .badge{
   width:40px; height:40.135px; border-radius:12px;
   background: var(--color4);
   display:inline-flex; align-items:center; justify-content:center;
 }
-.badge img{ width:40px; height:40px; display:block; }
-.brand-name{ font-weight:700; font-size:25.633px; color: var(--color4); line-height:normal; }
+.nav .badge img{ width:40px; height:40px; display:block; }
+.nav .brand-name{ font-weight:700; font-size:25.633px; color: var(--color4); line-height:normal; }
 
 /* 메뉴 */
-.menu{ display:flex; align-items:center; gap:20px; }
-.menu a{ color: var(--muted); font-size:18px; font-weight:700; }
-/* ⬇️ /items 일 때 활성 색상 */
-.menu a.active{ color:#3692FF; }
+.nav .menu{ display:flex; align-items:center; gap:20px; }
+.nav .menu a{ color: var(--muted); font-size:18px; font-weight:700; }
+.nav .menu a.active{ color:#3692FF; }  /* /items 활성 색상 */
 
-/* 오른쪽 로그인 버튼 */
-.login-btn{
+/* 로그인 버튼 */
+.nav .login-btn{
   display:inline-flex; align-items:center; justify-content:center;
   height:42px; padding:12px 23px;
   background: var(--color4); color:#fff;
@@ -54,5 +52,18 @@
 /* 본문이 헤더에 가리지 않도록 */
 .main-offset{ padding-top:70px; }
 
-@media (max-width:1199px){ .nav-inner{ padding:0 40px; } }
-@media (max-width:743px){ .nav-inner{ padding:0 16px; } .left{ gap:16px; } }
+/* Tablet: 744px ~ 1199px */
+@media (max-width:1199px){
+  .nav .nav-inner{ padding:0 24px; }
+  .nav .left{ gap:20px; }
+}
+
+/* Mobile: 375px ~ 743px */
+@media (max-width:743px){
+  .nav .nav-inner{ padding:0 16px; }
+  .nav .left{ gap:12px; }
+  .nav .menu{ gap:12px; }
+  .nav .brand-name{ font-size:18px; }
+  .nav .badge{ width:32px; height:32px; }
+  .nav .badge img{ width:22px; height:22px; }
+}

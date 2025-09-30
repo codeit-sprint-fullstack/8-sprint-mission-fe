@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
-import Navbar from './navbar.jsx'
-import Footer from './footer.jsx'
+import Navbar from './Navbar.jsx'
+import Footer from './Footer.jsx'
 
 export default function MarketLayout(){
   return (
