@@ -3,15 +3,12 @@ import Link from "next/link";
 import React from "react";
 
 const BestItem = ({ post }) => {
-  const isoString = post.createdAt;
-  const date = new Date(isoString);
-  const formatted = `${date.getFullYear()}. 
-  ${(date.getMonth() + 1).toString().padStart(2, "0")}. 
-  ${date.getDate().toString().padStart(2, "0")}`;
+  const isoDate = post.createdAt;
+  const formatted = isoDate.split("T")[0].replace(/-/g, ".");
   return (
     <Link
       href={`/board/${post.id}`}
-      className="rounded-lg bg-gray-200 px-6 pb-3 min-w-80"
+      className="rounded-lg bg-gray-50 px-6 pb-3 grow"
     >
       <Image src="/images/badge.svg" alt="" width={102} height={123} />
       <div className="flex justify-between mt-4 mb-10">
@@ -21,6 +18,7 @@ const BestItem = ({ post }) => {
           alt="post thumbnail"
           width={72}
           height={72}
+          className="border border-gray-200 rounded-md"
         />
       </div>
       <div className="flex justify-between">

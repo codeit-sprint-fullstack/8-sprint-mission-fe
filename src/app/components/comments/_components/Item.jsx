@@ -25,7 +25,13 @@ const Item = ({ data, onModify, onDelete }) => {
             >
               취소
             </button>
-            <Button onClick={() => {onModify(data.id, text)}}>수정완료</Button>
+            <Button
+              onClick={() => {
+                onModify(data.id, text);
+              }}
+            >
+              수정완료
+            </Button>
           </div>
         </form>
       ) : (
@@ -44,7 +50,7 @@ const Item = ({ data, onModify, onDelete }) => {
         <Image src={data.profile} alt="writer image" width={40} height={40} />
         <div>
           <div>{data.author}</div>
-          <div>{data.createdAt}</div>
+          <div>{data.createdAt.split("T")[0].replace(/-/g, ".")}</div>
         </div>
       </div>
     </div>

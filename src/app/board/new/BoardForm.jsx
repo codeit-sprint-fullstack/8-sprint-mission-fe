@@ -69,7 +69,7 @@ const BoardForm = () => {
         <div className="text-xl font-bold">
           {isModifyMode ? "게시글 수정" : "게시글 쓰기"}
         </div>
-        <Button disabled={!(title && content)}>
+        <Button disabled={!(title.trim() && content.trim())}>
           {isModifyMode ? "수정" : "등록"}
         </Button>
       </div>
