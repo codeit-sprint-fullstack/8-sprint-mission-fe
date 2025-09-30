@@ -52,11 +52,19 @@ const BoardDetail = ({ data }) => {
           </div>
           <div className="flex items-center gap-2">
             <div>{data.author}</div>
-            <div>{data.createdAt}</div>
+            <div>{data.createdAt.split("T")[0].replace(/-/g, ".")}</div>
           </div>
         </div>
         <div className="w-px h-6 bg-gray-200"></div>
-        <div>{data.likes}</div>
+        <div className="flex gap-1">
+          <Image
+            src="/icons/heart-inactive.svg"
+            alt="Mark this post"
+            width={16}
+            height={16}
+          />
+          {data.likes}
+        </div>
       </div>
       <hr className="border-t border-gray-200" />
       <div>{data.content}</div>

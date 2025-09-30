@@ -4,7 +4,7 @@ import BoardList from "./_components/BoardList";
 
 const BoardPage = async () => {
   return (
-    <div>
+    <div className="flex flex-col gap-6">
       {/* 서버로 */}
       <BoardBest />
       {/* 클라이언트로 */}

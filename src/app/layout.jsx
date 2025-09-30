@@ -1,5 +1,5 @@
 import "./globals.css";
-import localFont from 'next/font/local';
+import localFont from "next/font/local";
 import Header from "@/components/Header";
 
 // 한글 전용 Pretendard GOV Variable
@@ -23,7 +23,9 @@ export default function RootLayout({ children }) {
     >
       <body>
         <Header />
-        {children}
+        <div className="max-w-300 mx-auto p-4 flex flex-col gap-4">
+          {children}
+        </div>
       </body>
     </html>
   );

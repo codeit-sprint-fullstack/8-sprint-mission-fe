@@ -37,9 +37,9 @@ const BoardList = () => {
   );
 
   return (
-    <div>
-      <div className="flex justify-between">
-        <h1>게시글</h1>
+    <div className="flex flex-col gap-6">
+      <div className="flex justify-between items-center">
+        <h1 className="text-lg font-bold">게시글</h1>
         <Link href="/board/new">
           <Button>글쓰기</Button>
         </Link>
@@ -49,7 +49,7 @@ const BoardList = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="검색할 상품을 입력해주세요"
-          className="grow bg-gray-100 rounded-lg p-2"
+          className="grow bg-gray-100 rounded-lg px-4 py-3"
         />
         <select
           value={sort}
