@@ -11,22 +11,33 @@ const ItemsDetail = () => {
       <div>
         <Image />
         <div>
-          <div>
-            <div>
-              <p>아이패드 미니 팔아요.</p>
-              <h1>500,000원</h1>
+          <div className="flesx flex-col items-start self-stretch">
+            <div className="flex items-start justify-between self-stretch mb-4">
+              <div className="flex flex-col items-start gap-4 self-stretch">
+                <p className="self-stretch text-2xl font-semibold text-[#1F2937] leading-[32px]">
+                  아이패드 미니 팔아요.
+                </p>
+                <h1 className="self-stretch text-5xl font-semibold text-[#1F2937]">
+                  500,000원
+                </h1>
+              </div>
+
+              <KebabMenu type="item" id={item.id} />
             </div>
-            <KebabMenu />
+
+            <hr className="w-full border-t border-gray-200 mb-6" />
           </div>
 
           <div>
-            <div>
-              <p>상품 소개</p>
-              <p>본문</p>
+            <div className="self-stretch text-base font-semibold text-[#4B5563] leading-[26px] mb-6">
+              <p className="mb-4">상품 소개</p>
+              <p className="font-normal">본문</p>
             </div>
-            <p>상품 태그</p>
             <div>
-              <span>#아이패드미니</span>
+              <p>상품 태그</p>
+              <div>
+                <span>#아이패드미니</span>
+              </div>
             </div>
           </div>
 

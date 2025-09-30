@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import ItemsDetail from "@/components/Items/ItemsDetail";
+// import ItemsDetail from "@/components/Items/ItemsDetail";
 import CommentForm from "@/components/Comment/CommentForm";
 import Comment from "@components/Comment/Comment";
 import NoneComment from "@components/Comment/NoneComment";
