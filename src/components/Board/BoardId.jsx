@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
-import KebabMenu from "../Kebab/KebabMenu";
+import KebabMenu from "@/components/Kebab/KebabMenu";
+import LikeButton from "@/components/Button/LikeButton";
 import { fetchBoard } from "@/api/boards";
 
 const BoardId = () => {
@@ -46,14 +47,7 @@ const BoardId = () => {
 
           <div className="h-[34px] border-l border-gray-200" />
 
-          <button className="flex flex-col gap-[10px] h-10 ml-4 px-3 py-1 bg-white border border-[#E5E7EB] rounded-[35px]">
-            <div className="flex items-center gap-1 cursor-pointer">
-              <Image src="/ic_heart.svg" alt="Heart" width={32} height={32} />
-              <p className="text-base font-medium text-[#6B7280] leading-[26px]">
-                {board.heart_count}
-              </p>
-            </div>
-          </button>
+          <LikeButton initialCount={board.heart_count} />
         </div>
       </div>
 

@@ -1,17 +1,16 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { fetchComments, addComment } from "@/api/comments.js";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import BoardId from "@/components/Board/BoardId";
+import ItemsDetail from "@/components/Items/ItemsDetail";
 import CommentForm from "@/components/Comment/CommentForm";
-import Comment from "@/components/Comment/Comment";
-import NoneComment from "@/components/Comment/NoneComment";
+import Comment from "@components/Comment/Comment";
+import NoneComment from "@components/Comment/NoneComment";
 import GoBackButton from "@/components/Button/GoBackButton";
 
-const freeboardIdPage = () => {
+const ItemDetailPage = () => {
   const { id } = useParams();
   const [commentList, setCommentList] = useState([]);
 
@@ -43,20 +42,20 @@ const freeboardIdPage = () => {
 
       setCommentList((prev) => [enrichedComment, ...prev]);
     } catch (err) {
-      console.error("게시글 페이지 댓글 등록 ERROR:", err);
+      console.error("상품 상세 페이지 댓글 등록 ERROR:", err);
     }
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div>
       <Header />
 
-      <main className="flex-1 flex flex-col items-stretch mx-auto mb-[200px] p-4 w-full max-w-[1200px]">
-        <BoardId />
+      <main>
+        <ItemsDetail />
 
         <CommentForm
-          title="댓글 달기"
-          placeholder="댓글을 입력해주세요."
+          title="문의하기"
+          placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
           onSubmit={handleAddComment}
         />
 
@@ -87,7 +86,7 @@ const freeboardIdPage = () => {
           </div>
         )}
 
-        <GoBackButton href="/freeboard" />
+        <GoBackButton href="/items" />
       </main>
 
       <Footer />
@@ -95,4 +94,4 @@ const freeboardIdPage = () => {
   );
 };
 
-export default freeboardIdPage;
+export default ItemDetailPage;
