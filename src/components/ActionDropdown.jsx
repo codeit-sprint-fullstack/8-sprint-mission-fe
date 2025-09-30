@@ -21,7 +21,13 @@ const ActionDropdown = ({ onModify, onDelete }) => {
           <div onClick={onModify} className="rounded-t-lg border-black">
             수정하기
           </div>
-          <div onClick={onDelete} className="rounded-t-lg">
+          <div
+            onClick={() => {
+              setIsOpen(false);
+              onDelete();
+            }}
+            className="rounded-t-lg"
+          >
             삭제하기
           </div>
         </div>

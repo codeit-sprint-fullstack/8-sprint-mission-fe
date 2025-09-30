@@ -45,7 +45,47 @@ const Comments = ({ id }) => {
     }
   };
 
-  const deleteComment = () => {};
+  const patchComment = async (commentId, modifiedText) => {
+    try {
+      const res = await fetch(`http://localhost:4000/comments/${commentId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          content: modifiedText,
+        }),
+      });
+
+      if (!res.ok) throw new Error("patch failed: ", res.statusText);
+
+      setComments((prevComments) =>
+        prevComments.map((prevComment) =>
+          prevComment.id === commentId
+            ? { ...prevComment, content: modifiedText }
+            : prevComment
+        )
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const deleteComment = async (commentId) => {
+    try {
+      const res = await fetch(`http://localhost:4000/comments/${commentId}`, {
+        method: "DELETE",
+      });
+
+      if (!res.ok) throw new Error("delete failed: ", res.statusText);
+
+      setComments((prevComments) =>
+        prevComments.filter((prevComment) => prevComment.id !== commentId)
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   useEffect(() => {
     getComments();
@@ -68,7 +108,14 @@ const Comments = ({ id }) => {
         </div>
       </form>
       {comments.length !== 0 ? (
-        comments.map((comment) => <Item key={comment.id} data={comment} />)
+        comments.map((comment) => (
+          <Item
+            key={comment.id}
+            data={comment}
+            onModify={patchComment}
+            onDelete={deleteComment}
+          />
+        ))
       ) : (
         <Image
           src="/reply-empty.svg"
