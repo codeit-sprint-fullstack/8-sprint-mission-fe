@@ -1,0 +1,124 @@
+.headline{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+}
+
+.columDiv {
+    margin: 0 0 24px;
+    padding: 0; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.rowDiv {
+    margin: 0;
+    padding: 0; 
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.headline p {
+    color: var(--Secondary-900, #111827);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 32px; /* 160% */
+    margin: 0;
+    padding: 0;
+}
+
+.div {
+    display: flex;
+    gap: 12px;
+}
+
+.row{
+    flex-direction:  row;
+    align-items: center;
+}
+
+.wide{
+    width: 100%;
+}
+
+.fit{
+    width: fit-content;
+}
+
+.title {
+    flex-shrink: 0;
+}
+
+.between {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.searchBoxWide {
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: 100%;
+}
+
+.searchBoxDefault {
+    display: flex;
+    position: relative;
+    align-items: center;
+    max-width: 325px;
+    height: 42px;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 16px;
+    width: 24px;
+    height: 24px;
+}
+
+.searchInput {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 9px 20px 9px 44px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+
+    border-radius: 12px;
+    border: none;
+    background-color: var(--Secondary-100, #f3f4f6);
+
+    flex-shrink: 0;
+}
+
+.searchInput::placeholder {
+    /* 글자 속성 */
+    color: var(--Secondary-400, #9ca3af);
+    /* pretendard/lg-16px-regular */
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px; /* 162.5% */
+}
+
+.button {
+    width: fit-content;
+    height: fit-content;
+    font: var(--font-16-semmibold);
+    padding: 12px 23px;
+    border-radius: 8px;
+
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.button * {
+    white-space: nowrap;
+    flex-shrink: 0;
+}
