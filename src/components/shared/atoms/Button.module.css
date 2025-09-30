@@ -1,0 +1,56 @@
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 600;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    opacity 0.2s ease;
+  line-height: 1.5;
+}
+
+/* Variant */
+.primary {
+  background: var(--brand-blue);
+  color: #fff;
+  border: none;
+}
+.primary:hover {
+  opacity: 0.9;
+}
+.primary:disabled {
+  background: var(--Cool-Gray-400);
+  cursor: not-allowed;
+}
+
+.secondary {
+  background: #fff;
+  color: var(--brand-blue);
+  border: 1px solid var(--brand-blue);
+}
+.secondary:hover {
+  background: var(--secondary-50);
+}
+.secondary:disabled {
+  color: var(--secondary-400);
+  border-color: var(--secondary-400);
+  cursor: not-allowed;
+}
+
+/* Sizes */
+.large {
+  width: 24rem;
+  height: 4.8rem;
+  font-size: 1.6rem;
+  border-radius: var(--radius-lg);
+}
+
+.small {
+  width: 8.8rem;
+  height: 4.2rem;
+  font-size: 1.4rem;
+  border-radius: var(--radius-sm);
+}

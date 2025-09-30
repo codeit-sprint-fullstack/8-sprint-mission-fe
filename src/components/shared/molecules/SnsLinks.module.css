@@ -1,0 +1,14 @@
+.SnsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.SnsFacebook,
+.SnsX,
+.SnsYoutube,
+.SnsInsta {
+  width: 2rem;
+  color: #ffffff;
+}
