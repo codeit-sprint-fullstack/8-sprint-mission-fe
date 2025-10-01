@@ -10,18 +10,18 @@ const Item = ({ data, onModify, onDelete }) => {
   const [modifyMode, setModifyMode] = useState(false);
 
   return (
-    <div>
+    <div className="flex flex-col gap-4 bg-gray-50 p-4 pb-3 border-b border-b-gray-200">
       {modifyMode ? (
-        <form className="flex flex-col">
-          <input
+        <form className="flex flex-col gap-4">
+          <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
-            className="bg-gray-100 p-4 rounded-lg"
+            className="bg-gray-100 p-4 rounded-lg resize-none"
           />
           <div className="flex justify-end gap-2">
             <button
               onClick={() => setModifyMode(false)}
-              className="px-6 py-2 rounded-lg text-white bg-gray-400"
+              className="px-6 py-2 text-gray-700"
             >
               취소
             </button>
@@ -46,13 +46,16 @@ const Item = ({ data, onModify, onDelete }) => {
           />
         </div>
       )}
-      <div className="flex gap-2">
+      <div className="flex gap-2 items-center">
         <Image src={data.profile} alt="writer image" width={40} height={40} />
         <div>
-          <div>{data.author}</div>
-          <div>{data.createdAt.split("T")[0].replace(/-/g, ".")}</div>
+          <div className="text-sm text-gray-500">{data.author}</div>
+          <div className="text-xs text-gray-400">
+            {data.createdAt.split("T")[0].replace(/-/g, ". ")}
+          </div>
         </div>
       </div>
+      {/* <hr className="border-t border-gray-200" /> */}
     </div>
   );
 };
