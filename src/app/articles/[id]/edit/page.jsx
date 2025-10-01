@@ -8,14 +8,14 @@ import Footer from "@/components/Footer/Footer";
 import BoardForm from "@/components/Board/BoardForm";
 
 const BoardWritePage = ({ params }) => {
-  const boardId = params.id;
+  const articleId = params.id;
   const [initialData, setInitialData] = useState({ title: "", content: "" });
   const router = useRouter();
 
   useEffect(() => {
     const getBoard = async () => {
       try {
-        const data = await fetchBoard(boardId);
+        const data = await fetchBoard(articleId);
         setInitialData({ title: data.title, content: data.content });
       } catch (error) {
         console.error("게시글 불러오기 에러:", error);
@@ -23,12 +23,12 @@ const BoardWritePage = ({ params }) => {
     };
 
     getBoard();
-  }, [boardId]);
+  }, [articleId]);
 
   const handleUpdate = async (data) => {
     try {
-      await updateBoard(boardId, data);
-      router.push(`/freeboard/${boardId}`);
+      await updateBoard(articleId, data);
+      router.push(`/articles/${articleId}`);
     } catch (error) {
       console.error("게시글 수정 에러:", error);
     }

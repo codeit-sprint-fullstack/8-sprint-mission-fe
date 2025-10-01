@@ -9,14 +9,16 @@ import Controller from "@/components/Controller/Controller";
 import { fetchBoards } from "@/api/boards";
 
 const freeboardPage = () => {
-  const [board, setBoard] = useState([]);
+  const [articles, setArticles] = useState([]);
+  const [sortedArticles, setSortedArticles] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await fetchBoards();
 
-        setBoard(data);
+        setArticles(data);
+        setSortedArticles(data);
       } catch (error) {
         console.error(error);
       }
@@ -24,6 +26,10 @@ const freeboardPage = () => {
 
     fetchData();
   }, []);
+
+  const bestArticles = [...articles]
+    .sort((a, b) => (b.favoriteCount ?? 0) - (a.favoriteCount ?? 0))
+    .slice(0, 3);
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
@@ -35,8 +41,8 @@ const freeboardPage = () => {
             베스트 게시글
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {(board ?? []).slice(0, 3).map((board) => (
-              <BestCard key={board.id} board={board} />
+            {(bestArticles ?? []).map((article) => (
+              <BestCard key={article.id} article={article} />
             ))}
           </div>
         </section>
@@ -44,12 +50,12 @@ const freeboardPage = () => {
         <section>
           <Controller
             controls={{ search: true, orderBy: true }}
-            boards={board ?? []}
-            setSortedBoards={setBoard}
+            articles={articles}
+            setSortedArticles={setSortedArticles}
           />
           <div className="grid grid-cols-1 gap-4">
-            {(board ?? []).map((board) => (
-              <BoardCard key={board.id} board={board} />
+            {(sortedArticles ?? []).map((article) => (
+              <BoardCard key={article.id} article={article} />
             ))}
           </div>
         </section>

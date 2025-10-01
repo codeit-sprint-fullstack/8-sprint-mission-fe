@@ -1,17 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { useParams } from "next/navigation";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-function ProductCard({ title = "", price = 0, likeCount = 0 }) {
-  const { id } = useParams();
-  const [products, setProducts] = useState("");
-
+function ProductCard({ product }) {
   return (
     <li className="flex flex-col">
-      <Link href={`/items/${products.id}`}>
+      <Link href={`/products/${product.id}`}>
         <div className="relative mb-4 rounded-lg bg-gray-50">
           <Image
             src="/img_default.svg"
@@ -23,9 +19,9 @@ function ProductCard({ title = "", price = 0, likeCount = 0 }) {
         </div>
 
         <div className="flex flex-col gap-1">
-          <h2 className="text-sm font-medium text-gray-800">{title}</h2>
+          <h2 className="text-sm font-medium text-gray-800">{product.name}</h2>
           <p className="text-base font-bold text-gray-800">
-            {price.toLocaleString()}원
+            {product.price.toLocaleString()}원
           </p>
         </div>
       </Link>
@@ -40,7 +36,9 @@ function ProductCard({ title = "", price = 0, likeCount = 0 }) {
             height={16}
           />
         </button>
-        <p className="text-xs font-medium text-gray-600">{likeCount}</p>
+        <p className="text-xs font-medium text-gray-600">
+          {product.favoriteCount}
+        </p>
       </div>
     </li>
   );

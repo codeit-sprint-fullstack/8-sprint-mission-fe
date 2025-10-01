@@ -37,7 +37,7 @@ const freeboardIdPage = () => {
 
       const enrichedComment = {
         ...newComment,
-        user_name: newComment.user_name || "테스트유저",
+        nickname: newComment.nickname || "테스트유저",
         createdAt: newComment.createdAt || new Date().toISOString(),
       };
 
@@ -87,7 +87,7 @@ const freeboardIdPage = () => {
           </div>
         )}
 
-        <GoBackButton href="/freeboard" />
+        <GoBackButton href="/articles" />
       </main>
 
       <Footer />

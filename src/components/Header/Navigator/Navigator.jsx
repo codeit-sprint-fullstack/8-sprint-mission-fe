@@ -9,17 +9,17 @@ const Nav = () => {
   return (
     <nav className="flex items-center gap-2 m-4">
       <Link
-        href="/freeboard"
+        href="/articles"
         className={`text-center font-bold text-lg cursor-pointer hover:underline ${
-          pathname === "/freeboard" ? "text-[#3692ff]" : "text-[#4B5563]"
+          pathname === "/articles" ? "text-[#3692ff]" : "text-[#4B5563]"
         }`}
       >
         자유게시판
       </Link>
       <Link
-        href="/items"
+        href="/products"
         className={`text-center font-bold text-lg cursor-pointer hover:underline ${
-          pathname === "/items" ? "text-[#3692ff]" : "text-[#4B5563]"
+          pathname === "/products" ? "text-[#3692ff]" : "text-[#4B5563]"
         }`}
       >
         중고마켓

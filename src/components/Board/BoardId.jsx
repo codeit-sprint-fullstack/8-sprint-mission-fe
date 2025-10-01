@@ -9,14 +9,14 @@ import { fetchBoard } from "@/api/boards";
 
 const BoardId = () => {
   const { id } = useParams();
-  const [board, setBoard] = useState("");
+  const [article, setArticle] = useState("");
 
   useEffect(() => {
     const getBoard = async () => {
       try {
         const data = await fetchBoard(id);
 
-        setBoard(data);
+        setArticle(data);
       } catch (err) {
         console.error(err);
       }
@@ -24,37 +24,37 @@ const BoardId = () => {
     getBoard();
   }, [id]);
 
-  if (!board) return null;
+  if (!article) return null;
 
   return (
     <div className="flex flex-col items-start self-stretch mb-8">
       <div className="flex flex-col items-start self-stretch mb-6">
         <div className="flex items-start gap-2 self-stretch mb-4">
           <h1 className="w-full text-xl font-bold text-[#1F2937] leading-8">
-            {board.title}
+            {article.title}
           </h1>
-          <KebabMenu type="board" id={board.id} />
+          <KebabMenu type="board" id={article.id} />
         </div>
 
         <div className="flex items-center gap-8 place-self-stretch mb-4 w-full">
           <div className="flex items-center gap-4 text-sm leading-6 mr-4">
             <Image src="/ic_profile.svg" alt="Profile" width={40} height={40} />
             <div className="flex items-start gap-2">
-              <p className="font-medium text-[#4B5563]">{board.user_name}</p>
-              <p className="font-normal text-[#9CA3AF]">{board.createdAt}</p>
+              <p className="font-medium text-[#4B5563]">{article.nickname}</p>
+              <p className="font-normal text-[#9CA3AF]">{article.createdAt}</p>
             </div>
           </div>
 
           <div className="h-[34px] border-l border-gray-200" />
 
-          <LikeButton initialCount={board.heart_count} />
+          <LikeButton initialCount={article.likeCount} />
         </div>
       </div>
 
       <hr className="w-full border-t border-gray-200 mb-4" />
 
       <p className="text-lg font-normal text-[#1F2937] leading-[26px]">
-        {board.content}
+        {article.content}
       </p>
     </div>
   );

@@ -14,7 +14,7 @@ const Comment = ({ comment, onDelete, onUpdate }) => {
       });
       const enrichedComment = {
         ...updated,
-        user_name: comment.user_name || "테스트유저",
+        nickname: comment.nickname || "테스트유저",
       };
 
       onUpdate(enrichedComment);
@@ -81,7 +81,7 @@ const Comment = ({ comment, onDelete, onUpdate }) => {
                 className="cursor-pointer"
               />
               <div className="flex flex-col items-start gap-1 text-xs leading-[18px]">
-                <p className="text-[#4B5563]">{comment.user_name}</p>
+                <p className="text-[#4B5563]">{comment.nickname}</p>
                 <p className="text-[#9CA3AF]">
                   {comment.updatedAt
                     ? `${getTimeAgo(comment.updatedAt)}`

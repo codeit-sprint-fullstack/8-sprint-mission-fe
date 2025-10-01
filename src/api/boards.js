@@ -1,21 +1,21 @@
-const API_URL = "http://localhost:5000/freeboard";
+const API_URL = "https://panda-market-api.vercel.app/articles";
 const formatDate = (date) => {
   const d = new Date(date);
   return `${d.getFullYear()}. ${d.getMonth() + 1}. ${d.getDate()}`;
 };
 
 // 게시글 목록 조회
-export const fetchBoards = async () => {
-  const res = await fetch(API_URL);
+export const fetchBoards = async (limit = 10) => {
+  const res = await fetch(`${API_URL}?limit=${limit}`);
   if (!res.ok) {
     throw new Error("게시글 목록 가져오기 실패");
   }
   const data = await res.json();
 
-  return data.map((b) => ({
+  return (data.list ?? []).map((b) => ({
     ...b,
     nickname: b.nickname ?? "테스트유저",
-    likecount: b.likecount ?? Math.floor(Math.random() * 100),
+    // likeCount: b.likeCount ?? Math.floor(Math.random() * 100),
     createdAt: formatDate(b.createdAt),
     updatedAt: formatDate(b.updatedAt),
   }));
@@ -32,7 +32,7 @@ export const fetchBoard = async (id) => {
   return {
     ...data,
     nickname: data.nickname ?? "테스트유저",
-    likecount: data.likecount ?? Math.floor(Math.random() * 100),
+    // likeCount: data.likeCount ?? Math.floor(Math.random() * 100),
     createdAt: formatDate(data.createdAt),
     updatedAt: formatDate(data.updatedAt),
   };

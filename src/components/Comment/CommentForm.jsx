@@ -18,7 +18,7 @@ const CommentForm = ({ title, placeholder, onSubmit }) => {
   };
 
   return (
-    <form className="flex flex-col items-end gap-4 mb-10">
+    <form className="flex flex-col items-end gap-4 mb-10 w-full">
       <div className="flex flex-col justify-center items-start self-stretch">
         <h1 className="text-base font-semibold text-[#111827] leading-[26px] mb-[9px]">
           {title}

@@ -17,7 +17,7 @@ const DropDown = ({ options = [], selected, onSelect }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const defaultSelected = selected || { label: "최신순", value: "latest" };
+  const defaultSelected = selected || { label: "최신순", value: "recent" };
 
   return (
     <div className="relative" ref={menuRef}>

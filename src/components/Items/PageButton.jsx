@@ -16,7 +16,7 @@ const PageButton = ({
   ).filter((pageNum) => pageNum <= maxPage);
 
   return (
-    <div className="flex justify-center gap-2 mb-36">
+    <div className="flex justify-center gap-2 my-[40px]">
       <button
         onClick={() => onChange?.(nowPage - 1)}
         disabled={nowPage <= 1}
@@ -36,7 +36,7 @@ const PageButton = ({
           <button
             key={`page-${pageNum}`}
             onClick={isCurrent ? undefined : () => onChange?.(pageNum)}
-            className={`flex items-center justify-center w-10 h-10 rounded-full border font-semibold 
+            className={`flex items-center justify-center w-10 h-10 rounded-full border font-semibold text-[#6B7280]
               ${
                 isCurrent
                   ? "bg-blue-500 text-white border-none"

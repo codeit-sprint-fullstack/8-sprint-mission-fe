@@ -1,15 +1,38 @@
 import { useState } from "react";
 import Link from "next/link";
 import SearchBar from "@/components/Controller/SearchBar/SearchBar";
-import DropDown from "@/components/Controller/Dropdown/DropDown";
+import DropDown from "@/components/Controller/DropDown/DropDown";
 
-const ProductListController = ({ option: controls = {}, setQuery = null }) => {
-  const [keyword, setSearchWord] = useState("");
+const ProductListController = ({
+  controls = {},
+  products = [],
+  setSortedProducts,
+}) => {
+  const [search, setSearch] = useState("");
+  const [sortOption, setSortOption] = useState({
+    label: "최신순",
+    value: "recent",
+  });
 
-  const handleSearch = (e) => {
-    if (e.key === "Enter" || e.type === "click") {
-      setQuery?.((prev) => ({ ...prev, keyword, page: 1 }));
-    }
+  const handleSearch = () => {
+    const filtered = products.filter((p) =>
+      p.name.toLowerCase().includes(search.toLowerCase())
+    );
+    setSortedProducts(filtered);
+  };
+
+  const handleSort = (option) => {
+    setSortOption(option);
+
+    const sorted = [...products].sort((a, b) => {
+      if (option.value === "recent") {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      }
+      if (option.value === "like") return b.favoriteCount - a.favoriteCount;
+      return 0;
+    });
+
+    setSortedProducts(sorted);
   };
 
   return (
@@ -18,8 +41,8 @@ const ProductListController = ({ option: controls = {}, setQuery = null }) => {
 
       <div className="flex gap-3">
         <SearchBar
-          value={keyword}
-          onChange={setSearchWord}
+          search={search}
+          onChange={setSearch}
           onSearch={handleSearch}
         />
         <Link
@@ -28,7 +51,16 @@ const ProductListController = ({ option: controls = {}, setQuery = null }) => {
         >
           상품 등록하기
         </Link>
-        <DropDown options={controls.sortOptions} setQuery={setQuery} />
+        {controls.orderBy && (
+          <DropDown
+            options={[
+              { label: "최신순", value: "recent" },
+              { label: "좋아요순", value: "like" },
+            ]}
+            onSelect={handleSort}
+            selected={sortOption}
+          />
+        )}
       </div>
     </div>
   );

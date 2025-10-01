@@ -4,14 +4,16 @@ const Product_API_URL = "https://panda-market-api.vercel.app/products";
 
 // 게시글 상세 페이지
 // 댓글 목록 조회
-export const fetchComments = async (articleId) => {
-  const res = await fetch(`${Article_API_URL}/${articleId}/comments`);
+export const fetchComments = async (articleId, limit = 5) => {
+  const res = await fetch(
+    `${Article_API_URL}/${articleId}/comments?limit=${limit}`
+  );
   if (!res.ok) {
     throw new Error("게시글 댓글 목록 가져오기 실패");
   }
   const data = await res.json();
 
-  return data.map((c) => ({
+  return (data.list ?? []).map((c) => ({
     ...c,
     nickname: c.nickname ?? "테스트유저",
   }));
@@ -66,13 +68,15 @@ export const deleteComment = async (id) => {
 
 // 상품 상세 페이지
 // 댓글 목록 조회
-export const fetchItemComments = async (productId) => {
-  const res = await fetch(`${Product_API_URL}/${productId}/comments`);
+export const fetchItemComments = async (productId, limit = 5) => {
+  const res = await fetch(
+    `${Product_API_URL}/${productId}/comments?limit=${limit}`
+  );
   if (!res.ok) {
     throw new Error("상품 댓글 목록 가져오기 실패");
   }
   const data = await res.json();
-  return data.map((c) => ({
+  return (data.list ?? []).map((c) => ({
     ...c,
     nickname: c.nickname ?? "테스트유저",
   }));

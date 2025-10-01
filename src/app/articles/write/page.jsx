@@ -18,8 +18,8 @@ const BoardWritePage = () => {
       // 프론트에서 임의값으로 처리
       const enrichedBoard = {
         ...newBoard,
-        user_name: newBoard.user_name || "게시글 추가 테스트유저",
-        heart_count: newBoard.heart_count ?? Math.floor(Math.random() * 100),
+        nickname: newBoard.nickname || "게시글 추가 테스트유저",
+        likeCount: newBoard.likeCount ?? Math.floor(Math.random() * 100),
         createdAt: newBoard.createdAt || new Date().toISOString(),
       };
 

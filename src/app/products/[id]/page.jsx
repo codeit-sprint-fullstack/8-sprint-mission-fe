@@ -37,7 +37,7 @@ const ItemDetailPage = () => {
 
       const enrichedComment = {
         ...newComment,
-        user_name: newComment.user_name || "테스트유저",
+        nickname: newComment.nickname || "테스트유저",
         createdAt: newComment.createdAt || new Date().toISOString(),
       };
 
@@ -48,10 +48,10 @@ const ItemDetailPage = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen bg-white">
       <Header />
 
-      <main>
+      <main className="flex-1 flex flex-col items-stretch mx-auto mb-[200px] p-4 w-full max-w-[1200px]">
         <ItemDetail />
 
         <CommentForm
@@ -87,7 +87,7 @@ const ItemDetailPage = () => {
           </div>
         )}
 
-        <GoBackButton href="/items" />
+        <GoBackButton href="/products" />
       </main>
 
       <Footer />

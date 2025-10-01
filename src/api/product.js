@@ -15,8 +15,6 @@ export const fetchProducts = async () => {
 
   return (data.list ?? []).map((p) => ({
     ...p,
-    nickname: p.nickname ?? "테스트판매자",
-    likeCount: p.likeCount ?? Math.floor(Math.random() * 50),
     createdAt: formatDate(p.createdAt),
     updatedAt: formatDate(p.updatedAt),
   }));
@@ -33,15 +31,20 @@ export const fetchProduct = async (id) => {
   return {
     ...data,
     nickname: data.nickname ?? "테스트판매자",
-    likeCount: data.likeCount ?? Math.floor(Math.random() * 50),
     createdAt: formatDate(data.createdAt),
     updatedAt: formatDate(data.updatedAt),
   };
 };
 
 // 상품 등록
-export const addProduct = async ({ title, price, content }) => {
-  const newProduct = { title, price, content };
+export const addProduct = async ({
+  title,
+  price,
+  description,
+  tags,
+  images,
+}) => {
+  const newProduct = { title, price, description, tags, images };
   const res = await fetch(API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -55,11 +58,14 @@ export const addProduct = async ({ title, price, content }) => {
 };
 
 // 상품 수정
-export const updateProduct = async (id, { title, price, content }) => {
+export const updateProduct = async (
+  id,
+  { title, price, description, tags, images }
+) => {
   const res = await fetch(`${API_URL}/${id}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title, price, content }),
+    body: JSON.stringify({ title, price, description, tags, images }),
   });
 
   if (!res.ok) {
