@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getMe } from "@/lib/api";
@@ -37,13 +38,24 @@ export default function Header() {
     return () => { mounted = false; };
   }, [pathname, router]);
 
+
+import { usePathname } from "next/navigation";
+
+export default function Header() {
+  const pathname = usePathname();
+  const isFreeboard = pathname?.startsWith("/freeboard");
+  const isItems = pathname?.startsWith("/items");
+
+
   return (
     <header className="header">
       <div className="header-wrapper">
         <div className="left-group">
+
           <Link href="/" className="logo-link" aria-label="판다마켓 홈">
             <img src="/logo.svg" alt="판다마켓 로고" className="logo-img" />
           </Link>
+
 
           <nav className="nav-tabs">
             <Link href="/freeboard" className={`tab${isFreeboard ? " active" : ""}`}>
@@ -54,6 +66,7 @@ export default function Header() {
             </Link>
           </nav>
         </div>
+
 
         
         {!hasToken ? (
