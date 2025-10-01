@@ -1,6 +1,7 @@
 "use client";
 
 import ActionDropdown from "@/components/ActionDropdown";
+import { API_BASE_URL } from "@/lib/api";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -18,7 +19,7 @@ const BoardDetail = ({ data }) => {
   };
   const handleDelete = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/posts/${data.id}`, {
+      const res = await fetch(`${API_BASE_URL}/posts/${data.id}`, {
         method: "DELETE",
         // header 필요해? // 오답노트: 나중에 인가시에 필요
       });

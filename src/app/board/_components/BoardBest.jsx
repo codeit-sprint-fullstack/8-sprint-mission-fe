@@ -1,9 +1,10 @@
 import React from "react";
 import BestItem from "./BestItem";
+import { API_BASE_URL } from "@/lib/api";
 
 const BoardBest = async () => {
   const res = await fetch(
-    "http://localhost:4000/posts?_sort=likes&_order=asc&_limit=3"
+    `${API_BASE_URL}/posts?_sort=likes&_order=asc&_limit=3`
   );
   const posts = await res.json();
   return (

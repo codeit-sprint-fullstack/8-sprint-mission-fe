@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import BoardItem from "./BoardItem";
 import Button from "@/app/components/Button";
 import Link from "next/link";
+import { API_BASE_URL } from "@/lib/api";
 
 const BoardList = () => {
   const [posts, setPosts] = useState([]);
@@ -16,7 +17,7 @@ const BoardList = () => {
         sort === "latest" ? "_sort=-createdAt" : "_sort=-likes";
 
       try {
-        const res = await fetch(`http://localhost:4000/posts?${sortParams}`);
+        const res = await fetch(`${API_BASE_URL}/posts?${sortParams}`);
 
         if (!res.ok) {
           throw new Error("response error: ", res.statusText);

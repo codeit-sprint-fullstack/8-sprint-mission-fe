@@ -5,6 +5,7 @@ import Item from "./_components/Item";
 import Button from "../Button";
 import Image from "next/image";
 import Link from "next/link";
+import { API_BASE_URL } from "@/lib/api";
 
 const Comments = ({ id }) => {
   const [text, setText] = useState("");
@@ -13,7 +14,7 @@ const Comments = ({ id }) => {
   const getComments = async () => {
     try {
       const res = await fetch(
-        `http://localhost:4000/comments?postId=${id}&_sort=-createdAt`
+        `${API_BASE_URL}/comments?postId=${id}&_sort=-createdAt`
       );
 
       if (!res.ok) throw new Error("get failed: ", res.statusText);
@@ -26,7 +27,7 @@ const Comments = ({ id }) => {
 
   const postComment = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/comments`, {
+      const res = await fetch(`${API_BASE_URL}/comments`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -48,7 +49,7 @@ const Comments = ({ id }) => {
 
   const patchComment = async (commentId, modifiedText) => {
     try {
-      const res = await fetch(`http://localhost:4000/comments/${commentId}`, {
+      const res = await fetch(`${API_BASE_URL}/comments/${commentId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -74,7 +75,7 @@ const Comments = ({ id }) => {
 
   const deleteComment = async (commentId) => {
     try {
-      const res = await fetch(`http://localhost:4000/comments/${commentId}`, {
+      const res = await fetch(`${API_BASE_URL}/comments/${commentId}`, {
         method: "DELETE",
       });
 

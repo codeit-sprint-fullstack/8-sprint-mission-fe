@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@/app/components/Button";
+import { API_BASE_URL } from "@/lib/api";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 
@@ -23,9 +24,9 @@ const BoardForm = () => {
 
     try {
       const apiUrl = isModifyMode
-        ? `http://localhost:4000/posts/${modifyId}`
-        : "http://localhost:4000/posts";
-      const method = isModifyMode ? "PUT" : "POST";
+        ? `${API_BASE_URL}/posts/${modifyId}`
+        : `${API_BASE_URL}/posts`;
+      const method = isModifyMode ? "PATCH" : "POST";
 
       const res = await fetch(apiUrl, {
         method: method,
