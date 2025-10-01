@@ -14,7 +14,7 @@ import {
   toggleFavorite,
   createComment,
   deleteProduct,
-  patchProduct, // reserved for edit UI
+  patchProduct,
   deleteComment,
   patchComment,
   getMe,
@@ -28,20 +28,20 @@ export default function ItemDetailPage() {
   const productId = useMemo(() => params?.itemId, [params]);
   const qc = useQueryClient();
 
-  // guard
+
   useEffect(() => {
     const token = typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
     if (!token) router.replace("/login");
   }, [router]);
 
-  // product detail
+
   const { data: product, isLoading: loadingProduct, isError: errorProduct } = useQuery({
     queryKey: ["product", productId],
     queryFn: () => getProduct(productId),
     enabled: !!productId,
   });
 
-  // current user
+
   const { data: me } = useQuery({
     queryKey: ["me"],
     queryFn: () => getMe(),
@@ -49,7 +49,7 @@ export default function ItemDetailPage() {
     staleTime: 60_000,
   });
 
-  // comments (infinite)
+
   const {
     data: commentPages,
     isLoading: loadingComments,
@@ -64,7 +64,7 @@ export default function ItemDetailPage() {
   });
   const comments = commentPages?.pages.flatMap((p) => p.list) ?? [];
 
-  // favorite
+
   const favMut = useMutation({
     mutationFn: () => toggleFavorite(productId, product?.isFavorite),
     onSuccess: () => {
@@ -72,7 +72,7 @@ export default function ItemDetailPage() {
     },
   });
 
-  // create comment
+
   const [commentInput, setCommentInput] = useState("");
   const createCommentMut = useMutation({
     mutationFn: () => createComment(productId, commentInput.trim()),
@@ -83,7 +83,7 @@ export default function ItemDetailPage() {
     onError: () => setFail({ open: true, msg: "댓글 등록에 실패했어요." }),
   });
 
-  // edit/delete comment
+
   const [editingMap, setEditingMap] = useState({});
   const [updatingId, setUpdatingId] = useState(null);
   const [deletingId, setDeletingId] = useState(null);
@@ -105,7 +105,7 @@ export default function ItemDetailPage() {
     },
   });
 
-  // product delete
+
   const [confirm, setConfirm] = useState(false);
   const delMut = useMutation({
     mutationFn: () => deleteProduct(productId),
@@ -116,13 +116,13 @@ export default function ItemDetailPage() {
     onError: () => setFail({ open: true, msg: "삭제에 실패했어요." }),
   });
 
-  // dropdown, modal
+
   const [ddOpen, setDdOpen] = useState(false);
   const [fail, setFail] = useState({ open: false, msg: "" });
 
   const isOwner = me?.id && product?.ownerId && me.id === product.ownerId;
 
-  // time ago
+
   const timeAgo = (iso) => {
     try {
       const d = new Date(iso);
@@ -193,9 +193,7 @@ export default function ItemDetailPage() {
   return (
     <>
       <main className="mt-6 mx-auto px-[360px]">
-        {/* 상단: 이미지(좌) + 상세(우) */}
         <section className="flex flex-col md:flex-row gap-6">
-          {/* 좌: 이미지 */}
           <div className="md:w-1/2">
             {product?.images?.[0] ? (
               <img
@@ -208,9 +206,7 @@ export default function ItemDetailPage() {
             )}
           </div>
 
-          {/* 우: 텍스트/액션 */}
           <div className="md:w-1/2">
-            {/* 제목/가격/케밥 */}
             <div className="flex items-start">
               <div>
                 <h1 className="text-[28px] font-bold leading-tight">{product.name}</h1>
@@ -254,10 +250,7 @@ export default function ItemDetailPage() {
               </div>
             </div>
 
-            {/* 가격 아래 16px: 행 전체 구분선(케밥 끝까지) */}
             <div className="mt-4 h-px w-full bg-[#E5E7EB]" />
-
-            {/* 상품 소개 */}
             <div className="mt-6">
               <h3 className="text-[16px] font-semibold text-[#1F2937]">상품 소개</h3>
               <p className="mt-4 whitespace-pre-line text-[#4B5563]">
@@ -265,7 +258,6 @@ export default function ItemDetailPage() {
               </p>
             </div>
 
-            {/* 태그 */}
             <div className="mt-6">
               <h3 className="text-[16px] font-semibold text-[#1F2937]">상품 태그</h3>
               <div className="mt-4 flex flex-wrap gap-2">
@@ -284,9 +276,7 @@ export default function ItemDetailPage() {
               </div>
             </div>
 
-            {/* 업로더 정보 + 좋아요 */}
             <div className="mt-[62px] flex items-center">
-              {/* 업로더 */}
               <div className="flex items-center gap-3">
                 <img
                   src={product?.ownerImage || "/images/ic-profile.svg"}
@@ -305,10 +295,8 @@ export default function ItemDetailPage() {
                 </div>
               </div>
 
-              {/* 자동여백 → 세로 구분선 */}
               <div className="ml-auto h-6 w-px bg-[#E5E7EB]" />
 
-              {/* 좋아요 버튼 (구분선에서 24px) */}
               <button
                 onClick={() => favMut.mutate()}
                 disabled={favMut.isPending}
@@ -322,10 +310,8 @@ export default function ItemDetailPage() {
           </div>
         </section>
 
-        {/* 상단 블록 아래 40px 구분선 */}
         <div className="mt-10 h-px bg-[#E5E7EB]" />
 
-        {/* 문의하기 */}
         <section className="mt-10">
           <h2 className="text-[18px] font-semibold">문의하기</h2>
 
@@ -350,11 +336,9 @@ export default function ItemDetailPage() {
             </button>
           </div>
 
-          {/* 버튼 아래 바로 구분선 */}
           <div className="h-px bg-[#E5E7EB]" />
         </section>
 
-        {/* 댓글 리스트 (자유게시판 스타일) */}
         <section className="mt-6 mb-10">
           <ul>
             {comments.map((c) => {
@@ -457,7 +441,6 @@ export default function ItemDetailPage() {
         </section>
       </main>
 
-      {/* 하단 돌아가기 버튼 (자유게시판 스타일/경로 /items) */}
       <div className="mt-[64px] mx-[840px] mb-[277px]">
         <button
           type="button"

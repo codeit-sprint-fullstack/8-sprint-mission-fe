@@ -20,7 +20,7 @@ export default function LoginPage() {
   const [failMsg, setFailMsg] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
 
-  // 접근 가드: 토큰 있으면 /items로
+
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     if (token) router.replace("/items");
@@ -37,7 +37,6 @@ export default function LoginPage() {
         throw new Error("토큰이 응답에 없습니다.");
       }
     } catch (err) {
-      // 인풋 하단 에러 문구 요구사항
       setError("email", { type: "server", message: "이메일을 확인해 주세요." });
       setError("password", { type: "server", message: "비밀번호를 확인해 주세요." });
 
@@ -58,7 +57,6 @@ export default function LoginPage() {
         </Link>
 
         <form onSubmit={onSubmit} className="w-full flex flex-col gap-6">
-          {/* 이메일 */}
           <div className="flex flex-col gap-2">
             <label htmlFor="email" className="text-[18px] font-bold">이메일</label>
             <input
@@ -80,7 +78,6 @@ export default function LoginPage() {
             )}
           </div>
 
-          {/* 비밀번호 */}
           <div className="flex flex-col gap-2">
             <label htmlFor="password" className="text-[18px] font-bold">비밀번호</label>
             <div className="relative h-[56px]">
@@ -114,7 +111,6 @@ export default function LoginPage() {
             )}
           </div>
 
-          {/* 버튼: 클릭/Enter 모두 제출됨 */}
           <button
             id="loginBtn"
             type="submit"
@@ -125,7 +121,6 @@ export default function LoginPage() {
           </button>
         </form>
 
-        {/* 소셜 */}
         <section aria-label="간편 로그인" className="mt-6 w-full rounded-lg bg-gray-50 px-6 py-4 flex items-center justify-between">
           <span className="text-[16px] text-gray-600 font-medium leading-6">간편 로그인하기</span>
           <div className="flex gap-3">
@@ -138,7 +133,6 @@ export default function LoginPage() {
           </div>
         </section>
 
-        {/* 회원가입 링크 문구 요구사항: '회원 가입하기' */}
         <div className="mt-6 flex justify-center items-center gap-1 text-[14px] text-gray-600 font-medium">
           <span>판다마켓이 처음이신가요?</span>
           <Link href="/signup" className="text-[#3692ff] underline font-semibold">회원 가입하기</Link>
