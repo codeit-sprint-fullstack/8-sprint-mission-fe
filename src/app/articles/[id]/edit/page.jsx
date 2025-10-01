@@ -5,7 +5,7 @@ import { useRouter, useParams } from "next/navigation";
 import { fetchArticle, updateArticle } from "@/api/articles";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import ArticleForm from "@/components/Board/ArticleForm";
+import ArticleForm from "@/components/Article/ArticleForm";
 
 const BoardWritePage = () => {
   const { id } = useParams();

@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import { fetchComments, addComment } from "@/api/comments.js";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import ArticleDatail from "@/components/Board/ArticleDetail";
+import ArticleDatail from "@/components/Article/ArticleDetail";
 import CommentForm from "@/components/Comment/CommentForm";
 import Comment from "@/components/Comment/Comment";
 import NoneComment from "@/components/Comment/NoneComment";

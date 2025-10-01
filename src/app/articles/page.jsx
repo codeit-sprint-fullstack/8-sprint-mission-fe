@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from "react";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import BestArticle from "@/components/Board/BestArticle";
-import ArticleCard from "@/components/Board/ArticleCard";
+import BestArticle from "@/components/Article/BestArticle";
+import ArticleCard from "@/components/Article/ArticleCard";
 import Controller from "@/components/Controller/Controller";
 import { fetchArticles } from "@/api/articles";
 
