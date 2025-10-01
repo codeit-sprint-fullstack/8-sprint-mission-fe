@@ -38,7 +38,7 @@ const BoardList = () => {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-lg font-bold">게시글</h1>
+        <h1 className="text-xl font-bold text-gray-900">게시글</h1>
         <Link href="/board/new">
           <Button>글쓰기</Button>
         </Link>

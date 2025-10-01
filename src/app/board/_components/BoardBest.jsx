@@ -8,10 +8,13 @@ const BoardBest = async () => {
   );
   const posts = await res.json();
   return (
-    <div className="flex flex-1 gap-4">
-      {posts.map((post) => (
-        <BestItem key={post.id} post={post} />
-      ))}
+    <div className="flex flex-col gap-5">
+      <div className="text-xl font-bold text-gray-900">베스트 게시글</div>
+      <div className="flex flex-1 gap-4">
+        {posts.map((post) => (
+          <BestItem key={post.id} post={post} />
+        ))}
+      </div>
     </div>
   );
 };

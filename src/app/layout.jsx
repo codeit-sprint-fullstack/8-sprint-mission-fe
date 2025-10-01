@@ -23,9 +23,9 @@ export default function RootLayout({ children }) {
     >
       <body>
         <Header />
-        <div className="max-w-300 mx-auto p-4 flex flex-col gap-4">
-          {children}
-        </div>
+        <main className="px-4">
+          <div className="max-w-300 mx-auto mt-6">{children}</div>
+        </main>
       </body>
     </html>
   );
