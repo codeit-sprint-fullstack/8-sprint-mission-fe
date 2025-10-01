@@ -1,8 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 const Header = () => {
+  const pathname = usePathname();
   return (
     <header className="border-b border-gray-300 px-4 py-2">
       <div className="mx-auto flex max-w-300 items-center justify-between">
@@ -16,8 +20,20 @@ const Header = () => {
             />
           </Link>
           <div className="flex gap-4 font-bold text-gray-600">
-            <Link href="/board">자유게시판</Link>
-            <Link href="/products">중고마켓</Link>
+            <Link
+              href="/board"
+              className={pathname.startsWith("/board") ? "text-blue-500" : ""}
+            >
+              자유게시판
+            </Link>
+            <Link
+              href="/products"
+              className={
+                pathname.startsWith("/products") ? "text-blue-500" : ""
+              }
+            >
+              중고마켓
+            </Link>
           </div>
         </div>
         <Link
