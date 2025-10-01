@@ -5,7 +5,7 @@ const formatDate = (date) => {
 };
 
 // 게시글 목록 조회
-export const fetchBoards = async (limit = 10) => {
+export const fetchArticles = async (limit = 10) => {
   const res = await fetch(`${API_URL}?limit=${limit}`);
   if (!res.ok) {
     throw new Error("게시글 목록 가져오기 실패");
@@ -22,7 +22,7 @@ export const fetchBoards = async (limit = 10) => {
 };
 
 // 게시글 상세 조회
-export const fetchBoard = async (id) => {
+export const fetchArticle = async (id) => {
   const res = await fetch(`${API_URL}/${id}`);
   if (!res.ok) {
     throw new Error("게시글 가져오기 실패");
@@ -39,7 +39,7 @@ export const fetchBoard = async (id) => {
 };
 
 // 게시글 추가
-export const addBoard = async ({ title, content }) => {
+export const addArticle = async ({ title, content }) => {
   const newBoard = {
     title,
     content,
@@ -61,7 +61,7 @@ export const addBoard = async ({ title, content }) => {
 };
 
 // 게시글 수정
-export const updateBoard = async (id, { title, content }) => {
+export const updateArticle = async (id, { title, content }) => {
   const res = await fetch(`${API_URL}/${id}`, {
     method: "PATCH",
     headers: {
@@ -80,7 +80,7 @@ export const updateBoard = async (id, { title, content }) => {
 };
 
 // 게시글 삭제
-export const deleteBoard = async (id) => {
+export const deleteArticle = async (id) => {
   const res = await fetch(`${API_URL}/${id}`, {
     method: "DELETE",
   });

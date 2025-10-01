@@ -2,10 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { fetchBoard, updateBoard } from "@/api/boards";
+import { fetchArticle, updateArticle } from "@/api/articles";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import BoardForm from "@/components/Board/BoardForm";
+import ArticleForm from "@/components/Board/ArticleForm";
 
 const BoardWritePage = () => {
   const { id } = useParams();
@@ -15,7 +15,7 @@ const BoardWritePage = () => {
   useEffect(() => {
     const getBoard = async () => {
       try {
-        const data = await fetchBoard(id);
+        const data = await fetchArticle(id);
         setInitialData({ title: data.title, content: data.content });
       } catch (error) {
         console.error("게시글 불러오기 에러:", error);
@@ -27,7 +27,7 @@ const BoardWritePage = () => {
 
   const handleUpdate = async (data) => {
     try {
-      await updateBoard(id, data);
+      await updateArticle(id, data);
       router.push(`/articles/${id}`);
     } catch (error) {
       console.error("게시글 수정 에러:", error);
@@ -39,7 +39,7 @@ const BoardWritePage = () => {
       <Header />
 
       <main className="flex-1 flex flex-col items-stretch mx-auto mb-[200px] p-4 w-full max-w-[1200px]">
-        <BoardForm
+        <ArticleForm
           initialData={initialData}
           onSubmit={handleUpdate}
           mode="edit"

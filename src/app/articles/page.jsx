@@ -3,10 +3,10 @@
 import React, { useEffect, useState } from "react";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import BestCard from "@/components/Board/BestCard";
-import BoardCard from "@/components/Board/BoardCard";
+import BestArticle from "@/components/Board/BestArticle";
+import ArticleCard from "@/components/Board/ArticleCard";
 import Controller from "@/components/Controller/Controller";
-import { fetchBoards } from "@/api/boards";
+import { fetchArticles } from "@/api/articles";
 
 const freeboardPage = () => {
   const [articles, setArticles] = useState([]);
@@ -15,7 +15,7 @@ const freeboardPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchBoards();
+        const data = await fetchArticles();
 
         setArticles(data);
         setSortedArticles(data);
@@ -42,7 +42,7 @@ const freeboardPage = () => {
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {(bestArticles ?? []).map((article) => (
-              <BestCard key={article.id} article={article} />
+              <BestArticle key={article.id} article={article} />
             ))}
           </div>
         </section>
@@ -55,7 +55,7 @@ const freeboardPage = () => {
           />
           <div className="grid grid-cols-1 gap-4">
             {(sortedArticles ?? []).map((article) => (
-              <BoardCard key={article.id} article={article} />
+              <ArticleCard key={article.id} article={article} />
             ))}
           </div>
         </section>

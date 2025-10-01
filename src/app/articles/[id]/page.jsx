@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import { fetchComments, addComment } from "@/api/comments.js";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import BoardId from "@/components/Board/BoardId";
+import ArticleDatail from "@/components/Board/ArticleDetail";
 import CommentForm from "@/components/Comment/CommentForm";
 import Comment from "@/components/Comment/Comment";
 import NoneComment from "@/components/Comment/NoneComment";
@@ -52,7 +52,7 @@ const freeboardIdPage = () => {
       <Header />
 
       <main className="flex-1 flex flex-col items-stretch mx-auto mb-[200px] p-4 w-full max-w-[1200px]">
-        <BoardId />
+        <ArticleDatail />
 
         <CommentForm
           title="댓글 달기"

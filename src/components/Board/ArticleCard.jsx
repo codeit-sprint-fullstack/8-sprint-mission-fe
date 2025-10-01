@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-const BoardCard = ({ article }) => {
+const ArticleCard = ({ article }) => {
   return (
     <Link
       href={`/articles/${article.id}`}
@@ -36,4 +36,4 @@ const BoardCard = ({ article }) => {
   );
 };
 
-export default BoardCard;
+export default ArticleCard;

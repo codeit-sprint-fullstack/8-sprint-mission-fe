@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import DeleteModal from "@/components/Items/DeleteModal";
-import { deleteBoard } from "@/api/boards";
+import { deleteArticle } from "@/api/articles";
 import { deleteComment } from "@/api/comments";
 
 const KebabMenu = ({ type, id, onDelete, onEdit }) => {
@@ -32,13 +32,13 @@ const KebabMenu = ({ type, id, onDelete, onEdit }) => {
       console.log("댓글 수정");
     }
     if (type === "item") {
-      router.push(`/products/${id}/edit`);
+      router.push(`/items/${id}/edit`);
     }
   };
 
   const handleDelete = async () => {
     if (type === "article") {
-      await deleteBoard(id);
+      await deleteArticle(id);
       router.push("/articles");
     }
     if (type === "comment") {

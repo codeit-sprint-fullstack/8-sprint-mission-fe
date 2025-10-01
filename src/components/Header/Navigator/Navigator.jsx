@@ -17,9 +17,9 @@ const Nav = () => {
         자유게시판
       </Link>
       <Link
-        href="/products"
+        href="/items"
         className={`text-center font-bold text-lg cursor-pointer hover:underline ${
-          pathname === "/products" ? "text-[#3692ff]" : "text-[#4B5563]"
+          pathname === "/items" ? "text-[#3692ff]" : "text-[#4B5563]"
         }`}
       >
         중고마켓

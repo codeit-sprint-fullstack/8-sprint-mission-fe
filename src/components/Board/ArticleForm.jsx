@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-const BoardForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
+const ArticleForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -62,4 +62,4 @@ const BoardForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
   );
 };
 
-export default BoardForm;
+export default ArticleForm;

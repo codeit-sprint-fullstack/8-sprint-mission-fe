@@ -5,16 +5,16 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import KebabMenu from "@/components/Kebab/KebabMenu";
 import LikeButton from "@/components/Button/LikeButton";
-import { fetchBoard } from "@/api/boards";
+import { fetchArticle } from "@/api/articles";
 
-const BoardId = () => {
+const ArticleDatail = () => {
   const { id } = useParams();
   const [article, setArticle] = useState("");
 
   useEffect(() => {
     const getBoard = async () => {
       try {
-        const data = await fetchBoard(id);
+        const data = await fetchArticle(id);
 
         setArticle(data);
       } catch (err) {
@@ -60,4 +60,4 @@ const BoardId = () => {
   );
 };
 
-export default BoardId;
+export default ArticleDatail;

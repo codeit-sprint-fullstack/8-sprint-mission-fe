@@ -38,7 +38,7 @@ const Controller = ({ controls = {}, articles = [], setSortedArticles }) => {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-xl font-bold text-[#1F2937]">게시글</h1>
         <Link
-          href="/freeboard/write"
+          href="/articles/write"
           className="flex justify-center items-center bg-[#3692FF] rounded-lg w-[88px] h-12 px-[23px] py-3 text-base text-[#F3F4F6] whitespace-nowrap hover:underline"
         >
           글쓰기

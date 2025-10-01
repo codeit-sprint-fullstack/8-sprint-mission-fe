@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const BestCard = ({ article }) => {
+const BestArticle = ({ article }) => {
   return (
     <div className="mb-10">
       <Link
@@ -58,4 +58,4 @@ const BestCard = ({ article }) => {
   );
 };
 
-export default BestCard;
+export default BestArticle;

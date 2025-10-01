@@ -87,7 +87,7 @@ const ItemDetailPage = () => {
           </div>
         )}
 
-        <GoBackButton href="/products" />
+        <GoBackButton href="/items" />
       </main>
 
       <Footer />

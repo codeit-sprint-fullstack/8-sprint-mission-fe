@@ -7,7 +7,7 @@ import Link from "next/link";
 function ProductCard({ product }) {
   return (
     <li className="flex flex-col">
-      <Link href={`/products/${product.id}`}>
+      <Link href={`/items/${product.id}`}>
         <div className="relative mb-4 rounded-lg bg-gray-50">
           <Image
             src="/img_default.svg"

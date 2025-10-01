@@ -13,7 +13,7 @@ const DeleteModal = ({ id, onClose }) => {
       await deleteProduct(id);
 
       onClose();
-      router.push("/products");
+      router.push("items");
     } catch (err) {
       console.error("상품 삭제 실패:", err);
       onClose();
