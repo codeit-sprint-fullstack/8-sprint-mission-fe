@@ -28,3 +28,10 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* globals.css에 추가할 경우 */
+button,
+a,
+[role="button"] {
+  cursor: pointer;
+}
