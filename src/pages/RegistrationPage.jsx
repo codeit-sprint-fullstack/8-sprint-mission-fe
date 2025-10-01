@@ -99,7 +99,7 @@ export default function RegistrationPage() {
         </div>
 
         {/* 상품명 */}
-        <div classNmae="reg-group">
+        <div className="reg-group">
           <label className="reg-label">상품명</label>
           <input
             className={`reg-input ${touched.name && !nameOK(name) ? "invalid" : ""}`}
