@@ -27,6 +27,7 @@ const BoardDetail = ({ data }) => {
       if (!res.ok) {
         alert("게시글 삭제에 실패했습니다.");
         console.error(res.statusText);
+        return;
       }
 
       alert("삭제가 완료되었습니다.");
