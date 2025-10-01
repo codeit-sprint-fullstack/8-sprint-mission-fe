@@ -1,0 +1,184 @@
+
+#root header.header{
+  position: sticky;
+  top: 0;
+  width:100%;
+  height:68px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border-bottom:1px solid #dfdfdf;
+  background:#fff;
+  margin:0 auto;
+  z-index:1000;
+}
+
+
+#root header.header .header-wrapper{
+  width:100%;
+  height:100%;
+  padding:0 clamp(16px,12vw,200px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-sizing:border-box;
+  gap:16px;
+  white-space:nowrap;
+}
+
+
+#root header.header .left-group{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+}
+
+
+#root header.header .logo-link{
+  display:flex;
+  align-items:center;
+  text-decoration:none;
+}
+#root header.header .logo-img{
+  display:block;
+  height:40px;
+  object-fit:contain;
+}
+
+
+#root header.header .nav-tabs{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex:0 0 auto;
+  width:auto;
+  max-width:none;
+  position:static;
+}
+
+
+#root header.header .nav-tabs .tab{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:68px;
+  padding:0 12px;
+  text-decoration:none;
+  color:#333;
+  font-size:15px;
+  font-weight:500;
+  border-bottom:2px solid transparent;
+  transition:background .15s ease,color .15s ease,border-color .15s ease;
+}
+#root header.header .nav-tabs .tab:hover{ background:#f7f7f9; }
+#root header.header .nav-tabs .tab.active,
+#root header.header .nav-tabs .tab[aria-current="page"]{
+  color:#111;
+  font-weight:600;
+  border-bottom-color:#3692FF;
+}
+
+
+#root header.header .login-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+  height:40px;
+  padding:0 20px;
+  border:none;
+  border-radius:8px;
+  background:#3692FF;
+  color:#fff;
+  font-size:16px;
+  font-weight:600;
+  text-decoration:none;
+  transition:opacity .15s ease;
+}
+#root header.header .login-button:hover{ opacity:.9; }
+
+
+@media (max-width:1280px){ 
+  #root header.header .header-wrapper{ 
+    padding:0 120px; 
+  } 
+}
+
+@media (max-width:1024px){
+  #root header.header .header-wrapper{ padding:0 60px; }
+  #root header.header .logo-img{ height:32px; }
+}
+
+@media (max-width:768px){
+  #root header.header .header-wrapper{ padding:0 16px; }
+  #root header.header .nav-tabs{ display:none; }
+  #root header.header .login-button{ height:36px; padding:0 14px; font-size:14px; }
+
+.header {
+  width: 100%;
+  height: 68px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #dfdfdf;
+  background-color: #ffffff;
+  margin: 0 auto;
+}
+
+.header-wrapper {
+  width: 100%;
+  padding: 0 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  margin-right: 24px;
+}
+
+.logo-img {
+  height: 40px;
+  object-fit: contain;
+}
+
+.left-group {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-tabs a {
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.tab:first-child {
+  padding: 21px 15px 21px 15px;
+}
+
+.tab:last-child {
+  padding: 21px 15px 21px 15px;
+}
+
+.nav-tabs a:hover {
+  text-decoration: underline;
+}
+
+.login-button {
+  background-color: #007aff;
+  color: #f3f4f6;
+  border: none;
+  padding: 12px 23px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+
+}
