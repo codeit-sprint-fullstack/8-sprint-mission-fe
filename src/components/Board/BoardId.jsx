@@ -33,7 +33,7 @@ const BoardId = () => {
           <h1 className="w-full text-xl font-bold text-[#1F2937] leading-8">
             {article.title}
           </h1>
-          <KebabMenu type="board" id={article.id} />
+          <KebabMenu type="article" id={article.id} />
         </div>
 
         <div className="flex items-center gap-8 place-self-stretch mb-4 w-full">

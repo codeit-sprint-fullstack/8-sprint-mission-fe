@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { addBoard } from "@/api/boards";
+import { useState, useEffect } from "react";
 
 const BoardForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
   const [title, setTitle] = useState("");
