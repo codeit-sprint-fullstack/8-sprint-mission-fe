@@ -14,8 +14,8 @@ export const fetchBoards = async () => {
 
   return data.map((b) => ({
     ...b,
-    user_name: "테스트유저",
-    heart_count: Math.floor(Math.random() * 100),
+    nickname: b.nickname ?? "테스트유저",
+    likecount: b.likecount ?? Math.floor(Math.random() * 100),
     createdAt: formatDate(b.createdAt),
     updatedAt: formatDate(b.updatedAt),
   }));
@@ -31,8 +31,8 @@ export const fetchBoard = async (id) => {
 
   return {
     ...data,
-    user_name: data.user_name ?? "테스트유저",
-    heart_count: data.heart_count ?? Math.floor(Math.random() * 100),
+    nickname: data.nickname ?? "테스트유저",
+    likecount: data.likecount ?? Math.floor(Math.random() * 100),
     createdAt: formatDate(data.createdAt),
     updatedAt: formatDate(data.updatedAt),
   };

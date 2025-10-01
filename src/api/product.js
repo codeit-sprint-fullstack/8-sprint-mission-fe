@@ -12,12 +12,11 @@ export const fetchProducts = async () => {
     throw new Error("상품 목록 가져오기 실패");
   }
   const data = await res.json();
-  console.log(data);
 
-  return data.map((p) => ({
+  return (data.list ?? []).map((p) => ({
     ...p,
-    user_name: p.user_name ?? "판매자",
-    favoriteCount: p.favoriteCount ?? Math.floor(Math.random() * 50),
+    nickname: p.nickname ?? "테스트판매자",
+    likeCount: p.likeCount ?? Math.floor(Math.random() * 50),
     createdAt: formatDate(p.createdAt),
     updatedAt: formatDate(p.updatedAt),
   }));
@@ -33,8 +32,8 @@ export const fetchProduct = async (id) => {
 
   return {
     ...data,
-    user_name: data.user_name ?? "테스트판매자",
-    favoriteCount: data.favoriteCount ?? Math.floor(Math.random() * 50),
+    nickname: data.nickname ?? "테스트판매자",
+    likeCount: data.likeCount ?? Math.floor(Math.random() * 50),
     createdAt: formatDate(data.createdAt),
     updatedAt: formatDate(data.updatedAt),
   };

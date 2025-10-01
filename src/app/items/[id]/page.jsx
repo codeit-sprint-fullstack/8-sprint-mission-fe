@@ -4,11 +4,12 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-// import ItemsDetail from "@/components/Items/ItemsDetail";
+import ItemDetail from "@/components/Items/ItemDetail";
 import CommentForm from "@/components/Comment/CommentForm";
-import Comment from "@components/Comment/Comment";
-import NoneComment from "@components/Comment/NoneComment";
+import Comment from "@/components/Comment/Comment";
+import NoneComment from "@/components/Comment/NoneComment";
 import GoBackButton from "@/components/Button/GoBackButton";
+import { fetchItemComments, addItemComment } from "@/api/comments.js";
 
 const ItemDetailPage = () => {
   const { id } = useParams();
@@ -18,7 +19,7 @@ const ItemDetailPage = () => {
   useEffect(() => {
     const getComments = async () => {
       try {
-        const data = await fetchComments(id);
+        const data = await fetchItemComments(id);
         setCommentList(data);
       } catch (err) {
         console.error(err);
@@ -30,7 +31,7 @@ const ItemDetailPage = () => {
   // 댓글 등록 API
   const handleAddComment = async (comment) => {
     try {
-      const newComment = await addComment(id, {
+      const newComment = await addItemComment(id, {
         content: comment,
       });
 
@@ -51,7 +52,7 @@ const ItemDetailPage = () => {
       <Header />
 
       <main>
-        <ItemsDetail />
+        <ItemDetail />
 
         <CommentForm
           title="문의하기"
