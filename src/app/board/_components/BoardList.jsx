@@ -19,9 +19,7 @@ const BoardList = () => {
       try {
         const res = await fetch(`${API_BASE_URL}/posts?${sortParams}`);
 
-        if (!res.ok) {
-          throw new Error("response error: ", res.statusText);
-        }
+        if (!res.ok) throw new Error(`get failed: ${res.statusText}`);
 
         const data = await res.json();
         setPosts(data);

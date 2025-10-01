@@ -17,7 +17,7 @@ const Comments = ({ id }) => {
         `${API_BASE_URL}/comments?postId=${id}&_sort=-createdAt`
       );
 
-      if (!res.ok) throw new Error("get failed: ", res.statusText);
+      if (!res.ok) throw new Error(`get failed: ${res.statusText}`);
       const data = await res.json();
       setComments(data);
     } catch (err) {
@@ -41,7 +41,7 @@ const Comments = ({ id }) => {
         }),
       });
 
-      if (!res.ok) throw new Error("post failed: ", res.statusText);
+      if (!res.ok) throw new Error(`post failed: ${res.statusText}`);
     } catch (err) {
       console.error(err);
     }
@@ -59,7 +59,7 @@ const Comments = ({ id }) => {
         }),
       });
 
-      if (!res.ok) throw new Error("patch failed: ", res.statusText);
+      if (!res.ok) throw new Error(`patch failed: ${res.statusText}`);
 
       setComments((prevComments) =>
         prevComments.map((prevComment) =>
@@ -79,7 +79,7 @@ const Comments = ({ id }) => {
         method: "DELETE",
       });
 
-      if (!res.ok) throw new Error("delete failed: ", res.statusText);
+      if (!res.ok) throw new Error(`delete failed: ${res.statusText}`);
 
       setComments((prevComments) =>
         prevComments.filter((prevComment) => prevComment.id !== commentId)

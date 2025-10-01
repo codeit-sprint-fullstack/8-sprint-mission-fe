@@ -8,6 +8,7 @@ import React from "react";
 
 const BoardDetail = ({ data }) => {
   const router = useRouter();
+
   const handleModify = () => {
     router.push(
       `/board/new?id=${data.id}&title=${encodeURIComponent(
@@ -17,6 +18,7 @@ const BoardDetail = ({ data }) => {
       )}&author=${encodeURIComponent(data.author)}`
     );
   };
+
   const handleDelete = async () => {
     try {
       const res = await fetch(`${API_BASE_URL}/posts/${data.id}`, {
@@ -24,11 +26,7 @@ const BoardDetail = ({ data }) => {
         // header 필요해? // 오답노트: 나중에 인가시에 필요
       });
 
-      if (!res.ok) {
-        alert("게시글 삭제에 실패했습니다.");
-        console.error(res.statusText);
-        return;
-      }
+      if (!res.ok) throw new Error(`delete failed: ${res.statusText}`);
 
       alert("삭제가 완료되었습니다.");
       router.push("/board");
@@ -36,6 +34,7 @@ const BoardDetail = ({ data }) => {
       console.error(err);
     }
   };
+
   return (
     <div className="pt-2">
       <div className="flex justify-between">
