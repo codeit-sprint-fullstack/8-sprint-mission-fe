@@ -7,7 +7,7 @@ import Footer from "@/components/Footer/Footer";
 import ItemDetail from "@/components/Items/ItemDetail";
 import CommentForm from "@/components/Comment/CommentForm";
 import Comment from "@/components/Comment/Comment";
-import NoneComment from "@/components/Comment/NoneComment";
+import NoneInquiry from "@/components/Comment/NoneInquiry";
 import GoBackButton from "@/components/Button/GoBackButton";
 import { fetchItemComments, addItemComment } from "@/api/comments.js";
 
@@ -61,7 +61,7 @@ const ItemDetailPage = () => {
         />
 
         {commentList.length === 0 ? (
-          <NoneComment />
+          <NoneInquiry />
         ) : (
           <div className="grid grid-cols-1 gap-6">
             {(commentList ?? []).slice(0, 4).map((comment) => (

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import KebabMenu from "@/components/Kebab/KebabMenu";
+import ItemTag from "@/components/Items/ItemTag";
 import LikeButton from "@/components/Button/LikeButton";
 import { fetchProduct } from "@/api/product";
 
@@ -64,7 +65,7 @@ const ItemsDetail = () => {
                 상품 태그
               </p>
               <div>
-                <span>#아이패드미니</span>
+                <ItemTag tags={product.tags} />
               </div>
             </div>
           </div>
