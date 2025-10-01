@@ -1,0 +1,62 @@
+.header {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  min-width: 37.5rem;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #dfdfdf;
+  background-color: #ffffff;
+  width: 100%;
+  height: 6.8rem;
+}
+
+.logoWrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 1.6rem;
+}
+
+.navLeft {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: var(--Secondary-600, #4b5563);
+  font-size: 1.6rem;
+  font-weight: 700;
+  gap: 0.8rem;
+}
+
+.navRight {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--Secondary-600, #4b5563);
+  font-size: 1.6rem;
+  font-weight: 700;
+  padding-right: 1.6rem;
+}
+
+/* Tablet, PC */
+@media (min-width: 744px) {
+  .navLeft,
+  .navRight {
+    font-size: 1.8rem;
+    gap: 0 2.3rem;
+  }
+}
+
+/* PC */
+@media (min-width: 1200px) {
+  .navLeft {
+    padding-left: 20rem;
+  }
+
+  .navRight {
+    padding-right: 20rem;
+  }
+}
