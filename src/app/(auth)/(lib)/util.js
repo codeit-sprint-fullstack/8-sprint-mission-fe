@@ -1,9 +1,4 @@
-// app/(auth)/(lib)/utils.js
-
 /** @typedef {{ email: string, password: string }} User */
-
-/** @type {User[]} */
-export const USER_DATA = [{ email: "test@example.com", password: "Test1234!" }];
 
 /**
  * @param {string} v
@@ -21,7 +16,6 @@ export function validateEmail(v) {
  */
 export function validatePassword(v) {
   if (!v) return "비밀번호를 입력해주세요.";
-  // 예시: 8자 이상, 숫자/문자 포함
   const ok = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/.test(v);
   return ok ? "" : "비밀번호는 8자 이상, 숫자/문자를 포함해야 합니다.";
 }
