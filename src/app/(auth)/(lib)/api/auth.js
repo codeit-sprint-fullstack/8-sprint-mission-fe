@@ -28,6 +28,7 @@ export async function signUp({ email, password }) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       email: String(email).trim(),
+      nickname: String(nickname).trim(),
       password: String(password).trim(),
     }),
   });
