@@ -17,12 +17,96 @@ import heartIcon from './ic_heart.svg';
 import noComment from './ic_noComment.svg';
 import backIcon from './ic_back.svg';
 
+import productDefault from '../../../../public/images/items/product_default.png';
+
 //스타일
 import styles from './item.module.css';
 import InputForm from '@/components/molecules/InputForm/InputForm';
 import Button from '@/components/Atoms/Button';
 import useAsync from '@/hooks/useAsync';
 
+
+
+
+function ProductDetail({product, handleDelete}){
+    const router = useRouter();
+    const { id } = useParams();
+
+    return (
+        <div className={styles.productDetailBox}>
+            <div className={styles.productDetail}>
+                <div className={styles.productImageBox}>
+                    <Image
+                        src={productDefault} 
+                        alt="productImage"
+                        className={styles.productImage}
+                    />
+                </div>
+                <div className="flex flex-col justify-between gap-[40px] w-[100%]">
+                    <div className="flex flex-col gap-[24px]">
+                        <div className="flex flex-col gap-[16px]">
+                            <div className={styles.titleDiv}>
+                                <div>
+                                    <p className={styles.title}>{product.name}</p>   
+                                    <p className={styles.price}>{product.price}</p>   
+                                </div>
+                                <DropdownList list={[
+                                    {
+                                        name: '수정하기',
+                                        onClick: () => {router.push(`/products/${id}/edit`)}
+                                    }, 
+                                    {
+                                        name: '삭제하기',
+                                        onClick: () => {handleDelete();}
+                                    }
+                                ]}>
+                                    <Image src={moreImg} alt="more_button_icon"/>
+                                </DropdownList>             
+                            </div>
+                            <div className={styles.dividerH}></div>
+                        </div>
+                        <div className={styles.productInfo}>
+                            <div className={styles.productInfoContent}>
+                                <label>상품 소개</label>
+                                <p>{product.description}</p>
+                            </div>
+                            <div className={styles.productInfoContent}>
+                                <label>상품 태그</label>
+                                {product.tags.map((tag) => { 
+                                    return <div className={styles.tag} key={product.tags.indexOf(tag)}>
+                                        <p>{`#${tag}`}</p>
+                                    </div>
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                        <div className={styles.userDiv}>
+                            <Image 
+                                src={userPanda} 
+                                alt='profile_image'
+                                className={styles.articleUserProfile}
+                            />
+                            <div className="flex flex-col gap-[2px]">
+                                <p className={styles.userName} >{product.userName}</p>
+                                <p className={styles.date}>{product.createdAt}</p>
+                            </div>
+                        </div>
+                        <div className="flex">
+                            <div className={styles.dividerV24}>
+                            </div>
+                            <div className={styles.favoriteDiv}>
+                                <Image src={heartIcon} alt='favoriteIcon' className={styles.heartIcon}/>
+                                <p className={styles.favoriteCntText}>{product.favoriteCount}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className={styles.dividerH}></div>
+        </div>
+    )
+}
 function CommentList({list, handlePatch, handleDelete}) {
     const [ editId, setEditId ] = useState('');
     const [ commentEdit, setCommentEdit ] = useState('');
@@ -95,8 +179,6 @@ function CommentList({list, handlePatch, handleDelete}) {
 }
 
 export default function ProductPage({}){
-    const router = useRouter();
-
     const { id } = useParams();
     const [product, setProduct] = useState({
         name: '',
@@ -155,45 +237,10 @@ export default function ProductPage({}){
     return(
         <MainFrame>
             <div className={styles.frame}>
-                <div className={styles.headline}>
-                    <div className={styles.titleDiv}>
-                        <p className={styles.title}>{product.title}</p>   
-                        <DropdownList list={[
-                            {
-                                name: '수정하기',
-                                onClick: () => {router.push(`/articles/${id}/edit`)}
-                            }, 
-                            {
-                                name: '삭제하기',
-                                onClick: () => {handleDeleteProduct();}
-                            }
-                        ]}>
-                            <Image src={moreImg} alt="more_button_icon"/>
-                        </DropdownList>             
-                    </div>
-                    <div className={styles.infoDiv}>
-                        <div className={styles.userDiv}>
-                            <Image 
-                                src={userPanda} 
-                                alt='profile_image'
-                                className={styles.articleUserProfile}
-                            />
-                            <div className={styles.userNameDiv}>
-                                <p className={styles.userName} >{product.userName}</p>
-                                <p className={styles.date}>{product.createdAt}</p>
-                            </div>
-                        </div>
-                        <div className={styles.dividerV}></div>
-                        <div className={styles.favoriteDiv}>
-                            <Image src={heartIcon} alt='favoriteIcon' className={styles.heartIcon}/>
-                            <p className={styles.favoriteCntText}>{product.favoriteCount}</p>
-                        </div>
-                    </div>
-                    <div className={styles.dividerH}></div>
-                </div>
-                <div className={styles.content}>
-                    <p>{product.content}</p>
-                </div>
+                <ProductDetail 
+                    product={product}
+                    handleDelete={handleDeleteProduct}
+                />
                 <form className={styles.commnetForm} onSubmit={handleSubmit}>
                     <InputForm
                         label='댓글달기'

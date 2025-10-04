@@ -76,6 +76,7 @@ export default function Login(){
                     value={values.password}
                     onChange={onChange}
                     validErrorMsg={errors.password}
+                    isPassword={true}
                 />
                 <Button 
                     className={styles.subimtButton}
