@@ -24,11 +24,12 @@ import styles from './item.module.css';
 import InputForm from '@/components/molecules/InputForm/InputForm';
 import Button from '@/components/Atoms/Button';
 import useAsync from '@/hooks/useAsync';
+import DeleteModal from '@/components/molecules/DeleteModal/DeleteModal';
 
 
 
 
-function ProductDetail({product, handleDelete}){
+function ProductDetail({product, setModalOpen}){
     const router = useRouter();
     const { id } = useParams();
 
@@ -48,7 +49,7 @@ function ProductDetail({product, handleDelete}){
                             <div className={styles.titleDiv}>
                                 <div>
                                     <p className={styles.title}>{product.name}</p>   
-                                    <p className={styles.price}>{product.price}</p>   
+                                    <p className={styles.price}>{product.price.toLocaleString() + '원'}</p>   
                                 </div>
                                 <DropdownList list={[
                                     {
@@ -57,7 +58,7 @@ function ProductDetail({product, handleDelete}){
                                     }, 
                                     {
                                         name: '삭제하기',
-                                        onClick: () => {handleDelete();}
+                                        onClick: () => {setModalOpen(true);}
                                     }
                                 ]}>
                                     <Image src={moreImg} alt="more_button_icon"/>
@@ -72,11 +73,13 @@ function ProductDetail({product, handleDelete}){
                             </div>
                             <div className={styles.productInfoContent}>
                                 <label>상품 태그</label>
-                                {product.tags.map((tag) => { 
-                                    return <div className={styles.tag} key={product.tags.indexOf(tag)}>
-                                        <p>{`#${tag}`}</p>
-                                    </div>
-                                })}
+                                <div className="inline-flex gap-[8px]    ">
+                                    {product.tags.map((tag) => { 
+                                        return <div className={styles.tag} key={product.tags.indexOf(tag)}>
+                                            <p>{`#${tag}`}</p>
+                                        </div>
+                                    })}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -194,6 +197,9 @@ export default function ProductPage({}){
 
     const [isLoading, error, write] = useAsync(createComment);
 
+    const [isModalOpen, setModalOpen] = useState(false);
+    const router = useRouter();
+
     useEffect(()=>{
         const handleLoad = async() => {
             setProduct(await getProduct(id));
@@ -239,7 +245,7 @@ export default function ProductPage({}){
             <div className={styles.frame}>
                 <ProductDetail 
                     product={product}
-                    handleDelete={handleDeleteProduct}
+                    setModalOpen={setModalOpen}
                 />
                 <form className={styles.commnetForm} onSubmit={handleSubmit}>
                     <InputForm
@@ -272,6 +278,12 @@ export default function ProductPage({}){
                     </Button>
                 </div>
             </div>
+            <DeleteModal 
+                message='정말로 상품을 삭제하시겠어요?'
+                isOpen={isModalOpen}
+                onConfirm={handleDeleteProduct}
+                onCancel={()=>setModalOpen(false)}
+            />
         </MainFrame>
     )
 }

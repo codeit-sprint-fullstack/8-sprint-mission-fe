@@ -11,16 +11,17 @@ import styles from './upload.module.css';
 import Link from 'next/link';
 import Button from '@/components/Atoms/Button';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 function SelectedTags({ tags, handleDelete }) {
     return (
         <div className={styles.selectedTags}>
             {tags.map((tag) => {
                 return (
-                    <div className={styles.selectedTag}>
+                    <div className={styles.selectedTag} key={tags.indexOf(tag)}>
                         <p>{'#' + tag}</p>
                         <button className={styles.cancleBtn} onClick={() => handleDelete(tag)}>
-                            <Image src={cancleTagImg} />
+                            <Image src={cancleTagImg} alt="cancelTag"/>
                         </button>
                     </div>
                 );
@@ -42,28 +43,38 @@ function Registration({}) {
         register
     ] = useRegisterInput();
 
+    const router = useRouter();
+
     const handleKeyDown = (e) => {
+        e.preventDefault();
         if (e.key === 'Enter') {
             addTag();
         }
     };
+
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        const res = await register();
+        if(res){
+            router.push(`/items/${res.id}`)
+        }
+    }
 
     //이번에 배운 사실: 리액트 JSX는 객체를 {}표현식에 넣어도 그대로 출력할 수 없다.
     return (
         <>
             <HomeHeader isHome={true}/>
             <main className={`with-header ${styles.main}`}>
-                <form className={styles.wrapper}>
+                <form className={styles.wrapper} onSubmit={handleSubmit}>
                     <div className={styles.headline}>
                         <h1>상품 등록하기</h1>
-                        <Link href={`product/${1}/detail`}>
-                            <Button 
-                                className={styles.button}
-                                disabled={!isSubmitActive}
-                            >
-                                등록
-                            </Button>
-                        </Link>
+                        <Button 
+                            className={styles.button}
+                            disabled={!isSubmitActive}
+                            
+                        >
+                            등록
+                        </Button>
                     </div>
                     <div className={styles.inputDiv}>
                         <InputForm

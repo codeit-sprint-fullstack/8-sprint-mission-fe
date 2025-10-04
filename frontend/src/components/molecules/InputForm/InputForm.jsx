@@ -16,7 +16,7 @@ export default function InputForm({
     isPassword=false,
 }) {
     const style = validErrorMsg === '' ? {} : { border: '1px solid var(--error-red, #F74747)' };
-    const [isVisible, setIsVisible] = useState(false);
+    const [isVisible, setIsVisible] = useState(!isPassword);
 
     //공통되는 prop을 묶었습니다.
     const props = {
