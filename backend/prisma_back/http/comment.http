@@ -1,5 +1,5 @@
 # 게시글 댓글
-GET http://localhost:3000/articles/733653fb-6a4d-4a0d-90ca-31de1072de91/comments
+GET http://localhost:4000/articles/b717e4f5-159c-4ca8-81bb-a3397caaf387/comments
 
 ###
 
@@ -62,3 +62,10 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:3000/products/comments/733653fb-6a4d-4a0d-90ca-31de1072de91
+
+
+
+###
+
+# 상품 댓글
+GET http://localhost:4000/products/b8f11e76-0a9e-4b3f-bccf-8d9b4fbf331e/comments

@@ -1,4 +1,9 @@
 /* Mobile styles - 기본 스타일 */
+.link {
+    width: 100%;
+    height: fit-content;
+}
+
 .best {
     margin: 0 auto 40px;
 }
