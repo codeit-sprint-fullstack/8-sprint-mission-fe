@@ -61,7 +61,7 @@ export default function Header() {
         {/* 버튼들 */}
         <div className="flex gap-2">
           <Button variant="default" asChild>
-            <Link href="/login">로그인</Link>
+            <Link href="/auth/login">로그인</Link>
           </Button>
         </div>
       </div>
