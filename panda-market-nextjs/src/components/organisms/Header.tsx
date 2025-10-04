@@ -52,7 +52,7 @@ export default function Header() {
             </li>
             <li>
               <Link
-                href="/market"
+                href="/items"
                 className={`text-md ${isMarketPage ? "text-primary" : ""}`}
               >
                 중고마켓
