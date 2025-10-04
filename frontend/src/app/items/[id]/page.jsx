@@ -241,49 +241,51 @@ export default function ProductPage({}){
     }
 
     return(
-        <MainFrame>
-            <div className={styles.frame}>
-                <ProductDetail 
-                    product={product}
-                    setModalOpen={setModalOpen}
-                />
-                <form className={styles.commnetForm} onSubmit={handleSubmit}>
-                    <InputForm
-                        label='댓글달기'
-                        placeholder='댓글을 입력해주세요.'
-                        rows={3}
-                        value={commentInput}
-                        onChange={(e)=>setCommnetInput(e.target.value)}
-                    />       
-                    <div className={styles.buttonDiv}>
-                        <Button 
-                            className={styles.button} 
-                            disabled={commentInput.length <= 0 || isLoading}
-                        >
-                            {isLoading ? "등록 중.." : "등록"}
-                        </Button> 
+        <>
+            <MainFrame>
+                <div className={styles.frame}>
+                    <ProductDetail 
+                        product={product}
+                        setModalOpen={setModalOpen}
+                    />
+                    <form className={styles.commnetForm} onSubmit={handleSubmit}>
+                        <InputForm
+                            label='댓글달기'
+                            placeholder='댓글을 입력해주세요.'
+                            rows={3}
+                            value={commentInput}
+                            onChange={(e)=>setCommnetInput(e.target.value)}
+                        />       
+                        <div className={styles.buttonDiv}>
+                            <Button 
+                                className={styles.button} 
+                                disabled={commentInput.length <= 0 || isLoading}
+                            >
+                                {isLoading ? "등록 중.." : "등록"}
+                            </Button> 
+                        </div>
+                    </form>
+                    {comments.length > 0 
+                        ? <CommentList list={comments} handlePatch={handlePatchComment} handleDelete={handleDeleteComment}/>
+                        : <div className={styles.noComment}>
+                            <Image src={noComment} alt="no_comment" className={styles.noCommentImg}/>
+                            <p>아직 댓글이 없어요.<br/>지금 댓글을 달아보세요!</p>
+                        </div>
+                    }
+                    <div className={styles.backButtonDiv}>
+                        <Button to='/products' className={styles.backButton}>
+                            <p>목록으로 돌아가기</p>
+                            <Image src={backIcon} alt='back_button'/>
+                        </Button>
                     </div>
-                </form>
-                {comments.length > 0 
-                    ? <CommentList list={comments} handlePatch={handlePatchComment} handleDelete={handleDeleteComment}/>
-                    : <div className={styles.noComment}>
-                        <Image src={noComment} alt="no_comment" className={styles.noCommentImg}/>
-                        <p>아직 댓글이 없어요.<br/>지금 댓글을 달아보세요!</p>
-                    </div>
-                }
-                <div className={styles.backButtonDiv}>
-                    <Button to='/products' className={styles.backButton}>
-                        <p>목록으로 돌아가기</p>
-                        <Image src={backIcon} alt='back_button'/>
-                    </Button>
                 </div>
-            </div>
+            </MainFrame>
             <DeleteModal 
                 message='정말로 상품을 삭제하시겠어요?'
                 isOpen={isModalOpen}
                 onConfirm={handleDeleteProduct}
                 onCancel={()=>setModalOpen(false)}
             />
-        </MainFrame>
+        </>
     )
 }
