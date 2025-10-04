@@ -102,7 +102,10 @@ const useDeleteArticle = (): UseMutationResult<
   return useMutation({
     mutationFn: ({ id }: { id: string }) => articlesApi.deleteArticle(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["articles"] });
+      queryClient.invalidateQueries({
+        queryKey: ["articles"],
+        exact: false,
+      });
     },
   });
 };

@@ -1,4 +1,15 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const CODEIT_API_URL = process.env.NEXT_PUBLIC_CODEIT_API_URL;
+
+export interface Comment {
+  id: string;
+  content: string;
+  createdAt: string;
+}
+
+export interface CommentList {
+  comments: Comment[];
+}
 
 /**
  * 댓글 생성
@@ -90,6 +101,24 @@ const updateComment = async (
     );
     if (!response.ok) {
       throw new Error("댓글 수정 실패");
+    }
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+/**
+ * 상품 댓글 목록 조회
+ * @param id
+ * @returns Comment
+ */
+const getProductComments = async (id: string) => {
+  try {
+    const response = await fetch(`${CODEIT_API_URL}/products/${id}/comments`);
+    if (!response.ok) {
+      throw new Error("상품 댓글 목록 조회 실패");
     }
     return response.json();
   } catch (error) {

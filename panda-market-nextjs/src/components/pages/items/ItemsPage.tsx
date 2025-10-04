@@ -180,7 +180,7 @@ export default function ItemsPage() {
               placeholder="검색할 상품을 입력해주세요"
               className="bg-secondary-100 border-none rounded-[12px] h-[42px]"
             />
-            <Select onValueChange={handleSortEvent}>
+            <Select value={orderBy} onValueChange={handleSortEvent}>
               <SelectTrigger className="w-[180px] !h-[42px]">
                 <SelectValue placeholder="최신순" />
               </SelectTrigger>

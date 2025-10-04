@@ -6,6 +6,7 @@ import {
   UseQueryResult,
 } from "@tanstack/react-query";
 import { commentsApi } from "./fetchers";
+import { CommentProps } from "@/components/organisms/Comment";
 
 /**
  * 댓글 생성
@@ -30,7 +31,7 @@ const useCreateComment = (): UseMutationResult<
  * 댓글 조회
  * @returns Comment
  */
-const useGetComments = (id: string): UseQueryResult => {
+const useGetComments = (id: string): UseQueryResult<CommentProps[], Error> => {
   return useQuery({
     queryKey: ["comments", id],
     queryFn: () => commentsApi.getComments(id),

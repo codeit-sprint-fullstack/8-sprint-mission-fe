@@ -34,6 +34,7 @@ export default function ArticlePage() {
     isLoading,
     isError,
     inputValue,
+    orderBy,
     handleSearchEvent,
     handleSearchKeyDownEvent,
     handleOrderByEvent,
@@ -104,7 +105,7 @@ export default function ArticlePage() {
             placeholder="검색할 게시글을 입력해주세요"
             className="bg-(--secondary-color-100) border-none rounded-[12px] h-[42px]"
           />
-          <Select onValueChange={handleOrderByEvent}>
+          <Select value={orderBy} onValueChange={handleOrderByEvent}>
             <SelectTrigger className="w-[180px] !h-[42px]">
               <SelectValue placeholder="최신순" />
             </SelectTrigger>

@@ -1,8 +1,8 @@
 import { useCommentsQuery } from "@/lib/api/comments/queries";
-import Comment, { CommentProps } from "./Comment";
 import { UseQueryResult } from "@tanstack/react-query";
 import Text from "../atoms/Text";
 import Image from "next/image";
+import Comment, { CommentProps } from "./Comment";
 
 export default function CommentList({ id: articleId }: { id: string }) {
   const {
@@ -10,7 +10,9 @@ export default function CommentList({ id: articleId }: { id: string }) {
     isLoading,
     isError,
     error,
-  }: UseQueryResult<any> = useCommentsQuery.useGetComments(articleId);
+  }: UseQueryResult<CommentProps[]> = useCommentsQuery.useGetComments(
+    articleId
+  );
 
   console.log(comments);
 
@@ -24,7 +26,7 @@ export default function CommentList({ id: articleId }: { id: string }) {
 
   return (
     <div className="flex flex-col gap-6">
-      {comments?.length > 0 ? (
+      {comments && comments.length > 0 ? (
         comments?.map((comment: CommentProps) => (
           <Comment
             key={comment.id}
