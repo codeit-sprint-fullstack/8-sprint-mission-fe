@@ -27,7 +27,7 @@
 }
 
 .subimtButton {
-  width: 640px;
+  width: 100%;
   font: var(--font-16-semmibold);
   border-radius: 999px;
   padding: 14.5px 33.5px;

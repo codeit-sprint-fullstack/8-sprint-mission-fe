@@ -4,14 +4,15 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import useAuth from "@/hooks/useAuth";
+import { useAuth, useAuthInput } from "@/hooks/useAuth";
+import { useRouter } from "next/navigation";
 
 //컴포넌트
 import InputForm from "@/components/molecules/InputForm/InputForm";
 import Button from "@/components/Atoms/Button";
 
 //스타일
-import styles from './signin.module.css';
+import styles from './signup.module.css';
 
 //이미지
 import googleIcon from '../../../public/images/social/google-logo.png';
@@ -19,16 +20,39 @@ import kakaoIcon from '../../../public/images/social/kakao-logo.png';
 import logo from '../../../public/images/logo/logo.svg';
 import Modal from "@/components/molecules/Modal/Modal";
 
+
 export default function Login(){
 
-    const { values, errors, isSigninSubmitActive, onChange, signin } = useAuth();
+    const { values, errors, isSignUpSubmitActive, onChange } = useAuthInput();
+    const { signUp } = useAuth();
     const [ modalMessage, setModalMessage ] = useState(true);
     const [ isModalOpen, setIsModalOpen ] = useState(false);
 
-    const handleSubmit = (e) => {
+    const router = useRouter();
+
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        //login();
-    }
+
+        const body = {
+            email: values.email,
+            password: values.password,
+            passwordCheck: values.passwordCheck,
+            nickName: "가입한 판다"
+        };
+
+        const res = await signUp(body);
+        if(typeof res === 'string'){
+            console.log(res);
+            setModalMessage(res);
+            setIsModalOpen(true)
+            return;
+        }
+
+        //성공하면 중고마켓 페이지 이동
+        if (res) {
+            router.push(`/items`);
+        }
+    };
 
     return(
         <main className={styles.authContainer}>
@@ -71,7 +95,7 @@ export default function Login(){
                 />
                 <Button 
                     className={styles.subimtButton}
-                    disabled={!isSigninSubmitActive}
+                    disabled={!isSignUpSubmitActive}
                 >로그인</Button>
             </form>
 

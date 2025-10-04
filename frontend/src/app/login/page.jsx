@@ -2,9 +2,10 @@
 
 //라이브러리
 import { useState } from "react";
+import { useAuth, useAuthInput } from "@/hooks/useAuth";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import useAuth from "@/hooks/useAuth";
 
 //컴포넌트
 import InputForm from "@/components/molecules/InputForm/InputForm";
@@ -21,13 +22,31 @@ import Modal from "@/components/molecules/Modal/Modal";
 
 export default function Login(){
 
-    const { values, errors, isLoginSubmitActive, onChange, login } = useAuth();
+    const { values, errors, isLogInSubmitActive, onChange } = useAuthInput();
+    const { logIn } = useAuth();
     const [ modalMessage, setModalMessage ] = useState('');
     const [ isModalOpen, setIsModalOpen ] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        //login();
+        const body = {
+            email: values.email,
+            password: values.password
+        };
+
+        const res = await logIn(body);
+        if(typeof res === 'string'){
+            console.log(res);
+            setModalMessage(res);
+            setIsModalOpen(true)
+            return;
+        }
+
+        //성공하면 중고마켓 페이지 이동
+        const router = useRouter();
+        if (res) {
+            router.push(`/items`);
+        }
     }
 
     return(
@@ -60,7 +79,7 @@ export default function Login(){
                 />
                 <Button 
                     className={styles.subimtButton}
-                    disabled={!isLoginSubmitActive}
+                    disabled={!isLogInSubmitActive}
                 >로그인</Button>
             </form>
 

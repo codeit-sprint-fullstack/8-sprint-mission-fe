@@ -1,5 +1,4 @@
 .modal {
-  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -13,8 +12,9 @@
 }
 
 .content {
-  width: 54rem;
-  height: 25rem;
+  width: calc(100% - 48px);
+  max-width: 540px;
+  height: 250px;
   position: absolute;
   transform: translate(-50%, -50%);
   top: 50%;
@@ -22,7 +22,9 @@
 
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  gap: 40px;
 
   background-color: white;
   border: 0.1rem solid #888;
@@ -31,54 +33,29 @@
   box-shadow: 0px 4px 16px rgba(108, 57, 57, 0.2);
   border-radius: 8px;
 
-  @media (max-width: 743px) {
-    width: 32.7rem;
-    height: 22rem;
-  }
+  overflow: hidden;
 }
 
 .message {
-  margin-top: 10.8rem;
-
   color: var(--gray-800);
+  font: var(--font-18-medium);
   text-align: center;
-
-  font-size: 1.6rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-
-  @media (max-width: 743px) {
-    margin-top: 8.1rem;
-  }
 }
 
 .confirmButton {
-  width: 12rem;
-  height: 4.8rem;
-  padding: 1.2rem 2.3rem;
+  width: 165px;
+  height: 48px;
+  padding: 12px 23px;
+
   border: none;
   border-radius: 5px;
 
-  position: absolute;
-  right: 2.8rem;
-  bottom: 2.8rem;
-
-  background-color: var(--blue);
-  color: white;
-
-  cursor: pointer;
-  font-size: 1.6rem;
-
-  @media (max-width: 743px) {
-    position: absolute;
-    left: 50%;
-    bottom: 2.3rem;
-    transform: translateX(-50%);
-  }
+  background-color: var(--brand-blue);
+  color: var(--Cool-Gray-100);
+  font: var(--font-16-semmibold);
 }
 
 .confirmButton:hover,
 .confirmButton:focus {
-  background-color: var(--blue);
+  background-color: var(--hover-blue);
 }
