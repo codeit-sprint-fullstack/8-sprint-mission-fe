@@ -1,10 +1,6 @@
-import Link from "next/navigation";
-import React from "react";
+import Link from 'next/navigation';
+import React from 'react';
 
 export default function HomePage() {
-  return (
-    <div>
-      HomePage
-    </div>
-  );
+  return <div>HomePage</div>;
 }
