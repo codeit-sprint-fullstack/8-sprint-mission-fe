@@ -27,12 +27,12 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`antialiased ${pretendard.variable}`}>
-        <Header />
         <QueryProvider>
+          <Header />
           {children}
           <ReactQueryDevtools initialIsOpen={false} />
+          <Footer />
         </QueryProvider>
-        <Footer />
       </body>
     </html>
   );

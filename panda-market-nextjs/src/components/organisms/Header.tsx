@@ -4,14 +4,17 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useAuthQuery } from "@/lib/api/auth/queries";
+import Text from "../atoms/Text";
+import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 
 export default function Header() {
   const pathname = usePathname();
 
-  console.log(pathname);
-
   const isArticlePage = pathname.includes("article");
   const isMarketPage = pathname.includes("market");
+
+  const { data: user, isPending, isError, error } = useAuthQuery.useGetUser();
 
   return (
     <header className="border-b fixed top-0 z-10 w-full bg-white">
@@ -59,11 +62,40 @@ export default function Header() {
         </div>
 
         {/* 버튼들 */}
-        <div className="flex gap-2">
-          <Button variant="default" asChild>
-            <Link href="/auth/login">로그인</Link>
-          </Button>
-        </div>
+        {user ? (
+          <>
+            {isPending ? (
+              <div className="flex items-center gap-2">
+                <Text styleName="text-lg-medium">로그인 중</Text>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2">
+                <Link href="/auth/profile" className="flex items-center gap-2">
+                  <Avatar>
+                    <AvatarImage
+                      src={"/article/avatar-img.svg"}
+                      alt={user.nickname}
+                      width={24}
+                      height={24}
+                    />
+                  </Avatar>
+                  {user.nickname}
+                </Link>
+              </div>
+            )}
+            {isError && (
+              <div className="text-(--error-color)">
+                {(error as Error).message}
+              </div>
+            )}
+          </>
+        ) : (
+          <div className="flex gap-2">
+            <Button variant="default" asChild>
+              <Link href="/auth/login">로그인</Link>
+            </Button>
+          </div>
+        )}
       </div>
     </header>
   );

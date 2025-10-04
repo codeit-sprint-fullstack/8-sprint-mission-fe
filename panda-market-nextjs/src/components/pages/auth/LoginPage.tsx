@@ -10,12 +10,17 @@ import { useRouter } from "next/navigation";
 import Text from "@/components/atoms/Text";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Alert from "@/components/organisms/Alert";
 import { loginSchema, LoginSchema } from "@/lib/schema/auth";
+import { useAuthQuery } from "@/lib/api/auth/queries";
+import { Login } from "@/lib/api/auth/fetchers";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function LoginPage() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   const {
     register,
@@ -30,26 +35,28 @@ export default function LoginPage() {
     },
   });
 
-  /**
-   * 로그인 처리
-   * @param data 로그인 데이터
-   */
-  const onSubmit = async (data: LoginSchema) => {
-    setIsLoading(true);
-    try {
-      // TODO: 실제 로그인 API 호출
-      console.log("로그인 데이터:", data);
+  const {
+    mutate: postLoginMutation,
+    isPending,
+    isError,
+    error: loginError,
+  } = useAuthQuery.usePostLogin();
 
-      // 임시로 성공 처리
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      router.push("/");
-      console.log("로그인이 성공적으로 완료되었습니다.");
-    } catch (error) {
-      console.error("로그인 중 오류가 발생했습니다:", error);
-    } finally {
-      setIsLoading(false);
-    }
+  const onSubmit = (data: Login) => {
+    postLoginMutation(data, {
+      onSuccess: () => {
+        router.push("/items");
+      },
+      onError: (error) => {
+        console.error("로그인 중 오류가 발생했습니다:", error);
+        setAlertMessage(
+          loginError?.message ||
+            error.message ||
+            "로그인 중 오류가 발생했습니다."
+        );
+        setAlertOpen(true);
+      },
+    });
   };
 
   /**
@@ -59,10 +66,12 @@ export default function LoginPage() {
     setShowPassword(!showPassword);
   };
 
-  if (isLoading) {
+  if (isPending) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <Text styleName="text-lg-medium">로그인 중...</Text>
+        <Text styleName="text-lg-medium">
+          <Spinner /> 로그인 중
+        </Text>
       </div>
     );
   }
@@ -156,7 +165,7 @@ export default function LoginPage() {
           <Button
             type="submit"
             variant={isValid ? "default" : "disabled"}
-            disabled={!isValid || isLoading}
+            disabled={!isValid || isPending}
             className="w-full py-3 h-[auto] cursor-pointer"
           >
             로그인
@@ -214,6 +223,13 @@ export default function LoginPage() {
             </Link>
           </Text>
         </div>
+
+        {/* Alert 컴포넌트 */}
+        <Alert
+          open={alertOpen}
+          onOpenChange={setAlertOpen}
+          message={alertMessage}
+        />
       </div>
     </main>
   );
