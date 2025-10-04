@@ -16,11 +16,11 @@ export default function InputForm({
     const props = {
         className: styles.inputPlace,
         style: style,
-        name: name,
-        value: value,
-        onChange: onChange,
-        onKeyDown: onKeyDown,
-        placeholder: placeholder,
+        name,
+        value,
+        onChange,
+        onKeyDown,
+        placeholder,
     };
 
     //textara는 기본적으로 rows={2}로 설정 되어 있다.

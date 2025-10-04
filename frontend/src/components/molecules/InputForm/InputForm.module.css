@@ -33,6 +33,10 @@
     line-height: 26px; /* 162.5% */
 }
 
+.focusBorder:focus {
+  outline-color: var(--blue);
+}
+
 .validErrorMsg {
     display: flex;
     padding-left: 16px;

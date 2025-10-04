@@ -5,7 +5,7 @@ import HomeFooter from '@/components/molecules/Footer/HomeFooter.jsx';
 
 import cancleTagImg from './cancle_tag.svg';
 import useRegisterInput from '@/hooks/useRegisterInput.jsx';
-import InputForm from '@/components/molecules/Articles/InputForm/InputForm';
+import InputForm from '@/components/molecules/InputForm/InputForm';
 
 import styles from './upload.module.css';
 import Link from 'next/link';
