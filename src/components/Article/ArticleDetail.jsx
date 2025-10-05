@@ -47,7 +47,12 @@ const ArticleDatail = () => {
 
           <div className="h-[34px] border-l border-gray-200" />
 
-          <LikeButton initialCount={article.likeCount} />
+          <LikeButton
+            type="article"
+            targetId={article.id}
+            initialCount={article.likeCount}
+            initialLiked={article.isLiked}
+          />
         </div>
       </div>
 

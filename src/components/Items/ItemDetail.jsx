@@ -89,7 +89,12 @@ const ItemsDetail = () => {
             <div className="flex items-center gap-6">
               <div className="h-[34px] border-l border-gray-200" />
 
-              <LikeButton initialCount={product.favoriteCount} />
+              <LikeButton
+                type="product"
+                targetId={product.id}
+                initialCount={product.favoriteCount}
+                initialLiked={product.isFavorite}
+              />
             </div>
           </div>
         </div>
