@@ -9,7 +9,7 @@ export const authService = {
     }),
 
   // 회원가입
-  register: (nickname, email, password) =>
+  signUp: (nickname, email, password) =>
     defaultFetch("/auth/signUp", {
       method: "POST",
       body: JSON.stringify({ nickname, email, password }),
