@@ -29,6 +29,8 @@ const SignupPage = () => {
     setIsModalOpen(true);
   };
 
+  const isDisabled = !email || !username || !password || !confirm;
+
   return (
     <main className="flex min-h-screen items-center justify-center bg-white px-4 py-15">
       <article className="flex w-full max-w-lg flex-col items-center gap-10">
@@ -81,7 +83,11 @@ const SignupPage = () => {
           )}
 
           <div>
-            <AuthButton text="회원가입" onClick={handleSignup} />
+            <AuthButton
+              text="회원가입"
+              onClick={handleSignup}
+              disabled={isDisabled}
+            />
           </div>
         </form>
 

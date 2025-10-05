@@ -1,11 +1,16 @@
 "use client";
 
-const AuthButton = ({ text, onClick }) => {
+const AuthButton = ({ text, onClick, disabled = false }) => {
   return (
     <button
-      type="button"
+      type="submit"
       onClick={onClick}
-      className="w-full rounded-full bg-gray-400 py-3 text-lg font-semibold text-white cursor-pointer hover:bg-blue-500"
+      disabled={disabled}
+      className={`w-full rounded-full py-3 text-lg font-semibold text-white ${
+        disabled
+          ? "bg-gray-400 cursor-not-allowed opacity-60"
+          : "bg-gray-400 hover:bg-blue-500 cursor-pointer"
+      }`}
     >
       {text}
     </button>

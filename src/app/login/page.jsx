@@ -23,6 +23,8 @@ const LoginPage = () => {
     setIsModalOpen(true);
   };
 
+  const isDisabled = !email || !password;
+
   return (
     <main className="flex min-h-screen items-center justify-center bg-white px-4">
       <article className="flex w-full max-w-lg flex-col items-center gap-10">
@@ -55,7 +57,11 @@ const LoginPage = () => {
           )}
 
           <div>
-            <AuthButton text="로그인" onClick={handleLogin} />
+            <AuthButton
+              text="로그인"
+              onClick={handleLogin}
+              disabled={isDisabled}
+            />
           </div>
         </form>
 
