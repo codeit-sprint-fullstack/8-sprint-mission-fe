@@ -7,29 +7,22 @@ import BestArticle from "@/components/Article/BestArticle";
 import ArticleCard from "@/components/Article/ArticleCard";
 import Controller from "@/components/Controller/Controller";
 import { fetchArticles } from "@/api/articles";
+import { useArticles } from "@/hooks/useArticles";
 
-const freeboardPage = () => {
-  const [articles, setArticles] = useState([]);
+const FreeboardPage = () => {
+  const { articles, loading, error, lodArticles } = useArticles();
   const [sortedArticles, setSortedArticles] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await fetchArticles();
-
-        setArticles(data);
-        setSortedArticles(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, []);
+    setSortedArticles(articles);
+  }, [articles]);
 
   const bestArticles = [...articles]
     .sort((a, b) => (b.favoriteCount ?? 0) - (a.favoriteCount ?? 0))
     .slice(0, 3);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
@@ -66,4 +59,4 @@ const freeboardPage = () => {
   );
 };
 
-export default freeboardPage;
+export default FreeboardPage;

@@ -37,6 +37,7 @@ export default function RouteGuard({ children }) {
       const isPublicRoute = publicPaths.some((route) => path.startsWith(route));
 
       if (!accessToken && isProtectedRoute) {
+        alert("로그인이 필요합니다.");
         router.replace("/login");
       }
 

@@ -1,8 +1,11 @@
 export const defaultFetch = async (url, options = {}) => {
   const baseURL = process.env.NEXT_PUBLIC_API_URL;
+  const accessToken = localStorage.getItem("accessToken"); //CORS 문제 해결을 위해 로컬스토리지에서 토큰 가져오기
+
   const defaultOptions = {
     headers: {
       "Content-Type": "application/json",
+      ...(accessToken && { Authorization: `Bearer ${accessToken}` }), //CORS 문제 해결을 위해 토큰 헤더에 추가
     },
     cache: "force-cache",
   };
@@ -19,6 +22,8 @@ export const defaultFetch = async (url, options = {}) => {
   const response = await fetch(`${baseURL}${url}`, mergedOptions);
 
   if (!response.ok) {
+    const errorData = await response.text();
+    console.error(`❌ 서버 응답: ${errorData}`);
     throw new Error(`API error: ${response.status}`);
   }
 
