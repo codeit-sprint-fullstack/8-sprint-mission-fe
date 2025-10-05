@@ -17,6 +17,7 @@ import { useDeviceType } from "@/hooks/useDeviceType";
 import { ProductFilters } from "@/lib/api/items/fetchers";
 import Link from "next/link";
 import Text from "@/components/atoms/Text";
+import { Spinner } from "@/components/ui/spinner";
 
 // 화면 가로 사이즈 대비 모바일, 태블릿, 데스크탑 체크 시 보여줄 상품 갯수
 const pageSizes = {
@@ -111,7 +112,9 @@ export default function ItemsPage() {
   if (productsLoading || bestProductsLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <Text styleName="text-lg-medium">제품을 불러오는 중입니다.</Text>
+        <Text styleName="text-lg-medium">
+          <Spinner /> 제품을 불러오는 중입니다.
+        </Text>
       </div>
     );
   }

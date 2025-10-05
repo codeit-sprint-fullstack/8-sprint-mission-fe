@@ -12,7 +12,7 @@ export default function Header() {
   const pathname = usePathname();
 
   const isArticlePage = pathname.includes("article");
-  const isMarketPage = pathname.includes("market");
+  const isMarketPage = pathname.includes("items");
 
   const { data: user, isPending, isError, error } = useAuthQuery.useGetUser();
 

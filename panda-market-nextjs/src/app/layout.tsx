@@ -6,7 +6,7 @@ import localFont from "next/font/local";
 import { Footer } from "@/components/organisms/Footer";
 import QueryProvider from "@/lib/providers/QueryProvider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { Toaster } from "sonner";
+import { Toaster } from "@/components/ui/sonner";
 
 const pretendard = localFont({
   src: "../../font/PretendardVariable.woff2",

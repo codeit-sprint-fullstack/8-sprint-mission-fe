@@ -1,20 +1,28 @@
-import { useCommentsQuery } from "@/lib/api/comments/queries";
-import { UseQueryResult } from "@tanstack/react-query";
 import Text from "../atoms/Text";
 import Image from "next/image";
-import Comment, { CommentProps } from "./Comment";
+import type { Comment as CommentType } from "@/lib/api/comments/fetchers";
+import Comment from "./Comment";
 
-export default function CommentList({ id: articleId }: { id: string }) {
-  const {
-    data: comments,
-    isLoading,
-    isError,
-    error,
-  }: UseQueryResult<CommentProps[]> = useCommentsQuery.useGetComments(
-    articleId
-  );
+export interface CommentListProps {
+  id: string;
+  data: CommentType[];
+  isLoading: boolean;
+  isError: boolean;
+  error: Error;
+  onDeleteComment?: (commentId: string) => void;
+  onUpdateComment?: (commentId: string, comment: string) => void;
+}
 
-  console.log(comments);
+export default function CommentList({
+  id: articleId,
+  data,
+  isLoading,
+  isError,
+  error,
+  onDeleteComment,
+  onUpdateComment,
+}: CommentListProps) {
+  console.log(data);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -26,14 +34,15 @@ export default function CommentList({ id: articleId }: { id: string }) {
 
   return (
     <div className="flex flex-col gap-6">
-      {comments && comments.length > 0 ? (
-        comments?.map((comment: CommentProps) => (
+      {data ? (
+        data.map((comment) => (
           <Comment
             key={comment.id}
-            articleId={articleId}
-            id={comment.id}
-            content={comment.content}
-            createdAt={comment.createdAt}
+            data={{
+              ...comment,
+            }}
+            onDelete={onDeleteComment}
+            onUpdate={onUpdateComment}
           />
         ))
       ) : (

@@ -3,9 +3,11 @@
 import BtnHeart from "@/components/atoms/BtnHeart";
 import Text from "@/components/atoms/Text";
 import BasicDropdown from "@/components/molecules/BasicDropdown";
+import CommentList from "@/components/organisms/CommentList";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { useCommentsQuery } from "@/lib/api/comments/queries";
 import { Product } from "@/lib/api/items/fetchers";
 import { useItemsQuery } from "@/lib/api/items/queries";
 import { UseQueryResult } from "@tanstack/react-query";
@@ -13,6 +15,7 @@ import dayjs from "dayjs";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export default function ItemsDetailPage() {
   const { id }: { id: string } = useParams();
@@ -25,6 +28,22 @@ export default function ItemsDetailPage() {
     isError,
     error,
   }: UseQueryResult<Product> = useItemsQuery.useGetProductDetail(Number(id));
+
+  const {
+    data: productComments,
+    isPending: isProductCommentsPending,
+    isError: isProductCommentsError,
+    error: productCommentsError,
+  } = useCommentsQuery.useGetProductComments(id);
+
+  const comments = productComments?.list || [];
+
+  const { mutate: createProductCommentMutation } =
+    useCommentsQuery.useCreateProductComment();
+  const { mutate: updateProductCommentMutation } =
+    useCommentsQuery.useUpdateProductComment();
+  const { mutate: deleteProductCommentMutation } =
+    useCommentsQuery.useDeleteProductComment();
 
   /**
    * 상품 삭제
@@ -44,6 +63,7 @@ export default function ItemsDetailPage() {
 
   /**
    * 댓글 입력 값 변경 시 호출할 함수
+   * @param e textarea 값
    */
   const handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(e.target.value);
@@ -51,12 +71,68 @@ export default function ItemsDetailPage() {
 
   /**
    * 댓글 등록 시 호출할 함수
+   * @param e form 전송 이벤트
    */
   const handleCommentSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO: 댓글 등록 API 구현 필요
-    console.log("댓글 등록:", comment);
+
+    if (comment === "") {
+      toast.error("댓글을 입력해주세요");
+      return;
+    }
+
+    createProductCommentMutation(
+      { id, comment },
+      {
+        onSuccess: () => {
+          setComment("");
+          toast.success("댓글이 성공적으로 등록되었습니다.");
+        },
+        onError: (error) => {
+          toast.error(error.message);
+        },
+      }
+    );
+
     setComment("");
+  };
+
+  /**
+   * 상품 댓글 삭제
+   * @param commentId 댓글 ID
+   */
+  const handleDeleteProductComment = (commentId: string) => {
+    deleteProductCommentMutation(
+      { commentId },
+      {
+        onSuccess: () => {
+          toast.success("댓글이 성공적으로 삭제되었습니다.");
+        },
+        onError: (error) => {
+          toast.error(error.message);
+        },
+      }
+    );
+  };
+
+  /**
+   * 상품 댓글 수정
+   * @param commentId 댓글 ID
+   * @param comment 댓글 내용
+   */
+  const handleUpdateProductComment = (commentId: string, comment: string) => {
+    updateProductCommentMutation(
+      { commentId, comment },
+      {
+        onSuccess: () => {
+          router.refresh();
+          toast.success("댓글이 성공적으로 수정되었습니다.");
+        },
+        onError: (error) => {
+          toast.error(error.message);
+        },
+      }
+    );
   };
 
   if (isPending) {
@@ -73,15 +149,18 @@ export default function ItemsDetailPage() {
   return (
     <main className="max-w-[1200px] mx-auto px-4 py-8">
       <section className="mb-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
           {/* 상품 이미지 */}
           <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-secondary-100">
             <Image
-              src={productDetail?.images?.[0] || "/product-list/prod-test.png"}
+              src={productDetail?.images?.[0]}
               alt={productDetail?.name}
               fill
               className="object-cover"
               priority
+              onError={(e) => {
+                e.currentTarget.src = "/product-list/prod-test.png";
+              }}
             />
           </div>
 
@@ -89,14 +168,14 @@ export default function ItemsDetailPage() {
           <div className="flex flex-col">
             {/* 상품명과 드롭다운 */}
             <div className="flex justify-between items-start mb-4">
-              <Text styleName="text-2xl-bold" as="h1">
+              <Text styleName="text-2xl-regular" as="h1">
                 {productDetail?.name}
               </Text>
               <BasicDropdown onDelete={handleDelete} onUpdate={handleUpdate} />
             </div>
 
             {/* 가격 */}
-            <Text styleName="text-3xl-bold" className="mb-6">
+            <Text styleName="text-3xl-semibold" className="mb-6">
               {formattedPrice}원
             </Text>
 
@@ -104,7 +183,7 @@ export default function ItemsDetailPage() {
             <div className="mb-6">
               <Text
                 styleName="text-lg-semibold"
-                className="text-secondary-800 mb-4"
+                className="text-secondary-800 mb-4 border-t border-secondary-200 pt-6"
               >
                 상품 소개
               </Text>
@@ -137,7 +216,7 @@ export default function ItemsDetailPage() {
             </div>
 
             {/* 작성자 정보와 좋아요 */}
-            <div className="flex items-center gap-4 pt-6 border-t border-secondary-200">
+            <div className="flex items-center gap-4 pt-6 ">
               <div className="flex items-center gap-2">
                 <Avatar className="rounded-lg w-10 h-10">
                   <AvatarImage
@@ -194,22 +273,18 @@ export default function ItemsDetailPage() {
 
         {/* 댓글 리스트 영역 */}
         <div className="mb-8">
-          <Text styleName="text-md-medium" className="text-secondary-600 mb-4">
-            톡톡 사용자라면 이메게 되었나요?
-          </Text>
-          {/* TODO: 댓글 리스트 컴포넌트 추가 */}
-          <div className="flex flex-col items-center justify-center py-16">
-            <Image
-              src="/article/reply-empty.svg"
-              alt="댓글 없음"
-              width={140}
-              height={140}
-              className="mb-4"
-            />
-            <Text styleName="text-lg-regular" className="text-secondary-400">
-              아직 문의가 없습니다
-            </Text>
-          </div>
+          <CommentList
+            data={comments}
+            isLoading={isProductCommentsPending}
+            isError={isProductCommentsError}
+            error={
+              productCommentsError ||
+              new Error("댓글 조회 중 오류가 발생했습니다.")
+            }
+            id={id}
+            onDeleteComment={handleDeleteProductComment}
+            onUpdateComment={handleUpdateProductComment}
+          />
         </div>
 
         {/* 목록으로 돌아가기 */}

@@ -26,6 +26,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Article } from "@/lib/api/articles/fetchers";
+import { CommentProps } from "@/components/organisms/Comment";
 
 export default function ArticleDetailPage() {
   const { id }: { id: string } = useParams();
@@ -43,6 +44,8 @@ export default function ArticleDetailPage() {
 
   const { mutate: deleteArticleMutation } = useArticlesQuery.useDeleteArticle();
   const { mutate: createCommentMutation } = useCommentsQuery.useCreateComment();
+  const { mutate: deleteCommentMutation } = useCommentsQuery.useDeleteComment();
+  const { mutate: updateCommentMutation } = useCommentsQuery.useUpdateComment();
 
   /**
    * 게시글 삭제
@@ -53,18 +56,12 @@ export default function ArticleDetailPage() {
       {
         onSuccess: () => {
           setIsDeleteDialogOpen(false);
-          toast("게시글이 성공적으로 삭제되었습니다.", {
-            duration: 1000,
-            position: "top-center",
-          });
+          toast("게시글이 성공적으로 삭제되었습니다.");
           router.push("/article");
         },
         onError: (error) => {
           setIsDeleteDialogOpen(false);
-          toast("게시글 삭제 중 오류가 발생했습니다.", {
-            duration: 1000,
-            position: "top-center",
-          });
+          toast("게시글 삭제 중 오류가 발생했습니다.");
         },
       }
     );
@@ -96,8 +93,6 @@ export default function ArticleDetailPage() {
 
     if (comment === "") {
       toast("댓글을 입력해주세요", {
-        duration: 1000,
-        position: "top-center",
         action: {
           label: "확인",
           onClick: () => {
@@ -124,13 +119,50 @@ export default function ArticleDetailPage() {
     );
   };
 
-  if (isLoading) {
-    return <div>글 상세 조회 중</div>;
-  }
+  const {
+    data: articleComments,
+    isLoading: isArticleCommentsLoading,
+    isError: isArticleCommentsError,
+    error: articleCommentsError,
+  }: UseQueryResult<CommentProps[]> = useCommentsQuery.useGetComments(id);
 
-  if (isError) {
-    return <div>Error: {error.message}</div>;
-  }
+  /**
+   * 댓글 삭제
+   */
+  const handleDeleteComment = (commentId: string) => {
+    deleteCommentMutation(
+      { articleId: id, commentId },
+      {
+        onSuccess: () => {
+          router.refresh();
+          queryClient.invalidateQueries({ queryKey: ["comments", id] });
+          toast.success("댓글이 성공적으로 삭제되었습니다.");
+        },
+        onError: (error) => {
+          toast.error("댓글 삭제 중 오류가 발생했습니다.");
+        },
+      }
+    );
+  };
+
+  /**
+   * 댓글 수정
+   */
+  const handleUpdateComment = (commentId: string, newContent: string) => {
+    updateCommentMutation(
+      { articleId: id, commentId, comment: newContent },
+      {
+        onSuccess: () => {
+          router.refresh();
+          queryClient.invalidateQueries({ queryKey: ["comments", id] });
+          toast.success("댓글이 성공적으로 수정되었습니다.");
+        },
+        onError: (error) => {
+          toast.error("댓글 수정 중 오류가 발생했습니다.");
+        },
+      }
+    );
+  };
 
   return (
     <main>
@@ -223,7 +255,18 @@ export default function ArticleDetailPage() {
         </form>
 
         {/* 댓글 리스트 */}
-        <CommentList id={articleDetail?.id || ""} />
+        <CommentList
+          data={[]}
+          isLoading={isArticleCommentsLoading}
+          isError={isArticleCommentsError}
+          error={
+            articleCommentsError ||
+            new Error("댓글 조회 중 오류가 발생했습니다.")
+          }
+          id={articleDetail?.id || ""}
+          onDeleteComment={handleDeleteComment}
+          onUpdateComment={handleUpdateComment}
+        />
 
         {/* 목록으로 돌아가기 */}
         <div className="flex justify-center mt-16">
