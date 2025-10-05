@@ -1,12 +1,13 @@
-const Article_API_URL = "https://panda-market-api.vercel.app/articles";
-const Comment_API_URL = "https://panda-market-api.vercel.app/comments";
-const Product_API_URL = "https://panda-market-api.vercel.app/products";
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+const ARTICLE_API_URL = `${BASE_URL}/articles`;
+const COMMENT_API_URL = `${BASE_URL}/comments`;
+const PRODUCT_API_URL = `${BASE_URL}/products`;
 
 // 게시글 상세 페이지
 // 댓글 목록 조회
 export const fetchComments = async (articleId, limit = 5) => {
   const res = await fetch(
-    `${Article_API_URL}/${articleId}/comments?limit=${limit}`
+    `${ARTICLE_API_URL}/${articleId}/comments?limit=${limit}`
   );
   if (!res.ok) {
     throw new Error("게시글 댓글 목록 가져오기 실패");
@@ -21,7 +22,7 @@ export const fetchComments = async (articleId, limit = 5) => {
 
 // 댓글 추가
 export const addComment = async (articleId, comment) => {
-  const res = await fetch(`${Article_API_URL}/${articleId}/comments`, {
+  const res = await fetch(`${ARTICLE_API_URL}/${articleId}/comments`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -38,7 +39,7 @@ export const addComment = async (articleId, comment) => {
 
 // 댓글 수정
 export const updateComment = async (id, comment) => {
-  const res = await fetch(`${Comment_API_URL}/${id}`, {
+  const res = await fetch(`${COMMENT_API_URL}/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -55,7 +56,7 @@ export const updateComment = async (id, comment) => {
 
 // 댓글 삭제
 export const deleteComment = async (id) => {
-  const res = await fetch(`${Comment_API_URL}/${id}`, {
+  const res = await fetch(`${COMMENT_API_URL}/${id}`, {
     method: "DELETE",
   });
 
@@ -70,7 +71,7 @@ export const deleteComment = async (id) => {
 // 댓글 목록 조회
 export const fetchItemComments = async (productId, limit = 5) => {
   const res = await fetch(
-    `${Product_API_URL}/${productId}/comments?limit=${limit}`
+    `${PRODUCT_API_URL}/${productId}/comments?limit=${limit}`
   );
   if (!res.ok) {
     throw new Error("상품 댓글 목록 가져오기 실패");
@@ -84,7 +85,7 @@ export const fetchItemComments = async (productId, limit = 5) => {
 
 // 댓글 추가
 export const addItemComment = async (productId, comment) => {
-  const res = await fetch(`${Product_API_URL}/${productId}/comments`, {
+  const res = await fetch(`${PRODUCT_API_URL}/${productId}/comments`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

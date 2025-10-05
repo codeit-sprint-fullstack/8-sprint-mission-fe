@@ -1,4 +1,6 @@
-const API_URL = "https://panda-market-api.vercel.app/articles";
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+const ARTICLE_API_URL = `${BASE_URL}/articles`;
+
 const formatDate = (date) => {
   const d = new Date(date);
   return `${d.getFullYear()}. ${d.getMonth() + 1}. ${d.getDate()}`;
@@ -6,7 +8,7 @@ const formatDate = (date) => {
 
 // 게시글 목록 조회
 export const fetchArticles = async (limit = 10) => {
-  const res = await fetch(`${API_URL}?limit=${limit}`);
+  const res = await fetch(`${ARTICLE_API_URL}?limit=${limit}`);
   if (!res.ok) {
     throw new Error("게시글 목록 가져오기 실패");
   }
@@ -23,7 +25,7 @@ export const fetchArticles = async (limit = 10) => {
 
 // 게시글 상세 조회
 export const fetchArticle = async (id) => {
-  const res = await fetch(`${API_URL}/${id}`);
+  const res = await fetch(`${ARTICLE_API_URL}/${id}`);
   if (!res.ok) {
     throw new Error("게시글 가져오기 실패");
   }
@@ -45,7 +47,7 @@ export const addArticle = async ({ title, content }) => {
     content,
   };
 
-  const res = await fetch(API_URL, {
+  const res = await fetch(ARTICLE_API_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -62,7 +64,7 @@ export const addArticle = async ({ title, content }) => {
 
 // 게시글 수정
 export const updateArticle = async (id, { title, content }) => {
-  const res = await fetch(`${API_URL}/${id}`, {
+  const res = await fetch(`${ARTICLE_API_URL}/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -81,7 +83,7 @@ export const updateArticle = async (id, { title, content }) => {
 
 // 게시글 삭제
 export const deleteArticle = async (id) => {
-  const res = await fetch(`${API_URL}/${id}`, {
+  const res = await fetch(`${ARTICLE_API_URL}/${id}`, {
     method: "DELETE",
   });
   if (!res.ok) {
