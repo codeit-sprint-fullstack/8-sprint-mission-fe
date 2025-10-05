@@ -170,7 +170,7 @@ export default function ItemsPage() {
               판매 중인 상품
             </Text>
             <Button variant="default" asChild>
-              <Link href="/registration">상품 등록하기</Link>
+              <Link href="/items/create">상품 등록하기</Link>
             </Button>
           </div>
 

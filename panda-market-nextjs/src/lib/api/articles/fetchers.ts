@@ -1,4 +1,5 @@
 import { ArticleSchema } from "@/lib/schema/article";
+import { fetchWithAuth } from "../auth/fetchers";
 
 export interface Article {
   id: string;
@@ -98,14 +99,14 @@ const getArticleDetail = async (id: string) => {
  */
 const createArticle = async (article: ArticleSchema) => {
   try {
-    const response = await fetch(`${API_URL}/articles`, {
+    const response = await fetchWithAuth(`${API_URL}/articles`, {
       headers: {
         "Content-Type": "application/json",
       },
       method: "POST",
       body: JSON.stringify(article),
     });
-    if (!response.ok) {
+    if (!response || !response.ok) {
       throw new Error("게시글 생성 실패");
     }
     return response.json();
@@ -123,14 +124,14 @@ const createArticle = async (article: ArticleSchema) => {
  */
 const updateArticle = async (id: string, article: ArticleSchema) => {
   try {
-    const response = await fetch(`${API_URL}/articles/${id}`, {
+    const response = await fetchWithAuth(`${API_URL}/articles/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
       method: "PATCH",
       body: JSON.stringify(article),
     });
-    if (!response.ok) {
+    if (!response || !response.ok) {
       throw new Error("게시글 수정 실패");
     }
     return response.json();
@@ -147,10 +148,10 @@ const updateArticle = async (id: string, article: ArticleSchema) => {
  */
 const deleteArticle = async (id: string) => {
   try {
-    const response = await fetch(`${API_URL}/articles/${id}`, {
+    const response = await fetchWithAuth(`${API_URL}/articles/${id}`, {
       method: "DELETE",
     });
-    if (!response.ok) {
+    if (!response || !response.ok) {
       throw new Error("게시글 삭제 실패");
     }
     return response.status;

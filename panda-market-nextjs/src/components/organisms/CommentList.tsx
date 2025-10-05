@@ -14,7 +14,7 @@ export interface CommentListProps {
 }
 
 export default function CommentList({
-  id: articleId,
+  id,
   data,
   isLoading,
   isError,

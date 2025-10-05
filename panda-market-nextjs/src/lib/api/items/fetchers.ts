@@ -1,3 +1,6 @@
+import { fetchWithAuth } from "../auth/fetchers";
+import { ProductSchema } from "@/lib/schema/product";
+
 export interface Product {
   id: number;
   name: string;
@@ -64,9 +67,81 @@ const getProducts = async (
  */
 const getProductDetail = async (id: string): Promise<Product> => {
   try {
-    const response = await fetch(`${CODEIT_API_URL}/products/${id}`);
-    if (!response.ok) {
+    const response = await fetchWithAuth(`${CODEIT_API_URL}/products/${id}`);
+    if (!response || !response.ok) {
       throw new Error("상품 상세 조회 실패");
+    }
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+/**
+ * 상품 수정
+ * @param id 상품 ID
+ * @param product 상품 데이터
+ * @returns Product
+ */
+const updateProduct = async (
+  id: string,
+  product: ProductSchema
+): Promise<Product> => {
+  try {
+    const response = await fetchWithAuth(`${CODEIT_API_URL}/products/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(product),
+    });
+    if (!response?.ok) {
+      throw new Error("상품 수정 실패");
+    }
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+/**
+ * 상품 삭제
+ * @param id 상품 ID
+ * @returns Product
+ */
+const deleteProduct = async (id: string): Promise<Product> => {
+  try {
+    const response = await fetchWithAuth(`${CODEIT_API_URL}/products/${id}`, {
+      method: "DELETE",
+    });
+    if (!response?.ok) {
+      throw new Error("상품 삭제 실패");
+    }
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+/**
+ * 상품 생성
+ * @param product 상품 데이터
+ * @returns Product
+ */
+const createProduct = async (product: ProductSchema): Promise<Product> => {
+  try {
+    const response = await fetchWithAuth(`${CODEIT_API_URL}/products`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(product),
+    });
+    if (!response?.ok) {
+      throw new Error("상품 생성 실패");
     }
     return response.json();
   } catch (error) {
@@ -78,4 +153,7 @@ const getProductDetail = async (id: string): Promise<Product> => {
 export const itemsApi = {
   getProducts,
   getProductDetail,
+  createProduct,
+  updateProduct,
+  deleteProduct,
 };

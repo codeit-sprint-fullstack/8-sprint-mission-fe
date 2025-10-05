@@ -6,7 +6,14 @@ import {
   ProductList,
   ProductFilters,
 } from "@/lib/api/items/fetchers";
-import { useQuery, UseQueryResult } from "@tanstack/react-query";
+import { ProductSchema } from "@/lib/schema/product";
+import {
+  useMutation,
+  UseMutationResult,
+  useQuery,
+  useQueryClient,
+  UseQueryResult,
+} from "@tanstack/react-query";
 
 /**
  * 베스트 상품 조회 (favoriteCount 내림차순으로 3개)
@@ -53,8 +60,80 @@ const useGetProductDetail = (id: number): UseQueryResult<Product> => {
   });
 };
 
+/**
+ * 상품 수정
+ * @returns UseMutationResult
+ */
+const useUpdateProduct = (): UseMutationResult<
+  Product,
+  Error,
+  { id: string; product: ProductSchema }
+> => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, product }: { id: string; product: ProductSchema }) =>
+      itemsApi.updateProduct(id, product),
+    onSuccess: (_, { id }) => {
+      queryClient.invalidateQueries({
+        queryKey: ["productDetail", Number(id)],
+      });
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+      queryClient.invalidateQueries({ queryKey: ["bestProducts"] });
+    },
+    onError: (error) => {
+      console.error("상품 수정 중 오류가 발생했습니다:", error);
+    },
+  });
+};
+
+/**
+ * 상품 삭제
+ * @returns UseMutationResult
+ */
+const useDeleteProduct = (): UseMutationResult<Product, Error, string> => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => itemsApi.deleteProduct(id),
+    onSuccess: (_, id) => {
+      queryClient.invalidateQueries({
+        queryKey: ["productDetail", Number(id)],
+      });
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+      queryClient.invalidateQueries({ queryKey: ["bestProducts"] });
+    },
+    onError: (error) => {
+      console.error("상품 삭제 중 오류가 발생했습니다:", error);
+    },
+  });
+};
+
+/**
+ * 상품 생성
+ * @returns UseMutationResult
+ */
+const useCreateProduct = (): UseMutationResult<
+  Product,
+  Error,
+  ProductSchema
+> => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (product: ProductSchema) => itemsApi.createProduct(product),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+      queryClient.invalidateQueries({ queryKey: ["bestProducts"] });
+    },
+    onError: (error) => {
+      console.error("상품 생성 중 오류가 발생했습니다:", error);
+    },
+  });
+};
+
 export const useItemsQuery = {
   useGetBestProducts,
   useGetProducts,
   useGetProductDetail,
+  useCreateProduct,
+  useUpdateProduct,
+  useDeleteProduct,
 };

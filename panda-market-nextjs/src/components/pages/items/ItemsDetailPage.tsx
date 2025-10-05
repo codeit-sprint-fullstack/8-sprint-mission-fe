@@ -7,6 +7,7 @@ import CommentList from "@/components/organisms/CommentList";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { useAuthQuery } from "@/lib/api/auth/queries";
 import { useCommentsQuery } from "@/lib/api/comments/queries";
 import { Product } from "@/lib/api/items/fetchers";
 import { useItemsQuery } from "@/lib/api/items/queries";
@@ -45,15 +46,23 @@ export default function ItemsDetailPage() {
   const { mutate: deleteProductCommentMutation } =
     useCommentsQuery.useDeleteProductComment();
 
+  const { mutate: deleteProductMutation } = useItemsQuery.useDeleteProduct();
+  const { data: user } = useAuthQuery.useGetUser();
+
   /**
    * 상품 삭제
    */
   const handleDelete = () => {
-    // TODO: 삭제 API 구현 필요
-    console.log("상품 삭제");
-    router.push("/items");
+    deleteProductMutation(id, {
+      onSuccess: () => {
+        toast.success("상품이 성공적으로 삭제되었습니다.");
+        router.push("/items");
+      },
+      onError: (error) => {
+        toast.error(error.message);
+      },
+    });
   };
-
   /**
    * 상품 수정
    */
@@ -221,7 +230,7 @@ export default function ItemsDetailPage() {
                 <Avatar className="rounded-lg w-10 h-10">
                   <AvatarImage
                     src={"/article/avatar-img.svg"}
-                    alt={productDetail?.name}
+                    alt={user?.nickname}
                   />
                 </Avatar>
                 <div>
@@ -229,7 +238,7 @@ export default function ItemsDetailPage() {
                     styleName="text-md-semibold"
                     className="text-secondary-800"
                   >
-                    {productDetail?.name}
+                    {user?.nickname}
                   </Text>
                   <Text
                     styleName="text-xs-regular"

@@ -1,3 +1,5 @@
+import { fetchWithAuth } from "../auth/fetchers";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CODEIT_API_URL = process.env.NEXT_PUBLIC_CODEIT_API_URL;
 
@@ -140,23 +142,19 @@ const createProductComment = async (id: string, comment: string) => {
     throw new Error("값이 비어있습니다.");
   }
 
-  const accessToken = localStorage.getItem("accessToken");
-
-  if (!accessToken) {
-    throw new Error("액세스 토큰을 찾을 수 없습니다.");
-  }
-
   try {
-    const response = await fetch(`${CODEIT_API_URL}/products/${id}/comments`, {
-      method: "POST",
-      body: JSON.stringify({ content: comment }),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-    if (!response.ok) {
-      const error = await response.json();
+    const response = await fetchWithAuth(
+      `${CODEIT_API_URL}/products/${id}/comments`,
+      {
+        method: "POST",
+        body: JSON.stringify({ content: comment }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!response || !response.ok) {
+      const error = await response?.json();
       throw new Error(error.message);
     }
     return response.json();
@@ -177,23 +175,19 @@ const updateProductComment = async (commentId: string, comment: string) => {
     throw new Error("값이 비어있습니다.");
   }
 
-  const accessToken = localStorage.getItem("accessToken");
-
-  if (!accessToken) {
-    throw new Error("액세스 토큰을 찾을 수 없습니다.");
-  }
-
   try {
-    const response = await fetch(`${CODEIT_API_URL}/comments/${commentId}`, {
-      method: "PATCH",
-      body: JSON.stringify({ content: comment }),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-    if (!response.ok) {
-      const error = await response.json();
+    const response = await fetchWithAuth(
+      `${CODEIT_API_URL}/comments/${commentId}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify({ content: comment }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!response?.ok) {
+      const error = await response?.json();
       throw new Error(error.message);
     }
     return response.json();
@@ -209,21 +203,15 @@ const updateProductComment = async (commentId: string, comment: string) => {
  * @returns status code 200, 403, 404
  */
 const deleteProductComment = async (commentId: string) => {
-  const accessToken = localStorage.getItem("accessToken");
-
-  if (!accessToken) {
-    throw new Error("액세스 토큰을 찾을 수 없습니다.");
-  }
-
   try {
-    const response = await fetch(`${CODEIT_API_URL}/comments/${commentId}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-    if (!response.ok) {
-      const error = await response.json();
+    const response = await fetchWithAuth(
+      `${CODEIT_API_URL}/comments/${commentId}`,
+      {
+        method: "DELETE",
+      }
+    );
+    if (!response?.ok) {
+      const error = await response?.json();
       throw new Error(error.message);
     }
     return response.status;
