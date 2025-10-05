@@ -7,6 +7,7 @@ import InputField from "@/components/AuthPage/InputField";
 import AuthButton from "@/components/AuthPage/AuthButton";
 import SocialLogin from "@/components/AuthPage/SocialLogin";
 import Modal from "@/components/AuthPage/Modal";
+import { authService } from "@/lib/authService";
 
 const SignupPage = () => {
   const [email, setEmail] = useState("");
@@ -17,6 +18,13 @@ const SignupPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const router = useRouter();
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      router.push("/items");
+    }
+  }, [router]);
 
   const registerMutation = useMutation({
     mutationFn: ({ nickname, email, password }) =>

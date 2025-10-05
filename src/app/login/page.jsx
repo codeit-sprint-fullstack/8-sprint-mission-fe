@@ -9,7 +9,7 @@ import InputField from "@/components/AuthPage/InputField";
 import AuthButton from "@/components/AuthPage/AuthButton";
 import SocialLogin from "@/components/AuthPage/SocialLogin";
 import Modal from "@/components/AuthPage/Modal";
-import { authService } from "@/services/authService";
+import { authService } from "@/lib/authService";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -18,6 +18,13 @@ const LoginPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const router = useRouter();
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      router.push("/items");
+    }
+  }, [router]);
 
   const loginMutation = useMutation({
     mutationFn: ({ email, password }) => authService.login(email, password),
