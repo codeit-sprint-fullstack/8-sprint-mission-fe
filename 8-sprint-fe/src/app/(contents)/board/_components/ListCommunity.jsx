@@ -1,6 +1,6 @@
 import React from "react";
 
-import ImageBox from "@/app/board/_components/ImageBox";
+import ImageBox from "@/app/(contents)/board/_components/ImageBox";
 
 import Heart from "@/app/(components)/atoms/Heart";
 import ProfileIcon from "@/app/(components)/atoms/ProfileIcon";
@@ -22,7 +22,7 @@ const ListCommunity = ({ title, createdAt }) => {
           <span className="text-gray-600">총명한 판다</span>
           <span className="text-gray-400">{date}</span>
         </div>
-        <Heart size="16" count="9999" fontSize="text-sm"/>
+        <Heart size="16" count="9999" fontSize="text-sm" />
       </div>
     </div>
   );

@@ -1,9 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
-import Header from "./(components)/Header";
-import Footer from "./(components)/Footer";
 import TanstackProvider from "@/providers/TanstackProvider";
+import AuthProvider from "@/providers/AuthProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -54,9 +53,9 @@ export default function RootLayout({ children }) {
       className={`antialiased ${rokaf.variable} ${pretender.variable}`}
     >
       <body>
-        <Header />
-        <TanstackProvider>{children}</TanstackProvider>
-        <Footer />
+        <AuthProvider>
+          <TanstackProvider>{children}</TanstackProvider>
+        </AuthProvider>
       </body>
     </html>
   );

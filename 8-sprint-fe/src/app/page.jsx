@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
+import Nav from "./(components)/Nav";
+import Footer from "./(components)/Footer";
 
 const MainPage = () => {
   return (
-    <div>MainPage</div>
-  )
-}
+    <>
+      <Nav />
+      <div>MainPage</div>
+      <Footer />
+    </>
+  );
+};
 
-export default MainPage
+export default MainPage;

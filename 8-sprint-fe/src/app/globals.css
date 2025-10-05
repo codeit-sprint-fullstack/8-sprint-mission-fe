@@ -43,7 +43,3 @@ section {
   max-width: 1200px;
   width: 100%;
 }
-
-.basic_nav {
-  @apply text-gray-600 text-lg font-bold;
-}
