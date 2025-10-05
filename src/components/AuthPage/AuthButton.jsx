@@ -9,7 +9,7 @@ const AuthButton = ({ text, onClick, disabled = false }) => {
       className={`w-full rounded-full py-3 text-lg font-semibold text-white ${
         disabled
           ? "bg-gray-400 cursor-not-allowed opacity-60"
-          : "bg-gray-400 hover:bg-blue-500 cursor-pointer"
+          : "bg-blue-500 hover:underline cursor-pointer"
       }`}
     >
       {text}

@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import InputField from "@/components/AuthPage/InputField";
@@ -11,11 +13,12 @@ import { authService } from "@/lib/authService";
 
 const SignupPage = () => {
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
+  const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [error, setError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
 
   const router = useRouter();
 
@@ -26,9 +29,9 @@ const SignupPage = () => {
     }
   }, [router]);
 
-  const registerMutation = useMutation({
+  const signupMutation = useMutation({
     mutationFn: ({ nickname, email, password }) =>
-      authService.register(nickname, email, password),
+      authService.signUp(nickname, email, password),
     onSuccess: () => router.push("/items"),
     onError: (err) => {
       setModalMessage(
@@ -39,7 +42,7 @@ const SignupPage = () => {
   });
 
   const handleSignup = () => {
-    if (!email || !username || !password || !confirm) {
+    if (!email || !nickname || !password || !confirm) {
       setError("모든 필드를 입력해주세요.");
       return;
     }
@@ -47,10 +50,10 @@ const SignupPage = () => {
       setError("비밀번호가 일치하지 않습니다.");
       return;
     }
-    registerMutation.mutate({ nickname: username, email, password });
+    signupMutation.mutate({ nickname, email, password });
   };
 
-  const isDisabled = !email || !username || !password || !confirm;
+  const isDisabled = !email || !nickname || !password || !confirm;
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-white px-4 py-15">
@@ -75,10 +78,10 @@ const SignupPage = () => {
           <InputField
             title="닉네임"
             type="text"
-            id="username"
+            id="nickname"
             placeholder="닉네임을 입력해주세요."
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={nickname}
+            onChange={(e) => setNickname(e.target.value)}
           />
 
           <InputField
