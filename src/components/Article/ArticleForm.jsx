@@ -13,7 +13,7 @@ const ArticleForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
 
   const isFormValid = title.trim() !== "" && content.trim() !== "";
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!isFormValid) return;
     onSubmit({ title, content });
   };

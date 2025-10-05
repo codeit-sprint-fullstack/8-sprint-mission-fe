@@ -11,7 +11,7 @@ import Comment from "@/components/Comment/Comment";
 import NoneComment from "@/components/Comment/NoneComment";
 import GoBackButton from "@/components/Button/GoBackButton";
 
-const freeboardIdPage = () => {
+const FreeboardIdPage = () => {
   const { id } = useParams();
   const [commentList, setCommentList] = useState([]);
 
@@ -95,4 +95,4 @@ const freeboardIdPage = () => {
   );
 };
 
-export default freeboardIdPage;
+export default FreeboardIdPage;
