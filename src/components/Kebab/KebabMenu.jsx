@@ -63,16 +63,16 @@ const KebabMenu = ({ type, id, onDelete, onEdit }) => {
       </button>
 
       {isOpen && (
-        <div className="absolute top-6 right-0 flex flex-col items-start w-[139px] bg-white rounded-lg border border-[#D1D5DB]">
+        <div className="absolute top-6 right-0 flex flex-col items-start w-[139px] bg-white rounded-lg border border-gray-300">
           <button
             onClick={handleEdit}
-            className="flex justify-center items-center self-stretch h-[46px] pt-4 pr-0 pb-3 pl-0 text-base font-normal text-[#6B7280] cursor-pointer"
+            className="flex justify-center items-center self-stretch h-[46px] pt-4 pr-0 pb-3 pl-0 text-base font-normal text-gray-500 cursor-pointer"
           >
             수정하기
           </button>
           <button
             onClick={handleDelete}
-            className="flex justify-center items-center self-stretch h-[46px] pt-4 pr-0 pb-3 pl-0 text-base font-normal text-[#6B7280] cursor-pointer"
+            className="flex justify-center items-center self-stretch h-[46px] pt-4 pr-0 pb-3 pl-0 text-base font-normal text-gray-500 cursor-pointer"
           >
             삭제하기
           </button>

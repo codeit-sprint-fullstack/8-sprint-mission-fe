@@ -28,7 +28,7 @@ const InputField = ({
           placeholder={placeholder}
           value={value}
           onChange={onChange}
-          className="w-full rounded-lg bg-gray-100 px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500 placeholder-[#9CA3AF] text-black"
+          className="w-full rounded-lg bg-gray-100 px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400 text-black"
           required
         />
 

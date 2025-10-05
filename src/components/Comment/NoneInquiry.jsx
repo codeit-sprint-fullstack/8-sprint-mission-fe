@@ -11,7 +11,7 @@ const NoneInquiry = () => {
           width={140}
           height={140}
         />
-        <p className="self-stretch text-base font-normal text-[#9CA3AF] leading-[26px]">
+        <p className="self-stretch text-base font-normal text-gray-400 leading-[26px]">
           아직 문의가 없어요.
         </p>
       </div>

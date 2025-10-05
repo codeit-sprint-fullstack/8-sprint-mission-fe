@@ -11,7 +11,7 @@ const NoneComment = () => {
           width={140}
           height={140}
         />
-        <p className="self-stretch text-base font-normal text-[#9CA3AF] leading-[26px]">
+        <p className="self-stretch text-base font-normal text-gray-400 leading-[26px]">
           아직 댓글이 없어요, <br />
           지금 댓글을 달아보세요!
         </p>

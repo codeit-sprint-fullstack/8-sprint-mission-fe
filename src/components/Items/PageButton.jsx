@@ -36,7 +36,7 @@ const PageButton = ({
           <button
             key={`page-${pageNum}`}
             onClick={isCurrent ? undefined : () => onChange?.(pageNum)}
-            className={`flex items-center justify-center w-10 h-10 rounded-full border font-semibold text-[#6B7280]
+            className={`flex items-center justify-center w-10 h-10 rounded-full border font-semibold text-gray-500
               ${
                 isCurrent
                   ? "bg-blue-500 text-white border-none"

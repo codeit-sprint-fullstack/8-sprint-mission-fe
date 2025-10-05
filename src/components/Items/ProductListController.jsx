@@ -47,7 +47,7 @@ const ProductListController = ({
         />
         <Link
           href="/registration"
-          className="flex justify-center items-center bg-[#3692FF] rounded-lg h-[42px] px-[23px] py-3 text-base text-[#F3F4F6] whitespace-nowrap hover:underline"
+          className="flex justify-center items-center bg-[#3692FF] rounded-lg h-[42px] px-[23px] py-3 text-base text-gray-100 whitespace-nowrap hover:underline"
         >
           상품 등록하기
         </Link>

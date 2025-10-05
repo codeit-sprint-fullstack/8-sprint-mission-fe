@@ -11,7 +11,7 @@ const SearchBar = ({ search, onChange, onSearch }) => {
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && onSearch()}
         placeholder="검색할 상품을 입력해주세요."
-        className="w-full h-[42px] pl-12 pr-4 py-2 rounded-xl bg-gray-100 focus:border-gray-400 focus:outline-none placeholder-[#9CA3AF] text-black"
+        className="w-full h-[42px] pl-12 pr-4 py-2 rounded-xl bg-gray-100 focus:border-gray-400 focus:outline-none placeholder-gray-400 text-black"
       />
       <Image
         src="/ic_search.svg"

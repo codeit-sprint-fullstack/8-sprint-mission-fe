@@ -38,7 +38,7 @@ const Header = () => {
           (user ? (
             <Link
               href="/mypage"
-              className="flex justify-center items-center w-[96px] h-[40px] gap-[6px] shrink-0 text-lg font-normal text-[#4B5563] whitespace-nowrap cursor-pointer"
+              className="flex justify-center items-center w-[96px] h-[40px] gap-[6px] shrink-0 text-lg font-normal text-gray-600 whitespace-nowrap cursor-pointer"
             >
               <Image
                 src="/ic_profile.svg"
@@ -51,7 +51,7 @@ const Header = () => {
           ) : (
             <Link
               href="/login"
-              className="flex justify-center items-center bg-[#3692FF] rounded-lg w-[88px] h-12 px-[23px] py-3 text-base text-[#F3F4F6] whitespace-nowrap hover:underline"
+              className="flex justify-center items-center bg-[#3692FF] rounded-lg w-[88px] h-12 px-[23px] py-3 text-base text-gray-100 whitespace-nowrap hover:underline"
             >
               로그인
             </Link>

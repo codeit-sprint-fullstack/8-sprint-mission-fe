@@ -18,9 +18,6 @@ const ItemPage = () => {
     setSortedProducts(products);
   }, [products]);
 
-  if (loading) return <div>상품을 불러오는 중입니다...</div>;
-  if (error) return <div>Error: {error}</div>;
-
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <Header />
@@ -34,9 +31,33 @@ const ItemPage = () => {
             setSortedProducts={setSortedProducts}
           />
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {(sortedProducts ?? []).map((product) => (
-              <ProductCard key={product.id} product={product} {...product} />
-            ))}
+            {loading && (
+              <div className="col-span-full text-center py-10 text-gray-400">
+                상품 목록을 불러오는 중입니다...
+              </div>
+            )}
+
+            {error && (
+              <div className="col-span-full text-center py-10 text-gray-400">
+                Error: {error}
+              </div>
+            )}
+
+            {!loading &&
+              !error &&
+              (sortedProducts?.length > 0 ? (
+                (sortedProducts ?? []).map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    {...product}
+                  />
+                ))
+              ) : (
+                <div className="col-span-full text-center py-10 text-gray-400">
+                  상품이 없습니다.
+                </div>
+              ))}
           </div>
           <PageButton
             nowPage={nowPage}

@@ -41,10 +41,10 @@ const ItemsDetail = () => {
           <div className="flesx flex-col items-start self-stretch">
             <div className="flex items-start justify-between self-stretch mb-4">
               <div className="flex flex-col items-start gap-4 self-stretch mb-4">
-                <p className="self-stretch text-2xl font-semibold text-[#1F2937] leading-[32px]">
+                <p className="self-stretch text-2xl font-semibold text-gray-800 leading-[32px]">
                   {product.name}
                 </p>
-                <h1 className="self-stretch text-5xl font-semibold text-[#1F2937]">
+                <h1 className="self-stretch text-5xl font-semibold text-gray-800">
                   {product.price?.toLocaleString()}원
                 </h1>
               </div>
@@ -56,12 +56,12 @@ const ItemsDetail = () => {
           </div>
 
           <div className="flex flex-col items-start mb-[62px]">
-            <div className="self-stretch text-base font-semibold text-[#4B5563] leading-[26px] mb-6">
+            <div className="self-stretch text-base font-semibold text-gray-600 leading-[26px] mb-6">
               <p className="mb-4">상품 소개</p>
               <p className="font-normal">{product.description}</p>
             </div>
             <div>
-              <p className="self-stretch text-base font-semibold text-[#4B5563] leading-[26px] mb-4">
+              <p className="self-stretch text-base font-semibold text-gray-600 leading-[26px] mb-4">
                 상품 태그
               </p>
               <div>
@@ -79,10 +79,8 @@ const ItemsDetail = () => {
                 height={40}
               />
               <div className="flex flex-col items-start gap-[2px] text-sm">
-                <p className="font-medium text-[#4B5563]">{product.nickname}</p>
-                <p className="font-normal text-[#9CA3AF]">
-                  {product.createdAt}
-                </p>
+                <p className="font-medium text-gray-600">{product.nickname}</p>
+                <p className="font-normal text-gray-400">{product.createdAt}</p>
               </div>
             </div>
 

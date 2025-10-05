@@ -30,7 +30,7 @@ const ArticleDatail = () => {
     <div className="flex flex-col items-start self-stretch mb-8">
       <div className="flex flex-col items-start self-stretch mb-6">
         <div className="flex items-start gap-2 self-stretch mb-4">
-          <h1 className="w-full text-xl font-bold text-[#1F2937] leading-8">
+          <h1 className="w-full text-xl font-bold text-gray-800 leading-8">
             {article.title}
           </h1>
           <KebabMenu type="article" id={article.id} />
@@ -40,8 +40,8 @@ const ArticleDatail = () => {
           <div className="flex items-center gap-4 text-sm leading-6 mr-4">
             <Image src="/ic_profile.svg" alt="Profile" width={40} height={40} />
             <div className="flex items-start gap-2">
-              <p className="font-medium text-[#4B5563]">{article.nickname}</p>
-              <p className="font-normal text-[#9CA3AF]">{article.createdAt}</p>
+              <p className="font-medium text-gray-600">{article.nickname}</p>
+              <p className="font-normal text-gray-400">{article.createdAt}</p>
             </div>
           </div>
 
@@ -58,7 +58,7 @@ const ArticleDatail = () => {
 
       <hr className="w-full border-t border-gray-200 mb-4" />
 
-      <p className="text-lg font-normal text-[#1F2937] leading-[26px]">
+      <p className="text-lg font-normal text-gray-800 leading-[26px]">
         {article.content}
       </p>
     </div>

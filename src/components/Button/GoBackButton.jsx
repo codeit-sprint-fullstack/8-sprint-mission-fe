@@ -7,7 +7,7 @@ const GoBackButton = ({ href }) => {
   return (
     <Link href={href} className="flex justify-center items-center mt-16">
       <div className="flex justify-center items-center w-60 h-12 px-16 py-3 gap-2 bg-[#3692FF] rounded-[40px]">
-        <p className="text-lg font-semibold text-[#F3F4F6] leading-none text-nowrap">
+        <p className="text-lg font-semibold text-gray-100 leading-none text-nowrap">
           목록으로 돌아가기
         </p>
         <Image

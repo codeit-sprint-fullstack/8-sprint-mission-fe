@@ -20,22 +20,39 @@ const FreeboardPage = () => {
     .sort((a, b) => (b.favoriteCount ?? 0) - (a.favoriteCount ?? 0))
     .slice(0, 3);
 
-  if (loading) return <div>게시글을 불러오는 중 입니다...</div>;
-  if (error) return <div>Error: {error}</div>;
-
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <Header />
 
       <main className="flex-1 flex flex-col items-stretch mx-auto mb-[200px] p-4 w-full max-w-[1200px]">
         <section>
-          <h1 className="mb-6 text-xl text-[#111827] font-bold">
+          <h1 className="mb-6 text-xl text-gray-900 font-bold">
             베스트 게시글
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {(bestArticles ?? []).map((article) => (
-              <BestArticle key={article.id} article={article} />
-            ))}
+            {loading && (
+              <div className="col-span-full text-center py-10 text-gray-400">
+                베스트 게시글을 불러오는 중입니다...
+              </div>
+            )}
+
+            {error && (
+              <div className="col-span-full text-center py-10 text-gray-400">
+                Error: {error}
+              </div>
+            )}
+
+            {!loading &&
+              !error &&
+              (bestArticles?.length > 0 ? (
+                bestArticles.map((article) => (
+                  <BestArticle key={article.id} article={article} />
+                ))
+              ) : (
+                <div className="col-span-full text-center py-10 text-gray-400">
+                  베스트 게시글이 없습니다.
+                </div>
+              ))}
           </div>
         </section>
 
@@ -46,9 +63,29 @@ const FreeboardPage = () => {
             setSortedArticles={setSortedArticles}
           />
           <div className="grid grid-cols-1 gap-4">
-            {(sortedArticles ?? []).map((article) => (
-              <ArticleCard key={article.id} article={article} />
-            ))}
+            {loading && (
+              <div className="col-span-full text-center py-10 text-gray-500">
+                게시글을 불러오는 중입니다...
+              </div>
+            )}
+
+            {error && (
+              <div className="col-span-full text-center py-10 text-red-500">
+                Error: {error}
+              </div>
+            )}
+
+            {!loading &&
+              !error &&
+              (sortedArticles?.length > 0 ? (
+                sortedArticles.map((article) => (
+                  <ArticleCard key={article.id} article={article} />
+                ))
+              ) : (
+                <div className="col-span-full text-center py-10 text-gray-400">
+                  게시글이 없습니다.
+                </div>
+              ))}
           </div>
         </section>
       </main>

@@ -38,14 +38,14 @@ const Comment = ({ comment, onDelete, onUpdate }) => {
   };
 
   return (
-    <div className="bg-[#FCFCFC] border-b border-[#E5E7EB]">
+    <div className="bg-gray-50 border-b border-gray-200">
       {isEditing ? (
         <div className="flex flex-col gap-2">
           <textarea
             value={editedContent}
             placeholder="댓글을 수정해주세요."
             onChange={(e) => setEditedContent(e.target.value)}
-            className="w-full h-[104px] px-4 py-2 rounded rounded-xl bg-gray-100 focus:outline-none text-[#111827]"
+            className="w-full h-[104px] px-4 py-2 rounded rounded-xl bg-gray-100 focus:outline-none text-gray-900"
           />
           <div className="flex justify-end gap-2">
             <button
@@ -53,14 +53,14 @@ const Comment = ({ comment, onDelete, onUpdate }) => {
               className={`px-4 py-2 text-white rounded whitespace-nowrap cursor-pointer ${
                 isFormValid
                   ? "bg-[#3692FF] cursor-pointer hover:underline"
-                  : "bg-[#9CA3AF] cursor-not-allowed"
+                  : "bg-gray-400 cursor-not-allowed"
               }`}
             >
               저장
             </button>
             <button
               onClick={() => setIsEditing(false)}
-              className="px-4 py-2 bg-[#9CA3AF] rounded whitespace-nowrap cursor-pointer"
+              className="px-4 py-2 bg-gray-400 rounded whitespace-nowrap cursor-pointer"
             >
               취소
             </button>
@@ -69,7 +69,7 @@ const Comment = ({ comment, onDelete, onUpdate }) => {
       ) : (
         <div className="relative mb-3">
           <div className="flex flex-col font-normal">
-            <p className="mb-6 text-sm text-[#1F2937] leading-6">
+            <p className="mb-6 text-sm text-gray-800 leading-6">
               {comment.content}
             </p>
             <div className="flex items-start gap-2">
@@ -81,8 +81,8 @@ const Comment = ({ comment, onDelete, onUpdate }) => {
                 className="cursor-pointer"
               />
               <div className="flex flex-col items-start gap-1 text-xs leading-[18px]">
-                <p className="text-[#4B5563]">{comment.nickname}</p>
-                <p className="text-[#9CA3AF]">
+                <p className="text-gray-600">{comment.nickname}</p>
+                <p className="text-gray-400">
                   {comment.updatedAt
                     ? `${getTimeAgo(comment.updatedAt)}`
                     : getTimeAgo(comment.createdAt)}

@@ -31,7 +31,7 @@ const InfoCard = () => {
       {infoData.map(({ img, label, title, desc, reverse }, i) => (
         <div
           key={i}
-          className={`flex items-center gap-16 bg-[#FCFCFC] p-8 my-[138px] ${
+          className={`flex items-center gap-16 bg-gray-50 p-8 my-[138px] ${
             reverse ? "flex-row-reverse" : ""
           }`}
         >
@@ -48,7 +48,7 @@ const InfoCard = () => {
               <h1 className="text-[40px] font-bold leading-[140%] text-gray-800 whitespace-pre-line text-nowrap">
                 {title}
               </h1>
-              <p className="text-[24px] font-medium leading-8 text-[#374151] whitespace-pre-line text-nowrap">
+              <p className="text-[24px] font-medium leading-8 text-gray-700 whitespace-pre-line text-nowrap">
                 {desc}
               </p>
             </div>

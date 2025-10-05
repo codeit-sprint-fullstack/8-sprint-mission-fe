@@ -51,7 +51,7 @@ const LikeButton = ({
     <button
       onClick={handleClick}
       disabled={loading}
-      className="flex flex-col gap-[10px] h-10 ml-4 px-3 py-1 bg-white border border-[#E5E7EB] rounded-[35px]"
+      className="flex flex-col gap-[10px] h-10 ml-4 px-3 py-1 bg-white border border-gray-200 rounded-[35px]"
     >
       <div className="flex items-center gap-1 cursor-pointer">
         <Image
@@ -60,7 +60,7 @@ const LikeButton = ({
           width={32}
           height={32}
         />
-        <p className="text-base font-medium text-[#6B7280] leading-[26px]">
+        <p className="text-base font-medium text-gray-500 leading-[26px]">
           {count}
         </p>
       </div>
