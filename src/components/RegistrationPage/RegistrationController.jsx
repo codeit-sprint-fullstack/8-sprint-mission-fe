@@ -6,7 +6,7 @@ const RegistrationController = () => {
       <h2 className="text-lg font-bold text-gray-800">상품 등록하기</h2>
       <a
         href="/items/new"
-        className="h-[42px] px-6 flex justify-center items-center rounded-lg bg-gray-400 text-gray-100 text-base font-semibold no-underline cursor-pointer"
+        className="h-[42px] px-6 flex justify-center items-center rounded-lg bg-gray-400 text-gray-100 text-base no-underline cursor-pointer"
       >
         등록
       </a>

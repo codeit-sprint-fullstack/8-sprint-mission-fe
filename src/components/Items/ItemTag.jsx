@@ -31,17 +31,17 @@ const ItemTag = ({ tags, removable = false, onRemove }) => {
       {tagArray.map((tag, index) => (
         <div
           key={`${tag}-${index}`}
-          className="relative flex items-center h-9 px-4 py-1 gap-2 rounded-3xl border border-gray-200 bg-gray-50"
+          className="relative flex items-center h-9 px-3 gap-1 rounded-3xl border border-gray-200 bg-gray-50"
         >
-          <span className="text-base font-normal text-gray-800">#{tags}</span>
+          <span className="text-base font-normal text-gray-800">#{tag}</span>
 
           {removable && (
             <button
               type="button"
               onClick={() => onRemove?.(tag)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer hover:scale-110 transition-transform"
+              className="flex-shrink-0 p-0 cursor-pointer hover:scale-110 transition-transform"
             >
-              <Image src="/ic_X.svg" alt="Remove Icon" width={22} height={24} />
+              <Image src="/ic_X.svg" alt="Remove Icon" width={18} height={18} />
             </button>
           )}
         </div>
