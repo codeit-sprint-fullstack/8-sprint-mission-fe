@@ -1,4 +1,3 @@
-// src/providers/RouteGuard.jsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -28,28 +27,30 @@ export default function RouteGuard({ children }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (user === null) {
-      setCheckingAuth(false);
-      return;
-    }
+    const checkAccess = async () => {
+      const accessToken = localStorage.getItem("accessToken");
+      const path = pathname.split("?")[0];
 
-    const path = pathname.split("?")[0];
+      const isProtectedRoute = protectedPaths.some((route) =>
+        path.startsWith(route)
+      );
+      const isPublicRoute = publicPaths.some((route) => path.startsWith(route));
 
-    const isProtectedRoute = protectedPaths.some((route) =>
-      path.startsWith(route)
-    );
-    const isPublicRoute = publicPaths.some((route) => path.startsWith(route));
+      if (!accessToken && isProtectedRoute) {
+        router.replace("/login");
+      }
 
-    if (!user && isProtectedRoute) {
-      router.replace("/login");
-    } else if (user && isPublicRoute) {
-      router.replace("/items");
-    } else {
-      setCheckingAuth(false);
-    }
+      if (accessToken && isPublicRoute) {
+        router.replace("/items");
+      }
+
+      setIsLoading(false);
+    };
+
+    checkAccess();
   }, [user, pathname, router]);
 
-  if (checkingAuth) return null;
+  if (isLoading) return null;
 
   return children;
 }
