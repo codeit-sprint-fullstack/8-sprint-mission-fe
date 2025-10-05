@@ -1,25 +1,37 @@
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_USER;
 
-export async function signIn({ email, password }) {
-  const res = await fetch(`${API_BASE}/auth/signIn`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      email: String(email).trim(),
-      password: String(password).trim(),
-    }),
+export async function authFetch(path, { headers, ...opts } = {}) {
+  const token =
+    typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
+
+  const res = await fetch(`${API_BASE}${path}`, {
+    ...opts,
+    headers: {
+      "Content-Type": "application/json",
+      ...(headers || {}),
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
   });
 
   const data = await res.json().catch(() => ({}));
 
   if (!res.ok) {
-    const msg = data?.message || "로그인에 실패했습니다.";
-    const err = new Error(msg);
+    const err = new Error(data?.message || "요청에 실패했습니다.");
     err.status = res.status;
+    err.data = data;
     throw err;
   }
 
   return data; // { accessToken, ... }
+}
+export async function signIn({ email, password }) {
+  return authFetch("/auth/signIn", {
+    method: "POST",
+    body: JSON.stringify({
+      email: String(email).trim(),
+      password: String(password).trim(),
+    }),
+  });
 }
 
 export async function signUp({
@@ -28,9 +40,8 @@ export async function signUp({
   password,
   passwordConfirmation,
 }) {
-  const res = await fetch(`${API_BASE}/auth/signUp`, {
+  return authFetch("/auth/signUp", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       email: String(email).trim(),
       nickname: String(nickname).trim(),
@@ -38,13 +49,8 @@ export async function signUp({
       passwordConfirmation: String(passwordConfirmation ?? password).trim(),
     }),
   });
+}
 
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) {
-    const msg = data?.message || "회원가입에 실패했습니다.";
-    const err = new Error(msg);
-    err.status = res.status;
-    throw err;
-  }
-  return data; // { accessToken, ... }
+export async function getMe() {
+  return authFetch("/users/me", { method: "GET" });
 }
