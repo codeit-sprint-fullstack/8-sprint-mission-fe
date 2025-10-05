@@ -7,14 +7,31 @@ import { usePathname } from "next/navigation";
 import { useAuthQuery } from "@/lib/api/auth/queries";
 import Text from "../atoms/Text";
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
+import { useEffect, useState } from "react";
 
 export default function Header() {
   const pathname = usePathname();
+  const [hasToken, setHasToken] = useState(false);
 
   const isArticlePage = pathname.includes("article");
   const isMarketPage = pathname.includes("items");
 
-  const { data: user, isPending, isError, error } = useAuthQuery.useGetUser();
+  // 토큰 존재 여부 확인
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    const refreshToken = localStorage.getItem("refreshToken");
+    setHasToken(!!(accessToken || refreshToken));
+  }, []);
+
+  // 토큰이 있을 때만 사용자 정보 조회
+  const {
+    data: user,
+    isPending,
+    isError,
+    error,
+  } = useAuthQuery.useGetUser({
+    enabled: hasToken, // 토큰이 있을 때만 쿼리 실행
+  });
 
   return (
     <header className="border-b fixed top-0 z-10 w-full bg-white">

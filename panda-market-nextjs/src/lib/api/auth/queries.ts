@@ -69,15 +69,19 @@ const usePostSignUp = (): UseMutationResult<SignUpResponse, Error, SignUp> => {
 
 /**
  * 회원정보 조회
+ * @param options 쿼리 옵션 (enabled 등)
  * @returns User
  */
-const useGetUser = (): UseQueryResult<User, Error> => {
+const useGetUser = (options?: {
+  enabled?: boolean;
+}): UseQueryResult<User, Error> => {
   return useQuery({
     queryKey: ["user"],
     queryFn: () => authApi.getUser(),
     staleTime: Infinity,
     refetchOnWindowFocus: false, // 창 포커스 시 자동 재요청 방지
     retry: false, // 실패 시 재시도 방지
+    enabled: options?.enabled ?? true, // 기본값은 true
   });
 };
 
