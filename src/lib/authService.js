@@ -9,9 +9,9 @@ export const authService = {
     }),
 
   // 회원가입
-  signUp: (nickname, email, password) =>
+  signUp: (nickname, email, password, passwordConfirmation) =>
     defaultFetch("/auth/signUp", {
       method: "POST",
-      body: JSON.stringify({ nickname, email, password }),
+      body: JSON.stringify({ nickname, email, password, passwordConfirmation }),
     }),
 };

@@ -30,9 +30,9 @@ const SignupPage = () => {
   }, [router]);
 
   const signupMutation = useMutation({
-    mutationFn: ({ nickname, email, password }) =>
-      authService.signUp(nickname, email, password),
-    onSuccess: () => router.push("/items"),
+    mutationFn: ({ nickname, email, password, passwordConfirmation }) =>
+      authService.signUp(nickname, email, password, passwordConfirmation),
+    onSuccess: () => router.push("/login"),
     onError: (err) => {
       setModalMessage(
         err.message || "회원가입 실패. 이메일 또는 비밀번호를 확인해주세요."
@@ -50,7 +50,12 @@ const SignupPage = () => {
       setError("비밀번호가 일치하지 않습니다.");
       return;
     }
-    signupMutation.mutate({ nickname, email, password });
+    signupMutation.mutate({
+      nickname,
+      email,
+      password,
+      passwordConfirmation: confirm,
+    });
   };
 
   const isDisabled = !email || !nickname || !password || !confirm;
