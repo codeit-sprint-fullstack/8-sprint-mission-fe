@@ -64,13 +64,13 @@ const FreeboardPage = () => {
           />
           <div className="grid grid-cols-1 gap-4">
             {loading && (
-              <div className="col-span-full text-center py-10 text-gray-500">
+              <div className="col-span-full text-center py-10 text-gray-400">
                 게시글을 불러오는 중입니다...
               </div>
             )}
 
             {error && (
-              <div className="col-span-full text-center py-10 text-red-500">
+              <div className="col-span-full text-center py-10 text-gray-400">
                 Error: {error}
               </div>
             )}
