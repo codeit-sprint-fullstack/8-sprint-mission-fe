@@ -2,7 +2,6 @@
 
 import React, { useRef, useState } from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import Text from "@/components/atoms/Text";
 import { X } from "lucide-react";
 
@@ -82,12 +81,9 @@ export default function ImageUpload({
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div>
         <Text styleName="text-lg-semibold" className="text-secondary-800">
           상품 이미지
-        </Text>
-        <Text styleName="text-md-regular" className="text-secondary-400">
-          {images.length}/{maxImages}
         </Text>
       </div>
 

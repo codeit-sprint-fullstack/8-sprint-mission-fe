@@ -146,17 +146,6 @@ export default function ItemsUpdatePage() {
           </Button>
         </div>
 
-        {/* 취소 버튼 */}
-        <div className="flex justify-center pt-8">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => router.push(`/items/${id}`)}
-          >
-            취소
-          </Button>
-        </div>
-
         {/* 이미지 업로드 */}
         <Controller
           name="images"
@@ -235,6 +224,17 @@ export default function ItemsUpdatePage() {
             />
           )}
         />
+
+        {/* 취소 버튼 */}
+        <div className="flex justify-center pt-8">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => router.push(`/items/${id}`)}
+          >
+            취소
+          </Button>
+        </div>
       </form>
     </main>
   );

@@ -14,6 +14,7 @@ import ImageUpload from "@/components/molecules/ImageUpload";
 import TagInput from "@/components/molecules/TagInput";
 import { useItemsQuery } from "@/lib/api/items/queries";
 import { productSchema, ProductSchema } from "@/lib/schema/product";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function ItemsCreatePage() {
   const router = useRouter();
@@ -73,7 +74,9 @@ export default function ItemsCreatePage() {
   if (isCreateProductPending) {
     return (
       <div className="flex justify-center items-center min-h-[400px]">
-        <Text styleName="text-lg-medium">상품을 등록하는 중...</Text>
+        <Text styleName="text-lg-medium">
+          <Spinner /> 상품을 등록하는 중
+        </Text>
       </div>
     );
   }
@@ -91,7 +94,7 @@ export default function ItemsCreatePage() {
             variant={isValid ? "default" : "disabled"}
             disabled={!isValid || isCreateProductPending}
           >
-            {isCreateProductPending ? "등록 중..." : "등록하기"}
+            {isCreateProductPending ? "등록 중" : "등록"}
           </Button>
         </div>
 

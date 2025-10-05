@@ -7,6 +7,17 @@ import CommentList from "@/components/organisms/CommentList";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { useAuthQuery } from "@/lib/api/auth/queries";
 import { useCommentsQuery } from "@/lib/api/comments/queries";
 import { Product } from "@/lib/api/items/fetchers";
@@ -22,6 +33,7 @@ export default function ItemsDetailPage() {
   const { id }: { id: string } = useParams();
   const router = useRouter();
   const [comment, setComment] = useState("");
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
   const {
     data: productDetail,
@@ -55,10 +67,12 @@ export default function ItemsDetailPage() {
   const handleDelete = () => {
     deleteProductMutation(id, {
       onSuccess: () => {
+        setIsDeleteDialogOpen(false);
         toast.success("상품이 성공적으로 삭제되었습니다.");
         router.push("/items");
       },
       onError: (error) => {
+        setIsDeleteDialogOpen(false);
         toast.error(error.message);
       },
     });
@@ -180,8 +194,31 @@ export default function ItemsDetailPage() {
               <Text styleName="text-2xl-regular" as="h1">
                 {productDetail?.name}
               </Text>
-              <BasicDropdown onDelete={handleDelete} onUpdate={handleUpdate} />
+              <BasicDropdown
+                onDelete={() => setIsDeleteDialogOpen(true)}
+                onUpdate={handleUpdate}
+              />
             </div>
+
+            {/* 삭제 확인 AlertDialog */}
+            <AlertDialog
+              open={isDeleteDialogOpen}
+              onOpenChange={setIsDeleteDialogOpen}
+            >
+              <AlertDialogContent className="py-12 max-w-[300px]">
+                <AlertDialogHeader>
+                  <AlertDialogTitle>
+                    정말로 상품을 삭제하시겠어요?
+                  </AlertDialogTitle>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>취소</AlertDialogCancel>
+                  <AlertDialogAction onClick={handleDelete}>
+                    삭제
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
 
             {/* 가격 */}
             <Text styleName="text-3xl-semibold" className="mb-6">

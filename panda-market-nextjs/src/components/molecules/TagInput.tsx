@@ -67,15 +67,12 @@ export default function TagInput({
    * 키보드 이벤트 핸들러
    */
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && !e.nativeEvent.isComposing) {
       e.preventDefault();
       addTag();
-    } else if (e.key === " ") {
+    } else if (e.key === " " && !e.nativeEvent.isComposing) {
       e.preventDefault();
       addTag();
-    } else if (e.key === "Backspace" && !inputValue && tags.length > 0) {
-      // 입력값이 없고 백스페이스를 누르면 마지막 태그 삭제
-      removeTag(tags.length - 1);
     }
   };
 
