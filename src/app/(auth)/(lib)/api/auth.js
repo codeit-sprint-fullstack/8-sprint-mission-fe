@@ -22,7 +22,12 @@ export async function signIn({ email, password }) {
   return data; // { accessToken, ... }
 }
 
-export async function signUp({ email, nickname, password }) {
+export async function signUp({
+  email,
+  nickname,
+  password,
+  passwordConfirmation,
+}) {
   const res = await fetch(`${API_BASE}/auth/signUp`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -30,7 +35,7 @@ export async function signUp({ email, nickname, password }) {
       email: String(email).trim(),
       nickname: String(nickname).trim(),
       password: String(password).trim(),
-      passwordConfirm: String(passwordConfirm ?? password).trim(),
+      passwordConfirmation: String(passwordConfirmation ?? password).trim(),
     }),
   });
 
