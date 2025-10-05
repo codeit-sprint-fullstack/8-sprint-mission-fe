@@ -16,6 +16,20 @@ const SignupPage = () => {
   const [error, setError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const router = useRouter();
+
+  const registerMutation = useMutation({
+    mutationFn: ({ nickname, email, password }) =>
+      authService.register(nickname, email, password),
+    onSuccess: () => router.push("/items"),
+    onError: (err) => {
+      setModalMessage(
+        err.message || "회원가입 실패. 이메일 또는 비밀번호를 확인해주세요."
+      );
+      setIsModalOpen(true);
+    },
+  });
+
   const handleSignup = () => {
     if (!email || !username || !password || !confirm) {
       setError("모든 필드를 입력해주세요.");
@@ -25,8 +39,7 @@ const SignupPage = () => {
       setError("비밀번호가 일치하지 않습니다.");
       return;
     }
-    //회원가입 API 연동
-    setIsModalOpen(true);
+    registerMutation.mutate({ nickname: username, email, password });
   };
 
   const isDisabled = !email || !username || !password || !confirm;
@@ -103,7 +116,7 @@ const SignupPage = () => {
 
       <Modal
         isOpen={isModalOpen}
-        message="회원가입"
+        message={modalMessage}
         onClose={() => setIsModalOpen(false)}
       />
     </main>

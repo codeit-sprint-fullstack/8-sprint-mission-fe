@@ -1,12 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import InputField from "@/components/AuthPage/InputField";
 import AuthButton from "@/components/AuthPage/AuthButton";
 import SocialLogin from "@/components/AuthPage/SocialLogin";
 import Modal from "@/components/AuthPage/Modal";
+import { authService } from "@/services/authService";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -14,13 +17,30 @@ const LoginPage = () => {
   const [error, setError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const router = useRouter();
+
+  const loginMutation = useMutation({
+    mutationFn: ({ email, password }) => authService.login(email, password),
+    onSuccess: (data) => {
+      if (data?.accessToken) {
+        localStorage.setItem("accessToken", data.accessToken);
+      }
+      router.push("/items");
+    },
+    onError: (err) => {
+      setModalMessage(
+        err.message || "로그인 실패. 이메일 또는 비밀번호를 확인해주세요."
+      );
+      setIsModalOpen(true);
+    },
+  });
+
   const handleLogin = () => {
     if (!email || !password) {
       setError("이메일과 비밀번호를 입력해주세요.");
       return;
     }
-    // 로그인 API 연동
-    setIsModalOpen(true);
+    loginMutation.mutate({ email, password });
   };
 
   const isDisabled = !email || !password;
@@ -77,7 +97,7 @@ const LoginPage = () => {
 
       <Modal
         isOpen={isModalOpen}
-        message="로그인"
+        message={modalMessage}
         onClose={() => setIsModalOpen(false)}
       />
     </main>
