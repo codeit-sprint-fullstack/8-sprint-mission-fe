@@ -6,7 +6,6 @@ import Footer from "@/components/Footer/Footer";
 import BestArticle from "@/components/Article/BestArticle";
 import ArticleCard from "@/components/Article/ArticleCard";
 import Controller from "@/components/Controller/Controller";
-import { fetchArticles } from "@/api/articles";
 import { useArticles } from "@/hooks/useArticles";
 
 const FreeboardPage = () => {
@@ -21,7 +20,7 @@ const FreeboardPage = () => {
     .sort((a, b) => (b.favoriteCount ?? 0) - (a.favoriteCount ?? 0))
     .slice(0, 3);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div>게시글을 불러오는 중 입니다...</div>;
   if (error) return <div>Error: {error}</div>;
 
   return (

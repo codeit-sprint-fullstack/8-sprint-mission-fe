@@ -6,28 +6,20 @@ import Footer from "@/components/Footer/Footer";
 import ProductCard from "@/components/Items/ProductCard";
 import ProductListController from "@/components/Items/ProductListController";
 import PageButton from "@/components/Items/PageButton";
-import { fetchProducts } from "@/api/product";
+import { useItems } from "@/hooks/useItems";
 
 const ItemPage = () => {
-  const [products, setProducts] = useState([]);
+  const { items: products, loading, error, loadItems } = useItems();
   const [sortedProducts, setSortedProducts] = useState([]);
   const [nowPage, setNowPage] = useState(1);
   const pageSize = 10;
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await fetchProducts({ page: nowPage, limit: pageSize });
+    setSortedProducts(products);
+  }, [products]);
 
-        setProducts(data);
-        setSortedProducts(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, [nowPage]);
+  if (loading) return <div>상품을 불러오는 중입니다...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
