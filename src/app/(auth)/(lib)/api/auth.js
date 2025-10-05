@@ -30,6 +30,7 @@ export async function signUp({ email, nickname, password }) {
       email: String(email).trim(),
       nickname: String(nickname).trim(),
       password: String(password).trim(),
+      passwordConfirm: String(passwordConfirm ?? password).trim(),
     }),
   });
 
