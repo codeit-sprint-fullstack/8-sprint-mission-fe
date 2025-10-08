@@ -19,7 +19,7 @@ export const productSchema = z.object({
     .max(10, { message: "태그는 최대 10개까지 입력할 수 있습니다." }),
   images: z
     .array(z.string())
-    .max(1, { message: "이미지는 최대 1개까지 업로드할 수 있습니다." }),
+    .max(3, { message: "이미지는 최대 3개까지 업로드할 수 있습니다." }),
 });
 
 export type ProductSchema = z.infer<typeof productSchema>;

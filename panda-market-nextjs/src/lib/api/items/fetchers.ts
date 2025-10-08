@@ -12,6 +12,7 @@ export interface Product {
   favoriteCount: number;
   createdAt: string;
   updatedAt: string;
+  isFavorite?: boolean;
 }
 
 export interface ProductList {
@@ -150,10 +151,69 @@ const createProduct = async (product: ProductSchema): Promise<Product> => {
   }
 };
 
+/**
+ * 상품 좋아요 추가
+ * @param id 상품 ID
+ * @returns Product
+ */
+const addFavorite = async (productId: number): Promise<Product> => {
+  const accessToken = localStorage.getItem("accessToken");
+  try {
+    const response = await fetchWithAuth(
+      `${CODEIT_API_URL}/products/${productId}/favorite`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    if (!response?.ok) {
+      throw new Error("상품 좋아요 추가 실패");
+    }
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+/**
+ * 상품 좋아요 삭제
+ * @param id 상품 ID
+ * @returns Product
+ */
+const deleteFavorite = async (productId: number): Promise<Product> => {
+  const accessToken = localStorage.getItem("accessToken");
+  try {
+    const response = await fetchWithAuth(
+      `${CODEIT_API_URL}/products/${productId}/favorite`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    if (!response?.ok) {
+      throw new Error("상품 좋아요 삭제 실패");
+    }
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
 export const itemsApi = {
   getProducts,
   getProductDetail,
   createProduct,
   updateProduct,
   deleteProduct,
+  addFavorite,
+  deleteFavorite,
 };

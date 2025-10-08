@@ -3,6 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { LikeButton } from "@/components/atoms/LikeButton";
+import { useQueryClient } from "@tanstack/react-query";
+import { prefetchProductDetail } from "@/lib/api/items/preFetch";
 
 interface ProductCardProps {
   id: string;
@@ -21,9 +23,20 @@ export function ProductCard({
   image = DEFAULT_IMAGE,
   favoriteCount,
 }: ProductCardProps) {
+  const queryClient = useQueryClient();
+
+  const handleMouseEnter = () => {
+    console.log("제품 상세 프리패치 : ", id);
+    prefetchProductDetail(queryClient, Number(id));
+  };
+
   return (
     <div className="text-secondary-800">
-      <Link href={`/items/${id}`} className="block">
+      <Link
+        href={`/items/${id}`}
+        className="block"
+        onMouseEnter={handleMouseEnter}
+      >
         <img
           src={image}
           alt={name}

@@ -1,0 +1,48 @@
+import { QueryClient } from "@tanstack/react-query";
+import { itemsApi, ProductFilters } from "./fetchers";
+
+/**
+ * 상품 목록 prefetch
+ */
+export const prefetchProducts = async (
+  queryClient: QueryClient,
+  params: ProductFilters
+) => {
+  await queryClient.ensureQueryData({
+    queryKey: ["products", params],
+    queryFn: () => itemsApi.getProducts(params),
+    staleTime: 5 * 60 * 1000, // 5분
+  });
+};
+
+/**
+ * 베스트 상품 prefetch
+ */
+export const prefetchBestProducts = async (queryClient: QueryClient) => {
+  await queryClient.ensureQueryData({
+    queryKey: ["bestProducts"],
+    queryFn: async () => {
+      const response = await itemsApi.getProducts({
+        page: 1,
+        pageSize: 4,
+        orderBy: "favorite",
+      });
+      return response.list.sort((a, b) => b.favoriteCount - a.favoriteCount);
+    },
+    staleTime: 5 * 60 * 1000, // 5분
+  });
+};
+
+/**
+ * 상품 상세 prefetch
+ */
+export const prefetchProductDetail = async (
+  queryClient: QueryClient,
+  id: number
+) => {
+  await queryClient.ensureQueryData({
+    queryKey: ["productDetail", id],
+    queryFn: () => itemsApi.getProductDetail(id.toString()),
+    staleTime: 5 * 60 * 1000, // 5분
+  });
+};

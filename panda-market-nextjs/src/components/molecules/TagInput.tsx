@@ -19,7 +19,7 @@ export default function TagInput({
   tags,
   onTagsChange,
   maxTags = 10,
-  maxTagLength = 5,
+  maxTagLength = 15,
   placeholder = "태그를 입력해주세요",
   error,
 }: TagInputProps) {

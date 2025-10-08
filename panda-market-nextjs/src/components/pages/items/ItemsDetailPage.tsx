@@ -12,11 +12,9 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { useAuthQuery } from "@/lib/api/auth/queries";
 import { useCommentsQuery } from "@/lib/api/comments/queries";
@@ -40,26 +38,29 @@ export default function ItemsDetailPage() {
     isPending,
     isError,
     error,
-  }: UseQueryResult<Product> = useItemsQuery.useGetProductDetail(Number(id));
+  }: UseQueryResult<Product> = useItemsQuery.useGetProductDetail(Number(id)); // 상품 상세 조회
 
   const {
     data: productComments,
     isPending: isProductCommentsPending,
     isError: isProductCommentsError,
     error: productCommentsError,
-  } = useCommentsQuery.useGetProductComments(id);
+  } = useCommentsQuery.useGetProductComments(id); // 상품 댓글 조회
 
   const comments = productComments?.list || [];
 
   const { mutate: createProductCommentMutation } =
-    useCommentsQuery.useCreateProductComment();
+    useCommentsQuery.useCreateProductComment(); // 상품 댓글 생성
   const { mutate: updateProductCommentMutation } =
-    useCommentsQuery.useUpdateProductComment();
+    useCommentsQuery.useUpdateProductComment(); // 상품 댓글 수정
   const { mutate: deleteProductCommentMutation } =
-    useCommentsQuery.useDeleteProductComment();
+    useCommentsQuery.useDeleteProductComment(); // 상품 댓글 삭제
 
-  const { mutate: deleteProductMutation } = useItemsQuery.useDeleteProduct();
-  const { data: user } = useAuthQuery.useGetUser();
+  const { mutate: deleteProductMutation } = useItemsQuery.useDeleteProduct(); // 상품 삭제
+  const { data: user } = useAuthQuery.useGetUser(); // 사용자 정보 조회
+
+  const { mutate: addFavoriteMutation } = useItemsQuery.useAddFavorite(); // 상품 좋아요 추가
+  const { mutate: deleteFavoriteMutation } = useItemsQuery.useDeleteFavorite(); // 상품 좋아요 삭제
 
   /**
    * 상품 삭제
@@ -286,9 +287,7 @@ export default function ItemsDetailPage() {
                 </div>
               </div>
               <div className="ml-auto">
-                <BtnHeart
-                  initialLikeCount={productDetail?.favoriteCount || 0}
-                />
+                <BtnHeart productId={productDetail?.id} />
               </div>
             </div>
           </div>

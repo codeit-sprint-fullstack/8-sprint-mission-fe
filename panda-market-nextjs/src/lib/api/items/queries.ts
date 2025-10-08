@@ -129,6 +129,94 @@ const useCreateProduct = (): UseMutationResult<
   });
 };
 
+/**
+ * 상품 좋아요 추가
+ * @returns UseMutationResult
+ */
+const useAddFavorite = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (productId: number) => itemsApi.addFavorite(productId),
+    onMutate: async (productId) => {
+      await queryClient.cancelQueries({
+        queryKey: ["productDetail", productId],
+      });
+
+      const previousProduct = queryClient.getQueryData<Product>([
+        "productDetail",
+        productId,
+      ]);
+
+      await queryClient.setQueryData(
+        ["productDetail", productId],
+        (old: Product) => ({
+          ...old,
+          isFavorite: true,
+          favoriteCount: old.favoriteCount + 1,
+        })
+      );
+
+      return { previousProduct };
+    },
+    onSettled: (_, __, productId) => {
+      queryClient.invalidateQueries({ queryKey: ["productDetail", productId] });
+    },
+    onError: (error, productId, context) => {
+      if (context?.previousProduct) {
+        queryClient.setQueryData(
+          ["productDetail", productId],
+          context.previousProduct
+        );
+      }
+      console.error("상품 좋아요 추가 중 오류가 발생했습니다:", error);
+    },
+  });
+};
+
+/**
+ * 상품 좋아요 삭제
+ * @returns UseMutationResult
+ */
+const useDeleteFavorite = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (productId: number) => itemsApi.deleteFavorite(productId),
+    onMutate: async (productId) => {
+      await queryClient.cancelQueries({
+        queryKey: ["productDetail", productId],
+      });
+
+      const previousProduct = queryClient.getQueryData<Product>([
+        "productDetail",
+        productId,
+      ]);
+
+      await queryClient.setQueryData(
+        ["productDetail", productId],
+        (old: Product) => ({
+          ...old,
+          isFavorite: false,
+          favoriteCount: old.favoriteCount - 1,
+        })
+      );
+
+      return { previousProduct };
+    },
+    onSettled: (_, __, productId) => {
+      queryClient.invalidateQueries({ queryKey: ["productDetail", productId] });
+    },
+    onError: (error, productId, context) => {
+      if (context?.previousProduct) {
+        queryClient.setQueryData(
+          ["productDetail", productId],
+          context.previousProduct
+        );
+      }
+      console.error("상품 좋아요 삭제 중 오류가 발생했습니다:", error);
+    },
+  });
+};
+
 export const useItemsQuery = {
   useGetBestProducts,
   useGetProducts,
@@ -136,4 +224,6 @@ export const useItemsQuery = {
   useCreateProduct,
   useUpdateProduct,
   useDeleteProduct,
+  useAddFavorite,
+  useDeleteFavorite,
 };
