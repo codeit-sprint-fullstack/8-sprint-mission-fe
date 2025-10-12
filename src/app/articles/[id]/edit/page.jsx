@@ -1,21 +1,21 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { fetchBoard, updateBoard } from "@/api/boards";
+import { useRouter, useParams } from "next/navigation";
+import { fetchArticle, updateArticle } from "@/api/articles";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import BoardForm from "@/components/Board/BoardForm";
+import ArticleForm from "@/components/Article/ArticleForm";
 
-const BoardWritePage = ({ params }) => {
-  const boardId = params.id;
+const BoardWritePage = () => {
+  const { id } = useParams();
   const [initialData, setInitialData] = useState({ title: "", content: "" });
   const router = useRouter();
 
   useEffect(() => {
     const getBoard = async () => {
       try {
-        const data = await fetchBoard(boardId);
+        const data = await fetchArticle(id);
         setInitialData({ title: data.title, content: data.content });
       } catch (error) {
         console.error("게시글 불러오기 에러:", error);
@@ -23,12 +23,12 @@ const BoardWritePage = ({ params }) => {
     };
 
     getBoard();
-  }, [boardId]);
+  }, [id]);
 
   const handleUpdate = async (data) => {
     try {
-      await updateBoard(boardId, data);
-      router.push(`/freeboard/${boardId}`);
+      await updateArticle(id, data);
+      router.push(`/articles/${id}`);
     } catch (error) {
       console.error("게시글 수정 에러:", error);
     }
@@ -39,7 +39,7 @@ const BoardWritePage = ({ params }) => {
       <Header />
 
       <main className="flex-1 flex flex-col items-stretch mx-auto mb-[200px] p-4 w-full max-w-[1200px]">
-        <BoardForm
+        <ArticleForm
           initialData={initialData}
           onSubmit={handleUpdate}
           mode="edit"

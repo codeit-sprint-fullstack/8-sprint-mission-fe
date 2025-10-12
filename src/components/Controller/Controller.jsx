@@ -5,41 +5,41 @@ import Link from "next/link";
 import SearchBar from "./SearchBar/SearchBar";
 import DropDown from "./DropDown/DropDown";
 
-const Controller = ({ controls = {}, boards = [], setSortedBoards }) => {
+const Controller = ({ controls = {}, articles = [], setSortedArticles }) => {
   const [search, setSearch] = useState("");
   const [sortOption, setSortOption] = useState({
     label: "최신순",
-    value: "latest",
+    value: "recent",
   });
 
   const handleSearch = () => {
-    const filtered = boards.filter((b) =>
+    const filtered = articles.filter((b) =>
       b.title.toLowerCase().includes(search.toLowerCase())
     );
-    setSortedBoards(filtered);
+    setSortedArticles(filtered);
   };
 
   const handleSort = (option) => {
     setSortOption(option);
 
-    const sorted = [...boards].sort((a, b) => {
-      if (option.value === "latest") {
+    const sorted = [...articles].sort((a, b) => {
+      if (option.value === "recent") {
         return new Date(b.createdAt) - new Date(a.createdAt);
       }
-      if (option.value === "likes") return b.heart_count - a.heart_count;
+      if (option.value === "like") return b.likeCount - a.likeCount;
       return 0;
     });
 
-    setSortedBoards(sorted);
+    setSortedArticles(sorted);
   };
 
   return (
     <div className="w-full">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-xl font-bold text-[#1F2937]">게시글</h1>
+        <h1 className="text-xl font-bold text-gray-800">게시글</h1>
         <Link
-          href="/freeboard/write"
-          className="flex justify-center items-center bg-[#3692FF] rounded-lg w-[88px] h-12 px-[23px] py-3 text-base text-[#F3F4F6] whitespace-nowrap hover:underline"
+          href="/articles/write"
+          className="flex justify-center items-center bg-[#3692FF] rounded-lg w-[88px] h-12 px-[23px] py-3 text-base text-gray-100 whitespace-nowrap hover:underline"
         >
           글쓰기
         </Link>
@@ -56,8 +56,8 @@ const Controller = ({ controls = {}, boards = [], setSortedBoards }) => {
         {controls.orderBy && (
           <DropDown
             options={[
-              { label: "최신순", value: "latest" },
-              { label: "좋아요순", value: "likes" },
+              { label: "최신순", value: "recent" },
+              { label: "좋아요순", value: "like" },
             ]}
             selected={sortOption}
             onSelect={handleSort}

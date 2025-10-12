@@ -3,11 +3,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { deleteBoard } from "@/api/boards";
+import DeleteModal from "@/components/Items/DeleteModal";
+import { deleteArticle } from "@/api/articles";
 import { deleteComment } from "@/api/comments";
 
 const KebabMenu = ({ type, id, onDelete, onEdit }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const menuRef = useRef(null); // React 컴포넌트 안에서 변경 가능한 값을 저장 - 외부 클릭 시 닫기
   const router = useRouter();
 
@@ -22,23 +24,29 @@ const KebabMenu = ({ type, id, onDelete, onEdit }) => {
   }, []);
 
   const handleEdit = async () => {
-    if (type === "board") {
-      router.push(`/freeboard/${id}/edit`);
+    if (type === "article") {
+      router.push(`/articles/${id}/edit`);
     }
     if (type === "comment") {
       onEdit();
       console.log("댓글 수정");
     }
+    if (type === "item") {
+      router.push(`/items/${id}/edit`);
+    }
   };
 
   const handleDelete = async () => {
-    if (type === "board") {
-      await deleteBoard(id);
-      router.push("/freeboard");
+    if (type === "article") {
+      await deleteArticle(id);
+      router.push("/articles");
     }
     if (type === "comment") {
       await deleteComment(id);
       if (onDelete) onDelete(id);
+    }
+    if (type === "item") {
+      setShowDeleteModal(true);
     }
   };
 
@@ -55,20 +63,24 @@ const KebabMenu = ({ type, id, onDelete, onEdit }) => {
       </button>
 
       {isOpen && (
-        <div className="absolute top-6 right-0 flex flex-col items-start w-[139px] bg-white rounded-lg border border-[#D1D5DB]">
+        <div className="absolute top-6 right-0 flex flex-col items-start w-[139px] bg-white rounded-lg border border-gray-300">
           <button
             onClick={handleEdit}
-            className="flex justify-center items-center self-stretch h-[46px] pt-4 pr-0 pb-3 pl-0 text-base font-normal text-[#6B7280] cursor-pointer"
+            className="flex justify-center items-center self-stretch h-[46px] pt-4 pr-0 pb-3 pl-0 text-base font-normal text-gray-500 cursor-pointer"
           >
             수정하기
           </button>
           <button
             onClick={handleDelete}
-            className="flex justify-center items-center self-stretch h-[46px] pt-4 pr-0 pb-3 pl-0 text-base font-normal text-[#6B7280] cursor-pointer"
+            className="flex justify-center items-center self-stretch h-[46px] pt-4 pr-0 pb-3 pl-0 text-base font-normal text-gray-500 cursor-pointer"
           >
             삭제하기
           </button>
         </div>
+      )}
+
+      {showDeleteModal && (
+        <DeleteModal id={id} onClose={() => setShowDeleteModal(false)} />
       )}
     </div>
   );

@@ -1,24 +1,28 @@
-const API_URL = "http://localhost:5000/freeboard";
-const COMMENT_API_URL = "http://localhost:5000/comments";
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+const ARTICLE_API_URL = `${BASE_URL}/articles`;
+const COMMENT_API_URL = `${BASE_URL}/comments`;
+const PRODUCT_API_URL = `${BASE_URL}/products`;
 
+// 게시글 상세 페이지
 // 댓글 목록 조회
-export const fetchComments = async (freeboardId) => {
-  const res = await fetch(`${API_URL}/${freeboardId}/comments`);
+export const fetchComments = async (articleId, limit = 5) => {
+  const res = await fetch(
+    `${ARTICLE_API_URL}/${articleId}/comments?limit=${limit}`
+  );
   if (!res.ok) {
-    throw new Error("댓글 목록 가져오기 실패");
+    throw new Error("게시글 댓글 목록 가져오기 실패");
   }
   const data = await res.json();
 
-  return data.map((c) => ({
+  return (data.list ?? []).map((c) => ({
     ...c,
-    user_name: "테스트유저",
-    heart_count: Math.floor(Math.random() * 50),
+    nickname: c.nickname ?? "테스트유저",
   }));
 };
 
 // 댓글 추가
-export const addComment = async (freeboardId, comment) => {
-  const res = await fetch(`${API_URL}/${freeboardId}/comments`, {
+export const addComment = async (articleId, comment) => {
+  const res = await fetch(`${ARTICLE_API_URL}/${articleId}/comments`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -27,7 +31,7 @@ export const addComment = async (freeboardId, comment) => {
   });
 
   if (!res.ok) {
-    throw new Error("댓글 추가 실패");
+    throw new Error("게시글 댓글 추가 실패");
   }
 
   return await res.json();
@@ -61,4 +65,35 @@ export const deleteComment = async (id) => {
   }
 
   return true;
+};
+
+// 상품 상세 페이지
+// 댓글 목록 조회
+export const fetchItemComments = async (productId, limit = 5) => {
+  const res = await fetch(
+    `${PRODUCT_API_URL}/${productId}/comments?limit=${limit}`
+  );
+  if (!res.ok) {
+    throw new Error("상품 댓글 목록 가져오기 실패");
+  }
+  const data = await res.json();
+  return (data.list ?? []).map((c) => ({
+    ...c,
+    nickname: c.nickname ?? "테스트유저",
+  }));
+};
+
+// 댓글 추가
+export const addItemComment = async (productId, comment) => {
+  const res = await fetch(`${PRODUCT_API_URL}/${productId}/comments`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(comment),
+  });
+  if (!res.ok) {
+    throw new Error("상품 댓글 추가 실패");
+  }
+  return await res.json();
 };

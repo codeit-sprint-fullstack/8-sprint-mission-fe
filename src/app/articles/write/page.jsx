@@ -2,10 +2,10 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { addBoard } from "@/api/boards";
+import { addArticle } from "@/api/articles";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import BoardForm from "@/components/Board/BoardForm";
+import ArticleForm from "@/components/Article/ArticleForm";
 
 const BoardWritePage = () => {
   const router = useRouter();
@@ -13,17 +13,17 @@ const BoardWritePage = () => {
   //게시글 등록 API
   const handleCreate = async (data) => {
     try {
-      const newBoard = await addBoard(data);
+      const newBoard = await addArticle(data);
 
       // 프론트에서 임의값으로 처리
       const enrichedBoard = {
         ...newBoard,
-        user_name: newBoard.user_name || "게시글 추가 테스트유저",
-        heart_count: newBoard.heart_count ?? Math.floor(Math.random() * 100),
+        nickname: newBoard.nickname || "게시글 추가 테스트유저",
+        likeCount: newBoard.likeCount ?? Math.floor(Math.random() * 100),
         createdAt: newBoard.createdAt || new Date().toISOString(),
       };
 
-      router.push(`/freeboard/${enrichedBoard.id}`);
+      router.push(`/articles/${enrichedBoard.id}`);
     } catch (error) {
       console.error("게시글 등록 에러:", error);
     }
@@ -34,7 +34,7 @@ const BoardWritePage = () => {
       <Header />
 
       <main className="flex-1 flex flex-col items-stretch mx-auto mb-[200px] p-4 w-full max-w-[1200px]">
-        <BoardForm onSubmit={handleCreate} mode="create" />
+        <ArticleForm onSubmit={handleCreate} mode="create" />
       </main>
 
       <Footer />
