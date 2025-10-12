@@ -1,26 +1,25 @@
+/* Tailwind v4 */
 @import "tailwindcss";
 
+@theme {
+  /* Breakpoints */
+  --breakpoint-mobile: 375px;
+  --breakpoint-tablet: 744px;
+  --breakpoint-pc: 1200px;
+
+  --font-rokaf: "ROKAF Sans", sans-serif;
+  --color-brand-blue: #3692ff;
+  --color-secondary-800: #1f2937;
+}
+
+/* 글로벌 기본값 */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --brand-blue: #3692ff;
+  --secondary-800: #1f2937;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
