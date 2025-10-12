@@ -4,6 +4,7 @@ import Text from "@/components/atoms/Text";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Article } from "@/lib/api/articles/fetchers";
 import { useArticlesQuery } from "@/lib/api/articles/queries";
 import { articleSchema, ArticleSchema } from "@/lib/schema/article";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,7 +23,7 @@ export default function ArticleUpdatePage() {
     isLoading: isArticleDetailLoading,
     isError: isArticleDetailError,
     error: articleDetailError,
-  }: UseQueryResult<any> = useArticlesQuery.useGetArticleDetail(id);
+  }: UseQueryResult<Article> = useArticlesQuery.useGetArticleDetail(id);
 
   const {
     register,

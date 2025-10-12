@@ -5,7 +5,9 @@ import Header from "@/components/organisms/Header";
 import localFont from "next/font/local";
 import { Footer } from "@/components/organisms/Footer";
 import QueryProvider from "@/lib/providers/QueryProvider";
+import AuthGuardProvider from "@/lib/providers/AuthGuardProvider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Toaster } from "@/components/ui/sonner";
 
 const pretendard = localFont({
   src: "../../font/PretendardVariable.woff2",
@@ -27,12 +29,15 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`antialiased ${pretendard.variable}`}>
-        <Header />
         <QueryProvider>
-          {children}
-          <ReactQueryDevtools initialIsOpen={false} />
+          <AuthGuardProvider>
+            <Header />
+            {children}
+            <ReactQueryDevtools initialIsOpen={false} />
+            <Toaster />
+            <Footer />
+          </AuthGuardProvider>
         </QueryProvider>
-        <Footer />
       </body>
     </html>
   );

@@ -5,7 +5,8 @@ import {
   useQueryClient,
   UseQueryResult,
 } from "@tanstack/react-query";
-import { commentsApi } from "./fetchers";
+import { CommentList, commentsApi } from "./fetchers";
+import { CommentProps } from "@/components/organisms/Comment";
 
 /**
  * 댓글 생성
@@ -30,7 +31,7 @@ const useCreateComment = (): UseMutationResult<
  * 댓글 조회
  * @returns Comment
  */
-const useGetComments = (id: string): UseQueryResult => {
+const useGetComments = (id: string): UseQueryResult<CommentProps[], Error> => {
   return useQuery({
     queryKey: ["comments", id],
     queryFn: () => commentsApi.getComments(id),
@@ -87,9 +88,88 @@ const useUpdateComment = (): UseMutationResult<
   });
 };
 
+/**
+ * 상품 댓글 목록 조회
+ * @returns Comment
+ */
+const useGetProductComments = (
+  id: string
+): UseQueryResult<CommentList, Error> => {
+  return useQuery({
+    queryKey: ["productComments", id],
+    queryFn: () => commentsApi.getProductComments(id),
+  });
+};
+
+/**
+ * 상품 댓글 등록
+ * @returns Comment
+ */
+const useCreateProductComment = (): UseMutationResult<
+  Comment,
+  Error,
+  { id: string; comment: string }
+> => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, comment }: { id: string; comment: string }) =>
+      commentsApi.createProductComment(id, comment),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["productComments"] });
+    },
+  });
+};
+
+/**
+ * 상품 댓글 수정
+ * @returns Comment
+ */
+const useUpdateProductComment = (): UseMutationResult<
+  Comment,
+  Error,
+  { commentId: string; comment: string }
+> => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({
+      commentId,
+      comment,
+    }: {
+      commentId: string;
+      comment: string;
+    }) => commentsApi.updateProductComment(commentId, comment),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["productComments"] });
+    },
+  });
+};
+
+/**
+ * 상품 댓글 삭제
+ * @returns Comment
+ */
+const useDeleteProductComment = (): UseMutationResult<
+  number,
+  Error,
+  { commentId: string }
+> => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ commentId }: { commentId: string }) =>
+      commentsApi.deleteProductComment(commentId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["productComments"] });
+    },
+  });
+};
+
 export const useCommentsQuery = {
   useCreateComment,
   useGetComments,
   useDeleteComment,
   useUpdateComment,
+  useGetProductComments,
+  useCreateProductComment,
+  useUpdateProductComment,
+  useDeleteProductComment,
 };

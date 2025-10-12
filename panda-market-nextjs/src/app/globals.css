@@ -378,6 +378,7 @@ footer {
 }
 
 @theme inline {
+  --primary-color: var(--primary-color-100);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
