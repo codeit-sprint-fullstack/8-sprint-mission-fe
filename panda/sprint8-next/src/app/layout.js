@@ -5,6 +5,10 @@ import "@/styles/footer.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+import Providers from "@/components/Providers";
+
+
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -24,9 +28,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ko">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}>
-        <Header />
-        <div className="mt-6">{children}</div>
-        <Footer />
+        <Providers>
+          <Header />
+            <div className="mt-6">{children}</div>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

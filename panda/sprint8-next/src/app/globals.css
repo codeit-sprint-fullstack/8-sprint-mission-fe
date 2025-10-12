@@ -2,7 +2,25 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
 
 :root {
+
+  --color1: #111827;
+  --color2: #1251aa;
+  --color3: #1967d6;
+  --color4: #3692ff;
+  --color5: #374151;
+  --color6: #9ca3af;
+  --color7: #dfdfdf;
+  --color8: #e5e7eb;
+  --color9: #ffffff;
+  --color10: #cfe5ff;
+  --color11: #1f2937;
+  --color12: #F3F4F6;
+  --color13: #e6f2ff;
+  --color14: #f3f4f6;
+  --color15: #f9f9f9;
+
   --background: #ffffff; 
+
 }
 
 @theme inline {
