@@ -1,23 +1,25 @@
 'use client';
-import React from "react";
-import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
-import Image from "next/image";
-import Button from "@/components/Button";
+
+import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
+import Image from 'next/image';
+import Button from '@/components/Button';
+import { useAuth } from '@/providers/AuthProvider';
 
 export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
+  const { user, loading } = useAuth();
 
   const navLinks = [
     {
       name: '자유게시판',
-      href: '/article'
+      href: '/article',
     },
     {
       name: '중고마켓',
-      href: '/product'
-    }
+      href: '/items',
+    },
   ];
 
   const handleLoginClick = () => {
@@ -26,7 +28,10 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white border-b sticky top-0 z-50" style={{borderColor: 'var(--gray-200)'}}>
+    <header
+      className="bg-white border-b sticky top-0 z-50"
+      style={{ borderColor: 'var(--gray-200)' }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* 로고 */}
@@ -36,16 +41,20 @@ export default function Header() {
                 <div className="flex items-center justify-center">
                   <Image src="/images/logo.svg" alt="Logo" width={40} height={40} />
                 </div>
-                <span className="text-[1.6rem] font-logo" style={{color: 'var(--primary-100)'}}>판다마켓</span>
+                <span className="text-[1.6rem] font-logo" style={{ color: 'var(--primary-100)' }}>
+                  판다마켓
+                </span>
               </div>
             </Link>
             <nav className="flex justify-between items-center gap-8">
               {navLinks.map((link) => (
-                <Link 
+                <Link
                   key={link.href}
-                  href={link.href} 
+                  href={link.href}
                   className={`text-lg font-bold hover:!text-[var(--primary-100)] transition-colors ${
-                    pathname.startsWith(link.href) ? 'text-[var(--primary-100)]' : 'text-[var(--gray-700)]'
+                    pathname.startsWith(link.href)
+                      ? 'text-[var(--primary-100)]'
+                      : 'text-[var(--gray-700)]'
                   }`}
                 >
                   {link.name}
@@ -54,14 +63,25 @@ export default function Header() {
             </nav>
           </div>
 
-          {/* 로그인 버튼 */}
+          {/* 인증 영역 */}
           <div className="flex items-center space-x-4">
-            <Button 
-              onClick={handleLoginClick}
-              appearance="primary"
-            >
-              로그인
-            </Button>
+            {loading ? null : user ? (
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full overflow-hidden bg-[var(--gray-200)]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={user.image || '/images/icon/ic_profile.svg'}
+                    alt="avatar"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <span className="text-[var(--gray-800)] font-semibold">{user.nickname}</span>
+              </div>
+            ) : (
+              <Button onClick={handleLoginClick} appearance="primary">
+                로그인
+              </Button>
+            )}
           </div>
         </div>
       </div>
