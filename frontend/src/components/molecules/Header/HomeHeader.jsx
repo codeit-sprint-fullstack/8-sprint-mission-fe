@@ -31,11 +31,9 @@ function HomeHeader({ isHome = false }) {
                     </div>
                 )}
             </div>
-            <Link href="/">
-                <Button className={styles.button}>
-                    로그인
-                </Button>
-            </Link>
+            <Button to='/login' className={styles.button}>
+                로그인
+            </Button>
         </header>
     );
 }

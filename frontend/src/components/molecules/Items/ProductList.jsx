@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from './ProductList.module.css';
 
 //pubic 폴더는 루트로 어디서는 정의 가능.
@@ -22,7 +23,6 @@ function Product({ item }) {
             <div className={styles.description}>
                 <p className={styles.name}>{item.name}</p>
                 <p className={styles.price}>{item.price.toLocaleString() + '원'}</p>
-                {/* 어째선지 리스폰스에 좋아요 수가 없습니다. 임의로 240을 넣었습니다.*/}
                 <div className={styles.favorite}>
                     <button>
                         <img src={heartIcon} />
@@ -40,7 +40,12 @@ function ProductList({ items, isCommon}) {
             {items.map((item) => {
                 return (
                     <li key={item.id}>
-                        <Product item={item} />
+                        <Link 
+                            href={`/items/${item.id}`}
+                            className={styles.link}
+                        >
+                            <Product item={item} />
+                        </Link>
                     </li>
                 );
             })}

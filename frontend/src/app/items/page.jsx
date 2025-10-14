@@ -8,7 +8,7 @@ import Headline from '../../components/molecules/Headline/Headline.jsx';
 import ProductList from '../../components/molecules/Items/ProductList.jsx';
 import PageButton from '../../components/molecules/Items/PageButton.jsx';
 
-import productApi from '../../api/ProductService.js';
+import { getProductList } from '../../api/ProductService.js';
 import { useProvider } from '@/components/Provider/Provider.jsx';
 
 import styles from './Items.module.css';
@@ -18,7 +18,7 @@ export default function Items() {
     const [commonProducts, setCommonProducts] = useState([]);
 
     //삼화 미션 - 커스텀 훅 만들기 (GET 리퀘스트 오류, 지연 처리 훅)
-    const [isLoading, loadingError, getItemsAsync] = useAsync(productApi.getProductList);
+    const [isLoading, loadingError, getItemsAsync] = useAsync(getProductList);
     const [pageIdx, setPageIdx] = useState(1);
     const [order, setOrder] = useState('recent');
     const [search, setSearch] = useState('');

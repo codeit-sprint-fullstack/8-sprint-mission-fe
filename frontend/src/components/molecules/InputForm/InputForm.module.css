@@ -11,7 +11,8 @@
     font: var(--font-18-bold);
 }
 
-.inputForm .inputPlace {
+.inputPlace {
+    width: 100%;
     display: flex;
     padding: 16px 24px;
     resize: none; /* 사용자가 크기 조절 못하게 */
@@ -26,11 +27,15 @@
     background: var(--Cool-Gray-100, #f3f4f6);
 }
 
-.inputForm .inputPlace::placeholder {
+.inputPlace::placeholder {
     color: var(--Secondary-400, #9ca3af);
     font-size: 16px;
     font-weight: 400;
     line-height: 26px; /* 162.5% */
+}
+
+.focusBorder:focus {
+  outline-color: var(--blue);
 }
 
 .validErrorMsg {
@@ -46,4 +51,15 @@
     line-height: 24px; /* 171.429% */
 
     margin-top: 8px;
+}
+
+.inputDiv {
+    position: relative;
+}
+
+.eyeButton {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
 }

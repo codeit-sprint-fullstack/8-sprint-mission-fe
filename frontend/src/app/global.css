@@ -23,6 +23,7 @@
     --Cool-Gray-500: #6B7280;
     --Cool-Gray-400: #9CA3AF;
     --Cool-Gray-200: #e5e7eb;
+    --Cool-Gray-100: #F3F4F6;
     --Cool-Gray-50: #f9fafb;
 
     /* Secondary */
@@ -46,6 +47,8 @@
 
     /* Primary color */
     --brand-blue: #3692ff;
+    --hover-blue: #1967d6;
+    --focus-blue: #1251aa;
 
     /* Layout dimensions */
     --header-height: 70px;

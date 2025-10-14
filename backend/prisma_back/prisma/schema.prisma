@@ -44,6 +44,7 @@ model Product {
   name          String
   price         Int
   description   String
+  userName      String   @default("판매자판다")
   tags          String[]
   images        String[]
   favoriteCount Int       @default(0)

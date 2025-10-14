@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import productApi from '../api/ProductService.js';
+import { createProduct } from '../api/ProductService.js';
 import { useRouter } from 'next/navigation';
 
 //유효성 검사 커스텀 훅
@@ -124,12 +124,9 @@ function useRegisterInput() {
             images: ['https://example.com/...'],
         };
 
-        const res = await productApi.createProduct(RqBody);
+        const res = await createProduct(RqBody);
 
-        //리퀘스트에 성공하면 상품 상세 사이트 이동
-        if (res) {
-            router.push('/productdetail');
-        }
+        return res;
     };
 
     return [values, errors, isSubmitActive, onChange, addTag, deleteTag, register];

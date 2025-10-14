@@ -19,7 +19,7 @@ import backIcon from './ic_back.svg';
 
 //스타일
 import styles from './articlePage.module.css';
-import InputForm from '@/components/molecules/Articles/InputForm/InputForm';
+import InputForm from '@/components/molecules/InputForm/InputForm';
 import Button from '@/components/Atoms/Button';
 import useAsync from '@/hooks/useAsync';
 

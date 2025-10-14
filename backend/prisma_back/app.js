@@ -197,7 +197,6 @@ app.get(
             where: { productId },
             skip: lastId ? 1 : 0, //cursor 항목 제외
             take: parseInt(limit),
-            cursor: lastId,
             ...(lastId && { cursor: { id: lastId } }), //lastId를 쿼리로 받으면 커서 사용.
 
             //댓글에는 아직 favoriteCount가 없지만 일단 구현했습니다.(쿼리로 전달하지 말아주세요)
@@ -231,7 +230,7 @@ app.post(
         const comment = await prisma.comment.create({
             data: {
                 content,
-                article: {
+                product: {
                     connect: { id: productId },
                 },
             },

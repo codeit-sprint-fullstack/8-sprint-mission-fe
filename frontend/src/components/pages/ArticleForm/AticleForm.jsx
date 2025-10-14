@@ -4,7 +4,7 @@ import Link from 'next/link';
 import MainFrame from '../../organism/mainFrame';
 import Button from '../../Atoms/Button';
 import useArticle from '@/hooks/useArticle';
-import InputForm from '../../molecules/Articles/InputForm/InputForm';
+import InputForm from '../../molecules/InputForm/InputForm';
 
 import styles from './ArticleForm.module.css';
 
