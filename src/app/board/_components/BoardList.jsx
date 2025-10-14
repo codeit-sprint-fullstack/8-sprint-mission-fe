@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import BoardItem from "./BoardItem";
 import Button from "@/app/components/Button";
 import Link from "next/link";
+import { API_BASE_URL } from "@/lib/api";
 
 const BoardList = () => {
   const [posts, setPosts] = useState([]);
@@ -16,11 +17,9 @@ const BoardList = () => {
         sort === "latest" ? "_sort=-createdAt" : "_sort=-likes";
 
       try {
-        const res = await fetch(`http://localhost:4000/posts?${sortParams}`);
+        const res = await fetch(`${API_BASE_URL}/posts?${sortParams}`);
 
-        if (!res.ok) {
-          throw new Error("response error: ", res.statusText);
-        }
+        if (!res.ok) throw new Error(`get failed: ${res.statusText}`);
 
         const data = await res.json();
         setPosts(data);
@@ -39,7 +38,7 @@ const BoardList = () => {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-lg font-bold">게시글</h1>
+        <h1 className="text-xl font-bold text-gray-900">게시글</h1>
         <Link href="/board/new">
           <Button>글쓰기</Button>
         </Link>

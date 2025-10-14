@@ -1,35 +1,37 @@
 "use client";
 
-import Image from "next/image";
 import React, { useState } from "react";
 
 const ActionDropdown = ({ onModify, onDelete }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div>
-      <button onClick={() => setIsOpen((prev) => !prev)} className="relative">
-        {/* <Image
-          src="/icons/kebab.svg"
-          alt="modify or remove this post"
-          width={24}
-          height={24}
-        /> */}
+    <div className="relative">
+      <button
+        onClick={() => setIsOpen((prev) => !prev)}
+        className="w-6 h-6 flex items-center justify-center rounded-lg hover:bg-gray-100"
+      >
         ⋮
       </button>
       {isOpen ? (
-        <div className="bg-white absolute right-0">
-          <div onClick={onModify} className="rounded-t-lg border-black">
+        <div className="bg-white absolute right-0 mt-2 w-28 border border-gray-200 rounded-lg shadow-xs z-10">
+          <button
+            onClick={() => {
+              setIsOpen(false);
+              onModify();
+            }}
+            className="w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-t-lg border-b border-gray-200"
+          >
             수정하기
-          </div>
-          <div
+          </button>
+          <button
             onClick={() => {
               setIsOpen(false);
               onDelete();
             }}
-            className="rounded-t-lg"
+            className="w-full text-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-b-lg"
           >
             삭제하기
-          </div>
+          </button>
         </div>
       ) : null}
     </div>
