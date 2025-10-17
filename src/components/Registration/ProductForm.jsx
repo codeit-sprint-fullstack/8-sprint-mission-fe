@@ -16,12 +16,14 @@ const ProductForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
-    setImgs(initialData.img || "");
-    setTitle(initialData.title || "");
-    setDescription(initialData.description || "");
-    setPrice(initialData.price || "");
-    setTags(initialData.tags || []);
-  }, [initialData]);
+    if (mode === "edit") {
+      setImgs(initialData.img || "");
+      setTitle(initialData.title || "");
+      setDescription(initialData.description || "");
+      setPrice(initialData.price || "");
+      setTags(initialData.tags || []);
+    }
+  }, [mode, initialData]);
 
   const isFormValid =
     title.trim() !== "" && description.trim() !== "" && price.trim() !== "";

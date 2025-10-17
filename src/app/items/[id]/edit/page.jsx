@@ -10,8 +10,11 @@ import ProductForm from "@/components/Registration/ProductForm";
 const ProductEditPage = () => {
   const { id } = useParams();
   const [initialData, setInitialData] = useState({
+    img: "",
     title: "",
     description: "",
+    price: "",
+    tags: [],
   });
   const router = useRouter();
 
@@ -19,7 +22,13 @@ const ProductEditPage = () => {
     const getProduct = async () => {
       try {
         const data = await fetchProduct(id);
-        setInitialData({ title: data.title, description: data.description });
+        setInitialData({
+          img: data.img,
+          title: data.title,
+          description: data.description,
+          price: data.price,
+          tags: data.tags,
+        });
       } catch (error) {
         console.error("상품 상세 불러오기 에러:", error);
       }

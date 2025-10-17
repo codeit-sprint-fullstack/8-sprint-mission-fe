@@ -8,9 +8,11 @@ const ArticleForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
   const [content, setContent] = useState("");
 
   useEffect(() => {
-    setTitle(initialData.title || "");
-    setContent(initialData.content || "");
-  }, [initialData]);
+    if (mode === "edit") {
+      setTitle(initialData.title || "");
+      setContent(initialData.content || "");
+    }
+  }, [mode, initialData]);
 
   const isFormValid = title.trim() !== "" && content.trim() !== "";
 

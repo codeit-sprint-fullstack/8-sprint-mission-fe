@@ -19,9 +19,12 @@ const ImageForm = ({ images = [], onChange }) => {
     const selected = files.slice(0, remainCount);
 
     try {
+      const token = localStorage.getItem("accessToken");
+      if (!token) throw new Error("인증 토큰이 없습니다.");
+
       const uploadedUrls = [];
       for (const file of selected) {
-        const url = await uploadImage(file);
+        const url = await uploadImage(file, token);
         uploadedUrls.push(url);
       }
 

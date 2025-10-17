@@ -7,11 +7,14 @@ export const uploadImage = async (file) => {
 
   const res = await fetch(`${IMAGE_API_URL}/upload`, {
     method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     body: formData,
   });
 
   if (!res.ok) {
-    throw new Error("이미지 업로드 실패");
+    throw new Error(`이미지 업로드 실패: ${res.status}`);
   }
 
   const data = await res.json();
