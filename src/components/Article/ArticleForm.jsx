@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import InputField from "../InputField/InputField";
 
 const ArticleForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
   const [title, setTitle] = useState("");
@@ -19,7 +20,7 @@ const ArticleForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
   };
 
   return (
-    <div>
+    <section>
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-xl font-bold text-gray-800">
           {mode === "create" ? "게시글 쓰기" : "게시글 수정"}
@@ -37,17 +38,16 @@ const ArticleForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
         </button>
       </div>
 
-      <div>
-        <form className="mb-6">
-          <h1 className="text-lg font-bold text-gray-800 mb-[10px]">*제목</h1>
-          <input
-            type="text"
-            value={title}
-            placeholder="제목을 입력해주세요."
-            onChange={(e) => setTitle(e.target.value)}
-            className="items-start w-full h-14 px-6 py-4 rounded-xl bg-gray-100 focus:border-gray-400 focus:outline-none placeholder-gray-400 text-black"
-          />
-        </form>
+      <div className="flex flex-col gap-6">
+        <InputField
+          title="*제목"
+          type="text"
+          id="title"
+          placeholder="제목을 입력해주세요."
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+
         <form>
           <h1 className="text-lg font-bold text-gray-800 mb-[10px]">*내용</h1>
           <textarea
@@ -58,7 +58,7 @@ const ArticleForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
           />
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 

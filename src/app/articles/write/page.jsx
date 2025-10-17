@@ -7,7 +7,7 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import ArticleForm from "@/components/Article/ArticleForm";
 
-const BoardWritePage = () => {
+const ArticleWritePage = () => {
   const router = useRouter();
 
   //게시글 등록 API
@@ -42,4 +42,4 @@ const BoardWritePage = () => {
   );
 };
 
-export default BoardWritePage;
+export default ArticleWritePage;

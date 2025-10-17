@@ -23,6 +23,11 @@ const ItemPage = () => {
       <Header />
 
       <main className="flex-1 flex flex-col items-stretch mx-auto mb-[200px] p-4 w-full max-w-[1200px]">
+        <section className="flex items-center justify-between my-6 flex-wrap gap-4">
+          <h2 className="text-lg font-bold text-gray-900">베스트 상품</h2>
+          {/* <ProductCard /> */}
+        </section>
+
         <section>
           <ProductListController
             controls={{ search: true, orderBy: true }}

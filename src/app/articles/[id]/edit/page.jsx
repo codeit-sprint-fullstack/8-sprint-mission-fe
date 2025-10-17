@@ -7,7 +7,7 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import ArticleForm from "@/components/Article/ArticleForm";
 
-const BoardWritePage = () => {
+const ArticleEditPage = () => {
   const { id } = useParams();
   const [initialData, setInitialData] = useState({ title: "", content: "" });
   const router = useRouter();
@@ -51,4 +51,4 @@ const BoardWritePage = () => {
   );
 };
 
-export default BoardWritePage;
+export default ArticleEditPage;
