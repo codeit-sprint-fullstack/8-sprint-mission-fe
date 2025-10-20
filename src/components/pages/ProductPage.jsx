@@ -64,10 +64,10 @@ const ProductPage = () => {
 
       {isLoading && page === 1 ? (
         <div className="text-center py-12">로딩 중...</div>
-      ) : data?.list?.length > 0 ? (
+      ) : data?.length > 0 ? (
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
-            {data.list.map((product) => (
+            {data.map((product) => (
               <ProductItem key={product.id} product={product} />
             ))}
           </div>
@@ -75,9 +75,9 @@ const ProductPage = () => {
           {/* 더보기 버튼 또는 페이지네이션 정보 */}
           <div className="text-center">
             <div className="text-sm text-gray-500 mb-4">
-              총 {data.totalCount}개 중 {data.list.length}개 표시
+              총 {data?.length}개 중 {data?.length<10?data?.length:'10'}개 표시
             </div>
-            {data.list.length < data.totalCount && (
+            {data.length < data.totalCount && (
               <button
                 onClick={handleLoadMore}
                 disabled={isLoading}

@@ -3,11 +3,11 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'panda-market-api.vercel.app',
+        protocol: 'http',
+        hostname: 'localhost:4000/',
       },
       {
-        protocol: 'https',
+        protocol: 'http',
         hostname: '**',
       },
     ],
@@ -16,7 +16,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'https://panda-market-api.vercel.app/:path*',
+        destination: 'http://localhost:4000/:path*',
       },
     ];
   },

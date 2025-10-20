@@ -19,7 +19,7 @@ const ProductItem = ({ product }) => {
     >
       <div className="relative w-full h-48">
         <Image
-          src={product.images[0] || '/images/sample/img_sample1.png'}
+          src={product.imageUrl || '/images/sample/img_sample1.png'}
           alt={product.name}
           fill
           className="object-cover"
