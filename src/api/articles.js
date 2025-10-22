@@ -7,19 +7,19 @@ const formatDate = (date) => {
 };
 
 // 게시글 목록 조회
-export const fetchArticles = async (limit = 10) => {
-  const res = await fetch(`${ARTICLE_API_URL}?limit=${limit}`);
+export const fetchArticles = async () => {
+  const res = await fetch(`${ARTICLE_API_URL}?limit=10`);
   if (!res.ok) {
     throw new Error("게시글 목록 가져오기 실패");
   }
   const data = await res.json();
 
-  return (data.list ?? []).map((b) => ({
-    ...b,
-    nickname: b.nickname ?? "테스트유저",
+  return (data.list ?? []).map((a) => ({
+    ...a,
+    nickname: a.nickname ?? "테스트유저",
     // likeCount: b.likeCount ?? Math.floor(Math.random() * 100),
-    createdAt: formatDate(b.createdAt),
-    updatedAt: formatDate(b.updatedAt),
+    createdAt: formatDate(a.createdAt),
+    updatedAt: formatDate(a.updatedAt),
   }));
 };
 

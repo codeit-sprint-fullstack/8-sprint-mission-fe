@@ -5,10 +5,8 @@ const PRODUCT_API_URL = `${BASE_URL}/products`;
 
 // 게시글 상세 페이지
 // 댓글 목록 조회
-export const fetchComments = async (articleId, limit = 5) => {
-  const res = await fetch(
-    `${ARTICLE_API_URL}/${articleId}/comments?limit=${limit}`
-  );
+export const fetchComments = async (articleId) => {
+  const res = await fetch(`${ARTICLE_API_URL}/${articleId}/comments?limit=5`);
   if (!res.ok) {
     throw new Error("게시글 댓글 목록 가져오기 실패");
   }
@@ -69,10 +67,8 @@ export const deleteComment = async (id) => {
 
 // 상품 상세 페이지
 // 댓글 목록 조회
-export const fetchItemComments = async (productId, limit = 5) => {
-  const res = await fetch(
-    `${PRODUCT_API_URL}/${productId}/comments?limit=${limit}`
-  );
+export const fetchItemComments = async (productId) => {
+  const res = await fetch(`${PRODUCT_API_URL}/${productId}/comments?limit=5`);
   if (!res.ok) {
     throw new Error("상품 댓글 목록 가져오기 실패");
   }
