@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import ImageForm from "../InputField/ImageForm";
 import InputField from "../InputField/InputField";
+import TextareaField from "../InputField/TextareaField";
 
 const ArticleForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
   const [title, setTitle] = useState("");
@@ -30,7 +32,7 @@ const ArticleForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
         <button
           onClick={handleSubmit}
           disabled={!isFormValid}
-          className={`flex justify-center items-center bg-gray-400 rounded-lg w-[88px] h-12 px-[23px] py-3 text-base text-gray-100 whitespace-nowrap ${
+          className={`flex justify-center items-center rounded-lg w-[88px] h-12 px-[23px] py-3 text-base text-gray-100 whitespace-nowrap ${
             isFormValid
               ? "bg-[#3692FF] cursor-pointer hover:underline"
               : "bg-gray-400 cursor-not-allowed"
@@ -50,15 +52,13 @@ const ArticleForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
           onChange={(e) => setTitle(e.target.value)}
         />
 
-        <form>
-          <h1 className="text-lg font-bold text-gray-800 mb-[10px]">*내용</h1>
-          <textarea
-            value={content}
-            placeholder="내용을 입력해주세요."
-            onChange={(e) => setContent(e.target.value)}
-            className="items-start w-full h-[282px] px-6 py-4 rounded-xl bg-gray-100 focus:border-gray-400 focus:outline-none placeholder-gray-400 text-black"
-          />
-        </form>
+        <TextareaField
+          title="*내용"
+          id="content"
+          placeholder="내용을 입력해주세요."
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+        />
       </div>
     </section>
   );

@@ -1,4 +1,6 @@
-import { cookieFetch } from "@/lib/fetchClient";
+import { defaultFetch } from "@/lib/fetchClient";
+// 인증 없이 테스트 하려고 defaultFetch로 변경함.
+// 추후 다시 cookieFetch로 변경
 
 const formDataFetch = async (url, options = {}) => {
   const baseURL = process.env.NEXT_PUBLIC_API_URL;
@@ -27,7 +29,7 @@ const formDataFetch = async (url, options = {}) => {
 };
 
 export const userService = {
-  getMe: () => cookieFetch("/users/me"),
+  getMe: () => defaultFetch("/users/me"),
 
   updateMe: (formData) =>
     formDataFetch("/users/me", {
@@ -41,7 +43,7 @@ export const userService = {
       body: formData,
     }),
 
-  getMyProducts: () => cookieFetch("/users/me/products"),
+  getMyProducts: () => defaultFetch("/users/me/products"),
 
-  getMyFavorites: () => cookieFetch("/users/me/favorites"),
+  getMyFavorites: () => defaultFetch("/users/me/favorites"),
 };

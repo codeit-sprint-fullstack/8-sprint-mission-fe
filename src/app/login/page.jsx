@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,6 +9,7 @@ import AuthButton from "@/components/AuthPage/AuthButton";
 import SocialLogin from "@/components/AuthPage/SocialLogin";
 import Modal from "@/components/AuthPage/Modal";
 import { authService } from "@/lib/authService";
+import { useAuth } from "@/providers/AuthProvider";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -20,35 +20,24 @@ const LoginPage = () => {
 
   const router = useRouter();
 
-  useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    if (accessToken) {
-      router.push("/items");
-    }
-  }, [router]);
-
-  const loginMutation = useMutation({
-    mutationFn: ({ email, password }) => authService.login(email, password),
-    onSuccess: (data) => {
-      if (data?.accessToken) {
-        localStorage.setItem("accessToken", data.accessToken);
-      }
-      router.push("/items");
-    },
-    onError: (err) => {
-      setModalMessage(
-        err.message || "로그인 실패. 이메일 또는 비밀번호를 확인해주세요."
-      );
-      setIsModalOpen(true);
-    },
-  });
+  const { login } = useAuth();
 
   const handleLogin = () => {
     if (!email || !password) {
       setError("이메일과 비밀번호를 입력해주세요.");
       return;
     }
-    loginMutation.mutate({ email, password });
+
+    login(email, password)
+      .then(() => {
+        router.push("/items");
+      })
+      .catch((err) => {
+        setModalMessage(
+          err.message || "로그인 실패. 이메일 또는 비밀번호를 확인해주세요."
+        );
+        setIsModalOpen(true);
+      });
   };
 
   const isDisabled = !email || !password;

@@ -20,10 +20,13 @@ export const fetchComments = async (articleId) => {
 
 // 댓글 추가
 export const addComment = async (articleId, comment) => {
+  const token = localStorage.getItem("token");
+
   const res = await fetch(`${ARTICLE_API_URL}/${articleId}/comments`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(comment),
   });
@@ -37,10 +40,13 @@ export const addComment = async (articleId, comment) => {
 
 // 댓글 수정
 export const updateComment = async (id, comment) => {
+  const token = localStorage.getItem("token");
+
   const res = await fetch(`${COMMENT_API_URL}/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(comment),
   });
@@ -54,8 +60,13 @@ export const updateComment = async (id, comment) => {
 
 // 댓글 삭제
 export const deleteComment = async (id) => {
+  const token = localStorage.getItem("token");
+
   const res = await fetch(`${COMMENT_API_URL}/${id}`, {
     method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
 
   if (!res.ok) {
@@ -81,10 +92,13 @@ export const fetchItemComments = async (productId) => {
 
 // 댓글 추가
 export const addItemComment = async (productId, comment) => {
+  const token = localStorage.getItem("token");
+
   const res = await fetch(`${PRODUCT_API_URL}/${productId}/comments`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(comment),
   });

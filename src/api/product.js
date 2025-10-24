@@ -46,9 +46,14 @@ export const addProduct = async ({
   images,
 }) => {
   const newProduct = { title, price, description, tags, images };
+  const token = localStorage.getItem("token");
+
   const res = await fetch(PRODUCT_API_URL, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify(newProduct),
   });
 
@@ -63,9 +68,14 @@ export const updateProduct = async (
   id,
   { title, price, description, tags, images }
 ) => {
+  const token = localStorage.getItem("token");
+
   const res = await fetch(`${PRODUCT_API_URL}/${id}`, {
     method: "PATCH",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify({ title, price, description, tags, images }),
   });
 
@@ -77,7 +87,14 @@ export const updateProduct = async (
 
 // 상품 삭제
 export const deleteProduct = async (id) => {
-  const res = await fetch(`${PRODUCT_API_URL}/${id}`, { method: "DELETE" });
+  const token = localStorage.getItem("token");
+
+  const res = await fetch(`${PRODUCT_API_URL}/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   if (!res.ok) {
     throw new Error("상품 삭제 실패");
   }

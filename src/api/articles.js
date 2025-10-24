@@ -46,11 +46,13 @@ export const addArticle = async ({ title, content }) => {
     title,
     content,
   };
+  const token = localStorage.getItem("token");
 
   const res = await fetch(ARTICLE_API_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(newBoard),
   });
@@ -64,10 +66,13 @@ export const addArticle = async ({ title, content }) => {
 
 // 게시글 수정
 export const updateArticle = async (id, { title, content }) => {
+  const token = localStorage.getItem("token");
+
   const res = await fetch(`${ARTICLE_API_URL}/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       title,
@@ -83,8 +88,13 @@ export const updateArticle = async (id, { title, content }) => {
 
 // 게시글 삭제
 export const deleteArticle = async (id) => {
+  const token = localStorage.getItem("token");
+
   const res = await fetch(`${ARTICLE_API_URL}/${id}`, {
     method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
   if (!res.ok) {
     throw new Error("게시글 삭제 실패");

@@ -47,6 +47,11 @@ export default function AuthProvider({ children }) {
   const login = async (email, password) => {
     try {
       await authService.login(email, password);
+
+      if (data?.accessToken) {
+        localStorage.setItem("accessToken", data.accessToken);
+      }
+
       await getUser();
     } catch (error) {
       console.error("로그인 실패:", error);
