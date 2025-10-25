@@ -1,17 +1,21 @@
 'use client';
 
+//라이브러리
 import { useState, useEffect } from 'react';
-import useAsync from '../../hooks/useAsync.jsx';
 
-import Headline from '../../components/molecules/Headline/Headline.jsx';
-
+//훅
+import useAsync from '@/hooks/useAsync.js';
 import { getArticles } from '../../api/ArticleSevice.js';
+import { useProvider } from '@/components/Provider/Provider.jsx';
+
+//컴포넌트
+import MainFrame from '@/components/organism/mainFrame.jsx';
+import Headline from '../../components/molecules/Headline/Headline.jsx';
+import ArticleHeadline from '@/components/molecules/Headline/ArticleHeadline.jsx';
 import { ArticleList, BestArticleList } from '../../components/molecules/Articles/ArticleList.jsx';
 
+//스타일
 import styles from './ArticlePage.module.css';
-import { useProvider } from '@/components/Provider/Provider.jsx';
-import ArticleHeadline from '@/components/molecules/Headline/ArticleHeadline.jsx';
-import MainFrame from '@/components/organism/mainFrame.jsx';
 
 export default function Articles() {
   const [bestArticles, setBestArticles] = useState([]);

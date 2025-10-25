@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import prisma from '../../config/db.js';
 import { asyncHandeler } from '../../utils/errorHandler.js';
 const router = Router();
 

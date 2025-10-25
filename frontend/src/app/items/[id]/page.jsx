@@ -3,6 +3,8 @@
 //라이브러리
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
+
+//훅
 import {
   getProduct,
   patchProduct,
@@ -12,10 +14,14 @@ import {
   updateComment,
   deleteComment,
 } from '@/api/ProductService';
+import useAsync from '@/hooks/useAsync';
 
 //컴포넌트
 import MainFrame from '@/components/organism/mainFrame';
 import { DropdownList } from '@/components/molecules/Dropdown/Dropdown';
+import DeleteModal from '@/components/molecules/DeleteModal/DeleteModal';
+import Input from '@/components/molecules/Input/Input';
+import Button from '@/components/Atoms/Button/Button';
 
 //이미지
 import Image from 'next/image';
@@ -24,15 +30,10 @@ import userPanda from '@/images/userPanda.svg';
 import heartIcon from './ic_heart.svg';
 import noComment from './ic_noComment.svg';
 import backIcon from './ic_back.svg';
-
 import productDefault from '../../../../public/images/items/product_default.png';
 
 //스타일
 import styles from './item.module.css';
-import Input from '@/components/molecules/InputForm/InputForm';
-import Button from '@/components/Atoms/Button';
-import useAsync from '@/hooks/useAsync';
-import DeleteModal from '@/components/molecules/DeleteModal/DeleteModal';
 
 function ProductDetail({ product, setModalOpen }) {
   const router = useRouter();
@@ -114,6 +115,7 @@ function ProductDetail({ product, setModalOpen }) {
     </div>
   );
 }
+
 function CommentList({ list, handlePatch, handleDelete }) {
   const [editId, setEditId] = useState('');
   const [commentEdit, setCommentEdit] = useState('');
@@ -286,7 +288,7 @@ export default function ProductPage({}) {
               </Button>
             </div>
           </form>
-          {comments.length > 0 ? (
+          {comments && comments.length > 0 ? (
             <CommentList
               list={comments}
               handlePatch={handlePatchComment}
