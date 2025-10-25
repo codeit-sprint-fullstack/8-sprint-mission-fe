@@ -4,14 +4,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { LikeButton } from "@/components/atoms/LikeButton";
 import { useQueryClient } from "@tanstack/react-query";
-import { prefetchProductDetail } from "@/lib/api/items/preFetch";
+import { prefetchProductDetail } from "@/lib/api/product/preFetch";
 
 interface ProductCardProps {
   id: string;
   name: string;
   price: number;
   image?: string;
-  favoriteCount: number;
+  likeCount: number;
 }
 
 const DEFAULT_IMAGE = "/product-list/prod-test.png";
@@ -21,19 +21,19 @@ export function ProductCard({
   name,
   price,
   image = DEFAULT_IMAGE,
-  favoriteCount,
+  likeCount,
 }: ProductCardProps) {
   const queryClient = useQueryClient();
 
   const handleMouseEnter = () => {
     console.log("제품 상세 프리패치 : ", id);
-    prefetchProductDetail(queryClient, Number(id));
+    prefetchProductDetail(queryClient, id);
   };
 
   return (
     <div className="text-secondary-800">
       <Link
-        href={`/items/${id}`}
+        href={`/product/${id}`}
         className="block"
         onMouseEnter={handleMouseEnter}
       >
@@ -52,7 +52,7 @@ export function ProductCard({
           <p className="text-base font-bold">{price.toLocaleString()}원</p>
         </div>
       </Link>
-      <LikeButton favoriteCount={favoriteCount} />
+      <LikeButton likeCount={likeCount} />
     </div>
   );
 }

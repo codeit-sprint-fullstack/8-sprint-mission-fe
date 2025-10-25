@@ -1,7 +1,6 @@
 import { fetchWithAuth } from "../auth/fetchers";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-const CODEIT_API_URL = process.env.NEXT_PUBLIC_CODEIT_API_URL;
 
 export interface Comment {
   id: string;
@@ -20,12 +19,14 @@ export interface CommentList {
  * @returns Comment
  */
 const createComment = async (id: string, comment: string) => {
+  const accessToken = localStorage.getItem("accessToken");
   try {
     const response = await fetch(`${API_URL}/articles/${id}/comments`, {
       method: "POST",
       body: JSON.stringify({ content: comment }),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
       },
     });
     if (!response.ok) {
@@ -119,7 +120,7 @@ const updateComment = async (
 const getProductComments = async (id: string, limit: number = 10) => {
   try {
     const response = await fetch(
-      `${CODEIT_API_URL}/products/${id}/comments?limit=${limit}`
+      `${API_URL}/products/${id}/comments?limit=${limit}`
     );
     if (!response.ok) {
       throw new Error("상품 댓글 목록 조회 실패");
@@ -143,16 +144,13 @@ const createProductComment = async (id: string, comment: string) => {
   }
 
   try {
-    const response = await fetchWithAuth(
-      `${CODEIT_API_URL}/products/${id}/comments`,
-      {
-        method: "POST",
-        body: JSON.stringify({ content: comment }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetchWithAuth(`${API_URL}/products/${id}/comments`, {
+      method: "POST",
+      body: JSON.stringify({ content: comment }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     if (!response || !response.ok) {
       const error = await response?.json();
       throw new Error(error.message);
@@ -176,16 +174,13 @@ const updateProductComment = async (commentId: string, comment: string) => {
   }
 
   try {
-    const response = await fetchWithAuth(
-      `${CODEIT_API_URL}/comments/${commentId}`,
-      {
-        method: "PATCH",
-        body: JSON.stringify({ content: comment }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetchWithAuth(`${API_URL}/comments/${commentId}`, {
+      method: "PATCH",
+      body: JSON.stringify({ content: comment }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     if (!response?.ok) {
       const error = await response?.json();
       throw new Error(error.message);
@@ -204,12 +199,9 @@ const updateProductComment = async (commentId: string, comment: string) => {
  */
 const deleteProductComment = async (commentId: string) => {
   try {
-    const response = await fetchWithAuth(
-      `${CODEIT_API_URL}/comments/${commentId}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetchWithAuth(`${API_URL}/comments/${commentId}`, {
+      method: "DELETE",
+    });
     if (!response?.ok) {
       const error = await response?.json();
       throw new Error(error.message);

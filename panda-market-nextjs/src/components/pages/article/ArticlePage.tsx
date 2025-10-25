@@ -43,7 +43,8 @@ export default function ArticlePage() {
 
   // 베스트 게시글 페이지 사이즈
   const bestArticlesPageSize: number = useBestArticlesPageSize();
-  const bestArticlesList = bestArticles?.slice(0, bestArticlesPageSize) || [];
+  const bestArticlesList =
+    bestArticles?.articles?.slice(0, bestArticlesPageSize) || [];
 
   // 게시글 리스트
   const articlesList = articles?.articles || [];
@@ -79,7 +80,7 @@ export default function ArticlePage() {
               image="/article/note-book-img.png"
               nickname={article.author}
               createdAt={dayjs(article.createdAt).format("YYYY. MM. DD.")}
-              likeCount={article.likes}
+              likeCount={article.likeCount}
             />
           ))}
         </div>
@@ -127,7 +128,7 @@ export default function ArticlePage() {
               avatarImage="/article/avatar-img.svg"
               nickname={article.author}
               createdAt={dayjs(article.createdAt).format("YYYY. MM. DD.")}
-              likeCount={article.likes}
+              likeCount={article.likeCount}
             />
           ))}
         </div>

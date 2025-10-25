@@ -19,7 +19,7 @@ import {
  * 베스트 게시글 조회
  * @returns BestArticle[]
  */
-const useGetBestArticles = (): UseQueryResult<Article[]> => {
+const useGetBestArticles = (): UseQueryResult<ArticleList> => {
   return useQuery({
     queryKey: ["bestArticles"],
     queryFn: articlesApi.getBestArticles,

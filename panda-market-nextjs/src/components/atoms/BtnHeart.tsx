@@ -1,8 +1,8 @@
-import { useItemsQuery } from "@/lib/api/items/queries";
+import { useItemsQuery } from "@/lib/api/product/queries";
 import Image from "next/image";
 
 interface BtnHeartProps {
-  productId: number;
+  productId: string;
 }
 
 export default function BtnHeart({ productId }: BtnHeartProps) {
@@ -30,7 +30,7 @@ export default function BtnHeart({ productId }: BtnHeartProps) {
       className="flex items-center gap-2 cursor-pointer border border-secondary-400 rounded-[40px] px-3 py-1"
     >
       <Image src={icon} alt="like" width={24} height={24} />
-      <span>{productDetail?.favoriteCount}</span>
+      <span>{productDetail?.likeCount}</span>
     </button>
   );
 }

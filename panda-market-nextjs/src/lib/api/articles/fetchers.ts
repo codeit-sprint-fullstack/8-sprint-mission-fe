@@ -6,7 +6,7 @@ export interface Article {
   title: string;
   content: string;
   author: string;
-  likes: number;
+  likeCount: number;
   createdAt: string;
 }
 
@@ -28,9 +28,9 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
  * 베스트 게시글 3개 가져오기
  * @returns ArticleList
  */
-const getBestArticles = async (): Promise<Article[]> => {
+const getBestArticles = async (): Promise<ArticleList> => {
   try {
-    const response = await fetch(`${API_URL}/best-articles`);
+    const response = await fetch(`${API_URL}/articles?isBest=true`);
     if (!response.ok) {
       throw new Error("베스트 게시글 조회 실패");
     }
