@@ -1,0 +1,41 @@
+.inputGruop {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  color: var(--white-white, #fff);
+  font: var(--font-16-regular);
+}
+
+.input {
+  width: 100%;
+  height: 55px;
+  padding: 18px 20px;
+  border-radius: 2px;
+  border: 1px solid var(--gray-gray200, #ddd);
+  background: var(--black-black, #0f0f0f);
+  color: var(--white-white, #fff);
+}
+
+.inpu:focus {
+  border: 1px solid var(--error-C41013, #c41013) !important;
+  outline: none;
+}
+
+.input.error {
+  border: 1px solid var(--error-C41013, #c41013);
+}
+
+/* 왜 포커스 생상이 안 바뀌고 흰색 고정일까요? */
+.input.error:focus {
+  border: 1px solid var(--error-bg-FFA3A5, #ffa3a5);
+}
+
+.errorMsg {
+  color: var(--error-C41013, #c41013);
+  font: var(--font-14-regular);
+}

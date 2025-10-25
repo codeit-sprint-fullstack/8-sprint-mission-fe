@@ -1,75 +1,75 @@
-.mobile{
-    display: flex;
+.mobile {
+  display: flex;
 }
 
-.tablet{
-    display: none;
+.tablet {
+  display: none;
 }
 
-.desktop{
-    display: none;
+.desktop {
+  display: none;
 }
 
-.notMobile{
-    display: none;
+.notMobile {
+  display: none;
 }
 
-.notTablet{
-    display: flex;
+.notTablet {
+  display: flex;
 }
 
-.notDesktop{
-    display: flex;
+.notDesktop {
+  display: flex;
 }
 
 @media (min-width: 744px) {
-    .mobile{
-        display: none;
-    }
+  .mobile {
+    display: none;
+  }
 
-    .tablet{
-        display: flex;
-    }
+  .tablet {
+    display: flex;
+  }
 
-    .desktop{
-        display: none;
-    }
+  .desktop {
+    display: none;
+  }
 
-    .notMobile{
-        display: flex;
-    }
+  .notMobile {
+    display: flex;
+  }
 
-    .notTablet{
-        display: none;
-    }
+  .notTablet {
+    display: none;
+  }
 
-    .notDesktop{
-        display: flex;
-    }
+  .notDesktop {
+    display: flex;
+  }
 }
 
 @media (min-width: 1200px) {
-    .mobile{
-        display: none;
-    }
+  .mobile {
+    display: none;
+  }
 
-    .tablet{
-        display: none;
-    }
+  .tablet {
+    display: none;
+  }
 
-    .desktop{
-        display: flex;
-    }
+  .desktop {
+    display: flex;
+  }
 
-    .notMobile{
-        display: flex;
-    }
+  .notMobile {
+    display: flex;
+  }
 
-    .notTablet{
-        display: flex;
-    }
+  .notTablet {
+    display: flex;
+  }
 
-    .notDesktop{
-        display: none;
-    }
+  .notDesktop {
+    display: none;
+  }
 }

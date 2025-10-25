@@ -1,35 +1,35 @@
-.button {   
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.button {
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    border: none;
-    outline: none;
-    box-shadow: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
 
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .button.default:hover {
-    background-color: #1967d6;
+  background-color: #1967d6;
 }
 
 .button:focus {
-    background-color: #1251aa;
+  background-color: #1251aa;
 }
 
 .button:disabled {
-    background-color: #9ca3af;
-    cursor: default;
-    pointer-events: none;
+  background-color: #9ca3af;
+  cursor: default;
+  pointer-events: none;
 }
 
 .default {
-    background-color: var(--brand-blue);
-    cursor: pointer;
+  background-color: var(--brand-blue);
+  cursor: pointer;
 }
 
-.disabled{
-    background-color: var(--Cool-Gray-400);
+.disabled {
+  background-color: var(--Cool-Gray-400);
 }
