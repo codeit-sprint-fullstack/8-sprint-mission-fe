@@ -1,11 +1,13 @@
 import { useState } from 'react';
+import { useProvider } from '@/components/Provider/Provider';
 import styles from './PageButton.module.css';
 import Image from 'next/image';
 import arrowLeft from './arrow_left.svg';
 import arrowRight from './arrow_right.svg';
 
 function PageButton({ pageIdx, onPageChange, disabled }) {
-  const PageNums = [1, 2, 3, 4, 5];
+  const deviceType = useProvider();
+  const PageNums = deviceType === 'mobile' ? [1, 2, 3] : [1, 2, 3, 4, 5];
   const [pageListIdx, setPageListIdx] = useState(0); //페이지 리스트 (1) : 1 ~ 5 페이지, (2) : 6 ~ 10
 
   const handlePageListChange = (upDown) => {

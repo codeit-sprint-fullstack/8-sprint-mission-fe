@@ -81,7 +81,7 @@ export default function Items() {
           <Headline
             title="판매 중인 상품"
             registerName="상품 등록하기"
-            registerUrl="/registration"
+            registerUrl="/items/upload"
             order={order}
             onChangeOrder={handleDropdown}
             search={search}

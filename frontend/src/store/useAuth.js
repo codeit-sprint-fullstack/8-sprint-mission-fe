@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-const defaultUrl = 'https://localhost:4000/auth'; //백엔드 주소
+const defaultUrl = 'http://localhost:4000/auth'; //백엔드 주소
 
 /* 기본 리스폰스 처리 */
 async function responseHandler(res) {
@@ -10,12 +10,17 @@ async function responseHandler(res) {
     const errorText = await res.text();
     throw new Error(errorText);
   }
-  return res.json();
+  const data = {
+    ok: true,
+    ...(await res.json()),
+  };
+  return data;
 }
 
 /* 기본 에러 처리 */
 async function errorHandler(err) {
   console.log(err);
+  return err.message;
 }
 
 /* useAuth 훅 */
@@ -24,6 +29,7 @@ const useAuth = create(
     (set, get) => ({
       accessToken: null,
       signup: async (name, email, password) => {
+        console.log('회원가입 진입');
         const body = {
           name,
           email,
@@ -36,8 +42,6 @@ const useAuth = create(
         })
           .then(responseHandler)
           .catch(errorHandler);
-
-        //window.location.href = '/login';
         return result;
       },
       login: async (email, password) => {

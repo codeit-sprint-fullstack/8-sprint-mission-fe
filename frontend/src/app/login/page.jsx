@@ -23,28 +23,26 @@ import Modal from '@/components/molecules/Modal/Modal';
 
 export default function Login() {
   const { values, errors, isLogInSubmitActive, onChange } = useAuthInput();
-  const { logIn } = useAuth();
+  const { login } = useAuth();
   const [modalMessage, setModalMessage] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const router = useRouter();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const body = {
-      email: values.email,
-      password: values.password,
-    };
-
-    const res = await logIn(body);
-    if (typeof res === 'string') {
-      console.log(res);
-      setModalMessage(res);
+    const { email, password } = values;
+    const result = await login(email, password);
+    if (typeof result === 'string') {
+      console.log(result);
+      setModalMessage(result);
       setIsModalOpen(true);
       return;
     }
 
+    console.log(result);
     //성공하면 중고마켓 페이지 이동
-    const router = useRouter();
-    if (res) {
+    if (result.ok) {
       router.push(`/items`);
     }
   };

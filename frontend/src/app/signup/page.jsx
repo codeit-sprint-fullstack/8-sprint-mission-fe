@@ -23,7 +23,7 @@ import Modal from '@/components/molecules/Modal/Modal';
 
 export default function Login() {
   const { values, errors, isSignUpSubmitActive, onChange } = useAuthInput();
-  const { signUp } = useAuth();
+  const { signup } = useAuth();
   const [modalMessage, setModalMessage] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -32,14 +32,9 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const body = {
-      email: values.email,
-      password: values.password,
-      passwordCheck: values.passwordCheck,
-      nickName: '가입한 판다',
-    };
-
-    const res = await signUp(body);
+    const { name, email, password } = values;
+    console.log(name, email, password);
+    const res = await signup(name, email, password);
     if (typeof res === 'string') {
       console.log(res);
       setModalMessage(res);
@@ -97,7 +92,7 @@ export default function Login() {
           placeholder="비밀번호를 다시 한번 입력해주세요."
         />
         <Button className={styles.subimtButton} disabled={!isSignUpSubmitActive}>
-          로그인
+          가입하기
         </Button>
       </form>
 
