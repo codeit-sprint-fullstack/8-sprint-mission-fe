@@ -9,25 +9,25 @@ export interface Product {
   tags: string[];
   images: string[];
   ownerId: number;
-  favoriteCount: number;
+  likeCount: number;
   createdAt: string;
   updatedAt: string;
   isFavorite?: boolean;
 }
 
 export interface ProductList {
-  list: Product[];
+  products: Product[];
   totalCount: number;
 }
 
 export interface ProductFilters {
   page?: number;
   pageSize?: number;
-  orderBy?: "recent" | "favorite";
+  orderBy?: "recent" | "like";
   keyword?: string;
 }
 
-const CODEIT_API_URL = process.env.NEXT_PUBLIC_CODEIT_API_URL;
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 /**
  * 상품 목록 가져오기
@@ -50,7 +50,7 @@ const getProducts = async (
       searchParams.set("keyword", keyword);
     }
 
-    const response = await fetch(`${CODEIT_API_URL}/products?${searchParams}`);
+    const response = await fetch(`${API_URL}/products?${searchParams}`);
     if (!response.ok) {
       throw new Error("상품 조회 실패");
     }
@@ -68,10 +68,10 @@ const getProducts = async (
  */
 const getProductDetail = async (id: string): Promise<Product> => {
   try {
-    const response = await fetchWithAuth(`${CODEIT_API_URL}/products/${id}`);
-    if (!response || !response.ok) {
-      throw new Error("상품 상세 조회 실패");
-    }
+    const response = await fetch(`${API_URL}/products/${id}`);
+    // if (!response || !response.ok) {
+    //   throw new Error("상품 상세 조회 실패");
+    // }
     return response.json();
   } catch (error) {
     console.error(error);
@@ -90,7 +90,7 @@ const updateProduct = async (
   product: ProductSchema
 ): Promise<Product> => {
   try {
-    const response = await fetchWithAuth(`${CODEIT_API_URL}/products/${id}`, {
+    const response = await fetchWithAuth(`${API_URL}/products/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -114,7 +114,7 @@ const updateProduct = async (
  */
 const deleteProduct = async (id: string): Promise<Product> => {
   try {
-    const response = await fetchWithAuth(`${CODEIT_API_URL}/products/${id}`, {
+    const response = await fetchWithAuth(`${API_URL}/products/${id}`, {
       method: "DELETE",
     });
     if (!response?.ok) {
@@ -134,7 +134,7 @@ const deleteProduct = async (id: string): Promise<Product> => {
  */
 const createProduct = async (product: ProductSchema): Promise<Product> => {
   try {
-    const response = await fetchWithAuth(`${CODEIT_API_URL}/products`, {
+    const response = await fetchWithAuth(`${API_URL}/products`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -156,11 +156,11 @@ const createProduct = async (product: ProductSchema): Promise<Product> => {
  * @param id 상품 ID
  * @returns Product
  */
-const addFavorite = async (productId: number): Promise<Product> => {
+const addFavorite = async (productId: string): Promise<Product> => {
   const accessToken = localStorage.getItem("accessToken");
   try {
     const response = await fetchWithAuth(
-      `${CODEIT_API_URL}/products/${productId}/favorite`,
+      `${API_URL}/products/${productId}/like`,
       {
         method: "POST",
         headers: {
@@ -185,11 +185,11 @@ const addFavorite = async (productId: number): Promise<Product> => {
  * @param id 상품 ID
  * @returns Product
  */
-const deleteFavorite = async (productId: number): Promise<Product> => {
+const deleteFavorite = async (productId: string): Promise<Product> => {
   const accessToken = localStorage.getItem("accessToken");
   try {
     const response = await fetchWithAuth(
-      `${CODEIT_API_URL}/products/${productId}/favorite`,
+      `${API_URL}/products/${productId}/like`,
       {
         method: "DELETE",
         headers: {

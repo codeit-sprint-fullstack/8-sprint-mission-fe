@@ -13,8 +13,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import ImageUpload from "@/components/molecules/ImageUpload";
 import TagInput from "@/components/molecules/TagInput";
-import { Product } from "@/lib/api/items/fetchers";
-import { useItemsQuery } from "@/lib/api/items/queries";
+import { Product } from "@/lib/api/product/fetchers";
+import { useItemsQuery } from "@/lib/api/product/queries";
 import { productSchema, ProductSchema } from "@/lib/schema/product";
 
 export default function ItemsUpdatePage() {
@@ -27,7 +27,7 @@ export default function ItemsUpdatePage() {
     isLoading: isProductDetailLoading,
     isError: isProductDetailError,
     error: productDetailError,
-  }: UseQueryResult<Product> = useItemsQuery.useGetProductDetail(Number(id));
+  }: UseQueryResult<Product> = useItemsQuery.useGetProductDetail(id);
 
   const {
     control,
@@ -63,7 +63,7 @@ export default function ItemsUpdatePage() {
       { id, product: data },
       {
         onSuccess: () => {
-          router.push(`/items/${id}`);
+          router.push(`/product/${id}`);
           toast.success("상품이 성공적으로 수정되었습니다.");
         },
         onError: (error) => {
@@ -230,7 +230,7 @@ export default function ItemsUpdatePage() {
           <Button
             type="button"
             variant="outline"
-            onClick={() => router.push(`/items/${id}`)}
+            onClick={() => router.push(`/product/${id}`)}
           >
             취소
           </Button>

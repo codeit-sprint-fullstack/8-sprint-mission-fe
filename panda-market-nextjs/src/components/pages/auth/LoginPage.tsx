@@ -45,7 +45,7 @@ export default function LoginPage() {
   const onSubmit = (data: Login) => {
     postLoginMutation(data, {
       onSuccess: () => {
-        router.push("/items");
+        router.push("/product");
       },
       onError: (error) => {
         console.error("로그인 중 오류가 발생했습니다:", error);

@@ -25,9 +25,9 @@ export const prefetchBestProducts = async (queryClient: QueryClient) => {
       const response = await itemsApi.getProducts({
         page: 1,
         pageSize: 4,
-        orderBy: "favorite",
+        orderBy: "like",
       });
-      return response.list.sort((a, b) => b.favoriteCount - a.favoriteCount);
+      return response.products.sort((a, b) => b.likeCount - a.likeCount);
     },
     staleTime: 5 * 60 * 1000, // 5분
   });
@@ -38,11 +38,11 @@ export const prefetchBestProducts = async (queryClient: QueryClient) => {
  */
 export const prefetchProductDetail = async (
   queryClient: QueryClient,
-  id: number
+  id: string
 ) => {
   await queryClient.ensureQueryData({
     queryKey: ["productDetail", id],
-    queryFn: () => itemsApi.getProductDetail(id.toString()),
+    queryFn: () => itemsApi.getProductDetail(id),
     staleTime: 5 * 60 * 1000, // 5분
   });
 };

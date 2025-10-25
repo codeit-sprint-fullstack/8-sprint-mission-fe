@@ -18,8 +18,8 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useAuthQuery } from "@/lib/api/auth/queries";
 import { useCommentsQuery } from "@/lib/api/comments/queries";
-import { Product } from "@/lib/api/items/fetchers";
-import { useItemsQuery } from "@/lib/api/items/queries";
+import { Product } from "@/lib/api/product/fetchers";
+import { useItemsQuery } from "@/lib/api/product/queries";
 import { UseQueryResult } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import Image from "next/image";
@@ -38,7 +38,7 @@ export default function ItemsDetailPage() {
     isPending,
     isError,
     error,
-  }: UseQueryResult<Product> = useItemsQuery.useGetProductDetail(Number(id)); // 상품 상세 조회
+  }: UseQueryResult<Product> = useItemsQuery.useGetProductDetail(id); // 상품 상세 조회
 
   const {
     data: productComments,
@@ -70,7 +70,7 @@ export default function ItemsDetailPage() {
       onSuccess: () => {
         setIsDeleteDialogOpen(false);
         toast.success("상품이 성공적으로 삭제되었습니다.");
-        router.push("/items");
+        router.push("/product");
       },
       onError: (error) => {
         setIsDeleteDialogOpen(false);
@@ -82,7 +82,7 @@ export default function ItemsDetailPage() {
    * 상품 수정
    */
   const handleUpdate = () => {
-    router.push(`/items/${id}/edit`);
+    router.push(`/product/${id}/edit`);
   };
 
   /**
@@ -167,6 +167,7 @@ export default function ItemsDetailPage() {
     return <div>Error: {error?.message}</div>;
   }
 
+  console.log(productDetail);
   const createdAt = dayjs(productDetail?.createdAt).format("YYYY. MM. DD.");
   const formattedPrice = productDetail?.price.toLocaleString();
 
@@ -177,7 +178,7 @@ export default function ItemsDetailPage() {
           {/* 상품 이미지 */}
           <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-secondary-100">
             <Image
-              src={productDetail?.images?.[0]}
+              src={productDetail?.images?.[0] || "/product-list/prod-test.png"}
               alt={productDetail?.name}
               fill
               className="object-cover"
@@ -287,7 +288,7 @@ export default function ItemsDetailPage() {
                 </div>
               </div>
               <div className="ml-auto">
-                <BtnHeart productId={productDetail?.id} />
+                <BtnHeart productId={productDetail?.id.toString()} />
               </div>
             </div>
           </div>
@@ -334,7 +335,7 @@ export default function ItemsDetailPage() {
 
         {/* 목록으로 돌아가기 */}
         <div className="flex justify-center mt-16">
-          <Button variant="default" onClick={() => router.push("/items")}>
+          <Button variant="default" onClick={() => router.push("/product")}>
             목록으로 돌아가기
           </Button>
         </div>

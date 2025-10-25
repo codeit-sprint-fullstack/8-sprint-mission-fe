@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import ImageUpload from "@/components/molecules/ImageUpload";
 import TagInput from "@/components/molecules/TagInput";
-import { useItemsQuery } from "@/lib/api/items/queries";
+import { useItemsQuery } from "@/lib/api/product/queries";
 import { productSchema, ProductSchema } from "@/lib/schema/product";
 import { Spinner } from "@/components/ui/spinner";
 
@@ -51,7 +51,7 @@ export default function ItemsCreatePage() {
   const onSubmit = async (data: ProductSchema) => {
     createProductMutation(data, {
       onSuccess: (createdProduct) => {
-        router.push(`/items/${createdProduct.id}`);
+        router.push(`/product/${createdProduct.id}`);
         toast.success("상품이 성공적으로 등록되었습니다.");
       },
       onError: (error) => {
@@ -182,7 +182,7 @@ export default function ItemsCreatePage() {
           <Button
             type="button"
             variant="outline"
-            onClick={() => router.push("/items")}
+            onClick={() => router.push("/product")}
           >
             취소
           </Button>
