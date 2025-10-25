@@ -6,17 +6,17 @@
     "scripts": {
         "setup": "npm i && npm run frontinstall && npm run backinstall",
         "frontinstall": "cd frontend && npm i",
-        "backinstall": "cd backend/prisma_back && npm i",
+        "backinstall": "cd backend && npm i",
         "front": "cd frontend && npm run dev",
-        "back": "cd backend/prisma_back && npm run dev",
-        "studio": "cd backend/prisma_back && npx prisma studio",
-        "migrate": "cd backend/prisma_back && npx prisma migrate deploy && npx prisma generate",
-        "seed": "cd backend/prisma_back && npm run seed",
+        "back": "cd backend && npm run dev",
+        "studio": "cd backend && npx prisma studio",
+        "migrate": "cd backend && npx prisma migrate deploy && npx prisma generate",
+        "seed": "cd backend && npm run seed",
         "build": "cd frontend && npm run build",
         "start": "concurrently \"npm run backstart\" \"npm run frontstart\"",
         "frontstart": "cd frontend && npm run start",
-        "backstart": "cd backend/prisma_back && node app.js",
-        "deploy": "npm run setup && npm run migrate && npm run build"   
+        "backstart": "cd backend && node app.js",
+        "deploy": "npm run setup && npm run migrate && npm run build"
     },
     "repository": {
         "type": "git",
