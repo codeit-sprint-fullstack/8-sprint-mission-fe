@@ -26,7 +26,7 @@ import backIcon from './ic_back.svg';
 
 //스타일
 import styles from './articlePage.module.css';
-import InputForm from '@/components/molecules/InputForm/InputForm';
+import Input from '@/components/molecules/InputForm/InputForm';
 import Button from '@/components/Atoms/Button';
 import useAsync from '@/hooks/useAsync';
 
@@ -227,7 +227,7 @@ export default function ArticlePage({}) {
           <p>{article.content}</p>
         </div>
         <form className={styles.commnetForm} onSubmit={handleSubmit}>
-          <InputForm
+          <Input
             label="댓글달기"
             placeholder="댓글을 입력해주세요."
             rows={3}

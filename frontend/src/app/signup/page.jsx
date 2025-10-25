@@ -4,12 +4,13 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useAuth, useAuthInput } from '@/hooks/useAuth';
+import useAuth from '@/store/useAuth';
+import { useAuthInput } from '@/hooks/useAuthInput';
 import { useRouter } from 'next/navigation';
 
 //컴포넌트
-import InputForm from '@/components/molecules/InputForm/InputForm';
-import Button from '@/components/Atoms/Button';
+import Input from '@/components/molecules/Input/Input';
+import Button from '@/components/Atoms/Button/Button';
 
 //스타일
 import styles from './signup.module.css';
@@ -61,32 +62,39 @@ export default function Login() {
       </div>
 
       <form onSubmit={handleSubmit} className={styles.authForm}>
-        <InputForm
+        <Input
           label="이메일"
           name="email"
-          placeholder="이메일을 입력해주세요."
           value={values.email}
+          error={errors.email}
           onChange={onChange}
-          validErrorMsg={errors.email}
-          focusBorder={true}
+          placeholder="이메일을 입력해주세요."
         />
-        <InputForm
+        <Input
+          label="닉네임"
+          name="name"
+          value={values.name}
+          error={errors.name}
+          onChange={onChange}
+          placeholder="닉네임을 입력해주세요."
+        />
+        <Input
+          isPassword={true}
           label="비밀번호"
           name="password"
-          placeholder="비밀번호를 입력해주세요."
           value={values.password}
+          error={errors.password}
           onChange={onChange}
-          validErrorMsg={errors.password}
-          focusBorder={true}
+          placeholder="비밀번호를 입력해주세요."
         />
-        <InputForm
+        <Input
+          isPassword={true}
           label="비밀번호 확인"
           name="passwordCheck"
-          placeholder="비밀번호를 다시 한번 입력해주세요."
           value={values.passwordCheck}
+          error={errors.passwordCheck}
           onChange={onChange}
-          validErrorMsg={errors.passwordCheck}
-          focusBorder={true}
+          placeholder="비밀번호를 다시 한번 입력해주세요."
         />
         <Button className={styles.subimtButton} disabled={!isSignUpSubmitActive}>
           로그인

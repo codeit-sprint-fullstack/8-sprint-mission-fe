@@ -1,27 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   //output   = "../generated/prisma" 
-  /**
-   * /**
-   * /**
-   * /**
-   * /**
-   * /**
-   * /**
-   * /**
-   * /**
-   * /**
-   * /**
-   * /*
-   * 이 설정 때문에 기본 경로(node_module/@prisma/client)에 생성이 안되서 문제가 생긴 것.
-   * ../generated/prisma 위치에 마이그레이션 파일을 생성하고 싶으면 이렇게 하면 된다.
-   */
 }
 
 datasource db {
@@ -29,22 +8,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// model User {
-//   id        String   @id // @id - 모델의 필드를 구별해주는 아이디 설정
-//   email    String   @unique //@unique - 중복 값이 없는 데이터로 설정
-//   firstName String
-//   lastName  String
-//   address   String
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
-// }
+model User {
+  id         String  @id @default(uuid())
+  providerId String? @unique
+  provider   String  @default("local")
+
+  email        String  @unique
+  name         String
+  password     String?
+  refreshToken String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
 
 model Product {
   id            String    @id @default(uuid())
   name          String
   price         Int
   description   String
-  userName      String   @default("판매자판다")
+  userName      String    @default("판매자판다")
   tags          String[]
   images        String[]
   favoriteCount Int       @default(0)

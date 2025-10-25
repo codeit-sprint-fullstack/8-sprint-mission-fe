@@ -1,6 +1,5 @@
-import Link from 'next/link';
 import styles from './Banner.module.css';
-import Button from '@/components/Atoms/Button';
+import Button from '@/components/Atoms/Button/Button';
 import Image from 'next/image';
 
 function Banner({ bgImg, btnUrl = '', btnText = '', children }) {

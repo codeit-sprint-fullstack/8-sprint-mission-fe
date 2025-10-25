@@ -8,9 +8,11 @@ import useProduct from '@/hooks/useProduct.js';
 //컴포넌트
 import HomeHeader from '@/components/molecules/Header/HomeHeader.jsx';
 import HomeFooter from '@/components/molecules/Footer/HomeFooter.jsx';
-import InputForm from '@/components/molecules/InputForm/InputForm';
+import Input from '@/components/molecules/Input/Input';
+import Button from '@/components/Atoms/Button/Button';
+
+//스타일
 import styles from './ProductForm.module.css';
-import Button from '@/components/Atoms/Button';
 
 //이미지
 import Image from 'next/image';
@@ -76,39 +78,39 @@ export default function ProductForm({}) {
             </Button>
           </div>
           <div className={styles.inputDiv}>
-            <InputForm
+            <Input
               label="상품명"
               name="name"
               value={values.name}
+              error={errors.name}
               onChange={onChange}
               placeholder="상품명을 입력해 주세요."
-              validErrorMsg={errors.name}
             />
-            <InputForm
+            <Input
               label="상품 소개"
               name="description"
               value={values.description}
+              error={errors.description}
               onChange={onChange}
-              placeholder="상품소개를 입력해 주세요."
               rows={10}
-              validErrorMsg={errors.description}
+              placeholder="상품소개를 입력해 주세요."
             />
-            <InputForm
+            <Input
               label="판매 가격"
               name="price"
               value={values.price}
               onChange={onChange}
               placeholder="판매 가격을 입력해 주세요."
-              validErrorMsg={errors.price}
+              error={errors.price}
             />
-            <InputForm
+            <Input
               label="태그"
               name="tag"
               value={values.tag}
+              error={errors.tag}
               onChange={onChange}
               onKeyDown={handleKeyDown}
               placeholder="태그를 입력해 주세요."
-              validErrorMsg={errors.tag}
             />
             <SelectedTags tags={values.tags} handleDelete={deleteTag} />
           </div>

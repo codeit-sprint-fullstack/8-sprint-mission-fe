@@ -1,10 +1,8 @@
-import Link from 'next/link';
-
 const searchIcon = '/images/items/ic_search.svg';
 
 import styles from './Headline.module.css';
 import { Dropdown } from '../Dropdown/Dropdown.jsx';
-import Button from '@/components/Atoms/Button';
+import Button from '@/components/Atoms/Button/Button';
 
 function Headline({
   title = '',

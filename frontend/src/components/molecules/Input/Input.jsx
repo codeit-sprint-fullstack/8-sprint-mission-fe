@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import Image from 'next/image';
-import styles from './InputForm.module.css';
+import styles from './Input.module.css';
 import eyeInvisible from './eye-invisible.svg';
 import eyeVisible from './eye-visible.svg';
 
-export default function InputForm({
+export default function Input({
   label,
   name,
   value,
@@ -12,10 +12,10 @@ export default function InputForm({
   onKeyDown = null,
   placeholder = '',
   rows = 1,
-  validErrorMsg = '',
+  error = '',
   isPassword = false,
 }) {
-  const style = validErrorMsg === '' ? {} : { border: '1px solid var(--error-red, #F74747)' };
+  const style = error === '' ? {} : { border: '1px solid var(--error-red, #F74747)' };
   const [isVisible, setIsVisible] = useState(!isPassword);
 
   //공통되는 prop을 묶었습니다.
@@ -50,7 +50,7 @@ export default function InputForm({
         </div>
       )}
       {rows > 1 && <textarea {...props} rows={rows} />}
-      {validErrorMsg.length > 0 && <p className={styles.validErrorMsg}>{validErrorMsg}</p>}
+      {error.length > 0 && <p className={styles.validErrorMsg}>{error}</p>}
     </div>
   );
 }

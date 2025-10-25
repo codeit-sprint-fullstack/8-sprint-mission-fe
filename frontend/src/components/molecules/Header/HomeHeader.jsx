@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-import Button from '../../Atoms/Button';
+import Button from '@/components/Atoms/Button/Button';
 import logoImg from './logo.svg';
 import logoMobileImg from './logo_mobile.svg';
 import { deviceStyle } from '../Device/Device';

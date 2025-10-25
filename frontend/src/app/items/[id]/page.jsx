@@ -29,7 +29,7 @@ import productDefault from '../../../../public/images/items/product_default.png'
 
 //스타일
 import styles from './item.module.css';
-import InputForm from '@/components/molecules/InputForm/InputForm';
+import Input from '@/components/molecules/InputForm/InputForm';
 import Button from '@/components/Atoms/Button';
 import useAsync from '@/hooks/useAsync';
 import DeleteModal from '@/components/molecules/DeleteModal/DeleteModal';
@@ -273,7 +273,7 @@ export default function ProductPage({}) {
         <div className={styles.frame}>
           <ProductDetail product={product} setModalOpen={setModalOpen} />
           <form className={styles.commnetForm} onSubmit={handleSubmit}>
-            <InputForm
+            <Input
               label="댓글달기"
               placeholder="댓글을 입력해주세요."
               rows={3}

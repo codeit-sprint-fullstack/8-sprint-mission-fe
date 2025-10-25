@@ -1,11 +1,12 @@
 'use client';
-import Link from 'next/link';
 
+//컴포넌트
 import MainFrame from '../../organism/mainFrame';
-import Button from '../../Atoms/Button';
+import Button from '@/components/Atoms/Button/Button';
 import useArticle from '@/hooks/useArticle';
-import InputForm from '../../molecules/InputForm/InputForm';
+import Input from '@/components/molecules/Input/Input';
 
+//스타일
 import styles from './ArticleForm.module.css';
 
 export default function ArticleForm({ mode = 'create' }) {
@@ -40,23 +41,22 @@ export default function ArticleForm({ mode = 'create' }) {
           </Button>
         </div>
         <div className={styles.inputDiv}>
-          <InputForm
+          <Input
             label="제목"
             name="title"
             value={values.title}
+            error={errors.title}
             onChange={onChange}
             placeholder="제목을 입력해 주세요."
-            rows={1}
-            validErrorMsg={errors.title}
           />
-          <InputForm
+          <Input
+            rows={10}
             label="내용"
             name="content"
             value={values.content}
+            error={errors.content}
             onChange={onChange}
             placeholder="내용을 입력해 주세요."
-            rows={10}
-            validErrorMsg={errors.content}
           />
         </div>
       </form>
