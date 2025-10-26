@@ -1,4 +1,4 @@
-import { defaultFetch } from "@/lib/fetchClient";
+import { defaultFetch } from "@/api/fetchClient";
 // 인증 없이 테스트 하려고 defaultFetch로 변경함.
 // 추후 다시 cookieFetch로 변경
 

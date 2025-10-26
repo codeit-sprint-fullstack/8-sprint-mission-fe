@@ -1,7 +1,7 @@
 "use client";
 
-import { authService } from "@/lib/authService";
-import { userService } from "@/lib/userService";
+import { authService } from "@/api/authService";
+import { userService } from "@/api/userService";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext({
@@ -46,10 +46,10 @@ export default function AuthProvider({ children }) {
   // 로그인
   const login = async (email, password) => {
     try {
-      await authService.login(email, password);
+      const data = await authService.login(email, password);
 
-      if (data?.accessToken) {
-        localStorage.setItem("accessToken", data.accessToken);
+      if (data?.token) {
+        localStorage.setItem("accessToken", data.token);
       }
 
       await getUser();

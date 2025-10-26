@@ -1,4 +1,4 @@
-import { defaultFetch } from "@/lib/fetchClient";
+import { defaultFetch } from "@/api/fetchClient";
 
 export const authService = {
   // 로그인

@@ -4,7 +4,7 @@ import Logo from "./Logo/Logo";
 import Nav from "./Navigator/Navigator";
 import Link from "next/link";
 import Image from "next/image";
-import { userService } from "@/lib/userService";
+import { userService } from "@/api/userService";
 import { useAuth } from "@/providers/AuthProvider";
 
 const Header = () => {

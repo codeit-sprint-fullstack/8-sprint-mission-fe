@@ -8,7 +8,7 @@ import InputField from "@/components/InputField/InputField";
 import AuthButton from "@/components/AuthPage/AuthButton";
 import SocialLogin from "@/components/AuthPage/SocialLogin";
 import Modal from "@/components/AuthPage/Modal";
-import { authService } from "@/lib/authService";
+import { authService } from "@/api/authService";
 import { useAuth } from "@/providers/AuthProvider";
 
 const LoginPage = () => {
