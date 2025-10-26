@@ -10,7 +10,7 @@ import { useArticlesQuery } from "@/lib/api/articles/queries";
 import { articleSchema, ArticleSchema } from "@/lib/schema/article";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 
 export default function ArticleCreatePage() {
   const router = useRouter();
@@ -41,7 +41,7 @@ export default function ArticleCreatePage() {
    * 게시글 작성
    * @param data 게시글 데이터
    */
-  const onSubmit: SubmitHandler<ArticleSchema> = async (data) => {
+  const onSubmit = async (data: ArticleSchema) => {
     createArticleMutation(data, {
       onSuccess: () => {
         router.push("/article");
@@ -83,7 +83,7 @@ export default function ArticleCreatePage() {
           control={control}
           render={({ field }) => (
             <ImageUpload
-              images={field.value}
+              images={field.value?.map((url) => ({ image: { url } })) || []}
               onImagesChange={field.onChange}
               maxImages={3}
               error={errors.images?.message}

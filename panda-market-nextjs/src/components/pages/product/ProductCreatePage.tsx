@@ -104,7 +104,7 @@ export default function ProductCreatePage() {
           control={control}
           render={({ field }) => (
             <ImageUpload
-              images={field.value}
+              images={field.value?.map((url) => ({ image: { url } })) || []}
               onImagesChange={field.onChange}
               error={errors.images?.message}
             />

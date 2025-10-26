@@ -172,7 +172,10 @@ export default function ProductDetailPage() {
           {/* 상품 이미지 */}
           <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-secondary-100">
             <Image
-              src={productDetail?.images?.[0] || "/product-list/prod-test.png"}
+              src={
+                productDetail?.images?.[0].image?.url ||
+                "/product-list/prod-test.png"
+              }
               alt={productDetail?.name}
               fill
               className="object-cover"

@@ -26,7 +26,6 @@ export function ProductCard({
   const queryClient = useQueryClient();
 
   const handleMouseEnter = () => {
-    console.log("제품 상세 프리패치 : ", id);
     prefetchProductDetail(queryClient, id);
   };
 

@@ -3,10 +3,11 @@
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import Text from "@/components/atoms/Text";
-import { X } from "lucide-react";
+import { X, Loader2 } from "lucide-react";
+import { useUploadQuery } from "@/lib/api/upload/queries";
 
 interface ImageUploadProps {
-  images: string[];
+  images: Array<{ image: { url: string } }>;
   onImagesChange: (images: string[]) => void;
   maxImages?: number;
   error?: string;
@@ -22,6 +23,9 @@ export default function ImageUpload({
 }: ImageUploadProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string>("");
+
+  const { mutate: uploadImagesMutation } = useUploadQuery.useUploadImages();
 
   /**
    * 파일 선택 시 호출되는 함수
@@ -34,35 +38,61 @@ export default function ImageUpload({
 
     // 최대 이미지 개수 체크
     if (images.length + fileArray.length > maxImages) {
-      alert(`최대 ${maxImages}개의 이미지만 업로드할 수 있습니다.`);
+      setUploadError(`최대 ${maxImages}개의 이미지만 업로드할 수 있습니다.`);
+      return;
+    }
+
+    // 파일 크기 체크 (10MB)
+    const maxSize = 10 * 1024 * 1024;
+    const oversizedFiles = fileArray.filter((file) => file.size > maxSize);
+    if (oversizedFiles.length > 0) {
+      setUploadError("파일 크기는 10MB 이하여야 합니다.");
+      return;
+    }
+
+    // 이미지 파일 형식 체크
+    const validTypes = [
+      "image/jpeg",
+      "image/jpg",
+      "image/png",
+      "image/gif",
+      "image/webp",
+    ];
+    const invalidFiles = fileArray.filter(
+      (file) => !validTypes.includes(file.type)
+    );
+    if (invalidFiles.length > 0) {
+      setUploadError(
+        "JPG, PNG, GIF, WEBP 형식의 이미지만 업로드할 수 있습니다."
+      );
       return;
     }
 
     setIsUploading(true);
+    setUploadError("");
 
-    try {
-      const newImageUrls = await Promise.all(
-        fileArray.map((file) => {
-          return new Promise<string>((resolve) => {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-              resolve(e.target?.result as string);
-            };
-            reader.readAsDataURL(file);
-          });
-        })
-      );
-
-      onImagesChange([...images, ...newImageUrls]);
-    } catch (error) {
-      console.error("이미지 업로드 중 오류가 발생했습니다:", error);
-    } finally {
-      setIsUploading(false);
-      // input 값 초기화
-      if (fileInputRef.current) {
-        fileInputRef.current.value = "";
-      }
-    }
+    uploadImagesMutation(fileArray, {
+      onSuccess: (uploadedImages) => {
+        const newImageUrls = uploadedImages.map((img) => img.url);
+        onImagesChange([...images, ...newImageUrls] as string[]);
+        setIsUploading(false);
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
+      },
+      onError: (error) => {
+        console.error("이미지 업로드 중 오류가 발생했습니다:", error);
+        setUploadError(
+          error instanceof Error
+            ? error.message
+            : "이미지 업로드 중 오류가 발생했습니다."
+        );
+        setIsUploading(false);
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
+      },
+    });
   };
 
   /**
@@ -71,7 +101,7 @@ export default function ImageUpload({
    */
   const handleImageRemove = (index: number) => {
     const newImages = images.filter((_, i) => i !== index);
-    onImagesChange(newImages);
+    onImagesChange(newImages.map((img) => img.image?.url));
   };
 
   /**
@@ -94,25 +124,33 @@ export default function ImageUpload({
         {/* 업로드 버튼 */}
         {images.length < maxImages && (
           <div
-            onClick={handleUploadClick}
-            className="aspect-square border-secondary-300 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-secondary-400 transition-colors bg-secondary-50"
+            onClick={isUploading ? undefined : handleUploadClick}
+            className={`aspect-square border-secondary-300 rounded-lg flex flex-col items-center justify-center transition-colors bg-secondary-50 ${
+              isUploading
+                ? "cursor-not-allowed opacity-50"
+                : "cursor-pointer hover:border-secondary-400"
+            }`}
           >
             <div className="text-secondary-400 mb-2">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12 5V19M5 12H19"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              {isUploading ? (
+                <Loader2 className="w-6 h-6 animate-spin" />
+              ) : (
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 5V19M5 12H19"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              )}
             </div>
             <Text styleName="text-md-regular" className="text-secondary-400">
               {isUploading ? "업로드 중..." : "이미지 등록"}
@@ -124,7 +162,7 @@ export default function ImageUpload({
         {images.map((image, index) => (
           <div key={index} className="relative aspect-square group">
             <Image
-              src={image}
+              src={image.image?.url}
               alt={`상품 이미지 ${index + 1}`}
               fill
               className="object-cover rounded-lg"
@@ -155,9 +193,9 @@ export default function ImageUpload({
       />
 
       {/* 에러 메시지 */}
-      {error && (
+      {(error || uploadError) && (
         <Text styleName="text-md-regular" className="text-red-500">
-          {error}
+          {error || uploadError}
         </Text>
       )}
     </div>

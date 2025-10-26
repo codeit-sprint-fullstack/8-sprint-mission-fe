@@ -7,7 +7,7 @@ export interface Product {
   description: string;
   price: number;
   tags: Array<{ id: string; name: string }>;
-  images: string[];
+  images: Array<{ image: { url: string } }>;
   ownerId?: number;
   likeCount: number;
   createdAt: string;

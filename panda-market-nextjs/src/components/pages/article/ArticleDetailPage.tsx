@@ -47,7 +47,6 @@ export default function ArticleDetailPage() {
   const { mutate: deleteCommentMutation } = useCommentsQuery.useDeleteComment();
   const { mutate: updateCommentMutation } = useCommentsQuery.useUpdateComment();
 
-  console.log(articleDetail);
   /**
    * 게시글 삭제
    */
