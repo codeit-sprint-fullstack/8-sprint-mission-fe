@@ -1,4 +1,5 @@
 import url from './backendUrl.js';
+import useAuth from '@/store/useAuth.js';
 
 async function resErrorCatch(res) {
   if (!res.ok) {
@@ -32,7 +33,8 @@ export async function getArticle(id) {
 }
 
 export async function createArticle(body) {
-  const result = await fetch(`${url}/articles`, {
+  const authFetch = useAuth.getState().authFetch;
+  const result = await authFetch(`${url}/articles`, {
     method: 'POST',
     body: JSON.stringify(body),
     headers: { 'Content-Type': 'application/json' },
@@ -82,7 +84,8 @@ export async function getComments(id) {
 }
 
 export async function createComment(id, body) {
-  const result = await fetch(`${url}/articles/${id}/comments`, {
+  const authFetch = useAuth.getState().authFetch;
+  const result = await authFetch(`${url}/articles/${id}/comments`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),

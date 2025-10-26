@@ -16,7 +16,7 @@ const router = Router();
 router.get('', asyncHandeler(getProductList));
 router.get('/:id', asyncHandeler(getProduct));
 
-//로그인한 유저 + 인가된 유저
+//로그인한 유저(verifyAccessToken), 소유권이 있는 유저(checkOwner)
 router.post('', verifyAccessToken, asyncHandeler(createProduct));
 router.patch('/:id', verifyAccessToken, checkOwner, asyncHandeler(updateProduct));
 router.delete('/:id', verifyAccessToken, checkOwner, asyncHandeler(deleteProduct));

@@ -1,64 +1,61 @@
 import prisma from '../../config/db.js';
 import authRepo from '../auth/auth.repository.js';
 
-export async function getProductList(req, res) {
-  const { page = 1, pageSize = 10, orderBy = 'newest', keyword = '' } = req.query;
+export async function getArticleList(req, res) {
+  const { page = 1, pageSize = 10, orderBy = 'recent', keyword = '' } = req.query;
 
   const limit = parseInt(pageSize);
   const offset = (parseInt(page) - 1) * limit;
 
-  const products = await prisma.product.findMany({
+  const articles = await prisma.article.findMany({
     where: {
       // 검색 쿼리
-      OR: [{ name: { contains: keyword } }, { description: { contains: keyword } }],
+      OR: [{ title: { contains: keyword } }, { content: { contains: keyword } }],
     },
     orderBy: orderBy == 'recent' ? { createdAt: 'desc' } : { favoriteCount: 'desc' },
     skip: parseInt(offset),
     take: parseInt(limit),
   });
-  res.json(products);
+  res.json(articles);
 }
 
-export async function getProduct(req, res) {
+export async function getArticle(req, res) {
   const { id } = req.params;
-  const product = await prisma.product.findUnique({
+  const article = await prisma.article.findUnique({
     where: { id },
   });
-  res.json(product);
+  res.json(article);
 }
 
 //새로 등록 할 때만 유저 정보가 필요합니다.
-export async function createProduct(req, res) {
+export async function createArticle(req, res) {
   const userId = req.auth?.userId;
   const user = await authRepo.findById(userId);
 
-  const product = await prisma.product.create({
+  const article = await prisma.article.create({
     data: {
       ...req.body,
-      user: { connect: { id: userId } },
       userName: user.name,
+      user: { connect: { id: user.id } },
     },
   });
 
-  res.status(201).json(product);
+  res.status(201).send(article);
 }
 
-export async function updateProduct(req, res) {
+export async function updateArticle(req, res) {
   const { id } = req.params;
-
-  const product = await prisma.product.update({
+  const article = await prisma.article.update({
     where: { id },
-    data: {
-      ...req.body,
-    },
+    data: req.body,
   });
 
-  res.json(product);
+  res.json(article);
 }
 
-export async function deleteProduct(req, res) {
+export async function deleteArticle(req, res) {
   const { id } = req.params;
-  await prisma.product.delete({
+  await prisma.article.delete({
     where: { id },
   });
   res.sendStatus(204);
@@ -69,7 +66,7 @@ export async function checkOwner(req, res, next) {
   try {
     const { id } = req.params;
     const userId = req.auth?.userId;
-    const product = await prisma.product.findUnique({
+    const product = await prisma.article.findUnique({
       where: { id },
     });
     if (product.userId !== userId) {
@@ -82,14 +79,4 @@ export async function checkOwner(req, res, next) {
   } finally {
     next();
   }
-}
-
-export async function addFavorite(req, res) {
-  const { id } = req.params;
-  const product = await prisma.product.update({
-    where: { id },
-    data: { favoriteCount: { increment: 1 } },
-  });
-
-  res.json({ favoriteCount: product.favoriteCount });
 }

@@ -121,7 +121,8 @@ export async function getComments(id) {
 }
 
 export async function createComment(id, body) {
-  const result = await fetch(`${url}/products/${id}/comments`, {
+  const authFetch = useAuth.getState().authFetch;
+  const result = await authFetch(`${url}/products/${id}/comments`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),

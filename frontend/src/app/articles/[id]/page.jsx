@@ -26,8 +26,8 @@ import backIcon from './ic_back.svg';
 
 //스타일
 import styles from './articlePage.module.css';
-import Input from '@/components/molecules/InputForm/InputForm';
-import Button from '@/components/Atoms/Button';
+import Input from '@/components/molecules/Input/Input';
+import Button from '@/components/Atoms/Button/Button';
 import useAsync from '@/hooks/useAsync';
 
 const notebook = '/images/articles/notebook.png';
