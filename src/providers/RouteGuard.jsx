@@ -26,8 +26,6 @@ export default function RouteGuard({ children }) {
   const pathname = usePathname();
   const [isLoading, setIsLoading] = useState(true);
 
-  // if (user === undefined) return null;
-
   useEffect(() => {
     const checkAccess = async () => {
       const accessToken = localStorage.getItem("accessToken");

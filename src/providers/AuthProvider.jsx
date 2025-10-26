@@ -27,6 +27,7 @@ export default function AuthProvider({ children }) {
     try {
       const userData = await userService.getMe();
       setUser(userData);
+      return userData;
     } catch (error) {
       console.error("사용자 정보를 가져오는데 실패했습니다:", error);
       setUser(null);
