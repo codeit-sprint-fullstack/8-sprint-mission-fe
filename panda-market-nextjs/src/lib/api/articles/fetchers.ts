@@ -5,6 +5,7 @@ export interface Article {
   id: string;
   title: string;
   content: string;
+  images?: string[];
   user: {
     nickname: string;
     image: string;

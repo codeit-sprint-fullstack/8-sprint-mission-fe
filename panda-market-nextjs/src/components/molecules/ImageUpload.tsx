@@ -10,6 +10,7 @@ interface ImageUploadProps {
   onImagesChange: (images: string[]) => void;
   maxImages?: number;
   error?: string;
+  label?: string;
 }
 
 export default function ImageUpload({
@@ -17,6 +18,7 @@ export default function ImageUpload({
   onImagesChange,
   maxImages = 3,
   error,
+  label = "상품 이미지",
 }: ImageUploadProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -83,7 +85,7 @@ export default function ImageUpload({
     <div className="space-y-4">
       <div>
         <Text styleName="text-lg-semibold" className="text-secondary-800">
-          상품 이미지
+          {label}
         </Text>
       </div>
 
