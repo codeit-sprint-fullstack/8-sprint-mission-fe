@@ -20,7 +20,7 @@ const ItemPage = () => {
   }, [products]);
 
   const bestProducts = [...products]
-    .sort((a, b) => (b.likeCount ?? 0) - (a.likeCount ?? 0))
+    .sort((a, b) => (b.favoriteCount ?? 0) - (a.favoriteCount ?? 0))
     .slice(0, 4);
 
   return (

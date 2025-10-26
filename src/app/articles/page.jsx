@@ -17,7 +17,7 @@ const FreeboardPage = () => {
   }, [articles]);
 
   const bestArticles = [...articles]
-    .sort((a, b) => (b.favoriteCount ?? 0) - (a.favoriteCount ?? 0))
+    .sort((a, b) => (b.likeCount ?? 0) - (a.likeCount ?? 0))
     .slice(0, 3);
 
   return (
