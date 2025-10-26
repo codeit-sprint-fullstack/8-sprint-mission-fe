@@ -7,6 +7,7 @@ import { api } from './apiClient';
 /**
  * 자유게시판 댓글 등록
  * @param {string|number} articleId - 게시글 ID
+ * @param {Object} userId - 사용자 ID
  * @param {Object} commentData - 댓글 데이터
  * @param {string} commentData.content - 댓글 내용
  * @returns {Promise<Object>} 생성된 댓글 정보

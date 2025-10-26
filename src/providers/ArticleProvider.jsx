@@ -17,6 +17,7 @@ const ArticleContext = createContext({
   deleteArticle: () => {},
   searchArticles: () => {},
   getArticlesSorted: () => {},
+  toggleArticleFavorite: () => {},
 });
 
 export const useArticles = () => {
@@ -195,6 +196,45 @@ export default function ArticleProvider({ children }) {
     [handleError, toList],
   );
 
+  const toggleArticleFavorite = useCallback(
+    async (articleId) => {
+      try {
+        setLoading(true);
+        setError(null);
+        const result = await articleService.toggleArticleFavorite(articleId);
+        // currentArticle 업데이트
+        if (currentArticle?.id === articleId) {
+          setCurrentArticle((prev) => ({
+            ...prev,
+            isFavorite: result.isLiked,
+            favoriteCount: result.favoriteCount,
+            likes: result.favoriteCount, // likes 필드도 업데이트
+          }));
+        }
+        // articles 목록도 업데이트
+        setArticles((prev) =>
+          prev.map((article) =>
+            article.id === articleId
+              ? {
+                  ...article,
+                  isFavorite: result.isLiked,
+                  favoriteCount: result.favoriteCount,
+                  likes: result.favoriteCount,
+                }
+              : article,
+          ),
+        );
+        return result;
+      } catch (error) {
+        handleError(error, '좋아요 처리에 실패했습니다');
+        throw error;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [currentArticle?.id, handleError],
+  );
+
   const value = useMemo(
     () => ({
       articles,
@@ -210,6 +250,7 @@ export default function ArticleProvider({ children }) {
       deleteArticle,
       searchArticles,
       getArticlesSorted,
+      toggleArticleFavorite,
     }),
     [
       articles,
@@ -225,6 +266,7 @@ export default function ArticleProvider({ children }) {
       deleteArticle,
       searchArticles,
       getArticlesSorted,
+      toggleArticleFavorite,
     ],
   );
 

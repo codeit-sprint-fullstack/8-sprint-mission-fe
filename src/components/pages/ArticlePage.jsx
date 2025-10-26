@@ -7,7 +7,7 @@ import { useArticles } from '@/providers/ArticleProvider';
 export default function ArticlePage() {
   const [searchTerm, setSearchTerm] = useState('');
   // API 스펙에 맞춰 기본값을 'recent'로 설정
-  const [sortBy, setSortBy] = useState('recent'); // 'recent' | 'likes'
+  const [sortBy, setSortBy] = useState('recent'); // 'recent' | 'favorite'
 
   const { articles, bestArticles, getArticles, getBestArticles } = useArticles();
 

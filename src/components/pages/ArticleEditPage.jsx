@@ -5,11 +5,6 @@ import { useRouter, useParams } from 'next/navigation';
 import Button from '@/components/Button';
 import { useArticles } from '@/providers/ArticleProvider';
 
-/**
- * ArticleEditPage
- * - 게시글 등록/수정 공용 폼
- * - 수정: /article/edit?id={id}
- */
 export default function ArticleEditPage() {
   const router = useRouter();
   const params = useParams();

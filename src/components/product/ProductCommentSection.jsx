@@ -1,84 +1,31 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
+
 import Button from '@/components/Button';
 import DropdownMenu from '@/components/DropdownMenu';
-import { updateComment, deleteComment } from '@/lib/productCommentApi';
+import { useCommentSection } from '@/hooks/useCommentSection';
 
-const ProductCommentSection = ({
-  comments = [],
-  onCommentSubmit,
-  onCommentUpdate,
-  onCommentDelete,
-  isLoggedIn,
-  currentUserId,
-}) => {
-  const [commentInput, setCommentInput] = useState('');
-  const [editingId, setEditingId] = useState(null);
-  const [editingText, setEditingText] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const formatCreatedAt = (createdAt) => {
-    try {
-      return new Date(createdAt).toLocaleString();
-    } catch {
-      return String(createdAt || '');
-    }
-  };
-
-  const handleSubmitComment = async (e) => {
-    e.preventDefault();
-    const content = commentInput.trim();
-    if (!content || isSubmitting) return;
-
-    setIsSubmitting(true);
-    try {
-      await onCommentSubmit(content);
-      setCommentInput('');
-    } catch (error) {
-      console.error('댓글 등록 실패:', error);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleEditComment = (comment) => {
-    setEditingId(comment.id);
-    setEditingText(comment.content);
-  };
-
-  const handleUpdateComment = async (commentId) => {
-    const content = editingText.trim();
-    if (!content) return;
-
-    try {
-      const updatedComment = await updateComment(commentId, { content });
-      onCommentUpdate(updatedComment);
-      setEditingId(null);
-      setEditingText('');
-    } catch (error) {
-      console.error('댓글 수정 실패:', error);
-      alert('댓글 수정 중 오류가 발생했습니다.');
-    }
-  };
-
-  const handleDeleteComment = async (commentId) => {
-    if (!confirm('정말로 이 댓글을 삭제하시겠습니까?')) return;
-
-    try {
-      await deleteComment(commentId);
-      onCommentDelete(commentId);
-    } catch (error) {
-      console.error('댓글 삭제 실패:', error);
-      alert('댓글 삭제 중 오류가 발생했습니다.');
-    }
-  };
-
-  const cancelEdit = () => {
-    setEditingId(null);
-    setEditingText('');
-  };
+const ProductCommentSection = ({ productId }) => {
+  const {
+    user,
+    isLoggedIn,
+    comments,
+    commentInput,
+    setCommentInput,
+    commentMenuOpenId,
+    setCommentMenuOpenId,
+    editingId,
+    editingText,
+    setEditingText,
+    isSubmitting,
+    formatCreatedAt,
+    handleSubmitComment,
+    handleStartEdit,
+    handleCancelEdit,
+    handleUpdateComment,
+  } = useCommentSection(productId, 'product');
 
   return (
     <div className="bg-white p-6">
@@ -137,28 +84,41 @@ const ProductCommentSection = ({
                   </div>
                   <div>
                     <p className="font-medium text-gray-900 text-sm">
-                      {comment.writer?.nickname || comment.nickname || '익명'}
+                      {comment.user.nickname || '익명'}
                     </p>
                     <p className="text-xs text-gray-500">{formatCreatedAt(comment.createdAt)}</p>
                   </div>
                 </div>
 
                 {/* 메뉴 버튼 (작성자만) */}
-                {isLoggedIn && currentUserId === (comment.writer?.id || comment.writerId) && (
-                  <DropdownMenu
-                    options={[
-                      {
-                        label: '수정',
-                        onClick: () => handleEditComment(comment),
-                      },
-                      {
-                        label: '삭제',
-                        onClick: () => handleDeleteComment(comment.id),
-                        className: 'text-red-600',
-                      },
-                    ]}
-                  />
-                )}
+                {user && comment.user?.id === user.id ? (
+                  <div className="relative">
+                    <button
+                      type="button"
+                      aria-haspopup="menu"
+                      aria-expanded={commentMenuOpenId === comment.id}
+                      onClick={() =>
+                        setCommentMenuOpenId((prev) => (prev === comment.id ? null : comment.id))
+                      }
+                      className="p-1 rounded hover:bg-gray-50"
+                    >
+                      <Image
+                        src="/images/icon/ic_kebab.svg"
+                        alt="더보기"
+                        width={20}
+                        height={20}
+                      />
+                    </button>
+                    <DropdownMenu
+                      open={commentMenuOpenId === comment.id}
+                      onClose={() => setCommentMenuOpenId(null)}
+                      type="comment"
+                      commentId={comment.id}
+                      onEdit={() => handleStartEdit(comment)}
+                      onDeleted={() => {}}
+                    />
+                  </div>
+                ) : null}
               </div>
 
               {/* 댓글 내용 */}
@@ -167,7 +127,7 @@ const ProductCommentSection = ({
                   <textarea
                     value={editingText}
                     onChange={(e) => setEditingText(e.target.value)}
-                    className="w-full p-3 rounded-lg resize-none bg-[var('--gray-100')] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full p-3 rounded-lg resize-none bg-[var('--gray-100')] ring-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     rows={3}
                   />
                   <div className="flex gap-2 mt-2">
@@ -180,7 +140,7 @@ const ProductCommentSection = ({
                       수정
                     </Button>
                     <Button
-                      onClick={cancelEdit}
+                      onClick={handleCancelEdit}
                       appearance="secondary"
                       className="px-4 py-1 text-sm"
                     >

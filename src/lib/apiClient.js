@@ -1,48 +1,27 @@
-import { getAccessToken, getRefreshToken, saveTokens, clearTokens } from './authStorage';
-import { refreshAccessToken } from '@/lib/authApi';
+import { getRefreshToken, clearTokens } from './authStorage';
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://panda-market-api.vercel.app';
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
 
 export async function apiFetch(
   path,
   { auth = false, headers = {}, parseJson = true, ...rest } = {},
 ) {
-  const token = auth ? getAccessToken() : null;
-
+  // FormData의 경우 Content-Type을 자동으로 설정하도록 함
+  const isFormData = rest.body instanceof FormData;
+  
   const fetchOptions = {
-    headers: {
-      'Content-Type': 'application/json',
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      ...headers,
-    },
-    cache: 'no-store', // 잘못된 'caches' 키 수정 및 최신 데이터 확보
+    headers: isFormData
+      ? headers // FormData일 경우 Content-Type 제거 (브라우저가 자동 설정)
+      : {
+          'Content-Type': 'application/json',
+          ...headers,
+        },
+    credentials: 'include',
+    cache: 'no-store',
     ...rest,
   };
 
   let res = await fetch(`${BASE_URL}${path}`, fetchOptions);
-
-  if (res.status === 401 && auth) {
-    const refresh = getRefreshToken();
-    if (refresh) {
-      try {
-        const refreshRes = await refreshAccessToken(refresh);
-        if (refreshRes?.accessToken) {
-          saveTokens({ accessToken: refreshRes.accessToken });
-          const retryOptions = {
-            ...fetchOptions,
-            headers: {
-              ...fetchOptions.headers,
-              Authorization: `Bearer ${refreshRes.accessToken}`,
-            },
-          };
-          res = await fetch(`${BASE_URL}${path}`, retryOptions);
-          // 아래 공통 에러/파싱 로직으로 진행
-        }
-      } catch (e) {
-        clearTokens();
-      }
-    }
-  }
 
   if (!res.ok) {
     // 에러 응답 바디 파싱 시도 (JSON 우선)

@@ -4,7 +4,8 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: 'localhost:4000/',
+        hostname: 'localhost/4000',
+        pathname: '/uploads/**',
       },
       {
         protocol: 'http',
@@ -13,10 +14,15 @@ const nextConfig = {
     ],
   },
   async rewrites() {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:4000/:path*',
+        destination: `${apiUrl}/:path*`,
+      },
+      {
+        source: '/uploads/:path*', 
+        destination: `${apiUrl}/uploads/:path*`,
       },
     ];
   },

@@ -1,11 +1,11 @@
-import { api } from './apiClient';
+import { api, apiFetch } from './apiClient';
 
 /**
  * 게시글 목록 조회
  * @param {Object} params - 쿼리 파라미터
  * @param {number} params.page - 페이지 번호
  * @param {number} params.limit - 페이지당 아이템 수
- * @param {string} params.sort - 정렬 방식 ('recent' | 'likes')
+ * @param {string} params.sort - 정렬 방식 ('recent' | 'favorite')
  * @param {string} params.search - 검색어
  * @returns {Promise<Object>} 게시글 목록 응답
  */
@@ -19,10 +19,10 @@ export const getArticles = async (params = {}) => {
 };
 
 /**
- * 베스트 게시글 조회 (최신순 3개)
+ * 베스트 게시글 조회 (좋아요 많은 순)
  * @returns {Promise<Object>} 베스트 게시글 응답
  */
-export const getBestArticles = async () => api.get('/articles?limit=3&sort=recent');
+export const getBestArticles = async () => api.get('/articles?limit=3&sort=favorite');
 
 /**
  * 게시글 상세 조회
@@ -56,7 +56,7 @@ export const searchArticles = async (searchTerm, additionalParams = {}) => {
 
 /**
  * 게시글 목록 조회 (정렬 옵션 포함)
- * @param {string} sortBy - 정렬 방식 ('recent' | 'likes')
+ * @param {string} sortBy - 정렬 방식 ('recent' | 'favorite')
  * @param {Object} additionalParams - 추가 파라미터
  * @returns {Promise<Object>} 정렬된 게시글 목록
  */
@@ -85,3 +85,12 @@ export const updateArticle = async (articleId, articleData) =>
  */
 export const deleteArticle = async (articleId) =>
   api.delete(`/articles/${articleId}`, { auth: true });
+
+/**
+ * 게시글 좋아요 토글
+ * @param {string|number} articleId - 게시글 ID
+ * @returns {Promise<Object>} 업데이트된 좋아요 정보 { isLiked, favoriteCount }
+ */
+export const toggleArticleFavorite = async (articleId) => {
+  return api.post(`/articles/${articleId}/favorite`, {}, { auth: true });
+};

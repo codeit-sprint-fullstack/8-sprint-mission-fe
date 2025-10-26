@@ -12,7 +12,7 @@ import { api } from './apiClient';
  * @returns {Promise<Object>} 생성된 댓글 정보
  */
 export const createProductComment = async (productId, commentData) =>
-  api.post(`/products/${productId}/comments`, commentData, { auth: true });
+  api.post(`/comments/product/${productId}`, commentData, { auth: true });
 
 /**
  * 상품 댓글 목록 조회
@@ -24,7 +24,7 @@ export const createProductComment = async (productId, commentData) =>
 export const getProductComments = async (productId, params = {}) => {
   const searchParams = new URLSearchParams();
   if (params.limit) searchParams.append('limit', params.limit);
-  return api.get(`/products/${productId}/comments?${searchParams.toString()}`);
+  return api.get(`/comments/product/${productId}?${searchParams.toString()}`);
 };
 
 /**

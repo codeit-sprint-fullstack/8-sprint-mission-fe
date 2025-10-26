@@ -1,81 +1,32 @@
 'use client';
 
-import React, { useEffect, useState, useCallback } from 'react';
+import React from 'react';
 import Image from 'next/image';
+
 import Button from '@/components/Button';
 import DropdownMenu from '@/components/DropdownMenu';
-import { useComments } from '@/providers/CommentProvider';
+import { useCommentSection } from '@/hooks/useCommentSection';
 
 export default function CommentSection({ articleId }) {
   const {
+    user,
+    isLoggedIn,
     comments,
-    getArticleComments,
-    createArticleComment,
-    updateComment,
-    loading: commentLoading,
-    error: commentError,
-  } = useComments();
-
-  const [commentInput, setCommentInput] = useState('');
-  const [commentMenuOpenId, setCommentMenuOpenId] = useState(null);
-  const [editingId, setEditingId] = useState(null);
-  const [editingText, setEditingText] = useState('');
-
-  const formatCreatedAt = (createdAt) => {
-    try {
-      return new Date(createdAt).toLocaleString();
-    } catch {
-      return String(createdAt || '');
-    }
-  };
-
-  const loadComments = useCallback(async () => {
-    if (!articleId) return;
-    try {
-      await getArticleComments(articleId, { limit: 50 });
-    } catch (e) {
-      console.error('댓글 로드 실패', e);
-    }
-  }, [articleId, getArticleComments]);
-
-  useEffect(() => {
-    loadComments();
-  }, [loadComments]);
-
-  const onSubmitComment = async (e) => {
-    e?.preventDefault?.();
-    const content = commentInput.trim();
-    if (!content) return;
-    try {
-      await createArticleComment(articleId, { content });
-      setCommentInput('');
-    } catch (e) {
-      console.error('댓글 등록 실패', e);
-    }
-  };
-
-  const handleStartEdit = (comment) => {
-    setEditingId(comment.id);
-    setEditingText(comment.content || '');
-    setCommentMenuOpenId(null);
-  };
-
-  const handleCancelEdit = () => {
-    setEditingId(null);
-    setEditingText('');
-  };
-
-  const handleSubmitEdit = async (comment) => {
-    const next = editingText.trim();
-    if (!next) return;
-    try {
-      await updateComment(comment.id, { content: next });
-      setEditingId(null);
-      setEditingText('');
-    } catch (e) {
-      console.error('댓글 수정 실패', e);
-    }
-  };
+    commentInput,
+    setCommentInput,
+    commentMenuOpenId,
+    setCommentMenuOpenId,
+    editingId,
+    editingText,
+    setEditingText,
+    commentLoading,
+    commentError,
+    formatCreatedAt,
+    handleSubmitComment,
+    handleStartEdit,
+    handleCancelEdit,
+    handleUpdateComment,
+  } = useCommentSection(articleId, 'article');
 
   return (
     <div>
@@ -84,29 +35,37 @@ export default function CommentSection({ articleId }) {
         <h2 className="text-lg font-medium mb-3" style={{ color: 'var(--gray-900)' }}>
           댓글쓰기
         </h2>
-        <form onSubmit={onSubmitComment} className="flex gap-2 items-start">
-          <textarea
-            value={commentInput}
-            onChange={(e) => setCommentInput(e.target.value)}
-            placeholder="댓글을 입력하세요."
-            className="flex-1 min-h-24 p-3 rounded-lg border text-sm"
-            style={{
-              borderColor: 'var(--gray-200)',
-              backgroundColor: '#F7F7F9',
-              color: 'var(--gray-800)',
-            }}
-          />
-          <Button
-            type="submit"
-            appearance="primary"
-            style={{ minWidth: 72 }}
-            disabled={commentLoading || !commentInput.trim()}
-          >
-            등록
-          </Button>
-        </form>
-        {commentError && (
-          <p className="text-error mt-2 text-sm">댓글을 처리하는 중 오류가 발생했습니다.</p>
+        {isLoggedIn ? (
+          <>
+            <form onSubmit={handleSubmitComment} className="flex gap-2 items-start">
+              <textarea
+                value={commentInput}
+                onChange={(e) => setCommentInput(e.target.value)}
+                placeholder="댓글을 입력하세요."
+                className="flex-1 min-h-24 p-3 rounded-lg border text-sm"
+                style={{
+                  borderColor: 'var(--gray-200)',
+                  backgroundColor: '#F7F7F9',
+                  color: 'var(--gray-800)',
+                }}
+              />
+              <Button
+                type="submit"
+                appearance="primary"
+                style={{ minWidth: 72 }}
+                disabled={commentLoading || !commentInput.trim()}
+              >
+                등록
+              </Button>
+            </form>
+            {commentError && (
+              <p className="text-error mt-2 text-sm">댓글을 처리하는 중 오류가 발생했습니다.</p>
+            )}
+          </>
+        ) : (
+          <div className="mb-8 p-4 bg-gray-50 rounded-lg text-center">
+            <p className="text-gray-600">댓글을 작성하려면 로그인이 필요합니다.</p>
+          </div>
         )}
       </section>
 
@@ -148,7 +107,7 @@ export default function CommentSection({ articleId }) {
                         onKeyDown={(e) => {
                           if (e.key === 'Enter' && !e.shiftKey) {
                             e.preventDefault();
-                            handleSubmitEdit(c);
+                            handleUpdateComment(c.id);
                           }
                         }}
                       />
@@ -156,7 +115,7 @@ export default function CommentSection({ articleId }) {
                         <Button
                           type="button"
                           appearance="primary"
-                          onClick={() => handleSubmitEdit(c)}
+                          onClick={() => handleUpdateComment(c.id)}
                           disabled={commentLoading || !editingText.trim()}
                         >
                           수정
@@ -172,7 +131,7 @@ export default function CommentSection({ articleId }) {
                     </p>
                   )}
 
-                  {editingId !== c.id && (
+                  {user && c.user?.id === user.id ? (
                     <div className="relative">
                       <button
                         type="button"
@@ -199,7 +158,7 @@ export default function CommentSection({ articleId }) {
                         onDeleted={() => {}}
                       />
                     </div>
-                  )}
+                  ) : null}
                 </div>
                 <div className="flex items-center gap-5">
                   <Image
@@ -210,7 +169,7 @@ export default function CommentSection({ articleId }) {
                   />
                   <div className="flex flex-col mb-1">
                     <span className="text-sm font-medium" style={{ color: 'var(--gray-700)' }}>
-                      익명
+                      {user && (c.user?.nickname || "익명")}
                     </span>
                     <span className="text-xs" style={{ color: 'var(--gray-400)' }}>
                       {formatCreatedAt(c.createdAt)}

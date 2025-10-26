@@ -1,24 +1,15 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 
-/**
- * FavoriteButton
- * props:
- *  - isFavorite: 현재 좋아요 여부 (boolean)
- *  - count: 좋아요 수 (number)
- *  - disabled: 비활성화 여부
- *  - onToggle: async 함수 (should return updated { isFavorite, favoriteCount } or throw)
- *  - className: 추가 클래스
- */
-const FavoriteButton = ({ isFavorite, count, disabled, onToggle, className = '' }) => {
-  const [optimisticFavorite, setOptimisticFavorite] = useState(isFavorite);
+const FavoriteButton = ({ isLiked, count, disabled, onToggle, className = '' }) => {
+  const [optimisticFavorite, setOptimisticFavorite] = useState(isLiked);
   const [optimisticCount, setOptimisticCount] = useState(count);
   const [pending, setPending] = useState(false);
 
   // props 변경 시 동기화 (사용자가 다른 상품으로 이동했을 때 등)
   useEffect(() => {
-    setOptimisticFavorite(isFavorite);
-  }, [isFavorite]);
+    setOptimisticFavorite(isLiked);
+  }, [isLiked]);
   useEffect(() => {
     setOptimisticCount(count);
   }, [count]);
@@ -33,8 +24,8 @@ const FavoriteButton = ({ isFavorite, count, disabled, onToggle, className = '' 
     try {
       const updated = await onToggle?.(nextFavorite);
       // 서버가 명확한 값을 돌려주면 동기화
-      if (updated && typeof updated.isFavorite === 'boolean') {
-        setOptimisticFavorite(updated.isFavorite);
+      if (updated && typeof updated.isLiked === 'boolean') {
+        setOptimisticFavorite(updated.isLiked);
       }
       if (updated && typeof updated.favoriteCount === 'number') {
         setOptimisticCount(updated.favoriteCount);
