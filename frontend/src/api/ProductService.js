@@ -94,6 +94,20 @@ export async function deleteProduct(id) {
   return result;
 }
 
+//좋아요
+export async function addFavorite(id) {
+  const result = await fetch(`${url}/products/${id}/favorite`, {
+    method: 'PATCH',
+  })
+    .then(async (res) => {
+      await resErrorCatch(res);
+      return res.json();
+    })
+    .catch((err) => console.log(err));
+  return result;
+}
+
+/* 상품 문의(댓글) */
 export async function getComments(id) {
   const result = await fetch(`${url}/products/${id}/comments`)
     .then(async (res) => {

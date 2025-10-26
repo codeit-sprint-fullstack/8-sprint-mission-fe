@@ -13,6 +13,7 @@ import {
   createComment,
   updateComment,
   deleteComment,
+  addFavorite,
 } from '@/api/ProductService';
 import useAsync from '@/hooks/useAsync';
 import url from '@/api/backendUrl.js';
@@ -37,7 +38,7 @@ const productDefault = '/images/items/product_default.png';
 //스타일
 import styles from './item.module.css';
 
-function ProductDetail({ product, setModalOpen }) {
+function ProductDetail({ product, setModalOpen, handleFavoriteClick }) {
   const router = useRouter();
   const { id } = useParams();
 
@@ -109,10 +110,10 @@ function ProductDetail({ product, setModalOpen }) {
             </div>
             <div className="flex">
               <div className={styles.dividerV24}></div>
-              <div className={styles.favoriteDiv}>
+              <button className={styles.favoriteDiv} onClick={handleFavoriteClick}>
                 <Image src={heartIcon} alt="favoriteIcon" className={styles.heartIcon} />
                 <p className={styles.favoriteCntText}>{product.favoriteCount}</p>
-              </div>
+              </button>
             </div>
           </div>
         </div>
@@ -276,11 +277,23 @@ export default function ProductPage({}) {
     setCommnets(comments.filter((e) => e.id !== commentId));
   };
 
+  const handleFavoriteClick = async () => {
+    addFavorite(product.id); // 좋아요 추가 api 요청
+    setProduct((prev) => ({
+      ...prev,
+      favoriteCount: product.favoriteCount + 1,
+    }));
+  };
+
   return (
     <>
       <MainFrame>
         <div className={styles.frame}>
-          <ProductDetail product={product} setModalOpen={setModalOpen} />
+          <ProductDetail
+            product={product}
+            setModalOpen={setModalOpen}
+            handleFavoriteClick={handleFavoriteClick}
+          />
           <form className={styles.commnetForm} onSubmit={handleSubmit}>
             <Input
               label="문의하기"
