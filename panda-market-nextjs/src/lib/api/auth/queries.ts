@@ -40,7 +40,6 @@ const usePostLogin = (): UseMutationResult<LoginResponse, Error, Login> => {
     mutationFn: (login: Login) => authApi.postLogin(login),
     onSuccess: (data) => {
       localStorage.setItem("accessToken", data.accessToken);
-      localStorage.setItem("refreshToken", data.refreshToken);
       queryClient.setQueryData(["user"], data.user); // 사용자 정보를 캐시에 저장 -> 추가 GET 요청 방지
       queryClient.invalidateQueries({ queryKey: ["user"] });
     },

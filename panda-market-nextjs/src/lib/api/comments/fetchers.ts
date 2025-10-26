@@ -8,10 +8,6 @@ export interface Comment {
   createdAt: string;
 }
 
-export interface CommentList {
-  list: Comment[];
-}
-
 /**
  * 댓글 생성
  * @param id
@@ -19,20 +15,18 @@ export interface CommentList {
  * @returns Comment
  */
 const createComment = async (id: string, comment: string) => {
-  const accessToken = localStorage.getItem("accessToken");
   try {
-    const response = await fetch(`${API_URL}/articles/${id}/comments`, {
+    const response = await fetchWithAuth(`${API_URL}/articles/${id}/comments`, {
       method: "POST",
       body: JSON.stringify({ content: comment }),
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
       },
     });
-    if (!response.ok) {
+    if (!response?.ok) {
       throw new Error("댓글 생성 실패");
     }
-    return response.json();
+    return response?.json();
   } catch (error) {
     console.error(error);
     throw error;
@@ -64,16 +58,16 @@ const getComments = async (id: string) => {
  */
 const deleteComment = async (articleId: string, commentId: string) => {
   try {
-    const response = await fetch(
+    const response = await fetchWithAuth(
       `${API_URL}/articles/${articleId}/comments/${commentId}`,
       {
         method: "DELETE",
       }
     );
-    if (!response.ok) {
+    if (!response?.ok) {
       throw new Error("댓글 삭제 실패");
     }
-    return response.status;
+    return response?.status;
   } catch (error) {
     console.error(error);
     throw error;
@@ -92,7 +86,7 @@ const updateComment = async (
   comment: string
 ) => {
   try {
-    const response = await fetch(
+    const response = await fetchWithAuth(
       `${API_URL}/articles/${articleId}/comments/${commentId}`,
       {
         method: "PATCH",
@@ -102,10 +96,10 @@ const updateComment = async (
         },
       }
     );
-    if (!response.ok) {
+    if (!response?.ok) {
       throw new Error("댓글 수정 실패");
     }
-    return response.json();
+    return response?.json();
   } catch (error) {
     console.error(error);
     throw error;
@@ -151,9 +145,22 @@ const createProductComment = async (id: string, comment: string) => {
         "Content-Type": "application/json",
       },
     });
-    if (!response || !response.ok) {
-      const error = await response?.json();
-      throw new Error(error.message);
+    // response가 없는 경우 (fetchWithAuth에서 로그인 리다이렉트 등)
+    if (!response) {
+      throw new Error("인증이 필요합니다.");
+    }
+
+    // response가 실패한 경우
+    if (!response.ok) {
+      let errorMessage = "상품 댓글 등록 실패";
+      try {
+        const error = await response.json();
+        // error 객체 구조에 따라 안전하게 접근
+        errorMessage = error?.message || error?.error || errorMessage;
+      } catch {
+        // JSON 파싱 실패 시 기본 메시지 사용
+      }
+      throw new Error(errorMessage);
     }
     return response.json();
   } catch (error) {
@@ -168,19 +175,26 @@ const createProductComment = async (id: string, comment: string) => {
  * @param comment
  * @returns Comment
  */
-const updateProductComment = async (commentId: string, comment: string) => {
+const updateProductComment = async (
+  id: string,
+  commentId: string,
+  comment: string
+) => {
   if (!commentId || !comment) {
     throw new Error("값이 비어있습니다.");
   }
 
   try {
-    const response = await fetchWithAuth(`${API_URL}/comments/${commentId}`, {
-      method: "PATCH",
-      body: JSON.stringify({ content: comment }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetchWithAuth(
+      `${API_URL}/products/${id}/comments/${commentId}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify({ content: comment }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     if (!response?.ok) {
       const error = await response?.json();
       throw new Error(error.message);
@@ -197,16 +211,18 @@ const updateProductComment = async (commentId: string, comment: string) => {
  * @param commentId
  * @returns status code 200, 403, 404
  */
-const deleteProductComment = async (commentId: string) => {
+const deleteProductComment = async (id: string, commentId: string) => {
   try {
-    const response = await fetchWithAuth(`${API_URL}/comments/${commentId}`, {
-      method: "DELETE",
-    });
+    const response = await fetchWithAuth(
+      `${API_URL}/products/${id}/comments/${commentId}`,
+      {
+        method: "DELETE",
+      }
+    );
     if (!response?.ok) {
-      const error = await response?.json();
-      throw new Error(error.message);
+      throw new Error("상품 댓글 삭제 실패");
     }
-    return response.status;
+    return response?.status;
   } catch (error) {
     console.error(error);
     throw error;

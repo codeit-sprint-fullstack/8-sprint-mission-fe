@@ -100,7 +100,7 @@ export default function JoinPage() {
   }
 
   return (
-    <main className="flex justify-center min-h-screen bg-(--background-color) pt-24">
+    <main className="flex justify-center bg-(--background-color) pt-24 pb-24">
       <div className="w-full max-w-[640px] px-4 md:px-0">
         {/* 로고 */}
         <div className="text-center mb-16">

@@ -17,7 +17,7 @@ import { Product } from "@/lib/api/product/fetchers";
 import { useItemsQuery } from "@/lib/api/product/queries";
 import { productSchema, ProductSchema } from "@/lib/schema/product";
 
-export default function ItemsUpdatePage() {
+export default function ProductUpdatePage() {
   const router = useRouter();
   const params = useParams();
   const id = params?.id as string;
@@ -92,7 +92,7 @@ export default function ItemsUpdatePage() {
       setValue("name", productDetail.name);
       setValue("description", productDetail.description);
       setValue("price", productDetail.price);
-      setValue("tags", productDetail.tags || []);
+      setValue("tags", productDetail.tags.map((tag) => tag.name) || []);
       setValue("images", productDetail.images || []);
     }
   }, [productDetail, setValue]);

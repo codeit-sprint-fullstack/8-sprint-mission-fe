@@ -16,7 +16,7 @@ import { useItemsQuery } from "@/lib/api/product/queries";
 import { productSchema, ProductSchema } from "@/lib/schema/product";
 import { Spinner } from "@/components/ui/spinner";
 
-export default function ItemsCreatePage() {
+export default function ProductCreatePage() {
   const router = useRouter();
 
   const {

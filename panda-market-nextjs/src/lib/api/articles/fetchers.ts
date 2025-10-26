@@ -5,8 +5,13 @@ export interface Article {
   id: string;
   title: string;
   content: string;
-  author: string;
+  user: {
+    nickname: string;
+    image: string;
+    id: string;
+  };
   likeCount: number;
+  isLiked: boolean;
   createdAt: string;
 }
 
@@ -161,6 +166,29 @@ const deleteArticle = async (id: string) => {
   }
 };
 
+/**
+ * 게시글 좋아요 토글
+ * @param articleId 게시글 ID
+ * @returns Article
+ */
+const toggleArticleLike = async (articleId: string) => {
+  try {
+    const response = await fetchWithAuth(
+      `${API_URL}/articles/${articleId}/like`,
+      {
+        method: "POST",
+      }
+    );
+    if (!response || !response.ok) {
+      throw new Error("게시글 좋아요 토글 실패");
+    }
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
 export const articlesApi = {
   getBestArticles,
   getArticles,
@@ -168,4 +196,5 @@ export const articlesApi = {
   createArticle,
   updateArticle,
   deleteArticle,
+  toggleArticleLike,
 };

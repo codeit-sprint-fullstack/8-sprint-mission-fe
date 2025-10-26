@@ -78,7 +78,7 @@ export default function ArticlePage() {
               id={article.id}
               title={article.title}
               image="/article/note-book-img.png"
-              nickname={article.author}
+              nickname={article.user?.nickname || ""}
               createdAt={dayjs(article.createdAt).format("YYYY. MM. DD.")}
               likeCount={article.likeCount}
             />
@@ -126,7 +126,7 @@ export default function ArticlePage() {
               title={article.title}
               image="/article/note-book-img.png"
               avatarImage="/article/avatar-img.svg"
-              nickname={article.author}
+              nickname={article.user?.nickname || ""}
               createdAt={dayjs(article.createdAt).format("YYYY. MM. DD.")}
               likeCount={article.likeCount}
             />

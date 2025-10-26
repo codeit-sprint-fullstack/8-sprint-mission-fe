@@ -2,17 +2,22 @@ import { fetchWithAuth } from "../auth/fetchers";
 import { ProductSchema } from "@/lib/schema/product";
 
 export interface Product {
-  id: number;
+  id: number | string;
   name: string;
   description: string;
   price: number;
-  tags: string[];
+  tags: Array<{ id: string; name: string }>;
   images: string[];
-  ownerId: number;
+  ownerId?: number;
   likeCount: number;
   createdAt: string;
   updatedAt: string;
-  isFavorite?: boolean;
+  isLiked?: boolean;
+  user?: {
+    id: string;
+    nickname: string;
+    image: string | null;
+  };
 }
 
 export interface ProductList {
@@ -69,9 +74,9 @@ const getProducts = async (
 const getProductDetail = async (id: string): Promise<Product> => {
   try {
     const response = await fetch(`${API_URL}/products/${id}`);
-    // if (!response || !response.ok) {
-    //   throw new Error("상품 상세 조회 실패");
-    // }
+    if (!response || !response.ok) {
+      throw new Error("상품 상세 조회 실패");
+    }
     return response.json();
   } catch (error) {
     console.error(error);
@@ -152,8 +157,8 @@ const createProduct = async (product: ProductSchema): Promise<Product> => {
 };
 
 /**
- * 상품 좋아요 추가
- * @param id 상품 ID
+ * 상품 좋아요 토글
+ * @param productId 상품 ID
  * @returns Product
  */
 const addFavorite = async (productId: string): Promise<Product> => {
