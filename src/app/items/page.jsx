@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import BestProductSection from "@/components/Items/BestProductSection";
 import ProductCard from "@/components/Items/ProductCard";
 import ProductListController from "@/components/Items/ProductListController";
 import PageButton from "@/components/Items/PageButton";
@@ -18,15 +19,20 @@ const ItemPage = () => {
     setSortedProducts(products);
   }, [products]);
 
+  const bestProducts = [...products]
+    .sort((a, b) => (b.likeCount ?? 0) - (a.likeCount ?? 0))
+    .slice(0, 4);
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <Header />
 
       <main className="flex-1 flex flex-col items-stretch mx-auto mb-[200px] p-4 w-full max-w-[1200px]">
-        <section className="flex items-center justify-between my-6 flex-wrap gap-4">
-          <h2 className="text-lg font-bold text-gray-900">베스트 상품</h2>
-          {/* <ProductCard /> */}
-        </section>
+        <BestProductSection
+          bestProducts={bestProducts}
+          loading={loading}
+          error={error}
+        />
 
         <section>
           <ProductListController
@@ -56,6 +62,7 @@ const ItemPage = () => {
                     key={product.id}
                     product={product}
                     {...product}
+                    type="normal"
                   />
                 ))
               ) : (
