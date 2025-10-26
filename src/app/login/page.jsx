@@ -8,7 +8,7 @@ import InputField from "@/components/InputField/InputField";
 import AuthButton from "@/components/AuthPage/AuthButton";
 import SocialLogin from "@/components/AuthPage/SocialLogin";
 import Modal from "@/components/AuthPage/Modal";
-import { authService } from "@/api/authService";
+import { authService } from "@/api/auth";
 import { useAuth } from "@/providers/AuthProvider";
 
 const LoginPage = () => {
@@ -22,22 +22,24 @@ const LoginPage = () => {
 
   const { login } = useAuth();
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!email || !password) {
       setError("이메일과 비밀번호를 입력해주세요.");
       return;
     }
 
-    login(email, password)
-      .then(() => {
+    try {
+      const userData = await login(email, password);
+
+      if (userData) {
         router.push("/items");
-      })
-      .catch((err) => {
-        setModalMessage(
-          err.message || "로그인 실패. 이메일 또는 비밀번호를 확인해주세요."
-        );
-        setIsModalOpen(true);
-      });
+      }
+    } catch (err) {
+      setModalMessage(
+        err.message || "로그인 실패. 이메일 또는 비밀번호를 확인해주세요."
+      );
+      setIsModalOpen(true);
+    }
   };
 
   const isDisabled = !email || !password;

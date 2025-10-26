@@ -9,8 +9,8 @@ export const authService = {
     });
 
     // 서버에서 받은 토큰 localStorage에 저장
-    if (res?.token) {
-      localStorage.setItem("accessToken", res.token);
+    if (res?.accessToken) {
+      localStorage.setItem("accessToken", res.accessToken);
     }
 
     return res;
@@ -23,8 +23,8 @@ export const authService = {
       body: JSON.stringify({ nickname, email, password, passwordConfirmation }),
     });
 
-    if (res?.token) {
-      localStorage.setItem("accessToken", res.token);
+    if (res?.accessToken) {
+      localStorage.setItem("accessToken", res.accessToken);
     }
 
     return res;

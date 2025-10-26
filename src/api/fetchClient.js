@@ -23,6 +23,8 @@ export const defaultFetch = async (url, options = {}) => {
     },
   };
 
+  console.log("요청 URL:", finalUrl);
+
   try {
     const response = await fetch(finalUrl, mergedOptions);
 

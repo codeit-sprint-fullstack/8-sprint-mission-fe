@@ -20,7 +20,7 @@ const BestProductSection = ({ bestProducts = [], loading, error }) => {
   }, []);
 
   return (
-    <section>
+    <section className="w-full">
       <h1 className="mb-6 text-xl text-gray-900 font-bold">베스트 상품</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {loading && (

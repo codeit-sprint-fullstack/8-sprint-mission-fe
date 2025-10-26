@@ -29,7 +29,7 @@ const Header = () => {
                 width={40}
                 height={40}
               />
-              {user.nickname || "내 프로필"}
+              {user.nickname || "닉네임"}
             </Link>
           ) : (
             <Link

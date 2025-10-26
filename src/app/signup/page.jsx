@@ -9,7 +9,7 @@ import InputField from "@/components/InputField/InputField";
 import AuthButton from "@/components/AuthPage/AuthButton";
 import SocialLogin from "@/components/AuthPage/SocialLogin";
 import Modal from "@/components/AuthPage/Modal";
-import { authService } from "@/api/authService";
+import { authService } from "@/api/auth";
 
 const SignupPage = () => {
   const [email, setEmail] = useState("");
