@@ -110,6 +110,53 @@ const useDeleteArticle = (): UseMutationResult<
   });
 };
 
+/**
+ * 게시글 좋아요 토글
+ * @returns
+ */
+const useToggleArticleLike = (): UseMutationResult<Article, Error, string> => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (articleId: string) => articlesApi.toggleArticleLike(articleId),
+    onMutate: async (articleId) => {
+      await queryClient.cancelQueries({
+        queryKey: ["articleDetail", articleId],
+      });
+
+      const previousArticle = queryClient.getQueryData<Article>([
+        "articleDetail",
+        articleId,
+      ]);
+
+      if (previousArticle) {
+        queryClient.setQueryData(
+          ["articleDetail", articleId],
+          (old: Article) => ({
+            ...old,
+            isLiked: !old.isLiked,
+            likeCount: old.isLiked ? old.likeCount - 1 : old.likeCount + 1,
+          })
+        );
+      }
+
+      return { previousArticle };
+    },
+    onSuccess: (data, articleId) => {
+      queryClient.setQueryData(["articleDetail", articleId], data);
+      queryClient.invalidateQueries({ queryKey: ["articles"] });
+      queryClient.invalidateQueries({ queryKey: ["bestArticles"] });
+    },
+    onError: (error, articleId, context) => {
+      if (context?.previousArticle) {
+        queryClient.setQueryData(
+          ["articleDetail", articleId],
+          context.previousArticle
+        );
+      }
+    },
+  });
+};
+
 export const useArticlesQuery = {
   useGetBestArticles,
   useGetArticles,
@@ -117,4 +164,5 @@ export const useArticlesQuery = {
   useCreateArticle,
   useUpdateArticle,
   useDeleteArticle,
+  useToggleArticleLike,
 };

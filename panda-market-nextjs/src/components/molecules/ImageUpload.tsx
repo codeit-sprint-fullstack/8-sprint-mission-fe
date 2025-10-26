@@ -93,7 +93,7 @@ export default function ImageUpload({
         {images.length < maxImages && (
           <div
             onClick={handleUploadClick}
-            className="aspect-square border-2 border-dashed border-secondary-300 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-secondary-400 transition-colors bg-secondary-50"
+            className="aspect-square border-secondary-300 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-secondary-400 transition-colors bg-secondary-50"
           >
             <div className="text-secondary-400 mb-2">
               <svg
