@@ -1,4 +1,5 @@
 import url from './backendUrl.js';
+import useAuth from '@/store/useAuth.js';
 
 //리스폰스 에러만 잡는 코드 (fetch를 써서 필요)
 export async function resErrorCatch(res) {
@@ -35,7 +36,8 @@ export async function getProduct(id) {
 
 //상품 등록
 export async function createProduct(RqBody) {
-  const result = await fetch(`${url}/products`, {
+  const authFetch = useAuth.getState().authFetch;
+  const result = await authFetch(`${url}/products`, {
     method: 'POST',
     body: JSON.stringify(RqBody),
     headers: { 'Content-Type': 'application/json' },

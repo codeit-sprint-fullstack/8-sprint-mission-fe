@@ -139,8 +139,7 @@ const useAuth = create(
             })
             .catch((err) => {
               // 리프레시 실패 → 로그아웃 처리
-              // 강제 리로드 (hook이나, api 함수 안에서는 router를 쓸 수 없어서 이게 가장 안전하네요.)
-              // 전체 페이지 리로드가 발생합니다.
+              // 전체 페이지 강제 리로드.
               get().logout();
               window.location.href = '/login';
               console.log(err);

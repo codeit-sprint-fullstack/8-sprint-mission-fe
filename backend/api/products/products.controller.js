@@ -1,4 +1,5 @@
 import prisma from '../../config/db.js';
+import authRepo from '../auth/auth.repository.js';
 
 export async function getProductList(req, res) {
   const { page = 1, pageSize = 10, orderBy = 'newest', keyword = '' } = req.query;
@@ -27,8 +28,15 @@ export async function getProduct(req, res) {
 }
 
 export async function createProduct(req, res) {
+  const userId = req.auth?.userId;
+  const user = await authRepo.findById(userId);
+
   const product = await prisma.product.create({
-    data: req.body,
+    data: {
+      ...req.body,
+      userId: user.id,
+      userName: user.name,
+    },
   });
 
   res.status(201).json(product);
@@ -36,9 +44,16 @@ export async function createProduct(req, res) {
 
 export async function updateProduct(req, res) {
   const { id } = req.params;
+  const userId = req.auth?.userId;
+  const user = await authRepo.findById(userId);
+
   const product = await prisma.product.update({
     where: { id },
-    data: req.body,
+    data: {
+      ...req.body,
+      userId: user.id,
+      userName: user.name,
+    },
   });
 
   res.json(product);
@@ -50,6 +65,25 @@ export async function deleteProduct(req, res) {
     where: { id },
   });
   res.sendStatus(204);
+}
+
+export async function checkOwner(req, res, next) {
+  try {
+    const { id } = req.params;
+    const userId = req.auth?.userId;
+    const product = await prisma.product.findUnique({
+      where: { id },
+    });
+    if (product.userId !== userId) {
+      const error = new Error('user is not owner');
+      error.code = 403;
+      throw error;
+    }
+  } catch (err) {
+    next(err);
+  } finally {
+    next();
+  }
 }
 
 export async function addFavorite(req, res) {

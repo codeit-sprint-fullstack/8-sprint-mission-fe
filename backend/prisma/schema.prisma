@@ -18,6 +18,9 @@ model User {
   password     String?
   refreshToken String?
 
+  products Product[]
+  articles Article[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -27,30 +30,38 @@ model Product {
   name          String
   price         Int
   description   String
-  userName      String    @default("판매자판다")
+  userName      String    @default("익명 판다")
   tags          String[]
   images        String[]
   favoriteCount Int       @default(0)
   comment       Comment[]
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Article {
   id            String    @id @default(uuid())
   title         String
   content       String
-  userName      String    @default("")
+  userName      String    @default("익명 판다")
   favoriteCount Int       @default(0)
   comment       Comment[]
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Comment {
   id        String   @id @default(uuid())
   content   String
-  userName  String   @default("댓글판다")
+  userName  String   @default("익명 판다")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
