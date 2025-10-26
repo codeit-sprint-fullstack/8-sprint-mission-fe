@@ -1,6 +1,7 @@
 'use client';
 //라이브러리
 import { useRouter } from 'next/navigation';
+import { useRef } from 'react';
 
 //훅
 import useProduct from '@/hooks/useProduct.js';
@@ -43,10 +44,13 @@ export default function ProductForm({}) {
     errors, //유효성 메세지
     isSubmitActive, //등록 버튼 활성화 여부
     onChange, //입력폼 onChange
+    onFileChange, //파일 업로드
     addTag, //태그 추가
     deleteTag, //태그 삭제
     register,
   ] = useProduct();
+
+  const fileInputRef = useRef();
 
   const router = useRouter();
 
@@ -78,6 +82,14 @@ export default function ProductForm({}) {
             </Button>
           </div>
           <div className={styles.inputDiv}>
+            <Input
+              type="file"
+              label="상품 이미지"
+              name="files"
+              ref={fileInputRef}
+              onChange={onFileChange}
+              files={values.files}
+            />
             <Input
               label="상품명"
               name="name"

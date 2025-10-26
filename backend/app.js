@@ -19,6 +19,7 @@ app.use(cookieParser());
 
 //라우터
 app.use(router);
+app.use('/uploads', express.static('uploads')); //파일 다운로드 경로
 
 //에러 핸들러
 app.use(errorHandler);

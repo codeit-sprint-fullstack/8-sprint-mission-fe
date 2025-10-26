@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { createProduct } from '../api/ProductService.js';
+import { createProduct, uploadImages } from '../api/ProductService.js';
 import { useRouter } from 'next/navigation';
 
 //유효성 검사 커스텀 훅
@@ -42,6 +42,8 @@ function useInputValidation(values) {
         break;
       case 'tags':
         break;
+      default:
+        break;
     }
     setErrors((prevValues) => ({
       ...prevValues,
@@ -57,6 +59,7 @@ function useInputValidation(values) {
 //입력 폼 커스텀 훅
 function useProduct() {
   const [values, setValues] = useState({
+    files: [],
     name: '',
     description: '',
     price: '',
@@ -81,6 +84,15 @@ function useProduct() {
 
     //유효성 검사
     checkValidation(name, value); //state가 바로 반영이 안되서 별도로 value를 넣었습니다.
+  };
+
+  const onFileChange = (e) => {
+    const { name, files } = e.target;
+    const fileList = files ? Object.values(files).slice(0, 3) : null; //세 개까지만 등록
+    setValues((prevValues) => ({
+      ...prevValues,
+      [name]: fileList, //대괄호 표기법 = 문자열
+    }));
   };
 
   const addTag = () => {
@@ -121,15 +133,26 @@ function useProduct() {
       description: values.description,
       price: parseInt(values.price),
       tags: values.tags,
-      images: ['https://example.com/...'],
+      images: [], //이미지 경로만 저장.
     };
 
     const res = await createProduct(RqBody);
+    if (!res.id) {
+      return res;
+    }
+
+    //상품 이미지는 forData에 images에 넣는다..
+    const formData = new FormData();
+    values.files.forEach((file, index) => {
+      formData.append('images[]', file);
+    });
+
+    const uploadResult = await uploadImages(formData, res.id);
 
     return res;
   };
 
-  return [values, errors, isSubmitActive, onChange, addTag, deleteTag, register];
+  return [values, errors, isSubmitActive, onChange, onFileChange, addTag, deleteTag, register];
 }
 
 export default useProduct;

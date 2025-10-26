@@ -41,7 +41,6 @@ export default function Articles() {
 
   const handleBestArticleLoad = async () => {
     const res1 = await getArticles(1, 3, 'favorite');
-    console.log(res1[1]);
     setBestArticles(res1);
   };
 

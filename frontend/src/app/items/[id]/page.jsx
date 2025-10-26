@@ -15,6 +15,7 @@ import {
   deleteComment,
 } from '@/api/ProductService';
 import useAsync from '@/hooks/useAsync';
+import url from '@/api/backendUrl.js';
 
 //컴포넌트
 import MainFrame from '@/components/organism/mainFrame';
@@ -30,7 +31,8 @@ import userPanda from '@/images/userPanda.svg';
 import heartIcon from './ic_heart.svg';
 import noComment from './ic_noComment.svg';
 import backIcon from './ic_back.svg';
-import productDefault from '../../../../public/images/items/product_default.png';
+//import productDefault from '../../../../public/images/items/product_default.png';
+const productDefault = '/images/items/product_default.png';
 
 //스타일
 import styles from './item.module.css';
@@ -39,11 +41,15 @@ function ProductDetail({ product, setModalOpen }) {
   const router = useRouter();
   const { id } = useParams();
 
+  const productImageURL =
+    product.images?.length > 0 ? `${url}/uploads/${product.images[0]}` : productDefault;
   return (
     <div className={styles.productDetailBox}>
       <div className={styles.productDetail}>
         <div className={styles.productImageBox}>
-          <Image src={productDefault} alt="productImage" className={styles.productImage} />
+          {product.images && (
+            <img src={productImageURL} alt="productImage" className={styles.productImage} />
+          )}
         </div>
         <div className="flex flex-col justify-between gap-[40px] w-[100%]">
           <div className="flex flex-col gap-[24px]">
@@ -212,6 +218,7 @@ export default function ProductPage({}) {
     name: '',
     description: '',
     price: 0,
+    images: [],
     tags: [],
     favoriteCount: 0,
     userName: '',
@@ -276,8 +283,8 @@ export default function ProductPage({}) {
           <ProductDetail product={product} setModalOpen={setModalOpen} />
           <form className={styles.commnetForm} onSubmit={handleSubmit}>
             <Input
-              label="댓글달기"
-              placeholder="댓글을 입력해주세요."
+              label="문의하기"
+              placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
               rows={3}
               value={commentInput}
               onChange={(e) => setCommnetInput(e.target.value)}
@@ -297,11 +304,7 @@ export default function ProductPage({}) {
           ) : (
             <div className={styles.noComment}>
               <Image src={noComment} alt="no_comment" className={styles.noCommentImg} />
-              <p>
-                아직 댓글이 없어요.
-                <br />
-                지금 댓글을 달아보세요!
-              </p>
+              <p>아직 문의가 없어요.</p>
             </div>
           )}
           <div className={styles.backButtonDiv}>

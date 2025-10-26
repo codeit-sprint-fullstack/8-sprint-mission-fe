@@ -63,3 +63,52 @@
   top: 50%;
   transform: translateY(-50%);
 }
+
+.file {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+
+  align-items: flex-start;
+  gap: 12x;
+
+  border-radius: 12px;
+  border: none;
+  background: var(--Cool-Gray-100, #f3f4f6);
+}
+
+.file * {
+  display: none !important;
+}
+
+.imgGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 40px;
+  column-gap: 24px;
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  height: fit-content;
+}
+
+.fileImgDiv {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+
+  align-items: flex-start;
+  gap: 12x;
+
+  border-radius: 12px;
+  border: none;
+  background: var(--Cool-Gray-100, #f3f4f6);
+
+  overflow: hidden;
+}
+
+@media (min-width: 744px) {
+  .imgGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

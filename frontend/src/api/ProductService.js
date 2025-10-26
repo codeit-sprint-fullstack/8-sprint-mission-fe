@@ -1,4 +1,4 @@
-const url = 'http://localhost:4000'; //직접 만든 개발용 백엔드 로컬 주소입니다.
+import url from './backendUrl.js';
 
 //리스폰스 에러만 잡는 코드 (fetch를 써서 필요)
 export async function resErrorCatch(res) {
@@ -9,7 +9,7 @@ export async function resErrorCatch(res) {
   }
 }
 
-//상품 목록 조회 - 요구사항
+//상품 목록 조회
 export async function getProductList(page = 1, pagesize = 10, orderBy = 'recent', keyword = '') {
   const result = await fetch(
     `${url}/products?page=${page}&pageSize=${pagesize}&orderBy=${orderBy}&keyword=${keyword}`
@@ -22,7 +22,7 @@ export async function getProductList(page = 1, pagesize = 10, orderBy = 'recent'
   return result; //(코드잇 api 사용시 result.list 경로 사용, 이하 동일)
 }
 
-//상품 상세 조회 - 요구사항 (api만)
+//상품 상세 조회
 export async function getProduct(id) {
   const result = await fetch(`${url}/products/${id}`)
     .then(async (res) => {
@@ -33,7 +33,7 @@ export async function getProduct(id) {
   return result;
 }
 
-//상품 등록 - 요구사항
+//상품 등록
 export async function createProduct(RqBody) {
   const result = await fetch(`${url}/products`, {
     method: 'POST',
@@ -48,7 +48,25 @@ export async function createProduct(RqBody) {
   return result;
 }
 
-//상품 수정 - 요구사항 (api만)
+//상품 이미지 업로드
+export async function uploadImages(formData, productId) {
+  const result = await fetch(`${url}/products/${productId}/uploads`, {
+    method: 'POST',
+    body: formData,
+  })
+    .then(async (res) => {
+      await resErrorCatch(res);
+      return res.json();
+    })
+    .then((data) => {
+      console.log('업로드 성공', data);
+      return data;
+    })
+    .catch((err) => console.error('업로드 실패', err));
+  return result;
+}
+
+//상품 수정
 export async function patchProduct(id, RqBody) {
   const result = await fetch(`${url}/products/${id}`, {
     method: 'PATCH',
@@ -63,7 +81,7 @@ export async function patchProduct(id, RqBody) {
   return result;
 }
 
-//상품 삭제 (api만)
+//상품 삭제
 export async function deleteProduct(id) {
   const result = await fetch(`${url}/products/${id}`, {
     method: 'DELETE',

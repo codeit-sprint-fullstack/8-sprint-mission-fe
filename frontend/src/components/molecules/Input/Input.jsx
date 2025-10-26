@@ -3,6 +3,7 @@ import Image from 'next/image';
 import styles from './Input.module.css';
 import eyeInvisible from './eye-invisible.svg';
 import eyeVisible from './eye-visible.svg';
+import plusIcon from './plusImg.svg';
 
 export default function Input({
   label,
@@ -14,21 +15,26 @@ export default function Input({
   rows = 1,
   error = '',
   isPassword = false,
+  type = 'text',
+  ref = null,
+  files = null,
 }) {
   const style = error === '' ? {} : { border: '1px solid var(--error-red, #F74747)' };
   const [isVisible, setIsVisible] = useState(!isPassword);
 
   //공통되는 prop을 묶었습니다.
-  const props = {
-    className: styles.inputPlace,
-    style: style,
-    name,
-    value,
-    onChange,
-    onKeyDown,
-    placeholder,
-  };
-
+  const props =
+    type === 'file'
+      ? { className: styles.file, name, ref, onChange }
+      : {
+          className: styles.inputPlace,
+          style: style,
+          name,
+          value,
+          onChange,
+          onKeyDown,
+          placeholder,
+        };
   //textara는 기본적으로 rows={2}로 설정 되어 있다.
   //input처럼 높이를 맞추려면 rows={1}이 꼭 필요.
   //rows={1}인 textarea보다 input이 UX적으로 좋다고 판단.
@@ -37,7 +43,11 @@ export default function Input({
       <label>{label}</label>
       {rows === 1 && (
         <div className={styles.inputDiv}>
-          <input {...props} type={isVisible ? 'text' : 'password'} />
+          {type === 'file' ? (
+            <ImageInput files={files} props={props} />
+          ) : (
+            <input {...props} type={isVisible ? 'text' : 'password'} />
+          )}
           {isPassword && (
             <button
               className={styles.eyeButton}
@@ -52,5 +62,31 @@ export default function Input({
       {rows > 1 && <textarea {...props} rows={rows} />}
       {error.length > 0 && <p className={styles.validErrorMsg}>{error}</p>}
     </div>
+  );
+}
+
+function ImageInput({ files, props }) {
+  return (
+    <ul className={styles.imgGrid}>
+      <div className="w-fit h-fit relative">
+        <input {...props} type="file" multiple accept="/image" />
+        <div>
+          <Image src={plusIcon} className="absolute inset-[50%] translate-[-50%]" alt="plusIcon" />
+        </div>
+      </div>
+      {files &&
+        files.map((file, idx) => {
+          if (file.type.startsWith('image/')) {
+            const image = URL.createObjectURL(file);
+            return (
+              <li key={idx} className={styles.fileImgDiv}>
+                <img src={image} className="w-[100%] h-[100%] object-cover" />
+              </li>
+            );
+          } else {
+            return <p>{file.type}</p>;
+          }
+        })}
+    </ul>
   );
 }

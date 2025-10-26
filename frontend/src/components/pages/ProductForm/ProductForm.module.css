@@ -10,6 +10,7 @@
   max-width: 1200px;
   font-weight: 700;
   margin: 26px auto 162px;
+  padding: 0 16px;
 }
 
 .header {
@@ -76,4 +77,10 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+}
+
+@media (min-width: 744px) {
+  .wrapper {
+    padding: 0 24px;
+  }
 }

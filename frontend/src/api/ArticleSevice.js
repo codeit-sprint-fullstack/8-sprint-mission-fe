@@ -1,4 +1,4 @@
-const url = 'http://localhost:4000';
+import url from './backendUrl.js';
 
 async function resErrorCatch(res) {
   if (!res.ok) {
