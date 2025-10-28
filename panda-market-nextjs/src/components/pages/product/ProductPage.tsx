@@ -154,7 +154,10 @@ export default function ProductPage() {
                   id={product.id.toString()}
                   name={product.name}
                   price={product.price}
-                  image={product.images[0] || "/product-list/prod-test.png"}
+                  image={
+                    product.images[0]?.image?.url ||
+                    "/product-list/prod-test.png"
+                  }
                   likeCount={product.likeCount}
                 />
               ))}
@@ -210,7 +213,10 @@ export default function ProductPage() {
                   id={product.id.toString()}
                   name={product.name}
                   price={product.price}
-                  image={product.images[0] || "/product-list/prod-test.png"}
+                  image={
+                    product.images[0]?.image?.url ||
+                    "/product-list/prod-test.png"
+                  }
                   likeCount={product.likeCount}
                 />
               ))

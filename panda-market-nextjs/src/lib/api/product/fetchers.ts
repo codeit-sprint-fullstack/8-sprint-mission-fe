@@ -117,7 +117,7 @@ const updateProduct = async (
  * @param id 상품 ID
  * @returns Product
  */
-const deleteProduct = async (id: string): Promise<Product> => {
+const deleteProduct = async (id: string): Promise<number> => {
   try {
     const response = await fetchWithAuth(`${API_URL}/products/${id}`, {
       method: "DELETE",
@@ -125,7 +125,7 @@ const deleteProduct = async (id: string): Promise<Product> => {
     if (!response?.ok) {
       throw new Error("상품 삭제 실패");
     }
-    return response.json();
+    return response.status;
   } catch (error) {
     console.error(error);
     throw error;
