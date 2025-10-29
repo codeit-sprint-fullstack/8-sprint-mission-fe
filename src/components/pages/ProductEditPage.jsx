@@ -3,15 +3,18 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import Button from '@/components/Button';
-import { getProduct, updateProduct } from '@/lib/productApi';
+import { getProduct, createProduct, updateProduct } from '@/lib/productApi';
+import { uploadImages } from '@/lib/uploadApi';
 import { useAuth } from '@/providers/AuthProvider';
 
 const ProductEditPage = ({ productId }) => {
   const router = useRouter();
   const { user } = useAuth();
+  const isEdit = Boolean(productId);
   const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(isEdit);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
 
@@ -22,6 +25,9 @@ const ProductEditPage = ({ productId }) => {
     tags: '',
     images: [],
   });
+
+  const [imageFiles, setImageFiles] = useState([]);
+  const [imagePreviews, setImagePreviews] = useState([]);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -44,6 +50,8 @@ const ProductEditPage = ({ productId }) => {
           tags: productData.tags ? productData.tags.join(', ') : '',
           images: productData.images || [],
         });
+        // 수정 모드에서는 기존 이미지를 미리보기로 표시
+        setImagePreviews(productData.images || []);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -51,10 +59,10 @@ const ProductEditPage = ({ productId }) => {
       }
     };
 
-    if (productId && user) {
+    if (isEdit && productId && user) {
       fetchProduct();
     }
-  }, [productId, user, router]);
+  }, [isEdit, productId, user, router]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -62,6 +70,62 @@ const ProductEditPage = ({ productId }) => {
       ...prev,
       [name]: value,
     }));
+  };
+
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files);
+    const totalImages = imagePreviews.length + files.length;
+
+    if (totalImages > 3) {
+      alert('이미지는 최대 3개까지 업로드할 수 있습니다.');
+      return;
+    }
+
+    // 파일 크기 및 형식 검증 (각 파일 10MB 제한)
+    const validFiles = files.filter((file) => {
+      if (file.size > 10 * 1024 * 1024) {
+        alert(`${file.name}의 크기가 10MB를 초과합니다.`);
+        return false;
+      }
+      if (!file.type.startsWith('image/')) {
+        alert(`${file.name}은(는) 이미지 파일이 아닙니다.`);
+        return false;
+      }
+      return true;
+    });
+
+    if (validFiles.length === 0) return;
+
+    setImageFiles((prev) => [...prev, ...validFiles]);
+
+    // 미리보기 생성
+    validFiles.forEach((file) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImagePreviews((prev) => [...prev, e.target.result]);
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // input 초기화
+    e.target.value = '';
+  };
+
+  const handleRemoveImage = (index) => {
+    setImagePreviews((prev) => prev.filter((_, i) => i !== index));
+    
+    // 새로 추가된 이미지인 경우 (기존 이미지 개수 이후)
+    const existingImagesCount = formData.images.length;
+    if (index >= existingImagesCount) {
+      const fileIndex = index - existingImagesCount;
+      setImageFiles((prev) => prev.filter((_, i) => i !== fileIndex));
+    } else {
+      // 기존 이미지를 삭제하는 경우
+      setFormData((prev) => ({
+        ...prev,
+        images: prev.images.filter((_, i) => i !== index),
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -80,7 +144,17 @@ const ProductEditPage = ({ productId }) => {
 
     setIsSubmitting(true);
     try {
-      const updateData = {
+      // 새로운 이미지 파일이 있으면 업로드
+      let uploadedImageUrls = [];
+      if (imageFiles.length > 0) {
+        const uploadResult = await uploadImages(imageFiles);
+        uploadedImageUrls = uploadResult.images || [];
+      }
+
+      // 기존 이미지 + 새로 업로드된 이미지 결합
+      const allImages = [...formData.images, ...uploadedImageUrls];
+
+      const productData = {
         name: formData.name.trim(),
         description: formData.description.trim(),
         price: price,
@@ -90,15 +164,27 @@ const ProductEditPage = ({ productId }) => {
               .map((tag) => tag.trim())
               .filter((tag) => tag)
           : [],
-        images: formData.images,
+        images: allImages,
       };
 
-      await updateProduct(productId, updateData);
-      alert('상품이 수정되었습니다.');
-      router.push(`/items/${productId}`);
+      let result;
+      if (isEdit) {
+        result = await updateProduct(productId, productData);
+        alert('상품이 수정되었습니다.');
+      } else {
+        result = await createProduct(productData);
+        alert('상품이 등록되었습니다.');
+      }
+      
+      const id = result?.id || productId;
+      if (id) {
+        router.push(`/items/${id}`);
+      } else {
+        router.push('/items');
+      }
     } catch (err) {
-      alert('상품 수정 중 오류가 발생했습니다.');
-      console.error('상품 수정 실패:', err);
+      alert(`상품 ${isEdit ? '수정' : '등록'} 중 오류가 발생했습니다.`);
+      console.error(`상품 ${isEdit ? '수정' : '등록'} 실패:`, err);
     } finally {
       setIsSubmitting(false);
     }
@@ -127,7 +213,7 @@ const ProductEditPage = ({ productId }) => {
     );
   }
 
-  if (error) {
+  if (error && isEdit) {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="text-center py-8">
@@ -141,24 +227,81 @@ const ProductEditPage = ({ productId }) => {
     );
   }
 
+  const backUrl = isEdit ? `/items/${productId}` : '/items';
+
   return (
     <div className="container mx-auto px-4 py-8">
-      {/* 뒤로가기 버튼 */}
-      <div className="mb-6">
-        <Button
-          as={Link}
-          href={`/items/${productId}`}
-          appearance="secondary"
-          className="inline-flex items-center gap-2"
-        >
-          ← 뒤로가기
-        </Button>
-      </div>
-
-      <div className="max-w-2xl mx-auto">
-        <h1 className="text-2xl font-bold text-gray-900 mb-8">상품 수정</h1>
+      <div className="max-w-2xl mx-auto relative">
+        <h1 className="text-2xl font-bold text-gray-900 mb-8">
+          상품 {isEdit ? '수정' : '등록'}
+        </h1>
+        
+        {/* 뒤로가기 버튼 */}
+        <div className="mb-6 absolute top-0 right-0">
+          <Button
+            as={Link}
+            href={backUrl}
+            appearance="secondary"
+            className="inline-flex items-center gap-2"
+          >
+            ← 뒤로가기
+          </Button>
+        </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* 상품 이미지 */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              상품 이미지
+            </label>
+            <div className="flex gap-4 flex-wrap">
+              {/* 이미지 미리보기 */}
+              {imagePreviews.map((preview, index) => (
+                <div
+                  key={index}
+                  className="relative w-40 h-40 bg-gray-100 rounded-lg overflow-hidden border-2 border-gray-200"
+                >
+                  <Image
+                    src={preview}
+                    alt={`상품 이미지 ${index + 1}`}
+                    fill
+                    className="object-cover"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveImage(index)}
+                    className="absolute top-2 right-2 w-6 h-6 bg-gray-800 bg-opacity-60 hover:bg-opacity-80 rounded-full flex items-center justify-center text-white transition-all"
+                    aria-label="이미지 삭제"
+                  >
+                    ✕
+                  </button>
+                </div>
+              ))}
+
+              {/* 이미지 추가 버튼 */}
+              {imagePreviews.length < 3 && (
+                <label
+                  htmlFor="image-upload"
+                  className="w-40 h-40 bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 flex flex-col items-center justify-center cursor-pointer hover:bg-gray-50 hover:border-gray-400 transition-all"
+                >
+                  <div className="text-4xl text-gray-400 mb-2">+</div>
+                  <div className="text-sm text-gray-500">이미지 등록</div>
+                  <input
+                    type="file"
+                    id="image-upload"
+                    accept="image/*"
+                    multiple
+                    onChange={handleImageChange}
+                    className="hidden"
+                  />
+                </label>
+              )}
+            </div>
+            <p className="text-sm text-gray-500 mt-2">
+              최대 3개까지 업로드 가능합니다. (각 파일 최대 10MB)
+            </p>
+          </div>
+
           {/* 상품명 */}
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -234,14 +377,14 @@ const ProductEditPage = ({ productId }) => {
           <div className="flex gap-3 pt-6">
             <Button
               as={Link}
-              href={`/items/${productId}`}
+              href={backUrl}
               appearance="secondary"
               className="flex-1"
             >
               취소
             </Button>
             <Button type="submit" appearance="primary" className="flex-1" disabled={isSubmitting}>
-              {isSubmitting ? '수정 중...' : '수정하기'}
+              {isSubmitting ? (isEdit ? '수정 중...' : '등록 중...') : (isEdit ? '수정하기' : '등록하기')}
             </Button>
           </div>
         </form>

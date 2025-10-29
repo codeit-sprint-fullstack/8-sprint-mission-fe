@@ -1,24 +1,26 @@
-// Simple token storage helper
-export const TOKEN_KEYS = {
-  access: 'accessToken',
-  refresh: 'refreshToken',
-};
+const REFRESH_TOKEN_KEY = 'refreshToken';
 
-export function saveTokens({ accessToken, refreshToken }) {
-  if (accessToken) localStorage.setItem(TOKEN_KEYS.access, accessToken);
-  if (refreshToken) localStorage.setItem(TOKEN_KEYS.refresh, refreshToken);
+// refreshToken 저장
+export function saveRefreshToken(refreshToken) {
+  if (typeof window === 'undefined') return;
+  if (refreshToken) {
+    localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+  }
 }
 
-export function getAccessToken() {
-  return typeof window !== 'undefined' ? localStorage.getItem(TOKEN_KEYS.access) : null;
+// refreshToken만 저장
+export function saveTokens({ refreshToken }) {
+  saveRefreshToken(refreshToken);
 }
 
+// refreshToken 가져오기
 export function getRefreshToken() {
-  return typeof window !== 'undefined' ? localStorage.getItem(TOKEN_KEYS.refresh) : null;
+  return typeof window !== 'undefined' ? localStorage.getItem(REFRESH_TOKEN_KEY) : null;
 }
 
+
+// 토큰 삭제
 export function clearTokens() {
   if (typeof window === 'undefined') return;
-  localStorage.removeItem(TOKEN_KEYS.access);
-  localStorage.removeItem(TOKEN_KEYS.refresh);
+  localStorage.removeItem(REFRESH_TOKEN_KEY);
 }

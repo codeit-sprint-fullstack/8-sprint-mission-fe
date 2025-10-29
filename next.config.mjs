@@ -3,20 +3,26 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'panda-market-api.vercel.app',
+        protocol: 'http',
+        hostname: 'localhost/4000',
+        pathname: '/uploads/**',
       },
       {
-        protocol: 'https',
+        protocol: 'http',
         hostname: '**',
       },
     ],
   },
   async rewrites() {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
     return [
       {
         source: '/api/:path*',
-        destination: 'https://panda-market-api.vercel.app/:path*',
+        destination: `${apiUrl}/:path*`,
+      },
+      {
+        source: '/uploads/:path*', 
+        destination: `${apiUrl}/uploads/:path*`,
       },
     ];
   },

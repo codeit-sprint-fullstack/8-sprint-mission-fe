@@ -9,7 +9,7 @@ import { useAuth } from '@/providers/AuthProvider';
 export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
-  const { user, loading } = useAuth();
+  const { user, loading, logout } = useAuth();
 
   const navLinks = [
     {
@@ -23,9 +23,13 @@ export default function Header() {
   ];
 
   const handleLoginClick = () => {
-    // 로그인 페이지로 이동하거나 로그인 모달을 열 수 있습니다
     router.push('/login');
   };
+
+  // const handleLogoutClick = async () => {
+  //   await logout();
+  //   router.push('/');
+  // };
 
   return (
     <header
@@ -76,6 +80,9 @@ export default function Header() {
                   />
                 </div>
                 <span className="text-[var(--gray-800)] font-semibold">{user.nickname}</span>
+                {/* <Button onClick={handleLogoutClick} appearance="outline">
+                  로그아웃
+                </Button> */}
               </div>
             ) : (
               <Button onClick={handleLoginClick} appearance="primary">

@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import SocialLogin from '@/components/auth/SocialLogin';
 import { useSignInMutation } from '@/hooks/useAuthMutations';
-import { getAccessToken } from '@/lib/authStorage';
+import { getRefreshToken } from '@/lib/authStorage';
 import { useAuth } from '@/providers/AuthProvider';
 import Toast from '@/components/Toast';
 import AuthInput from '@/components/auth/AuthInput';
@@ -16,10 +16,11 @@ export default function LoginPage() {
   const [errors, setErrors] = useState({ email: '', password: '' });
   const [alert, setAlert] = useState('');
   const { mutateAsync: signIn, isPending } = useSignInMutation();
-  const { refreshUser } = useAuth();
+  const { setAuthUser } = useAuth();
 
   useEffect(() => {
-    const token = getAccessToken();
+    // refreshToken이 있으면 이미 로그인 상태
+    const token = getRefreshToken();
     if (token) router.replace('/items');
   }, [router]);
 
@@ -55,14 +56,15 @@ export default function LoginPage() {
     if (emailErr || pwErr) return;
 
     try {
-      await signIn({ email, password });
-      // 로그인 직후 헤더 반영
-      refreshUser?.();
+      const result = await signIn({ email, password });
+      // 로그인 성공: user 정보 저장
+      if (result?.user) {
+        setAuthUser(result.user);
+      }
       router.push('/');
     } catch (e) {
       console.error('로그인 실패', e);
-      // setAlert(e.message || '로그인에 실패했어요');
-      // 명확한 에러원인을 알수없게
+      // 명확한 에러원인을 알 수 없게
       setAlert('이메일 또는 비밀번호가 올바르지 않아요');
     }
   };

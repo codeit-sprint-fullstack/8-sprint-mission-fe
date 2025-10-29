@@ -1,6 +1,7 @@
 'use client';
 
-import * as commentService from '@/lib/articleCommentApi';
+import * as articleCommentService from '@/lib/articleCommentApi';
+import * as productCommentService from '@/lib/productCommentApi';
 import { createContext, useContext, useState, useMemo, useCallback } from 'react';
 
 const CommentContext = createContext({
@@ -9,6 +10,8 @@ const CommentContext = createContext({
   error: null,
   createArticleComment: () => {},
   getArticleComments: () => {},
+  createProductComment: () => {},
+  getProductComments: () => {},
   updateComment: () => {},
   deleteComment: () => {},
 });
@@ -37,7 +40,7 @@ export default function CommentProvider({ children }) {
       try {
         setLoading(true);
         setError(null);
-        const response = await commentService.createArticleComment(articleId, commentData);
+        const response = await articleCommentService.createArticleComment(articleId, commentData);
         // 새 댓글을 목록에 추가
         setComments((prev) => [response, ...prev]);
         return response;
@@ -56,7 +59,44 @@ export default function CommentProvider({ children }) {
       try {
         setLoading(true);
         setError(null);
-        const response = await commentService.getArticleComments(articleId, params);
+        const response = await articleCommentService.getArticleComments(articleId, params);
+        setComments(response);
+        return response;
+      } catch (error) {
+        handleError(error, '댓글 목록을 가져오는데 실패했습니다');
+        throw error;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [handleError],
+  );
+
+  const createProductComment = useCallback(
+    async (productId, commentData) => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await productCommentService.createProductComment(productId, commentData);
+        // 새 댓글을 목록에 추가
+        setComments((prev) => [response, ...prev]);
+        return response;
+      } catch (error) {
+        handleError(error, '댓글 등록에 실패했습니다');
+        throw error;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [handleError],
+  );
+
+  const getProductComments = useCallback(
+    async (productId, params = {}) => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await productCommentService.getProductComments(productId, params);
         setComments(response);
         return response;
       } catch (error) {
@@ -74,10 +114,16 @@ export default function CommentProvider({ children }) {
       try {
         setLoading(true);
         setError(null);
-        const response = await commentService.updateComment(commentId, commentData);
-        // 수정된 댓글로 업데이트
+        const response = await productCommentService.updateComment(commentId, commentData);
+        // 수정된 댓글로 업데이트 (기존 댓글 데이터와 병합)
         setComments((prev) =>
-          prev.map((comment) => (comment.id === commentId ? response : comment)),
+          prev.map((comment) => {
+            if (comment.id === commentId) {
+              // 기존 댓글 데이터를 유지하고 응답 데이터로 덮어쓰기
+              return { ...comment, ...response };
+            }
+            return comment;
+          }),
         );
         return response;
       } catch (error) {
@@ -95,7 +141,7 @@ export default function CommentProvider({ children }) {
       try {
         setLoading(true);
         setError(null);
-        const response = await commentService.deleteComment(commentId);
+        const response = await productCommentService.deleteComment(commentId);
         // 삭제된 댓글을 목록에서 제거
         setComments((prev) => prev.filter((comment) => comment.id !== commentId));
         return response;
@@ -116,6 +162,8 @@ export default function CommentProvider({ children }) {
       error,
       createArticleComment,
       getArticleComments,
+      createProductComment,
+      getProductComments,
       updateComment,
       deleteComment,
     }),
@@ -125,6 +173,8 @@ export default function CommentProvider({ children }) {
       error,
       createArticleComment,
       getArticleComments,
+      createProductComment,
+      getProductComments,
       updateComment,
       deleteComment,
     ],

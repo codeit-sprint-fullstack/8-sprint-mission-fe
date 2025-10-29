@@ -3,16 +3,22 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import DropdownMenu from '@/components/DropdownMenu';
+import FavoriteButton from '@/components/product/FavoriteButton';
 import { useArticles } from '@/providers/ArticleProvider';
+import { useAuth } from '@/providers/AuthProvider';
 
 export default function ArticleDetailSection({ articleId }) {
   const {
     currentArticle,
     getArticleById,
+    toggleArticleFavorite,
     loading: articleLoading,
     error: articleError,
   } = useArticles();
+  const { user } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const isLoggedIn = !!user;
 
   useEffect(() => {
     if (!articleId) return;
@@ -26,6 +32,15 @@ export default function ArticleDetailSection({ articleId }) {
     } catch {
       return String(createdAt);
     }
+  };
+
+  const handleFavoriteToggle = async () => {
+    if (!isLoggedIn) {
+      alert('로그인이 필요합니다.');
+      return;
+    }
+    const result = await toggleArticleFavorite(articleId);
+    return result;
   };
 
   return (
@@ -70,13 +85,12 @@ export default function ArticleDetailSection({ articleId }) {
           </div>
 
           <div className="text-sm pl-4 border-l" style={{ color: 'var(--gray-500)' }}>
-            <div
-              className="flex items-center justify-center gap-1 px-3 py-1 rounded-4xl border"
-              style={{ borderColor: 'var(--gray-200)' }}
-            >
-              <Image src="/images/icon/ic_heart.svg" alt="좋아요" width={20} height={20} />{' '}
-              {Number(currentArticle?.likes || 0).toLocaleString()}
-            </div>
+            <FavoriteButton
+              isLiked={currentArticle?.isLiked || false}
+              count={currentArticle?.likes || currentArticle?.favoriteCount || 0}
+              disabled={!isLoggedIn}
+              onToggle={handleFavoriteToggle}
+            />
           </div>
         </div>
       </div>

@@ -9,17 +9,16 @@ import ConfirmModal from '@/components/ConfirmModal';
 import ProductCommentSection from '@/components/product/ProductCommentSection';
 import { getProduct, deleteProduct, toggleProductFavorite } from '@/lib/productApi';
 import FavoriteButton from '@/components/product/FavoriteButton';
-import { getProductComments, createProductComment } from '@/lib/productCommentApi';
 import { useAuth } from '@/providers/AuthProvider';
 
 const ProductDetailPage = ({ productId }) => {
   const router = useRouter();
   const { user } = useAuth();
   const [product, setProduct] = useState(null);
-  const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const isLoggedIn = !!user;
   const currentUserId = user?.id;
@@ -33,13 +32,8 @@ const ProductDetailPage = ({ productId }) => {
     const fetchProductData = async () => {
       try {
         setLoading(true);
-        const [productData, commentsData] = await Promise.all([
-          getProduct(productId),
-          getProductComments(productId, { limit: 50 }),
-        ]);
-
+        const productData = await getProduct(productId);
         setProduct(productData);
-        setComments(commentsData.list || []);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -57,9 +51,13 @@ const ProductDetailPage = ({ productId }) => {
       alert('로그인이 필요합니다.');
       return;
     }
-    const updated = await toggleProductFavorite(productId, product.isFavorite);
-    setProduct((prev) => ({ ...prev, ...updated }));
-    return updated;
+    const result = await toggleProductFavorite(productId);
+    setProduct((prev) => ({
+      ...prev,
+      isLiked: result.isLiked,
+      favoriteCount: result.favoriteCount,
+    }));
+    return result;
   };
 
   const handleEdit = () => {
@@ -75,30 +73,6 @@ const ProductDetailPage = ({ productId }) => {
       alert('상품 삭제 중 오류가 발생했습니다.');
     }
     setIsDeleteModalOpen(false);
-  };
-
-  const handleCommentSubmit = async (content) => {
-    if (!isLoggedIn) {
-      alert('로그인이 필요합니다.');
-      return;
-    }
-
-    try {
-      const newComment = await createProductComment(productId, { content });
-      setComments([newComment, ...comments]);
-    } catch (err) {
-      alert('댓글 등록 중 오류가 발생했습니다.');
-    }
-  };
-
-  const handleCommentUpdate = (updatedComment) => {
-    setComments(
-      comments.map((comment) => (comment.id === updatedComment.id ? updatedComment : comment)),
-    );
-  };
-
-  const handleCommentDelete = (deletedCommentId) => {
-    setComments(comments.filter((comment) => comment.id !== deletedCommentId));
   };
 
   const LoadingOrError = () => (
@@ -120,20 +94,87 @@ const ProductDetailPage = ({ productId }) => {
 
   const isOwner = currentUserId && currentUserId === product.ownerId;
 
+  const images = product.images || [];
+  const hasMultipleImages = images.length > 1;
+
+  const handlePrevImage = () => {
+    setCurrentImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const handleNextImage = () => {
+    setCurrentImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
   console.log('product', product);
   return (
     <div className="pt-8 pb-16 flex flex-col justify-center">
       <section className="flex flex-row gap-6">
         {/* 이미지 영역 */}
-        <div className="relative w-[486px] aspect-square rounded-xl overflow-hidden bg-gray-100 ring-1 ring-gray-200">
-          {product.images?.length ? (
-            <Image
-              src={product.images[0]}
-              alt={product.name}
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 420px"
-            />
+        <div className="relative w-[486px] h-[486px] rounded-xl overflow-hidden bg-gray-100 ring-1 ring-gray-200 flex-shrink-0 group">
+          {images.length > 0 ? (
+            <>
+              <Image
+                src={images[currentImageIndex]}
+                alt={product.name}
+                fill
+                className="object-cover"
+                sizes="486px"
+                priority
+              />
+              {hasMultipleImages && (
+                <>
+                  {/* 이전 버튼 */}
+                  <button
+                    onClick={handlePrevImage}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                    aria-label="이전 이미지"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={2}
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                  </button>
+
+                  {/* 다음 버튼 */}
+                  <button
+                    onClick={handleNextImage}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                    aria-label="다음 이미지"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={2}
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                  </button>
+
+                  {/* 인디케이터 */}
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                    {images.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentImageIndex(index)}
+                        className={`w-2 h-2 rounded-full transition-all ${
+                          index === currentImageIndex ? 'bg-white w-6' : 'bg-white/60 hover:bg-white/80'
+                        }`}
+                        aria-label={`이미지 ${index + 1}로 이동`}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
+            </>
           ) : (
             <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">
               이미지 없음
@@ -210,7 +251,7 @@ const ProductDetailPage = ({ productId }) => {
             {/* 좋아요 */}
             <div className="border-l border-[var(--gray-200)] pl-4">
               <FavoriteButton
-                isFavorite={product.isFavorite}
+                isLiked={product.isLiked}
                 count={product.favoriteCount}
                 disabled={!isLoggedIn}
                 onToggle={async () => handleFavoriteToggle()}
@@ -221,14 +262,7 @@ const ProductDetailPage = ({ productId }) => {
       </section>
 
       {/* 댓글 */}
-      <ProductCommentSection
-        comments={comments}
-        onCommentSubmit={handleCommentSubmit}
-        onCommentUpdate={handleCommentUpdate}
-        onCommentDelete={handleCommentDelete}
-        isLoggedIn={isLoggedIn}
-        currentUserId={currentUserId}
-      />
+      <ProductCommentSection productId={productId} />
 
       <ConfirmModal
         isOpen={isDeleteModalOpen}

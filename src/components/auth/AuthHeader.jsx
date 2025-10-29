@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const AuthHeader = () => {
   return (
-    <Link href="/" className=" max-w-[396px] flex items-center justify-between mx-auto mb-12">
+    <Link href="/" className=" w-full flex items-center justify-center gap-5 mb-12">
       <Image
         src="/images/logo.svg"
         alt="판다마켓 로고"

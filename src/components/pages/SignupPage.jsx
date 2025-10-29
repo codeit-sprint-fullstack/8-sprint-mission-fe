@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import SocialLogin from '@/components/auth/SocialLogin';
 import { useSignUpMutation } from '@/hooks/useAuthMutations';
-import { getAccessToken } from '@/lib/authStorage';
+import { getRefreshToken } from '@/lib/authStorage';
 import { useAuth } from '@/providers/AuthProvider';
 import Toast from '@/components/Toast';
 import AuthInput from '@/components/auth/AuthInput';
@@ -17,11 +17,13 @@ export default function SignupPage() {
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [errors, setErrors] = useState({ email: '', name: '', password: '', passwordConfirm: '' });
   const [alert, setAlert] = useState('');
+  const [alertType, setAlertType] = useState('error'); // Toast 타입 추가
   const { mutateAsync: signUp, isPending } = useSignUpMutation();
-  const { refreshUser } = useAuth();
+  const { setAuthUser } = useAuth();
 
   useEffect(() => {
-    const token = getAccessToken();
+    // refreshToken이 있으면 이미 로그인 상태
+    const token = getRefreshToken();
     if (token) router.replace('/items');
   }, [router]);
 
@@ -81,13 +83,22 @@ export default function SignupPage() {
     if (emailErr || nameErr || pwErr || pwcErr) return;
 
     try {
-      await signUp({ email, nickname: name, password, passwordConfirmation: passwordConfirm });
-      // 가입 직후 헤더 반영
-      refreshUser?.();
-      router.push('/');
+      // 백엔드는 passwordConfirmation을 사용하지 않음
+      const result = await signUp({ email, nickname: name, password });
+      // 회원가입 성공 시 로그인 페이지로 이동
+      setAlertType('success');
+      setAlert('회원가입이 완료되었어요! 로그인해 주세요.');
+      setTimeout(() => {
+        router.push('/login');
+      }, 1500);
     } catch (e) {
       console.error('회원가입 실패', e);
-      setAlert(e.message || '회원가입에 실패했어요');
+      setAlertType('error');
+      if (e.message?.includes('Email already exists')) {
+        setAlert('이미 사용 중인 이메일이에요');
+      } else {
+        setAlert(e.message || '회원가입에 실패했어요');
+      }
     }
   };
 
@@ -103,7 +114,7 @@ export default function SignupPage() {
 
   return (
     <div className="space-y-8">
-      <Toast open={alert} message={alert} onClose={() => setAlert('')} type="error" />
+      <Toast open={!!alert} message={alert} onClose={() => setAlert('')} type={alertType} />
 
       <form className="flex flex-col gap-6" onSubmit={onSubmit}>
         <AuthInput

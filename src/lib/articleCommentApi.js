@@ -7,12 +7,13 @@ import { api } from './apiClient';
 /**
  * 자유게시판 댓글 등록
  * @param {string|number} articleId - 게시글 ID
+ * @param {Object} userId - 사용자 ID
  * @param {Object} commentData - 댓글 데이터
  * @param {string} commentData.content - 댓글 내용
  * @returns {Promise<Object>} 생성된 댓글 정보
  */
 export const createArticleComment = async (articleId, commentData) =>
-  api.post(`/article/${articleId}/comments`, commentData, { auth: true });
+  api.post(`/comments/article/${articleId}`, commentData, { auth: true });
 
 /**
  * 자유게시판 댓글 목록 조회
@@ -24,7 +25,7 @@ export const createArticleComment = async (articleId, commentData) =>
 export const getArticleComments = async (articleId, params = {}) => {
   const searchParams = new URLSearchParams();
   if (params.limit) searchParams.append('limit', params.limit);
-  return api.get(`/article/${articleId}/comments?${searchParams.toString()}`);
+  return api.get(`/comments/article/${articleId}?${searchParams.toString()}`);
 };
 
 /**
