@@ -45,7 +45,7 @@ export default function LoginPage() {
   const onSubmit = (data: Login) => {
     postLoginMutation(data, {
       onSuccess: () => {
-        router.push("/items");
+        router.push("/product");
       },
       onError: (error) => {
         console.error("로그인 중 오류가 발생했습니다:", error);
@@ -77,7 +77,7 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="flex justify-center min-h-screen bg-(--background-color) pt-24">
+    <main className="flex justify-center bg-(--background-color) pt-24 pb-24">
       <div className="w-full max-w-[640px] px-4 md:px-0">
         {/* 로고 */}
         <div className="text-center mb-16">

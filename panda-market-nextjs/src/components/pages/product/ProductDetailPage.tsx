@@ -18,8 +18,8 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useAuthQuery } from "@/lib/api/auth/queries";
 import { useCommentsQuery } from "@/lib/api/comments/queries";
-import { Product } from "@/lib/api/items/fetchers";
-import { useItemsQuery } from "@/lib/api/items/queries";
+import { Product } from "@/lib/api/product/fetchers";
+import { useItemsQuery } from "@/lib/api/product/queries";
 import { UseQueryResult } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import Image from "next/image";
@@ -27,7 +27,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
-export default function ItemsDetailPage() {
+export default function ProductDetailPage() {
   const { id }: { id: string } = useParams();
   const router = useRouter();
   const [comment, setComment] = useState("");
@@ -38,7 +38,7 @@ export default function ItemsDetailPage() {
     isPending,
     isError,
     error,
-  }: UseQueryResult<Product> = useItemsQuery.useGetProductDetail(Number(id)); // 상품 상세 조회
+  }: UseQueryResult<Product> = useItemsQuery.useGetProductDetail(id); // 상품 상세 조회
 
   const {
     data: productComments,
@@ -46,8 +46,6 @@ export default function ItemsDetailPage() {
     isError: isProductCommentsError,
     error: productCommentsError,
   } = useCommentsQuery.useGetProductComments(id); // 상품 댓글 조회
-
-  const comments = productComments?.list || [];
 
   const { mutate: createProductCommentMutation } =
     useCommentsQuery.useCreateProductComment(); // 상품 댓글 생성
@@ -58,10 +56,6 @@ export default function ItemsDetailPage() {
 
   const { mutate: deleteProductMutation } = useItemsQuery.useDeleteProduct(); // 상품 삭제
   const { data: user } = useAuthQuery.useGetUser(); // 사용자 정보 조회
-
-  const { mutate: addFavoriteMutation } = useItemsQuery.useAddFavorite(); // 상품 좋아요 추가
-  const { mutate: deleteFavoriteMutation } = useItemsQuery.useDeleteFavorite(); // 상품 좋아요 삭제
-
   /**
    * 상품 삭제
    */
@@ -70,7 +64,7 @@ export default function ItemsDetailPage() {
       onSuccess: () => {
         setIsDeleteDialogOpen(false);
         toast.success("상품이 성공적으로 삭제되었습니다.");
-        router.push("/items");
+        router.push("/product");
       },
       onError: (error) => {
         setIsDeleteDialogOpen(false);
@@ -82,7 +76,7 @@ export default function ItemsDetailPage() {
    * 상품 수정
    */
   const handleUpdate = () => {
-    router.push(`/items/${id}/edit`);
+    router.push(`/product/${id}/edit`);
   };
 
   /**
@@ -127,7 +121,7 @@ export default function ItemsDetailPage() {
    */
   const handleDeleteProductComment = (commentId: string) => {
     deleteProductCommentMutation(
-      { commentId },
+      { id, commentId },
       {
         onSuccess: () => {
           toast.success("댓글이 성공적으로 삭제되었습니다.");
@@ -146,10 +140,9 @@ export default function ItemsDetailPage() {
    */
   const handleUpdateProductComment = (commentId: string, comment: string) => {
     updateProductCommentMutation(
-      { commentId, comment },
+      { id, commentId, comment },
       {
         onSuccess: () => {
-          router.refresh();
           toast.success("댓글이 성공적으로 수정되었습니다.");
         },
         onError: (error) => {
@@ -168,7 +161,9 @@ export default function ItemsDetailPage() {
   }
 
   const createdAt = dayjs(productDetail?.createdAt).format("YYYY. MM. DD.");
-  const formattedPrice = productDetail?.price.toLocaleString();
+  const formattedPrice = productDetail?.price?.toLocaleString();
+  const authorNickname = productDetail?.user?.nickname || user?.nickname;
+  const authorImage = productDetail?.user?.image || "/article/avatar-img.svg";
 
   return (
     <main className="max-w-[1200px] mx-auto px-4 py-8">
@@ -177,7 +172,10 @@ export default function ItemsDetailPage() {
           {/* 상품 이미지 */}
           <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-secondary-100">
             <Image
-              src={productDetail?.images?.[0]}
+              src={
+                productDetail?.images?.[0]?.image?.url ||
+                "/product-list/prod-test.png"
+              }
               alt={productDetail?.name}
               fill
               className="object-cover"
@@ -251,12 +249,12 @@ export default function ItemsDetailPage() {
                 상품 태그
               </Text>
               <div className="flex flex-wrap gap-2">
-                {productDetail?.tags?.map((tag: string, index: number) => (
+                {productDetail?.tags?.map((tag) => (
                   <span
-                    key={index}
+                    key={tag.id}
                     className="px-3 py-1 bg-secondary-100 rounded-full text-sm text-secondary-600"
                   >
-                    #{tag}
+                    #{tag.name}
                   </span>
                 ))}
               </div>
@@ -266,17 +264,14 @@ export default function ItemsDetailPage() {
             <div className="flex items-center gap-4 pt-6 ">
               <div className="flex items-center gap-2">
                 <Avatar className="rounded-lg w-10 h-10">
-                  <AvatarImage
-                    src={"/article/avatar-img.svg"}
-                    alt={user?.nickname}
-                  />
+                  <AvatarImage src={authorImage} alt={authorNickname} />
                 </Avatar>
                 <div>
                   <Text
                     styleName="text-md-semibold"
                     className="text-secondary-800"
                   >
-                    {user?.nickname}
+                    {authorNickname}
                   </Text>
                   <Text
                     styleName="text-xs-regular"
@@ -287,7 +282,12 @@ export default function ItemsDetailPage() {
                 </div>
               </div>
               <div className="ml-auto">
-                <BtnHeart productId={productDetail?.id} />
+                <BtnHeart
+                  type="product"
+                  id={productDetail?.id?.toString()}
+                  initialLikeCount={productDetail?.likeCount || 0}
+                  isLiked={productDetail?.isLiked || false}
+                />
               </div>
             </div>
           </div>
@@ -319,7 +319,7 @@ export default function ItemsDetailPage() {
         {/* 댓글 리스트 영역 */}
         <div className="mb-8">
           <CommentList
-            data={comments}
+            data={productComments || []}
             isLoading={isProductCommentsPending}
             isError={isProductCommentsError}
             error={
@@ -334,7 +334,7 @@ export default function ItemsDetailPage() {
 
         {/* 목록으로 돌아가기 */}
         <div className="flex justify-center mt-16">
-          <Button variant="default" onClick={() => router.push("/items")}>
+          <Button variant="default" onClick={() => router.push("/product")}>
             목록으로 돌아가기
           </Button>
         </div>

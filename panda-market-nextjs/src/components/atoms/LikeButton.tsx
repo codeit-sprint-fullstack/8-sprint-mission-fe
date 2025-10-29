@@ -1,12 +1,12 @@
 "use client";
 
 interface LikeButtonProps {
-  favoriteCount?: number;
+  likeCount?: number;
   isLiked?: boolean;
 }
 
 export function LikeButton({
-  favoriteCount = 0,
+  likeCount = 0,
   isLiked = false,
 }: LikeButtonProps) {
   return (
@@ -21,7 +21,7 @@ export function LikeButton({
         width={16}
         height={16}
       />
-      <span className="text-sm text-secondary-400">{favoriteCount}</span>
+      <span className="text-sm text-secondary-400">{likeCount}</span>
     </button>
   );
 }

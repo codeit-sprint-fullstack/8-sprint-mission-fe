@@ -5,7 +5,7 @@ import {
   itemsApi,
   ProductList,
   ProductFilters,
-} from "@/lib/api/items/fetchers";
+} from "@/lib/api/product/fetchers";
 import { ProductSchema } from "@/lib/schema/product";
 import {
   useMutation,
@@ -16,7 +16,7 @@ import {
 } from "@tanstack/react-query";
 
 /**
- * 베스트 상품 조회 (favoriteCount 내림차순으로 3개)
+ * 베스트 상품 조회 (likeCount 내림차순으로 4개)
  * @returns Product[]
  */
 const useGetBestProducts = (): UseQueryResult<Product[]> => {
@@ -26,10 +26,16 @@ const useGetBestProducts = (): UseQueryResult<Product[]> => {
       const response = await itemsApi.getProducts({
         page: 1,
         pageSize: 4,
-        orderBy: "favorite",
+        orderBy: "like",
       });
-      // favoriteCount 내림차순으로 정렬하여 반환
-      return response.list.sort((a, b) => b.favoriteCount - a.favoriteCount);
+
+      if (!response || !response.products) {
+        console.error("응답 데이터 구조 오류:", response);
+        return [];
+      }
+
+      // likeCount 내림차순으로 정렬하여 반환
+      return response.products.sort((a, b) => b.likeCount - a.likeCount);
     },
   });
 };
@@ -53,10 +59,10 @@ const useGetProducts = (
  * @param id 상품 ID
  * @returns Product
  */
-const useGetProductDetail = (id: number): UseQueryResult<Product> => {
+const useGetProductDetail = (id: string): UseQueryResult<Product> => {
   return useQuery({
     queryKey: ["productDetail", id],
-    queryFn: () => itemsApi.getProductDetail(id.toString()),
+    queryFn: () => itemsApi.getProductDetail(id),
   });
 };
 
@@ -136,7 +142,7 @@ const useCreateProduct = (): UseMutationResult<
 const useAddFavorite = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (productId: number) => itemsApi.addFavorite(productId),
+    mutationFn: (productId: string) => itemsApi.addFavorite(productId),
     onMutate: async (productId) => {
       await queryClient.cancelQueries({
         queryKey: ["productDetail", productId],
@@ -152,7 +158,7 @@ const useAddFavorite = () => {
         (old: Product) => ({
           ...old,
           isFavorite: true,
-          favoriteCount: old.favoriteCount + 1,
+          likeCount: old.likeCount + 1,
         })
       );
 
@@ -180,7 +186,7 @@ const useAddFavorite = () => {
 const useDeleteFavorite = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (productId: number) => itemsApi.deleteFavorite(productId),
+    mutationFn: (productId: string) => itemsApi.deleteFavorite(productId),
     onMutate: async (productId) => {
       await queryClient.cancelQueries({
         queryKey: ["productDetail", productId],
@@ -196,7 +202,7 @@ const useDeleteFavorite = () => {
         (old: Product) => ({
           ...old,
           isFavorite: false,
-          favoriteCount: old.favoriteCount - 1,
+          likeCount: old.likeCount - 1,
         })
       );
 

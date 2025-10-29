@@ -22,8 +22,6 @@ export default function CommentList({
   onDeleteComment,
   onUpdateComment,
 }: CommentListProps) {
-  console.log(data);
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -34,15 +32,17 @@ export default function CommentList({
 
   return (
     <div className="flex flex-col gap-6">
-      {data ? (
+      {data && data.length > 0 ? (
         data.map((comment) => (
           <Comment
             key={comment.id}
             data={{
               ...comment,
             }}
-            onDelete={onDeleteComment}
-            onUpdate={onUpdateComment}
+            onDelete={() => onDeleteComment?.(comment.id)}
+            onUpdate={(commentId, newContent) =>
+              onUpdateComment?.(commentId, newContent)
+            }
           />
         ))
       ) : (

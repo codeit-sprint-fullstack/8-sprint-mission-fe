@@ -5,8 +5,8 @@ import {
   useQueryClient,
   UseQueryResult,
 } from "@tanstack/react-query";
-import { CommentList, commentsApi } from "./fetchers";
-import { CommentProps } from "@/components/organisms/Comment";
+import { commentsApi } from "./fetchers";
+import type { Comment } from "./fetchers";
 
 /**
  * 댓글 생성
@@ -31,7 +31,7 @@ const useCreateComment = (): UseMutationResult<
  * 댓글 조회
  * @returns Comment
  */
-const useGetComments = (id: string): UseQueryResult<CommentProps[], Error> => {
+const useGetComments = (id: string): UseQueryResult<Comment[], Error> => {
   return useQuery({
     queryKey: ["comments", id],
     queryFn: () => commentsApi.getComments(id),
@@ -94,7 +94,7 @@ const useUpdateComment = (): UseMutationResult<
  */
 const useGetProductComments = (
   id: string
-): UseQueryResult<CommentList, Error> => {
+): UseQueryResult<Comment[], Error> => {
   return useQuery({
     queryKey: ["productComments", id],
     queryFn: () => commentsApi.getProductComments(id),
@@ -114,8 +114,10 @@ const useCreateProductComment = (): UseMutationResult<
   return useMutation({
     mutationFn: ({ id, comment }: { id: string; comment: string }) =>
       commentsApi.createProductComment(id, comment),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["productComments"] });
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: ["productComments", variables.id],
+      });
     },
   });
 };
@@ -127,19 +129,23 @@ const useCreateProductComment = (): UseMutationResult<
 const useUpdateProductComment = (): UseMutationResult<
   Comment,
   Error,
-  { commentId: string; comment: string }
+  { id: string; commentId: string; comment: string }
 > => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: ({
+      id,
       commentId,
       comment,
     }: {
+      id: string;
       commentId: string;
       comment: string;
-    }) => commentsApi.updateProductComment(commentId, comment),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["productComments"] });
+    }) => commentsApi.updateProductComment(id, commentId, comment),
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: ["productComments", variables.id],
+      });
     },
   });
 };
@@ -151,14 +157,16 @@ const useUpdateProductComment = (): UseMutationResult<
 const useDeleteProductComment = (): UseMutationResult<
   number,
   Error,
-  { commentId: string }
+  { id: string; commentId: string }
 > => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ commentId }: { commentId: string }) =>
-      commentsApi.deleteProductComment(commentId),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["productComments"] });
+    mutationFn: ({ id, commentId }: { id: string; commentId: string }) =>
+      commentsApi.deleteProductComment(id, commentId),
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: ["productComments", variables.id],
+      });
     },
   });
 };

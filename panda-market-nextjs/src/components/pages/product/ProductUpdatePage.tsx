@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+import { UseQueryResult } from "@tanstack/react-query";
 import { toast } from "sonner";
 
 import Text from "@/components/atoms/Text";
@@ -12,12 +13,21 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import ImageUpload from "@/components/molecules/ImageUpload";
 import TagInput from "@/components/molecules/TagInput";
-import { useItemsQuery } from "@/lib/api/items/queries";
+import { Product } from "@/lib/api/product/fetchers";
+import { useItemsQuery } from "@/lib/api/product/queries";
 import { productSchema, ProductSchema } from "@/lib/schema/product";
-import { Spinner } from "@/components/ui/spinner";
 
-export default function ItemsCreatePage() {
+export default function ProductUpdatePage() {
   const router = useRouter();
+  const params = useParams();
+  const id = params?.id as string;
+
+  const {
+    data: productDetail,
+    isLoading: isProductDetailLoading,
+    isError: isProductDetailError,
+    error: productDetailError,
+  }: UseQueryResult<Product> = useItemsQuery.useGetProductDetail(id);
 
   const {
     control,
@@ -38,27 +48,30 @@ export default function ItemsCreatePage() {
     },
   });
 
-  const { mutate: createProductMutation, isPending: isCreateProductPending } =
-    useItemsQuery.useCreateProduct();
+  const { mutate: updateProductMutation, isPending: isUpdateProductPending } =
+    useItemsQuery.useUpdateProduct();
 
   // 폼 데이터 감시
   const watchedPrice = watch("price");
 
   /**
-   * 상품 생성 제출
+   * 상품 수정 제출
    * @param data 상품 데이터
    */
   const onSubmit = async (data: ProductSchema) => {
-    createProductMutation(data, {
-      onSuccess: (createdProduct) => {
-        router.push(`/items/${createdProduct.id}`);
-        toast.success("상품이 성공적으로 등록되었습니다.");
-      },
-      onError: (error) => {
-        console.error("상품 생성 중 오류가 발생했습니다:", error);
-        toast.error(error.message || "상품 생성 중 오류가 발생했습니다.");
-      },
-    });
+    updateProductMutation(
+      { id, product: data },
+      {
+        onSuccess: () => {
+          router.push(`/product/${id}`);
+          toast.success("상품이 성공적으로 수정되었습니다.");
+        },
+        onError: (error) => {
+          console.error("상품 수정 중 오류가 발생했습니다:", error);
+          toast.error(error.message || "상품 수정 중 오류가 발생했습니다.");
+        },
+      }
+    );
   };
 
   /**
@@ -71,12 +84,47 @@ export default function ItemsCreatePage() {
     setValue("price", numericValue, { shouldValidate: true });
   };
 
-  if (isCreateProductPending) {
+  /**
+   * 상품 데이터 로드 후 폼에 설정
+   */
+  useEffect(() => {
+    if (productDetail) {
+      setValue("name", productDetail.name);
+      setValue("description", productDetail.description);
+      setValue("price", productDetail.price);
+      setValue("tags", productDetail.tags.map((tag) => tag.name) || []);
+      setValue("images", productDetail.images || []);
+    }
+  }, [productDetail, setValue]);
+
+  if (isProductDetailLoading) {
     return (
       <div className="flex justify-center items-center min-h-[400px]">
-        <Text styleName="text-lg-medium">
-          <Spinner /> 상품을 등록하는 중
+        <Text styleName="text-lg-medium">상품 정보를 불러오는 중...</Text>
+      </div>
+    );
+  }
+
+  if (isProductDetailError) {
+    return (
+      <div className="flex flex-col justify-center items-center min-h-[400px] space-y-4">
+        <Text styleName="text-lg-medium" className="text-red-500">
+          상품 정보를 불러오는 중 오류가 발생했습니다.
         </Text>
+        <Text styleName="text-md-regular" className="text-secondary-600">
+          {productDetailError?.message}
+        </Text>
+        <Button onClick={() => router.push("/items")} variant="outline">
+          목록으로 돌아가기
+        </Button>
+      </div>
+    );
+  }
+
+  if (isUpdateProductPending) {
+    return (
+      <div className="flex justify-center items-center min-h-[400px]">
+        <Text styleName="text-lg-medium">상품을 수정하는 중...</Text>
       </div>
     );
   }
@@ -87,14 +135,14 @@ export default function ItemsCreatePage() {
         {/* 헤더 */}
         <div className="flex justify-between items-center">
           <Text styleName="text-2xl-bold" className="text-secondary-800">
-            상품 등록하기
+            상품 수정하기
           </Text>
           <Button
             type="submit"
             variant={isValid ? "default" : "disabled"}
-            disabled={!isValid || isCreateProductPending}
+            disabled={!isValid || isUpdateProductPending}
           >
-            {isCreateProductPending ? "등록 중" : "등록"}
+            {isUpdateProductPending ? "수정 중..." : "수정하기"}
           </Button>
         </div>
 
@@ -182,7 +230,7 @@ export default function ItemsCreatePage() {
           <Button
             type="button"
             variant="outline"
-            onClick={() => router.push("/items")}
+            onClick={() => router.push(`/product/${id}`)}
           >
             취소
           </Button>

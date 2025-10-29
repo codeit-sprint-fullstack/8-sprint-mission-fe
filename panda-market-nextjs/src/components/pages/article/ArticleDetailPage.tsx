@@ -1,6 +1,5 @@
 "use client";
 
-import BtnHeart from "@/components/atoms/BtnHeart";
 import Text from "@/components/atoms/Text";
 import BasicDropdown from "@/components/molecules/BasicDropdown";
 import CommentList from "@/components/organisms/CommentList";
@@ -26,7 +25,8 @@ import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Article } from "@/lib/api/articles/fetchers";
-import { CommentProps } from "@/components/organisms/Comment";
+import { Comment } from "@/lib/api/comments/fetchers";
+import BtnHeart from "@/components/atoms/BtnHeart";
 
 export default function ArticleDetailPage() {
   const { id }: { id: string } = useParams();
@@ -56,12 +56,12 @@ export default function ArticleDetailPage() {
       {
         onSuccess: () => {
           setIsDeleteDialogOpen(false);
-          toast("게시글이 성공적으로 삭제되었습니다.");
+          toast.success("게시글이 성공적으로 삭제되었습니다.");
           router.push("/article");
         },
-        onError: (error) => {
+        onError: () => {
           setIsDeleteDialogOpen(false);
-          toast("게시글 삭제 중 오류가 발생했습니다.");
+          toast.error("게시글 삭제 중 오류가 발생했습니다.");
         },
       }
     );
@@ -110,10 +110,10 @@ export default function ArticleDetailPage() {
         onSuccess: () => {
           setComment("");
           queryClient.invalidateQueries({ queryKey: ["comments", id] });
-          console.log("댓글이 성공적으로 생성되었습니다.");
+          toast.success("댓글이 성공적으로 등록되었습니다.");
         },
-        onError: (error) => {
-          console.error("댓글 생성 중 오류가 발생했습니다:", error);
+        onError: () => {
+          toast.error("댓글 등록 중 오류가 발생했습니다.");
         },
       }
     );
@@ -124,7 +124,7 @@ export default function ArticleDetailPage() {
     isLoading: isArticleCommentsLoading,
     isError: isArticleCommentsError,
     error: articleCommentsError,
-  }: UseQueryResult<CommentProps[]> = useCommentsQuery.useGetComments(id);
+  }: UseQueryResult<Comment[]> = useCommentsQuery.useGetComments(id);
 
   /**
    * 댓글 삭제
@@ -134,11 +134,10 @@ export default function ArticleDetailPage() {
       { articleId: id, commentId },
       {
         onSuccess: () => {
-          router.refresh();
           queryClient.invalidateQueries({ queryKey: ["comments", id] });
           toast.success("댓글이 성공적으로 삭제되었습니다.");
         },
-        onError: (error) => {
+        onError: () => {
           toast.error("댓글 삭제 중 오류가 발생했습니다.");
         },
       }
@@ -153,11 +152,10 @@ export default function ArticleDetailPage() {
       { articleId: id, commentId, comment: newContent },
       {
         onSuccess: () => {
-          router.refresh();
           queryClient.invalidateQueries({ queryKey: ["comments", id] });
           toast.success("댓글이 성공적으로 수정되었습니다.");
         },
-        onError: (error) => {
+        onError: () => {
           toast.error("댓글 수정 중 오류가 발생했습니다.");
         },
       }
@@ -206,7 +204,7 @@ export default function ArticleDetailPage() {
             <Avatar className="rounded-lg">
               <AvatarImage
                 src={"/article/avatar-img.svg"}
-                alt={articleDetail?.author}
+                alt={articleDetail?.user?.nickname || ""}
                 width={24}
                 height={24}
               />
@@ -215,7 +213,7 @@ export default function ArticleDetailPage() {
               styleName="text-md-medium"
               className="ml-2 text-secondary-600"
             >
-              {articleDetail?.author}
+              {articleDetail?.user?.nickname || ""}
             </Text>
             <Text styleName="text-md-medium" className="text-secondary-400">
               {createdAt}
@@ -225,7 +223,12 @@ export default function ArticleDetailPage() {
           <div className="w-px h-6 bg-secondary-200" />
           {/* 좋아요 버튼 */}
           <div>
-            <BtnHeart initialLikeCount={articleDetail?.likes || 0} />
+            <BtnHeart
+              type="article"
+              id={id}
+              initialLikeCount={articleDetail?.likeCount || 0}
+              isLiked={articleDetail?.isLiked || false}
+            />
           </div>
         </div>
 
@@ -256,7 +259,7 @@ export default function ArticleDetailPage() {
 
         {/* 댓글 리스트 */}
         <CommentList
-          data={[]}
+          data={articleComments || []}
           isLoading={isArticleCommentsLoading}
           isError={isArticleCommentsError}
           error={

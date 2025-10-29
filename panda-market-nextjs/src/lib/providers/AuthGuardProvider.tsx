@@ -12,8 +12,8 @@ interface AuthGuardProviderProps {
 
 // 인증이 필요한 라우트 목록
 const PROTECTED_ROUTES = [
-  "/items/create", // 상품 등록
-  "/items/[id]/edit", // 상품 수정 (동적 라우트)
+  "/product/create", // 상품 등록
+  "/product/[id]/edit", // 상품 수정 (동적 라우트)
   "/article/create", // 게시글 작성
   "/article/[id]/edit", // 게시글 수정 (동적 라우트)
   "/auth/profile", // 프로필 페이지
@@ -56,24 +56,22 @@ export default function AuthGuardProvider({
   useEffect(() => {
     const checkAuth = () => {
       const accessToken = localStorage.getItem("accessToken");
-      const refreshToken = localStorage.getItem("refreshToken");
 
-      const hasValidToken = !!(accessToken || refreshToken);
+      // 리프레시 토큰은 제거 (쿠키에 있으므로)
+      const hasValidToken = !!accessToken;
       setIsAuthenticated(hasValidToken);
 
       const needsAuth = isProtectedRoute(pathname);
       const isAuthPage = isAuthRoute(pathname);
 
-      // 인증이 필요한 페이지인데 토큰이 없는 경우
       if (needsAuth && !hasValidToken) {
         toast.error("로그인이 필요합니다.");
         router.push("/auth/login");
         return;
       }
 
-      // 이미 로그인된 사용자가 로그인/회원가입 페이지에 접근하는 경우
       if (isAuthPage && hasValidToken) {
-        router.push("/items");
+        router.push("/product");
         return;
       }
 

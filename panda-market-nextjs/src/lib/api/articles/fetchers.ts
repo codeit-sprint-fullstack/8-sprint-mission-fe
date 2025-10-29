@@ -5,8 +5,14 @@ export interface Article {
   id: string;
   title: string;
   content: string;
-  author: string;
-  likes: number;
+  images?: string[];
+  user: {
+    nickname: string;
+    image: string;
+    id: string;
+  };
+  likeCount: number;
+  isLiked: boolean;
   createdAt: string;
 }
 
@@ -28,9 +34,9 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
  * 베스트 게시글 3개 가져오기
  * @returns ArticleList
  */
-const getBestArticles = async (): Promise<Article[]> => {
+const getBestArticles = async (): Promise<ArticleList> => {
   try {
-    const response = await fetch(`${API_URL}/best-articles`);
+    const response = await fetch(`${API_URL}/articles?isBest=true`);
     if (!response.ok) {
       throw new Error("베스트 게시글 조회 실패");
     }
@@ -161,6 +167,29 @@ const deleteArticle = async (id: string) => {
   }
 };
 
+/**
+ * 게시글 좋아요 토글
+ * @param articleId 게시글 ID
+ * @returns Article
+ */
+const toggleArticleLike = async (articleId: string) => {
+  try {
+    const response = await fetchWithAuth(
+      `${API_URL}/articles/${articleId}/like`,
+      {
+        method: "POST",
+      }
+    );
+    if (!response || !response.ok) {
+      throw new Error("게시글 좋아요 토글 실패");
+    }
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
 export const articlesApi = {
   getBestArticles,
   getArticles,
@@ -168,4 +197,5 @@ export const articlesApi = {
   createArticle,
   updateArticle,
   deleteArticle,
+  toggleArticleLike,
 };

@@ -8,7 +8,7 @@ import { useState } from "react";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 
-export interface Writer {
+export interface User {
   id: number;
   nickname: string;
   image: string | null;
@@ -17,7 +17,7 @@ export interface Writer {
 export interface CommentProps {
   data: {
     id: string;
-    writer?: Writer;
+    user?: User;
     content: string;
     createdAt: string;
     updatedAt?: string;
@@ -29,7 +29,7 @@ export interface CommentProps {
 export default function Comment({ data, onDelete, onUpdate }: CommentProps) {
   const {
     id: commentId,
-    writer = { id: 0, nickname: "똑똑한 판다", image: null },
+    user = { id: 0, nickname: "똑똑한 판다", image: null },
     content,
     createdAt,
     updatedAt,
@@ -113,7 +113,7 @@ export default function Comment({ data, onDelete, onUpdate }: CommentProps) {
           <div className="flex justify-between items-center">
             <div className="flex flex-col justify-center mb-2">
               <Text styleName="text-sm-medium" color="text-secondary-800">
-                {writer.nickname}
+                {user?.nickname}
               </Text>
               <Text styleName="text-xs-regular" color="text-secondary-400">
                 {getRelativeTime(createdAt)}

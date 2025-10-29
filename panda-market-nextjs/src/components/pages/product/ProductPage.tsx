@@ -12,9 +12,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useItemsQuery } from "@/lib/api/items/queries";
+import { useItemsQuery } from "@/lib/api/product/queries";
 import { useDeviceType } from "@/hooks/useDeviceType";
-import { ProductFilters } from "@/lib/api/items/fetchers";
+import { ProductFilters } from "@/lib/api/product/fetchers";
 import Link from "next/link";
 import Text from "@/components/atoms/Text";
 import { Spinner } from "@/components/ui/spinner";
@@ -26,11 +26,11 @@ const pageSizes = {
   desktop: 10,
 };
 
-export default function ItemsPage() {
+export default function ProductPage() {
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 번호
   const [searchValue, setSearchValue] = useState(""); // 인풋에 입력할 때 입력 받을 상태 값
   const [keyword, setKeyword] = useState(""); // 검색 버튼 또는 엔터키 눌렀을 때 실제 검색 값
-  const [orderBy, setOrderBy] = useState<"recent" | "favorite">("recent"); // 정렬 기준
+  const [orderBy, setOrderBy] = useState<"recent" | "like">("recent"); // 정렬 기준
   const deviceType = useDeviceType(); // 화면 가로 사이즈 대비 모바일, 태블릿, 데스크탑 체크
 
   const pageSize = pageSizes[deviceType];
@@ -51,7 +51,7 @@ export default function ItemsPage() {
     error: productsError,
   } = useItemsQuery.useGetProducts(productsParams);
 
-  const productsList = productsData?.list || [];
+  const productsList = productsData?.products || [];
   const pageCount = productsData?.totalCount || 0;
 
   /**
@@ -62,7 +62,6 @@ export default function ItemsPage() {
     isLoading: bestProductsLoading,
     error: bestProductsError,
   } = useItemsQuery.useGetBestProducts();
-
   /**
    * 페이지 번호 변경 시 호출할 함수
    * @param page 변경할 페이지 번호
@@ -105,7 +104,7 @@ export default function ItemsPage() {
    * @param value 정렬 기준
    */
   const handleSortEvent = async (value: string) => {
-    setOrderBy(value as "recent" | "favorite");
+    setOrderBy(value as "recent" | "like");
     setCurrentPage(1);
   };
 
@@ -155,8 +154,11 @@ export default function ItemsPage() {
                   id={product.id.toString()}
                   name={product.name}
                   price={product.price}
-                  image={product.images[0] || "/product-list/prod-test.png"}
-                  favoriteCount={product.favoriteCount}
+                  image={
+                    product.images[0]?.image?.url ||
+                    "/product-list/prod-test.png"
+                  }
+                  likeCount={product.likeCount}
                 />
               ))}
             </div>
@@ -170,7 +172,7 @@ export default function ItemsPage() {
               판매 중인 상품
             </Text>
             <Button variant="default" asChild>
-              <Link href="/items/create">상품 등록하기</Link>
+              <Link href="/product/create">상품 등록하기</Link>
             </Button>
           </div>
 
@@ -189,7 +191,7 @@ export default function ItemsPage() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="recent">최신순</SelectItem>
-                <SelectItem value="favorite">좋아요순</SelectItem>
+                <SelectItem value="like">좋아요순</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -211,8 +213,11 @@ export default function ItemsPage() {
                   id={product.id.toString()}
                   name={product.name}
                   price={product.price}
-                  image={product.images[0] || "/product-list/prod-test.png"}
-                  favoriteCount={product.favoriteCount}
+                  image={
+                    product.images[0]?.image?.url ||
+                    "/product-list/prod-test.png"
+                  }
+                  likeCount={product.likeCount}
                 />
               ))
             ) : (

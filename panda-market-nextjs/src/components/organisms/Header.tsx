@@ -14,7 +14,7 @@ export default function Header() {
   const [hasToken, setHasToken] = useState(false);
 
   const isArticlePage = pathname.includes("article");
-  const isMarketPage = pathname.includes("items");
+  const isMarketPage = pathname.includes("product");
 
   // 토큰 존재 여부 확인
   useEffect(() => {
@@ -69,7 +69,7 @@ export default function Header() {
             </li>
             <li>
               <Link
-                href="/items"
+                href="/product"
                 className={`text-md ${isMarketPage ? "text-primary" : ""}`}
               >
                 중고마켓
