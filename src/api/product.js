@@ -1,5 +1,6 @@
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-const PRODUCT_API_URL = `${BASE_URL}/products`;
+import { defaultFetch } from "./fetchClient";
+
+const PRODUCT_API_URL = "/products";
 
 const formatDate = (date) => {
   const d = new Date(date);
@@ -8,12 +9,7 @@ const formatDate = (date) => {
 
 // 상품 목록 조회
 export const fetchProducts = async () => {
-  const res = await fetch(PRODUCT_API_URL);
-  if (!res.ok) {
-    throw new Error("상품 목록 가져오기 실패");
-  }
-  const data = await res.json();
-
+  const data = await defaultFetch(PRODUCT_API_URL);
   return (data.list ?? []).map((p) => ({
     ...p,
     createdAt: formatDate(p.createdAt),
@@ -23,12 +19,7 @@ export const fetchProducts = async () => {
 
 // 상품 상세 조회
 export const fetchProduct = async (id) => {
-  const res = await fetch(`${PRODUCT_API_URL}/${id}`);
-  if (!res.ok) {
-    throw new Error("상품 가져오기 실패");
-  }
-  const data = await res.json();
-
+  const data = await defaultFetch(`${PRODUCT_API_URL}/${id}`);
   return {
     ...data,
     nickname: data.nickname ?? "테스트판매자",
@@ -46,40 +37,23 @@ export const addProduct = async ({
   images,
 }) => {
   const newProduct = { title, price, description, tags, images };
-  const res = await fetch(PRODUCT_API_URL, {
+  return defaultFetch(PRODUCT_API_URL, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(newProduct),
   });
-
-  if (!res.ok) {
-    throw new Error("상품 등록 실패");
-  }
-  return await res.json();
 };
 
 // 상품 수정
-export const updateProduct = async (
-  id,
-  { title, price, description, tags, images }
-) => {
-  const res = await fetch(`${PRODUCT_API_URL}/${id}`, {
+export const updateProduct = async (id, product) => {
+  return defaultFetch(`${PRODUCT_API_URL}/${id}`, {
     method: "PATCH",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title, price, description, tags, images }),
+    body: JSON.stringify(product),
   });
-
-  if (!res.ok) {
-    throw new Error("상품 수정 실패");
-  }
-  return await res.json();
 };
 
 // 상품 삭제
 export const deleteProduct = async (id) => {
-  const res = await fetch(`${PRODUCT_API_URL}/${id}`, { method: "DELETE" });
-  if (!res.ok) {
-    throw new Error("상품 삭제 실패");
-  }
-  return true;
+  return defaultFetch(`${PRODUCT_API_URL}/${id}`, {
+    method: "DELETE",
+  });
 };

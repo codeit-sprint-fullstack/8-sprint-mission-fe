@@ -1,13 +1,17 @@
 export const defaultFetch = async (url, options = {}) => {
   const baseURL = process.env.NEXT_PUBLIC_API_URL;
+  const finalUrl = url.startsWith("http")
+    ? url
+    : `${baseURL}${url.startsWith("/") ? "" : "/"}${url}`;
   const accessToken = localStorage.getItem("accessToken"); //CORS 문제 해결을 위해 로컬스토리지에서 토큰 가져오기
 
   const defaultOptions = {
     headers: {
       "Content-Type": "application/json",
-      ...(accessToken && { Authorization: `Bearer ${accessToken}` }), //CORS 문제 해결을 위해 토큰 헤더에 추가
+      ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
     },
-    cache: "force-cache",
+    credentials: "include",
+    cache: "no-store",
   };
 
   const mergedOptions = {
@@ -19,15 +23,27 @@ export const defaultFetch = async (url, options = {}) => {
     },
   };
 
-  const response = await fetch(`${baseURL}${url}`, mergedOptions);
+  console.log("요청 URL:", finalUrl);
 
-  if (!response.ok) {
-    const errorData = await response.text();
-    console.error(`❌ 서버 응답: ${errorData}`);
-    throw new Error(`API error: ${response.status}`);
+  try {
+    const response = await fetch(finalUrl, mergedOptions);
+
+    if (!response.ok) {
+      const text = await response.text();
+      console.error(`서버 응답 오류: ${text}`);
+      throw new Error(`API error: ${response.status}`);
+    }
+
+    const contentType = response.headers.get("content-type");
+    if (contentType?.includes("application/json")) {
+      return response.json();
+    }
+
+    return { status: response.status, ok: response.ok };
+  } catch (err) {
+    console.error("네트워크 에러:", err);
+    throw err;
   }
-
-  return response.json();
 };
 
 export const cookieFetch = async (url, options = {}) => {

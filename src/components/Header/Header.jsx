@@ -1,31 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Logo from "./Logo/Logo";
 import Nav from "./Navigator/Navigator";
 import Link from "next/link";
 import Image from "next/image";
-import { userService } from "@/lib/userService";
+import { useAuth } from "@/providers/AuthProvider";
 
 const Header = () => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const data = await userService.getMe();
-        setUser(data);
-      } catch (error) {
-        setUser(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUser();
-  }, []);
+  const { user } = useAuth();
 
   return (
     <header className="sticky top-0 z-[100] flex justify-center items-center w-full h-[70px] border-b border-[#DFDFDF] bg-white">
@@ -34,8 +16,9 @@ const Header = () => {
           <Logo />
           <Nav />
         </div>
-        {!loading &&
-          (user ? (
+
+        <div>
+          {user ? (
             <Link
               href="/mypage"
               className="flex justify-center items-center w-[96px] h-[40px] gap-[6px] shrink-0 text-lg font-normal text-gray-600 whitespace-nowrap cursor-pointer"
@@ -46,7 +29,7 @@ const Header = () => {
                 width={40}
                 height={40}
               />
-              {user.nickname || "내 프로필"}
+              {user.nickname || "닉네임"}
             </Link>
           ) : (
             <Link
@@ -55,7 +38,8 @@ const Header = () => {
             >
               로그인
             </Link>
-          ))}
+          )}
+        </div>
       </nav>
     </header>
   );

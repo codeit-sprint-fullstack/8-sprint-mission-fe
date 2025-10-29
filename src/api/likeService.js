@@ -1,4 +1,4 @@
-import { cookieFetch } from "@/lib/fetchClient";
+import { cookieFetch } from "@/api/fetchClient";
 
 const likeServiceBase = {
   async add(url) {

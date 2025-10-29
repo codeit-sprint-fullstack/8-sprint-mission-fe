@@ -4,7 +4,9 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-function ProductCard({ product }) {
+function ProductCard({ product, type = "normal" }) {
+  const imageSize = type === "best" ? 282 : 220;
+
   return (
     <li className="flex flex-col">
       <Link href={`/items/${product.id}`}>
@@ -13,8 +15,8 @@ function ProductCard({ product }) {
             src="/img_default.svg"
             alt="상품 기본 이미지"
             className="w-full h-full rounded-lg shadow"
-            width={220}
-            height={220}
+            width={imageSize}
+            height={imageSize}
           />
         </div>
 
@@ -24,22 +26,22 @@ function ProductCard({ product }) {
             {product.price.toLocaleString()}원
           </p>
         </div>
-      </Link>
 
-      <div className="flex items-center gap-1">
-        <button>
-          <Image
-            src="/ic_heart.svg"
-            alt="찜하기 아이콘"
-            className="w-4 h-4 cursor-pointer"
-            width={16}
-            height={16}
-          />
-        </button>
-        <p className="text-xs font-medium text-gray-600">
-          {product.favoriteCount}
-        </p>
-      </div>
+        <div className="flex items-center gap-1">
+          <div>
+            <Image
+              src="/ic_heart.svg"
+              alt="찜하기 아이콘"
+              className="w-4 h-4 cursor-pointer"
+              width={16}
+              height={16}
+            />
+          </div>
+          <p className="text-xs font-medium text-gray-600">
+            {product.favoriteCount}
+          </p>
+        </div>
+      </Link>
     </li>
   );
 }

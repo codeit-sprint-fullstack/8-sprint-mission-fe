@@ -1,7 +1,7 @@
 "use client";
 
-import { authService } from "@/lib/authService";
-import { userService } from "@/lib/userService";
+import { authService } from "@/api/auth";
+import { userService } from "@/api/userService";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext({
@@ -27,6 +27,7 @@ export default function AuthProvider({ children }) {
     try {
       const userData = await userService.getMe();
       setUser(userData);
+      return userData;
     } catch (error) {
       console.error("사용자 정보를 가져오는데 실패했습니다:", error);
       setUser(null);
@@ -46,8 +47,16 @@ export default function AuthProvider({ children }) {
   // 로그인
   const login = async (email, password) => {
     try {
-      await authService.login(email, password);
-      await getUser();
+      const data = await authService.login(email, password);
+
+      if (data?.accessToken) {
+        localStorage.setItem("accessToken", data.accessToken);
+      }
+
+      const userData = await getUser();
+      setUser(userData);
+
+      return userData;
     } catch (error) {
       console.error("로그인 실패:", error);
       throw error;
@@ -78,8 +87,8 @@ export default function AuthProvider({ children }) {
 
   // 최초 로그인 상태 확인
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
       getUser();
     } else {
       setUser(null);

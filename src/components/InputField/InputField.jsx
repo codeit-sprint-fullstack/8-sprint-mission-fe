@@ -18,7 +18,7 @@ const InputField = ({
 
   return (
     <div className="flex flex-col w-full gap-4">
-      <label htmlFor={id} className="font-bold text-gray-800">
+      <label htmlFor={id} className="text-lg font-bold text-gray-800">
         {title}
       </label>
       <div className="relative">
@@ -28,7 +28,7 @@ const InputField = ({
           placeholder={placeholder}
           value={value}
           onChange={onChange}
-          className="w-full rounded-lg bg-gray-100 px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400 text-black"
+          className="w-full h-14 rounded-xl bg-gray-100 px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400 text-black"
           required
         />
 
