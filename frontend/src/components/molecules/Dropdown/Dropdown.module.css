@@ -1,109 +1,108 @@
 .select {
-    color: transparent;
-    display: flex;
-    width: 42px;
+  color: transparent;
+  display: flex;
+  width: 42px;
+  height: 42px;
+  padding: 9px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  flex-shrink: 0;
+
+  border-radius: 12px;
+  border: 1px solid var(--Cool-Gray-200, #e5e7eb);
+  background: #fff;
+
+  background-image: url('/images/items/ic_dropdown.svg');
+  background-repeat: no-repeat;
+  background-size: 40%;
+  background-position: center;
+}
+
+.select option {
+  color: var(--Secondary-800, #1f2937);
+}
+
+.dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dropdownIcon {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 20px;
+}
+
+@media (min-width: 744px) {
+  .select {
+    width: 130px;
     height: 42px;
-    padding: 9px;
+    padding: 10px 20px;
+
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-    flex-shrink: 0;
 
     border-radius: 12px;
     border: 1px solid var(--Cool-Gray-200, #e5e7eb);
     background: #fff;
 
-    background-image: url('/images/items/ic_dropdown.svg');
-    background-repeat: no-repeat;
-    background-size: 40%;
-    background-position: center;
-}
-
-.select option {
+    /* 글자 스타일 */
     color: var(--Secondary-800, #1f2937);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px; /* 162.5% */
+
+    background-image: url('/images/items/ic_arrow_down.svg');
+    background-repeat: no-repeat;
+    background-size: 15%;
+    background-position: center right 16px;
+  }
 }
-
-.dropdown {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.dropdownIcon {
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    right: 20px;
-}
-
-@media (min-width: 744px) {
-    .select {
-        width: 130px;
-        height: 42px;
-        padding: 10px 20px;
-
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-
-        border-radius: 12px;
-        border: 1px solid var(--Cool-Gray-200, #e5e7eb);
-        background: #fff;
-
-        /* 글자 스타일 */
-        color: var(--Secondary-800, #1f2937);
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 22px; /* 162.5% */
-
-        background-image: url('/images/items/ic_arrow_down.svg');
-        background-repeat: no-repeat;
-        background-size: 15%;
-        background-position: center right 16px;
-    }
-}
-
 
 .dropdownBox {
-    position: relative;
-    width: fit-content;
-    height: fit-content;
+  position: relative;
+  width: fit-content;
+  height: fit-content;
 }
 
 .buuton {
-    border: none;
-    width: fit-content;
-    height: fit-content;
+  border: none;
+  width: fit-content;
+  height: fit-content;
 }
 
 .listBox {
-    position: absolute;
-    right: 0;
-    top: 100%;
+  position: absolute;
+  right: 0;
+  top: 100%;
 
-    width: 140px;
-    height:  fit-content;
-    
-    margin: 0;
-    padding: 4px;
-    border-radius: 8px;
-    border: 1px solid var(--Cool-Gray-300, #D1D5DB);
-    background-color: #FFFFFF;
+  width: 140px;
+  height: fit-content;
 
-    overflow: hidden;
+  margin: 0;
+  padding: 4px;
+  border-radius: 8px;
+  border: 1px solid var(--Cool-Gray-300, #d1d5db);
+  background-color: #ffffff;
 
-    z-index: 1;
+  overflow: hidden;
+
+  z-index: 1;
 }
 
-.list{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .element {
-    padding: 12px 0;
-    color: var(--Secondary-500);
-    font: var(--font-16-regular);
+  padding: 12px 0;
+  color: var(--Secondary-500);
+  font: var(--font-16-regular);
 }

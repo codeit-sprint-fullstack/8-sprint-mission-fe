@@ -1,15 +1,16 @@
-"use client"
+'use client';
 
 //라이브러리
-import { useState } from "react";
-import { useAuth, useAuthInput } from "@/hooks/useAuth";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
+import { useState } from 'react';
+import useAuth from '@/store/useAuth';
+import { useAuthInput } from '@/hooks/useAuthInput';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import Link from 'next/link';
 
 //컴포넌트
-import InputForm from "@/components/molecules/InputForm/InputForm";
-import Button from "@/components/Atoms/Button";
+import Input from '@/components/molecules/Input/Input';
+import Button from '@/components/Atoms/Button/Button';
 
 //스타일
 import styles from './login.module.css';
@@ -18,94 +19,83 @@ import styles from './login.module.css';
 import googleIcon from '../../../public/images/social/google-logo.png';
 import kakaoIcon from '../../../public/images/social/kakao-logo.png';
 import logo from '../../../public/images/logo/logo.svg';
-import Modal from "@/components/molecules/Modal/Modal";
+import Modal from '@/components/molecules/Modal/Modal';
 
-export default function Login(){
+export default function Login() {
+  const { values, errors, isLogInSubmitActive, onChange } = useAuthInput();
+  const { login } = useAuth();
+  const [modalMessage, setModalMessage] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const { values, errors, isLogInSubmitActive, onChange } = useAuthInput();
-    const { logIn } = useAuth();
-    const [ modalMessage, setModalMessage ] = useState('');
-    const [ isModalOpen, setIsModalOpen ] = useState(false);
+  const router = useRouter();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const body = {
-            email: values.email,
-            password: values.password
-        };
-
-        const res = await logIn(body);
-        if(typeof res === 'string'){
-            console.log(res);
-            setModalMessage(res);
-            setIsModalOpen(true)
-            return;
-        }
-
-        //성공하면 중고마켓 페이지 이동
-        const router = useRouter();
-        if (res) {
-            router.push(`/items`);
-        }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { email, password } = values;
+    const result = await login(email, password);
+    if (typeof result === 'string') {
+      console.log(result);
+      setModalMessage(result);
+      setIsModalOpen(true);
+      return;
     }
 
-    return(
-        <main className={styles.authContainer}>
-            <div className={styles.logoDiv}>
-                <Link 
-                    href="/" 
-                    className={styles.logoHomeLink}
-                >
-                    <Image src={logo} alt="판다마켓 로고" className={styles.logoImg}/>
-                </Link>
-            </div>
+    console.log(result);
+    //성공하면 중고마켓 페이지 이동
+    if (result.ok) {
+      router.push(`/items`);
+    }
+  };
 
-            <form onSubmit={handleSubmit} className={styles.authForm}>
-                <InputForm
-                    label="이메일"
-                    name="email"
-                    placeholder="이메일을 입력해주세요."
-                    value={values.email}
-                    onChange={onChange}
-                    validErrorMsg={errors.email}
-                />
-                <InputForm
-                    label="비밀번호"
-                    name="password"
-                    placeholder="비밀번호를 입력해주세요."
-                    value={values.password}
-                    onChange={onChange}
-                    validErrorMsg={errors.password}
-                    isPassword={true}
-                />
-                <Button 
-                    className={styles.subimtButton}
-                    disabled={!isLogInSubmitActive}
-                >로그인</Button>
-            </form>
+  return (
+    <main className={styles.authContainer}>
+      <div className={styles.logoDiv}>
+        <Link href="/" className={styles.logoHomeLink}>
+          <Image src={logo} alt="판다마켓 로고" className={styles.logoImg} />
+        </Link>
+      </div>
 
-            <div className={styles.socialLoginContainer}>
-                <h3>간편 로그인하기</h3>
-                <div className={styles.socialLoginLinksContainer}>
-                    <Link href="https://www.google.com/">
-                        <Image src={googleIcon} alt="구글 로그인" className={styles.socialIcon}/>
-                    </Link>
-                    <Link href="https://www.kakaocorp.com/page/">
-                        <Image src={kakaoIcon} alt="카카오 로그인" className={styles.socialIcon}/>
-                    </Link>
-                </div>
-            </div>
+      <form onSubmit={handleSubmit} className={styles.authForm}>
+        <Input
+          label="이메일"
+          name="email"
+          value={values.email}
+          error={errors.email}
+          onChange={onChange}
+          placeholder="이메일을 입력해주세요."
+        />
+        <Input
+          isPassword={true}
+          label="비밀번호"
+          name="password"
+          value={values.password}
+          error={errors.password}
+          onChange={onChange}
+          placeholder="비밀번호를 입력해주세요."
+        />
+        <Button className={styles.subimtButton} disabled={!isLogInSubmitActive}>
+          로그인
+        </Button>
+      </form>
 
-            <div className={styles.authSwitch}>
-                판다마켓이 처음이신가요? 
-                <Link href='/signup'>회원가입</Link>
-            </div>
+      <div className={styles.socialLoginContainer}>
+        <h3>간편 로그인하기</h3>
+        <div className={styles.socialLoginLinksContainer}>
+          <Link href="https://www.google.com/">
+            <Image src={googleIcon} alt="구글 로그인" className={styles.socialIcon} />
+          </Link>
+          <Link href="https://www.kakaocorp.com/page/">
+            <Image src={kakaoIcon} alt="카카오 로그인" className={styles.socialIcon} />
+          </Link>
+        </div>
+      </div>
 
-            <Modal
-                message={modalMessage}
-                isOpen={isModalOpen}
-                onClick={()=>setIsModalOpen(false)}
-            />
-        </main>
-    )
+      <div className={styles.authSwitch}>
+        판다마켓이 처음이신가요?
+        <Link href="/signup">회원가입</Link>
+      </div>
+
+      <Modal message={modalMessage} isOpen={isModalOpen} onClick={() => setIsModalOpen(false)} />
+    </main>
+  );
 }

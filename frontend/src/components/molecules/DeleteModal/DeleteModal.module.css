@@ -52,7 +52,7 @@
   border: none;
   border-radius: 8px;
 
-  background-color: var(--error-red, #F74747);
+  background-color: var(--error-red, #f74747);
   color: var(--Cool-Gray-100);
   font: var(--font-16-semmibold);
 
@@ -64,11 +64,11 @@
   height: 48px;
   padding: 12px 23px;
 
-  border: 1px solid var(--error-red, #F74747);
+  border: 1px solid var(--error-red, #f74747);
   border-radius: 8px;
 
-  background-color: var(--Cool-Gray-50, #F9FAFB);
-  color: var(--error-red, #F74747);
+  background-color: var(--Cool-Gray-50, #f9fafb);
+  color: var(--error-red, #f74747);
   font: var(--font-16-semmibold);
 
   box-sizing: border-box;

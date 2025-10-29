@@ -1,271 +1,270 @@
 /* mobile */
 .frame {
-    width: 100%;
-    height: fit-content;
+  width: 100%;
+  height: fit-content;
 
-    margin: 24px auto 319px;
-    padding: 0 16px;
+  margin: 24px auto 319px;
+  padding: 0 16px;
 }
 
 .headline {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .titleDiv {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
-.title{
-    font: var(--font-20-bold);
+.title {
+  font: var(--font-20-bold);
 }
 
 .infoDiv {
-    width: 100%;
-    height: fit-content;
+  width: 100%;
+  height: fit-content;
 
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .userDiv {
-    width: fit-content;
-    height: fit-content;
-    display: flex;
-    gap: 16px;
-    margin: 16px 0;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  gap: 16px;
+  margin: 16px 0;
 }
 
-.articleUserProfile{
-    width: 40px;
-    height: 40px;
+.articleUserProfile {
+  width: 40px;
+  height: 40px;
 }
 
 .userNameDiv {
-    display: flex;
-    gap: 8px;
-    align-items: center;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
 .userName {
-    color: var(--Secondary-600);
-    font: var(--font-14-medium);
+  color: var(--Secondary-600);
+  font: var(--font-14-medium);
 }
 
 .date {
-    color: var(--Cool-Gray-400);
-    font: var(--font-14-regular);
+  color: var(--Cool-Gray-400);
+  font: var(--font-14-regular);
 }
 
 .dividerV {
-    width: 0;
-    height: 34px;
-    border-right: 1px solid var(--Cool-Gray-200);
-    margin: 0 32px;
+  width: 0;
+  height: 34px;
+  border-right: 1px solid var(--Cool-Gray-200);
+  margin: 0 32px;
 }
 
 .dividerH {
-    width: 100%;
-    border-top: 1px solid var(--Cool-Gray-200);
+  width: 100%;
+  border-top: 1px solid var(--Cool-Gray-200);
 }
 
 .favoriteDiv {
-    width: fit-content;
-    height: 40px;
-    padding: 4px 12px;
+  width: fit-content;
+  height: 40px;
+  padding: 4px 12px;
 
-    display: flex;
-    align-items: center;
-    gap: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 
-    border-radius: 35px;
-    border: 1px solid var(--Secondary-200, #E5E7EB);
+  border-radius: 35px;
+  border: 1px solid var(--Secondary-200, #e5e7eb);
 }
 
 .heartIcon {
-    width: 32px;
-    height: 32px;
+  width: 32px;
+  height: 32px;
 }
 
 .favoriteCntText {
-    color: var(--Cool-Gray-500);
-    font: var(--font-16-medium);
+  color: var(--Cool-Gray-500);
+  font: var(--font-16-medium);
 }
 
 .content {
-    margin: 24px 0 36px;
-    color: var(--Secondary-800);
-    font: var(--font-18-regular);
+  margin: 24px 0 36px;
+  color: var(--Secondary-800);
+  font: var(--font-18-regular);
 }
 
 .buttonDiv {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .button {
-    padding: 12px 23px;
-    border-radius: 8px;
+  padding: 12px 23px;
+  border-radius: 8px;
 }
 
 .commnetForm {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
 }
 
 .commentList {
-    width: 100%;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .comment {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 
-    background-color: #FCFCFC;
+  background-color: #fcfcfc;
 }
 
 .commentContentDiv {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .commentInfoDiv {
-    width: 100%;
-    display: flex;
-    gap: 8px;
-    margin-bottom: 12px;
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
 }
 
 .commentInfoDiv > div {
-    width: fit-content;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .commentUserProfile {
-    width: 32px;
-    height: 32px;   
+  width: 32px;
+  height: 32px;
 }
 
 .commentUserName {
-    color: var(--Secondary-600);
-    font: var(--font-12-regular);
+  color: var(--Secondary-600);
+  font: var(--font-12-regular);
 }
 
 .commentDate {
-    color: var(--Secondary-400);
-    font: var(--font-12-regular);
+  color: var(--Secondary-400);
+  font: var(--font-12-regular);
 }
 
 .noComment {
-    width: fit-content;
-    height: fit-content;
+  width: fit-content;
+  height: fit-content;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    margin: 40px auto 0;
+  margin: 40px auto 0;
 }
 
-.noComment p{
-    color: var(--Secondary-400);
-    font: var(--font-16-regular);
-    text-align: center;
+.noComment p {
+  color: var(--Secondary-400);
+  font: var(--font-16-regular);
+  text-align: center;
 }
 
 .noCommentImg {
-    width: 140px;
-    height: 140px;
+  width: 140px;
+  height: 140px;
 }
 
 .backButtonDiv {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    margin: 48px auto 0;
+  margin: 48px auto 0;
 }
 
-.backButton{
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 999px;
-    padding: 14.5px 33.5px;
+.backButton {
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 14.5px 33.5px;
 }
-
 
 .editCommentInput {
-    width: 100%;
-    display: flex;
-    padding: 16px 24px;
-    resize: none; /* 사용자가 크기 조절 못하게 */
-    overflow: hidden; /* 스크롤 안 생기게 */
+  width: 100%;
+  display: flex;
+  padding: 16px 24px;
+  resize: none; /* 사용자가 크기 조절 못하게 */
+  overflow: hidden; /* 스크롤 안 생기게 */
 
-    align-items: flex-start;
-    gap: 10px;
-    align-self: stretch;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
 
-    border-radius: 12px;
-    border: none;
-    background: var(--Cool-Gray-100, #f3f4f6);
-    margin-bottom: 16px;
+  border-radius: 12px;
+  border: none;
+  background: var(--Cool-Gray-100, #f3f4f6);
+  margin-bottom: 16px;
 }
 
 .editInfoDiv {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .editBtnDiv {
-    display: flex;
-    align-items: center;
-    gap: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .cancle {
-    padding: 12px 23px;
+  padding: 12px 23px;
 }
 
 .edit {
-    padding: 12px 23px;
-    white-space: nowrap;
+  padding: 12px 23px;
+  white-space: nowrap;
 }
 
 /* tablet */
 @media (min-width: 744px) {
-    .frame {
-        width: 100%;
-        height: fit-content;
+  .frame {
+    width: 100%;
+    height: fit-content;
 
-        margin: 34px auto 193px;
-        padding: 0 24px;
-    }
+    margin: 34px auto 193px;
+    padding: 0 24px;
+  }
 }
 
 /* desktop */
 @media (min-width: 1200px) {
-    .frame {
-        width: 100%;
-        max-width: 1200px;
-        height: fit-content;
+  .frame {
+    width: 100%;
+    max-width: 1200px;
+    height: fit-content;
 
-        margin: 34px auto 193px;
-        padding: 0;
-    }
+    margin: 34px auto 193px;
+    padding: 0;
+  }
 }
