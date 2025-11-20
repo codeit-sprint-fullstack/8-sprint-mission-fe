@@ -5,9 +5,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import Button from './Button';
+import { useAuthStore } from '@/stores/useAuthStore';
 
 const Header = () => {
   const router = useRouter();
+  const { user } = useAuthStore();
 
   return (
     <header className="mx-auto flex h-[56px] max-w-[1200px] items-center justify-between">
@@ -30,7 +32,14 @@ const Header = () => {
           </Link>
         </nav>
       </div>
-      <Button type="login" onClick={() => router.push('/auth/login')} />
+      {user ? (
+        <div className="flex items-center gap-[6px]">
+          <Image src="/icons/ic_profile.svg" alt="ic_profile" width={32} height={32} />
+          <div className="text-coolGray-600 text-lg font-normal">{user?.nickname}</div>
+        </div>
+      ) : (
+        <Button type="login" onClick={() => router.push('/auth/login')} />
+      )}
     </header>
   );
 };

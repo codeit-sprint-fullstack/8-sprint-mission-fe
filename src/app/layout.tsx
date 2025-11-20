@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import Providers from './providers';
+import AuthBootstrapper from '@/components/common/AuthBootstrapper';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 
@@ -28,6 +29,7 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         <Providers>
+          <AuthBootstrapper />
           <Header />
           {children}
           <Footer />
