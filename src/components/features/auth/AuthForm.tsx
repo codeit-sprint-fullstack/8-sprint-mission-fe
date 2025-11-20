@@ -8,8 +8,11 @@ import Button from '@/components/common/Button';
 import Image from 'next/image';
 import { useState } from 'react';
 import clsx from 'clsx';
+import { useLogin, useSignup } from '@/hooks/useAuth';
 
 const AuthForm = ({ type = null }: { type: 'login' | 'signup' | null }) => {
+  const { login } = useLogin();
+  const { signup } = useSignup();
   const schema = type === 'login' ? loginSchema : signupSchema;
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const {
@@ -22,7 +25,18 @@ const AuthForm = ({ type = null }: { type: 'login' | 'signup' | null }) => {
   });
 
   const handleLoginSubmit = (data: LoginFormValues | SignupFormValues) => {
-    console.log(data);
+    if (type === 'login') {
+      const loginData = data as LoginFormValues;
+      login({ email: loginData.email, password: loginData.password });
+    }
+    if (type === 'signup') {
+      const signupData = data as SignupFormValues;
+      signup({
+        email: signupData.email,
+        nickname: signupData.nickname,
+        password: signupData.password,
+      });
+    }
   };
 
   const signupErrors = type === 'signup' ? (errors as FieldErrors<SignupFormValues>) : null;
