@@ -37,7 +37,7 @@ const Button = ({
   };
 
   const baseButtonClass =
-    'inline-flex items-center justify-center h-[42px] px-[23px] rounded-[8px] text-coolGray-100 text-base font-semibold leading-[26px]';
+    'inline-flex items-center justify-center h-[42px] px-[23px] rounded-[8px] text-coolGray-100 text-base font-semibold leading-[26px] cursor-pointer';
 
   const sizeClassMap = {
     sm: '',
@@ -74,7 +74,7 @@ const Button = ({
 
   return (
     <button
-      type="button"
+      type={type === 'login' || type === 'signup' ? 'submit' : 'button'}
       disabled={disabled}
       className={clsx(
         baseButtonClass,

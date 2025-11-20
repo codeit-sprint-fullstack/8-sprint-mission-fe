@@ -2,9 +2,13 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
 import Button from './Button';
 
 const Header = () => {
+  const router = useRouter();
+
   return (
     <header className="mx-auto flex h-[56px] max-w-[1200px] items-center justify-between">
       <div className="flex items-center gap-6">
@@ -26,7 +30,7 @@ const Header = () => {
           </Link>
         </nav>
       </div>
-      <Button type="login" />
+      <Button type="login" onClick={() => router.push('/auth/login')} />
     </header>
   );
 };
