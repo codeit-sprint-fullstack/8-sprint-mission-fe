@@ -1,5 +1,8 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import Button from './Button';
 
 const Header = () => {
   return (
@@ -23,7 +26,7 @@ const Header = () => {
           </Link>
         </nav>
       </div>
-      <button>로그인</button>
+      <Button type="login" />
     </header>
   );
 };
