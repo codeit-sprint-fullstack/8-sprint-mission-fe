@@ -1,6 +1,6 @@
 @import 'tailwindcss';
-/* @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css'); */
-/* @import url('https://cdn.jsdelivr.net/gh/fonts-archive/ROKAFSans@main/ROKAFSans.css'); */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+@import url('https://cdn.jsdelivr.net/gh/fonts-archive/ROKAFSans@main/ROKAFSans.css');
 
 :root {
   --background: #ffffff;
