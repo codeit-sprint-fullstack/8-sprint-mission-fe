@@ -54,8 +54,8 @@ export const useSignup = () => {
       const res = await api.post('/auth/signup', { email, nickname, password });
 
       const userData = {
-        id: res.data?.id,
-        nickname: res.data?.nickname,
+        id: res.data?.data?.id,
+        nickname: res.data?.data?.nickname,
       };
 
       if (userData) {
