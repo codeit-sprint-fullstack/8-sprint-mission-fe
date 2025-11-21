@@ -49,7 +49,7 @@ const ArticlesPage = () => {
         <div className="flex w-full flex-col justify-center gap-6">
           <div className="flex items-center justify-between">
             <div className="text-secondary-800 text-xl leading-[32px] font-bold">게시글</div>
-            <Button type="write" onClick={() => router.push('/article/post')} />
+            <Button type="write" onClick={() => router.push('/articles/post')} />
           </div>
           <div className="flex items-center justify-between">
             <SearchInput size="lg" value={searchValue} setValue={setSearchValue} />

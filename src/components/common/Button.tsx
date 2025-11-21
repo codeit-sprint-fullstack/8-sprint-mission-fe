@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import clsx from 'clsx';
+import Image from 'next/image';
 import React from 'react';
 
 const Button = ({
@@ -75,7 +75,7 @@ const Button = ({
 
   return (
     <button
-      type={type === 'login' || type === 'signup' ? 'submit' : 'button'}
+      type={type === 'login' || type === 'signup' || type === 'post' ? 'submit' : 'button'}
       disabled={disabled}
       className={clsx(
         baseButtonClass,
