@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import clsx from 'clsx';
+import React from 'react';
 
 const Button = ({
   type = 'login',
@@ -22,7 +23,7 @@ const Button = ({
   size?: 'sm' | 'md' | 'lg' | 'modal';
   bg?: 'primary-100' | 'primary-200' | 'primary-300' | 'none';
   disabled?: boolean;
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }) => {
   const typeMap = {
     login: '로그인',

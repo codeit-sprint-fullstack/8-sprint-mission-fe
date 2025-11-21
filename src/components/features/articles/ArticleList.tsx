@@ -16,7 +16,7 @@ const ArticleList = ({
 }) => {
   return (
     <Link
-      href={`/article/${id}`}
+      href={`/articles/${id}`}
       className="bg-background-gray flex w-[1200px] flex-col items-start gap-4 px-2 pb-6"
     >
       <div className="flex w-full justify-between">
