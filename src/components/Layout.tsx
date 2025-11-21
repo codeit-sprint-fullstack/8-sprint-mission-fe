@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-// import AuthHeader from '@/components/auth/AuthHeader';
+import AuthHeader from '@/components/auth/AuthHeader';
 
 export function DefaultLayout({ children }: PropsWithChildren) {
   return (
@@ -17,7 +17,7 @@ export function AuthLayout({ children }: PropsWithChildren) {
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-[540px] mx-auto">
-        {/* <AuthHeader /> */}
+        <AuthHeader />
         {children}
       </div>
     </div>
