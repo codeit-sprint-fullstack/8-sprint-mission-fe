@@ -15,6 +15,7 @@
 
   /* Secondary */
   --Secondary-800: #1f2937;
+  --Secondary-700: #374151;
   --Secondary-600: #4b5563;
   --Secondary-500: #6b7280;
   --Secondary-400: #9ca3af;
@@ -36,6 +37,7 @@
   --brand-blue: #3692ff;
   --hover-blue: #1967d6;
   --focus-blue: #1251aa;
+  --bg-blue: #cfe5ff;
 
   /* ================= Font Families ================= */
   --font-family: 'Pretendard', sans-serif;

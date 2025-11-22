@@ -9,8 +9,8 @@ import logoMobileImg from '@/images/logo_mobile.svg';
 
 export default function GNB({ isHome = false }) {
   return (
-    <header className="fixed flex h-[70px] w-full items-center justify-center border-b-1 border-[--gray-400] bg-white">
-      <div className="flex h-full w-full max-w-[1200px] items-center justify-between px-[16px] md:px-[24px]">
+    <header className="fixed z-10 flex h-[70px] w-full items-center justify-center border-b-1 border-[--gray-400] bg-white">
+      <div className="flex h-full w-full max-w-[1200px] items-center justify-between px-[16px] md:px-[24px] xl:px-0">
         <div className="flex items-center gap-[24px]">
           <Link className="flex items-center" href="/">
             <Image src={logoImg} className="hidden w-[153px] md:block" alt="판다마켓 로고" />
