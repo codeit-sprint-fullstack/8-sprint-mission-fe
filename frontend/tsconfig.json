@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true, //부분 마이그레이션을 위함
+    "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
@@ -31,5 +31,4 @@
     "**/*.mts"
   ],
   "exclude": ["node_modules"]
-  //"files": ["src/types/express.d.ts"] // 라이브러리용 d.ts 파일
 }
