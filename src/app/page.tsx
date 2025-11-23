@@ -4,7 +4,7 @@ import Image from 'next/image';
 const HomePage = () => {
   return (
     <div className="w-full">
-      <section className="flex w-full justify-center bg-[#cfe5ff] px-[12vw] pt-50">
+      <section className="flex w-full justify-center bg-[#cfe5ff] px-[calc((100%-1200px)/2)] pt-50">
         <div className="flex w-full items-center justify-between">
           <div className="flex flex-col justify-center gap-8">
             <div className="text-secondary-700 text-[40px] leading-[56px] font-bold">
@@ -20,7 +20,7 @@ const HomePage = () => {
           <Image src="/img_home_top.svg" alt="topImage" width={746} height={340} />
         </div>
       </section>
-      <section className="w-full px-[10vw] py-[138px]">
+      <section className="mx-auto w-full max-w-[1200px] py-[138px]">
         <div className="flex justify-around gap-16">
           <Image src="/section1_img.svg" alt="section1Img" width={588} height={444} />
           <div className="flex flex-col gap-3">
@@ -38,7 +38,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-      <section className="w-full px-[10vw] py-[138px]">
+      <section className="mx-auto w-full max-w-[1200px] py-[138px]">
         <div className="flex justify-around gap-16">
           <div className="flex flex-col gap-3">
             <div className="text-primary-100 text-lg leading-[26px] font-bold">Search</div>
@@ -56,7 +56,7 @@ const HomePage = () => {
           <Image src="/section2_img.svg" alt="section2Img" width={588} height={444} />
         </div>
       </section>
-      <section className="w-full px-[10vw] py-[138px]">
+      <section className="mx-auto w-full max-w-[1200px] py-[138px]">
         <div className="flex justify-around gap-16">
           <Image src="/section3_img.svg" alt="section3Img" width={588} height={444} />
           <div className="flex flex-col gap-3">
@@ -74,7 +74,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-      <section className="flex w-full justify-center bg-[#cfe5ff] px-[12vw] pt-[143px]">
+      <section className="flex w-full justify-center bg-[#cfe5ff] px-[calc((100%-1200px)/2)] pt-[143px]">
         <div className="flex w-full justify-between">
           <div className="mb-[60px] w-full text-[40px] leading-[56px] font-bold">
             믿을 수 있는

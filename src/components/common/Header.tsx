@@ -12,7 +12,7 @@ const Header = () => {
   const { user } = useAuthStore();
 
   return (
-    <header className="flex h-[56px] items-center justify-between px-[200px]">
+    <header className="mx-auto flex h-[56px] max-w-[1200px] items-center justify-between">
       <div className="flex items-center gap-6">
         <Link href="/">
           <Image src="/brandLogo.svg" alt="brandLogo" width={153} height={43} />
@@ -25,7 +25,7 @@ const Header = () => {
             자유게시판
           </Link>
           <Link
-            href="/items"
+            href="/products"
             className="text-secondary-600 px-[15px] py-[21px] text-lg leading-[26px] font-bold"
           >
             중고마켓

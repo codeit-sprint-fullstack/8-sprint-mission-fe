@@ -19,7 +19,8 @@ const Button = ({
     | 'signup'
     | 'confirm'
     | 'logout'
-    | 'goBack';
+    | 'goBack'
+    | 'productPost';
   size?: 'sm' | 'md' | 'lg' | 'modal';
   bg?: 'primary-100' | 'primary-200' | 'primary-300' | 'none';
   disabled?: boolean;
@@ -35,6 +36,7 @@ const Button = ({
     signup: '회원가입',
     confirm: '확인',
     logout: '로그아웃',
+    productPost: '상품 등록하기',
   };
 
   const baseButtonClass =

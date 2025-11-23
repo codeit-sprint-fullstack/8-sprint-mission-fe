@@ -16,14 +16,14 @@ const DropDown = ({
   onChange: (option: string) => void;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const sortOptions = ['recent', 'likes'] as const;
+  const sortOptions = ['recent', 'like'] as const;
   const modifyOptions = ['edit', 'delete'] as const;
 
-  type OptionKey = 'recent' | 'likes' | 'edit' | 'delete';
+  type OptionKey = 'recent' | 'like' | 'edit' | 'delete';
 
   const labelMap: Record<OptionKey, string> = {
     recent: '최신순',
-    likes: '좋아요순',
+    like: '좋아요순',
     edit: '수정하기',
     delete: '삭제하기',
   };
@@ -57,8 +57,7 @@ const DropDown = ({
               'text-secondary-800 flex h-[42px] w-[130px] cursor-pointer items-center justify-center bg-white text-base leading-[26px] font-normal',
               opt === 'recent' &&
                 'border-coolGray-200 rounded-t-[12px] border border-solid bg-white',
-              opt === 'likes' &&
-                'border-coolGray-200 rounded-b-[12px] border border-solid bg-white',
+              opt === 'like' && 'border-coolGray-200 rounded-b-[12px] border border-solid bg-white',
             )}
           >
             {labelMap[opt]}
