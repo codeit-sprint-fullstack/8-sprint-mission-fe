@@ -3,12 +3,15 @@ import DropDown from '@/components/common/DropDown';
 import Image from 'next/image';
 import { convertTz } from '@/libs/day';
 import HeartTag from './HeartTag';
+import { useRouter } from 'next/navigation';
 
 const DetailArticleCard = ({ id }: { id: string }) => {
+  const router = useRouter();
+
   const { data: article } = useGetDetailArticle(id);
 
   const handleEdit = () => {
-    console.log('edit');
+    router.push(`/articles/edit/${id}`);
   };
 
   const handleDelete = () => {

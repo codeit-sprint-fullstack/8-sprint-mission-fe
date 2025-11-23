@@ -24,6 +24,6 @@ export const updateArticle = async ({
   title: string;
   content: string;
 }) => {
-  const res = await api.patch(`/articles${id}`, { title, content });
+  const res = await api.patch(`/articles/${id}`, { title, content });
   return res.data;
 };

@@ -4,9 +4,10 @@ import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
 import Textarea from '@/components/common/Textarea';
 import { useCreateArticle, useUpdateArticle } from '@/hooks/mutations/useArticleMutations';
+import { getDetailArticle } from '@/services/article.service';
 import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const ArticleForm = ({ articleId = '' }: { articleId?: string }) => {
   const router = useRouter();
@@ -22,6 +23,19 @@ const ArticleForm = ({ articleId = '' }: { articleId?: string }) => {
   const createArticleMutation = useCreateArticle();
   const updateArticleMutation = useUpdateArticle();
 
+  useEffect(() => {
+    if (isEditMode) {
+      const fetchArticle = async () => {
+        const res = await getDetailArticle(articleId);
+        setFormData({
+          title: res.data?.title,
+          content: res.data?.content,
+        });
+      };
+      fetchArticle();
+    }
+  }, [isEditMode, articleId]);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -35,7 +49,7 @@ const ArticleForm = ({ articleId = '' }: { articleId?: string }) => {
         {
           onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['articles'] });
-            router.push(`/articles/${articleId}`);
+            router.replace(`/articles/${articleId}`);
           },
           onError: (error) => {
             console.log(error);
@@ -51,7 +65,7 @@ const ArticleForm = ({ articleId = '' }: { articleId?: string }) => {
         {
           onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['articles'] });
-            router.push(`/articles/${articleId}`);
+            router.replace(`/articles/${articleId}`);
           },
           onError: (error) => {
             console.log(error);
@@ -67,10 +81,12 @@ const ArticleForm = ({ articleId = '' }: { articleId?: string }) => {
       onSubmit={handleSubmit}
     >
       <div className="flex w-full items-center justify-between">
-        <div className="text-secondary-800 text-xl leading-[32px] font-bold">게시글 쓰기</div>
+        <div className="text-secondary-800 text-xl leading-[32px] font-bold">
+          {isEditMode ? '게시글 수정' : '게시글 쓰기'}
+        </div>
         <Button
           type="post"
-          disabled={formData.title.length === 0 || formData.content.length === 0}
+          disabled={(formData.title || '').length === 0 || (formData.content || '').length === 0}
         />
       </div>
       <div className="flex w-full flex-col gap-6">

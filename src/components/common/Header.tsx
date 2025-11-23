@@ -12,7 +12,7 @@ const Header = () => {
   const { user } = useAuthStore();
 
   return (
-    <header className="mx-auto flex h-[56px] max-w-[1200px] items-center justify-between">
+    <header className="flex h-[56px] items-center justify-between px-[200px]">
       <div className="flex items-center gap-6">
         <Link href="/">
           <Image src="/brandLogo.svg" alt="brandLogo" width={153} height={43} />
