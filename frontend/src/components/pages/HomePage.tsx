@@ -1,13 +1,9 @@
 import Banner from '../mocules/Banner';
 import MainFrame from '../organisms/MainFrame';
-// import HomeFooter from '../components/molecules/Footer/HomeFooter.jsx';
-// import Banner from '../components/molecules/Home/Banner/Banner.jsx';
+import Features from '../mocules/Features';
 
 import topBannerImg from '@/images/banner/hero-image.png';
 import bottomBannerImg from '@/images/banner/bottom-banner-image.png';
-import Features from '../mocules/Features';
-// import Features from '../components/molecules/Home/Feature/Features.jsx';
-// import { deviceStyle } from '@/components/molecules/Device/Device.jsx';
 
 export default function HomePage() {
   return (
