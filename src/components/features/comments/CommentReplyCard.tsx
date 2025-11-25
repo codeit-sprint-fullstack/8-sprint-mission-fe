@@ -9,16 +9,20 @@ import { useQueryClient } from '@tanstack/react-query';
 import Image from 'next/image';
 import { useState } from 'react';
 import Button from '@/components/common/Button';
+import {
+  useDeleteProductComment,
+  useEditProductComment,
+} from '@/hooks/mutations/useProductCommentMutation';
 
 const CommentReplyCard = ({
+  commentId,
   id,
-  articleId,
   content,
   updatedAt,
   type = 'article',
 }: {
+  commentId: string;
   id: string;
-  articleId: string;
   content: string;
   updatedAt: string;
   type?: 'article' | 'product';
@@ -29,18 +33,36 @@ const CommentReplyCard = ({
 
   const editArticleComment = useEditArticleComment();
   const deleteArticleComment = useDeleteArticleComment();
+  const editProductComment = useEditProductComment();
+  const deleteProductComment = useDeleteProductComment();
 
   const handleEdit = () => {
     setIsEditing(true);
+    setNewComment(content);
   };
 
   const handleEditConfirm = () => {
     if (type === 'article') {
       editArticleComment.mutate(
-        { commentId: id, content: newComment },
+        { commentId: commentId, content: newComment },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['articleComments', articleId] });
+            queryClient.invalidateQueries({ queryKey: ['articleComments', id] });
+            setIsEditing(false);
+            setNewComment(content);
+          },
+          onError: (error) => {
+            console.log(error);
+          },
+        },
+      );
+    }
+    if (type === 'product') {
+      editProductComment.mutate(
+        { commentId: commentId, content: newComment },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['productComments', id] });
             setIsEditing(false);
             setNewComment(content);
           },
@@ -56,14 +78,24 @@ const CommentReplyCard = ({
     if (type === 'article') {
       deleteArticleComment.mutate(
         {
-          commentId: id,
+          commentId: commentId,
         },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['articleComments', articleId] });
+            queryClient.invalidateQueries({ queryKey: ['articleComments', id] });
           },
           onError: (error) => {
             console.log(error);
+          },
+        },
+      );
+    }
+    if (type === 'product') {
+      deleteProductComment.mutate(
+        { commentId: commentId },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['productComments', id] });
           },
         },
       );
@@ -76,7 +108,7 @@ const CommentReplyCard = ({
   };
 
   return (
-    <div className="border-b-solid border-b-secondary-300 bg-background-gray flex w-full flex-col justify-start gap-6 border-b pb-3">
+    <div className="border-b-solid border-b-secondary-300 bg-background-gray flex w-full flex-col justify-start gap-6 border-b p-1 pb-3">
       <div className="flex w-full items-start justify-between gap-1">
         {isEditing ? (
           <Textarea type="comment" size="xs" value={newComment} onChange={setNewComment} />

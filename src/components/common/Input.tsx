@@ -5,6 +5,7 @@ const Input = ({
   value = '',
   onChange = () => {},
   onKeyDown,
+  disabled = false,
 }: {
   type: string;
   placeholder: string;
@@ -12,6 +13,7 @@ const Input = ({
   value: string | number | string[];
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
 }) => {
   return (
     <input
@@ -22,6 +24,7 @@ const Input = ({
       value={value}
       onChange={onChange}
       onKeyDown={onKeyDown}
+      disabled={disabled}
     />
   );
 };

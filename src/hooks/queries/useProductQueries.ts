@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getProducts } from '@/services/product.service';
+import { getProductById, getProducts } from '@/services/product.service';
 
 export const useGetProducts = (
   orderBy: 'recent' | 'like',
@@ -17,5 +17,12 @@ export const useGetBestProducts = () => {
   return useQuery({
     queryKey: ['bestProducts'],
     queryFn: () => getProducts('like', '', 1, 4),
+  });
+};
+
+export const useGetProductById = (id: string) => {
+  return useQuery({
+    queryKey: ['product', id],
+    queryFn: () => getProductById(id),
   });
 };

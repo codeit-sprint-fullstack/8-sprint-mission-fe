@@ -2,7 +2,7 @@ import { useGetDetailArticle } from '@/hooks/queries/useArticleQueries';
 import DropDown from '@/components/common/DropDown';
 import Image from 'next/image';
 import { convertTz } from '@/libs/day';
-import HeartTag from './HeartTag';
+import HeartTag from '../../common/HeartTag';
 import { useRouter } from 'next/navigation';
 
 const DetailArticleCard = ({ id }: { id: string }) => {

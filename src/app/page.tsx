@@ -11,7 +11,7 @@ const HomePage = () => {
               일상의 모든 물건을 거래해 보세요
             </div>
             <Link
-              href="/items"
+              href="/products"
               className="bg-primary-100 mb-[60px] w-[357px] rounded-[40px] px-[124px] py-4 text-center text-xl leading-[32px] font-semibold whitespace-nowrap text-white"
             >
               구경하러 가기
