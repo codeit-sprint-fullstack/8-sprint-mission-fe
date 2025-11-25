@@ -5,15 +5,19 @@ const Textarea = ({
   size = 'lg',
   value = '',
   onChange = () => {},
+  onKeyDown,
 }: {
-  type: 'detail' | 'comment' | 'productDescription';
+  type: 'detail' | 'comment' | 'productComment' | 'productDescription';
   size: 'xs' | 'sm' | 'lg';
   value: string;
   onChange: (value: string) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void;
 }) => {
   const typeMap = {
     detail: '내용을 입력해주세요',
     comment: '댓글을 입력해주세요',
+    productComment:
+      '개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다.',
     editComment: '',
     productDescription: '상품 소개를 입력해주세요',
   };
@@ -38,6 +42,7 @@ const Textarea = ({
       )}
       value={value}
       onChange={handleChange}
+      onKeyDown={onKeyDown}
     ></textarea>
   );
 };

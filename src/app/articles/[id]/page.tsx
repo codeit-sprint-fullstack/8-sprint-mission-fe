@@ -2,7 +2,7 @@
 
 import { useRouter, useParams } from 'next/navigation';
 import { useGetArticleComments } from '@/hooks/queries/useArticleCommentQueries';
-import { ArticleComment } from '@/types/article';
+import { Comment } from '@/types/comment';
 
 import EmptyBoard from '@/components/common/EmptyBoard';
 import Button from '@/components/common/Button';
@@ -37,11 +37,11 @@ const DetailArticlePage = () => {
             <AddComment id={id} type="article" />
             <div>
               {comments?.data && comments?.data.length > 0 ? (
-                comments?.data.map((comment: ArticleComment) => (
+                comments?.data.map((comment: Comment) => (
                   <CommentReplyCard
                     key={comment.id}
-                    id={comment.id}
-                    articleId={id}
+                    id={id}
+                    commentId={comment.id}
                     content={comment.content}
                     updatedAt={comment.updatedAt}
                     type="article"

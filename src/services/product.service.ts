@@ -24,3 +24,8 @@ export const createProduct = async ({
   const res = await api.post('/products', { name, description, price, tags });
   return res.data;
 };
+
+export const getProductById = async (id: string) => {
+  const res = await api.get(`/products/${id}`);
+  return res.data;
+};

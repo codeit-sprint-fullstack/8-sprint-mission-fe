@@ -3,7 +3,7 @@
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
 import Textarea from '@/components/common/Textarea';
-import TagChip from '@/components/features/products/TagChip';
+import TagChip from '@/components/common/TagChip';
 import { useCreateProduct } from '@/hooks/mutations/useProductMutations';
 import { ProductSchema, productSchema } from '@/schema/productSchema';
 import Image from 'next/image';
@@ -201,7 +201,7 @@ const ProductForm = () => {
             {formData.tags.length > 0 && (
               <div className="flex items-center gap-3">
                 {formData.tags.map((tag) => (
-                  <TagChip key={tag} tag={tag} onClick={() => handleTagDelete(tag)} />
+                  <TagChip key={tag} type="modify" tag={tag} onClick={() => handleTagDelete(tag)} />
                 ))}
               </div>
             )}
