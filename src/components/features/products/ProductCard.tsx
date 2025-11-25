@@ -1,18 +1,21 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 const ProductCard = ({
   type = 'normal',
+  id,
   name = '',
   price = 0,
   likeCount = 0,
 }: {
   type?: 'normal' | 'best';
+  id: string;
   name: string;
   price: number;
   likeCount: number;
 }) => {
   return (
-    <div className="flex flex-col gap-4">
+    <Link href={`/products/${id}`} className="flex flex-col gap-4">
       {type === 'normal' ? (
         <Image src="/img_default_product.svg" alt="product" width={220} height={220} />
       ) : (
@@ -28,7 +31,7 @@ const ProductCard = ({
           <div className="text-secondary-600 text-xs leading-[18px] font-normal">{likeCount}</div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

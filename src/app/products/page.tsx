@@ -25,8 +25,8 @@ const ProductsPage = () => {
   return (
     <>
       {(isProductsLoading || isBestProductsLoading) && <LoadingSpinner />}
-      <div className="mx-auto max-w-[1200px]">
-        <div className="flex w-full flex-col gap-10">
+      <div className="mx-auto mt-[26px] mb-[140px] max-w-[1200px]">
+        <div className="mb-[43px] flex w-full flex-col gap-10">
           <BestProductsList bestProducts={bestProducts} />
           <ProductTemplate
             searchValue={searchValue}
@@ -36,14 +36,12 @@ const ProductsPage = () => {
             products={products?.data}
           />
         </div>
-        <div className="mt-[43px] mb-[140px]">
-          <Pagination
-            page={page}
-            total={products?.pagination?.totalPages}
-            onPageChange={setPage}
-            max={products?.pagination?.limit}
-          />
-        </div>
+        <Pagination
+          page={page}
+          total={products?.pagination?.totalPages}
+          onPageChange={setPage}
+          max={products?.pagination?.limit}
+        />
       </div>
     </>
   );

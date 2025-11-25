@@ -93,7 +93,8 @@ const ArticleForm = ({ articleId = '' }: { articleId?: string }) => {
         <div className="flex w-full flex-col gap-3">
           <div className="text-secondary-800 text-lg leading-[26px] font-bold">제목</div>
           <Input
-            type="title"
+            type="text"
+            placeholder="제목을 입력해주세요."
             value={formData.title}
             onChange={(e) => setFormData({ ...formData, title: e.target.value })}
           />

@@ -10,6 +10,7 @@ const BestProductsList = ({ bestProducts }: { bestProducts: Product[] }) => {
           <ProductCard
             type="best"
             key={item?.id}
+            id={item?.id}
             name={item?.name}
             price={item?.price}
             likeCount={item?.likeCount}

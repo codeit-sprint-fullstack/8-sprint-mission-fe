@@ -2,7 +2,7 @@
 
 import { useForm, FieldErrors } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { LoginFormValues, SignupFormValues, loginSchema, signupSchema } from './schema';
+import { LoginFormValues, SignupFormValues, loginSchema, signupSchema } from '@/schema/authSchema';
 
 import Button from '@/components/common/Button';
 import Image from 'next/image';

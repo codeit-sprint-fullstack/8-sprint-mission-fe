@@ -42,6 +42,7 @@ const ProductTemplate = ({
         {products?.map((product) => (
           <ProductCard
             key={product.id}
+            id={product.id}
             type="normal"
             name={product.name}
             price={product.price}

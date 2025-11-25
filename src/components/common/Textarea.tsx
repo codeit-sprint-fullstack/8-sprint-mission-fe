@@ -6,7 +6,7 @@ const Textarea = ({
   value = '',
   onChange = () => {},
 }: {
-  type: 'detail' | 'comment';
+  type: 'detail' | 'comment' | 'productDescription';
   size: 'xs' | 'sm' | 'lg';
   value: string;
   onChange: (value: string) => void;
@@ -15,6 +15,7 @@ const Textarea = ({
     detail: '내용을 입력해주세요',
     comment: '댓글을 입력해주세요',
     editComment: '',
+    productDescription: '상품 소개를 입력해주세요',
   };
 
   const sizeClassMap = {
