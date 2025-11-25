@@ -9,3 +9,18 @@ export const getProducts = async (
   const res = await api.get('/products', { params: { sort: orderBy, q, page, limit } });
   return res.data;
 };
+
+export const createProduct = async ({
+  name,
+  description,
+  price,
+  tags,
+}: {
+  name: string;
+  description: string;
+  price: number;
+  tags?: string[];
+}) => {
+  const res = await api.post('/products', { name, description, price, tags });
+  return res.data;
+};

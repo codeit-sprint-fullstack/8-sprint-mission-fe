@@ -56,7 +56,7 @@ const Button = ({
     none: '',
   };
 
-  const disabledClass = 'bg-coolGray-400 cursor-not-allowed';
+  const disabledClass = 'bg-coolGray-400 cursor-not-allowed cursor-not-allowed';
 
   if (type === 'goBack') {
     return (

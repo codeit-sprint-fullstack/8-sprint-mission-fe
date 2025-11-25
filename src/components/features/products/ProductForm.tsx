@@ -4,9 +4,12 @@ import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
 import Textarea from '@/components/common/Textarea';
 import TagChip from '@/components/features/products/TagChip';
+import { useCreateProduct } from '@/hooks/mutations/useProductMutations';
 import { ProductSchema, productSchema } from '@/schema/productSchema';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 
 const inputWrapperClass = 'flex flex-col gap-4';
 const inputLabelClass = 'text-secondary-800 text-lg font-bold leading-[26px]';
@@ -27,6 +30,9 @@ type InputValue = string | number | string[];
 type ProductFormErrors = Partial<Record<keyof ProductSchema, string>>;
 
 const ProductForm = () => {
+  const router = useRouter();
+  const queryClient = useQueryClient();
+
   const [formData, setFormData] = useState<ProductSchema>({
     name: '',
     description: '',
@@ -35,6 +41,8 @@ const ProductForm = () => {
   });
   const [tagInput, setTagInput] = useState<string>('');
   const [errors, setErrors] = useState<ProductFormErrors>({});
+
+  const createProductMutation = useCreateProduct();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value: InputValue = e.target.value;
@@ -60,15 +68,33 @@ const ProductForm = () => {
     }
   };
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
-
   const handleTagDelete = (tagToDelete: string) => {
     setFormData({
       ...formData,
       tags: formData.tags.filter((tag) => tag !== tagToDelete),
     });
+  };
+
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    createProductMutation.mutate(
+      {
+        name: formData.name,
+        description: formData.description,
+        price: formData.price,
+        tags: formData.tags,
+      },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ['products'] });
+          router.replace('/products');
+        },
+        onError: (error) => {
+          console.log(error);
+        },
+      },
+    );
   };
 
   useEffect(() => {
@@ -95,7 +121,7 @@ const ProductForm = () => {
     <form className="flex flex-col gap-6" onSubmit={handleFormSubmit}>
       <div className="flex items-center justify-between">
         <div className="text-secondary-800 text-xl leading-[32px] font-bold">상품 등록하기</div>
-        <Button type="post" />
+        <Button type="post" disabled={Object.keys(errors).length > 0} />
       </div>
       <div className="flex flex-col gap-8">
         <div className={inputWrapperClass}>
