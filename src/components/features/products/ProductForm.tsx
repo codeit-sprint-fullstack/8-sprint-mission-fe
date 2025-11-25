@@ -75,6 +75,7 @@ const ProductForm = () => {
     const result = productSchema.safeParse(formData);
 
     if (result.success) {
+      // eslint-disable-next-line
       setErrors({});
       return;
     }
