@@ -66,7 +66,7 @@ const ProductDetailPage = () => {
                 />
               ))
             ) : (
-              <EmptyBoard type="comment" />
+              <EmptyBoard type="inquiry" />
             )}
           </div>
         </div>

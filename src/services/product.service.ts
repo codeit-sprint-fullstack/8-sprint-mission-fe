@@ -29,3 +29,18 @@ export const getProductById = async (id: string) => {
   const res = await api.get(`/products/${id}`);
   return res.data;
 };
+
+export const editProduct = async ({
+  id,
+  name,
+  price,
+  description,
+}: {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+}) => {
+  const res = await api.patch(`/products/${id}`, { name, price, description });
+  return res.data;
+};
