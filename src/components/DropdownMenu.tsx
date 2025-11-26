@@ -10,8 +10,8 @@ interface DropdownMenuProps {
   open?: boolean;
   onClose?: () => void;
   type?: 'article' | 'comment';
-  articleId?: number;
-  commentId?: number;
+  articleId?: string | number;
+  commentId?: string | number;
   onEdit?: () => void;
   onDeleted?: () => void;
 }

@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, PropsWithChildren } from 'react';
-// import ArticleProvider from '@/providers/ArticleProvider';
-// import CommentProvider from '@/providers/CommentProvider';
+import ArticleProvider from '@/providers/ArticleProvider';
+import CommentProvider from '@/providers/CommentProvider';
 import AuthProvider from '@/providers/AuthProvider';
-// import { ProductProvider } from '@/providers/ProductProvider';
+import { ProductProvider } from '@/providers/ProductProvider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
@@ -26,13 +26,13 @@ export default function Providers({ children }: PropsWithChildren) {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        {/* <ProductProvider> */}
-        {/* <ArticleProvider> */}
-        {/* <CommentProvider> */}
+        <ProductProvider>
+        <ArticleProvider>
+        <CommentProvider>
         {children}
-        {/* </CommentProvider> */}
-        {/* </ArticleProvider> */}
-        {/* </ProductProvider> */}
+        </CommentProvider>
+        </ArticleProvider>
+        </ProductProvider>
       </AuthProvider>
       <ReactQueryDevtools initialIsOpen={false} position="bottom" />
     </QueryClientProvider>

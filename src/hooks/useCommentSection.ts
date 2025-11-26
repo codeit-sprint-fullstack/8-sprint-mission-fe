@@ -7,7 +7,7 @@ import { Comment } from '@/types';
  * 댓글 섹션 로직을 관리하는 커스텀 훅
  */
 export function useCommentSection(
-  resourceId: number | undefined,
+  resourceId: string | undefined,
   type: 'article' | 'product' = 'article',
 ) {
   const { user } = useAuth();
@@ -24,8 +24,8 @@ export function useCommentSection(
   } = useComments();
 
   const [commentInput, setCommentInput] = useState('');
-  const [commentMenuOpenId, setCommentMenuOpenId] = useState<number | null>(null);
-  const [editingId, setEditingId] = useState<number | null>(null);
+  const [commentMenuOpenId, setCommentMenuOpenId] = useState<string | null>(null);
+  const [editingId, setEditingId] = useState<string | null>(null);
   const [editingText, setEditingText] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -94,7 +94,7 @@ export function useCommentSection(
   };
 
   // 댓글 수정 제출
-  const handleUpdateComment = async (commentId: number) => {
+  const handleUpdateComment = async (commentId: string) => {
     const content = editingText.trim();
     if (!content) return;
 
@@ -109,7 +109,7 @@ export function useCommentSection(
   };
 
   // 댓글 삭제
-  const handleDeleteComment = async (commentId: number) => {
+  const handleDeleteComment = async (commentId: string) => {
     if (!confirm('정말로 이 댓글을 삭제하시겠습니까?')) return;
 
     try {

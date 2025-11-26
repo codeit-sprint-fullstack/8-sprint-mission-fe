@@ -1,13 +1,13 @@
-import React from 'react';
 import ArticleDetailPage from '@/components/pages/ArticleDetailPage';
 
+
 interface ArticleDetailProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-export default function ArticleDetail({ params }: ArticleDetailProps) {
-  const { id } = params || {};
-  return <ArticleDetailPage articleId={Number(id)} />;
+export default async function ArticleDetail({ params }: ArticleDetailProps) {
+  const { id } = await params;
+  return <ArticleDetailPage articleId={id} />;
 }

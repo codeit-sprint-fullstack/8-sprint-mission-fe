@@ -2,11 +2,14 @@ import { User } from './user';
 
 // 댓글 기본 타입
 export interface Comment {
-  id: number;
+  id: string | null;
   content: string;
   createdAt: string;
   updatedAt: string;
   writer: User;
+  user?: User;
+  productId?: string;
+  articleId?: string;
 }
 
 // 댓글 생성 데이터

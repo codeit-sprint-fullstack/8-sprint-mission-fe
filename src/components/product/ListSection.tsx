@@ -21,7 +21,7 @@ export default function ProductListSection({
   setSortBy,
 }: ProductListSectionProps) {
   const router = useRouter();
-  const handleProductClick = (id: number) => {
+  const handleProductClick = (id: string | number) => {
     router.push(`/items/${id}`);
   };
 

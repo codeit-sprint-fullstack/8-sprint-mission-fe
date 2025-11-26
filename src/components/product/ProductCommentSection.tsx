@@ -7,7 +7,7 @@ import DropdownMenu from '@/components/DropdownMenu';
 import { useCommentSection } from '@/hooks/useCommentSection';
 
 interface ProductCommentSectionProps {
-  productId: number;
+  productId: string;
 }
 
 const ProductCommentSection = ({ productId }: ProductCommentSectionProps) => {
@@ -125,7 +125,7 @@ const ProductCommentSection = ({ productId }: ProductCommentSectionProps) => {
                   <textarea
                     value={editingText}
                     onChange={(e) => setEditingText(e.target.value)}
-                    className="w-full p-3 rounded-lg resize-none bg-[var('--gray-100')] ring-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full p-3 rounded-lg resize-none bg-[var(--gray-100)] ring-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     rows={3}
                   />
                   <div className="flex gap-2 mt-2">

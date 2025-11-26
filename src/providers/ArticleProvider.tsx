@@ -19,10 +19,10 @@ interface ArticleContextValue {
   error: string | null;
   getArticles: (params?: ArticleParams) => Promise<ArticlesResponse>;
   getBestArticles: () => Promise<ArticlesResponse>;
-  getArticleById: (articleId: number) => Promise<Article>;
+  getArticleById: (articleId: string | number) => Promise<Article>;
   createArticle: (articleData: CreateArticleData) => Promise<Article>;
-  updateArticle: (articleId: number, articleData: UpdateArticleData) => Promise<Article>;
-  deleteArticle: (articleId: number) => Promise<void>;
+  updateArticle: (articleId: string | number, articleData: UpdateArticleData) => Promise<Article>;
+  deleteArticle: (articleId: string | number) => Promise<void>;
   searchArticles: (
     searchTerm: string,
     additionalParams?: ArticleParams,
@@ -31,7 +31,7 @@ interface ArticleContextValue {
     sortBy?: 'recent' | 'favorite',
     additionalParams?: ArticleParams,
   ) => Promise<ArticlesResponse>;
-  toggleArticleFavorite: (articleId: number) => Promise<ArticleFavoriteResponse>;
+  toggleArticleFavorite: (articleId: string | number) => Promise<ArticleFavoriteResponse>;
 }
 
 const ArticleContext = createContext<ArticleContextValue | undefined>(undefined);
@@ -98,7 +98,7 @@ export default function ArticleProvider({ children }: ArticleProviderProps) {
   }, [handleError, toList]);
 
   const getArticleById = useCallback(
-    async (articleId: number) => {
+    async (articleId: string | number) => {
       try {
         setLoading(true);
         setError(null);
@@ -134,7 +134,7 @@ export default function ArticleProvider({ children }: ArticleProviderProps) {
   );
 
   const updateArticle = useCallback(
-    async (articleId: number, articleData: UpdateArticleData) => {
+    async (articleId: string | number, articleData: UpdateArticleData) => {
       try {
         setLoading(true);
         setError(null);
@@ -157,7 +157,7 @@ export default function ArticleProvider({ children }: ArticleProviderProps) {
   );
 
   const deleteArticle = useCallback(
-    async (articleId: number) => {
+    async (articleId: string | number) => {
       try {
         setLoading(true);
         setError(null);
@@ -213,7 +213,7 @@ export default function ArticleProvider({ children }: ArticleProviderProps) {
   );
 
   const toggleArticleFavorite = useCallback(
-    async (articleId: number) => {
+    async (articleId: string | number) => {
       try {
         setLoading(true);
         setError(null);

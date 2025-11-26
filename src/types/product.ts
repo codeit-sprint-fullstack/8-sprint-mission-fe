@@ -2,18 +2,19 @@ import { User } from './user';
 
 // 상품 기본 타입
 export interface Product {
-  id: number;
+  id: string | number;
   name: string;
-  description: string;
+  description: string | null;
   price: number;
   favoriteCount: number;
-  images?: string[];
-  tags?: string[];
+  images: string[];
+  tags: string[];
   createdAt: string;
   updatedAt: string;
   ownerNickname?: string;
   owner?: User;
   isFavorite?: boolean;
+  isLiked?: boolean;
 }
 
 // 상품 생성 데이터

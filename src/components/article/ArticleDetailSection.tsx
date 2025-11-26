@@ -8,7 +8,7 @@ import { useArticles } from '@/providers/ArticleProvider';
 import { useAuth } from '@/providers/AuthProvider';
 
 interface ArticleDetailSectionProps {
-  articleId: number;
+  articleId: string;
 }
 
 export default function ArticleDetailSection({ articleId }: ArticleDetailSectionProps) {

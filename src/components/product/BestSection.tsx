@@ -9,7 +9,7 @@ interface BestProductSectionProps {
 
 export default function BestProductSection({ items }: BestProductSectionProps) {
   const router = useRouter();
-  const handleClick = (id: number) => {
+  const handleClick = (id: string | number) => {
     router.push(`/items/${id}`);
   };
 

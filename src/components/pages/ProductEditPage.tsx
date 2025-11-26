@@ -56,7 +56,7 @@ const ProductEditPage = ({ productId }: ProductEditPageProps) => {
 
         setFormData({
           name: productData.name,
-          description: productData.description,
+          description: productData.description || '',
           price: productData.price.toString(),
           tags: productData.tags ? productData.tags.join(', ') : '',
           images: productData.images || [],

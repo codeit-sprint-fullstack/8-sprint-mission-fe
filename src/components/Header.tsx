@@ -4,12 +4,12 @@ import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Button from '@/components/Button';
-// import { useAuth } from '@/providers/AuthProvider';
+import { useAuth } from '@/providers/AuthProvider';
 
 export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
-  // const { user, loading, logout } = useAuth();
+  const { user, loading, logout } = useAuth();
 
   const navLinks = [
     {
@@ -66,12 +66,29 @@ export default function Header() {
               ))}
             </nav>
           </div>
-
           {/* 인증 영역 */}
           <div className="flex items-center space-x-4">
-            <Button onClick={handleLoginClick} appearance="primary">
-              로그인
-            </Button>
+            {loading ? null : user ? (
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full overflow-hidden bg-[var(--gray-200)]">
+                  <Image
+                    src={'/images/icon/ic_profile.svg'}
+                    alt="avatar"
+                    width={36}
+                    height={36}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <span className="text-[var(--gray-800)] font-semibold">{user.nickname}</span>
+                {/* <Button onClick={handleLogoutClick} appearance="outline">
+                  로그아웃
+                </Button> */}
+              </div>
+            ) : (
+              <Button onClick={handleLoginClick} appearance="primary">
+                로그인
+              </Button>
+            )}
           </div>
         </div>
       </div>

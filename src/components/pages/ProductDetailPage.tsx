@@ -13,7 +13,7 @@ import { useAuth } from '@/providers/AuthProvider';
 import { Product } from '@/types';
 
 interface ProductDetailPageProps {
-  productId: number;
+  productId: string;
 }
 
 const ProductDetailPage = ({ productId }: ProductDetailPageProps) => {

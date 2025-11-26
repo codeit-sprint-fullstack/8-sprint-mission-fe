@@ -7,7 +7,7 @@ import DropdownMenu from '@/components/DropdownMenu';
 import { useCommentSection } from '@/hooks/useCommentSection';
 
 interface CommentSectionProps {
-  articleId: number;
+  articleId: string;
 }
 
 export default function CommentSection({ articleId }: CommentSectionProps) {
@@ -110,7 +110,7 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
                         onKeyDown={(e) => {
                           if (e.key === 'Enter' && !e.shiftKey) {
                             e.preventDefault();
-                            handleUpdateComment(c.id);
+                            handleUpdateComment(String(c.id));
                           }
                         }}
                       />
@@ -118,7 +118,7 @@ export default function CommentSection({ articleId }: CommentSectionProps) {
                         <Button
                           type="button"
                           appearance="primary"
-                          onClick={() => handleUpdateComment(c.id)}
+                          onClick={() => handleUpdateComment(String(c.id))}
                           disabled={commentLoading || !editingText.trim()}
                         >
                           수정

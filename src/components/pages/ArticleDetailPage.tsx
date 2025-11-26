@@ -7,7 +7,7 @@ import ArticleDetailSection from '@/components/article/ArticleDetailSection';
 import ArticleCommentSection from '@/components/article/ArticleCommentSection';
 
 interface ArticleDetailPageProps {
-  articleId: number;
+  articleId: string;
 }
 
 export default function ArticleDetailPage({ articleId }: ArticleDetailPageProps) {

@@ -41,3 +41,6 @@ yarn-error.log*
 next-env.d.ts
 
 .history
+
+# 빌드 결과물
+dist/

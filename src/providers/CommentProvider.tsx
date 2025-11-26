@@ -9,12 +9,12 @@ interface CommentContextValue {
   comments: Comment[];
   loading: boolean;
   error: string | null;
-  createArticleComment: (articleId: number, commentData: CreateCommentData) => Promise<Comment>;
-  getArticleComments: (articleId: number, params?: CommentParams) => Promise<Comment[]>;
-  createProductComment: (productId: number, commentData: CreateCommentData) => Promise<Comment>;
-  getProductComments: (productId: number, params?: CommentParams) => Promise<Comment[]>;
-  updateComment: (commentId: number, commentData: UpdateCommentData) => Promise<Comment>;
-  deleteComment: (commentId: number) => Promise<void>;
+  createArticleComment: (articleId: string, commentData: CreateCommentData) => Promise<Comment>;
+  getArticleComments: (articleId: string, params?: CommentParams) => Promise<Comment[]>;
+  createProductComment: (productId: string, commentData: CreateCommentData) => Promise<Comment>;
+  getProductComments: (productId: string, params?: CommentParams) => Promise<Comment[]>;
+  updateComment: (commentId: string , commentData: UpdateCommentData) => Promise<Comment>;
+  deleteComment: (commentId: string) => Promise<void>;
 }
 
 const CommentContext = createContext<CommentContextValue | undefined>(undefined);
@@ -43,7 +43,7 @@ export default function CommentProvider({ children }: CommentProviderProps) {
   }, []);
 
   const createArticleComment = useCallback(
-    async (articleId: number, commentData: CreateCommentData) => {
+    async (articleId: string, commentData: CreateCommentData) => {
       try {
         setLoading(true);
         setError(null);
@@ -61,7 +61,7 @@ export default function CommentProvider({ children }: CommentProviderProps) {
   );
 
   const getArticleComments = useCallback(
-    async (articleId: number, params: CommentParams = {}) => {
+    async (articleId: string, params: CommentParams = {}) => {
       try {
         setLoading(true);
         setError(null);
@@ -79,7 +79,7 @@ export default function CommentProvider({ children }: CommentProviderProps) {
   );
 
   const createProductComment = useCallback(
-    async (productId: number, commentData: CreateCommentData) => {
+    async (productId: string, commentData: CreateCommentData) => {
       try {
         setLoading(true);
         setError(null);
@@ -97,7 +97,7 @@ export default function CommentProvider({ children }: CommentProviderProps) {
   );
 
   const getProductComments = useCallback(
-    async (productId: number, params: CommentParams = {}) => {
+    async (productId: string, params: CommentParams = {}) => {
       try {
         setLoading(true);
         setError(null);
@@ -115,7 +115,7 @@ export default function CommentProvider({ children }: CommentProviderProps) {
   );
 
   const updateComment = useCallback(
-    async (commentId: number, commentData: UpdateCommentData) => {
+    async (commentId: string | number, commentData: UpdateCommentData) => {
       try {
         setLoading(true);
         setError(null);
@@ -140,7 +140,7 @@ export default function CommentProvider({ children }: CommentProviderProps) {
   );
 
   const deleteComment = useCallback(
-    async (commentId: number) => {
+    async (commentId: string | number) => {
       try {
         setLoading(true);
         setError(null);

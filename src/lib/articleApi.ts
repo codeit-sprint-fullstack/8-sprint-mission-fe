@@ -7,6 +7,11 @@ import {
   ArticleParams,
   ArticleFavoriteResponse,
 } from '@/types';
+import {
+  articleSchema,
+  articlesResponseSchema,
+  articleFavoriteResponseSchema,
+} from '@/schemas';
 
 /**
  * 게시글 목록 조회
@@ -17,26 +22,33 @@ export const getArticles = async (params: ArticleParams = {}): Promise<ArticlesR
   if (params.limit) searchParams.append('limit', params.limit.toString());
   if (params.sort) searchParams.append('sort', params.sort);
   if (params.search) searchParams.append('search', params.search);
-  return api.get(`/articles?${searchParams.toString()}`) as Promise<ArticlesResponse>;
+  const response = await api.get(`/articles?${searchParams.toString()}`);
+  return articlesResponseSchema.parse(response);
 };
 
 /**
  * 베스트 게시글 조회 (좋아요 많은 순)
  */
-export const getBestArticles = async (): Promise<ArticlesResponse> =>
-  api.get('/articles?limit=3&sort=favorite') as Promise<ArticlesResponse>;
+export const getBestArticles = async (): Promise<ArticlesResponse> => {
+  const response = await api.get('/articles?limit=3&sort=favorite');
+  return articlesResponseSchema.parse(response);
+};
 
 /**
  * 게시글 상세 조회
  */
-export const getArticleById = async (articleId: number): Promise<Article> =>
-  api.get(`/articles/${articleId}`) as Promise<Article>;
+export const getArticleById = async (articleId: string | number): Promise<Article> => {
+  const response = await api.get(`/articles/${articleId}`);
+  return articleSchema.parse(response);
+};
 
 /**
  * 게시글 등록
  */
-export const createArticle = async (articleData: CreateArticleData): Promise<Article> =>
-  api.post('/articles', articleData, { auth: true }) as Promise<Article>;
+export const createArticle = async (articleData: CreateArticleData): Promise<Article> => {
+  const response = await api.post('/articles', articleData, { auth: true });
+  return articleSchema.parse(response);
+};
 
 /**
  * 게시글 검색
@@ -68,15 +80,17 @@ export const getArticlesSorted = async (
  * 게시글 수정
  */
 export const updateArticle = async (
-  articleId: number,
+  articleId: string | number,
   articleData: UpdateArticleData,
-): Promise<Article> =>
-  api.patch(`/articles/${articleId}`, articleData, { auth: true }) as Promise<Article>;
+): Promise<Article> => {
+  const response = await api.patch(`/articles/${articleId}`, articleData, { auth: true });
+  return articleSchema.parse(response);
+};
 
 /**
  * 게시글 삭제
  */
-export const deleteArticle = async (articleId: number): Promise<void> => {
+export const deleteArticle = async (articleId: string | number): Promise<void> => {
   await api.delete(`/articles/${articleId}`, { auth: true });
 };
 
@@ -84,11 +98,12 @@ export const deleteArticle = async (articleId: number): Promise<void> => {
  * 게시글 좋아요 토글
  */
 export const toggleArticleFavorite = async (
-  articleId: number,
+  articleId: string | number,
 ): Promise<ArticleFavoriteResponse> => {
-  return api.post(
+  const response = await api.post(
     `/articles/${articleId}/favorite`,
     {},
     { auth: true },
-  ) as Promise<ArticleFavoriteResponse>;
+  );
+  return articleFavoriteResponseSchema.parse(response);
 };
