@@ -3,7 +3,11 @@
 import Link from "next/link";
 import Image from "next/image";
 
-const GoBackButton = ({ href }) => {
+interface GoBackButtonProps {
+  href: string;
+}
+
+const GoBackButton = ({ href }: GoBackButtonProps) => {
   return (
     <Link href={href} className="flex justify-center items-center mt-16">
       <div className="flex justify-center items-center w-60 h-12 px-16 py-3 gap-2 bg-[#3692FF] rounded-[40px]">
