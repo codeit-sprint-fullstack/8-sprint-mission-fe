@@ -1,6 +1,6 @@
 'use client';
 
-import { useGetArticles } from '@/hooks/queries/useArticleQueries';
+import { useGetArticleInfinityScroll } from '@/hooks/queries/useArticleQueries';
 import useDebounce from '@/hooks/useDebounce';
 import { useState } from 'react';
 import { Article } from '@/types/article';
@@ -13,6 +13,7 @@ import DropDown from '@/components/common/DropDown';
 import ArticleList from '@/components/features/articles/ArticleList';
 import { convertTz } from '@/libs/day';
 import EmptyBoard from '@/components/common/EmptyBoard';
+import { useInfiniteScrollObserver } from '@/hooks/useInfiniteScrollObserver';
 
 const ArticlesPage = () => {
   const router = useRouter();
@@ -20,9 +21,23 @@ const ArticlesPage = () => {
   const [searchValue, setSearchValue] = useState<string>('');
   const debouncedSearchValue = useDebounce(searchValue, 500);
 
-  const { data: articles, isLoading } = useGetArticles(sort, debouncedSearchValue);
+  const {
+    data: infiniteArticles,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+  } = useGetArticleInfinityScroll({ sort, searchQuery: debouncedSearchValue, limit: 15 });
 
-  const bestArticles = articles?.data?.articles
+  const { targetRef } = useInfiniteScrollObserver({
+    hasNextPage,
+    isFetchingNextPage,
+    onLoadMore: fetchNextPage,
+  });
+
+  const allArticles = infiniteArticles?.pages.flatMap((page) => page.data?.articles) ?? [];
+
+  const bestArticles = allArticles
     .sort((a: Article, b: Article) => b.likeCount - a.likeCount)
     .slice(0, 3);
 
@@ -64,8 +79,8 @@ const ArticlesPage = () => {
             />
           </div>
           <div className="flex flex-col justify-center gap-6">
-            {articles?.data?.articles && articles?.data?.articles.length > 0
-              ? articles?.data?.articles.map((article: Article) => (
+            {allArticles.length > 0
+              ? allArticles.map((article: Article) => (
                   <ArticleList
                     key={article.id}
                     id={article.id}
@@ -78,6 +93,8 @@ const ArticlesPage = () => {
               : !isLoading && <EmptyBoard type="article" />}
           </div>
         </div>
+        <div ref={targetRef} className="flex h-10 justify-center" />
+        {isFetchingNextPage && <LoadingSpinner />}
       </div>
     </>
   );

@@ -5,6 +5,21 @@ export const getArticles = async (sort: 'recent' | 'likes', searchQuery: string)
   return res.data;
 };
 
+export const getArticlesInfinityScroll = async ({
+  sort,
+  searchQuery,
+  page,
+  limit,
+}: {
+  sort: 'recent' | 'likes';
+  searchQuery: string;
+  page: number;
+  limit: number;
+}) => {
+  const res = await api.get('/articles', { params: { sort, searchQuery, page, limit } });
+  return res.data;
+};
+
 export const getDetailArticle = async (id: string) => {
   const res = await api.get(`/articles/${id}`);
   return res.data;
