@@ -14,10 +14,11 @@ import ArticleList from '@/components/features/articles/ArticleList';
 import { convertTz } from '@/libs/day';
 import EmptyBoard from '@/components/common/EmptyBoard';
 import { useInfiniteScrollObserver } from '@/hooks/useInfiniteScrollObserver';
+import { useGetBestArticles } from '@/hooks/queries/useArticleQueries';
 
 const ArticlesPage = () => {
   const router = useRouter();
-  const [sort, setSort] = useState<'recent' | 'likes'>('recent');
+  const [sortOption, setSortOption] = useState<'recent' | 'like'>('recent');
   const [searchValue, setSearchValue] = useState<string>('');
   const debouncedSearchValue = useDebounce(searchValue, 500);
 
@@ -27,7 +28,7 @@ const ArticlesPage = () => {
     hasNextPage,
     isFetchingNextPage,
     isLoading,
-  } = useGetArticleInfinityScroll({ sort, searchQuery: debouncedSearchValue, limit: 15 });
+  } = useGetArticleInfinityScroll({ sortOption, searchQuery: debouncedSearchValue, limit: 15 });
 
   const { targetRef } = useInfiniteScrollObserver({
     hasNextPage,
@@ -35,11 +36,9 @@ const ArticlesPage = () => {
     onLoadMore: fetchNextPage,
   });
 
-  const allArticles = infiniteArticles?.pages.flatMap((page) => page.data?.articles) ?? [];
+  const { data: bestArticles } = useGetBestArticles();
 
-  const bestArticles = allArticles
-    .sort((a: Article, b: Article) => b.likeCount - a.likeCount)
-    .slice(0, 3);
+  const allArticles = infiniteArticles?.pages.flatMap((page) => page.data?.articles) ?? [];
 
   return (
     <>
@@ -48,12 +47,13 @@ const ArticlesPage = () => {
         <div className="flex w-full flex-col gap-6">
           <div className="text-coolGray-900 text-xl font-bold">베스트 게시글</div>
           <div className="flex w-full items-center gap-6">
-            {bestArticles?.map((article: Article, index: number) => (
+            {bestArticles?.data?.articles?.map((article: Article, index: number) => (
               <BestArticleCard
                 key={article.id}
                 id={article.id}
                 rank={index + 1}
                 title={article.title}
+                nickname={article.owner?.nickname}
                 like={article.likeCount}
                 date={article.createdAt}
               />
@@ -69,11 +69,11 @@ const ArticlesPage = () => {
             <SearchInput size="lg" value={searchValue} setValue={setSearchValue} />
             <DropDown
               type="sort"
-              selected={sort}
+              selected={sortOption}
               handlers={null}
               onChange={(option) => {
-                if (option === 'recent' || option === 'likes') {
-                  setSort(option);
+                if (option === 'recent' || option === 'like') {
+                  setSortOption(option as 'recent' | 'like');
                 }
               }}
             />

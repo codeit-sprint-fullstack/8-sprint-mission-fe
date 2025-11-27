@@ -36,8 +36,8 @@ const DetailArticlePage = () => {
           <div>
             <AddComment id={id} type="article" />
             <div>
-              {comments?.data && comments?.data.length > 0 ? (
-                comments?.data.map((comment: Comment) => (
+              {comments?.data?.comments && comments?.data?.comments.length > 0 ? (
+                comments?.data?.comments.map((comment: Comment) => (
                   <CommentReplyCard
                     key={comment.id}
                     id={id}

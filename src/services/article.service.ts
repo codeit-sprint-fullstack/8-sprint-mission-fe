@@ -1,22 +1,29 @@
 import api from '@/libs/api';
 
-export const getArticles = async (sort: 'recent' | 'likes', searchQuery: string) => {
+export const getArticles = async (sort: 'recent' | 'like', searchQuery: string) => {
   const res = await api.get('/articles', { params: { sort, searchQuery } });
   return res.data;
 };
 
 export const getArticlesInfinityScroll = async ({
-  sort,
+  sortOption,
   searchQuery,
   page,
   limit,
 }: {
-  sort: 'recent' | 'likes';
+  sortOption: 'recent' | 'like';
   searchQuery: string;
   page: number;
   limit: number;
 }) => {
-  const res = await api.get('/articles', { params: { sort, searchQuery, page, limit } });
+  const res = await api.get('/articles', {
+    params: { sort: sortOption, searchQuery, page, limit },
+  });
+  return res.data;
+};
+
+export const getBestArticles = async () => {
+  const res = await api.get('/articles', { params: { sort: 'like', limit: 3 } });
   return res.data;
 };
 

@@ -6,18 +6,20 @@ const BestArticleCard = ({
   id = '',
   rank = 0,
   title = '',
+  nickname = '',
   like = 0,
   date = '',
 }: {
   id: string;
   rank: number;
   title: string;
+  nickname: string;
   like: number;
   date: string;
 }) => {
   return (
     <Link
-      href={`/article/${id}`}
+      href={`/articles/${id}`}
       className="bg-coolGray-50 flex w-full flex-col items-start rounded-[8px] px-6"
     >
       <div className="bg-primary-100 flex items-center justify-center gap-[10px] rounded-b-[8px] px-[24px] py-[2px]">
@@ -30,7 +32,7 @@ const BestArticleCard = ({
       </div>
       <div className="flex w-full items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="text-secondary-600 text-sm leading-[24px] font-normal">총명한판다</div>
+          <div className="text-secondary-600 text-sm leading-[24px] font-normal">{nickname}</div>
           <div className="flex items-center gap-1">
             <Image src="/icons/ic_heart.svg" alt="ic_heart" width={16} height={16} />
             <div className="text-secondary-500 text-sm leading-[24px] font-normal">{like}</div>

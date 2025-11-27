@@ -23,7 +23,7 @@ const DetailArticleCard = ({ id }: { id: string }) => {
       <div className="flex flex-col">
         <div className="flex items-center justify-between">
           <div className="text-secondary-800 text-xl leading-[32px] font-bold">
-            {article?.data?.title}
+            {article?.data?.article?.title}
           </div>
           <DropDown
             type="modify"
@@ -37,7 +37,7 @@ const DetailArticleCard = ({ id }: { id: string }) => {
             <Image src="/icons/ic_profile.svg" alt="ic_profile" width={40} height={40} />
             <div className="flex items-center gap-2">
               <div className="text-secondary-600 text-sm leading-[24px] font-medium">
-                총명한판다
+                {article?.data?.article?.owner?.nickname}
               </div>
               <div className="text-secondary-400 text-sm leading-[24px] font-normal">
                 {convertTz(article?.data?.createdAt)}
@@ -53,11 +53,11 @@ const DetailArticleCard = ({ id }: { id: string }) => {
           >
             <path d="M1 0V34" stroke="#E5E7EB" />
           </svg>
-          <HeartTag like={article?.data?.likeCount || 0} />
+          <HeartTag like={article?.data?.article?.likeCount || 0} />
         </div>
       </div>
       <div className="text-secondary-800 text-lg leading-[26px] font-normal">
-        {article?.data?.content}
+        {article?.data?.article?.content}
       </div>
     </div>
   );
