@@ -6,8 +6,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "@/providers/AuthProvider";
 
+interface User {
+  nickname?: string;
+}
+
 const Header = () => {
-  const { user } = useAuth();
+  const { user } = useAuth() as { user: User | null };
 
   return (
     <header className="sticky top-0 z-[100] flex justify-center items-center w-full h-[70px] border-b border-[#DFDFDF] bg-white">
