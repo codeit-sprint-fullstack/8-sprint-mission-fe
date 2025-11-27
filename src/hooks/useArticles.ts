@@ -1,22 +1,32 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { fetchArticles } from "@/api/articles";
-import { Article, UseParams } from "@/types/entities";
+import { Article, UseCursorParams } from "@/types/entities";
 
-export function useArticles(initPage = 1, initLimit = 10) {
+export function useArticles(initLimit = 10) {
   const [articles, setArticles] = useState<Article[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [page, setPage] = useState<number>(initPage);
+  const [cursor, setCursor] = useState<string | undefined>(undefined);
+  const [hasMore, setHasMore] = useState<boolean>(true);
   const [limit, setLimit] = useState<number>(initLimit);
 
-  const loadArticles = async (params: UseParams = {}): Promise<void> => {
-    const { page: p = page, limit: l = limit } = params;
+  const loadArticles = async (params: UseCursorParams = { cursor, limit }) => {
+    if (loading || !hasMore) return;
 
     try {
       setLoading(true);
       setError(null);
-      const data: Article[] = await fetchArticles({ page: p, limit: l });
-      setArticles(data);
+      const data: Article[] = await fetchArticles(params);
+
+      if (data.length === 0) {
+        setHasMore(false);
+        return;
+      }
+
+      setArticles((prev) => [...prev, ...data]);
+
+      const lastArticle = data[data.length - 1];
+      setCursor(lastArticle.id);
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
     } finally {
@@ -24,18 +34,18 @@ export function useArticles(initPage = 1, initLimit = 10) {
     }
   };
 
-  useEffect(() => {
-    loadArticles({ page, limit });
-  }, [page, limit]);
+  const resetArticles = (): void => {
+    setArticles([]);
+    setCursor(undefined);
+    setHasMore(true);
+  };
 
   return {
     articles,
     loading,
     error,
     loadArticles,
-    page,
-    limit,
-    setPage,
-    setLimit,
+    resetArticles,
+    hasMore,
   };
 }

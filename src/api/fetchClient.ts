@@ -9,9 +9,14 @@ export const defaultFetch = async <T = unknown>(
   options: FetchOptions = {}
 ): Promise<T> => {
   const baseURL = process.env.NEXT_PUBLIC_API_URL;
+  if (!baseURL) {
+    throw new Error("NEXT_PUBLIC_API_URL 환경변수가 설정되지 않았습니다.");
+  }
+
   const finalUrl = url.startsWith("http")
     ? url
-    : `${baseURL}${url.startsWith("/") ? "" : "/"}${url}`;
+    : `${baseURL.replace(/\/$/, "")}/${url.replace(/^\//, "")}`;
+
   const accessToken = localStorage.getItem("accessToken"); //CORS 문제 해결을 위해 로컬스토리지에서 토큰 가져오기
 
   const defaultOptions: FetchOptions = {
@@ -32,14 +37,13 @@ export const defaultFetch = async <T = unknown>(
     },
   };
 
-  console.log("요청 URL:", finalUrl);
-
   try {
     const response = await fetch(finalUrl, mergedOptions);
+    console.log("요청 URL:", finalUrl);
 
     if (!response.ok) {
-      const text = await response.text();
-      console.error(`서버 응답 오류: ${text}`);
+      // const text = await response.text();
+      // console.error(`서버 응답 오류: ${text}`);
       throw new Error(`API error: ${response.status}`);
     }
 
@@ -60,6 +64,10 @@ export const cookieFetch = async <T = unknown>(
   options: FetchOptions = {}
 ): Promise<T> => {
   const baseURL = process.env.NEXT_PUBLIC_API_URL;
+  if (!baseURL) {
+    throw new Error("NEXT_PUBLIC_API_URL 환경변수가 설정되지 않았습니다.");
+  }
+
   const defaultOptions: FetchOptions = {
     headers: {
       "Content-Type": "application/json",

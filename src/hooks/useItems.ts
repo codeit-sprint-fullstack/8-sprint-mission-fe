@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchProducts } from "@/api/product";
-import { Product, UseParams, UseResult } from "@/types/entities";
+import { Product, UseLimitParams, UseResult } from "@/types/entities";
 
 export function useItems(page = 1, limit = 10): UseResult {
   const [items, setItems] = useState<Product[]>([]);
@@ -11,7 +11,7 @@ export function useItems(page = 1, limit = 10): UseResult {
     loadItems({ page, limit });
   }, [page, limit]);
 
-  const loadItems = async (params: UseParams = { page, limit }) => {
+  const loadItems = async (params: UseLimitParams = { page, limit }) => {
     try {
       setLoading(true);
       setError(null);

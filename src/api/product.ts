@@ -1,5 +1,5 @@
 import { defaultFetch } from "./fetchClient";
-import { Product, ProductInput, UseParams } from "@/types/entities";
+import { Product, ProductInput, UseLimitParams } from "@/types/entities";
 
 const PRODUCT_API_URL = "/products";
 
@@ -9,10 +9,14 @@ const formatDate = (date: string) => {
 };
 
 // 상품 목록 조회
-export const fetchProducts = async (params?: UseParams): Promise<Product[]> => {
+export const fetchProducts = async (
+  params: UseLimitParams
+): Promise<Product[]> => {
   const query = new URLSearchParams();
   if (params?.page) query.append("page", params.page.toString());
   if (params?.limit) query.append("limit", params.limit.toString());
+  if (params?.search) query.append("search", params.search);
+  if (params?.order) query.append("order", params.order);
 
   const data = await defaultFetch<{ list: Product[] }>(
     `${PRODUCT_API_URL}?${query.toString()}`

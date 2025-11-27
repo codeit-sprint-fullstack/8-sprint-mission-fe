@@ -34,16 +34,25 @@ export interface ArticleInput {
   images: string[];
 }
 
-export interface UseParams {
+export interface UseLimitParams {
   page?: number;
   limit?: number;
+  search?: string;
+  order?: string;
+}
+
+export interface UseCursorParams {
+  cursor?: string;
+  limit?: number;
+  search?: string;
+  order?: string;
 }
 
 export interface UseResult {
   items: Product[];
   loading: boolean;
   error: string | null;
-  loadItems: (params?: UseParams) => Promise<void>;
+  loadItems: (params?: UseLimitParams) => Promise<void>;
 }
 
 export interface Comment {
