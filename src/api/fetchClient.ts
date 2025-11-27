@@ -2,7 +2,12 @@ export interface FetchOptions extends RequestInit {
   headers?: Record<string, string>;
 }
 
-export const defaultFetch = async (url: string, options: FetchOptions = {}) => {
+type FetchResult = Record<string, unknown> | { status: number; ok: boolean };
+
+export const defaultFetch = async (
+  url: string,
+  options: FetchOptions = {}
+): Promise<FetchResult> => {
   const baseURL = process.env.NEXT_PUBLIC_API_URL;
   const finalUrl = url.startsWith("http")
     ? url
@@ -50,7 +55,10 @@ export const defaultFetch = async (url: string, options: FetchOptions = {}) => {
   }
 };
 
-export const cookieFetch = async (url: string, options: FetchOptions = {}) => {
+export const cookieFetch = async (
+  url: string,
+  options: FetchOptions = {}
+): Promise<FetchResult> => {
   const baseURL = process.env.NEXT_PUBLIC_API_URL;
   const defaultOptions: FetchOptions = {
     headers: {
