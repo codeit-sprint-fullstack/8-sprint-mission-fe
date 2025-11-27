@@ -36,7 +36,7 @@ interface AuthProviderProps {
 export default function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null | undefined>(undefined);
 
-  const getUser = async () => {
+  const getUser = async (): Promise<User | null> => {
     try {
       const userData = await userService.getMe();
       setUser(userData);
@@ -44,6 +44,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     } catch (error) {
       console.error("사용자 정보를 가져오는데 실패했습니다:", error);
       setUser(null);
+      return null;
     }
   };
 
@@ -84,20 +85,28 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   };
 
   // // 로그아웃
-  // const logout = async () => {
+  // const logout = async (): Promise<void> => {
   //   try {
   //     await authService.logout?.();
   //   } catch (error) {
   //     console.warn("로그아웃 API 호출 실패 (무시 가능):", error);
   //   } finally {
   //     setUser(null);
+  //     localStorage.removeItem("accessToken");
   //   }
   // };
 
   // 유저 정보 업데이트
   const updateUser = async (formData: Partial<User>): Promise<void> => {
     try {
-      const updatedUser = await userService.updateMe(formData);
+      const form = new FormData();
+      Object.entries(formData).forEach(([key, value]) => {
+        if (value !== undefined && value !== null) {
+          form.append(key, value as string | Blob); // image도 Blob 가능
+        }
+      });
+
+      const updatedUser = await userService.updateMe(form);
       setUser(updatedUser);
     } catch (error) {
       console.error("사용자 정보 업데이트 실패:", error);

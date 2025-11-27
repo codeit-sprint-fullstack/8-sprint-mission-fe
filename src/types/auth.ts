@@ -32,6 +32,7 @@ export interface LoginProps {
 export interface AuthContextType {
   user: User | null | undefined;
   login: (props: LoginProps) => Promise<User | null>;
+  logout?: () => Promise<void>;
   signUp: (
     params: Omit<SignUpParams, "passwordConfirmation"> & {
       passwordConfirmation: string;
