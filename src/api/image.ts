@@ -1,7 +1,10 @@
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 const IMAGE_API_URL = `${BASE_URL}/images`;
 
-export const uploadImage = async (file) => {
+export const uploadImage = async (
+  file: File,
+  token: string
+): Promise<string> => {
   const formData = new FormData();
   formData.append("image", file);
 
@@ -17,6 +20,6 @@ export const uploadImage = async (file) => {
     throw new Error(`이미지 업로드 실패: ${res.status}`);
   }
 
-  const data = await res.json();
+  const data: { url: string } = await res.json();
   return data.url;
 };
