@@ -11,14 +11,21 @@ import SocialLogin from "@/components/AuthPage/SocialLogin";
 import Modal from "@/components/AuthPage/Modal";
 import { authService } from "@/api/auth";
 
+interface SignupPayload {
+  nickname: string;
+  email: string;
+  password: string;
+  passwordConfirmation: string;
+}
+
 const SignupPage = () => {
-  const [email, setEmail] = useState("");
-  const [nickname, setNickname] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
-  const [error, setError] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalMessage, setModalMessage] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [nickname, setNickname] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirm, setConfirm] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [modalMessage, setModalMessage] = useState<string>("");
 
   const router = useRouter();
 
@@ -30,7 +37,12 @@ const SignupPage = () => {
   }, [router]);
 
   const signupMutation = useMutation({
-    mutationFn: ({ nickname, email, password, passwordConfirmation }) =>
+    mutationFn: ({
+      nickname,
+      email,
+      password,
+      passwordConfirmation,
+    }: SignupPayload) =>
       authService.signUp(nickname, email, password, passwordConfirmation),
     onSuccess: () => router.push("/login"),
     onError: (err) => {
