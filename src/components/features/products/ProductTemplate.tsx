@@ -10,7 +10,7 @@ interface ProductTemplateProps {
   setSearchValue: (value: string) => void;
   orderBy: 'recent' | 'like';
   setOrderBy: (orderBy: 'recent' | 'like') => void;
-  products: Product[];
+  products?: Product[];
 }
 
 const ProductTemplate = ({
@@ -39,16 +39,17 @@ const ProductTemplate = ({
         </div>
       </div>
       <div className="grid w-full grid-cols-5 gap-x-6 gap-y-10">
-        {products?.map((product) => (
-          <ProductCard
-            key={product.id}
-            id={product.id}
-            type="normal"
-            name={product.name}
-            price={product.price}
-            likeCount={product.likeCount}
-          />
-        ))}
+        {products &&
+          products.map((product) => (
+            <ProductCard
+              key={product.id}
+              id={product.id}
+              type="normal"
+              name={product.name}
+              price={product.price}
+              likeCount={product.likeCount}
+            />
+          ))}
       </div>
     </div>
   );

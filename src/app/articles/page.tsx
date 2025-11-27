@@ -22,8 +22,7 @@ const ArticlesPage = () => {
 
   const { data: articles, isLoading } = useGetArticles(sort, debouncedSearchValue);
 
-  const bestArticles = articles?.data
-    .slice()
+  const bestArticles = articles?.data?.articles
     .sort((a: Article, b: Article) => b.likeCount - a.likeCount)
     .slice(0, 3);
 
@@ -65,12 +64,13 @@ const ArticlesPage = () => {
             />
           </div>
           <div className="flex flex-col justify-center gap-6">
-            {articles?.data && articles?.data.length > 0
-              ? articles?.data.map((article: Article) => (
+            {articles?.data?.articles && articles?.data?.articles.length > 0
+              ? articles?.data?.articles.map((article: Article) => (
                   <ArticleList
                     key={article.id}
                     id={article.id}
                     title={article.title}
+                    nickname={article.owner?.nickname}
                     like={article.likeCount}
                     date={convertTz(article.createdAt)}
                   />

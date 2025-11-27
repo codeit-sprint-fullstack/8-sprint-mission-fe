@@ -20,7 +20,7 @@ const ProductsPage = () => {
     page,
   );
   const { data: bestProductsData, isLoading: isBestProductsLoading } = useGetBestProducts();
-  const bestProducts = bestProductsData?.data;
+  const bestProducts = bestProductsData?.data?.products;
 
   return (
     <>
@@ -33,7 +33,7 @@ const ProductsPage = () => {
             setSearchValue={setSearchValue}
             orderBy={orderBy}
             setOrderBy={setOrderBy}
-            products={products?.data}
+            products={products?.data?.products}
           />
         </div>
         <Pagination

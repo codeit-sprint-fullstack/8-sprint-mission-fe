@@ -4,7 +4,7 @@ import Image from 'next/image';
 const ArticleList = ({
   id = '',
   title = '',
-  nickname,
+  nickname = '',
   like = 0,
   date = '',
 }: {
@@ -26,9 +26,7 @@ const ArticleList = ({
       <div className="flex w-full items-center justify-between">
         <div className="flex items-center gap-2">
           <Image src="/icons/ic_profile.svg" alt="ic_profile" width={24} height={24} />
-          <div className="text-secondary-600 text-sm leading-[24px] font-normal">
-            {nickname ?? '총명한판다'}
-          </div>
+          <div className="text-secondary-600 text-sm leading-[24px] font-normal">{nickname}</div>
           <div className="text-secondary-400 text-sm leading-[24px] font-normal">{date}</div>
         </div>
         <div className="flex items-center gap-2">
