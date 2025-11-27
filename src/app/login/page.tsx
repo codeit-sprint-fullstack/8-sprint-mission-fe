@@ -29,7 +29,7 @@ const LoginPage = () => {
     }
 
     try {
-      const userData = await login(email, password);
+      const userData = await login({ email, password });
 
       if (userData) {
         router.push("/items");
@@ -60,6 +60,7 @@ const LoginPage = () => {
           <InputField
             title="이메일"
             type="email"
+            id="email"
             placeholder="이메일을 입력해주세요."
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -68,6 +69,7 @@ const LoginPage = () => {
           <InputField
             title="비밀번호"
             type="password"
+            id="password"
             placeholder="비밀번호을 입력해주세요."
             value={password}
             onChange={(e) => setPassword(e.target.value)}

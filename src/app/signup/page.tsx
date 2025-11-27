@@ -43,7 +43,7 @@ const SignupPage = () => {
       password,
       passwordConfirmation,
     }: SignupPayload) =>
-      authService.signUp(nickname, email, password, passwordConfirmation),
+      authService.signUp({ nickname, email, password, passwordConfirmation }),
     onSuccess: () => router.push("/login"),
     onError: (err) => {
       setModalMessage(
