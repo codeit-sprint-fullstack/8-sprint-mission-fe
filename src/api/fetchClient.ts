@@ -1,11 +1,15 @@
-export const defaultFetch = async (url, options = {}) => {
+export interface FetchOptions extends RequestInit {
+  headers?: Record<string, string>;
+}
+
+export const defaultFetch = async (url: string, options: FetchOptions = {}) => {
   const baseURL = process.env.NEXT_PUBLIC_API_URL;
   const finalUrl = url.startsWith("http")
     ? url
     : `${baseURL}${url.startsWith("/") ? "" : "/"}${url}`;
   const accessToken = localStorage.getItem("accessToken"); //CORS 문제 해결을 위해 로컬스토리지에서 토큰 가져오기
 
-  const defaultOptions = {
+  const defaultOptions: FetchOptions = {
     headers: {
       "Content-Type": "application/json",
       ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
@@ -14,7 +18,7 @@ export const defaultFetch = async (url, options = {}) => {
     cache: "no-store",
   };
 
-  const mergedOptions = {
+  const mergedOptions: FetchOptions = {
     ...defaultOptions,
     ...options,
     headers: {
@@ -46,9 +50,9 @@ export const defaultFetch = async (url, options = {}) => {
   }
 };
 
-export const cookieFetch = async (url, options = {}) => {
+export const cookieFetch = async (url: string, options: FetchOptions = {}) => {
   const baseURL = process.env.NEXT_PUBLIC_API_URL;
-  const defaultOptions = {
+  const defaultOptions: FetchOptions = {
     headers: {
       "Content-Type": "application/json",
     },
@@ -56,7 +60,7 @@ export const cookieFetch = async (url, options = {}) => {
     cache: "no-store",
   };
 
-  const mergedOptions = {
+  const mergedOptions: FetchOptions = {
     ...defaultOptions,
     ...options,
     headers: {
