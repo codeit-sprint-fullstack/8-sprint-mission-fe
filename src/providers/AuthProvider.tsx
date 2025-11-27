@@ -54,7 +54,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     password,
   }: SignupProps): Promise<void> => {
     try {
-      await authService.signUp(nickname, email, password);
+      await authService.signUp({ nickname, email, password });
     } catch (error) {
       console.error("회원가입 실패:", error);
       throw error;
@@ -67,7 +67,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     password,
   }: LoginProps): Promise<User | null> => {
     try {
-      const data = await authService.login(email, password);
+      const data = await authService.login({ email, password });
 
       if (data?.accessToken) {
         localStorage.setItem("accessToken", data.accessToken);
