@@ -2,12 +2,12 @@ import { User } from './user';
 
 // 댓글 기본 타입
 export interface Comment {
-  id: string | null;
+  id: string;
   content: string;
   createdAt: string;
   updatedAt: string;
   writer: User;
-  user?: User;
+  user: User;
   productId?: string;
   articleId?: string;
 }

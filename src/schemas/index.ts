@@ -174,8 +174,8 @@ export const commentSchema = z.object({
   updatedAt: z.string(),
   writer: userSchema,
   user: userSchema.optional(),
-  productId: z.string().uuid().optional(),
-  articleId: z.string().uuid().optional(),
+  productId: z.string().uuid().nullable().optional(),
+  articleId: z.string().uuid().nullable().optional(),
 });
 
 export const createCommentSchema = z.object({
