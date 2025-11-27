@@ -1,9 +1,10 @@
 'use client';
 
 import { useAuthStore } from '@/stores/useAuthStore';
-import { setAccessToken } from '@/libs/token';
+import { clearAccessToken, setAccessToken } from '@/libs/token';
 import api from '@/libs/api';
 import { useRouter } from 'next/navigation';
+import { showToast } from '@/components/common/Sonner';
 
 export const useLogin = () => {
   const { setUser } = useAuthStore();
@@ -28,9 +29,11 @@ export const useLogin = () => {
         setUser(userData);
       }
 
+      showToast({ kind: 'success', message: '로그인에 성공했습니다.' });
       router.push('/');
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      showToast({ kind: 'error', message: '로그인에 실패했습니다.' });
     }
   };
 
@@ -68,9 +71,11 @@ export const useSignup = () => {
         setUser(userData);
       }
 
+      showToast({ kind: 'success', message: '회원가입에 성공했습니다.' });
       router.push('/');
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      showToast({ kind: 'error', message: '회원가입에 실패했습니다.' });
     }
   };
 
@@ -85,10 +90,13 @@ export const useLogout = () => {
     try {
       await api.post('/auth/logout');
       clearUser();
-      setAccessToken(null);
+      clearAccessToken();
+
+      showToast({ kind: 'success', message: '로그아웃에 성공했습니다.' });
       router.push('/');
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      showToast({ kind: 'error', message: '로그아웃에 실패했습니다.' });
     }
   };
 
