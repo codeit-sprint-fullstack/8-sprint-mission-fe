@@ -2,6 +2,7 @@ export interface User {
   id: string;
   email: string;
   nickname: string;
+  image?: string;
   // 필요 시 추가
 }
 

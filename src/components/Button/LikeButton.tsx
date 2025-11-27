@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { likeService } from "@/api/likeService";
+import { useLikeService } from "@/api/likeService";
 
 interface LikeButtonProps {
   targetId: string | number;

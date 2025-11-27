@@ -4,10 +4,10 @@ export interface FetchOptions extends RequestInit {
 
 type FetchResult = Record<string, unknown> | { status: number; ok: boolean };
 
-export const defaultFetch = async (
+export const defaultFetch = async <T = unknown>(
   url: string,
   options: FetchOptions = {}
-): Promise<FetchResult> => {
+): Promise<T> => {
   const baseURL = process.env.NEXT_PUBLIC_API_URL;
   const finalUrl = url.startsWith("http")
     ? url
@@ -45,20 +45,20 @@ export const defaultFetch = async (
 
     const contentType = response.headers.get("content-type");
     if (contentType?.includes("application/json")) {
-      return response.json();
+      return (await response.json()) as T;
     }
 
-    return { status: response.status, ok: response.ok };
-  } catch (err) {
-    console.error("네트워크 에러:", err);
-    throw err;
+    return { status: response.status, ok: response.ok } as unknown as T;
+  } catch (error) {
+    console.error("네트워크 에러:", error);
+    throw error;
   }
 };
 
-export const cookieFetch = async (
+export const cookieFetch = async <T = unknown>(
   url: string,
   options: FetchOptions = {}
-): Promise<FetchResult> => {
+): Promise<T> => {
   const baseURL = process.env.NEXT_PUBLIC_API_URL;
   const defaultOptions: FetchOptions = {
     headers: {
@@ -120,8 +120,8 @@ export const cookieFetch = async (
 
   const contentType = response.headers.get("content-type");
   if (contentType && contentType.includes("application/json")) {
-    return response.json();
+    return (await response.json()) as T;
   }
 
-  return { status: response.status, ok: response.ok };
+  return { status: response.status, ok: response.ok } as unknown as T;
 };
