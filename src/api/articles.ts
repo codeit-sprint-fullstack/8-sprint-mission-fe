@@ -1,5 +1,5 @@
 import { defaultFetch } from "./fetchClient";
-import { Article, ArticleInput } from "@/types/entities";
+import { Article, ArticleInput, UseArticlesParams } from "@/types/entities";
 
 const ARTICLE_API_URL = "/articles";
 
@@ -9,12 +9,23 @@ const formatDate = (date: string) => {
 };
 
 // 게시글 목록 조회
-export const fetchArticles = async (): Promise<Article[]> => {
-  const data = await defaultFetch<{ list: Article[] }>(ARTICLE_API_URL);
+export const fetchArticles = async (
+  params?: UseArticlesParams
+): Promise<Article[]> => {
+  const query = new URLSearchParams();
+  if (params?.page) query.append("page", params.page.toString());
+  if (params?.limit) query.append("limit", params.limit.toString());
+
+  const data = await defaultFetch<{ list: Article[] }>(
+    `${ARTICLE_API_URL}?${query.toString()}`
+  );
+
   return (data.list ?? []).map((a) => ({
     ...a,
     createdAt: formatDate(a.createdAt!),
     updatedAt: formatDate(a.updatedAt!),
+    // createdAt: a.createdAt ? formatDate(a.createdAt) : "",
+    // updatedAt: a.updatedAt ? formatDate(a.updatedAt) : "",
   }));
 };
 
@@ -30,6 +41,8 @@ export const fetchArticle = async (
     nickname: data.nickname ?? "익명 사용자",
     createdAt: formatDate(data.createdAt!),
     updatedAt: formatDate(data.updatedAt!),
+    // createdAt: data.createdAt ? formatDate(data.createdAt) : "",
+    // updatedAt: data.updatedAt ? formatDate(data.updatedAt) : "",
   };
 };
 
