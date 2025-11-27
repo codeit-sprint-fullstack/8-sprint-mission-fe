@@ -45,24 +45,30 @@ export const useSignup = () => {
     email,
     nickname,
     password,
+    passwordConfirm,
   }: {
     email: string;
     nickname: string;
     password: string;
+    passwordConfirm: string;
   }) => {
     try {
-      const res = await api.post('/auth/signup', { email, nickname, password });
+      const res = await api.post('/auth/signup', { email, nickname, password, passwordConfirm });
+      const token = res.data?.data?.accessToken;
+      if (token) {
+        setAccessToken(token);
+      }
 
       const userData = {
-        id: res.data?.data?.id,
-        nickname: res.data?.data?.nickname,
+        id: res.data?.data?.user?.id,
+        nickname: res.data?.data?.user?.nickname,
       };
 
       if (userData) {
         setUser(userData);
       }
 
-      router.push('/auth/login');
+      router.push('/');
     } catch (error) {
       console.log(error);
     }

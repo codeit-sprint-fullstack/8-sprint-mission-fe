@@ -1,7 +1,7 @@
 import api from '@/libs/api';
 
-export const getArticles = async (sort: 'recent' | 'likes', q: string) => {
-  const res = await api.get('/articles', { params: { sort: sort, q: q } });
+export const getArticles = async (sort: 'recent' | 'likes', searchQuery: string) => {
+  const res = await api.get('/articles', { params: { sort, searchQuery } });
   return res.data;
 };
 
