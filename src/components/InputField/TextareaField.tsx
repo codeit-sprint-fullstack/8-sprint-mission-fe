@@ -1,6 +1,20 @@
 "use client";
 
-const TextareaField = ({ title, id, placeholder, value, onChange }) => {
+interface TextareaFieldProps {
+  title: string;
+  id: string;
+  placeholder?: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+}
+
+const TextareaField = ({
+  title,
+  id,
+  placeholder,
+  value,
+  onChange,
+}: TextareaFieldProps) => {
   return (
     <div className="flex flex-col items-start gap-4 w-full mb-8">
       <label htmlFor={id} className="font-semibold text-gray-800">
