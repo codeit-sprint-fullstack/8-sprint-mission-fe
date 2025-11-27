@@ -37,13 +37,8 @@ const SignupPage = () => {
   }, [router]);
 
   const signupMutation = useMutation({
-    mutationFn: ({
-      nickname,
-      email,
-      password,
-      passwordConfirmation,
-    }: SignupPayload) =>
-      authService.signUp({ nickname, email, password, passwordConfirmation }),
+    mutationFn: ({ nickname, email, password }: SignupPayload) =>
+      authService.signUp({ nickname, email, password }),
     onSuccess: () => router.push("/login"),
     onError: (err) => {
       setModalMessage(
