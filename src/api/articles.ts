@@ -1,5 +1,5 @@
 import { defaultFetch } from "./fetchClient";
-import { Article, ArticleInput, UseArticlesParams } from "@/types/entities";
+import { Article, ArticleInput, UseParams } from "@/types/entities";
 
 const ARTICLE_API_URL = "/articles";
 
@@ -9,9 +9,7 @@ const formatDate = (date: string) => {
 };
 
 // 게시글 목록 조회
-export const fetchArticles = async (
-  params?: UseArticlesParams
-): Promise<Article[]> => {
+export const fetchArticles = async (params?: UseParams): Promise<Article[]> => {
   const query = new URLSearchParams();
   if (params?.page) query.append("page", params.page.toString());
   if (params?.limit) query.append("limit", params.limit.toString());

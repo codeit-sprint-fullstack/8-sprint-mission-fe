@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchArticles } from "@/api/articles";
-import { Article, UseArticlesParams } from "@/types/entities";
+import { Article, UseParams } from "@/types/entities";
 
 export function useArticles(initPage = 1, initLimit = 10) {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -9,9 +9,7 @@ export function useArticles(initPage = 1, initLimit = 10) {
   const [page, setPage] = useState<number>(initPage);
   const [limit, setLimit] = useState<number>(initLimit);
 
-  const loadArticles = async (
-    params: UseArticlesParams = {}
-  ): Promise<void> => {
+  const loadArticles = async (params: UseParams = {}): Promise<void> => {
     const { page: p = page, limit: l = limit } = params;
 
     try {

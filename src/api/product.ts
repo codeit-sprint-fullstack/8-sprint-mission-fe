@@ -1,5 +1,5 @@
 import { defaultFetch } from "./fetchClient";
-import { Product, ProductInput } from "@/types/entities";
+import { Product, ProductInput, UseParams } from "@/types/entities";
 
 const PRODUCT_API_URL = "/products";
 
@@ -9,12 +9,21 @@ const formatDate = (date: string) => {
 };
 
 // 상품 목록 조회
-export const fetchProducts = async (): Promise<Product[]> => {
-  const data = await defaultFetch<{ list: Product[] }>(PRODUCT_API_URL);
+export const fetchProducts = async (params?: UseParams): Promise<Product[]> => {
+  const query = new URLSearchParams();
+  if (params?.page) query.append("page", params.page.toString());
+  if (params?.limit) query.append("limit", params.limit.toString());
+
+  const data = await defaultFetch<{ list: Product[] }>(
+    `${PRODUCT_API_URL}?${query.toString()}`
+  );
+
   return (data.list ?? []).map((p) => ({
     ...p,
     createdAt: formatDate(p.createdAt!),
     updatedAt: formatDate(p.updatedAt!),
+    // createdAt: p.createdAt ? formatDate(p.createdAt) : "",
+    // updatedAt: p.updatedAt ? formatDate(p.updatedAt) : "",
   }));
 };
 
@@ -30,6 +39,8 @@ export const fetchProduct = async (
     nickname: data.nickname ?? "테스트판매자",
     createdAt: formatDate(data.createdAt!),
     updatedAt: formatDate(data.updatedAt!),
+    // createdAt: data.createdAt ? formatDate(data.createdAt) : "",
+    // updatedAt: data.updatedAt ? formatDate(data.updatedAt) : "",
   };
 };
 

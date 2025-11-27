@@ -34,9 +34,16 @@ export interface ArticleInput {
   images: string[];
 }
 
-export interface UseArticlesParams {
+export interface UseParams {
   page?: number;
   limit?: number;
+}
+
+export interface UseResult {
+  items: Product[];
+  loading: boolean;
+  error: string | null;
+  loadItems: (params?: UseParams) => Promise<void>;
 }
 
 export interface Comment {
