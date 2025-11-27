@@ -3,7 +3,7 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import Desktop from "@/components/LandingPage/Desktop";
 import InfoCard from "@/components/LandingPage/InfoCard";
-import Deskbottom from "@/components/LandingPage/Deskbottom";
+import DeskBottom from "@/components/LandingPage/DeskBottom";
 
 const LandingPage = () => {
   return (
@@ -14,7 +14,7 @@ const LandingPage = () => {
       <main className="flex-1 flex flex-col items-stretch mx-auto w-full max-w-[1200px]">
         <InfoCard />
       </main>
-      <Deskbottom />
+      <DeskBottom />
 
       <Footer />
     </div>

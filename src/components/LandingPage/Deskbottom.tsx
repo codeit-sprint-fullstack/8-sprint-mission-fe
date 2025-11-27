@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-const Deskbottom = () => {
+const DeskBottom = () => {
   return (
     <section className="relative flex justify-center w-full h-[540px] bg-[#CFE5FF]">
       <div className="absolute bottom-0 flex items-center justify-center gap-7 max-w-[1200px] mx-auto">
@@ -24,4 +24,4 @@ const Deskbottom = () => {
   );
 };
 
-export default Deskbottom;
+export default DeskBottom;
