@@ -1,6 +1,14 @@
 "use client";
 
-const AuthButton = ({ text, onClick, disabled = false }) => {
+import { MouseEventHandler } from "react";
+
+interface AuthButtonProps {
+  text: string;
+  onClick: MouseEventHandler<HTMLButtonElement>;
+  disabled?: boolean;
+}
+
+const AuthButton = ({ text, onClick, disabled = false }: AuthButtonProps) => {
   return (
     <button
       type="submit"
