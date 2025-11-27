@@ -22,11 +22,10 @@ export const authService = {
     nickname,
     email,
     password,
-    passwordConfirmation,
   }: SignupProps): Promise<LoginResponse> => {
     const res = await defaultFetch("/auth/signUp", {
       method: "POST",
-      body: JSON.stringify({ nickname, email, password, passwordConfirmation }),
+      body: JSON.stringify({ nickname, email, password }),
     });
 
     if (res?.accessToken) {
