@@ -34,6 +34,15 @@ export interface ArticleInput {
   images: string[];
 }
 
+export interface Comment {
+  id: string;
+  content: string;
+  userId: string;
+  nickname?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface Favorite {
   id: string;
   type: "product";
