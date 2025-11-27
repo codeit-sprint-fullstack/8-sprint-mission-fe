@@ -76,3 +76,21 @@ export const useSignup = () => {
 
   return { signup };
 };
+
+export const useLogout = () => {
+  const { clearUser } = useAuthStore();
+  const router = useRouter();
+
+  const logout = async () => {
+    try {
+      await api.post('/auth/logout');
+      clearUser();
+      setAccessToken(null);
+      router.push('/');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return { logout };
+};

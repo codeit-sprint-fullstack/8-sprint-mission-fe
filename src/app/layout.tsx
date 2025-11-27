@@ -4,6 +4,7 @@ import Providers from './providers';
 import AuthBootstrapper from '@/components/common/AuthBootstrapper';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
+import { AppToaster } from '@/components/common/Sonner';
 
 import './globals.css';
 
@@ -34,6 +35,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </Providers>
+        <AppToaster />
       </body>
     </html>
   );

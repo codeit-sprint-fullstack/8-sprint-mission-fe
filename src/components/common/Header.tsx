@@ -7,11 +7,13 @@ import { useRouter } from 'next/navigation';
 
 import Button from './Button';
 import { useAuthStore } from '@/stores/useAuthStore';
+import { useLogout } from '@/hooks/useAuth';
 
 const Header = () => {
   const router = useRouter();
   const { user } = useAuthStore();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { logout } = useLogout();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -31,10 +33,7 @@ const Header = () => {
   }, [isDropdownOpen]);
 
   const handleLogout = () => {
-    // TODO: 로그아웃 로직 구현
-    // - 토큰 제거
-    // - 사용자 상태 초기화
-    // - 로그인 페이지로 리다이렉트
+    logout();
     setIsDropdownOpen(false);
   };
 
