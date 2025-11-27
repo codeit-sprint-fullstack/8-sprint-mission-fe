@@ -28,6 +28,12 @@ export interface Article {
   updatedAt?: string;
 }
 
+export interface ArticleInput {
+  title: string;
+  content: string;
+  images: string[];
+}
+
 export interface Favorite {
   id: string;
   type: "product";
