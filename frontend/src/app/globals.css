@@ -39,6 +39,8 @@
   --focus-blue: #1251aa;
   --bg-blue: #cfe5ff;
 
+  --error-red: #f74747;
+
   /* ================= Font Families ================= */
   --font-family: 'Pretendard', sans-serif;
 
@@ -85,8 +87,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* --background: #0a0a0a; */
+    /* --foreground: #ededed; */
   }
 }
 

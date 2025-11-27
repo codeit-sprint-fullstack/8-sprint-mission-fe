@@ -2,11 +2,11 @@ import Link from 'next/link';
 import { ReactNode } from 'react';
 
 interface ButtonProps {
-  to: string | null;
+  to?: string | null;
   className?: string;
   disabled?: boolean;
   onClick?: (() => void) | undefined;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export default function Button({
@@ -16,15 +16,16 @@ export default function Button({
   onClick,
   children,
 }: ButtonProps) {
-  const defaultStyle =
-    'flex text-white items-center justify-center hover:bg-[var(--hover-blue)] focus:bg-[var(--focus-blue)]';
+  const defaultStyle = 'flex text-white items-center justify-center';
 
   return (
     <div>
       {!to && (
         <button
           className={`${defaultStyle} ${
-            disabled ? 'cursor-pointer bg-[var(--Cool-Gray-400)]' : 'bg-[var(--brand-blue)]'
+            disabled
+              ? 'bg-[var(--Cool-Gray-400)]'
+              : 'cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--hover-blue)] focus:bg-[var(--focus-blue)]'
           } ${className}`}
           disabled={disabled}
           {...(onClick ? { onClick } : {})}
@@ -36,7 +37,9 @@ export default function Button({
         <Link
           href={to}
           className={`${defaultStyle} ${
-            disabled ? 'cursor-pointer bg-[var(--Cool-Gray-400)]' : 'bg-[var(--brand-blue)]'
+            disabled
+              ? 'bg-[var(--Cool-Gray-400)]'
+              : 'cursor-pointer bg-[var(--brand-blue)] hover:bg-[var(--hover-blue)] focus:bg-[var(--focus-blue)]'
           } ${className}`}
         >
           {children}
