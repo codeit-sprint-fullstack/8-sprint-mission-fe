@@ -1,18 +1,23 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import Image from "next/image";
 import { uploadImage } from "@/api/image";
 
-const ImageForm = ({ images = [], onChange }) => {
-  const [previewImgs, setPreviewImgs] = useState([]);
+interface ImageFormProps {
+  images?: string[];
+  onChange?: (urls: string[]) => void;
+}
+
+const ImageForm = ({ images = [], onChange }: ImageFormProps) => {
+  const [previewImgs, setPreviewImgs] = useState<string[]>([]);
 
   useEffect(() => {
     if (images?.length) setPreviewImgs(images);
   }, [images]);
 
-  const handleUpload = async (e) => {
-    const files = Array.from(e.target.files);
+  const handleUpload = async (e: ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files ? Array.from(e.target.files) : [];
     if (!files.length) return;
 
     const remainCount = 3 - previewImgs.length;
@@ -22,9 +27,9 @@ const ImageForm = ({ images = [], onChange }) => {
       const token = localStorage.getItem("accessToken");
       if (!token) throw new Error("인증 토큰이 없습니다.");
 
-      const uploadedUrls = [];
+      const uploadedUrls: string[] = [];
       for (const file of selected) {
-        const url = await uploadImage(file, token);
+        const url = await uploadImage({ file, token });
         uploadedUrls.push(url);
       }
 
@@ -36,7 +41,7 @@ const ImageForm = ({ images = [], onChange }) => {
     }
   };
 
-  const handleRemove = (index) => {
+  const handleRemove = (index: number) => {
     const updated = previewImgs.filter((_, i) => i !== index);
     setPreviewImgs(updated);
     onChange?.(updated);
