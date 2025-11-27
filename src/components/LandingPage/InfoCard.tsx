@@ -1,8 +1,16 @@
 import React from "react";
 import Image from "next/image";
 
+interface InfoData {
+  img: string;
+  label: string;
+  title: string;
+  desc: string;
+  reverse: boolean;
+}
+
 const InfoCard = () => {
-  const infoData = [
+  const infoData: InfoData[] = [
     {
       img: "/home_img_01.svg",
       label: "Hot item",
