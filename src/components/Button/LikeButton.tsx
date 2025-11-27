@@ -5,23 +5,25 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { likeService } from "@/api/likeService";
 
+interface LikeButtonProps {
+  targetId: string | number;
+  initialCount?: number;
+  addMethod?: (id: string | number) => Promise<void>;
+  removeMethod?: (id: string | number) => Promise<void>;
+}
+
 const LikeButton = ({
   targetId,
   initialCount = 0,
-  initialLiked = false,
-  service,
   addMethod,
   removeMethod,
-}) => {
+}: LikeButtonProps) => {
   const [liked, setLiked] = useState(false);
   const [count, setCount] = useState(initialCount);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  //백엔드와 연동 후 수정 필요
   const handleClick = async () => {
-    // setLiked((prev) => !prev);
-    // setCount((prev) => (liked ? prev - 1 : prev + 1));
     const token = localStorage.getItem("accessToken");
     if (!token) {
       alert("로그인이 필요한 기능입니다.");
@@ -32,11 +34,11 @@ const LikeButton = ({
     try {
       setLoading(true);
       if (!liked) {
-        await add(targetId);
+        if (addMethod) await addMethod(targetId);
         setLiked(true);
         setCount((prev) => prev + 1);
       } else {
-        await remove(targetId);
+        if (removeMethod) await removeMethod(targetId);
         setLiked(false);
         setCount((prev) => prev - 1);
       }
