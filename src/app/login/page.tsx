@@ -12,11 +12,11 @@ import { authService } from "@/api/auth";
 import { useAuth } from "@/providers/AuthProvider";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalMessage, setModalMessage] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [modalMessage, setModalMessage] = useState<string>("");
 
   const router = useRouter();
 
@@ -34,10 +34,12 @@ const LoginPage = () => {
       if (userData) {
         router.push("/items");
       }
-    } catch (err) {
-      setModalMessage(
-        err.message || "로그인 실패. 이메일 또는 비밀번호를 확인해주세요."
-      );
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error
+          ? err.message
+          : "로그인 실패. 이메일 또는 비밀번호를 확인해주세요.";
+      setModalMessage(message);
       setIsModalOpen(true);
     }
   };

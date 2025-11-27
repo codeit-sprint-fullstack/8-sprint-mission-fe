@@ -2,17 +2,26 @@
 
 import { authService } from "@/api/auth";
 import { userService } from "@/api/userService";
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from "react";
+import { AuthContextType, User, LoginProps } from "@/types/auth";
 
-const AuthContext = createContext({
-  user: null,
-  login: async () => {},
-  // logout: async () => {},
-  signUp: async () => {},
-  updateUser: async () => {},
-});
+// const AuthContext = createContext({
+//   user: null,
+//   login: async () => {},
+//   // logout: async () => {},
+//   signUp: async () => {},
+//   updateUser: async () => {},
+// });
 
-export const useAuth = () => {
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (!context) {
     throw new Error("useAuth must be used within an AuthProvider");
@@ -20,8 +29,19 @@ export const useAuth = () => {
   return context;
 };
 
-export default function AuthProvider({ children }) {
-  const [user, setUser] = useState(undefined);
+interface AuthProviderProps {
+  children: ReactNode;
+}
+
+interface SignupProps {
+  nickname: string;
+  email: string;
+  password: string;
+  passwordConfirmation: string;
+}
+
+export default function AuthProvider({ children }: AuthProviderProps) {
+  const [user, setUser] = useState<User | null | undefined>(undefined);
 
   const getUser = async () => {
     try {
@@ -35,7 +55,11 @@ export default function AuthProvider({ children }) {
   };
 
   // 회원가입
-  const signUp = async (nickname, email, password) => {
+  const signUp = async ({
+    nickname,
+    email,
+    password,
+  }: SignupProps): Promise<void> => {
     try {
       await authService.signUp(nickname, email, password);
     } catch (error) {
@@ -45,7 +69,10 @@ export default function AuthProvider({ children }) {
   };
 
   // 로그인
-  const login = async (email, password) => {
+  const login = async ({
+    email,
+    password,
+  }: LoginProps): Promise<User | null> => {
     try {
       const data = await authService.login(email, password);
 
@@ -59,7 +86,7 @@ export default function AuthProvider({ children }) {
       return userData;
     } catch (error) {
       console.error("로그인 실패:", error);
-      throw error;
+      throw error instanceof Error ? error : new Error("로그인 실패");
     }
   };
 
@@ -75,7 +102,7 @@ export default function AuthProvider({ children }) {
   // };
 
   // 유저 정보 업데이트
-  const updateUser = async (formData) => {
+  const updateUser = async (formData: Partial<User>): Promise<void> => {
     try {
       const updatedUser = await userService.updateMe(formData);
       setUser(updatedUser);
