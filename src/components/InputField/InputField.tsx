@@ -1,7 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import Image from "next/image";
+
+interface InputFieldProps {
+  title: string;
+  type?: "text" | "number" | "email" | "password";
+  id: string;
+  placeholder?: string;
+  value: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+}
 
 const InputField = ({
   title,
@@ -10,7 +19,7 @@ const InputField = ({
   placeholder,
   value,
   onChange,
-}) => {
+}: InputFieldProps) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const isPassword = type === "password";
