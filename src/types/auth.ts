@@ -17,6 +17,13 @@ export interface LoginResponse {
   user?: User;
 }
 
+export interface SignupProps {
+  nickname: string;
+  email: string;
+  password: string;
+  passwordConfirmation: string;
+}
+
 export interface LoginProps {
   email: string;
   password: string;

@@ -1,8 +1,9 @@
 import { defaultFetch } from "@/api/fetchClient";
+import { LoginProps, LoginResponse, SignupProps } from "@/types/auth";
 
 export const authService = {
   // 로그인
-  login: async (email, password) => {
+  login: async ({ email, password }: LoginProps): Promise<LoginResponse> => {
     const res = await defaultFetch("/auth/signIn", {
       method: "POST",
       body: JSON.stringify({ email, password }),
@@ -17,7 +18,12 @@ export const authService = {
   },
 
   // 회원가입
-  signUp: async (nickname, email, password, passwordConfirmation) => {
+  signUp: async ({
+    nickname,
+    email,
+    password,
+    passwordConfirmation,
+  }: SignupProps): Promise<LoginResponse> => {
     const res = await defaultFetch("/auth/signUp", {
       method: "POST",
       body: JSON.stringify({ nickname, email, password, passwordConfirmation }),

@@ -9,7 +9,7 @@ import {
   useState,
   ReactNode,
 } from "react";
-import { AuthContextType, User, LoginProps } from "@/types/auth";
+import { AuthContextType, User, LoginProps, SignupProps } from "@/types/auth";
 
 // const AuthContext = createContext({
 //   user: null,
@@ -31,13 +31,6 @@ export const useAuth = (): AuthContextType => {
 
 interface AuthProviderProps {
   children: ReactNode;
-}
-
-interface SignupProps {
-  nickname: string;
-  email: string;
-  password: string;
-  passwordConfirmation: string;
 }
 
 export default function AuthProvider({ children }: AuthProviderProps) {
