@@ -6,6 +6,16 @@ export interface Product {
   images: string[];
   tags: string[];
   favoriteCount: number;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface ProductInput {
+  title: string;
+  price: number;
+  description: string;
+  tags: string[];
+  images: string[];
 }
 
 export interface Article {
@@ -14,6 +24,8 @@ export interface Article {
   content: string;
   image: string[];
   likeCount: number;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface Favorite {
