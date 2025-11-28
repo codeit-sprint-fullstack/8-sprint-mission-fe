@@ -18,12 +18,14 @@ const CommentReplyCard = ({
   commentId,
   id,
   content,
+  nickname,
   updatedAt,
   type = 'article',
 }: {
   commentId: string;
   id: string;
   content: string;
+  nickname: string;
   updatedAt: string;
   type?: 'article' | 'product';
 }) => {
@@ -128,7 +130,7 @@ const CommentReplyCard = ({
         <Image src="/icons/ic_profile.svg" alt="ic_profile" width={32} height={32} />
         <div className="flex w-full items-center justify-between">
           <div className="flex flex-col items-start gap-1">
-            <div className="text-secondary-600 text-xs leading-[18px] font-normal">똑똑한판다</div>
+            <div className="text-secondary-600 text-xs leading-[18px] font-normal">{nickname}</div>
             <div className="text-secondary-400 text-xs leading-[18px] font-normal whitespace-nowrap">
               {formatTimeAgo(updatedAt)}
             </div>

@@ -43,6 +43,7 @@ const DetailArticlePage = () => {
                     id={id}
                     commentId={comment.id}
                     content={comment.content}
+                    nickname={comment.owner.nickname || '눈치빠른판다'}
                     updatedAt={comment.updatedAt}
                     type="article"
                   />

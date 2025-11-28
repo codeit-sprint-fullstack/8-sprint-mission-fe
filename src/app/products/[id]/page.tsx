@@ -61,6 +61,7 @@ const ProductDetailPage = () => {
                   commentId={comment.id}
                   id={id}
                   content={comment.content}
+                  nickname={comment.owner.nickname || '눈치빠른판다'}
                   updatedAt={comment.updatedAt}
                   type="product"
                 />
