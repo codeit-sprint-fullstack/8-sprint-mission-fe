@@ -23,13 +23,13 @@ export const useGetArticleInfinityScroll = ({
   limit?: number;
 }) => {
   return useInfiniteQuery({
-    queryKey: ['articles', 'infinite', sortOption, searchQuery, limit],
-    queryFn: ({ pageParam = 1 }) =>
-      getArticlesInfinityScroll({ sortOption, searchQuery, page: pageParam, limit }),
-    initialPageParam: 1,
+    queryKey: ['articles', 'infinite', sortOption, searchQuery],
+    queryFn: ({ pageParam = null }: { pageParam: string | null | undefined }) =>
+      getArticlesInfinityScroll({ sortOption, searchQuery, cursor: pageParam, limit }),
     getNextPageParam: (lastPage) => {
-      return lastPage?.pagination?.hasNextPage ? lastPage.pagination.currentPage + 1 : undefined;
+      return lastPage.pagination.nextCursor ?? null;
     },
+    initialPageParam: null,
   });
 };
 

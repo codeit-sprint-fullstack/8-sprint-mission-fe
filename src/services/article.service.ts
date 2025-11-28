@@ -8,16 +8,16 @@ export const getArticles = async (sort: 'recent' | 'like', searchQuery: string) 
 export const getArticlesInfinityScroll = async ({
   sortOption,
   searchQuery,
-  page,
+  cursor,
   limit,
 }: {
   sortOption: 'recent' | 'like';
   searchQuery: string;
-  page: number;
+  cursor: string | null;
   limit: number;
 }) => {
   const res = await api.get('/articles', {
-    params: { sort: sortOption, searchQuery, page, limit },
+    params: { sort: sortOption, searchQuery, cursor, limit },
   });
   return res.data;
 };
