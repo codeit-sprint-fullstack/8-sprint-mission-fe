@@ -49,6 +49,7 @@ const DetailArticlePage = () => {
             likeCount={article?.data?.article?.likeCount || 0}
             createdAt={article?.data?.article?.createdAt || ''}
             isMine={isArticleOwner}
+            isLiked={article?.data?.article?.isLiked || false}
           />
           <div>
             <AddComment id={id} type="article" />

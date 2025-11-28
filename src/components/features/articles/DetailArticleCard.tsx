@@ -12,6 +12,7 @@ interface DetailArticleCardProps {
   likeCount: number;
   createdAt: string;
   isMine: boolean;
+  isLiked: boolean;
 }
 
 const DetailArticleCard = ({
@@ -22,6 +23,7 @@ const DetailArticleCard = ({
   likeCount,
   createdAt,
   isMine,
+  isLiked,
 }: DetailArticleCardProps) => {
   const router = useRouter();
 
@@ -68,7 +70,7 @@ const DetailArticleCard = ({
           >
             <path d="M1 0V34" stroke="#E5E7EB" />
           </svg>
-          <HeartTag like={likeCount} />
+          <HeartTag like={likeCount} isLiked={isLiked} articleId={id} />
         </div>
       </div>
       <div className="text-secondary-800 text-lg leading-[26px] font-normal">{content}</div>

@@ -39,6 +39,8 @@ const ProductDetailPage = () => {
       <div className="flex flex-col gap-10">
         <DetailProductCard
           isMine={isProductOwner}
+          id={id}
+          isLiked={product?.data?.product?.isLiked}
           name={product?.data?.product?.name}
           description={product?.data?.product?.description}
           price={product?.data?.product?.price}

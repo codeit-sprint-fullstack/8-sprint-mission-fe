@@ -1,21 +1,36 @@
 import DropDown from '@/components/common/DropDown';
 import Image from 'next/image';
-import { Product } from '@/types/product';
 import TagChip from '@/components/common/TagChip';
 import HeartTag from '@/components/common/HeartTag';
 import { convertTz } from '@/libs/day';
 
+interface DetailProductCardProps {
+  id: string;
+  isMine: boolean;
+  name: string;
+  description: string;
+  price: number;
+  tags: string[];
+  likeCount: number;
+  createdAt: string;
+  isLiked: boolean;
+  onEdit: () => void;
+  onDelete: () => void;
+}
+
 const DetailProductCard = ({
-  name = '',
+  id,
   isMine,
-  description = '',
-  price = 0,
-  tags = [],
-  likeCount = 0,
-  createdAt = '',
-  onEdit = () => {},
-  onDelete = () => {},
-}: Omit<Product, 'id'> & { isMine: boolean; onEdit: () => void; onDelete: () => void }) => {
+  name,
+  description,
+  price,
+  tags,
+  likeCount,
+  createdAt,
+  isLiked,
+  onEdit,
+  onDelete,
+}: DetailProductCardProps) => {
   return (
     <div className="flex w-full items-center gap-6">
       <Image src="/img_product.svg" alt="img_product" width={486} height={486} />
@@ -25,7 +40,7 @@ const DetailProductCard = ({
             <div className="flex flex-col gap-4 pb-4">
               <div className="text-secondary-800 text-2xl leading-[32px] font-semibold">{name}</div>
               <div className="text-secondary-800 text-[40px] font-semibold">
-                {price.toLocaleString('ko-KR')}
+                {price?.toLocaleString('ko-KR')}
               </div>
             </div>
             {isMine && (
@@ -50,7 +65,7 @@ const DetailProductCard = ({
               상품 태그
             </div>
             <div className="flex items-center gap-2">
-              {tags.map((tag) => (
+              {tags?.map((tag: string) => (
                 <TagChip key={tag} type="view" tag={tag} onClick={() => {}} />
               ))}
             </div>
@@ -78,7 +93,7 @@ const DetailProductCard = ({
             >
               <path d="M0.5 0V34" stroke="#E5E7EB" />
             </svg>
-            <HeartTag like={likeCount} />
+            <HeartTag like={likeCount} isLiked={isLiked} productId={id} />
           </div>
         </div>
       </div>
