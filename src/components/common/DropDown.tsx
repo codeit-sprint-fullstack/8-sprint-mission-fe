@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import Image from 'next/image';
 
@@ -18,6 +18,23 @@ const DropDown = ({
   const [isOpen, setIsOpen] = useState(false);
   const sortOptions = ['recent', 'like'] as const;
   const modifyOptions = ['edit', 'delete'] as const;
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: Event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
 
   type OptionKey = 'recent' | 'like' | 'edit' | 'delete';
 
@@ -90,7 +107,7 @@ const DropDown = ({
   }
 
   return (
-    <div className="relative">
+    <div className="relative" ref={dropdownRef}>
       <button
         onClick={toggle}
         className={clsx(
