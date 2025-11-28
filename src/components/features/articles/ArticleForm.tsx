@@ -28,8 +28,8 @@ const ArticleForm = ({ articleId = '' }: { articleId?: string }) => {
       const fetchArticle = async () => {
         const res = await getDetailArticle(articleId);
         setFormData({
-          title: res.data?.title,
-          content: res.data?.content,
+          title: res.data?.article?.title,
+          content: res.data?.article?.content,
         });
       };
       fetchArticle();
