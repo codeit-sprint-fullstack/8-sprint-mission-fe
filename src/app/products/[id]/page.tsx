@@ -39,12 +39,12 @@ const ProductDetailPage = () => {
       <div className="flex flex-col gap-10">
         <DetailProductCard
           isMine={isProductOwner}
-          name={product?.data?.name}
-          description={product?.data?.description}
-          price={product?.data?.price}
-          tags={product?.data?.tags}
-          likeCount={product?.data?.likeCount}
-          createdAt={product?.data?.createdAt}
+          name={product?.data?.product?.name}
+          description={product?.data?.product?.description}
+          price={product?.data?.product?.price}
+          tags={product?.data?.product?.tags}
+          likeCount={product?.data?.product?.likeCount}
+          createdAt={product?.data?.product?.createdAt}
           onEdit={handleEditProduct}
           onDelete={handleDeleteProduct}
         />
@@ -60,8 +60,8 @@ const ProductDetailPage = () => {
         <div className="flex flex-col gap-6">
           <AddComment id={id} type="product" />
           <div className="flex flex-col gap-6">
-            {comments?.data && comments?.data.length > 0 ? (
-              comments?.data.map((comment: Comment) => (
+            {comments?.data?.comments && comments?.data?.comments.length > 0 ? (
+              comments?.data?.comments?.map((comment: Comment) => (
                 <CommentReplyCard
                   key={comment.id}
                   commentId={comment.id}
