@@ -77,7 +77,7 @@ const Button = ({
 
   return (
     <button
-      type={type === 'login' || type === 'signup' || type === 'post' ? 'submit' : 'button'}
+      type={type === 'login' || type === 'signup' || type === 'post' || type === 'edit' ? 'submit' : 'button'}
       disabled={disabled}
       className={clsx(
         baseButtonClass,
