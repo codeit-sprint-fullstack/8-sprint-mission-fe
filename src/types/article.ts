@@ -5,6 +5,7 @@ export interface Article {
   likeCount: number;
   createdAt: string;
   owner: {
+    id?: string;
     nickname: string;
   };
 }

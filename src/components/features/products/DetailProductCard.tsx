@@ -5,8 +5,9 @@ import TagChip from '@/components/common/TagChip';
 import HeartTag from '@/components/common/HeartTag';
 import { convertTz } from '@/libs/day';
 
-const DetailProductCart = ({
+const DetailProductCard = ({
   name = '',
+  isMine,
   description = '',
   price = 0,
   tags = [],
@@ -14,7 +15,7 @@ const DetailProductCart = ({
   createdAt = '',
   onEdit = () => {},
   onDelete = () => {},
-}: Omit<Product, 'id'> & { onEdit: () => void; onDelete: () => void }) => {
+}: Omit<Product, 'id'> & { isMine: boolean; onEdit: () => void; onDelete: () => void }) => {
   return (
     <div className="flex w-full items-center gap-6">
       <Image src="/img_product.svg" alt="img_product" width={486} height={486} />
@@ -27,12 +28,14 @@ const DetailProductCart = ({
                 {price.toLocaleString('ko-KR')}
               </div>
             </div>
-            <DropDown
-              type="modify"
-              handlers={{ edit: onEdit, delete: onDelete }}
-              selected={''}
-              onChange={() => {}}
-            />
+            {isMine && (
+              <DropDown
+                type="modify"
+                handlers={{ edit: onEdit, delete: onDelete }}
+                selected={''}
+                onChange={() => {}}
+              />
+            )}
           </div>
           <div className="flex flex-col gap-4">
             <div className="text-secondary-600 text-base leading-[26px] font-semibold">
@@ -83,4 +86,4 @@ const DetailProductCart = ({
   );
 };
 
-export default DetailProductCart;
+export default DetailProductCard;

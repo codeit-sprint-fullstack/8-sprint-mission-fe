@@ -13,6 +13,7 @@ import {
   useDeleteProductComment,
   useEditProductComment,
 } from '@/hooks/mutations/useProductCommentMutation';
+import useIsMine from '@/hooks/useIsMine';
 
 const CommentReplyCard = ({
   commentId,
@@ -20,6 +21,7 @@ const CommentReplyCard = ({
   content,
   nickname,
   updatedAt,
+  ownerId,
   type = 'article',
 }: {
   commentId: string;
@@ -27,16 +29,20 @@ const CommentReplyCard = ({
   content: string;
   nickname: string;
   updatedAt: string;
+  ownerId?: string;
   type?: 'article' | 'product';
 }) => {
   const queryClient = useQueryClient();
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [newComment, setNewComment] = useState<string>('');
+  const { checkIsMine } = useIsMine();
 
   const editArticleComment = useEditArticleComment();
   const deleteArticleComment = useDeleteArticleComment();
   const editProductComment = useEditProductComment();
   const deleteProductComment = useDeleteProductComment();
+
+  const isCommentOwner = ownerId ? checkIsMine(ownerId) : false;
 
   const handleEdit = () => {
     setIsEditing(true);
@@ -117,7 +123,7 @@ const CommentReplyCard = ({
         ) : (
           <div className="text-secondary-800 text-sm leading-[24px] font-normal">{content}</div>
         )}
-        {!isEditing && (
+        {!isEditing && isCommentOwner && (
           <DropDown
             type="modify"
             handlers={{ edit: handleEdit, delete: handleDelete }}

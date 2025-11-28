@@ -1,7 +1,7 @@
 'use client';
 
 import Button from '@/components/common/Button';
-import DetailProductCart from '@/components/features/products/DetailProductCart';
+import DetailProductCard from '@/components/features/products/DetailProductCard';
 import AddComment from '@/components/features/comments/AddComment';
 import { useGetProductById } from '@/hooks/queries/useProductQueries';
 import { useParams, useRouter } from 'next/navigation';
@@ -9,13 +9,18 @@ import { useGetProductComments } from '@/hooks/queries/useProductCommentQueries'
 import EmptyBoard from '@/components/common/EmptyBoard';
 import CommentReplyCard from '@/components/features/comments/CommentReplyCard';
 import { Comment } from '@/types/comment';
+import useIsMine from '@/hooks/useIsMine';
 
 const ProductDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
+  const { checkIsMine } = useIsMine();
 
   const { data: product } = useGetProductById(id);
   const { data: comments } = useGetProductComments(id);
+
+  const productOwnerId = product?.data?.product?.owner?.id;
+  const isProductOwner = productOwnerId ? checkIsMine(productOwnerId) : false;
 
   const handleEditProduct = () => {
     router.push(`/products/edit/${id}`);
@@ -32,7 +37,8 @@ const ProductDetailPage = () => {
   return (
     <div className="mx-auto mt-[26px] mb-[277px] flex w-full max-w-[1200px] flex-col items-center gap-16">
       <div className="flex flex-col gap-10">
-        <DetailProductCart
+        <DetailProductCard
+          isMine={isProductOwner}
           name={product?.data?.name}
           description={product?.data?.description}
           price={product?.data?.price}
@@ -63,6 +69,7 @@ const ProductDetailPage = () => {
                   content={comment.content}
                   nickname={comment.owner.nickname || '눈치빠른판다'}
                   updatedAt={comment.updatedAt}
+                  ownerId={comment.owner.id}
                   type="product"
                 />
               ))
