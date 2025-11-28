@@ -30,9 +30,9 @@ export default function LoginPage() {
     e.preventDefault();
     const { email, password } = values;
     const result = await login(email, password);
-    if (typeof result === 'string') {
+    if (!result.ok) {
       console.log(result);
-      setModalMessage(result);
+      setModalMessage(result.message);
       setIsModalOpen(true);
       return;
     }

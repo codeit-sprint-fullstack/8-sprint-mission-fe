@@ -24,17 +24,30 @@ async function responseHandler<T>(res: Response): Promise<T> {
 // - 반환 타입은 { ok: true } & T → 항상 ok: true가 붙고, JSON 데이터 구조가 합쳐짐.
 
 /* 기본 에러 처리 */
-//에러 시에는 never를 반환한다고 명시함으로써 리턴 값의 타입을 좁힙니다.
-function errorHandler(err: Error): never {
-  console.log(err);
-  throw new Error(err.message);
+function errorHandler(err: Error): ErrorResponse {
+  //console.log(err);
+  return {
+    ok: false,
+    message: parseMessage(err.message),
+  };
 }
-//에러는 반환 값이 없어서 타입 정의가 필요없었습니다;;
-//필요 없다는 사실을 기억하기 위해서 남겨두었습니다.
-// interface EroorResponse {
-//   ok: false;
-//   message: string;
-// }
+
+function parseMessage(message: string) {
+  try {
+    const parsed = JSON.parse(message);
+    console.log(parsed.code);
+    console.log(parsed.message);
+    return parsed.message;
+  } catch (e) {
+    console.log('메시지가 JSON 형식이 아님:', message);
+    return message;
+  }
+}
+
+interface ErrorResponse {
+  ok: false;
+  message: string;
+}
 
 /* auth 관련 api 함수 반환 타입 정의 */
 interface SuccessResponse {
@@ -61,19 +74,19 @@ interface checkAuthResponse {
   authenticated: boolean;
 }
 
-interface optionsType extends RequestInit {
-  headers: { Authorization: string };
-}
-
 interface useAuthType {
   accessToken: string | null;
   setAccessToken: (accessToken: string) => void;
-  signup: (name: string, email: string, password: string) => Promise<SignupResponse>;
-  login: (email: string, password: string) => Promise<LoginResponse>;
-  logout: () => Promise<SuccessResponse>;
-  refresh: () => Promise<refreshResponse>;
+  signup: (
+    name: string,
+    email: string,
+    password: string
+  ) => Promise<SignupResponse | ErrorResponse>;
+  login: (email: string, password: string) => Promise<LoginResponse | ErrorResponse>;
+  logout: () => Promise<SuccessResponse | ErrorResponse>;
+  refresh: () => Promise<refreshResponse | ErrorResponse>;
   authFetch: (url: URL | string, options: RequestInit) => Promise<Response>;
-  checkAuth: () => Promise<checkAuthResponse>;
+  checkAuth: () => Promise<checkAuthResponse | ErrorResponse>;
 }
 
 /* useAuth 훅 */
@@ -91,7 +104,7 @@ const useAuth = create(
           email,
           password,
         };
-        const result: SignupResponse = await fetch(`${defaultUrl}/signup`, {
+        const result = await fetch(`${defaultUrl}/signup`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body),
@@ -114,7 +127,7 @@ const useAuth = create(
           .then(responseHandler<LoginResponse>)
           .catch(errorHandler);
         //result가 오류 메세지가 아니면 set 처리
-        if (typeof result !== 'undefined') {
+        if (result.ok) {
           set({ accessToken: result.accessToken });
         }
         return result;
@@ -142,15 +155,10 @@ const useAuth = create(
 
         return result;
       },
-      /*
-      인가가 필요한 api 요청용 커스텀 Fetch입니다.
-      1) accessToken를 포함하여 api 요청을 실행, 유효하면 반환.
-      2) accessToken 만료 시 refreshToken 유효 검사 후 둘다 재발급하고 api요청 재실행.
-      3) refreshToken도 만료 시 로그인 창으로 강제 이동.
-      */
+      //인가가 필요한 api 요청용 커스텀 Fetch
       authFetch: async (url, options = { headers: {} }) => {
         options.headers = {
-          ...(options.headers || {}), //headers가 없다면 빈객체로 초기화
+          ...(options.headers || {}), //headers가 없다면 빈 객체로 초기화
           Authorization: `Bearer ${get().accessToken}`,
         };
 
@@ -164,10 +172,11 @@ const useAuth = create(
             set({ accessToken: newAccessToken });
             // 원래 요청 재시도
             options.headers = {
-              ...(options.headers || {}), //headers가 없다면 빈객체로 초기화
+              ...(options.headers || {}), //headers가 없다면 빈 객체로 초기화
               Authorization: `Bearer ${newAccessToken}`,
             };
             result = await fetch(url, options);
+            //에러 캐치를 여기서는 안해주는 데, 에러캐치까지 해주는 게 좋은지 고민입니다.
           } else {
             get().logout();
             window.location.href = '/sign-in';
@@ -182,7 +191,7 @@ const useAuth = create(
           .authFetch(`${defaultUrl}/check`, {
             method: 'POST',
           })
-          .then(responseHandler<{ authenticated: boolean }>)
+          .then(responseHandler<checkAuthResponse>)
           .catch(errorHandler);
         //뭔가 혼종이 되었습니다만, 자동 리프레쉬 기능을 달았습니다.
         return result;

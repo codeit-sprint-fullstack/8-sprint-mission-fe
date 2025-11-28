@@ -30,9 +30,9 @@ export default function SignupPage() {
     e.preventDefault();
     const { name, email, password } = values;
     const result = await signup(name, email, password);
-    if (typeof result === 'string') {
+    if (!result.ok) {
       console.log(result);
-      setModalMessage(result);
+      setModalMessage(result.message);
       setIsModalOpen(true);
       return;
     }
