@@ -2,6 +2,7 @@
 
 import { useRouter, useParams } from 'next/navigation';
 import { useGetArticleComments } from '@/hooks/queries/useArticleCommentQueries';
+import { useGetDetailArticle } from '@/hooks/queries/useArticleQueries';
 import { Comment } from '@/types/comment';
 
 import EmptyBoard from '@/components/common/EmptyBoard';
@@ -10,6 +11,7 @@ import DetailArticleCard from '@/components/features/articles/DetailArticleCard'
 import CommentReplyCard from '@/components/features/comments/CommentReplyCard';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import AddComment from '@/components/features/comments/AddComment';
+import useIsMine from '@/hooks/useIsMine';
 
 interface Params {
   id: string;
@@ -20,8 +22,15 @@ const DetailArticlePage = () => {
   const router = useRouter();
   const params = useParams<Params>();
   const { id } = params;
+  const { checkIsMine } = useIsMine();
 
-  const { data: comments, isLoading } = useGetArticleComments(id);
+  const { data: article, isLoading: isArticleLoading } = useGetDetailArticle(id);
+  const { data: comments, isLoading: isCommentsLoading } = useGetArticleComments(id);
+
+  const articleOwnerId = article?.data?.article?.owner?.id;
+  const isArticleOwner = articleOwnerId ? checkIsMine(articleOwnerId) : false;
+
+  const isLoading = isArticleLoading || isCommentsLoading;
 
   const handleGoBack = () => {
     router.push('/articles');
@@ -32,18 +41,29 @@ const DetailArticlePage = () => {
       {isLoading && <LoadingSpinner />}
       <div className="mx-auto mt-[34px] mb-[193px] max-w-[1200px]">
         <div className="w-full">
-          <DetailArticleCard id={id} />
+          <DetailArticleCard
+            id={id}
+            title={article?.data?.article?.title || ''}
+            content={article?.data?.article?.content || ''}
+            nickname={article?.data?.article?.owner?.nickname || ''}
+            likeCount={article?.data?.article?.likeCount || 0}
+            createdAt={article?.data?.article?.createdAt || ''}
+            isMine={isArticleOwner}
+            isLiked={article?.data?.article?.isLiked || false}
+          />
           <div>
             <AddComment id={id} type="article" />
             <div>
-              {comments?.data && comments?.data.length > 0 ? (
-                comments?.data.map((comment: Comment) => (
+              {comments?.data?.comments && comments?.data?.comments.length > 0 ? (
+                comments?.data?.comments.map((comment: Comment) => (
                   <CommentReplyCard
                     key={comment.id}
                     id={id}
                     commentId={comment.id}
                     content={comment.content}
+                    nickname={comment.owner.nickname || '눈치빠른판다'}
                     updatedAt={comment.updatedAt}
+                    ownerId={comment.owner.id}
                     type="article"
                   />
                 ))

@@ -13,28 +13,36 @@ import {
   useDeleteProductComment,
   useEditProductComment,
 } from '@/hooks/mutations/useProductCommentMutation';
+import useIsMine from '@/hooks/useIsMine';
 
 const CommentReplyCard = ({
   commentId,
   id,
   content,
+  nickname,
   updatedAt,
+  ownerId,
   type = 'article',
 }: {
   commentId: string;
   id: string;
   content: string;
+  nickname: string;
   updatedAt: string;
+  ownerId?: string;
   type?: 'article' | 'product';
 }) => {
   const queryClient = useQueryClient();
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [newComment, setNewComment] = useState<string>('');
+  const { checkIsMine } = useIsMine();
 
   const editArticleComment = useEditArticleComment();
   const deleteArticleComment = useDeleteArticleComment();
   const editProductComment = useEditProductComment();
   const deleteProductComment = useDeleteProductComment();
+
+  const isCommentOwner = ownerId ? checkIsMine(ownerId) : false;
 
   const handleEdit = () => {
     setIsEditing(true);
@@ -115,7 +123,7 @@ const CommentReplyCard = ({
         ) : (
           <div className="text-secondary-800 text-sm leading-[24px] font-normal">{content}</div>
         )}
-        {!isEditing && (
+        {!isEditing && isCommentOwner && (
           <DropDown
             type="modify"
             handlers={{ edit: handleEdit, delete: handleDelete }}
@@ -128,7 +136,7 @@ const CommentReplyCard = ({
         <Image src="/icons/ic_profile.svg" alt="ic_profile" width={32} height={32} />
         <div className="flex w-full items-center justify-between">
           <div className="flex flex-col items-start gap-1">
-            <div className="text-secondary-600 text-xs leading-[18px] font-normal">똑똑한판다</div>
+            <div className="text-secondary-600 text-xs leading-[18px] font-normal">{nickname}</div>
             <div className="text-secondary-400 text-xs leading-[18px] font-normal whitespace-nowrap">
               {formatTimeAgo(updatedAt)}
             </div>

@@ -1,14 +1,31 @@
-import { useGetDetailArticle } from '@/hooks/queries/useArticleQueries';
 import DropDown from '@/components/common/DropDown';
 import Image from 'next/image';
 import { convertTz } from '@/libs/day';
 import HeartTag from '../../common/HeartTag';
 import { useRouter } from 'next/navigation';
 
-const DetailArticleCard = ({ id }: { id: string }) => {
-  const router = useRouter();
+interface DetailArticleCardProps {
+  id: string;
+  title: string;
+  content: string;
+  nickname: string;
+  likeCount: number;
+  createdAt: string;
+  isMine: boolean;
+  isLiked: boolean;
+}
 
-  const { data: article } = useGetDetailArticle(id);
+const DetailArticleCard = ({
+  id,
+  title,
+  content,
+  nickname,
+  likeCount,
+  createdAt,
+  isMine,
+  isLiked,
+}: DetailArticleCardProps) => {
+  const router = useRouter();
 
   const handleEdit = () => {
     router.push(`/articles/edit/${id}`);
@@ -22,25 +39,25 @@ const DetailArticleCard = ({ id }: { id: string }) => {
     <div className="flex w-full flex-col gap-6">
       <div className="flex flex-col">
         <div className="flex items-center justify-between">
-          <div className="text-secondary-800 text-xl leading-[32px] font-bold">
-            {article?.data?.title}
-          </div>
-          <DropDown
-            type="modify"
-            handlers={{ edit: handleEdit, delete: handleDelete }}
-            selected={''}
-            onChange={() => {}}
-          />
+          <div className="text-secondary-800 text-xl leading-[32px] font-bold">{title}</div>
+          {isMine && (
+            <DropDown
+              type="modify"
+              handlers={{ edit: handleEdit, delete: handleDelete }}
+              selected={''}
+              onChange={() => {}}
+            />
+          )}
         </div>
         <div className="flex items-center gap-8 py-4">
           <div className="flex items-center gap-4">
             <Image src="/icons/ic_profile.svg" alt="ic_profile" width={40} height={40} />
             <div className="flex items-center gap-2">
               <div className="text-secondary-600 text-sm leading-[24px] font-medium">
-                총명한판다
+                {nickname}
               </div>
               <div className="text-secondary-400 text-sm leading-[24px] font-normal">
-                {convertTz(article?.data?.createdAt)}
+                {convertTz(createdAt)}
               </div>
             </div>
           </div>
@@ -53,12 +70,10 @@ const DetailArticleCard = ({ id }: { id: string }) => {
           >
             <path d="M1 0V34" stroke="#E5E7EB" />
           </svg>
-          <HeartTag like={article?.data?.likeCount || 0} />
+          <HeartTag like={likeCount} isLiked={isLiked} articleId={id} />
         </div>
       </div>
-      <div className="text-secondary-800 text-lg leading-[26px] font-normal">
-        {article?.data?.content}
-      </div>
+      <div className="text-secondary-800 text-lg leading-[26px] font-normal">{content}</div>
     </div>
   );
 };

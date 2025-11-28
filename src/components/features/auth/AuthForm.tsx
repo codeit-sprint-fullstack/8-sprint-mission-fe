@@ -24,17 +24,18 @@ const AuthForm = ({ type = null }: { type: 'login' | 'signup' | null }) => {
     mode: 'onChange',
   });
 
-  const handleLoginSubmit = (data: LoginFormValues | SignupFormValues) => {
+  const handleLoginSubmit = async (data: LoginFormValues | SignupFormValues) => {
     if (type === 'login') {
-      const loginData = data as LoginFormValues;
-      login({ email: loginData.email, password: loginData.password });
+      const loginData: LoginFormValues = data;
+      await login({ email: loginData.email, password: loginData.password });
     }
     if (type === 'signup') {
       const signupData = data as SignupFormValues;
-      signup({
+      await signup({
         email: signupData.email,
         nickname: signupData.nickname,
         password: signupData.password,
+        passwordConfirm: signupData.confirmPassword,
       });
     }
   };

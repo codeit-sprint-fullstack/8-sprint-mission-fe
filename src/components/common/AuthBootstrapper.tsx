@@ -22,11 +22,10 @@ const AuthBootstrapper = () => {
         }
 
         const res = await api.get('/auth/me');
-        const data = res.data?.data;
 
         const userData = {
-          id: data?.id,
-          nickname: data?.nickname,
+          id: res.data?.data?.user?.id,
+          nickname: res.data?.data?.user?.nickname,
         };
 
         if (userData) {

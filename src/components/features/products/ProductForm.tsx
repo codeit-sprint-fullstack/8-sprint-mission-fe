@@ -96,10 +96,10 @@ const ProductForm = ({ productId = '' }: { productId?: string }) => {
       const fetchProduct = async () => {
         const res = await getProductById(productId);
         setFormData({
-          name: res.data?.name || '',
-          description: res.data?.description || '',
-          price: res.data?.price || 0,
-          tags: res.data?.tags || [],
+          name: res.data?.product?.name || '',
+          description: res.data?.product?.description || '',
+          price: res.data?.product?.price || 0,
+          tags: res.data?.product?.tags || [],
         });
       };
       fetchProduct();

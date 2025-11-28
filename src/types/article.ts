@@ -4,4 +4,8 @@ export interface Article {
   content: string;
   likeCount: number;
   createdAt: string;
+  owner: {
+    id?: string;
+    nickname: string;
+  };
 }

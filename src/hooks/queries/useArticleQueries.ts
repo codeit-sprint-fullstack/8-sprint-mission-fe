@@ -1,10 +1,42 @@
-import { useQuery } from '@tanstack/react-query';
-import { getArticles, getDetailArticle } from '@/services/article.service';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import {
+  getArticles,
+  getArticlesInfinityScroll,
+  getBestArticles,
+  getDetailArticle,
+} from '@/services/article.service';
 
-export const useGetArticles = (sort: 'recent' | 'likes', q: string) => {
+export const useGetArticles = (sortOption: 'recent' | 'like', searchQuery: string) => {
   return useQuery({
-    queryKey: ['articles', sort, q],
-    queryFn: () => getArticles(sort, q),
+    queryKey: ['articles', sortOption, searchQuery],
+    queryFn: () => getArticles(sortOption, searchQuery),
+  });
+};
+
+export const useGetArticleInfinityScroll = ({
+  sortOption = 'recent',
+  searchQuery = '',
+  limit = 15,
+}: {
+  sortOption: 'recent' | 'like';
+  searchQuery: string;
+  limit?: number;
+}) => {
+  return useInfiniteQuery({
+    queryKey: ['articles', 'infinite', sortOption, searchQuery],
+    queryFn: ({ pageParam = null }: { pageParam: string | null | undefined }) =>
+      getArticlesInfinityScroll({ sortOption, searchQuery, cursor: pageParam, limit }),
+    getNextPageParam: (lastPage) => {
+      return lastPage.pagination.nextCursor ?? null;
+    },
+    initialPageParam: null,
+  });
+};
+
+export const useGetBestArticles = () => {
+  return useQuery({
+    queryKey: ['bestArticles'],
+    queryFn: () => getBestArticles(),
   });
 };
 
