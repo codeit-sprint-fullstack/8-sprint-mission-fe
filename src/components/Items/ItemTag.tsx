@@ -2,8 +2,9 @@
 
 import React from "react";
 import Image from "next/image";
+import type { ItemTagProps } from "@/types/Items";
 
-const ItemTag = ({ tags, removable = false, onRemove }) => {
+const ItemTag = ({ tags, removable = false, onRemove }: ItemTagProps) => {
   if (!tags) return null;
 
   // const tagArray = tags
@@ -11,7 +12,7 @@ const ItemTag = ({ tags, removable = false, onRemove }) => {
   //   .map((tag) => tag.trim())
   //   .filter(Boolean);
 
-  let tagArray = [];
+  let tagArray: string[] = [];
 
   if (Array.isArray(tags)) {
     tagArray = tags.map((t) => String(t).trim()).filter(Boolean);
