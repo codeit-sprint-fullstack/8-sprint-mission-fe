@@ -3,8 +3,9 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { BestArticleType } from "@/types/entities";
 
-const BestArticle = ({ article }) => {
+const BestArticle = ({ article }: BestArticleType) => {
   return (
     <div className="mb-10">
       <Link

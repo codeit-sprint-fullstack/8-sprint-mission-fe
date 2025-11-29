@@ -1,3 +1,4 @@
+// Product 관련 타입 정의
 export interface ProductCard {
   id: string;
   title: string;
@@ -64,6 +65,7 @@ export interface BestProductSectionProps {
   error?: string | null;
 }
 
+// 게시글 관련 타입 정의
 export interface Article {
   id: string;
   title: string;
@@ -80,6 +82,24 @@ export interface ArticleInput {
   images: string[];
 }
 
+export interface ArticleSimple {
+  id: number;
+  title: string;
+  nickname: string;
+  likeCount: number;
+  createdAt: string;
+}
+
+export interface ArticleDetail extends ArticleSimple {
+  content: string;
+  isLiked: boolean;
+}
+
+export interface BestArticleType {
+  article: ArticleSimple;
+}
+
+// 페이지네이션 및 데이터 패칭 관련 타입 정의
 export interface UseLimitParams {
   page?: number;
   limit?: number;
@@ -101,6 +121,7 @@ export interface UseResult {
   loadItems: (params?: UseLimitParams) => Promise<void>;
 }
 
+// 댓글 관련 타입 정의
 export interface Comment {
   id: string;
   content: string;
@@ -130,6 +151,7 @@ export interface CommentFormProps {
   onSubmit: (comment: string) => Promise<void> | void;
 }
 
+// 좋아요 및 찜 관련 타입 정의
 export interface Favorite {
   id: string;
   type: "product";
