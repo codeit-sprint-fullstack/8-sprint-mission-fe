@@ -12,7 +12,7 @@ import NoneComment from "@/components/Comment/NoneComment";
 import GoBackButton from "@/components/Button/GoBackButton";
 import { CommentItem } from "@/types/entities";
 
-const FreeboardIdPage = () => {
+const ArticleIdPage = () => {
   const params = useParams();
   const id = params?.id as string;
 
@@ -100,4 +100,4 @@ const FreeboardIdPage = () => {
   );
 };
 
-export default FreeboardIdPage;
+export default ArticleIdPage;

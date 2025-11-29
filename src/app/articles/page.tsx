@@ -9,7 +9,7 @@ import Controller from "@/components/Controller/Controller";
 import { useArticles } from "@/hooks/useArticles";
 import { ArticleCardProps } from "@/types/entities";
 
-const FreeboardPage = () => {
+const ArticlePage = () => {
   const { articles, loading, error, loadArticles } = useArticles();
   const [sortedArticles, setSortedArticles] = useState<ArticleCardProps[]>([]);
 
@@ -71,4 +71,4 @@ const FreeboardPage = () => {
   );
 };
 
-export default FreeboardPage;
+export default ArticlePage;
