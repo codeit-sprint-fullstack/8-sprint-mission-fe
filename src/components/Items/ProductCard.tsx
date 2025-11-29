@@ -3,8 +3,9 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import type { ProductCardProps } from "@/types/entities";
 
-function ProductCard({ product, type = "normal" }) {
+function ProductCard({ product, type = "normal" }: ProductCardProps) {
   const imageSize = type === "best" ? 282 : 220;
 
   return (
@@ -21,7 +22,7 @@ function ProductCard({ product, type = "normal" }) {
         </div>
 
         <div className="flex flex-col gap-1">
-          <h2 className="text-sm font-medium text-gray-800">{product.name}</h2>
+          <h2 className="text-sm font-medium text-gray-800">{product.title}</h2>
           <p className="text-base font-bold text-gray-800">
             {product.price.toLocaleString()}원
           </p>

@@ -1,5 +1,5 @@
 import { defaultFetch } from "./fetchClient";
-import { Product, ProductInput, UseLimitParams } from "@/types/entities";
+import { ProductCard, ProductInput, UseLimitParams } from "@/types/entities";
 
 const PRODUCT_API_URL = "/products";
 
@@ -11,14 +11,14 @@ const formatDate = (date: string) => {
 // 상품 목록 조회
 export const fetchProducts = async (
   params: UseLimitParams
-): Promise<Product[]> => {
+): Promise<ProductCard[]> => {
   const query = new URLSearchParams();
   if (params?.page) query.append("page", params.page.toString());
   if (params?.limit) query.append("limit", params.limit.toString());
   if (params?.search) query.append("search", params.search);
   if (params?.order) query.append("order", params.order);
 
-  const data = await defaultFetch<{ list: Product[] }>(
+  const data = await defaultFetch<{ list: ProductCard[] }>(
     `${PRODUCT_API_URL}?${query.toString()}`
   );
 
@@ -34,8 +34,8 @@ export const fetchProducts = async (
 // 상품 상세 조회
 export const fetchProduct = async (
   id: string
-): Promise<Product & { nickname: string }> => {
-  const data = await defaultFetch<Product & { nickname?: string }>(
+): Promise<ProductCard & { nickname: string }> => {
+  const data = await defaultFetch<ProductCard & { nickname?: string }>(
     `${PRODUCT_API_URL}/${id}`
   );
   return {
@@ -55,9 +55,9 @@ export const addProduct = async ({
   description,
   tags,
   images,
-}: ProductInput): Promise<Product> => {
+}: ProductInput): Promise<ProductCard> => {
   const newProduct = { title, price, description, tags, images };
-  return defaultFetch<Product>(PRODUCT_API_URL, {
+  return defaultFetch<ProductCard>(PRODUCT_API_URL, {
     method: "POST",
     body: JSON.stringify(newProduct),
   });
@@ -67,8 +67,8 @@ export const addProduct = async ({
 export const updateProduct = async (
   id: string,
   product: Partial<ProductInput>
-): Promise<Product> => {
-  return defaultFetch<Product>(`${PRODUCT_API_URL}/${id}`, {
+): Promise<ProductCard> => {
+  return defaultFetch<ProductCard>(`${PRODUCT_API_URL}/${id}`, {
     method: "PATCH",
     body: JSON.stringify(product),
   });

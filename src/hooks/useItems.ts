@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { fetchProducts } from "@/api/product";
-import { Product, UseLimitParams, UseResult } from "@/types/entities";
+import { ProductCard, UseLimitParams, UseResult } from "@/types/entities";
 
 export function useItems(page = 1, limit = 10): UseResult {
-  const [items, setItems] = useState<Product[]>([]);
+  const [items, setItems] = useState<ProductCard[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -15,7 +15,7 @@ export function useItems(page = 1, limit = 10): UseResult {
     try {
       setLoading(true);
       setError(null);
-      const data: Product[] = await fetchProducts(params);
+      const data: ProductCard[] = await fetchProducts(params);
       setItems(data);
     } catch (err) {
       console.error("상품 불러오기 실패:", err);

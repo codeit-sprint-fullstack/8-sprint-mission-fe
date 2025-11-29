@@ -1,4 +1,4 @@
-export interface Product {
+export interface ProductCard {
   id: string;
   title: string;
   description: string;
@@ -38,12 +38,24 @@ export interface ProductDetail {
   isFavorite?: string;
 }
 
+export interface ProductCard {
+  id: string;
+  title: string;
+  price: number;
+  favoriteCount: number;
+}
+
 export interface ProductListControllerProps {
   controls?: {
     orderBy?: boolean;
   };
-  products: Product[];
-  setSortedProducts: (items: Product[]) => void;
+  products: ProductCard[];
+  setSortedProducts: (items: ProductCard[]) => void;
+}
+
+export interface ProductCardProps {
+  product: ProductCard;
+  type?: "normal" | "best";
 }
 
 export interface Article {
@@ -77,7 +89,7 @@ export interface UseCursorParams {
 }
 
 export interface UseResult {
-  items: Product[];
+  items: ProductCard[];
   loading: boolean;
   error: string | null;
   loadItems: (params?: UseLimitParams) => Promise<void>;
