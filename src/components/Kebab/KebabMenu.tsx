@@ -6,12 +6,12 @@ import Image from "next/image";
 import DeleteModal from "@/components/Items/DeleteModal";
 import { deleteArticle } from "@/api/articles";
 import { deleteComment } from "@/api/comments";
-import type { KebabMenuProps } from "@/types/kebab";
+import type { KebabMenuProps } from "@/types/controller";
 
 const KebabMenu = ({ type, id, onDelete, onEdit }: KebabMenuProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
-  const menuRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
 
   useEffect(() => {

@@ -2,14 +2,15 @@
 
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
+import type { DropDownProps, DropDownOption } from "@/types/controller";
 
-const DropDown = ({ options = [], selected, onSelect }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const menuRef = useRef(null);
+const DropDown = ({ options = [], selected, onSelect }: DropDownProps) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (menuRef.current && !menuRef.current.contains(e.target)) {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
         setIsOpen(false);
       }
     };
@@ -17,7 +18,10 @@ const DropDown = ({ options = [], selected, onSelect }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const defaultSelected = selected || { label: "최신순", value: "recent" };
+  const defaultSelected: DropDownOption = selected || {
+    label: "최신순",
+    value: "recent",
+  };
 
   return (
     <div className="relative" ref={menuRef}>

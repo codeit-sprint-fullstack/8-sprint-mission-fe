@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { deleteProduct } from "@/api/product";
-import type { DeleteModalProps } from "@/types/kebab";
+import type { DeleteModalProps } from "@/types/controller";
 
 const DeleteModal = ({ id, onClose }: DeleteModalProps) => {
   const router = useRouter();
