@@ -10,16 +10,19 @@ import Comment from "@/components/Comment/Comment";
 import NoneInquiry from "@/components/Comment/NoneInquiry";
 import GoBackButton from "@/components/Button/GoBackButton";
 import { fetchItemComments, addItemComment } from "@/api/comments.js";
+import { CommentItem } from "@/types/entities";
 
 const ItemDetailPage = () => {
-  const { id } = useParams();
-  const [commentList, setCommentList] = useState([]);
+  const params = useParams();
+  const id = params?.id as string;
+
+  const [commentList, setCommentList] = useState<CommentItem[]>([]);
 
   // 댓글 목록 조회 API
   useEffect(() => {
     const getComments = async () => {
       try {
-        const data = await fetchItemComments(id);
+        const data: CommentItem[] = await fetchItemComments(id);
         setCommentList(data);
       } catch (err) {
         console.error(err);
@@ -29,13 +32,13 @@ const ItemDetailPage = () => {
   }, [id]);
 
   // 댓글 등록 API
-  const handleAddComment = async (comment) => {
+  const handleAddComment = async (comment: string) => {
     try {
       const newComment = await addItemComment(id, {
         content: comment,
       });
 
-      const enrichedComment = {
+      const enrichedComment: CommentItem = {
         ...newComment,
         nickname: newComment.nickname || "테스트유저",
         createdAt: newComment.createdAt || new Date().toISOString(),
