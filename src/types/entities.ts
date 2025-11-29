@@ -110,6 +110,20 @@ export interface Comment {
   updatedAt: string;
 }
 
+export interface CommentItem {
+  id: string;
+  content: string;
+  nickname?: string;
+  createdAt: string;
+  updatedAt?: string;
+}
+
+export interface CommentProps {
+  comment: CommentItem;
+  onDelete: (id: string) => void;
+  onUpdate: (updated: CommentItem) => void;
+}
+
 export interface Favorite {
   id: string;
   type: "product";

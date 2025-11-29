@@ -1,18 +1,21 @@
+"use client";
+
 import React, { useState } from "react";
 import Image from "next/image";
 import KebabMenu from "../Kebab/KebabMenu";
 import { updateComment } from "@/api/comments";
+import type { CommentItem, CommentProps } from "@/types/entities";
 
-const Comment = ({ comment, onDelete, onUpdate }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedContent, setEditedContent] = useState(comment.content);
+const Comment = ({ comment, onDelete, onUpdate }: CommentProps) => {
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [editedContent, setEditedContent] = useState<string>(comment.content);
 
   const handleSave = async () => {
     try {
       const updated = await updateComment(comment.id, {
         content: editedContent,
       });
-      const enrichedComment = {
+      const enrichedComment: CommentItem = {
         ...updated,
         nickname: comment.nickname || "테스트유저",
       };
@@ -26,15 +29,20 @@ const Comment = ({ comment, onDelete, onUpdate }) => {
 
   const isFormValid = editedContent.trim() !== "";
 
-  const getTimeAgo = (dateString) => {
+  const getTimeAgo = (dateString: string): string => {
     const now = new Date();
     const date = new Date(dateString);
-    const diff = Math.floor((now - date) / 1000);
+    const diff = Math.floor((now.getTime() - date.getTime()) / 1000);
 
     if (diff < 60) return `${diff}초 전`;
     if (diff < 3600) return `${Math.floor(diff / 60)}분 전`;
     if (diff < 86400) return `${Math.floor(diff / 3600)}시간 전`;
     return `${Math.floor(diff / 86400)}일 전`;
+  };
+
+  const getDisplayedTime = () => {
+    if (comment.updatedAt) return getTimeAgo(comment.updatedAt);
+    return getTimeAgo(comment.createdAt);
   };
 
   return (
@@ -82,11 +90,7 @@ const Comment = ({ comment, onDelete, onUpdate }) => {
               />
               <div className="flex flex-col items-start gap-1 text-xs leading-[18px]">
                 <p className="text-gray-600">{comment.nickname}</p>
-                <p className="text-gray-400">
-                  {comment.updatedAt
-                    ? `${getTimeAgo(comment.updatedAt)}`
-                    : getTimeAgo(comment.createdAt)}
-                </p>
+                <p className="text-gray-400">{getDisplayedTime()}</p>
               </div>
             </div>
           </div>
