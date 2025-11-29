@@ -7,12 +7,17 @@ import KebabMenu from "@/components/Kebab/KebabMenu";
 import ItemTag from "@/components/Items/ItemTag";
 import LikeButton from "@/components/Button/LikeButton";
 import { fetchProduct } from "@/api/product";
+import type { ProductDetail } from "@/types/entities";
 
 const ItemsDetail = () => {
-  const { id } = useParams();
-  const [product, setProduct] = useState("");
+  const params = useParams();
+  const id = params?.id as string;
+
+  const [product, setProduct] = useState<ProductDetail | null>(null);
 
   useEffect(() => {
+    if (!id) return;
+
     const getProduct = async () => {
       try {
         const data = await fetchProduct(id);
@@ -42,7 +47,7 @@ const ItemsDetail = () => {
             <div className="flex items-start justify-between self-stretch mb-4">
               <div className="flex flex-col items-start gap-4 self-stretch mb-4">
                 <p className="self-stretch text-2xl font-semibold text-gray-800 leading-[32px]">
-                  {product.name}
+                  {product.title}
                 </p>
                 <h1 className="self-stretch text-5xl font-semibold text-gray-800">
                   {product.price?.toLocaleString()}원
@@ -91,7 +96,7 @@ const ItemsDetail = () => {
                 type="product"
                 targetId={product.id}
                 initialCount={product.favoriteCount}
-                initialLiked={product.isFavorite}
+                // initialLiked={product.isFavorite}
               />
             </div>
           </div>

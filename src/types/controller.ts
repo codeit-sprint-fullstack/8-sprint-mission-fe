@@ -41,3 +41,11 @@ export interface ControllerProps {
   articles: Article[];
   setSortedArticles: (articles: Article[]) => void;
 }
+
+export interface LikeButtonProps {
+  type: "article" | "product";
+  targetId: string | number;
+  initialCount?: number;
+  addMethod?: (id: string | number) => Promise<void>;
+  removeMethod?: (id: string | number) => Promise<void>;
+}

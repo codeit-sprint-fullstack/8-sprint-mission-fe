@@ -4,13 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useLikeService } from "@/api/likeService";
-
-interface LikeButtonProps {
-  targetId: string | number;
-  initialCount?: number;
-  addMethod?: (id: string | number) => Promise<void>;
-  removeMethod?: (id: string | number) => Promise<void>;
-}
+import type { LikeButtonProps } from "@/types/controller";
 
 const LikeButton = ({
   targetId,
@@ -18,9 +12,9 @@ const LikeButton = ({
   addMethod,
   removeMethod,
 }: LikeButtonProps) => {
-  const [liked, setLiked] = useState(false);
-  const [count, setCount] = useState(initialCount);
-  const [loading, setLoading] = useState(false);
+  const [liked, setLiked] = useState<boolean>(false);
+  const [count, setCount] = useState<number>(initialCount);
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
 
   const handleClick = async () => {

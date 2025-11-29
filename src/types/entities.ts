@@ -18,6 +18,26 @@ export interface ProductInput {
   images: string[];
 }
 
+export interface ItemTagProps {
+  tags: string | number | Array<string | number> | null;
+  removable?: boolean;
+  onRemove?: (tag: string) => void;
+}
+
+export interface ProductDetail {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  images: string[];
+  tags: string[];
+  favoriteCount: number;
+  createdAt?: string;
+  updatedAt?: string;
+  nickname?: string;
+  isFavorite?: string;
+}
+
 export interface Article {
   id: string;
   title: string;
