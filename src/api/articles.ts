@@ -13,7 +13,7 @@ export const fetchArticles = async (
   params: UseCursorParams
 ): Promise<Article[]> => {
   const query = new URLSearchParams();
-  if (params.cursor) query.append("cursor", params.cursor);
+  if (params?.cursor) query.append("cursor", params.cursor.toString());
   if (params?.limit) query.append("limit", params.limit.toString());
   if (params?.search) query.append("search", params.search);
   if (params?.order) query.append("order", params.order);

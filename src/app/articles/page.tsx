@@ -7,17 +7,23 @@ import BestArticleSection from "@/components/Article/BestArticleSection";
 import ArticleCard from "@/components/Article/ArticleCard";
 import Controller from "@/components/Controller/Controller";
 import { useArticles } from "@/hooks/useArticles";
-import { ArticleCardProps } from "@/types/entities";
+import { Article } from "@/types/entities";
 
 const ArticlePage = () => {
-  const { articles, loading, error, loadArticles } = useArticles();
-  const [sortedArticles, setSortedArticles] = useState<ArticleCardProps[]>([]);
+  const { articles, loading, error, loadArticles, resetArticles } =
+    useArticles();
+  const [sortedArticles, setSortedArticles] = useState<Article[]>([]);
+
+  useEffect(() => {
+    resetArticles();
+    loadArticles();
+  }, []);
 
   useEffect(() => {
     setSortedArticles(articles);
   }, [articles]);
 
-  const bestArticles: ArticleCardProps[] = [...articles]
+  const bestArticles: Article[] = [...articles]
     .sort((a, b) => (b.likeCount ?? 0) - (a.likeCount ?? 0))
     .slice(0, 3);
 

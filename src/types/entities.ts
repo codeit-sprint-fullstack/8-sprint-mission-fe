@@ -76,26 +76,21 @@ export interface Article {
 }
 
 export interface ArticleInput {
+  images?: string[];
   title: string;
   content: string;
-  images?: string[];
 }
 
-export interface ArticleCardProps extends Article {
-  nickname?: string;
-}
-
-export interface ArticleDetail extends ArticleCardProps {
-  content: string;
+export interface ArticleDetail extends Article {
   isLiked?: string;
 }
 
 export interface BestArticleProps {
-  article: ArticleCardProps;
+  article: Article;
 }
 
 export interface ArticleProps {
-  article: ArticleCardProps;
+  article: Article;
 }
 
 export interface ArticleFormProps {
@@ -108,7 +103,7 @@ export interface ArticleFormProps {
 }
 
 export interface BestArticleSectionProps {
-  bestArticles?: ArticleCardProps[];
+  bestArticles?: Article[];
   loading?: boolean;
   error?: string | null;
 }
