@@ -43,7 +43,7 @@ function PageButton({ pageIdx, onPageChange, disabled }: PageButtonProps) {
 
   return (
     <div className="flex gap-[4px]">
-      <button onClick={() => handlePageListChange('down')} disabled={disabled}>
+      <button onClick={() => handlePageListChange('down')} disabled={disabled} className='flex items-center justify-center border-1 border-[var(--Cool-Gray-200)] rounded-[999px] w-[42px] h-[42px]'>
         <Image src={arrowLeft} alt="pageButtonLeft" />
       </button>
       {PageNums.map((e) => {
@@ -51,12 +51,12 @@ function PageButton({ pageIdx, onPageChange, disabled }: PageButtonProps) {
         let btnStyle;
         pageNum == pageIdx ? (btnStyle = selectedStyle) : (btnStyle = commonStyle);
         return (
-          <button key={e} style={btnStyle} onClick={handlePageBtn} disabled={disabled}>
+          <button key={e} style={btnStyle} onClick={handlePageBtn} disabled={disabled} className='flex items-center justify-center border-1 border-[var(--Cool-Gray-200)] rounded-[999px] w-[42px] h-[42px]'>
             {pageNum}
           </button>
         );
       })}
-      <button onClick={() => handlePageListChange('up')} disabled={disabled}>
+      <button onClick={() => handlePageListChange('up')} disabled={disabled} className='flex items-center justify-center border-1 border-[var(--Cool-Gray-200)] rounded-[999px] w-[42px] h-[42px]'>
         <Image src={arrowRight} alt="pageButtonRight" />
       </button>
     </div>
@@ -64,16 +64,12 @@ function PageButton({ pageIdx, onPageChange, disabled }: PageButtonProps) {
 }
 
 const commonStyle = {
-  border: '1px solid var(--Cool-Gray-200, #E5E7EB)',
   background: '#FFFFFF',
-  /* 글자 속성 */
   color: 'var(--Cool-Gray-500, #6B7280)',
 };
 
 const selectedStyle = {
-  border: '1px solid var(--Cool-Gray-200, #E5E7EB)',
   background: '#2F80ED',
-  /* 글자 속성 */
   color: 'var(--Secondary-100, #F9FAFB)',
 };
 

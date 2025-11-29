@@ -63,7 +63,7 @@ export default function ProductsPage() {
 
   return (
     <MainFrame HasNav={true}>
-      <div className="w-full h-fit px-[16px] pt-[17px] pb-[140px]">
+      <div className="w-full h-fit px-[16px] pt-[17px] pb-[140px] flex flex-col items-center gap-[16px]">
         {/* 베스트 상품 표시를 임시로 막았습니다. - 요구사항 */}
         {false && (
           <section>
@@ -74,7 +74,7 @@ export default function ProductsPage() {
           </section>
         )}
 
-        <section>
+        <section className='flex flex-col items-center gap-[24px]'>
           <ProductsSectionBar
             title="판매 중인 상품"
             registerName="상품 등록하기"

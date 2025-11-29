@@ -41,7 +41,7 @@ export default function ProductsSectionBar({
 }: ProductsSectionBarProps) {
   const isUseRegistBtn = registerName && registerUrl;
   return (
-    <div className="mb-[24px] h-fit w-full">
+    <div className="h-fit w-full">
       {onChangeOrder && onChangeSearch ? (
         <div className="flex h-fit w-full flex-col items-start justify-center gap-[8px] md:mb-[20px] md:flex-row md:items-center md:justify-between md:gap-[12px]">
           <div className="shrink-0">
