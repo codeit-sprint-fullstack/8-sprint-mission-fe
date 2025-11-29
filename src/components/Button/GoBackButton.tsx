@@ -1,11 +1,9 @@
 "use client";
 
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-
-interface GoBackButtonProps {
-  href: string;
-}
+import { GoBackButtonProps } from "@/types/controller";
 
 const GoBackButton = ({ href }: GoBackButtonProps) => {
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import type { RegistrationControllerProps } from "@/types/controller";
+import { RegistrationControllerProps } from "@/types/controller";
 
 const RegistrationController = ({
   onClick,

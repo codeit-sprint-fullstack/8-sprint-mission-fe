@@ -7,7 +7,7 @@ import KebabMenu from "@/components/Kebab/KebabMenu";
 import ItemTag from "@/components/Items/ItemTag";
 import LikeButton from "@/components/Button/LikeButton";
 import { fetchProduct } from "@/api/product";
-import type { ProductDetail } from "@/types/entities";
+import { ProductDetail } from "@/types/entities";
 
 const ItemsDetail = () => {
   const params = useParams();

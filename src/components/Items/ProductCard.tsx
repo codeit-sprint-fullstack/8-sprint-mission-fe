@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import type { ProductCardProps } from "@/types/entities";
+import { ProductCardProps } from "@/types/entities";
 
 function ProductCard({ product, type = "normal" }: ProductCardProps) {
   const imageSize = type === "best" ? 282 : 220;

@@ -42,6 +42,10 @@ export interface ControllerProps {
   setSortedArticles: (articles: Article[]) => void;
 }
 
+export interface GoBackButtonProps {
+  href: string;
+}
+
 export interface LikeButtonProps {
   type: "article" | "product";
   targetId: string | number;

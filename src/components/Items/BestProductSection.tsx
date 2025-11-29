@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import ProductCard from "@/components/Items/ProductCard";
-import type { BestProductSectionProps } from "@/types/entities";
+import { BestProductSectionProps } from "@/types/entities";
 
 const BestProductSection = ({
   bestProducts = [],

@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
-import type { DropDownProps, DropDownOption } from "@/types/controller";
+import { DropDownProps, DropDownOption } from "@/types/controller";
 
 const DropDown = ({ options = [], selected, onSelect }: DropDownProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);

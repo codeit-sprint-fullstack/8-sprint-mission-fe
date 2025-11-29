@@ -6,7 +6,7 @@ import ImageForm from "../InputField/ImageForm";
 import InputField from "@/components/InputField/InputField";
 import TextareaField from "@/components/InputField/TextareaField";
 import ItemTag from "@/components/Items/ItemTag";
-import type { ProductFormProps } from "@/types/controller";
+import { ProductFormProps } from "@/types/controller";
 
 const ProductForm = ({
   initialData = {},

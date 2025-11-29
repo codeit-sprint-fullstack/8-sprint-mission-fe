@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { ChangeEvent } from "react";
-import type { SearchBarProps } from "@/types/controller";
+import { SearchBarProps } from "@/types/controller";
 
 const SearchBar = ({ search, onChange, onSearch }: SearchBarProps) => {
   return (

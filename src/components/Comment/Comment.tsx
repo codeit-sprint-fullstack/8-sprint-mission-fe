@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import KebabMenu from "../Kebab/KebabMenu";
 import { updateComment } from "@/api/comments";
-import type { CommentItem, CommentProps } from "@/types/entities";
+import { CommentItem, CommentProps } from "@/types/entities";
 
 const Comment = ({ comment, onDelete, onUpdate }: CommentProps) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);

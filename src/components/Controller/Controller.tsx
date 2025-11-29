@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import SearchBar from "./SearchBar/SearchBar";
 import DropDown from "./DropDown/DropDown";
-import type { ControllerProps, DropDownOption } from "@/types/controller";
+import { ControllerProps, DropDownOption } from "@/types/controller";
 
 const Controller = ({
   controls = {},

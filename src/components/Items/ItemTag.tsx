@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import type { ItemTagProps } from "@/types/entities";
+import { ItemTagProps } from "@/types/entities";
 
 const ItemTag = ({ tags, removable = false, onRemove }: ItemTagProps) => {
   if (!tags) return null;

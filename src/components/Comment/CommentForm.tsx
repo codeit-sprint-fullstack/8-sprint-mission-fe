@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, FormEvent } from "react";
-import type { CommentFormProps } from "@/types/entities";
+import { CommentFormProps } from "@/types/entities";
 
 const CommentForm = ({ title, placeholder, onSubmit }: CommentFormProps) => {
   const [comment, setComment] = useState<string>("");

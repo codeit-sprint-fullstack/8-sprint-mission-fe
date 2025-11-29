@@ -2,7 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 import SearchBar from "@/components/Controller/SearchBar/SearchBar";
 import DropDown from "@/components/Controller/DropDown/DropDown";
-import type { ProductListControllerProps } from "@/types/entities";
+import { ProductListControllerProps } from "@/types/entities";
 
 const ProductListController = ({
   controls = {},

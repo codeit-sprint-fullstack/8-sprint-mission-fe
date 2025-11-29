@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import type { PageButtonProps } from "@/types/controller";
+import { PageButtonProps } from "@/types/controller";
 
 const PageButton = ({
   nowPage = 1,

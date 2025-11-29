@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useLikeService } from "@/api/likeService";
-import type { LikeButtonProps } from "@/types/controller";
+import { LikeButtonProps } from "@/types/controller";
 
 const LikeButton = ({
   targetId,
