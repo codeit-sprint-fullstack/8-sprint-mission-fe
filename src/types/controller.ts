@@ -49,3 +49,11 @@ export interface LikeButtonProps {
   addMethod?: (id: string | number) => Promise<void>;
   removeMethod?: (id: string | number) => Promise<void>;
 }
+
+export interface PageButtonProps {
+  nowPage?: number;
+  buttonLength?: number;
+  pageSize?: number;
+  totalCount?: number;
+  onChange?: (page: number) => void;
+}

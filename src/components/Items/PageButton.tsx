@@ -1,12 +1,16 @@
+"use client";
+
+import React from "react";
 import Image from "next/image";
+import type { PageButtonProps } from "@/types/controller";
 
 const PageButton = ({
   nowPage = 1,
   buttonLength = 5,
   pageSize = 10,
   totalCount = 50,
-  onChange = null,
-}) => {
+  onChange,
+}: PageButtonProps) => {
   const startPage = Math.floor((nowPage - 1) / buttonLength) * buttonLength + 1;
   const maxPage = Math.ceil(totalCount / pageSize);
 
