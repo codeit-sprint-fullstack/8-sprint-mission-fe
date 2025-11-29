@@ -1,11 +1,13 @@
 "use client";
 
+import { ChangeEvent } from "react";
+
 interface TextareaFieldProps {
   title: string;
   id: string;
   placeholder?: string;
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 const TextareaField = ({

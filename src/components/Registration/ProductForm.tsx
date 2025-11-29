@@ -1,22 +1,27 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, KeyboardEvent, ChangeEvent } from "react";
 import RegistrationController from "./RegistrationController";
 import ImageForm from "../InputField/ImageForm";
 import InputField from "@/components/InputField/InputField";
 import TextareaField from "@/components/InputField/TextareaField";
 import ItemTag from "@/components/Items/ItemTag";
+import type { ProductFormProps } from "@/types/controller";
 
-const ProductForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
-  const [imgs, setImgs] = useState("");
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [tagInput, setTagInput] = useState("");
-  const [tags, setTags] = useState([]);
+const ProductForm = ({
+  initialData = {},
+  onSubmit,
+  mode = "create",
+}: ProductFormProps) => {
+  const [imgs, setImgs] = useState<string>("");
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [price, setPrice] = useState<string>("");
+  const [tagInput, setTagInput] = useState<string>("");
+  const [tags, setTags] = useState<string[]>([]);
 
   useEffect(() => {
-    if (mode === "edit") {
+    if (mode === "edit" && initialData) {
       setImgs(initialData.img || "");
       setTitle(initialData.title || "");
       setDescription(initialData.description || "");
@@ -30,10 +35,10 @@ const ProductForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
 
   const handleSubmit = async () => {
     if (!isFormValid) return;
-    onSubmit({ title, description, price });
+    await onSubmit({ title, description, price });
   };
 
-  const handleTagKeyDown = (e) => {
+  const handleTagKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && tagInput.trim()) {
       e.preventDefault();
       if (tags.length < 5) {
@@ -43,7 +48,7 @@ const ProductForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
     }
   };
 
-  const handleRemoveTag = (tagToRemove) => {
+  const handleRemoveTag = (tagToRemove: string) => {
     setTags(tags.filter((t) => t !== tagToRemove));
   };
 
@@ -64,7 +69,9 @@ const ProductForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
           id="title"
           placeholder="상품명을 입력해주세요."
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setTitle(e.target.value)
+          }
         />
 
         <TextareaField
@@ -72,7 +79,9 @@ const ProductForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
           id="description"
           placeholder="상품 소개를 입력해주세요."
           value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+            setDescription(e.target.value)
+          }
         />
 
         <InputField
@@ -81,7 +90,9 @@ const ProductForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
           id="price"
           placeholder="판매가격을 입력해주세요."
           value={price}
-          onChange={(e) => setPrice(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setPrice(e.target.value)
+          }
         />
 
         <form className="flex flex-col items-start gap-4 w-full mb-8">
@@ -90,7 +101,9 @@ const ProductForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
             type="text"
             placeholder="태그를 입력해주세요."
             value={tagInput}
-            onChange={(e) => setTagInput(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setTagInput(e.target.value)
+            }
             onKeyDown={handleTagKeyDown}
             maxLength={5}
             required
