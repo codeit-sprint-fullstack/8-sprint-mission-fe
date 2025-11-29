@@ -1,13 +1,18 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import ImageForm from "../InputField/ImageForm";
 import InputField from "../InputField/InputField";
 import TextareaField from "../InputField/TextareaField";
+import { ArticleFormProps } from "@/types/entities";
 
-const ArticleForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+const ArticleForm = ({
+  initialData = {},
+  onSubmit,
+  mode = "create",
+}: ArticleFormProps) => {
+  const [title, setTitle] = useState<string>("");
+  const [content, setContent] = useState<string>("");
 
   useEffect(() => {
     if (mode === "edit") {
@@ -49,7 +54,9 @@ const ArticleForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
           id="title"
           placeholder="제목을 입력해주세요."
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setTitle(e.target.value)
+          }
         />
 
         <TextareaField
@@ -57,7 +64,9 @@ const ArticleForm = ({ initialData = {}, onSubmit, mode = "create" }) => {
           id="content"
           placeholder="내용을 입력해주세요."
           value={content}
-          onChange={(e) => setContent(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+            setContent(e.target.value)
+          }
         />
       </div>
     </section>

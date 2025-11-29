@@ -104,6 +104,15 @@ export interface ArticleProps {
   article: ArticleCard;
 }
 
+export interface ArticleFormProps {
+  initialData?: {
+    title?: string;
+    content?: string;
+  };
+  onSubmit: (data: { title: string; content: string }) => void;
+  mode?: "create" | "edit";
+}
+
 // 페이지네이션 및 데이터 패칭 관련 타입 정의
 export interface UseLimitParams {
   page?: number;
