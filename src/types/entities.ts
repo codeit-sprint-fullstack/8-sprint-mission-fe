@@ -38,14 +38,14 @@ export interface UseLimitParams {
   page?: number;
   limit?: number;
   search?: string;
-  order?: string;
+  order?: "newest" | "oldest" | "like";
 }
 
 export interface UseCursorParams {
   cursor?: string;
   limit?: number;
   search?: string;
-  order?: string;
+  order?: "newest" | "oldest" | "like";
 }
 
 export interface UseResult {

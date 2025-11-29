@@ -6,16 +6,21 @@ import Image from "next/image";
 import DeleteModal from "@/components/Items/DeleteModal";
 import { deleteArticle } from "@/api/articles";
 import { deleteComment } from "@/api/comments";
+import type { KebabMenuProps } from "@/types/kebab";
 
-const KebabMenu = ({ type, id, onDelete, onEdit }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const menuRef = useRef(null); // React 컴포넌트 안에서 변경 가능한 값을 저장 - 외부 클릭 시 닫기
+const KebabMenu = ({ type, id, onDelete, onEdit }: KebabMenuProps) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
+  const menuRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        menuRef.current &&
+        event.target instanceof Node &&
+        !menuRef.current.contains(event.target)
+      ) {
         setIsOpen(false);
       }
     };
@@ -28,8 +33,8 @@ const KebabMenu = ({ type, id, onDelete, onEdit }) => {
       router.push(`/articles/${id}/edit`);
     }
     if (type === "comment") {
-      onEdit();
-      console.log("댓글 수정");
+      onEdit?.();
+      // console.log("댓글 수정");
     }
     if (type === "item") {
       router.push(`/items/${id}/edit`);
