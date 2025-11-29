@@ -4,10 +4,15 @@ import React, { useState } from "react";
 import Link from "next/link";
 import SearchBar from "./SearchBar/SearchBar";
 import DropDown from "./DropDown/DropDown";
+import type { ControllerProps, DropDownOption } from "@/types/controller";
 
-const Controller = ({ controls = {}, articles = [], setSortedArticles }) => {
-  const [search, setSearch] = useState("");
-  const [sortOption, setSortOption] = useState({
+const Controller = ({
+  controls = {},
+  articles = [],
+  setSortedArticles,
+}: ControllerProps) => {
+  const [search, setSearch] = useState<string>("");
+  const [sortOption, setSortOption] = useState<DropDownOption>({
     label: "최신순",
     value: "recent",
   });
@@ -19,12 +24,15 @@ const Controller = ({ controls = {}, articles = [], setSortedArticles }) => {
     setSortedArticles(filtered);
   };
 
-  const handleSort = (option) => {
+  const handleSort = (option: DropDownOption) => {
     setSortOption(option);
 
     const sorted = [...articles].sort((a, b) => {
+      const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+      const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+
       if (option.value === "recent") {
-        return new Date(b.createdAt) - new Date(a.createdAt);
+        return dateB - dateA;
       }
       if (option.value === "like") return b.likeCount - a.likeCount;
       return 0;
