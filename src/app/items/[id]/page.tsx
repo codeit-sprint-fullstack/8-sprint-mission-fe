@@ -9,7 +9,7 @@ import CommentForm from "@/components/Comment/CommentForm";
 import Comment from "@/components/Comment/Comment";
 import NoneInquiry from "@/components/Comment/NoneInquiry";
 import GoBackButton from "@/components/Button/GoBackButton";
-import { fetchItemComments, addItemComment } from "@/api/comments.js";
+import { fetchItemComments, addItemComment } from "@/api/comments";
 import { CommentItem } from "@/types/entities";
 
 const ProductDetailPage = () => {

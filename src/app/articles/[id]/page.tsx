@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import { fetchComments, addComment } from "@/api/comments.js";
+import { fetchComments, addComment } from "@/api/comments";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import ArticleDatail from "@/components/Article/ArticleDetail";
