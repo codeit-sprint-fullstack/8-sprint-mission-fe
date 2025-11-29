@@ -57,3 +57,9 @@ export interface PageButtonProps {
   totalCount?: number;
   onChange?: (page: number) => void;
 }
+
+export interface RegistrationControllerProps {
+  onClick: () => void;
+  mode?: "create" | "edit";
+  disabled?: boolean;
+}

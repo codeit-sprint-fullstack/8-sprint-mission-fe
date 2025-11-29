@@ -1,10 +1,13 @@
 "use client";
 
+import React from "react";
+import type { RegistrationControllerProps } from "@/types/controller";
+
 const RegistrationController = ({
   onClick,
   mode = "create",
   disabled = false,
-}) => {
+}: RegistrationControllerProps) => {
   return (
     <div className="flex items-center justify-between mb-6 px-6">
       <h2 className="text-lg font-bold text-gray-800">
