@@ -6,6 +6,7 @@ export interface User {
   // 필요 시 추가
 }
 
+// 회원가입 관련 타입 정의
 export interface SignUpParams {
   nickname: string;
   email: string;
@@ -13,15 +14,23 @@ export interface SignUpParams {
   passwordConfirmation: string;
 }
 
-export interface LoginResponse {
-  accessToken?: string;
-  user?: User;
-}
-
 export interface SignupProps {
   nickname: string;
   email: string;
   password: string;
+}
+
+export interface SignupPayload {
+  nickname: string;
+  email: string;
+  password: string;
+  passwordConfirmation: string;
+}
+
+// 로그인 관련 타입 정의
+export interface LoginResponse {
+  accessToken?: string;
+  user?: User;
 }
 
 export interface LoginProps {

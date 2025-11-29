@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -63,7 +63,9 @@ const LoginPage = () => {
             id="email"
             placeholder="이메일을 입력해주세요."
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setEmail(e.target.value)
+            }
           />
 
           <InputField
@@ -72,7 +74,9 @@ const LoginPage = () => {
             id="password"
             placeholder="비밀번호을 입력해주세요."
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setPassword(e.target.value)
+            }
           />
 
           {error && (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
@@ -10,13 +10,7 @@ import AuthButton from "@/components/AuthPage/AuthButton";
 import SocialLogin from "@/components/AuthPage/SocialLogin";
 import Modal from "@/components/AuthPage/Modal";
 import { authService } from "@/api/auth";
-
-interface SignupPayload {
-  nickname: string;
-  email: string;
-  password: string;
-  passwordConfirmation: string;
-}
+import { SignupPayload } from "@/types/auth";
 
 const SignupPage = () => {
   const [email, setEmail] = useState<string>("");
@@ -84,7 +78,9 @@ const SignupPage = () => {
             id="email"
             placeholder="이메일을 입력해주세요."
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setEmail(e.target.value)
+            }
           />
 
           <InputField
@@ -93,7 +89,9 @@ const SignupPage = () => {
             id="nickname"
             placeholder="닉네임을 입력해주세요."
             value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setNickname(e.target.value)
+            }
           />
 
           <InputField
@@ -102,7 +100,9 @@ const SignupPage = () => {
             id="password"
             placeholder="비밀번호를 입력해주세요."
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setPassword(e.target.value)
+            }
           />
 
           <InputField
@@ -111,7 +111,9 @@ const SignupPage = () => {
             id="confirm"
             placeholder="비밀번호를 다시 한 번 입력해주세요."
             value={confirm}
-            onChange={(e) => setConfirm(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setConfirm(e.target.value)
+            }
           />
 
           {error && (
