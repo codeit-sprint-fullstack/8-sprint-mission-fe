@@ -5,7 +5,7 @@ import RegistrationController from "./RegistrationController";
 import ImageForm from "../InputField/ImageForm";
 import InputField from "@/components/InputField/InputField";
 import TextareaField from "@/components/InputField/TextareaField";
-import ItemTag from "@/components/Items/ItemTag";
+import ItemTag from "@/components/Products/ItemTag";
 import { ProductFormProps } from "@/types/entities";
 
 const ProductForm = ({

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import ItemDetail from "@/components/Items/ItemDetail";
+import ItemDetail from "@/components/Products/ItemDetail";
 import CommentForm from "@/components/Comment/CommentForm";
 import Comment from "@/components/Comment/Comment";
 import NoneInquiry from "@/components/Comment/NoneInquiry";
@@ -12,7 +12,7 @@ import GoBackButton from "@/components/Button/GoBackButton";
 import { fetchItemComments, addItemComment } from "@/api/comments.js";
 import { CommentItem } from "@/types/entities";
 
-const ItemDetailPage = () => {
+const ProductDetailPage = () => {
   const params = useParams();
   const id = params?.id as string;
 
@@ -98,4 +98,4 @@ const ItemDetailPage = () => {
   );
 };
 
-export default ItemDetailPage;
+export default ProductDetailPage;

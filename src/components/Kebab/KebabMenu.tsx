@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import DeleteModal from "@/components/Items/DeleteModal";
+import DeleteModal from "@/components/Products/DeleteModal";
 import { deleteArticle } from "@/api/articles";
 import { deleteComment } from "@/api/comments";
 import { KebabMenuProps } from "@/types/controller";

@@ -3,14 +3,14 @@
 import React, { useEffect, useState } from "react";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import BestProductSection from "@/components/Items/BestProductSection";
-import ProductCard from "@/components/Items/ProductCard";
-import ProductListController from "@/components/Items/ProductListController";
-import PageButton from "@/components/Items/PageButton";
+import BestProductSection from "@/components/Products/BestProductSection";
+import ProductCard from "@/components/Products/ProductCard";
+import ProductListController from "@/components/Products/ProductListController";
+import PageButton from "@/components/Products/PageButton";
 import { useItems } from "@/hooks/useItems";
 import { Product } from "@/types/entities";
 
-const ItemPage = () => {
+const ProductPage = () => {
   const { items: products, loading, error, loadItems } = useItems();
   const [sortedProducts, setSortedProducts] = useState<Product[]>([]);
   const [nowPage, setNowPage] = useState<number>(1);
@@ -86,4 +86,4 @@ const ItemPage = () => {
   );
 };
 
-export default ItemPage;
+export default ProductPage;
