@@ -113,6 +113,12 @@ export interface ArticleFormProps {
   mode?: "create" | "edit";
 }
 
+export interface BestArticleSectionProps {
+  bestArticles?: ArticleCard[];
+  loading?: boolean;
+  error?: string | null;
+}
+
 // 페이지네이션 및 데이터 패칭 관련 타입 정의
 export interface UseLimitParams {
   page?: number;

@@ -2,9 +2,14 @@
 
 import { useState, useEffect } from "react";
 import BestArticle from "@/components/Article/BestArticle";
+import { BestArticleSectionProps } from "@/types/entities";
 
-const BestArticleSection = ({ bestArticles = [], loading, error }) => {
-  const [visibleCount, setVisibleCount] = useState(4);
+const BestArticleSection = ({
+  bestArticles = [],
+  loading,
+  error,
+}: BestArticleSectionProps) => {
+  const [visibleCount, setVisibleCount] = useState<number>(4);
 
   useEffect(() => {
     const updateVisibleCount = () => {
