@@ -82,7 +82,7 @@ export interface ArticleInput {
   images: string[];
 }
 
-export interface ArticleSimple {
+export interface ArticleCard {
   id: number;
   title: string;
   nickname: string;
@@ -90,13 +90,17 @@ export interface ArticleSimple {
   createdAt: string;
 }
 
-export interface ArticleDetail extends ArticleSimple {
+export interface ArticleDetail extends ArticleCard {
   content: string;
   isLiked: boolean;
 }
 
-export interface BestArticleType {
-  article: ArticleSimple;
+export interface BestArticleProps {
+  article: ArticleCard;
+}
+
+export interface ArticleProps {
+  article: ArticleCard;
 }
 
 // 페이지네이션 및 데이터 패칭 관련 타입 정의

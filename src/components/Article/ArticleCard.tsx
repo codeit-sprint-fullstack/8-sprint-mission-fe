@@ -3,8 +3,9 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { ArticleProps } from "@/types/entities";
 
-const ArticleCard = ({ article }) => {
+const ArticleCard = ({ article }: ArticleProps) => {
   return (
     <Link
       href={`/articles/${article.id}`}
