@@ -6,12 +6,17 @@ import Image from "next/image";
 import KebabMenu from "@/components/Kebab/KebabMenu";
 import LikeButton from "@/components/Button/LikeButton";
 import { fetchArticle } from "@/api/articles";
+import { ArticleDetail } from "@/types/entities";
 
 const ArticleDatail = () => {
-  const { id } = useParams();
-  const [article, setArticle] = useState("");
+  const params = useParams();
+  const id = params?.id as string;
+
+  const [article, setArticle] = useState<ArticleDetail | null>(null);
 
   useEffect(() => {
+    if (!id) return;
+
     const getBoard = async () => {
       try {
         const data = await fetchArticle(id);
@@ -51,7 +56,7 @@ const ArticleDatail = () => {
             type="article"
             targetId={article.id}
             initialCount={article.likeCount}
-            initialLiked={article.isLiked}
+            // initialLiked={article.isLiked}
           />
         </div>
       </div>

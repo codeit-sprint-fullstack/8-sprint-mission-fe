@@ -83,16 +83,17 @@ export interface ArticleInput {
 }
 
 export interface ArticleCard {
-  id: number;
+  id: string;
   title: string;
   nickname: string;
   likeCount: number;
-  createdAt: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface ArticleDetail extends ArticleCard {
   content: string;
-  isLiked: boolean;
+  isLiked?: string;
 }
 
 export interface BestArticleProps {
