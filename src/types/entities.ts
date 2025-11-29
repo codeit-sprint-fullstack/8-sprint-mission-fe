@@ -34,8 +34,16 @@ export interface ProductDetail {
   favoriteCount: number;
   createdAt?: string;
   updatedAt?: string;
-  nickname?: string;
+  nickname: string;
   isFavorite?: string;
+}
+
+export interface ProductListControllerProps {
+  controls?: {
+    orderBy?: boolean;
+  };
+  products: Product[];
+  setSortedProducts: (items: Product[]) => void;
 }
 
 export interface Article {

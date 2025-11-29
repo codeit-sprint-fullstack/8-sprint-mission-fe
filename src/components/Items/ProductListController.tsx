@@ -2,13 +2,14 @@ import { useState } from "react";
 import Link from "next/link";
 import SearchBar from "@/components/Controller/SearchBar/SearchBar";
 import DropDown from "@/components/Controller/DropDown/DropDown";
+import type { ProductListControllerProps } from "@/types/entities";
 
 const ProductListController = ({
   controls = {},
   products = [],
   setSortedProducts,
-}) => {
-  const [search, setSearch] = useState("");
+}: ProductListControllerProps) => {
+  const [search, setSearch] = useState<string>("");
   const [sortOption, setSortOption] = useState({
     label: "최신순",
     value: "recent",
@@ -16,18 +17,19 @@ const ProductListController = ({
 
   const handleSearch = () => {
     const filtered = products.filter((p) =>
-      p.name.toLowerCase().includes(search.toLowerCase())
+      p.title.toLowerCase().includes(search.toLowerCase())
     );
     setSortedProducts(filtered);
   };
 
-  const handleSort = (option) => {
+  const handleSort = (option: { label: string; value: string }) => {
     setSortOption(option);
 
     const sorted = [...products].sort((a, b) => {
-      if (option.value === "recent") {
-        return new Date(b.createdAt) - new Date(a.createdAt);
-      }
+      const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+      const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+
+      if (option.value === "recent") return dateB - dateA;
       if (option.value === "like") return b.favoriteCount - a.favoriteCount;
       return 0;
     });
