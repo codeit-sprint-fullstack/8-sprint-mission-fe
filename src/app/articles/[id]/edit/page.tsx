@@ -6,16 +6,24 @@ import { fetchArticle, updateArticle } from "@/api/articles";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import ArticleForm from "@/components/Article/ArticleForm";
+import { Article, ArticleInput } from "@/types/entities";
 
 const ArticleEditPage = () => {
-  const { id } = useParams();
-  const [initialData, setInitialData] = useState({ title: "", content: "" });
+  const params = useParams();
+  const id = params?.id as string;
+
+  const [initialData, setInitialData] = useState<ArticleInput>({
+    title: "",
+    content: "",
+  });
   const router = useRouter();
 
   useEffect(() => {
+    if (!id) return;
+
     const getBoard = async () => {
       try {
-        const data = await fetchArticle(id);
+        const data: Article = await fetchArticle(id);
         setInitialData({ title: data.title, content: data.content });
       } catch (error) {
         console.error("게시글 불러오기 에러:", error);
@@ -25,7 +33,7 @@ const ArticleEditPage = () => {
     getBoard();
   }, [id]);
 
-  const handleUpdate = async (data) => {
+  const handleUpdate = async (data: ArticleInput) => {
     try {
       await updateArticle(id, data);
       router.push(`/articles/${id}`);
