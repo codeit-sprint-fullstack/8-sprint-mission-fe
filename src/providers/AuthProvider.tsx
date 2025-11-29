@@ -2,14 +2,9 @@
 
 import { authService } from "@/api/auth";
 import { userService } from "@/api/userService";
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  ReactNode,
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { AuthContextType, User, LoginProps, SignupProps } from "@/types/auth";
+import { ReactNodeType } from "@/types/common";
 
 // const AuthContext = createContext({
 //   user: null,
@@ -29,11 +24,7 @@ export const useAuth = (): AuthContextType => {
   return context;
 };
 
-interface AuthProviderProps {
-  children: ReactNode;
-}
-
-export default function AuthProvider({ children }: AuthProviderProps) {
+export default function AuthProvider({ children }: ReactNodeType) {
   const [user, setUser] = useState<User | null | undefined>(undefined);
 
   const getUser = async (): Promise<User | null> => {

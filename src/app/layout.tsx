@@ -1,9 +1,9 @@
-import { ReactNode } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
 import AuthProvider from "@/providers/AuthProvider";
 import RouteGuard from "@/providers/RouteGuard";
+import { ReactNodeType } from "@/types/common";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,11 +24,7 @@ export const metadata = {
   },
 };
 
-interface RootLayoutProps {
-  children: ReactNode;
-}
-
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: ReactNodeType) {
   return (
     <html lang="ko">
       <body

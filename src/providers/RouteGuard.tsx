@@ -1,13 +1,10 @@
 "use client";
 
-import { useEffect, useState, ReactNode } from "react";
+import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "./AuthProvider";
 import { User } from "@/types/auth";
-
-interface RouteGuardProps {
-  children: ReactNode;
-}
+import { ReactNodeType } from "@/types/common";
 
 // 로그인된 사용자만 접근 가능한 경로
 const protectedPaths = [
@@ -25,7 +22,7 @@ const protectedPaths = [
 // 미인증 사용자만 접근 가능한 경로
 const publicPaths = ["/", "/login", "/signup"];
 
-export default function RouteGuard({ children }: RouteGuardProps) {
+export default function RouteGuard({ children }: ReactNodeType) {
   const { user } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
