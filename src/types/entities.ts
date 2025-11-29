@@ -58,6 +58,12 @@ export interface ProductCardProps {
   type?: "normal" | "best";
 }
 
+export interface BestProductSectionProps {
+  bestProducts?: ProductCard[];
+  loading?: boolean;
+  error?: string | null;
+}
+
 export interface Article {
   id: string;
   title: string;

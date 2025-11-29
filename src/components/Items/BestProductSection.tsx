@@ -2,8 +2,13 @@
 
 import { useState, useEffect } from "react";
 import ProductCard from "@/components/Items/ProductCard";
+import type { BestProductSectionProps } from "@/types/entities";
 
-const BestProductSection = ({ bestProducts = [], loading, error }) => {
+const BestProductSection = ({
+  bestProducts = [],
+  loading,
+  error,
+}: BestProductSectionProps) => {
   const [visibleCount, setVisibleCount] = useState(4);
 
   useEffect(() => {
