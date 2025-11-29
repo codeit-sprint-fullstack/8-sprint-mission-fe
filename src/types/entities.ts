@@ -1,5 +1,5 @@
 // Product 관련 타입 정의
-export interface ProductCard {
+export interface Product {
   id: string;
   title: string;
   description: string;
@@ -20,47 +20,23 @@ export interface ProductInput {
 }
 
 export interface ItemTagProps {
-  tags: string | number | Array<string | number> | null;
+  tags: string | Array<string> | null;
   removable?: boolean;
   onRemove?: (tag: string) => void;
 }
 
-export interface ProductDetail {
-  id: string;
-  title: string;
-  description: string;
-  price: number;
-  images: string[];
-  tags: string[];
-  favoriteCount: number;
-  createdAt?: string;
-  updatedAt?: string;
+export interface ProductDetail extends Product {
   nickname: string;
   isFavorite?: string;
 }
 
-export interface ProductCard {
-  id: string;
-  title: string;
-  price: number;
-  favoriteCount: number;
-}
-
-export interface ProductListControllerProps {
-  controls?: {
-    orderBy?: boolean;
-  };
-  products: ProductCard[];
-  setSortedProducts: (items: ProductCard[]) => void;
-}
-
 export interface ProductCardProps {
-  product: ProductCard;
+  product: Product;
   type?: "normal" | "best";
 }
 
 export interface BestProductSectionProps {
-  bestProducts?: ProductCard[];
+  bestProducts?: Product[];
   loading?: boolean;
   error?: string | null;
 }
@@ -131,7 +107,7 @@ export interface UseCursorParams {
 }
 
 export interface UseResult {
-  items: ProductCard[];
+  items: Product[];
   loading: boolean;
   error: string | null;
   loadItems: (params?: UseLimitParams) => Promise<void>;

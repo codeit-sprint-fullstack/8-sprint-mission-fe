@@ -1,4 +1,4 @@
-import { Article } from "@/types/entities";
+import { Article, Product } from "@/types/entities";
 
 export type KebabType = "article" | "comment" | "item";
 
@@ -40,6 +40,12 @@ export interface ControllerProps {
   controls?: Controls;
   articles: Article[];
   setSortedArticles: (articles: Article[]) => void;
+}
+
+export interface ProductListControllerProps {
+  controls?: Controls;
+  products: Product[];
+  setSortedProducts: (items: Product[]) => void;
 }
 
 export interface GoBackButtonProps {

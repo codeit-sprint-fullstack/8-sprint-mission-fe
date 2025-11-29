@@ -8,18 +8,19 @@ import ProductCard from "@/components/Items/ProductCard";
 import ProductListController from "@/components/Items/ProductListController";
 import PageButton from "@/components/Items/PageButton";
 import { useItems } from "@/hooks/useItems";
+import { Product } from "@/types/entities";
 
 const ItemPage = () => {
   const { items: products, loading, error, loadItems } = useItems();
-  const [sortedProducts, setSortedProducts] = useState([]);
-  const [nowPage, setNowPage] = useState(1);
+  const [sortedProducts, setSortedProducts] = useState<Product[]>([]);
+  const [nowPage, setNowPage] = useState<number>(1);
   const pageSize = 10;
 
   useEffect(() => {
     setSortedProducts(products);
   }, [products]);
 
-  const bestProducts = [...products]
+  const bestProducts: Product[] = [...products]
     .sort((a, b) => (b.favoriteCount ?? 0) - (a.favoriteCount ?? 0))
     .slice(0, 4);
 
@@ -37,7 +38,7 @@ const ItemPage = () => {
         <section>
           <ProductListController
             controls={{ search: true, orderBy: true }}
-            option={{ search: true, orderBy: true, upload: true }}
+            // option={{ search: true, orderBy: true, upload: true }}
             products={products}
             setSortedProducts={setSortedProducts}
           />

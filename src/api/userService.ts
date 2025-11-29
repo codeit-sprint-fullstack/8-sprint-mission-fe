@@ -1,5 +1,5 @@
 import { User } from "@/types/auth";
-import { ProductCard, Article, Favorite, Like } from "@/types/entities";
+import { Product, Article, Favorite, Like } from "@/types/entities";
 import { defaultFetch } from "@/api/fetchClient";
 // 인증 없이 테스트 하려고 defaultFetch로 변경함.
 // 추후 다시 cookieFetch로 변경
@@ -58,8 +58,8 @@ export const userService = {
       }
     ),
 
-  getMyProducts: (): Promise<ProductCard[]> =>
-    defaultFetch<ProductCard[]>("/users/me/products"),
+  getMyProducts: (): Promise<Product[]> =>
+    defaultFetch<Product[]>("/users/me/products"),
 
   getMyArticles: (): Promise<Article[]> =>
     defaultFetch<Article[]>("/users/me/articles"),
