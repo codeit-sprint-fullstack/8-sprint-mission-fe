@@ -6,17 +6,18 @@ import { addArticle } from "@/api/articles";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import ArticleForm from "@/components/Article/ArticleForm";
+import { Article, ArticleInput } from "@/types/entities";
 
 const ArticleWritePage = () => {
   const router = useRouter();
 
   //게시글 등록 API
-  const handleCreate = async (data) => {
+  const handleCreate = async (data: ArticleInput) => {
     try {
       const newBoard = await addArticle(data);
 
       // 프론트에서 임의값으로 처리
-      const enrichedBoard = {
+      const enrichedBoard: Article = {
         ...newBoard,
         nickname: newBoard.nickname || "게시글 추가 테스트유저",
         likeCount: newBoard.likeCount ?? Math.floor(Math.random() * 100),

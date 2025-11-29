@@ -71,6 +71,7 @@ export interface Article {
   title: string;
   content: string;
   image: string[];
+  nickname?: string;
   likeCount: number;
   createdAt?: string;
   updatedAt?: string;
@@ -79,7 +80,7 @@ export interface Article {
 export interface ArticleInput {
   title: string;
   content: string;
-  images: string[];
+  images?: string[];
 }
 
 export interface ArticleCardProps extends Article {
