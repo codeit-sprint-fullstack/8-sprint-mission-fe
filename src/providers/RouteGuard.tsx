@@ -1,8 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, ReactNode } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "./AuthProvider";
+import { User } from "@/types/auth";
+
+interface RouteGuardProps {
+  children: ReactNode;
+}
 
 // 로그인된 사용자만 접근 가능한 경로
 const protectedPaths = [
@@ -20,15 +25,24 @@ const protectedPaths = [
 // 미인증 사용자만 접근 가능한 경로
 const publicPaths = ["/", "/login", "/signup"];
 
-export default function RouteGuard({ children }) {
+export default function RouteGuard({ children }: RouteGuardProps) {
   const { user } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const checkAccess = async () => {
-      const accessToken = localStorage.getItem("accessToken");
+      const accessToken =
+        typeof window !== "undefined"
+          ? localStorage.getItem("accessToken")
+          : null;
+
+      if (!pathname) {
+        setIsLoading(false);
+        return;
+      }
+
       const path = pathname.split("?")[0];
 
       const isProtectedRoute = protectedPaths.some((route) =>
