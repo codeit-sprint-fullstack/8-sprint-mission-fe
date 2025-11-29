@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+"use client";
 
-const CommentForm = ({ title, placeholder, onSubmit }) => {
-  const [comment, setComment] = useState("");
+import React, { useState, FormEvent } from "react";
+import type { CommentFormProps } from "@/types/entities";
+
+const CommentForm = ({ title, placeholder, onSubmit }: CommentFormProps) => {
+  const [comment, setComment] = useState<string>("");
 
   const isFormValid = comment.trim() !== "";
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!isFormValid) return;
 

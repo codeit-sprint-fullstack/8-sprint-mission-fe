@@ -124,6 +124,12 @@ export interface CommentProps {
   onUpdate: (updated: CommentItem) => void;
 }
 
+export interface CommentFormProps {
+  title: string;
+  placeholder: string;
+  onSubmit: (comment: string) => Promise<void> | void;
+}
+
 export interface Favorite {
   id: string;
   type: "product";
