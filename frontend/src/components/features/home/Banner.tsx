@@ -1,4 +1,4 @@
-import Button from '../atoms/Button';
+import Button from '../../atoms/Button';
 import Image, { StaticImageData } from 'next/image';
 import { ReactNode } from 'react';
 

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-import Button from '../atoms/Button';
+import Button from '../../atoms/Button';
 import logoImg from '@/images/logo.svg';
 import logoMobileImg from '@/images/logo_mobile.svg';
 

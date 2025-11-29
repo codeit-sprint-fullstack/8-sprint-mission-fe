@@ -1,6 +1,6 @@
-import Banner from '../mocules/Banner';
+import Banner from '../features/home/Banner';
 import MainFrame from '../organisms/MainFrame';
-import Features from '../mocules/Features';
+import Features from '../features/home/Features';
 
 import topBannerImg from '@/images/banner/hero-image.png';
 import bottomBannerImg from '@/images/banner/bottom-banner-image.png';
@@ -8,7 +8,7 @@ import bottomBannerImg from '@/images/banner/bottom-banner-image.png';
 export default function HomePage() {
   return (
     <>
-      <MainFrame isHome={true}>
+      <MainFrame HasNav={true}>
         <Banner bgImg={topBannerImg} btnUrl="/itmes" btnText="구경해보기">
           <h1 className="text-center text-[40px] font-[700] text-[var(--Secondary-700)] md:text-start">
             일상의 모든 물건을 <br className="block md:hidden xl:block" />

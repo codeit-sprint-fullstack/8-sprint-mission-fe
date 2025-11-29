@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
-import GNB from '../mocules/GNB';
-import HomeFooter from '../mocules/HomeFooter';
+import GNB from '../features/mainframe/GNB';
+import HomeFooter from '../features/mainframe/HomeFooter';
 interface MainFrameProps {
-  isHome?: boolean;
+  HasNav?: boolean;
   children: ReactNode;
 }
-export default function MainFrame({ isHome = false, children }: MainFrameProps) {
+export default function MainFrame({ HasNav: isHome = false, children }: MainFrameProps) {
   return (
     <>
       <GNB isHome />

@@ -14,11 +14,13 @@
   --Cool-Gray-50: #f9fafb;
 
   /* Secondary */
+  --Secondary-900: #111827;
   --Secondary-800: #1f2937;
   --Secondary-700: #374151;
   --Secondary-600: #4b5563;
   --Secondary-500: #6b7280;
   --Secondary-400: #9ca3af;
+  --Secondary-100: #f3f4f6;
 
   /* Gray scale */
   --gray-900: #1b1d1f;
