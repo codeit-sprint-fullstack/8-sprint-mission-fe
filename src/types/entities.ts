@@ -12,11 +12,11 @@ export interface Product {
 }
 
 export interface ProductInput {
+  images: string[];
   title: string;
   price: number;
   description: string;
   tags: string[];
-  images: string[];
 }
 
 export interface ItemTagProps {
@@ -50,11 +50,11 @@ export interface ProductFormInitialData {
 }
 
 export interface SubmitPayload {
+  images: string[];
   title: string;
   description: string;
   price: number;
-  tags?: string[];
-  images?: string[];
+  tags: string[];
 }
 
 export interface ProductFormProps {

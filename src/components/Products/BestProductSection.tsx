@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import ProductCard from "@/components/Items/ProductCard";
+import ProductCard from "@/components/Products/ProductCard";
 import { BestProductSectionProps } from "@/types/entities";
 
 const BestProductSection = ({

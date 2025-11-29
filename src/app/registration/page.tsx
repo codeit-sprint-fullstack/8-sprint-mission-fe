@@ -5,14 +5,19 @@ import { addProduct } from "@/api/product";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import ProductForm from "@/components/Registration/ProductForm";
+import { SubmitPayload, ProductInput } from "@/types/entities";
 
 const RegistrationPage = () => {
   const router = useRouter();
 
   // 상품 등록 API
-  const handleCreate = async (data) => {
+  const handleCreate = async (data: SubmitPayload) => {
+    const payload: ProductInput = {
+      ...data,
+    };
+
     try {
-      const newProduct = await addProduct(data);
+      const newProduct = await addProduct(payload);
 
       router.push(`items/${newProduct.id}`);
     } catch (error) {

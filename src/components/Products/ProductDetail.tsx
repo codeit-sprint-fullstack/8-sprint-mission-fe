@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import KebabMenu from "@/components/Kebab/KebabMenu";
-import ItemTag from "@/components/Items/ItemTag";
+import ItemTag from "@/components/Products/ItemTag";
 import LikeButton from "@/components/Button/LikeButton";
 import { fetchProduct } from "@/api/product";
 import { ProductDetail } from "@/types/entities";
