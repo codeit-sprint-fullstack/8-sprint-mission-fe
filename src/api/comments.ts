@@ -1,5 +1,5 @@
 import { defaultFetch } from "./fetchClient";
-import { Comment } from "@/types/entities";
+import { CommentItem } from "@/types/entities";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 const ARTICLE_API_URL = `${BASE_URL}/articles`;
@@ -8,8 +8,10 @@ const PRODUCT_API_URL = `${BASE_URL}/products`;
 
 // 게시글 상세 페이지
 // 댓글 목록 조회
-export const fetchComments = async (articleId: string): Promise<Comment[]> => {
-  const data = await defaultFetch<{ list: Comment[] }>(
+export const fetchComments = async (
+  articleId: string
+): Promise<CommentItem[]> => {
+  const data = await defaultFetch<{ list: CommentItem[] }>(
     `${ARTICLE_API_URL}/${articleId}/comments?limit=5`
   );
 
@@ -23,8 +25,8 @@ export const fetchComments = async (articleId: string): Promise<Comment[]> => {
 export const addComment = async (
   articleId: string,
   comment: { content: string }
-): Promise<Comment> => {
-  return await defaultFetch<Comment>(
+): Promise<CommentItem> => {
+  return await defaultFetch<CommentItem>(
     `${ARTICLE_API_URL}/${articleId}/comments`,
     {
       method: "POST",
@@ -37,8 +39,8 @@ export const addComment = async (
 export const updateComment = async (
   id: string,
   comment: { content: string }
-): Promise<Comment> => {
-  return await defaultFetch<Comment>(`${COMMENT_API_URL}/${id}`, {
+): Promise<CommentItem> => {
+  return await defaultFetch<CommentItem>(`${COMMENT_API_URL}/${id}`, {
     method: "PATCH",
     body: JSON.stringify(comment),
   });
@@ -57,8 +59,8 @@ export const deleteComment = async (
 // 댓글 목록 조회
 export const fetchItemComments = async (
   productId: string
-): Promise<Comment[]> => {
-  const data = await defaultFetch<{ list: Comment[] }>(
+): Promise<CommentItem[]> => {
+  const data = await defaultFetch<{ list: CommentItem[] }>(
     `${PRODUCT_API_URL}/${productId}/comments?limit=5`
   );
   return (data.list ?? []).map((c) => ({
@@ -71,8 +73,8 @@ export const fetchItemComments = async (
 export const addItemComment = async (
   productId: string,
   comment: { content: string }
-): Promise<Comment> => {
-  return await defaultFetch<Comment>(
+): Promise<CommentItem> => {
+  return await defaultFetch<CommentItem>(
     `${PRODUCT_API_URL}/${productId}/comments`,
     {
       method: "POST",

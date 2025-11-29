@@ -137,18 +137,10 @@ export interface UseResult {
 }
 
 // 댓글 관련 타입 정의
-export interface Comment {
-  id: string;
-  content: string;
-  userId: string;
-  nickname?: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
 export interface CommentItem {
   id: string;
   content: string;
+  userId?: string;
   nickname?: string;
   createdAt: string;
   updatedAt?: string;

@@ -10,13 +10,18 @@ import CommentForm from "@/components/Comment/CommentForm";
 import Comment from "@/components/Comment/Comment";
 import NoneComment from "@/components/Comment/NoneComment";
 import GoBackButton from "@/components/Button/GoBackButton";
+import { CommentItem } from "@/types/entities";
 
 const FreeboardIdPage = () => {
-  const { id } = useParams();
-  const [commentList, setCommentList] = useState([]);
+  const params = useParams();
+  const id = params?.id as string;
+
+  const [commentList, setCommentList] = useState<CommentItem[]>([]);
 
   // 댓글 목록 조회 API
   useEffect(() => {
+    if (!id) return;
+
     const getComments = async () => {
       try {
         const data = await fetchComments(id);
@@ -29,13 +34,13 @@ const FreeboardIdPage = () => {
   }, [id]);
 
   // 댓글 등록 API
-  const handleAddComment = async (comment) => {
+  const handleAddComment = async (comment: string) => {
     try {
       const newComment = await addComment(id, {
         content: comment,
       });
 
-      const enrichedComment = {
+      const enrichedComment: CommentItem = {
         ...newComment,
         nickname: newComment.nickname || "테스트유저",
         createdAt: newComment.createdAt || new Date().toISOString(),
