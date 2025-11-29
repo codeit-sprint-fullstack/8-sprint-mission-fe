@@ -41,6 +41,28 @@ export interface BestProductSectionProps {
   error?: string | null;
 }
 
+export interface ProductFormInitialData {
+  images?: string[];
+  title?: string;
+  description?: string;
+  price?: string;
+  tags?: string[];
+}
+
+export interface SubmitPayload {
+  title: string;
+  description: string;
+  price: number;
+  tags?: string[];
+  images?: string[];
+}
+
+export interface ProductFormProps {
+  initialData?: ProductFormInitialData;
+  onSubmit: (data: SubmitPayload) => void | Promise<void>;
+  mode?: "create" | "edit";
+}
+
 // 게시글 관련 타입 정의
 export interface Article {
   id: string;

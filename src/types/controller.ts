@@ -73,25 +73,3 @@ export interface RegistrationControllerProps {
   mode?: "create" | "edit";
   disabled?: boolean;
 }
-
-// 폼 초기값 타입 정의
-interface ProductFormInitialData {
-  img?: string;
-  title?: string;
-  description?: string;
-  price?: string;
-  tags?: string[];
-}
-
-// onSubmit에 전달할 데이터 타입
-interface SubmitPayload {
-  title: string;
-  description: string;
-  price: string;
-}
-
-export interface ProductFormProps {
-  initialData?: ProductFormInitialData;
-  onSubmit: (data: SubmitPayload) => void | Promise<void>;
-  mode?: "create" | "edit";
-}

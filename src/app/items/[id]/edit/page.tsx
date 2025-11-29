@@ -6,11 +6,18 @@ import { fetchProduct, updateProduct } from "@/api/product";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import ProductForm from "@/components/Registration/ProductForm";
+import {
+  ProductFormInitialData,
+  Product,
+  SubmitPayload,
+} from "@/types/entities";
 
 const ProductEditPage = () => {
-  const { id } = useParams();
-  const [initialData, setInitialData] = useState({
-    img: "",
+  const params = useParams();
+  const id = params?.id as string;
+
+  const [initialData, setInitialData] = useState<ProductFormInitialData>({
+    images: [],
     title: "",
     description: "",
     price: "",
@@ -21,13 +28,13 @@ const ProductEditPage = () => {
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const data = await fetchProduct(id);
+        const data: Product = await fetchProduct(id);
         setInitialData({
-          img: data.img,
-          title: data.title,
-          description: data.description,
-          price: data.price,
-          tags: data.tags,
+          images: data.images ?? [],
+          title: data.title ?? "",
+          description: data.description ?? "",
+          price: data.price?.toString() ?? "",
+          tags: data.tags ?? [],
         });
       } catch (error) {
         console.error("상품 상세 불러오기 에러:", error);
@@ -37,7 +44,9 @@ const ProductEditPage = () => {
     getProduct();
   }, [id]);
 
-  const handleUpdate = async (data) => {
+  const handleUpdate = async (data: SubmitPayload) => {
+    if (!id) return;
+
     try {
       await updateProduct(id, data);
       router.push(`/items/${id}`);

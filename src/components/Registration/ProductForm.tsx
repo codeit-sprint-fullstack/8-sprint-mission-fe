@@ -6,14 +6,14 @@ import ImageForm from "../InputField/ImageForm";
 import InputField from "@/components/InputField/InputField";
 import TextareaField from "@/components/InputField/TextareaField";
 import ItemTag from "@/components/Items/ItemTag";
-import { ProductFormProps } from "@/types/controller";
+import { ProductFormProps } from "@/types/entities";
 
 const ProductForm = ({
   initialData = {},
   onSubmit,
   mode = "create",
 }: ProductFormProps) => {
-  const [imgs, setImgs] = useState<string>("");
+  const [images, setImages] = useState<string[]>([]);
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [price, setPrice] = useState<string>("");
@@ -22,7 +22,7 @@ const ProductForm = ({
 
   useEffect(() => {
     if (mode === "edit" && initialData) {
-      setImgs(initialData.img || "");
+      setImages(initialData.images || []);
       setTitle(initialData.title || "");
       setDescription(initialData.description || "");
       setPrice(initialData.price || "");
@@ -35,7 +35,7 @@ const ProductForm = ({
 
   const handleSubmit = async () => {
     if (!isFormValid) return;
-    await onSubmit({ title, description, price });
+    await onSubmit({ title, description, price: Number(price), tags, images });
   };
 
   const handleTagKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
