@@ -2,7 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 import SearchBar from "@/components/Controller/SearchBar/SearchBar";
 import DropDown from "@/components/Controller/DropDown/DropDown";
-import { ProductListControllerProps } from "@/types/controller";
+import { ProductListControllerProps, DropDownOption } from "@/types/controller";
 
 const ProductListController = ({
   controls = {},
@@ -10,7 +10,7 @@ const ProductListController = ({
   setSortedProducts,
 }: ProductListControllerProps) => {
   const [search, setSearch] = useState<string>("");
-  const [sortOption, setSortOption] = useState({
+  const [sortOption, setSortOption] = useState<DropDownOption>({
     label: "최신순",
     value: "recent",
   });

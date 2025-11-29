@@ -9,7 +9,7 @@ const BestProductSection = ({
   loading,
   error,
 }: BestProductSectionProps) => {
-  const [visibleCount, setVisibleCount] = useState(4);
+  const [visibleCount, setVisibleCount] = useState<number>(4);
 
   useEffect(() => {
     const updateVisibleCount = () => {

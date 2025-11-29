@@ -29,7 +29,7 @@ const ImageForm = ({ images = [], onChange }: ImageFormProps) => {
 
       const uploadedUrls: string[] = [];
       for (const file of selected) {
-        const url = await uploadImage({ file, token });
+        const url = await uploadImage(file, token);
         uploadedUrls.push(url);
       }
 

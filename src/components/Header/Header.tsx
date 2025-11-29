@@ -5,10 +5,7 @@ import Nav from "./Navigator/Navigator";
 import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "@/providers/AuthProvider";
-
-interface User {
-  nickname?: string;
-}
+import { User } from "@/types/auth";
 
 const Header = () => {
   const { user } = useAuth() as { user: User | null };

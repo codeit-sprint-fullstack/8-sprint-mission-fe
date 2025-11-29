@@ -8,7 +8,7 @@ interface InputFieldProps {
   type?: "text" | "number" | "email" | "password";
   id: string;
   placeholder?: string;
-  value: string;
+  value: string | number;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
