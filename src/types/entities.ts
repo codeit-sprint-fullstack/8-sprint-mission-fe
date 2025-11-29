@@ -82,26 +82,21 @@ export interface ArticleInput {
   images: string[];
 }
 
-export interface ArticleCard {
-  id: string;
-  title: string;
-  nickname: string;
-  likeCount: number;
-  createdAt?: string;
-  updatedAt?: string;
+export interface ArticleCardProps extends Article {
+  nickname?: string;
 }
 
-export interface ArticleDetail extends ArticleCard {
+export interface ArticleDetail extends ArticleCardProps {
   content: string;
   isLiked?: string;
 }
 
 export interface BestArticleProps {
-  article: ArticleCard;
+  article: ArticleCardProps;
 }
 
 export interface ArticleProps {
-  article: ArticleCard;
+  article: ArticleCardProps;
 }
 
 export interface ArticleFormProps {
@@ -114,7 +109,7 @@ export interface ArticleFormProps {
 }
 
 export interface BestArticleSectionProps {
-  bestArticles?: ArticleCard[];
+  bestArticles?: ArticleCardProps[];
   loading?: boolean;
   error?: string | null;
 }

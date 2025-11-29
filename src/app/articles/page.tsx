@@ -7,16 +7,17 @@ import BestArticleSection from "@/components/Article/BestArticleSection";
 import ArticleCard from "@/components/Article/ArticleCard";
 import Controller from "@/components/Controller/Controller";
 import { useArticles } from "@/hooks/useArticles";
+import { ArticleCardProps } from "@/types/entities";
 
 const FreeboardPage = () => {
   const { articles, loading, error, loadArticles } = useArticles();
-  const [sortedArticles, setSortedArticles] = useState([]);
+  const [sortedArticles, setSortedArticles] = useState<ArticleCardProps[]>([]);
 
   useEffect(() => {
     setSortedArticles(articles);
   }, [articles]);
 
-  const bestArticles = [...articles]
+  const bestArticles: ArticleCardProps[] = [...articles]
     .sort((a, b) => (b.likeCount ?? 0) - (a.likeCount ?? 0))
     .slice(0, 3);
 
