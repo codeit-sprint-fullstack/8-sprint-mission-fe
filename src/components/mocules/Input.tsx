@@ -65,7 +65,7 @@ export default function Input({
   //rows={1}인 textarea보다 input이 UX적으로 좋다고 판단.
   return (
     <div className="flex flex-col">
-      <label className="mb-[8px]">{label}</label>
+      <label className="mb-[8px] text-[var(--Cool-Gray-900)] text-[16px] font-[600]">{label}</label>
       <div className="relative">
         {type === 'file' ? (
           <ImageInput files={files} props={props} />

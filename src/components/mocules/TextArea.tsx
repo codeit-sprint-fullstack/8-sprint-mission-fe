@@ -41,7 +41,7 @@ export default function TextArea({
   };
   return (
     <div className="flex flex-col">
-      <label className="mb-[8px]">{label}</label>
+      <label className="mb-[8px] text-[var(--Cool-Gray-900)] text-[16px] font-[600]">{label}</label>
       <textarea {...props} />
       <div className="flex h-[32px] flex-col justify-start">
         <p className="flex items-center justify-start px-[16px] py-[8px] text-sm font-semibold text-[var(--error-red,#f74747)]">

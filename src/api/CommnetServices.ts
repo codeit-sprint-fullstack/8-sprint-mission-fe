@@ -1,9 +1,5 @@
 import { customFetch, customAuthFetch } from './fetchClient';
-import { CommentResponce } from '@/constants/commnetType';
-
-interface commentRequest {
-  content: string;
-}
+import { CommentRequest, CommentResponce } from '@/constants/commnetType';
 
 /* 상품 문의(댓글) */
 export async function getProductComments(id: string) {
@@ -11,8 +7,8 @@ export async function getProductComments(id: string) {
   return result;
 }
 
-export async function createProductComment(id: string, data: commentRequest) {
-  const result = await customAuthFetch.post<commentRequest, CommentResponce>(
+export async function createProductComment(id: string, data: CommentRequest) {
+  const result = await customAuthFetch.post<CommentRequest, CommentResponce>(
     `/products/${id}/comments`,
     data
   );
@@ -25,8 +21,8 @@ export async function getArticleComments(id: string) {
   return result;
 }
 
-export async function createArticleComment(id: string, data: commentRequest) {
-  const result = await customAuthFetch.post<commentRequest, CommentResponce>(
+export async function createArticleComment(id: string, data: CommentRequest) {
+  const result = await customAuthFetch.post<CommentRequest, CommentResponce>(
     `/articles/${id}/comments`,
     data
   );
@@ -34,8 +30,8 @@ export async function createArticleComment(id: string, data: commentRequest) {
 }
 
 /* 공통 */
-export async function updateComment(id: string, data: commentRequest) {
-  const result = await customAuthFetch.patch<commentRequest, CommentResponce>(
+export async function updateComment(id: string, data: CommentRequest) {
+  const result = await customAuthFetch.patch<CommentRequest, CommentResponce>(
     `/comments/${id}`,
     data
   );

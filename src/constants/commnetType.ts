@@ -1,3 +1,7 @@
+export interface CommentRequest {
+  content: string;
+}
+
 export interface CommentResponce {
   id: string;
   content: string;

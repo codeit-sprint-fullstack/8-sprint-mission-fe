@@ -1,7 +1,5 @@
+import ArticleDetailPage from '@/components/pages/Article/ArticleDetailPage';
+
 export default function ArticleDetail() {
-  return (
-    <div>
-      <p>미구현</p>
-    </div>
-  );
+  return <ArticleDetailPage />;
 }

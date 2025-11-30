@@ -41,7 +41,7 @@ export function DropdownButton({ list = [], children }: DropdownButtonProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="relative w-fit h-fit">
+    <div className="relative w-fit h-fit flex items-center justify-center">
       <button onClick={() => setIsOpen(!isOpen)} className="border-none w-fit h-fit">
         {children}
       </button>

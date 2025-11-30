@@ -8,9 +8,9 @@ export interface ArticleResponse {
   id: string;
   title: string;
   content: string;
-  userName: string;
   favoriteCount: number;
   userId: string | null;
+  userName: string;
   createdAt: Date;
   updatedAt: Date;
 }
