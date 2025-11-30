@@ -1,55 +1,20 @@
 import { URL } from 'url';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { ErrorResponse } from '@/constants/apiConstants';
-import { API_URL } from '@/config/config';
-
-// - res: Response → fetch가 반환하는 표준 Response 타입.
-// - T → JSON으로 파싱되는 데이터의 타입을 제네릭으로 받음.
-// - T는 나중에 외부에서 구체화해야한다. ex) responseHandler<{a, b, c}>(res)
-// - 반환 타입은 { ok: true } & T → 항상 ok: true가 붙고, JSON 데이터 구조가 합쳐짐.
-
-/* 기본 리스폰스 처리 */
-async function responseHandler<T>(res: Response): Promise<T> {
-  if (!res.ok) {
-    // JSON이 아닌 텍스트 오류 메시지 처리
-    const errorText = await res.text();
-    throw new Error(errorText);
-  }
-  const data = {
-    ok: true as const,
-    ...((await res.json()) as T),
-  };
-  return data;
-}
-
-/* 기본 에러 처리 */
-export function errorHandler(err: Error): ErrorResponse {
-  //console.log(err);
-  return {
-    ok: false,
-    message: parseMessage(err.message),
-  };
-}
-
-function parseMessage(message: string) {
-  try {
-    const parsed = JSON.parse(message);
-    console.log(parsed.code);
-    console.log(parsed.message);
-    return parsed.message;
-  } catch (e) {
-    console.log('메시지가 JSON 형식이 아님:', message);
-    return message;
-  }
-}
+import { customAuthFetch, customFetch } from '@/api/fetchClient';
 
 /* auth 관련 api 함수 반환 타입 정의 */
 interface SuccessResponse {
   ok: true;
 }
 
-interface SignupResponse extends SuccessResponse {
+interface SignupRequest {
+  name: string;
+  email: string;
+  password: string;
+}
+
+interface SignupResponse {
   id: string;
   provider: string;
   email: string;
@@ -57,11 +22,16 @@ interface SignupResponse extends SuccessResponse {
   createdAt: string;
 }
 
-interface LoginResponse extends SignupResponse {
+interface LoginRequest {
+  email: string;
+  password: string;
+}
+
+interface LoginResponse {
   accessToken: string;
 }
 
-interface refreshResponse extends SuccessResponse {
+interface refreshResponse {
   accessToken: string;
 }
 
@@ -72,16 +42,12 @@ interface checkAuthResponse {
 interface useAuthType {
   accessToken: string | null;
   setAccessToken: (accessToken: string) => void;
-  signup: (
-    name: string,
-    email: string,
-    password: string
-  ) => Promise<SignupResponse | ErrorResponse>;
-  login: (email: string, password: string) => Promise<LoginResponse | ErrorResponse>;
-  logout: () => Promise<SuccessResponse | ErrorResponse>;
-  refresh: () => Promise<refreshResponse | ErrorResponse>;
+  signup: (name: string, email: string, password: string) => Promise<SignupResponse>;
+  login: (email: string, password: string) => Promise<LoginResponse>;
+  logout: () => Promise<SuccessResponse>;
+  refresh: () => Promise<refreshResponse>;
   authFetch: (url: URL | string, options: RequestInit) => Promise<Response>;
-  checkAuth: () => Promise<checkAuthResponse | ErrorResponse>;
+  checkAuth: () => Promise<checkAuthResponse>;
 }
 
 /* useAuth 훅 */
@@ -93,47 +59,36 @@ const useAuth = create(
         set({ accessToken });
       },
       signup: async (name, email, password) => {
-        console.log('회원가입 진입');
-        const body = {
+        const data = {
           name,
           email,
           password,
         };
-        const result = await fetch(`${API_URL}/signup`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body),
-        })
-          .then(responseHandler<SignupResponse>)
-          .catch(errorHandler);
+        const result = await customFetch.post<SignupRequest, SignupResponse>('/auth/signup', data);
         return result;
       },
       login: async (email, password) => {
-        const body = {
+        const data = {
           email,
           password,
         };
-        const result = await fetch(`${API_URL}/login`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+        const result = await customFetch.post<LoginRequest, LoginResponse>('/auth/login', data, {
           credentials: 'include',
-          body: JSON.stringify(body),
-        })
-          .then(responseHandler<LoginResponse>)
-          .catch(errorHandler);
+        });
         //result가 오류 메세지가 아니면 set 처리
-        if (result.ok) {
+        if (result) {
           set({ accessToken: result.accessToken });
         }
         return result;
       },
       logout: async () => {
-        const result = await fetch(`${API_URL}/logout`, {
-          method: 'POST',
-          credentials: 'include',
-        })
-          .then(responseHandler<SuccessResponse>)
-          .catch(errorHandler);
+        const result = await customFetch.post<{}, SuccessResponse>(
+          '/auth/logout',
+          {},
+          {
+            credentials: 'include',
+          }
+        );
 
         set({ accessToken: null });
         window.location.href = '/login'; //로그인 페이지로
@@ -141,13 +96,13 @@ const useAuth = create(
       },
       //getRefreshToken 함수 제거 (보안 위험이 있어서 제거 했습니다.)
       refresh: async () => {
-        const result = await fetch(`${API_URL}/refresh`, {
-          method: 'POST',
-          credentials: 'include', // 쿠키 기반 인증 시 필요
-        })
-          .then(responseHandler<refreshResponse>)
-          .catch(errorHandler);
-
+        const result = await customFetch.post<{}, refreshResponse>(
+          '/auth/refresh',
+          {},
+          {
+            credentials: 'include', // 쿠키 기반 인증 시 필요
+          }
+        );
         return result;
       },
       //인가가 필요한 api 요청용 커스텀 Fetch
@@ -162,7 +117,7 @@ const useAuth = create(
         // Access Token 만료 시 (예: 401 Unauthorized)
         if (result.status === 401) {
           const res = await get().refresh();
-          if (res.ok) {
+          if (res) {
             const newAccessToken = res.accessToken;
             set({ accessToken: newAccessToken });
             // 원래 요청 재시도
@@ -182,13 +137,7 @@ const useAuth = create(
       },
       //페이지 권한 여부 등에 쓰이는 인가 여부 판단 api
       checkAuth: async () => {
-        const result = get()
-          .authFetch(`${API_URL}/check`, {
-            method: 'POST',
-          })
-          .then(responseHandler<checkAuthResponse>)
-          .catch(errorHandler);
-        //뭔가 혼종이 되었습니다만, 자동 리프레쉬 기능을 달았습니다.
+        const result = customAuthFetch.post<{}, checkAuthResponse>('/auth/check');
         return result;
       },
     }),

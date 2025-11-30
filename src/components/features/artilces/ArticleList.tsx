@@ -56,7 +56,7 @@ function BestArticle({ data }: ArticleDataProp) {
       <div className="flex flex-col gap-[16px]">
         <div className="flex w-[102px] h-[30px] px-[24px] py-[2px] flex-row justify-center items-center gap-[4px] rounded-b-[16px] bg-[var(--brand-blue)]">
           <Image src={bestIcon} alt="bestIcon" />
-          <p>Best</p>
+          <p className="text-white text-[16px] font-semibold">Best</p>
         </div>
         <div className="w-full flex flex-between">
           <p className="w-full flex justify-start items-start text-[var(--Cool-Gray-800)] text-[20px] font-semibold">

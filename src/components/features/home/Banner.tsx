@@ -18,7 +18,7 @@ export default function Banner({ bgImg, btnUrl = '', btnText = '', children }: B
           {btnUrl && (
             <Button
               to={btnUrl}
-              className="mt-[32px] mb-[40px] flex-shrink-0 rounded-[999px] px-[124px] py-[16px] text-[16px] font-[600]"
+              className="mt-[32px] mb-[40px] flex-shrink-0 rounded-[999px] px-[124px] py-[16px] text-[18px] font-[600] text-center"
             >
               {btnText}
             </Button>

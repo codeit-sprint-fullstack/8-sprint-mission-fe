@@ -8,9 +8,9 @@
 
 export interface ProductRequest {
   name: string;
+  description: string;
   price: number;
-  images: string[];
-  favoriteCount: number;
+  tags: string[];
 }
 
 export interface ProductResponse {

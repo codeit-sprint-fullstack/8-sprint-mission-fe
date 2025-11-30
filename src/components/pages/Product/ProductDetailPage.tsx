@@ -17,11 +17,11 @@ import { API_URL } from '@/config/config';
 import { convertDateToKRString } from '@/utils/convertDate';
 
 //컴포넌트
-import MainFrame from '../organisms/MainFrame';
-import TextArea from '../mocules/TextArea';
-import Button from '../atoms/Button';
-import { DropdownButton } from '../mocules/Dropdown';
-import DeleteModal from '../mocules/DeleteModal';
+import MainFrame from '../../organisms/MainFrame';
+import TextArea from '../../mocules/TextArea';
+import Button from '../../atoms/Button';
+import { DropdownButton } from '../../mocules/Dropdown';
+import DeleteModal from '../../mocules/DeleteModal';
 
 //이미지
 import Image from 'next/image';

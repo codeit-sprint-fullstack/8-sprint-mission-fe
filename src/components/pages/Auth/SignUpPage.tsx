@@ -1,27 +1,28 @@
-"use client";
+'use client';
 
 //라이브러리
-import { useState } from "react";
-import useAuth from "@/store/useAuth";
-import { useAuthInput } from "@/hooks/useAuthInput";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
+import { useState } from 'react';
+import useAuth from '@/store/useAuth';
+import { useAuthInput } from '@/hooks/useAuthInput';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import Link from 'next/link';
 
 //컴포넌트
-import Input from "../mocules/Input";
-import Button from "../atoms/Button";
+import Input from '../../mocules/Input';
+import Button from '../../atoms/Button';
 
 //이미지
-import googleIcon from "@/images/google-logo.png";
-import kakaoIcon from "@/images/kakao-logo.png";
-import logo from "@/images/logo.svg";
-import Modal from "../mocules/Modal";
+import googleIcon from '@/images/google-logo.png';
+import kakaoIcon from '@/images/kakao-logo.png';
+import logo from '@/images/logo.svg';
+import Modal from '../../mocules/Modal';
+import { errorHandler } from '@/utils/errorHandler';
 
 export default function SignupPage() {
   const { values, errors, isSignUpSubmitActive, onChange } = useAuthInput();
   const { signup } = useAuth();
-  const [modalMessage, setModalMessage] = useState("");
+  const [modalMessage, setModalMessage] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const router = useRouter();
@@ -29,18 +30,14 @@ export default function SignupPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { name, email, password } = values;
-    const result = await signup(name, email, password);
-    if (!result.ok) {
+    const result = await signup(name, email, password).catch(errorHandler);
+    if ('message' in result) {
       console.log(result);
       setModalMessage(result.message);
       setIsModalOpen(true);
       return;
-    }
-
-    console.log(result);
-    //성공하면 중고마켓 페이지 이동
-    if (result.ok) {
-      router.push(`/items`);
+    } else {
+      router.push('/items');
     }
   };
 
@@ -99,37 +96,22 @@ export default function SignupPage() {
         <h3>간편 로그인하기</h3>
         <div className="flex gap-[8px] text-[16px] font-medium">
           <Link href="https://www.google.com/">
-            <Image
-              src={googleIcon}
-              alt="구글 로그인"
-              className="h-[42px] w-[42px]"
-            />
+            <Image src={googleIcon} alt="구글 로그인" className="h-[42px] w-[42px]" />
           </Link>
           <Link href="https://www.kakaocorp.com/page/">
-            <Image
-              src={kakaoIcon}
-              alt="카카오 로그인"
-              className="h-[42px] w-[42px]"
-            />
+            <Image src={kakaoIcon} alt="카카오 로그인" className="h-[42px] w-[42px]" />
           </Link>
         </div>
       </div>
 
       <div className="flex justify-center gap-[4px] text-center text-[15px] font-medium">
         이미 회원이신가요?
-        <Link
-          className="text-[#3182f6] underline underline-offset-[2px]"
-          href="/login"
-        >
+        <Link className="text-[#3182f6] underline underline-offset-[2px]" href="/login">
           로그인
         </Link>
       </div>
 
-      <Modal
-        message={modalMessage}
-        isOpen={isModalOpen}
-        onClick={() => setIsModalOpen(false)}
-      />
+      <Modal message={modalMessage} isOpen={isModalOpen} onClick={() => setIsModalOpen(false)} />
     </main>
   );
 }

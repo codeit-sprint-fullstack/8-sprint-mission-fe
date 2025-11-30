@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { createProduct, uploadImages } from '../../api/ProductService';
 import { useRouter } from 'next/navigation';
+import { ProductResponse } from '@/constants/productType';
 
 interface FormValues {
   files: File[];
@@ -83,7 +84,7 @@ interface useProductReturn {
   onFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   addTag: () => void;
   deleteTag: (tag: string) => void;
-  register: () => Promise<any>; //any 반환 -> 수정 필요
+  register: () => Promise<ProductResponse | undefined>; //any 반환 -> 수정 필요
 }
 
 //입력 폼 커스텀 훅
@@ -108,13 +109,10 @@ export default function useProduct(): useProductReturn {
     e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    if (['name', 'description', 'price', 'tag'].includes(name)) {
-    }
     setValues((prevValues) => ({
       ...prevValues,
       [name]: value, //대괄호 표기법 = 문자열
     }));
-
     //유효성 검사
     checkValidation(name as FormErrorsElement, value); //state가 바로 반영이 안되서 별도로 value를 넣었습니다.
   };
@@ -161,15 +159,14 @@ export default function useProduct(): useProductReturn {
     }
 
     //모두 vailid 하다면 리퀘스트를 보냅니다.
-    const RqBody = {
+    const data = {
       name: values.name,
       description: values.description,
       price: parseInt(values.price),
       tags: values.tags,
-      images: [], //이미지 경로만 저장.
     };
 
-    const res = await createProduct(RqBody);
+    const res = await createProduct(data);
     if (!res.id) {
       return res;
     }
@@ -181,9 +178,10 @@ export default function useProduct(): useProductReturn {
     });
 
     //이미지 업로드 성공 여부는 확인할 방법이 없네요 수정하겠습니다.
-    const uploadResult = await uploadImages(formData, res.id);
+    const ImgUploadRes = await uploadImages(formData, res.id);
+    router.push(`/itmes/${ImgUploadRes.id}`);
 
-    return res;
+    return ImgUploadRes;
   };
 
   return { values, errors, isSubmitActive, onChange, onFileChange, addTag, deleteTag, register };

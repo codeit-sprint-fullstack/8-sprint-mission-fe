@@ -7,10 +7,10 @@ import { useRef } from 'react';
 import useProduct from '@/hooks/registerFormHooks/useProduct';
 
 //컴포넌트
-import MainFrame from '../organisms/MainFrame';
-import Input from '../mocules/Input';
-import TextArea from '../mocules/TextArea';
-import Button from '../atoms/Button';
+import MainFrame from '../../organisms/MainFrame';
+import Input from '../../mocules/Input';
+import TextArea from '../../mocules/TextArea';
+import Button from '../../atoms/Button';
 
 //이미지
 import Image from 'next/image';

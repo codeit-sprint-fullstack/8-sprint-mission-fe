@@ -23,7 +23,7 @@ export default function TextArea({
 }: TextAreaProps) {
   const ErrorStyle =
     error === ''
-      ? 'border-1 focus:border-2 focus:border-black outline-none'
+      ? 'focus:border-2 focus:border-black outline-none'
       : 'border-1 focus:border-2 border-[var(--error-red)] outline-none';
   //공통되는 prop을 묶었습니다.
   const props = {

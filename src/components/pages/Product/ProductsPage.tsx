@@ -6,13 +6,13 @@ import { useState, useEffect } from 'react';
 //훅
 import useAsync from '@/hooks/useAsync';
 import { getProductList } from '@/api/ProductService';
-import { useDeviceProvider } from '../provider/DevicePorvider';
+import { useDeviceProvider } from '../../provider/DevicePorvider';
 
 //컴포넌트
-import MainFrame from '../organisms/MainFrame';
-import ProductsSectionBar from '../features/products/ProductsSectionBar';
-import ProductList from '../features/products/ProductList';
-import PageButton from '../features/products/PageButton';
+import MainFrame from '../../organisms/MainFrame';
+import ProductsSectionBar from '../../features/products/ProductsSectionBar';
+import ProductList from '../../features/products/ProductList';
+import PageButton from '../../features/products/PageButton';
 import { ProductResponse } from '@/constants/productType';
 
 export default function ProductsPage() {

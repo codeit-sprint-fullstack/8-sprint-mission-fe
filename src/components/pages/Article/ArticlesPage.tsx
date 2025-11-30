@@ -6,13 +6,13 @@ import { useState, useEffect } from 'react';
 //훅
 import useAsync from '@/hooks/useAsync';
 import { getArticles } from '@/api/ArticleService';
-import { useDeviceProvider } from '../provider/DevicePorvider';
+import { useDeviceProvider } from '../../provider/DevicePorvider';
 
 //컴포넌트
-import MainFrame from '../organisms/MainFrame';
-import SectionBar from '../mocules/SectionBar';
-import ArticlesSectionBar from '../features/artilces/ArticlesSectionBar';
-import { ArticleList, BestArticleList } from '../features/artilces/ArticleList';
+import MainFrame from '../../organisms/MainFrame';
+import SectionBar from '../../mocules/SectionBar';
+import ArticlesSectionBar from '../../features/artilces/ArticlesSectionBar';
+import { ArticleList, BestArticleList } from '../../features/artilces/ArticleList';
 import { ArticleResponse } from '@/constants/articleType';
 
 export default function ArticlesPage() {

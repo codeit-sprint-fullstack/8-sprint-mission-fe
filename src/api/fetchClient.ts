@@ -1,12 +1,15 @@
-import { errorHandler, ErrorResponse } from "@/constants/apiConstants";
-import useAuth from "@/store/useAuth";
+import useAuth from '@/store/useAuth';
 /**
  * API 요청을 위한 fetch 클라이언트
  */
 const baseURL = process.env.NEXT_PUBLIC_API_URL || '';
 
 /* 기본 request 함수 */
-async function request<TRes>(endpoint: string, options: RequestInit = {}, authRequired: boolean = false): Promise<TRes>  {
+async function request<TRes>(
+  endpoint: string,
+  options: RequestInit = {},
+  authRequired: boolean = false
+): Promise<TRes> {
   const url = `${baseURL}${endpoint}`;
 
   // FormData인 경우 Content-Type을 설정하지 않음 (브라우저가 자동으로 설정)
@@ -22,9 +25,7 @@ async function request<TRes>(endpoint: string, options: RequestInit = {}, authRe
 
   try {
     const { authFetch } = useAuth.getState();
-    const response = authRequired
-      ? await authFetch(url, config)
-      : await fetch(url, config);
+    const response = authRequired ? await authFetch(url, config) : await fetch(url, config);
 
     if (!response.ok) {
       // 에러 응답 파싱 시도
@@ -62,7 +63,7 @@ async function authGet<TRes>(endpoint: string, options: RequestInit = {}) {
       ...options,
       method: 'GET',
     },
-    true,
+    true
   );
 }
 
@@ -89,7 +90,7 @@ async function authPost<TData, TRes>(endpoint: string, data?: TData, options: Re
       method: 'POST',
       body: isFormData ? data : JSON.stringify(data),
     },
-    true,
+    true
   );
 }
 
@@ -110,7 +111,7 @@ async function authPut<TData, TRes>(endpoint: string, data?: TData, options: Req
       method: 'PUT',
       body: JSON.stringify(data),
     },
-    true,
+    true
   );
 }
 
@@ -129,7 +130,7 @@ async function authDelete<TRes>(endpoint: string, options: RequestInit = {}) {
       ...options,
       method: 'DELETE',
     },
-    true,
+    true
   );
 }
 
@@ -150,7 +151,7 @@ async function authPatch<TData, TRes>(endpoint: string, data?: TData, options: R
       method: 'PATCH',
       body: JSON.stringify(data),
     },
-    true,
+    true
   );
 }
 
@@ -169,4 +170,4 @@ export const customAuthFetch = {
   put: authPut,
   delete: authDelete,
   patch: authPatch,
-}
+};

@@ -1,4 +1,4 @@
-import ProductUpload from '@/components/pages/ProductUploadPage';
+import ProductUpload from '@/components/pages/Product/ProductUploadPage';
 
 export default function Uplaod() {
   return <ProductUpload />;
