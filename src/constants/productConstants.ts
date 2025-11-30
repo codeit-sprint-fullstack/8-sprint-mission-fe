@@ -16,13 +16,13 @@ export interface ProductRequest {
 export interface ProductResponse {
   id: string;
   name: string;
-  createdAt: Date;
-  updatedAt: Date;
-  price: number;
   description: string;
-  userName: string;
+  price: number;
   tags: string[];
   images: string[];
   favoriteCount: number;
+  userName: string;
   userId: string | null;
+  createdAt: Date;
+  updatedAt: Date;
 }

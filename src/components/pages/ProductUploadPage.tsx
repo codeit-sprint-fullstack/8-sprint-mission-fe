@@ -74,7 +74,6 @@ export default function ProductUpload({}) {
     }
   };
 
-  //이번에 배운 사실: 리액트 JSX는 객체를 {}표현식에 넣어도 그대로 출력할 수 없다.
   return (
     <MainFrame HasNav={true}>
       <form

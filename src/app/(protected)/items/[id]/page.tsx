@@ -1,7 +1,5 @@
+import ProductDetailPage from '@/components/pages/ProductDetailPage';
+
 export default function ProductDetail() {
-  return (
-    <div>
-      <p>미구현</p>
-    </div>
-  );
+  return <ProductDetailPage />;
 }

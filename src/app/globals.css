@@ -20,6 +20,7 @@
   --Secondary-600: #4b5563;
   --Secondary-500: #6b7280;
   --Secondary-400: #9ca3af;
+  --Secondary-200: #e5e7eb;
   --Secondary-100: #f3f4f6;
 
   /* Gray scale */
@@ -94,7 +95,8 @@
   }
 }
 
-html, body {
+html,
+body {
   min-width: 460px; /* 원하는 최소 너비 */
 }
 

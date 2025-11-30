@@ -8,7 +8,7 @@ export async function getProductList(
   orderBy: string = 'recent',
   keyword: string = ''
 ) {
-  const result = await customFetch.get<ProductType[]>(
+  const result = await customFetch.get<ProductResponse[]>(
     `/products?page=${page}&pageSize=${pagesize}&orderBy=${orderBy}&keyword=${keyword}`
   );
   return result; //(코드잇 api 사용시 result.list 경로 사용, 이하 동일)
@@ -16,7 +16,7 @@ export async function getProductList(
 
 //상품 상세 조회
 export async function getProduct(id: string) {
-  const result = await customFetch.get(`/products/${id}`);
+  const result = await customFetch.get<ProductResponse>(`/products/${id}`);
   return result;
 }
 

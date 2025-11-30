@@ -11,7 +11,7 @@ interface BannerProps {
 
 export default function Banner({ bgImg, btnUrl = '', btnText = '', children }: BannerProps) {
   return (
-    <section className="flex min-h-[60vh] flex-col items-center justify-end bg-[var(--bg-blue)]">
+    <section className="flex min-h-[60vh] flex-col items-center justify-end bg-[var(--bg-blue)] w-full">
       <div className="flex h-full w-full max-w-[1200px] flex-col items-center justify-between px-[16px] xl:h-fit xl:flex-row xl:px-0 xl:px-[24px]">
         <div className="mt-[80px] flex h-fit flex-shrink-0 flex-col justify-center">
           {children}

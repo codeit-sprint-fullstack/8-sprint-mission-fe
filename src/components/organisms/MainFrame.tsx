@@ -1,15 +1,17 @@
 import { ReactNode } from 'react';
 import GNB from '../features/mainframe/GNB';
 import HomeFooter from '../features/mainframe/HomeFooter';
+
 interface MainFrameProps {
   HasNav?: boolean;
   children: ReactNode;
 }
-export default function MainFrame({ HasNav: isHome = false, children }: MainFrameProps) {
+
+export default function MainFrame({ HasNav = false, children }: MainFrameProps) {
   return (
     <div className="flex flex-col min-h-[100vh] w-full items-center">
-      <GNB isHome />
-      <main className="w-full mt-[70px] mb-auto max-w-[1200px]">{children}</main>
+      <GNB HasNav />
+      <main className="w-full mt-[70px] mb-auto flex flex-col items-center">{children}</main>
       <HomeFooter />
     </div>
   );

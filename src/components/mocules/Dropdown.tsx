@@ -37,28 +37,31 @@ interface DropdownButtonProps {
 }
 
 //버튼 리스트만 나오는 드롭다운
-// export function DropdownButton({ list = [], children }: DropdownButtonProps) {
-//   const [isOpen, setIsOpen] = useState(false);
+export function DropdownButton({ list = [], children }: DropdownButtonProps) {
+  const [isOpen, setIsOpen] = useState(false);
 
-//   return (
-//     <div className={styles.dropdownBox}>
-//       <button className={styles.button} onClick={() => setIsOpen(!isOpen)}>
-//         {children}
-//       </button>
-//       {isOpen && (
-//         <div className={styles.listBox}>
-//           <ul className={styles.list}>
-//             {list.map((e) => (
-//               <li className={styles.element} key={list.indexOf(e)}>
-//                 <button onClick={e.onClick}>{e.name}</button>
-//               </li>
-//             ))}
-//           </ul>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
+  return (
+    <div className="relative w-fit h-fit">
+      <button onClick={() => setIsOpen(!isOpen)} className="border-none w-fit h-fit">
+        {children}
+      </button>
+      {isOpen && (
+        <div className="absolute right-0 top-full w-[140px] h-fit m-0 p-[4px] rounded-[8px] border border-[var(--Cool-Gray-300)] bg-white overflow-hidden z-[1]">
+          <ul className="flex flex-col items-center">
+            {list.map((e) => (
+              <li
+                className="py-[12px] px-0 text-[var(--Secondary-500)] font-[var(--font-16-regular)]"
+                key={list.indexOf(e)}
+              >
+                <button onClick={e.onClick}>{e.name}</button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
 
 //선택지가 나오는 드롭다운
 // export function DropdownSelect({ value, list, onChange, children }) {

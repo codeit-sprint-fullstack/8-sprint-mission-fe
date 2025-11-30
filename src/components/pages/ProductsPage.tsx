@@ -71,7 +71,7 @@ export default function ProductsPage() {
 
   return (
     <MainFrame HasNav={true}>
-      <div className="w-full h-fit px-[16px] pt-[17px] pb-[140px] flex flex-col items-center gap-[16px]">
+      <div className="w-full h-fit px-[16px] pt-[17px] pb-[140px] flex flex-col items-center gap-[16px] max-w-[1200px]">
         {/* 베스트 상품 표시를 임시로 막았습니다. - 요구사항 */}
         {false && (
           <section>

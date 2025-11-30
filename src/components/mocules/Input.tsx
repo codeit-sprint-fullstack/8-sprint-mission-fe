@@ -1,8 +1,10 @@
 'use client';
 
+//훅
 import { Ref, useState } from 'react';
-import Image from 'next/image';
 
+//이미지
+import Image from 'next/image';
 import eyeInvisible from '@/images/input/eye-invisible.svg';
 import eyeVisible from '@/images/input/eye-visible.svg';
 import plusIcon from '@/images/input/plusImg.svg';
