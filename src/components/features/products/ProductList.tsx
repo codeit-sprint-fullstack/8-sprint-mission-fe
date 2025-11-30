@@ -6,14 +6,14 @@ import Image from 'next/image';
 import heartIcon from '@/images/ic_heart.svg';
 import productDefault from '@/images/products/product_default.png';
 import { useDeviceProvider } from '@/components/provider/DevicePorvider';
-import { ProductType } from '@/constants/productConstants';
+import { ProductResponse } from '@/constants/productType';
 
 interface ProductProps {
-  item: ProductType;
+  item: ProductResponse;
 }
 
 interface ProductListProps {
-  items: ProductType[];
+  items: ProductResponse[];
   isCommon: boolean;
 }
 
@@ -97,11 +97,11 @@ function Product({ item }: ProductProps) {
         )}
       </div>
       <div className="gap-[6px]">
-        <p className="text-[var(--Secondary-800)] text-[14px] font-medium">{item.name}</p>
-        <p className="text-[var(--Secondary-800)] text-[16px] font-[700]">
+        <p className="text-[var(--Cool-Gray-800)] text-[14px] font-medium">{item.name}</p>
+        <p className="text-[var(--Cool-Gray-800)] text-[16px] font-[700]">
           {item.price.toLocaleString() + '원'}
         </p>
-        <div className="flex text-[var(--Secondary-800)] text-[12x] font-[500]">
+        <div className="flex text-[var(--Cool-Gray-800)] text-[12x] font-[500]">
           <button>
             <Image src={heartIcon} alt="heartIcon" />
           </button>

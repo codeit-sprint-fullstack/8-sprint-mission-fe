@@ -1,5 +1,5 @@
 import { customFetch, customAuthFetch } from './fetchClient';
-import { CommentResponce } from '@/constants/commnetConstants';
+import { CommentResponce } from '@/constants/commnetType';
 
 interface commentRequest {
   content: string;

@@ -1,10 +1,10 @@
-export interface ProductType {
-  id: string;
-  name: string;
-  price: number;
-  images: string[];
-  favoriteCount: number;
-}
+// export interface ProductType {
+//   id: string;
+//   name: string;
+//   price: number;
+//   images: string[];
+//   favoriteCount: number;
+// }
 
 export interface ProductRequest {
   name: string;

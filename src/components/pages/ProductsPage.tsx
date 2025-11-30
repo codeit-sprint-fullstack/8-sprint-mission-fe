@@ -13,18 +13,11 @@ import MainFrame from '../organisms/MainFrame';
 import ProductsSectionBar from '../features/products/ProductsSectionBar';
 import ProductList from '../features/products/ProductList';
 import PageButton from '../features/products/PageButton';
-
-interface ProductType {
-  id: string;
-  name: string;
-  price: number;
-  images: string[];
-  favoriteCount: number;
-}
+import { ProductResponse } from '@/constants/productType';
 
 export default function ProductsPage() {
-  const [bestProducts, setBestProducts] = useState<ProductType[]>([]);
-  const [commonProducts, setCommonProducts] = useState<ProductType[]>([]);
+  const [bestProducts, setBestProducts] = useState<ProductResponse[]>([]);
+  const [commonProducts, setCommonProducts] = useState<ProductResponse[]>([]);
 
   //삼화 미션 - 커스텀 훅 만들기 (GET 리퀘스트 오류, 지연 처리 훅)
   const [isLoading, loadingError, getItemsAsync] = useAsync(getProductList);

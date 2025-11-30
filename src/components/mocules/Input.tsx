@@ -34,7 +34,10 @@ export default function Input({
   ref = null,
   files,
 }: InputProps) {
-  const ErrorStyle = error === '' ? 'border-1 border-black ' : 'border-1 border-[var(--error-red)]';
+  const ErrorStyle =
+    error === ''
+      ? 'focus:border-2 focus:border-black outline-none'
+      : 'border-1 focus:border-2 border-[var(--error-red)] outline-none';
   const [isVisible, setIsVisible] = useState(false);
   //공통되는 prop을 묶었습니다.
   const props =
@@ -49,8 +52,8 @@ export default function Input({
           className:
             //문자열을 합치는 거라 띄어쓰기 중요
             ErrorStyle +
-            ' h-[50px] focus:outline-none focus:border-2 w-full px-[24px] py-[12px] bg-[var(--Cool-Gray-100] resize-none overflow-hidden rounded-[12px] text-[16px] font-[400]' +
-            ' placeholder:text-[var(--Secondary-400] placeholder:text-[16px] placeholder:font-[400]',
+            ' h-[50px] w-full px-[24px] py-[12px] bg-[var(--Cool-Gray-100)] resize-none overflow-hidden rounded-[12px] text-[16px] font-[400]' +
+            ' placeholder:text-[var(--Cool-Gray-400] placeholder:text-[16px] placeholder:font-[400]',
           name,
           value,
           onChange,
@@ -104,7 +107,7 @@ function ImageInput({ files, props }: ImageInputProps) {
   return (
     <div>
       <ul className="grid h-fit w-full list-none grid-cols-4 gap-x-[24px] gap-y-[40px] p-0">
-        <li className="relative flex aspect-square w-full items-center justify-center gap-3 overflow-hidden rounded-[12px] border-none bg-[var(--Cool-Gray-100,#f3f4f6)]">
+        <li className="relative flex aspect-square w-full items-center justify-center gap-3 overflow-hidden rounded-[12px] border-none bg-[var(--Cool-Gray-100)]">
           <input
             {...props}
             id="ImageInput"

@@ -84,7 +84,7 @@ const commonStyle = {
 
 const selectedStyle = {
   background: '#2F80ED',
-  color: 'var(--Secondary-100, #F9FAFB)',
+  color: 'var(--Cool-Gray-100, #F9FAFB)',
 };
 
 export default PageButton;

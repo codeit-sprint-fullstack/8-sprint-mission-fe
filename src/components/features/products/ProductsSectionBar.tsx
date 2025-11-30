@@ -45,7 +45,7 @@ export default function ProductsSectionBar({
       {onChangeOrder && onChangeSearch ? (
         <div className="flex h-fit w-full flex-col items-start justify-center gap-[8px] md:mb-[20px] md:flex-row md:items-center md:justify-between md:gap-[12px]">
           <div className="shrink-0">
-            <p className="text-[var(--Secondary-900)] text-xl font-bold">{title}</p>
+            <p className="text-[var(--Cool-Gray-900)] text-xl font-bold">{title}</p>
             {isUseRegistBtn && (
               <Button
                 to={registerUrl}
@@ -63,7 +63,7 @@ export default function ProductsSectionBar({
                 alt="search_Icon"
               />
               <input
-                className="flex h-full w-full flex-col items-start gap-[10px] rounded-[12px] border-0 bg-[var(--Secondary-100)] px-[20px] py-[9px] pl-[44px]"
+                className="flex h-full w-full flex-col items-start gap-[10px] rounded-[12px] border-0 bg-[var(--Cool-Gray-100)] px-[20px] py-[9px] pl-[44px]"
                 name="search-input"
                 placeholder="검색할 상품을 입력해주세요"
                 value={search}
@@ -82,7 +82,7 @@ export default function ProductsSectionBar({
           </div>
         </div>
       ) : (
-        <p className="text-[var(--Secondary-900)] text-xl font-bold">{title}</p>
+        <p className="text-[var(--Cool-Gray-900)] text-xl font-bold">{title}</p>
       )}
     </div>
   );

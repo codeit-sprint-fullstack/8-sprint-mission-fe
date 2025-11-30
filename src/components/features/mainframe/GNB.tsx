@@ -11,7 +11,7 @@ interface GNBProps {
 
 export default function GNB({ HasNav = false }: GNBProps) {
   return (
-    <header className="min-w-[460px] fixed z-10 flex h-[70px] w-full items-center justify-center border-b-1 border-[--gray-400] bg-white">
+    <header className="min-w-[460px] fixed z-10 flex h-[70px] w-full items-center justify-center border-b-1 border-[#DFDFDF] bg-white">
       <div className="flex h-full w-full max-w-[1200px] items-center justify-between px-[16px] md:px-[24px] xl:px-0">
         <div className="flex items-center gap-[24px]">
           <Link className="flex items-center" href="/">
@@ -20,7 +20,7 @@ export default function GNB({ HasNav = false }: GNBProps) {
           </Link>
 
           {HasNav && (
-            <div className="flex items-center gap-[8px] text-center text-[18px] font-[700] text-[var(--Secondary-600)]">
+            <div className="flex items-center gap-[8px] text-center text-[18px] font-[700] text-[var(--Cool-Gray-600)]">
               <Link className="px-[15px]" href="/articles">
                 자유게시판
               </Link>

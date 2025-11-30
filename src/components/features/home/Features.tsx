@@ -89,7 +89,7 @@ function Feature({ contents }: FeatrueProps) {
           className="mb-[20px] h-fit w-fit min-w-0 md:mb-0 md:max-h-[444px]"
           alt={contents.name}
         />
-        <div className="flex flex-shrink-0 flex-col justify-center text-[var(--Secondary-700)]">
+        <div className="flex flex-shrink-0 flex-col justify-center text-[var(--Cool-Gray-700)]">
           <h2 className="text-[16px] font-[700] text-[var(--brand-blue)]">{contents.name}</h2>
           <h1 className="text-[24px] font-[700]">{contents.title}</h1>
           <p className="mt-[20px] text-[16px] font-[500]">{contents.description}</p>

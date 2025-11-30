@@ -8,7 +8,7 @@ export default function HomeFooter() {
   return (
     <footer className="flex h-[164px] w-full flex-col gap-[8px] bg-[var(--Cool-Gray-900)] p-[32px]">
       <div className="flex items-center justify-between">
-        <div className="hidden text-[var(--Secondary-400)] md:block">©codeit - 2024</div>
+        <div className="hidden text-[var(--Cool-Gray-400)] md:block">©codeit - 2024</div>
         <div className="flex gap-[30px] text-[var(--gray-200)]">
           <a>Privacy Policy</a>
           <a>FAQ</a>
@@ -48,7 +48,7 @@ export default function HomeFooter() {
           </a>
         </div>
       </div>
-      <div className="block text-[var(--Secondary-400)] md:hidden">©codeit - 2024</div>
+      <div className="block text-[var(--Cool-Gray-400)] md:hidden">©codeit - 2024</div>
     </footer>
   );
 }

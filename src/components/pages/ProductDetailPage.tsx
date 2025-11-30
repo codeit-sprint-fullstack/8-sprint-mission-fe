@@ -26,16 +26,15 @@ import DeleteModal from '../mocules/DeleteModal';
 //이미지
 import Image from 'next/image';
 import moreImg from '@/images/products/detail/ic_more.svg';
-import userProfilePanda from '@/images/products/detail/ic_profile.svg';
+import userProfilePanda from '@/images/ic_profile.svg';
 import heartIcon from '@/images/ic_heart.svg';
 import noComment from '@/images/products/detail/ic_noComment.svg';
 import backIcon from '@/images/products/detail/ic_back.svg';
-//import productDefault from '../../../../public/images/items/product_default.png';
-const productDefault = '/images/items/product_default.png';
+import productDefault from '@/images/products/product_default.png';
 
 //상수
-import { ProductResponse } from '@/constants/productConstants';
-import { CommentResponce } from '@/constants/commnetConstants';
+import { ProductResponse } from '@/constants/productType';
+import { CommentResponce } from '@/constants/commnetType';
 
 //이 컴포넌트는 분리해서 서버 컴포넌트로 만들어도 될 것 같습니다.
 export default function ProductDetailPage({}) {
@@ -191,14 +190,18 @@ function ProductInfo({ product, setModalOpen, handleFavoriteClick }: ProductInfo
   const router = useRouter();
   const { id } = useParams();
 
-  const productImageURL =
-    product.images?.length > 0 ? `${API_URL}/uploads/${product.images[0]}` : productDefault;
   return (
     <div className="mb-[40px]">
       <div className="w-full h-fit flex flex-col gap-[24px] mb-[24px] md:flex-row md:mb-[32px] xl:mb-[40px]">
         <div className="rounded-[24px] overflow-hidden w-full aspect-[1/1] md:max-w-[500px] md:max-h-[500px]">
-          {product.images && (
-            <img src={productImageURL} alt="productImage" className="w-full h-full object-cover" />
+          {product.images?.length > 0 ? (
+            <img
+              src={`${API_URL}/uploads/${product.images[0]}`}
+              alt="productImage"
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <Image src={productDefault} alt="productImage" className="object-cover" />
           )}
         </div>
         <div className="flex flex-col justify-between gap-[40px] w-[100%]">
@@ -207,7 +210,7 @@ function ProductInfo({ product, setModalOpen, handleFavoriteClick }: ProductInfo
               <div className="w-full flex justify-between">
                 <div>
                   <p className="text-[20px] font-[700]">{product.name}</p>
-                  <p className="text-[--Secondary-800] text-[40px] font-semibold">
+                  <p className="text-[--Cool-Gray-800] text-[40px] font-semibold">
                     {product.price.toLocaleString() + '원'}
                   </p>
                 </div>
@@ -234,10 +237,10 @@ function ProductInfo({ product, setModalOpen, handleFavoriteClick }: ProductInfo
             </div>
             <div className="flex flex-col gap-[24px]">
               <div className="flex flex-col gap[16px]">
-                <label className="text-[var(--Secondary-600)] text-[16px] font-semibold">
+                <label className="text-[var(--Cool-Gray-600)] text-[16px] font-semibold">
                   상품 소개
                 </label>
-                <p className="text-[var(--Secondary-600)] text-[16px] font-normal">
+                <p className="text-[var(--Cool-Gray-600)] text-[16px] font-normal">
                   {product.description}
                 </p>
               </div>
@@ -248,7 +251,7 @@ function ProductInfo({ product, setModalOpen, handleFavoriteClick }: ProductInfo
                     return (
                       <div
                         key={product.tags.indexOf(tag)}
-                        className="w-fit px-[16px] py-[6px] rounded-[26px] bg-[var(--Cool-Gray-100)] text-[var(--Secondary-800)] text-[16px] font-normal"
+                        className="w-fit px-[16px] py-[6px] rounded-[26px] bg-[var(--Cool-Gray-100)] text-[var(--Cool-Gray-800)] text-[16px] font-normal"
                       >
                         <p>{`#${tag}`}</p>
                       </div>
@@ -262,7 +265,7 @@ function ProductInfo({ product, setModalOpen, handleFavoriteClick }: ProductInfo
             <div className="w-fit h-fit flex gap-[16px] my-[16px]">
               <Image src={userProfilePanda} alt="profile_image" className="w-[40px] h-[40px]" />
               <div className="flex flex-col gap-[2px]">
-                <p className="text-[var(--Secondary-600)] text-[16px] font-medium">
+                <p className="text-[var(--Cool-Gray-600)] text-[16px] font-medium">
                   {product.userName}
                 </p>
                 <p className="text-[var(--Cool-Gray-400)] text-[14px] font-normal">
@@ -274,7 +277,7 @@ function ProductInfo({ product, setModalOpen, handleFavoriteClick }: ProductInfo
               {/* <div className={styles.dividerV24}></div> */}
               <button
                 onClick={handleFavoriteClick}
-                className="w-fit h-[40px] px-[12px] py-[4px] flex items-center gap-[4px] rounded-[35px] border border-[var(--Secondary-200)]"
+                className="w-fit h-[40px] px-[12px] py-[4px] flex items-center gap-[4px] rounded-[35px] border border-[var(--Cool-Gray-200)]"
               >
                 <Image src={heartIcon} alt="favoriteIcon" className="w-[32px] h-[32px]" />
                 <p className="text-[var(--Cool-Gray-500)] text-[16px] font-medium">
@@ -318,10 +321,10 @@ function CommentList({ commentList, handlePatch, handleDelete }: CommentListProp
                 <div className="w-full flex gap-[8px] mb-[12px]">
                   <Image src={userProfilePanda} alt="profile" className="w-[32px] h-[32px]"></Image>
                   <div className="flex items-center gap-[16px]">
-                    <p className="text-[var(--Secondary-600)] text-[12px] font-normal">
+                    <p className="text-[var(--Cool-Gray-600)] text-[12px] font-normal">
                       {comment.userName}
                     </p>
-                    <p className="text-[var(--Secondary-400)] text-[12px] font-normal">
+                    <p className="text-[var(--Cool-Gray-400)] text-[12px] font-normal">
                       {convertDateToKRString(comment.createdAt)}
                     </p>
                   </div>
@@ -373,10 +376,10 @@ function CommentList({ commentList, handlePatch, handleDelete }: CommentListProp
               <div className="w-full flex gap-[8px] mb-[12px]">
                 <Image src={userProfilePanda} alt="profile" className="w-[32px] h-[32px]"></Image>
                 <div className="w-fit flex flex-col gap-[4px]">
-                  <p className="text-[var(--Secondary-600)] text-[12px] font-normal">
+                  <p className="text-[var(--Cool-Gray-600)] text-[12px] font-normal">
                     {comment.userName}
                   </p>
-                  <p className="text-[var(--Secondary-400)] text-[12px] font-normal">
+                  <p className="text-[var(--Cool-Gray-400)] text-[12px] font-normal">
                     {convertDateToKRString(comment.createdAt)}
                   </p>
                 </div>

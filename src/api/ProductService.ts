@@ -1,5 +1,5 @@
 import { customFetch, customAuthFetch } from './fetchClient';
-import { ProductRequest, ProductResponse, ProductType } from '@/constants/productConstants';
+import { ProductRequest, ProductResponse } from '@/constants/productType';
 
 //상품 목록 조회
 export async function getProductList(

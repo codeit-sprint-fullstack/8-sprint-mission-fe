@@ -1,9 +1,13 @@
 import { URL } from 'url';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { errorHandler, ErrorResponse } from '@/constants/apiConstants';
+import { ErrorResponse } from '@/constants/apiConstants';
+import { API_URL } from '@/config/config';
 
-const defaultUrl = 'http://localhost:4000/auth'; //백엔드 주소
+// - res: Response → fetch가 반환하는 표준 Response 타입.
+// - T → JSON으로 파싱되는 데이터의 타입을 제네릭으로 받음.
+// - T는 나중에 외부에서 구체화해야한다. ex) responseHandler<{a, b, c}>(res)
+// - 반환 타입은 { ok: true } & T → 항상 ok: true가 붙고, JSON 데이터 구조가 합쳐짐.
 
 /* 기본 리스폰스 처리 */
 async function responseHandler<T>(res: Response): Promise<T> {
@@ -19,10 +23,26 @@ async function responseHandler<T>(res: Response): Promise<T> {
   return data;
 }
 
-// - res: Response → fetch가 반환하는 표준 Response 타입.
-// - T → JSON으로 파싱되는 데이터의 타입을 제네릭으로 받음.
-// - T는 나중에 외부에서 구체화해야한다. ex) responseHandler<{a, b, c}>(res)
-// - 반환 타입은 { ok: true } & T → 항상 ok: true가 붙고, JSON 데이터 구조가 합쳐짐.
+/* 기본 에러 처리 */
+export function errorHandler(err: Error): ErrorResponse {
+  //console.log(err);
+  return {
+    ok: false,
+    message: parseMessage(err.message),
+  };
+}
+
+function parseMessage(message: string) {
+  try {
+    const parsed = JSON.parse(message);
+    console.log(parsed.code);
+    console.log(parsed.message);
+    return parsed.message;
+  } catch (e) {
+    console.log('메시지가 JSON 형식이 아님:', message);
+    return message;
+  }
+}
 
 /* auth 관련 api 함수 반환 타입 정의 */
 interface SuccessResponse {
@@ -79,7 +99,7 @@ const useAuth = create(
           email,
           password,
         };
-        const result = await fetch(`${defaultUrl}/signup`, {
+        const result = await fetch(`${API_URL}/signup`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body),
@@ -93,7 +113,7 @@ const useAuth = create(
           email,
           password,
         };
-        const result = await fetch(`${defaultUrl}/login`, {
+        const result = await fetch(`${API_URL}/login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
@@ -108,7 +128,7 @@ const useAuth = create(
         return result;
       },
       logout: async () => {
-        const result = await fetch(`${defaultUrl}/logout`, {
+        const result = await fetch(`${API_URL}/logout`, {
           method: 'POST',
           credentials: 'include',
         })
@@ -121,7 +141,7 @@ const useAuth = create(
       },
       //getRefreshToken 함수 제거 (보안 위험이 있어서 제거 했습니다.)
       refresh: async () => {
-        const result = await fetch(`${defaultUrl}/refresh`, {
+        const result = await fetch(`${API_URL}/refresh`, {
           method: 'POST',
           credentials: 'include', // 쿠키 기반 인증 시 필요
         })
@@ -163,7 +183,7 @@ const useAuth = create(
       //페이지 권한 여부 등에 쓰이는 인가 여부 판단 api
       checkAuth: async () => {
         const result = get()
-          .authFetch(`${defaultUrl}/check`, {
+          .authFetch(`${API_URL}/check`, {
             method: 'POST',
           })
           .then(responseHandler<checkAuthResponse>)

@@ -16,7 +16,7 @@ export function DropdownOldSelect({ order, onChangeOrder }: DropdownOldSelectPro
         value={order}
         name="order"
         onChange={onChangeOrder}
-        className="flex h-[42px] w-[42px] shrink-0 flex-col py-[10px] gap-[10px] rounded-[12px] border border-[var(--Cool-Gray-200,#e5e7eb)] bg-white p-[9px] text-transparent md:text-[var(--Secondary-800)] md:text-[16px] md:font-[400] md:w-fit"
+        className="flex h-[42px] w-[42px] shrink-0 flex-col py-[10px] gap-[10px] rounded-[12px] border border-[var(--Cool-Gray-200,#e5e7eb)] bg-white p-[9px] text-transparent md:text-[var(--Cool-Gray-800)] md:text-[16px] md:font-[400] md:w-fit"
       >
         <option value="recent">최신순</option>
         <option value="favorite">좋아요순</option>
@@ -50,7 +50,7 @@ export function DropdownButton({ list = [], children }: DropdownButtonProps) {
           <ul className="flex flex-col items-center">
             {list.map((e) => (
               <li
-                className="py-[12px] px-0 text-[var(--Secondary-500)] font-[var(--font-16-regular)]"
+                className="py-[12px] px-0 text-[var(--Cool-Gray-500)] font-[var(--font-16-regular)]"
                 key={list.indexOf(e)}
               >
                 <button onClick={e.onClick}>{e.name}</button>

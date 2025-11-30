@@ -21,14 +21,17 @@ export default function TextArea({
   placeholder = '',
   error = '',
 }: TextAreaProps) {
-  const ErrorStyle = error === '' ? 'border-1 border-black ' : 'border-1 border-[var(--error-red)]';
+  const ErrorStyle =
+    error === ''
+      ? 'border-1 focus:border-2 focus:border-black outline-none'
+      : 'border-1 focus:border-2 border-[var(--error-red)] outline-none';
   //공통되는 prop을 묶었습니다.
   const props = {
     className:
       //문자열을 합치는 거라 띄어쓰기 중요
       ErrorStyle +
-      ' focus:outline-none focus:border-2 w-full px-[24px] py-[12px] bg-[var(--Cool-Gray-100] resize-none overflow-hidden rounded-[12px] text-[16px] font-[400]' +
-      ' placeholder:text-[var(--Secondary-400] placeholder:text-[16px] placeholder:font-[400]',
+      ' w-full px-[24px] py-[12px] bg-[var(--Cool-Gray-100)] resize-none overflow-hidden rounded-[12px] text-[16px] font-[400]' +
+      ' placeholder:text-[var(--Cool-Gray-400] placeholder:text-[16px] placeholder:font-[400]',
     name,
     value,
     onChange,
@@ -41,7 +44,7 @@ export default function TextArea({
       <label className="mb-[8px]">{label}</label>
       <textarea {...props} />
       <div className="flex h-[32px] flex-col justify-start">
-        <p className="flex items-center justify-start px-4 py-2 text-sm font-semibold text-[var(--error-red,#f74747)]">
+        <p className="flex items-center justify-start px-[16px] py-[8px] text-sm font-semibold text-[var(--error-red,#f74747)]">
           {error}
         </p>
       </div>
