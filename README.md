@@ -1,9 +1,8 @@
-# 8-Sprint-Mission-8
+# 8-Sprint-Mission-11
 
 ## 이번 미션 소개
 
-- 이번 프로젝트 미션 8 에서는 판다마켓 프로젝트의 자유 게시판 페이지를 Next.js 로 구현합니다.
-- 직접 제작한 백엔드 API를 활용해서 API와 연동합니다.
+- 이번 스프린트 미션에서는 기존 Next.js, module.scss 코드를 TypeScript, Tailwind css 코드로 마이그레이션 및 리팩토링을 진행하였습니다.
 
 ## 미션 과정
 
