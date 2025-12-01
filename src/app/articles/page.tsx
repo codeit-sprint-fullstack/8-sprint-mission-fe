@@ -1,0 +1,80 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
+import BestArticleSection from "@/components/Article/BestArticleSection";
+import ArticleCard from "@/components/Article/ArticleCard";
+import Controller from "@/components/Controller/Controller";
+import { useArticles } from "@/hooks/useArticles";
+import { Article } from "@/types/entities";
+
+const ArticlePage = () => {
+  const { articles, loading, error, loadArticles, resetArticles } =
+    useArticles();
+  const [sortedArticles, setSortedArticles] = useState<Article[]>([]);
+
+  useEffect(() => {
+    resetArticles();
+    loadArticles();
+  }, []);
+
+  useEffect(() => {
+    setSortedArticles(articles);
+  }, [articles]);
+
+  const bestArticles: Article[] = [...articles]
+    .sort((a, b) => (b.likeCount ?? 0) - (a.likeCount ?? 0))
+    .slice(0, 3);
+
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      <Header />
+
+      <main className="flex-1 flex flex-col items-stretch mx-auto mb-[200px] p-4 w-full max-w-[1200px]">
+        <BestArticleSection
+          bestArticles={bestArticles}
+          loading={loading}
+          error={error}
+        />
+
+        <section>
+          <Controller
+            controls={{ search: true, orderBy: true }}
+            articles={articles}
+            setSortedArticles={setSortedArticles}
+          />
+          <div className="grid grid-cols-1 gap-4">
+            {loading && (
+              <div className="col-span-full text-center py-10 text-gray-400">
+                게시글을 불러오는 중입니다...
+              </div>
+            )}
+
+            {error && (
+              <div className="col-span-full text-center py-10 text-gray-400">
+                Error: {error}
+              </div>
+            )}
+
+            {!loading &&
+              !error &&
+              (sortedArticles?.length > 0 ? (
+                sortedArticles.map((article) => (
+                  <ArticleCard key={article.id} article={article} />
+                ))
+              ) : (
+                <div className="col-span-full text-center py-10 text-gray-400">
+                  게시글이 없습니다.
+                </div>
+              ))}
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default ArticlePage;

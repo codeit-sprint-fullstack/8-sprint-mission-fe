@@ -1,0 +1,89 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
+import BestProductSection from "@/components/Products/BestProductSection";
+import ProductCard from "@/components/Products/ProductCard";
+import ProductListController from "@/components/Products/ProductListController";
+import PageButton from "@/components/Products/PageButton";
+import { useItems } from "@/hooks/useItems";
+import { Product } from "@/types/entities";
+
+const ProductPage = () => {
+  const { items: products, loading, error, loadItems } = useItems();
+  const [sortedProducts, setSortedProducts] = useState<Product[]>([]);
+  const [nowPage, setNowPage] = useState<number>(1);
+  const pageSize = 10;
+
+  useEffect(() => {
+    setSortedProducts(products);
+  }, [products]);
+
+  const bestProducts: Product[] = [...products]
+    .sort((a, b) => (b.favoriteCount ?? 0) - (a.favoriteCount ?? 0))
+    .slice(0, 4);
+
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      <Header />
+
+      <main className="flex-1 flex flex-col items-stretch mx-auto mb-[200px] p-4 w-full max-w-[1200px]">
+        <BestProductSection
+          bestProducts={bestProducts}
+          loading={loading}
+          error={error}
+        />
+
+        <section>
+          <ProductListController
+            controls={{ search: true, orderBy: true }}
+            // option={{ search: true, orderBy: true, upload: true }}
+            products={products}
+            setSortedProducts={setSortedProducts}
+          />
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            {loading && (
+              <div className="col-span-full text-center py-10 text-gray-400">
+                상품 목록을 불러오는 중입니다...
+              </div>
+            )}
+
+            {error && (
+              <div className="col-span-full text-center py-10 text-gray-400">
+                Error: {error}
+              </div>
+            )}
+
+            {!loading &&
+              !error &&
+              (sortedProducts?.length > 0 ? (
+                (sortedProducts ?? []).map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    {...product}
+                    type="normal"
+                  />
+                ))
+              ) : (
+                <div className="col-span-full text-center py-10 text-gray-400">
+                  상품이 없습니다.
+                </div>
+              ))}
+          </div>
+          <PageButton
+            nowPage={nowPage}
+            pageSize={pageSize}
+            totalCount={100}
+            onChange={setNowPage}
+          />
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default ProductPage;
